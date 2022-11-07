@@ -1,0 +1,16 @@
+# OS X Finder stuff
+.DS_Store
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Xcode
+build/
+xcuserdata
+*.xccheckout
+*.xcuserstate
+*.xcscmblueprint
+
+/Resources/Environment/Environment.xcconfig
+/debug-env.xcconfig
