@@ -1,0 +1,54 @@
+##########################
+## VERSIONS
+##########################
+
+[versions]
+# Ktor
+# https://github.com/ktorio/ktor/releases
+ktorVersion = "2.1.3"
+# https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+logbackVersion = "1.4.4"
+
+##########################
+## LIBRARIES
+##########################
+
+# Ktor
+# Create asynchronous client and server applications. Anything from microservices to multiplatform HTTP client apps in a simple way. Open Source, free, and fun!
+[libraries.ktor-server-auth-jvm]
+module = "io.ktor:ktor-server-auth-jvm"
+[libraries.ktor-server-auth-jvm.version]
+ref = "ktorVersion"
+
+[libraries.ktor-server-core-jvm]
+module = "io.ktor:ktor-server-core-jvm"
+[libraries.ktor-server-core-jvm.version]
+ref = "ktorVersion"
+
+[libraries.ktor-server-sessions-jvm]
+module = "io.ktor:ktor-server-sessions-jvm"
+[libraries.ktor-server-sessions-jvm.version]
+ref = "ktorVersion"
+
+[libraries.ktor-server-netty-jvm]
+module = "io.ktor:ktor-server-netty-jvm"
+[libraries.ktor-server-netty-jvm.version]
+ref = "ktorVersion"
+
+[libraries.logback-classic]
+module = "ch.qos.logback:logback-classic"
+[libraries.logback-classic.version]
+ref = "logbackVersion"
+
+##########################
+## BUNDLES
+##########################
+
+[bundles]
+ktor = [
+    "ktor-server-auth-jvm",
+    "ktor-server-core-jvm",
+    "ktor-server-sessions-jvm",
+    "ktor-server-netty-jvm",
+    "logback-classic",
+]

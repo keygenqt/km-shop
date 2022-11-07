@@ -1,0 +1,40 @@
+##########################
+## VERSIONS
+##########################
+
+[versions]
+# kotlinx-datetime
+# https://github.com/Kotlin/kotlinx-datetime/tags
+kotlinxDatetimeVersion = "0.4.0"
+
+##########################
+## LIBRARIES
+##########################
+
+# kotlinx-datetime
+# A multiplatform Kotlin library for working with date and time.
+[libraries.kotlinx-datetime]
+module = "org.jetbrains.kotlinx:kotlinx-datetime"
+[libraries.kotlinx-datetime.version]
+ref = "kotlinxDatetimeVersion"
+
+##########################
+## BUNDLES
+##########################
+
+[bundles]
+common = [
+    "kotlinx-datetime",
+]
+jvm = [
+    "kotlinx-datetime",
+]
+android = [
+    "kotlinx-datetime",
+]
+ios = [
+    "kotlinx-datetime",
+]
+js = [
+    "kotlinx-datetime",
+]

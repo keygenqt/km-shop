@@ -1,9 +1,10 @@
-package com.keygenqt
+package com.keygenqt.shop.api
 
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import com.keygenqt.plugins.*
+import com.keygenqt.shop.api.plugins.configureRouting
+import com.keygenqt.shop.api.plugins.configureSecurity
 
 fun main() {
     embeddedServer(Netty, port = 3001, host = "localhost", module = Application::module)

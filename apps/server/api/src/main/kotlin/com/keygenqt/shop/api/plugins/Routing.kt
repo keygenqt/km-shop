@@ -1,4 +1,4 @@
-package com.keygenqt.plugins
+package com.keygenqt.shop.api.plugins
 
 import com.keygenqt.shop.Greeting
 import io.ktor.server.application.*

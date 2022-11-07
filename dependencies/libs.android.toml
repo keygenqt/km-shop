@@ -1,0 +1,60 @@
+##########################
+## VERSIONS
+##########################
+
+[versions]
+# Jetpack Compose
+# https://developer.android.com/jetpack/androidx/releases/compose
+composeVersion = "1.3.0"
+# https://developer.android.com/jetpack/androidx/releases/activity
+activityComposeVersion = "1.6.1"
+
+##########################
+## LIBRARIES
+##########################
+
+# Jetpack Compose
+# Define your UI programmatically with composable functions that describe its shape and data dependencies.
+[libraries.ui]
+module = "androidx.compose.ui:ui"
+[libraries.ui.version]
+ref = "composeVersion"
+
+[libraries.ui-tooling]
+module = "androidx.compose.ui:ui-tooling"
+[libraries.ui-tooling.version]
+ref = "composeVersion"
+
+[libraries.ui-tooling-preview]
+module = "androidx.compose.ui:ui-tooling-preview"
+[libraries.ui-tooling-preview.version]
+ref = "composeVersion"
+
+[libraries.foundation]
+module = "androidx.compose.foundation:foundation"
+[libraries.foundation.version]
+ref = "composeVersion"
+
+[libraries.material]
+module = "androidx.compose.material:material"
+[libraries.material.version]
+ref = "composeVersion"
+
+[libraries.activity-compose]
+module = "androidx.activity:activity-compose"
+[libraries.activity-compose.version]
+ref = "activityComposeVersion"
+
+##########################
+## BUNDLES
+##########################
+
+[bundles]
+compose = [
+    "ui",
+    "ui-tooling",
+    "ui-tooling-preview",
+    "foundation",
+    "material",
+    "activity-compose",
+]

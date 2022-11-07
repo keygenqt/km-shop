@@ -4,9 +4,8 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("dev.petuska.npm.publish") version "3.0.3"
+    id("dev.petuska.npm.publish")
 }
-
 
 kotlin {
     android()
@@ -18,9 +17,6 @@ kotlin {
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
         }
-//        testRuns["test"].executionTask.configure {
-//            useJUnitPlatform()
-//        }
     }
 
     js(IR) {
@@ -45,16 +41,33 @@ kotlin {
         all {
             languageSettings.apply {
                 optIn("kotlin.js.ExperimentalJsExport")
-
             }
         }
-        val commonMain by getting
-        val androidMain by getting
+
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
-        val jvmMain by getting
-        val jsMain by getting
+
+        val commonMain by getting {
+            dependencies {
+                implementation(kmModule.bundles.common)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(kmModule.bundles.android)
+            }
+        }
+        val jvmMain by getting {
+            dependencies {
+                implementation(kmModule.bundles.jvm)
+            }
+        }
+        val jsMain by getting {
+            dependencies {
+                implementation(kmModule.bundles.js)
+            }
+        }
         val iosMain by creating {
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -66,10 +79,10 @@ kotlin {
 
 android {
     namespace = "com.keygenqt.shop"
-    compileSdk = 33
+    compileSdk = findProperty("compileSdk").toString().toInt()
     defaultConfig {
-        minSdk = 23
-        targetSdk = 33
+        minSdk = findProperty("minSdk").toString().toInt()
+        targetSdk = findProperty("targetSdk").toString().toInt()
     }
 }
 

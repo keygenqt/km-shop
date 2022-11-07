@@ -5,15 +5,13 @@ plugins {
     application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
-//repositories {
-//    mavenCentral()
-//}
+group = "com.keygenqt.shop.cli"
+version = "0.0.1"
 
 dependencies {
     implementation(project(":shared"))
+    // Kotlin CLI
+    implementation(cliApp.bundles.cli)
 }
 
 tasks.withType<KotlinCompile> {
