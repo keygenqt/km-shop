@@ -15,10 +15,16 @@ nav:
       - 'About': ios/index.md
   - 'Android':
       - 'About': android/index.md
+      - 'Dokka': dokka/android/index.html
   - 'API':
       - 'About': api/index.md
+      - 'Dokka': dokka/api/index.html
   - 'Server CLI':
       - 'About': cli/index.md
+      - 'Dokka': dokka/cli/index.html
+  - 'Package Shared':
+      - 'About': shared/index.md
+      - 'Dokka': dokka/shared/index.html
 
 # Configuration
 theme:
