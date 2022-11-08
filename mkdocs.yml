@@ -15,13 +15,13 @@ nav:
       - 'About': ios/index.md
   - 'Android':
       - 'About': android/index.md
-      - 'Dokka': dokka/apps/mobile/android/index.html
+      - 'Dokka': dokka/shop/mobile/android/index.html
   - 'API':
       - 'About': api/index.md
-      - 'Dokka': dokka/apps/server/api/index.html
+      - 'Dokka': dokka/shop/server/api/index.html
   - 'Server CLI':
       - 'About': cli/index.md
-      - 'Dokka': dokka/apps/server/cli/index.html
+      - 'Dokka': dokka/shop/server/cli/index.html
   - 'Package Shared':
       - 'About': shared/index.md
       - 'Dokka': dokka/shared/index.html
