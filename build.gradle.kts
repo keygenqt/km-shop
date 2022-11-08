@@ -45,7 +45,7 @@ buildscript {
 }
 
 tasks.withType<org.jetbrains.dokka.gradle.DokkaMultiModuleTask>().configureEach {
-    outputDirectory.set(rootDir.resolve("docs/api"))
+    outputDirectory.set(rootDir.resolve("docs/dokka"))
     failOnWarning.set(true)
 }
 
