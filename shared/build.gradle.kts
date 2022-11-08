@@ -31,9 +31,8 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../apps/mobile/ios/Podfile")
+        podfile = project.file("../shop/mobile/ios/Podfile")
         framework {
-            isStatic = true
             baseName = "shared"
         }
     }

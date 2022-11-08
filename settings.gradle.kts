@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Shop"
 
-include("apps:mobile:android")
-include("apps:server:cli")
-include("apps:server:api")
+include("shop:mobile:android")
+include("shop:server:cli")
+include("shop:server:api")
 include(":shared")
