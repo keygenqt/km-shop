@@ -9,7 +9,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "shared": "file:../../../shared/build/packages/shared-0.0.1667834734305.tgz",
+    "shared": "file:../shared-0.0.1667900852869.tgz",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

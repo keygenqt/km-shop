@@ -11,6 +11,12 @@ Shop Kotlin Multiplatform 6 in 1
 * API ([Ktor](https://ktor.io/))
 * CLI ([kotlinx-cli](https://github.com/Kotlin/kotlinx-cli))
 
+# Preview
+
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/Screen_Recording_2022-11-08_at_12.46.29.gif" width="100%"/>
+</p>
+
 # License
 
 ```
