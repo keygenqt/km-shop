@@ -3,9 +3,10 @@
 ##########################
 
 [versions]
-# kotlinx-datetime
 # https://github.com/Kotlin/kotlinx-datetime/tags
 kotlinxDatetimeVersion = "0.4.0"
+# https://github.com/ktorio/ktor/releases
+ktorVersion = "2.1.2"
 
 ##########################
 ## LIBRARIES
@@ -18,6 +19,53 @@ module = "org.jetbrains.kotlinx:kotlinx-datetime"
 [libraries.kotlinx-datetime.version]
 ref = "kotlinxDatetimeVersion"
 
+# Ktor
+# Ktor is an asynchronous framework for creating microservices, web applications and more.
+# Written in Kotlin from the ground up.
+[libraries.ktor-client-core]
+module = "io.ktor:ktor-client-core"
+[libraries.ktor-client-core.version]
+ref = "ktorVersion"
+
+[libraries.ktor-client-content-negotiation]
+module = "io.ktor:ktor-client-content-negotiation"
+[libraries.ktor-client-content-negotiation.version]
+ref = "ktorVersion"
+
+[libraries.ktor-serialization-kotlinx-json]
+module = "io.ktor:ktor-serialization-kotlinx-json"
+[libraries.ktor-serialization-kotlinx-json.version]
+ref = "ktorVersion"
+
+[libraries.ktor-client-logging]
+module = "io.ktor:ktor-client-logging"
+[libraries.ktor-client-logging.version]
+ref = "ktorVersion"
+
+# android
+[libraries.ktor-client-android]
+module = "io.ktor:ktor-client-android"
+[libraries.ktor-client-android.version]
+ref = "ktorVersion"
+
+# ios
+[libraries.ktor-client-darwin]
+module = "io.ktor:ktor-client-darwin"
+[libraries.ktor-client-darwin.version]
+ref = "ktorVersion"
+
+# js
+[libraries.ktor-client-js]
+module = "io.ktor:ktor-client-js"
+[libraries.ktor-client-js.version]
+ref = "ktorVersion"
+
+# jvm
+[libraries.ktor-client-cio]
+module = "io.ktor:ktor-client-cio"
+[libraries.ktor-client-cio.version]
+ref = "ktorVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -25,16 +73,24 @@ ref = "kotlinxDatetimeVersion"
 [bundles]
 common = [
     "kotlinx-datetime",
+    "ktor-client-core",
+    "ktor-client-content-negotiation",
+    "ktor-serialization-kotlinx-json",
+    "ktor-client-logging",
 ]
 jvm = [
     "kotlinx-datetime",
+    "ktor-client-cio",
 ]
 android = [
     "kotlinx-datetime",
+    "ktor-client-android",
 ]
 ios = [
     "kotlinx-datetime",
+    "ktor-client-darwin",
 ]
 js = [
     "kotlinx-datetime",
+    "ktor-client-js",
 ]

@@ -15,18 +15,28 @@
  */
 package com.keygenqt.shop.api
 
+import com.keygenqt.shop.api.base.db.DatabaseMysql
 import com.keygenqt.shop.api.plugins.configureRouting
 import com.keygenqt.shop.api.plugins.configureSecurity
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
-fun main() {
-    embeddedServer(Netty, port = 3001, host = "localhost", module = Application::module)
-        .start(wait = true)
+fun main(args: Array<String>) {
+    embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
 }
 
 fun Application.module() {
+
+    // init db app
+    with(environment.config) {
+        val db = DatabaseMysql(
+            config = property("ktor.db.dbconfig").getString(),
+            migration = property("ktor.db.migration").getString()
+        )
+    }
+
+
     configureSecurity()
     configureRouting()
 }

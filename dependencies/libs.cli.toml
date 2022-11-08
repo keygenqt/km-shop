@@ -3,9 +3,12 @@
 ##########################
 
 [versions]
-# kotlinx-cli
 # https://github.com/Kotlin/kotlinx-cli
 kotlinxCLIVersion = "0.3.5"
+# https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md
+coroutinesVersion = "1.6.4"
+# https://mvnrepository.com/artifact/org.slf4j
+slf4jVersion = "2.0.3"
 
 ##########################
 ## LIBRARIES
@@ -18,6 +21,25 @@ module = "org.jetbrains.kotlinx:kotlinx-cli"
 [libraries.kotlinx-cli.version]
 ref = "kotlinxCLIVersion"
 
+# kotlinx-coroutines
+# Library support for Kotlin coroutines with multiplatform support.
+[libraries.kotlinx-coroutines-core]
+module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
+[libraries.kotlinx-coroutines-core.version]
+ref = "coroutinesVersion"
+
+# slf4j
+# The Simple Logging Facade for Java
+[libraries.slf4j-api]
+module = "org.slf4j:slf4j-api"
+[libraries.slf4j-api.version]
+ref = "slf4jVersion"
+
+[libraries.slf4j-simple]
+module = "org.slf4j:slf4j-simple"
+[libraries.slf4j-simple.version]
+ref = "slf4jVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -25,4 +47,7 @@ ref = "kotlinxCLIVersion"
 [bundles]
 cli = [
     "kotlinx-cli",
+    "slf4j-api",
+    "slf4j-simple",
+    "kotlinx-coroutines-core",
 ]

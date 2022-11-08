@@ -16,9 +16,11 @@
 package com.keygenqt.shop.cli
 
 import com.keygenqt.shop.Greeting
+import com.keygenqt.shop.services.ServiceRequest
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
+import kotlinx.coroutines.runBlocking
 
 object AppArgParser {
     private val argParser = ArgParser("Shop CLI")
@@ -40,6 +42,15 @@ fun main(args: Array<String>) {
     AppArgParser.parse(args)
 
     println("CLI: " + Greeting().greeting())
+
+    val request = ServiceRequest()
+
+    println("Loading rockets...")
+
+    runBlocking {
+        val rockets = request.get.rockets()
+        println("Rockets count: ${rockets.size}")
+    }
 
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.

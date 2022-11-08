@@ -3,6 +3,7 @@ import java.util.*
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("dev.petuska.npm.publish")
 }
@@ -34,9 +35,10 @@ kotlin {
         podfile = project.file("../shop/mobile/ios/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
-    
+
     sourceSets {
         all {
             languageSettings.apply {
