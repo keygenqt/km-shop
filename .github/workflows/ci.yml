@@ -29,10 +29,10 @@ jobs:
           [ -d docs/data ] && rm -r docs/data
           cp -r data docs/data
 
-      - name: Api
+      - name: Dokka
         run: |
-          [ -d docs/api ] && rm -r docs/api
-          mkdir docs/api
+          [ -d docs/dokka ] && rm -r docs/dokka
+          mkdir docs/dokka
           gradle dokkaHtmlMultiModule --stacktrace
 
       - name: Build site
