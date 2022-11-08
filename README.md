@@ -4,12 +4,12 @@ Shop Kotlin Multiplatform 6 in 1
 ![picture](data/logo_160.png)
 
 ### Apps
-* API (ktor)
-* CLI (kotlinx-cli)
-* Admin panel (react)
 * Web site (react)
+* Admin panel (react)
 * Android (Jetpack Compose)
 * iOS (SwiftUI)
+* API (ktor)
+* CLI (kotlinx-cli)
 
 # License
 
