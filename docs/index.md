@@ -1,8 +1,6 @@
 Shop Kotlin Multiplatform 6 in 1
 ===================
 
-![picture](data/logo_160.png)
-
 ### Apps
 * API (ktor)
 * CLI (kotlinx-cli)

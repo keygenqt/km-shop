@@ -1,0 +1,32 @@
+site_name: GitHub Viewer
+
+# Repository
+repo_name: 'Shop Kotlin Multiplatform'
+repo_url: 'https://github.com/keygenqt/km-shop'
+
+# Navigation
+nav:
+  - 'Overview': index.md
+  - 'Website':
+      - 'About': frontend/index.md
+  - 'Admin Panel':
+      - 'About': backend/index.md
+  - 'iOS':
+      - 'About': ios/index.md
+  - 'Android':
+      - 'About': android/index.md
+  - 'API':
+      - 'About': api/index.md
+  - 'Server CLI':
+      - 'About': cli/index.md
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+    primary: 'black'
+    accent: 'deep orange'
+  font:
+    text: 'Roboto'
+    code: 'JetBrains Mono'
