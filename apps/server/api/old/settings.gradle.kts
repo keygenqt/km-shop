@@ -1,1 +1,0 @@
-rootProject.name = "com.keygenqt.ktor-sample"
