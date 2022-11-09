@@ -19,7 +19,7 @@ class V1__Create_Admins : BaseJavaMigration() {
 
             Admins.insert {
                 it[email] = "admin@keygenqt.com"
-                it[password] = Password.random()
+                it[password] = Password.encode(Password.random())
                 it[role] = AdminModelRole.ADMIN
             }
         }
