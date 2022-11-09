@@ -48,8 +48,11 @@ fun main(args: Array<String>) {
     println("Loading rockets...")
 
     runBlocking {
-        val rockets = request.get.rockets()
-        println("Rockets count: ${rockets.size}")
+        val rocketsDemoJetBrains = request.get.rocketsDemoJetBrains()
+        val rocketsDemoAPI = request.get.rocketsDemoAPI()
+
+        println("Rockets JetBrains count: ${rocketsDemoJetBrains.size}")
+        println("Rockets API count: ${rocketsDemoAPI.size}")
     }
 
     // Try adding program arguments via Run/Debug configuration.

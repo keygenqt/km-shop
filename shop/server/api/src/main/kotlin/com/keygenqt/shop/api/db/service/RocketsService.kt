@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.services.impl
+package com.keygenqt.shop.api.db.service
 
-import com.keygenqt.shop.platform.wrapPromise
-import com.keygenqt.shop.services.ServiceRequest
+import com.keygenqt.shop.api.db.base.DatabaseMysql
+import com.keygenqt.shop.api.db.models.RocketEntity
+import com.keygenqt.shop.api.db.models.Rockets
+import com.keygenqt.shop.api.db.models.toModels
+import com.keygenqt.shop.data.responses.RocketModel
+import org.jetbrains.exposed.sql.SortOrder
 
-class GetRequestPromise(private val request: ServiceRequest) {
-
+class RocketsService(
+    private val db: DatabaseMysql
+) {
     /**
-     * Override [GetRequest.rocketsDemoJetBrains] for JS
+     * Get all models
      */
-    fun rocketsDemoJetBrains() = wrapPromise { request.get.rocketsDemoJetBrains() }
-
-    /**
-     * Override [GetRequest.rocketsDemoAPI] for JS
-     */
-    fun rocketsDemoAPI() = wrapPromise { request.get.rocketsDemoAPI() }
+    suspend fun getAll(): List<RocketModel> = db.transaction {
+        RocketEntity.all().orderBy(Pair(Rockets.missionName, SortOrder.ASC)).toModels()
+    }
 }

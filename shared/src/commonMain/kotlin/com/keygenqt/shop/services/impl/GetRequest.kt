@@ -28,7 +28,15 @@ class GetRequest(private val client: HttpClient) {
      * Test query without tokens from demo KM
      */
     @Throws(Exception::class)
-    suspend fun rockets(): List<RocketModel> {
+    suspend fun rocketsDemoJetBrains(): List<RocketModel> {
         return client.get("https://api.spacexdata.com/v4/launches").body()
+    }
+
+    /**
+     * Test query without tokens from demo KM ktor API
+     */
+    @Throws(Exception::class)
+    suspend fun rocketsDemoAPI(): List<RocketModel> {
+        return client.get("rockets").body()
     }
 }

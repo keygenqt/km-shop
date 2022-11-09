@@ -7,5 +7,5 @@ object LinksConstants {
     /**
      * Api url
      */
-    const val API_URL = "https://api.github.com/"
+    const val API_URL = "http://localhost:8099/"
 }

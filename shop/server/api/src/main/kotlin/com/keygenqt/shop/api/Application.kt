@@ -15,28 +15,55 @@
  */
 package com.keygenqt.shop.api
 
-import com.keygenqt.shop.api.base.db.DatabaseMysql
-import com.keygenqt.shop.api.plugins.configureRouting
-import com.keygenqt.shop.api.plugins.configureSecurity
+import com.keygenqt.shop.api.db.base.DatabaseMysql
+import com.keygenqt.shop.api.db.service.RocketsService
+import com.keygenqt.shop.api.routing.greeting
+import com.keygenqt.shop.api.routing.main
+import com.keygenqt.shop.api.routing.rockets
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.routing.*
+import org.koin.core.context.startKoin
+import org.koin.dsl.module as koinModule
+import io.ktor.server.plugins.contentnegotiation.*
+import kotlinx.serialization.json.Json
 
 fun main(args: Array<String>) {
     embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
 }
 
 fun Application.module() {
-
-    // init db app
     with(environment.config) {
+        // init db app
         val db = DatabaseMysql(
             config = property("ktor.db.dbconfig").getString(),
             migration = property("ktor.db.migration").getString()
         )
+
+        // init koin
+        startKoin {
+            printLogger()
+            modules(koinModule {
+                single { RocketsService(db) }
+            })
+        }
+
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+                coerceInputValues = true
+            })
+        }
+
+        // init routing
+        install(Routing) {
+            main()
+            rockets()
+            greeting()
+        }
     }
-
-
-    configureSecurity()
-    configureRouting()
 }
