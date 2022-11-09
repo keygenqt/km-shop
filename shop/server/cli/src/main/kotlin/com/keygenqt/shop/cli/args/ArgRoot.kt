@@ -27,9 +27,14 @@ class ArgRoot {
     ).default(false)
 
     companion object {
-        fun parse(args: Array<String>): ArgRoot {
-            return ArgRoot().apply {
-                parser.parse(args)
+        fun parse(args: Array<String>): ArgRoot? {
+            return ArgRoot().let {
+                it.parser.parse(if (args.isEmpty()) arrayOf("--help") else args)
+                if (args.isEmpty()) {
+                    null
+                } else {
+                    it
+                }
             }
         }
     }

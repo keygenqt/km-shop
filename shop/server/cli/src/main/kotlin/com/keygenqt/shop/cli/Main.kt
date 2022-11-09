@@ -28,23 +28,24 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
 fun main(args: Array<String>) {
+    // parse arg
+    ArgRoot.parse(args)?.let { arguments ->
 
-    val arguments = if (args.isEmpty()) arrayOf("--help") else args
+        // init db app
+        val db = DatabaseMysql()
 
-    // init db app
-    val db = DatabaseMysql()
+        // init koin
+        startKoin {
+            modules(module {
+                single { arguments }
+                single { ServiceRequest() }
+                single { RocketsService(db) }
+            })
+        }
 
-    // init koin
-    startKoin {
-        modules(module {
-            single { ServiceRequest() }
-            single { RocketsService(db) }
-            single { ArgRoot.parse(arguments) }
-        })
+        DemoFeature.init()
+        BackupFeature.init()
+        CleanerFeature.init()
+        NotificationFeature.init()
     }
-
-    DemoFeature.init()
-    BackupFeature.init()
-    CleanerFeature.init()
-    NotificationFeature.init()
 }
