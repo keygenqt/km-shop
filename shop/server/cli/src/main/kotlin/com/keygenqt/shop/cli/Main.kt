@@ -43,6 +43,7 @@ fun main(args: Array<String>) {
             })
         }
 
+        // run features
         DemoFeature.init()
         BackupFeature.init()
         CleanerFeature.init()
