@@ -15,47 +15,58 @@
  */
 package com.keygenqt.shop.cli
 
-import com.keygenqt.shop.Greeting
+import com.keygenqt.shop.cli.args.*
 import com.keygenqt.shop.services.ServiceRequest
-import kotlinx.cli.ArgParser
-import kotlinx.cli.ArgType
-import kotlinx.cli.required
 import kotlinx.coroutines.runBlocking
-
-object AppArgParser {
-    private val argParser = ArgParser("Shop CLI")
-
-    val output by argParser.option(
-        ArgType.String,
-        fullName = "output",
-        shortName = "o",
-        description = "Output argument string"
-    ).required()
-
-    fun parse(args: Array<String>) {
-        argParser.parse(args)
-    }
-}
 
 fun main(args: Array<String>) {
 
-    AppArgParser.parse(args)
+    val arguments = if (args.isEmpty()) arrayOf("--help") else args
 
-    println("CLI: " + Greeting().greeting())
+    // parse arguments
+    ArgRoot.parse(arguments)
 
-    val request = ServiceRequest()
-
-    println("Loading rockets...")
-
-    runBlocking {
-        val rocketsDemoJetBrains = request.get.rocketsDemoJetBrains()
-        val rocketsDemoAPI = request.get.rocketsDemoAPI()
-
-        println("Rockets JetBrains count: ${rocketsDemoJetBrains.size}")
-        println("Rockets API count: ${rocketsDemoAPI.size}")
+    // check if set backup
+    if (ArgBackup.isInit) {
+        when (ArgBackup.type) {
+            BackupTypes.DB -> {
+                println("Backup DB")
+            }
+            BackupTypes.IMAGES -> {
+                println("Backup IMAGES")
+            }
+        }
     }
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${AppArgParser.output}")
+    // check if set cleaner
+    if (ArgCleaner.isInit) {
+        when (ArgCleaner.type) {
+            CleanerTypes.TOKENS -> {
+                println("Cleaner old tokens")
+            }
+            CleanerTypes.IMAGES -> {
+                println("Cleaner images not has in db")
+            }
+        }
+    }
+
+    // check if set notification
+    if (ArgNotification.isInit) {
+        println("Push firebase notification")
+    }
+
+    // Demo multiplatform request
+    if (ArgRoot.demo) {
+        val request = ServiceRequest()
+
+        println("Loading rockets...")
+
+        runBlocking {
+            val rocketsDemoJetBrains = request.get.rocketsDemoJetBrains()
+            val rocketsDemoAPI = request.get.rocketsDemoAPI()
+
+            println("Rockets JetBrains count: ${rocketsDemoJetBrains.size}")
+            println("Rockets API count: ${rocketsDemoAPI.size}")
+        }
+    }
 }
