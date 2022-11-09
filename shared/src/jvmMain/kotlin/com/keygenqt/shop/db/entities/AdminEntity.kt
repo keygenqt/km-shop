@@ -13,45 +13,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.db.models
+package com.keygenqt.shop.db.entities
 
-import com.keygenqt.shop.db.base.IntSubQueryEntityClass
-import com.keygenqt.shop.data.responses.RocketModel
+import com.keygenqt.shop.data.responses.AdminModel
+import com.keygenqt.shop.data.responses.AdminModelRole
 import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object Rockets : IntIdTable() {
-    val missionName = varchar("name", 255)
-    val launchDateUTC = varchar("date_utc", 255)
-    val launchSuccess = bool("success").default(false)
+/**
+ * Table users
+ */
+object Admins : IntIdTable() {
+    val email = varchar("email", 255).uniqueIndex()
+    val password = varchar("password", 255)
+    val role = enumeration("role", AdminModelRole::class).default(AdminModelRole.GUEST)
 }
 
 /**
  * Exposed entity
  */
-class RocketEntity(id: EntityID<Int>) : IntEntity(id) {
+class AdminEntity(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<AdminEntity>(Admins)
 
-    companion object : IntSubQueryEntityClass<RocketEntity>(Rockets)
-
-    var missionName by Rockets.missionName
-    var launchDateUTC by Rockets.launchDateUTC
-    var launchSuccess by Rockets.launchSuccess
+    var email by Admins.email
+    var password by Admins.password
+    var role by Admins.role
 }
 
 /**
- * Convert to model
+ * Convert
  */
-fun RocketEntity.toModel() = RocketModel(
-    flightNumber = id.value,
-    missionName = missionName,
-    launchDateUTC = launchDateUTC,
-    launchSuccess = launchSuccess,
+fun AdminEntity.toModel() = AdminModel(
+    id = id.value,
+    email = email,
+    role = role,
 )
 
 /**
  * Convert list
  */
-fun Iterable<RocketEntity>.toModels(): List<RocketModel> {
+fun Iterable<AdminEntity>.toModels(): List<AdminModel> {
     return map { it.toModel() }
 }

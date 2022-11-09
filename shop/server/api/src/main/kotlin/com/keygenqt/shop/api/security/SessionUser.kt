@@ -13,22 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.db.service
+package com.keygenqt.shop.api.security
 
-import com.keygenqt.shop.db.entities.RocketEntity
-import com.keygenqt.shop.db.entities.Rockets
-import com.keygenqt.shop.db.entities.toModels
-import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.data.responses.RocketModel
-import org.jetbrains.exposed.sql.SortOrder
+import io.ktor.server.auth.*
 
-class RocketsService(
-    private val db: DatabaseMysql
-) {
-    /**
-     * Get all models
-     */
-    suspend fun getAll(): List<RocketModel> = db.transaction {
-        RocketEntity.all().orderBy(Pair(Rockets.missionName, SortOrder.ASC)).toModels()
-    }
-}
+/**
+ * Session cookie
+ */
+data class SessionUser(
+    val userId: Int,
+    val role: String,
+    val token: String,
+    val deviceId: String
+): Principal

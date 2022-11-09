@@ -25,16 +25,14 @@ import org.slf4j.LoggerFactory
 import javax.sql.DataSource
 
 class DatabaseMysql(
-    private val config: String = "/Users/keygenqt/Documents/Home/Shop/configuration/dbconfig.properties",
-    private val migration: String = "com/keygenqt/shop/db/migration"
+    dbconfig: String,
 ) {
-
     private var db: Database
     private val log = LoggerFactory.getLogger(this::class.java)
 
     init {
         log.info("Initialising database")
-        val dataSource = hikari(config)
+        val dataSource = hikari(dbconfig)
         db = Database.connect(dataSource)
         runFlyway(dataSource)
     }
@@ -49,7 +47,7 @@ class DatabaseMysql(
 
     private fun runFlyway(datasource: DataSource) {
         val flyway = Flyway.configure()
-            .locations(migration)
+            .locations("com/keygenqt/shop/db/migration")
             .dataSource(datasource)
             .load()
         try {

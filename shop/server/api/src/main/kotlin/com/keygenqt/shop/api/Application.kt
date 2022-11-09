@@ -15,17 +15,26 @@
  */
 package com.keygenqt.shop.api
 
+import com.keygenqt.shop.api.exceptions.authentication
+import com.keygenqt.shop.api.exceptions.session
 import com.keygenqt.shop.api.routing.greeting
+import com.keygenqt.shop.api.routing.login
 import com.keygenqt.shop.api.routing.main
 import com.keygenqt.shop.api.routing.rockets
+import com.keygenqt.shop.api.security.SessionService
+import com.keygenqt.shop.api.utils.AppConstants
+import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.db.base.DatabaseMysql
+import com.keygenqt.shop.db.service.AdminsService
 import com.keygenqt.shop.db.service.RocketsService
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
+import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.module as koinModule
@@ -35,30 +44,70 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    // init db app
-    val db = DatabaseMysql()
+    with(environment.config) {
 
-    // init koin
-    startKoin {
-        printLogger()
-        modules(koinModule {
-            single { RocketsService(db) }
-        })
-    }
+        // load config
+        val conf = LoaderConfig.loadProperties(this.property("ktor.config.app").getString())
 
-    install(ContentNegotiation) {
-        json(Json {
-            prettyPrint = true
-            isLenient = true
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-        })
-    }
+        // init db app
+        val db = DatabaseMysql(
+            dbconfig = this.property("ktor.config.dbconfig").getString()
+        )
 
-    // init routing
-    install(Routing) {
-        main()
-        rockets()
-        greeting()
+        // init koin
+        startKoin {
+            printLogger()
+            modules(koinModule {
+                // app config
+                single { conf }
+
+                // db services
+                single { AdminsService(db) }
+                single { RocketsService(db) }
+
+                // session service
+                single {
+                    SessionService(
+                        db = db,
+                        secret = conf.getPropOrNull("secret")
+                    )
+                }
+            })
+        }
+
+        // init session
+        install(Sessions) {
+            session(
+                secret = conf.getPropOrNull("secret"),
+                signKey = conf.getPropOrNull("signKey")
+            )
+        }
+
+        // init auth
+        install(Authentication) {
+            authentication()
+        }
+
+        // init json
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+                coerceInputValues = true
+            })
+        }
+
+        // init routing
+        install(Routing) {
+            // guest
+            main()
+            login()
+            greeting()
+            // user
+            authenticate(AppConstants.SESSION_KEY) {
+                rockets()
+            }
+        }
     }
 }

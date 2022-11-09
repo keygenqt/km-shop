@@ -20,12 +20,20 @@ fun Route.main() {
                     +"Hello from $name!"
                 }
                 h3 {
-                    +"Routes:"
+                    +"Routes Guest:"
                 }
                 ul {
                     li {
                         a("/greeting") { +"/greeting" }
                     }
+                    li {
+                        a("/login") { +"/login" }
+                    }
+                }
+                h3 {
+                    +"Routes User:"
+                }
+                ul {
                     li {
                         a("/rockets") { +"/rockets" }
                     }

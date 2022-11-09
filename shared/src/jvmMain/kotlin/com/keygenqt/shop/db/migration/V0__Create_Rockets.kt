@@ -1,6 +1,6 @@
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.db.models.Rockets
+import com.keygenqt.shop.db.entities.Rockets
 import com.keygenqt.shop.data.responses.RocketModel
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json

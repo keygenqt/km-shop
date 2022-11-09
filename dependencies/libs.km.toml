@@ -15,10 +15,19 @@ flywayVersion="9.1.3"
 hikariCpVersion="5.0.1"
 ## https://github.com/JetBrains/Exposed/releases
 exposedVersion="0.39.2"
+# https://github.com/jeremyh/jBCrypt
+jbcryptVersion = "0.4"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# JBCrypt
+# jBCrypt is an implementation the OpenBSD Blowfish password hashing algorithm
+[libraries.jbcrypt]
+module = "org.mindrot:jbcrypt"
+[libraries.jbcrypt.version]
+ref = "jbcryptVersion"
 
 # MySQL Connector/J
 # JDBC Type 4 driver for MySQL.
@@ -139,6 +148,7 @@ jvm = [
     "exposed-jdbc",
     "flyway-core",
     "flyway-mysql",
+    "jbcrypt",
 ]
 android = [
     "kotlinx-datetime",

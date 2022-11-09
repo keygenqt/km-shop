@@ -1,7 +1,7 @@
 Shop Kotlin Multiplatform 6 in 1
 ===================
 
-![picture](data/logo_160.png)
+![picture](data/common/logo_160.png)
 
 ### Apps
 * [Web site](https://shop.keygenqt.com/) ([React](https://reactjs.org/))
@@ -14,7 +14,7 @@ Shop Kotlin Multiplatform 6 in 1
 # Preview
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/Screen_Recording_2022-11-08_at_12.46.29.gif" width="100%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/Screen_Recording_2022-11-08_at_12.46.29.gif" width="100%"/>
 </p>
 
 # License

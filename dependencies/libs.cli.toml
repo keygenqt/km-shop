@@ -11,10 +11,19 @@ kotlinxCLIVersion = "0.3.5"
 coroutinesVersion = "1.6.4"
 # https://mvnrepository.com/artifact/org.slf4j
 slf4jVersion = "2.0.3"
+# https://github.com/lightbend/config
+configVersion = "1.4.2"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# HOCON Config
+# Configuration library for JVM languages.
+[libraries.config]
+module = "com.typesafe:config"
+[libraries.config.version]
+ref = "configVersion"
 
 # Koin
 # Koin is a smart Kotlin dependency injection library to keep you focused on your app, not on your tools
@@ -55,6 +64,7 @@ ref = "slf4jVersion"
 
 [bundles]
 cli = [
+    "config",
     "koin-core",
     "kotlinx-cli",
     "slf4j-api",

@@ -15,20 +15,27 @@
  */
 package com.keygenqt.shop.db.service
 
-import com.keygenqt.shop.db.entities.RocketEntity
-import com.keygenqt.shop.db.entities.Rockets
-import com.keygenqt.shop.db.entities.toModels
+import com.keygenqt.shop.data.responses.AdminModel
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.data.responses.RocketModel
-import org.jetbrains.exposed.sql.SortOrder
+import com.keygenqt.shop.db.entities.AdminEntity
+import com.keygenqt.shop.db.entities.toModels
 
-class RocketsService(
+class AdminsService(
     private val db: DatabaseMysql
 ) {
     /**
      * Get all models
      */
-    suspend fun getAll(): List<RocketModel> = db.transaction {
-        RocketEntity.all().orderBy(Pair(Rockets.missionName, SortOrder.ASC)).toModels()
+    suspend fun getAll(): List<AdminModel> = db.transaction {
+        AdminEntity.all().toModels()
+    }
+
+    /**
+     * Get all models
+     */
+    suspend fun findById(
+        id: Int
+    ): AdminEntity? = db.transaction {
+        AdminEntity.findById(id)
     }
 }
