@@ -1,7 +1,7 @@
 Part Server CLI
 ===================
 
-![picture](https://raw.githubusercontent.com/keygenqt/km-shop/master/data/cli/Screenshot_2022-11-09_at_14.38.24.png)
+![picture](km-shop/data/cli/Screenshot_2022-11-09_at_14.38.24.png)
 
 ### Features
 
