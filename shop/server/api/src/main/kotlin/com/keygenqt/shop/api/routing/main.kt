@@ -19,13 +19,16 @@ fun Route.main() {
                 h1 {
                     +"Hello from $name!"
                 }
-                p {
-                    +"Rockets: "
-                    a("/rockets") { +"/rockets" }
+                h3 {
+                    +"Routes:"
                 }
-                p {
-                    +"Multiplatform greeting: "
-                    a("/greeting") { +"/greeting" }
+                ul {
+                    li {
+                        a("/greeting") { +"/greeting" }
+                    }
+                    li {
+                        a("/rockets") { +"/rockets" }
+                    }
                 }
             }
         }

@@ -10,6 +10,6 @@ fun Route.greeting() {
     val greeting = Greeting().greeting()
 
     get("/greeting") {
-        call.respondText(greeting)
+        call.respondText("Greeting: $greeting")
     }
 }

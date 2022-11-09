@@ -19,6 +19,9 @@ nav:
   - 'API':
       - 'About': api/index.md
       - 'Dokka': dokka/shop/server/api/index.html
+      - 'Methods':
+          - 'Greeting': api/demo/greeting.md
+          - 'Rockets': api/demo/rockets.md
   - 'Server CLI':
       - 'About': cli/index.md
       - 'Dokka': dokka/shop/server/cli/index.html
