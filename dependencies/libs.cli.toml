@@ -3,6 +3,8 @@
 ##########################
 
 [versions]
+# https://insert-koin.io/docs/setup/koin#core
+koinVersion="3.2.2"
 # https://github.com/Kotlin/kotlinx-cli
 kotlinxCLIVersion = "0.3.5"
 # https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md
@@ -13,6 +15,13 @@ slf4jVersion = "2.0.3"
 ##########################
 ## LIBRARIES
 ##########################
+
+# Koin
+# Koin is a smart Kotlin dependency injection library to keep you focused on your app, not on your tools
+[libraries.koin-core]
+module = "io.insert-koin:koin-core"
+[libraries.koin-core.version]
+ref = "koinVersion"
 
 # kotlinx-datetime
 # A multiplatform Kotlin library for working with date and time.
@@ -46,6 +55,7 @@ ref = "slf4jVersion"
 
 [bundles]
 cli = [
+    "koin-core",
     "kotlinx-cli",
     "slf4j-api",
     "slf4j-simple",

@@ -16,57 +16,35 @@
 package com.keygenqt.shop.cli
 
 import com.keygenqt.shop.cli.args.*
+import com.keygenqt.shop.cli.features.BackupFeature
+import com.keygenqt.shop.cli.features.CleanerFeature
+import com.keygenqt.shop.cli.features.DemoFeature
+import com.keygenqt.shop.cli.features.NotificationFeature
+import com.keygenqt.shop.db.base.DatabaseMysql
+import com.keygenqt.shop.db.service.RocketsService
 import com.keygenqt.shop.services.ServiceRequest
 import kotlinx.coroutines.runBlocking
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
 fun main(args: Array<String>) {
 
     val arguments = if (args.isEmpty()) arrayOf("--help") else args
 
-    // parse arguments
-    ArgRoot.parse(arguments)
+    // init db app
+    val db = DatabaseMysql()
 
-    // check if set backup
-    if (ArgBackup.isInit) {
-        when (ArgBackup.type) {
-            BackupTypes.DB -> {
-                println("Backup DB")
-            }
-            BackupTypes.IMAGES -> {
-                println("Backup IMAGES")
-            }
-        }
+    // init koin
+    startKoin {
+        modules(module {
+            single { ServiceRequest() }
+            single { RocketsService(db) }
+            single { ArgRoot.parse(arguments) }
+        })
     }
 
-    // check if set cleaner
-    if (ArgCleaner.isInit) {
-        when (ArgCleaner.type) {
-            CleanerTypes.TOKENS -> {
-                println("Cleaner old tokens")
-            }
-            CleanerTypes.IMAGES -> {
-                println("Cleaner images not has in db")
-            }
-        }
-    }
-
-    // check if set notification
-    if (ArgNotification.isInit) {
-        println("Push firebase notification")
-    }
-
-    // Demo multiplatform request
-    if (ArgRoot.demo) {
-        val request = ServiceRequest()
-
-        println("Loading rockets...")
-
-        runBlocking {
-            val rocketsDemoJetBrains = request.get.rocketsDemoJetBrains()
-            val rocketsDemoAPI = request.get.rocketsDemoAPI()
-
-            println("Rockets JetBrains count: ${rocketsDemoJetBrains.size}")
-            println("Rockets API count: ${rocketsDemoAPI.size}")
-        }
-    }
+    DemoFeature.init()
+    BackupFeature.init()
+    CleanerFeature.init()
+    NotificationFeature.init()
 }

@@ -15,55 +15,50 @@
  */
 package com.keygenqt.shop.api
 
-import com.keygenqt.shop.api.db.base.DatabaseMysql
-import com.keygenqt.shop.api.db.service.RocketsService
 import com.keygenqt.shop.api.routing.greeting
 import com.keygenqt.shop.api.routing.main
 import com.keygenqt.shop.api.routing.rockets
+import com.keygenqt.shop.db.base.DatabaseMysql
+import com.keygenqt.shop.db.service.RocketsService
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.dsl.module as koinModule
-import io.ktor.server.plugins.contentnegotiation.*
-import kotlinx.serialization.json.Json
 
 fun main(args: Array<String>) {
     embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
 }
 
 fun Application.module() {
-    with(environment.config) {
-        // init db app
-        val db = DatabaseMysql(
-            config = property("ktor.db.dbconfig").getString(),
-            migration = property("ktor.db.migration").getString()
-        )
+    // init db app
+    val db = DatabaseMysql()
 
-        // init koin
-        startKoin {
-            printLogger()
-            modules(koinModule {
-                single { RocketsService(db) }
-            })
-        }
+    // init koin
+    startKoin {
+        printLogger()
+        modules(koinModule {
+            single { RocketsService(db) }
+        })
+    }
 
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-                coerceInputValues = true
-            })
-        }
+    install(ContentNegotiation) {
+        json(Json {
+            prettyPrint = true
+            isLenient = true
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        })
+    }
 
-        // init routing
-        install(Routing) {
-            main()
-            rockets()
-            greeting()
-        }
+    // init routing
+    install(Routing) {
+        main()
+        rockets()
+        greeting()
     }
 }

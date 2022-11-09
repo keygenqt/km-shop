@@ -9,3 +9,6 @@ captures
 local.properties
 xcuserdata
 kotlin-js-store
+
+### APP ###
+dbconfig.properties

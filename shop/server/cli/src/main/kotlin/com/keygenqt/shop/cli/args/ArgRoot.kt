@@ -6,23 +6,31 @@ import kotlinx.cli.ExperimentalCli
 import kotlinx.cli.default
 
 @OptIn(ExperimentalCli::class)
-object ArgRoot {
+class ArgRoot {
 
-    private val argParser = ArgParser("Shop CLI", strictSubcommandOptionsOrder = true).apply {
+    val backup: SubcommandBackup = SubcommandBackup()
+    val cleaner: SubcommandCleaner = SubcommandCleaner()
+    val notification: SubcommandNotification = SubcommandNotification()
+
+    private val parser = ArgParser("Shop CLI", strictSubcommandOptionsOrder = true).apply {
         subcommands(
-            ArgBackup.subcommand,
-            ArgCleaner.subcommand,
-            ArgNotification.subcommand,
+            backup,
+            cleaner,
+            notification,
         )
     }
 
-    val demo by argParser.option(
+    val demo by parser.option(
         ArgType.Boolean,
         fullName = "demo",
         description = "Demo multiplatform request"
     ).default(false)
 
-    fun parse(args: Array<String>) {
-        argParser.parse(args)
+    companion object {
+        fun parse(args: Array<String>): ArgRoot {
+            return ArgRoot().apply {
+                parser.parse(args)
+            }
+        }
     }
 }

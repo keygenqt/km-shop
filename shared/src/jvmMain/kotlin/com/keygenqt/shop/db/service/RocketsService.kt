@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.db.service
+package com.keygenqt.shop.db.service
 
-import com.keygenqt.shop.api.db.base.DatabaseMysql
-import com.keygenqt.shop.api.db.models.RocketEntity
-import com.keygenqt.shop.api.db.models.Rockets
-import com.keygenqt.shop.api.db.models.toModels
+import com.keygenqt.shop.db.models.RocketEntity
+import com.keygenqt.shop.db.models.Rockets
+import com.keygenqt.shop.db.models.toModels
+import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.data.responses.RocketModel
 import org.jetbrains.exposed.sql.SortOrder
 

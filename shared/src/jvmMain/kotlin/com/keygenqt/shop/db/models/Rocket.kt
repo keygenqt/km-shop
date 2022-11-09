@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.db.models
+package com.keygenqt.shop.db.models
 
-import com.keygenqt.shop.api.db.base.IntSubQueryEntityClass
+import com.keygenqt.shop.db.base.IntSubQueryEntityClass
 import com.keygenqt.shop.data.responses.RocketModel
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID

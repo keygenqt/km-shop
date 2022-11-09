@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.db.base
+package com.keygenqt.shop.db.base
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory
 import javax.sql.DataSource
 
 class DatabaseMysql(
-    private val config: String,
-    private val migration: String
+    private val config: String = "/Users/keygenqt/Documents/Home/Shop/configuration/dbconfig.properties",
+    private val migration: String = "com/keygenqt/shop/db/migration"
 ) {
 
     private var db: Database

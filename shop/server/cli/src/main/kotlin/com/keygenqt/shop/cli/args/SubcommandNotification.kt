@@ -6,19 +6,11 @@ import kotlinx.cli.Subcommand
 @OptIn(ExperimentalCli::class)
 class SubcommandNotification : Subcommand("notification", "Push firebase notification") {
 
-    var isInit: Boolean = false
+    private var _isInit: Boolean = false
+
+    val isInit get() = _isInit
 
     override fun execute() {
-        isInit = true
+        _isInit = true
     }
-}
-
-object ArgNotification {
-
-    val subcommand: SubcommandNotification = SubcommandNotification()
-
-    val isInit: Boolean
-        get() {
-            return subcommand.isInit
-        }
 }

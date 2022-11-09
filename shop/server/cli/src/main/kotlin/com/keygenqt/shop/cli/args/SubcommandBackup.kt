@@ -12,7 +12,9 @@ enum class BackupTypes {
 @OptIn(ExperimentalCli::class)
 class SubcommandBackup : Subcommand("backup", "Backup data (default db) { db, images }") {
 
-    internal var isInit: Boolean = false
+    private var _isInit: Boolean = false
+
+    val isInit get() = _isInit
 
     val type by option(
         ArgType.Choice<BackupTypes>(),
@@ -22,21 +24,6 @@ class SubcommandBackup : Subcommand("backup", "Backup data (default db) { db, im
     )
 
     override fun execute() {
-        isInit = true
+        _isInit = true
     }
-}
-
-object ArgBackup {
-
-    val subcommand: SubcommandBackup = SubcommandBackup()
-
-    val isInit: Boolean
-        get() {
-            return subcommand.isInit
-        }
-
-    val type: BackupTypes
-        get() {
-            return subcommand.type ?: BackupTypes.DB
-        }
 }

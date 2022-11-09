@@ -1,6 +1,6 @@
 package com.keygenqt.shop.api.routing
 
-import com.keygenqt.shop.api.db.service.RocketsService
+import com.keygenqt.shop.db.service.RocketsService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
