@@ -1,113 +1,151 @@
 import * as React from 'react';
 import {useEffect} from 'react';
-import {AppCard, AppMenu, AppTopBar} from "../components";
 import PropTypes from "prop-types";
-import {Grid, LinearProgress, Typography, useTheme} from "@mui/material";
-import {MenuLayout} from "./MenuLayout";
-import {linearProgressClasses} from "@mui/material/LinearProgress";
-import {MethodsRequest, useRequest, useWindowResize} from "../base";
-import {Save} from "@mui/icons-material";
+import {AppBar, Box, IconButton, Stack, Toolbar, useMediaQuery, useTheme} from "@mui/material";
+import {ConstantImages, useWindowResize} from "../base";
+import {Menu} from "@mui/icons-material";
 
-function bytesToSize(bytes) {
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes === 0) return '0 Byte';
-    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-}
+export * from './elements/AppMenu';
+export * from './elements/AppToolbar';
 
 export function Layout(props) {
 
-    const sizeWindow = useWindowResize()
-    const {palette} = useTheme();
-
-    const [isOpenMenu, setIsOpenMenu] = React.useState(sizeWindow.width > 1400);
-
     const {
-        loading: loadingDiskSize,
-        data: dataDiskSize,
-        error: errorDiskSize,
-    } = useRequest(MethodsRequest.common.diskSize);
+        menu,
+        toolbar,
+    } = props
+
+    const theme = useTheme()
+    const sizeWindow = useWindowResize()
+    const isMD = useMediaQuery(theme.breakpoints.down('md'));
+
+    const hideMenu = theme.breakpoints.values.lg
+    const menuWith = 300
+    const barHeight = 64
+
+    const [isOpenMenu, setIsOpenMenu] = React.useState(sizeWindow.width > hideMenu);
+    const [isClickOpen, setIsClickOpen] = React.useState(false);
 
     useEffect(() => {
-        setIsOpenMenu(sizeWindow.width > 1400)
-    }, [sizeWindow])
+        setIsOpenMenu(sizeWindow.width > hideMenu)
+    }, [hideMenu, isMD, sizeWindow])
 
     return (
-        <Grid id={'pageSelection'} className={"App section"} container spacing={0} rowSpacing={0} style={{
+        <Stack sx={{
+            marginTop: 1,
             height: '100%'
         }}>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-                <AppTopBar
-                    isOpenMenu={isOpenMenu}
-                    onChangeMenu={() => {
-                        setIsOpenMenu(!isOpenMenu)
-                    }}
-                />
-            </Grid>
-
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} style={{
-                height: 'calc(100% - 64px)'
-            }}>
-                <MenuLayout
-                    isOpen={isOpenMenu}
-                    onCloseMenu={() => {
-                        setIsOpenMenu(false)
-                    }}
-                    content={props.children}>
-                    <AppMenu
-                        onChangeMenu={(isOpen) => {
-                            setIsOpenMenu(isOpen)
+            <AppBar
+                position="static"
+                color={'inherit'}
+                elevation={0}
+                sx={{
+                    position: 'relative',
+                    zIndex: 1
+                }}>
+                <Toolbar sx={{
+                    paddingX: isMD ? '16px !important' : 'auto',
+                    minHeight: '56px !important'
+                }}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{mr: 2}}
+                        onClick={() => {
+                            setIsClickOpen(true)
+                            setTimeout(() => {
+                                setIsClickOpen(false)
+                            }, 100)
+                            setIsOpenMenu(!isOpenMenu)
                         }}
                     >
-                        {!errorDiskSize ? <AppCard
-                            type={'inline'}
-                            color={'blueLight'}
-                            variant={'circles2'}
-                            isLoading={loadingDiskSize}
-                            title={'Hard disk'}
-                            subheader={bytesToSize(dataDiskSize?.blocks ?? 0)}
-                            contentHeight={44}
-                            icon={<Save/>}
-                        >
-                            <Grid container spacing={1}>
-                                <Grid item xs={6}>
-                                    <Typography component="div" variant="caption" sx={{
-                                        fontWeight: 'bold',
-                                        color: palette.primary.dark
-                                    }}>
-                                        Space used
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6} sx={{
-                                    textAlign: 'right'
-                                }}>
-                                    <Typography component="div" variant="caption">
-                                        {dataDiskSize?.use ?? 0}%
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <LinearProgress variant="determinate" value={dataDiskSize?.use ?? 0} sx={{
-                                        height: 10,
-                                        borderRadius: 5,
-                                        [`&.${linearProgressClasses.colorPrimary}`]: {
-                                            backgroundColor: palette.primary.light,
-                                        },
-                                        [`& .${linearProgressClasses.bar}`]: {
-                                            borderRadius: 5,
-                                            backgroundColor: palette.primary.dark,
-                                        },
-                                    }}/>
-                                </Grid>
-                            </Grid>
-                        </AppCard> : null}
+                        <Menu/>
+                    </IconButton>
 
-                    </AppMenu>
-                </MenuLayout>
-            </Grid>
-        </Grid>
+                    {toolbar}
+
+                </Toolbar>
+            </AppBar>
+
+            <Box sx={{
+                height: `calc(100% - ${barHeight}px)`,
+                position: 'relative',
+            }}>
+                <Box sx={{
+                    width: menuWith,
+                    position: 'absolute',
+                    top: 0,
+                    left: isMD ? (isOpenMenu ? 0 : `-${menuWith}px`) : 0,
+                    bottom: 0,
+                    backgroundColor: 'background.paper',
+                    zIndex: isMD ? 1 : 0,
+                    transitionProperty: 'left',
+                    transitionDuration: isClickOpen ? '300ms' : '0ms',
+                }}>
+                    <Box className={'custom-scroll'} sx={{
+                        p: 2,
+                        height: '100% ',
+                        boxSizing: 'border-box',
+                        '&:after': {
+                            content: '""',
+                            position: 'absolute',
+                            right: '-14px',
+                            height: 14,
+                            width: 14,
+                            top: 0,
+                            backgroundSize: 'contain',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundImage: `url(${ConstantImages.common.corner15})`,
+                        }
+                    }}>
+                        {menu}
+                    </Box>
+                </Box>
+                <Box className={'custom-scroll'} sx={{
+                    p: isMD ? 1 : 2,
+                    paddingTop: 1,
+                    height: '100%',
+                    width: isOpenMenu && !isMD ? `calc(100% - ${menuWith}px)` : '100%',
+                    position: 'relative',
+                    transitionDuration: '300ms',
+                    transitionProperty: 'left, width',
+                    boxSizing: 'border-box',
+                    left: isOpenMenu && !isMD ? menuWith : 0,
+                }}>
+                    <Box sx={{
+                        display: isMD && isOpenMenu ? 'block' : 'none',
+                        content: '""',
+                        position: 'fixed',
+                        top: 10,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'black',
+                        opacity: isOpenMenu ? 0.5 : 0,
+                        transitionDuration: '300ms',
+                    }}/>
+                    <Box sx={{
+                        p: 2,
+                        height: '100%',
+                        borderRadius: '12px',
+                        display: 'inline-table',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        backgroundColor: 'secondary.light',
+                    }}>
+                        {props.children}
+                    </Box>
+                </Box>
+            </Box>
+        </Stack>
+
     )
 }
 
 Layout.propTypes = {
+    menu: PropTypes.element.isRequired,
+    toolbar: PropTypes.element.isRequired,
     children: PropTypes.element.isRequired
 };

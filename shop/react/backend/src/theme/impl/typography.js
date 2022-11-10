@@ -9,12 +9,6 @@ export const typography = {
             'Roboto',
             'sans-serif',
         ].join(','),
-        '@media (max-width: 700px)': {
-            fontSize: 105,
-        },
-        '@media (max-width: 400px)': {
-            fontSize: 80,
-        },
     },
     h2: {
         fontSize: 36,

@@ -5,9 +5,8 @@ import {typography} from "./impl/typography.js";
 export const AppTheme = createTheme({
     breakpoints: {
         values: {
-            min: 350,
+            min: 320,
             xs: 420,
-            xs500: 500,
             sm: 600,
             md: 900,
             lg: 1200,

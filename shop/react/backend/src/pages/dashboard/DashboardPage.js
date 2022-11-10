@@ -1,18 +1,13 @@
 import * as React from 'react';
 import {Stack} from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 export function DashboardPage() {
     return (
-        <Stack
-            className={"splash"}
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-                width: '100%',
-                height: '100%',
-            }}
-        >
-            Dashboard
+        <Stack>
+            <Typography variant="h1">
+                Dashboard Page
+            </Typography>
         </Stack>
     );
 }
