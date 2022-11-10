@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SHARED=$(ls ../ | grep 'shared')
+SHARED=$(ls ../shared*)
 
 parse-hocon package.conf > package.json
 
-npm install "../$SHARED"
+npm install "$SHARED"
