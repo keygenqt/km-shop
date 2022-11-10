@@ -1,28 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import shared from "shared";
-
-const greeting = new shared.com.keygenqt.shop.Greeting().greeting()
+import * as React from 'react';
+import {useContext} from 'react';
+import {ThemeProvider} from "@mui/material";
+import {AppTheme} from "./theme/AppTheme";
+import {NavigateContext} from "./base";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Backend - {greeting}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {route} = useContext(NavigateContext)
+
+    console.log('yes')
+
+    return (
+        <ThemeProvider theme={AppTheme}>
+            {route.render()}
+        </ThemeProvider>
+    );
 }
 
 export default App;

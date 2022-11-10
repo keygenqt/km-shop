@@ -1,7 +1,7 @@
 Shop Kotlin Multiplatform 6 in 1
 ===================
 
-![picture](data/common/logo_160.png)
+![picture](data/common/logo160.png)
 
 ### Apps
 * [Web site](https://shop.keygenqt.com/) ([React](https://reactjs.org/))
