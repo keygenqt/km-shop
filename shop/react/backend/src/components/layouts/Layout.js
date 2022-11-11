@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import {AppBar, Box, IconButton, Stack, Toolbar, useMediaQuery, useTheme} from "@mui/material";
 import {ConstantImages, useWindowResize} from "../../base";
 import {Menu} from "@mui/icons-material";
+import {useLocation} from "react-router-dom";
 
 export function Layout(props) {
 
@@ -14,6 +15,7 @@ export function Layout(props) {
 
     const theme = useTheme()
     const sizeWindow = useWindowResize()
+    const location = useLocation();
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
 
     const hideMenu = theme.breakpoints.values.lg
@@ -21,11 +23,16 @@ export function Layout(props) {
     const barHeight = 64
 
     const [isOpenMenu, setIsOpenMenu] = React.useState(sizeWindow.width > hideMenu);
-    const [isClickOpen, setIsClickOpen] = React.useState(false);
 
     useEffect(() => {
         setIsOpenMenu(sizeWindow.width > hideMenu)
     }, [hideMenu, isMD, sizeWindow])
+
+    useEffect(() => {
+        if (isMD) {
+            setIsOpenMenu(false)
+        }
+    }, [isMD, location])
 
     return (
         <Stack sx={{
@@ -51,10 +58,6 @@ export function Layout(props) {
                         aria-label="menu"
                         sx={{mr: 2}}
                         onClick={() => {
-                            setIsClickOpen(true)
-                            setTimeout(() => {
-                                setIsClickOpen(false)
-                            }, 100)
                             setIsOpenMenu(!isOpenMenu)
                         }}
                     >
@@ -79,7 +82,7 @@ export function Layout(props) {
                     backgroundColor: 'background.paper',
                     zIndex: isMD ? 1 : 0,
                     transitionProperty: 'left',
-                    transitionDuration: isClickOpen ? '300ms' : '0ms',
+                    transitionDuration: '300ms',
                 }}>
                     <Box className={'custom-scroll'} sx={{
                         p: 2,
