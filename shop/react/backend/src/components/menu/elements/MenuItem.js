@@ -1,19 +1,33 @@
 import {ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import * as React from "react";
+import {useContext} from "react";
 import PropTypes from "prop-types";
+import {NavigateContext} from "../../../base";
 
 export function MenuItem(props) {
 
+    const {route} = useContext(NavigateContext)
+
     const {
+        link,
         icon,
-        title
+        title,
+        selected,
     } = props
 
     const IconMenuItem = icon;
 
     return (
-        <ListItemButton selected={true}>
-            <ListItemIcon>
+        <ListItemButton
+            disabled={selected}
+            selected={selected}
+            onClick={() => {
+                route.toLocation(link)
+            }}
+        >
+            <ListItemIcon sx={{
+                marginRight: '-10px'
+            }}>
                 <IconMenuItem/>
             </ListItemIcon>
             <ListItemText primary={title}/>
@@ -22,6 +36,8 @@ export function MenuItem(props) {
 }
 
 MenuItem.propTypes = {
+    link: PropTypes.string.isRequired,
     icon: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
+    selected: PropTypes.bool.isRequired,
 };

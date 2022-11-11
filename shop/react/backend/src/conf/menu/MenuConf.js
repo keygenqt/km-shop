@@ -1,12 +1,11 @@
 // assets
 import {
-    AndroidOutlined,
-    Apple,
     CategoryOutlined,
     CloudOutlined,
+    ConnectWithoutContactOutlined,
     DashboardOutlined,
     FolderOutlined,
-    LinkOutlined,
+    InfoOutlined,
     ListAltOutlined,
     NewReleasesOutlined,
     PendingActionsOutlined,
@@ -15,7 +14,6 @@ import {
     ShoppingBagOutlined,
     SwapCallsOutlined,
     VerifiedOutlined,
-    WebOutlined,
 } from "@mui/icons-material";
 
 /**
@@ -23,8 +21,27 @@ import {
  */
 export const MenuConf = [
     {
+        // default selected
+        selected: true,
+        // icon item menu
         icon: DashboardOutlined,
+        // title item menu
         title: 'Dashboard',
+        // route open click
+        link: '/',
+        // selected check route
+        links: ['/']
+    },
+    {
+        icon: ConnectWithoutContactOutlined,
+        title: 'Help Desk',
+        link: '/orders',
+        links: ['/orders']
+    },
+    {
+        type: 'driver',
+        icon: InfoOutlined,
+        title: 'Your store, setting price categories and product characteristic'
     },
     {
         group: 'Shop',
@@ -37,8 +54,15 @@ export const MenuConf = [
             {
                 icon: FolderOutlined,
                 title: 'Products',
+                link: '/orders',
+                links: ['/orders']
             },
         ]
+    },
+    {
+        type: 'driver',
+        icon: InfoOutlined,
+        title: 'Orders made on the site or in applications divided by status'
     },
     {
         group: 'Orders',
@@ -54,9 +78,14 @@ export const MenuConf = [
             },
             {
                 icon: VerifiedOutlined,
-                title: 'Completed',
+                title: 'Completed'
             },
         ]
+    },
+    {
+        type: 'driver',
+        icon: InfoOutlined,
+        title: 'Settings and running system scripts that allow you to execute them manually'
     },
     {
         group: 'Settings',
@@ -76,22 +105,4 @@ export const MenuConf = [
             },
         ]
     },
-    {
-        group: 'Links',
-        icon: LinkOutlined,
-        children: [
-            {
-                icon: WebOutlined,
-                title: 'Website',
-            },
-            {
-                icon: AndroidOutlined,
-                title: 'Android',
-            },
-            {
-                icon: Apple,
-                title: 'iOS',
-            },
-        ]
-    }
 ];

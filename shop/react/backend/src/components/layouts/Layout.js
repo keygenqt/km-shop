@@ -83,6 +83,7 @@ export function Layout(props) {
                 }}>
                     <Box className={'custom-scroll'} sx={{
                         p: 2,
+                        paddingRight: 1,
                         height: '100% ',
                         boxSizing: 'border-box',
                         '&:after': {
@@ -102,12 +103,13 @@ export function Layout(props) {
                 </Box>
                 <Box className={'custom-scroll'} sx={{
                     p: isMD ? 1 : 2,
+                    paddingLeft: isOpenMenu ? 1 : isMD ? 1 : 2,
                     paddingTop: 1,
                     height: '100%',
                     width: isOpenMenu && !isMD ? `calc(100% - ${menuWith}px)` : '100%',
                     position: 'relative',
                     transitionDuration: '300ms',
-                    transitionProperty: 'left, width',
+                    transitionProperty: 'left, width, padding',
                     boxSizing: 'border-box',
                     left: isOpenMenu && !isMD ? menuWith : 0,
                 }}>

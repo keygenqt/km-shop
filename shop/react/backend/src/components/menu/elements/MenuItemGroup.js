@@ -1,9 +1,13 @@
-import {Collapse, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {Collapse, Divider, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import {ExpandLessOutlined, ExpandMoreOutlined} from "@mui/icons-material";
 import * as React from "react";
+import {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
+import {NavigateContext} from "../../../base";
 
 export function MenuItemGroup(props) {
+
+    const {route} = useContext(NavigateContext)
 
     const {
         icon,
@@ -11,33 +15,62 @@ export function MenuItemGroup(props) {
         children = []
     } = props
 
-    const [open, setOpen] = React.useState(false);
+    const listChildren = []
 
     const IconMenuItemGroup = icon;
 
-    const listChildren = []
+    const selected = !!children.find(it => it.selected === true)
+
+    const [open, setOpen] = React.useState(selected);
+
+    useEffect(() => {
+        setOpen(selected)
+    }, [selected])
 
     children.forEach((item, index) => {
 
-        const IconSubItemGroup = item.icon;
+        if (item.type === 'driver') {
+            listChildren.push(
+                <Divider
+                    key={`children-item-driver-${index}`}
+                    sx={{my: 1, ml: 4}}
+                />
+            )
+        } else {
+            const IconSubItemGroup = item.icon;
 
-        listChildren.push((
-            <ListItemButton key={`sub-item-menu-${index}`} sx={{pl: 4}}>
-                <ListItemIcon>
-                    <IconSubItemGroup/>
-                </ListItemIcon>
-                <ListItemText primary={item.title}/>
-            </ListItemButton>
-        ))
+            listChildren.push(
+                <ListItemButton
+                    disabled={item.selected}
+                    className={'MuiCollapse'}
+                    selected={item.selected}
+                    key={`sub-item-menu-${index}`}
+                    sx={{ml: 4}}
+                    onClick={() => {
+                        if (item.link) {
+                            route.toLocation(item.link)
+                        }
+                    }}
+                >
+                    <ListItemIcon sx={{
+                        marginRight: '-10px'
+                    }}>
+                        <IconSubItemGroup/>
+                    </ListItemIcon>
+                    <ListItemText primary={item.title}/>
+                </ListItemButton>
+            )
+        }
     })
-
 
     return (
         <>
-            <ListItemButton onClick={() => {
+            <ListItemButton className={selected ? 'Mui-selected' : ''} onClick={() => {
                 setOpen(!open);
             }}>
-                <ListItemIcon>
+                <ListItemIcon sx={{
+                    marginRight: '-10px'
+                }}>
                     <IconMenuItemGroup/>
                 </ListItemIcon>
                 <ListItemText primary={group}/>
