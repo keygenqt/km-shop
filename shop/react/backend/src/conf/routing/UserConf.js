@@ -1,7 +1,8 @@
 import {Route} from "react-router-dom";
 import * as React from "react";
-import {DashboardPage, OrdersPage} from "../../../pages";
-import {AppMenu, AppToolbar, Layout} from "../../../layouts/Layout";
+import {DashboardPage, OrdersPage} from "../../pages";
+import {AppMenu, AppToolbar, Layout} from "../../components";
+import {MenuConf} from "../menu/MenuConf";
 
 export const UserConf = {
     delay: 200,
@@ -15,7 +16,7 @@ export const UserConf = {
                     path={path}
                     element={
                         <Layout
-                            menu={<AppMenu/>}
+                            menu={<AppMenu configuration={MenuConf}/>}
                             toolbar={<AppToolbar/>}
                         >
                             <DashboardPage/>
@@ -33,7 +34,7 @@ export const UserConf = {
                     path={path}
                     element={
                         <Layout
-                            menu={<AppMenu/>}
+                            menu={<AppMenu configuration={MenuConf}/>}
                             toolbar={<AppToolbar/>}
                         >
                             <OrdersPage/>

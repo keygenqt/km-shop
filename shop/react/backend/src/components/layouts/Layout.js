@@ -2,11 +2,8 @@ import * as React from 'react';
 import {useEffect} from 'react';
 import PropTypes from "prop-types";
 import {AppBar, Box, IconButton, Stack, Toolbar, useMediaQuery, useTheme} from "@mui/material";
-import {ConstantImages, useWindowResize} from "../base";
+import {ConstantImages, useWindowResize} from "../../base";
 import {Menu} from "@mui/icons-material";
-
-export * from './elements/AppMenu';
-export * from './elements/AppToolbar';
 
 export function Layout(props) {
 
@@ -77,7 +74,7 @@ export function Layout(props) {
                     width: menuWith,
                     position: 'absolute',
                     top: 0,
-                    left: isMD ? (isOpenMenu ? 0 : `-${menuWith}px`) : 0,
+                    left: isOpenMenu ? 0 : `-${menuWith}px`,
                     bottom: 0,
                     backgroundColor: 'background.paper',
                     zIndex: isMD ? 1 : 0,

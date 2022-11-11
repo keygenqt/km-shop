@@ -1,11 +1,11 @@
 import React, {createContext, useState} from "react";
 import {useLocation, useNavigate, useNavigationType} from "react-router-dom";
 import RouteCore from "../route/RouteCore";
-import {GuestConf} from "../route/conf/GuestConf";
+import {GuestConf} from "../../conf/routing/GuestConf";
 import {useLocalStorage} from "../hooks/LocalStorage";
 import {ValueType} from "../route/ValueType";
 import {ConstantStorage} from "../constants/ConstantStorage";
-import {UserConf} from "../route/conf/UserConf";
+import {UserConf} from "../../conf/routing/UserConf";
 
 export const NavigateContext = createContext({})
 

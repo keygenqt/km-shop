@@ -300,11 +300,7 @@ export default class RouteCore {
 
         const pages = []
 
-        console.log('--------------------')
-
         Object.keys(this.conf.routes).forEach((page, pageIndex) => {
-
-            console.log(page)
 
             const {path, render, match} = this.conf.routes[page]
 

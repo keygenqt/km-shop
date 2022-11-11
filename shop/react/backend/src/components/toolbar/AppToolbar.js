@@ -3,6 +3,9 @@ import {Avatar, Box, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {ConstantImages} from "../../base";
 
+/**
+ * Application toolbar actions elements
+ */
 export function AppToolbar() {
     return (
         <Stack
@@ -12,11 +15,16 @@ export function AppToolbar() {
             spacing={2}
             sx={{width: '100%'}}
         >
-            <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                <Box component="span" sx={{
-                    color: 'primary.main'
-                }}>Ad</Box>minka
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="flex-start">
+                <Typography variant="h5" component="div">
+                    <Box component="span" sx={{
+                        color: 'secondary.main'
+                    }}>Sh</Box>op
+                </Typography>
+                <Typography variant="caption" sx={{paddingTop: '3px'}}>
+                    Admin Panel
+                </Typography>
+            </Stack>
 
             <Avatar
                 alt="Remy Sharp"

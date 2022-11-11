@@ -1,6 +1,6 @@
 import {Route} from "react-router-dom";
 import * as React from "react";
-import {SignInPage} from "../../../pages";
+import {SignInPage} from "../../pages";
 
 export const GuestConf = {
     delay: 200,

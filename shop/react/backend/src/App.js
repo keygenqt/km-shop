@@ -6,9 +6,6 @@ import {NavigateContext} from "./base";
 
 function App() {
     const {route} = useContext(NavigateContext)
-
-    console.log('yes')
-
     return (
         <ThemeProvider theme={AppTheme}>
             {route.render()}

@@ -1,97 +1,59 @@
+/**
+ * Custom font family for H
+ * @type {string}
+ */
+const fontFamily = [
+    '"Albert Sans"',
+    'Roboto',
+    'sans-serif',
+].join(',')
+
 export const typography = {
     fontSize: 14,
     h1: {
-        fontSize: 60,
-        fontWeight: '700',
-        textTransform: "none",
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
-    },
-    h2: {
-        fontSize: 36,
         fontWeight: '400',
         textTransform: "none",
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
-        '@media (max-width: 700px)': {
-            fontSize: 19,
-        },
+        fontFamily: fontFamily,
+    },
+    h2: {
+        fontWeight: '400',
+        textTransform: "none",
+        fontFamily: fontFamily,
     },
     h3: {
-        fontSize: 24,
+        fontWeight: '400',
         textTransform: "none",
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
+        fontFamily: fontFamily,
     },
     h4: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        textTransform: "uppercase",
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
+        fontWeight: '400',
+        textTransform: "none",
+        fontFamily: fontFamily,
     },
     h5: {
         fontSize: 24,
-        fontWeight: 'bold',
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
+        fontWeight: '400',
+        textTransform: "none",
+        fontFamily: fontFamily,
     },
     h6: {
-        fontWeight: '400',
-    },
-    subtitle1: {
         fontSize: 14,
-        '@media (max-width: 700px)': {
-            fontSize: 14,
-        },
+        fontWeight: '600',
+        textTransform: "none",
+        fontFamily: fontFamily,
     },
-    subtitle2: {},
-    text1: {
-        fontSize: 20,
+    body1: {
+
     },
-    text2: {
-        fontSize: 18,
-    },
-    text3: {
-        fontSize: 16,
-    },
-    textCard: {
-        lineHeight: '22px',
-        fontSize: 16,
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
-    },
-    textBlog: {
-        whiteSpace: 'pre-line',
-        lineHeight: '25px',
-        fontSize: 18,
-        fontFamily: [
-            '"Albert Sans"',
-            'Roboto',
-            'sans-serif',
-        ].join(','),
+    body2: {
+
     },
     button: {
         whiteSpace: "nowrap"
     },
-    caption: {},
+    caption: {
+        fontSize: 12,
+        color: 'gray'
+    },
     overline: {}
 }

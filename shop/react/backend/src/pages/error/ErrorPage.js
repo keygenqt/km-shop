@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useContext} from 'react';
 import {Button, Container, Stack} from "@mui/material";
 import Lottie from "lottie-react";
-import {Cached, NavigateBefore} from "@mui/icons-material";
+import {Cached} from "@mui/icons-material";
 import {ConstantLottie, NavigateContext} from "../../base";
 
 export function ErrorPage() {

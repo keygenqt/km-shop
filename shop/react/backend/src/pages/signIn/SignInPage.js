@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import {
     Button,
     CircularProgress,
@@ -19,17 +19,14 @@ import {
     useTheme
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {ConstantStorage, NavigateContext} from "../../base";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import {AlertError, AlertSuccess} from "../../components";
 import {AppCache} from "../../base/utils/AppCache";
-import {ValueType} from "../../base/route/ValueType";
 
 export function SignInPage() {
-
-    const isAuth = useLocalStorage(ConstantStorage.isAuth, ValueType.bool);
 
     const {route, routes} = useContext(NavigateContext)
 
@@ -37,7 +34,6 @@ export function SignInPage() {
 
     const [isLoading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [isSuccessAuth, setSuccessAuth] = useState(false);
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
