@@ -48,7 +48,7 @@ export function MenuItemGroup(props) {
                     sx={{ml: 4}}
                     onClick={() => {
                         if (item.link) {
-                            route.toLocation(item.link)
+                            route.toLocationDelay(item.link)
                         }
                     }}
                 >

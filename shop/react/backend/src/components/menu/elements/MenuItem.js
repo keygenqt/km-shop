@@ -22,7 +22,7 @@ export function MenuItem(props) {
             disabled={selected}
             selected={selected}
             onClick={() => {
-                route.toLocation(link)
+                route.toLocationDelay(link)
             }}
         >
             <ListItemIcon sx={{

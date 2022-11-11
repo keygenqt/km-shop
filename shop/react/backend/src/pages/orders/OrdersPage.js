@@ -1,78 +1,29 @@
 import * as React from 'react';
 import {Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
 
-export function OrdersPage() {
+export const FiltersOrders = {
+    filterNew: 'New',
+    filterPending: 'Pending',
+    filterCompleted: 'Completed',
+}
+
+export function OrdersPage(props) {
+
+    const {
+        filter
+    } = props
+
     return (
         <Stack>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
-            </Typography>
-            <Typography variant="h1">
-                Orders Page
+            <Typography variant="h2">
+                Orders {filter}
             </Typography>
         </Stack>
     );
 }
 
-OrdersPage.propTypes = {};
+OrdersPage.propTypes = {
+    filter: PropTypes.string.isRequired,
+};

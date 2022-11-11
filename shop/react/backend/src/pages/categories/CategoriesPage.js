@@ -2,14 +2,14 @@ import * as React from 'react';
 import {Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-export function DashboardPage() {
+export function CategoriesPage() {
     return (
         <Stack>
             <Typography variant="h2">
-                Dashboard
+                Categories
             </Typography>
         </Stack>
     );
 }
 
-DashboardPage.propTypes = {};
+CategoriesPage.propTypes = {};

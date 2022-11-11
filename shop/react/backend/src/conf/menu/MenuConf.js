@@ -35,8 +35,8 @@ export const MenuConf = [
     {
         icon: ConnectWithoutContactOutlined,
         title: 'Help Desk',
-        link: '/orders',
-        links: ['/orders']
+        link: '/help-desk',
+        links: ['/help-desk']
     },
     {
         type: 'driver',
@@ -49,13 +49,15 @@ export const MenuConf = [
         children: [
             {
                 icon: CategoryOutlined,
-                title: 'Category',
+                title: 'Categories',
+                link: '/categories',
+                links: ['/categories']
             },
             {
                 icon: FolderOutlined,
                 title: 'Products',
-                link: '/orders',
-                links: ['/orders']
+                link: '/products',
+                links: ['/products']
             },
         ]
     },
@@ -71,14 +73,20 @@ export const MenuConf = [
             {
                 icon: NewReleasesOutlined,
                 title: 'New',
+                link: '/orders',
+                links: ['/orders']
             },
             {
                 icon: PendingActionsOutlined,
                 title: 'Pending',
+                link: '/orders/pending',
+                links: ['/orders/pending']
             },
             {
                 icon: VerifiedOutlined,
-                title: 'Completed'
+                title: 'Completed',
+                link: '/orders/completed',
+                links: ['/orders/completed']
             },
         ]
     },
@@ -94,14 +102,20 @@ export const MenuConf = [
             {
                 icon: PeopleOutlined,
                 title: 'Managers',
+                link: '/managers',
+                links: ['/managers']
             },
             {
                 icon: CloudOutlined,
                 title: 'Uploads',
+                link: '/uploads',
+                links: ['/uploads']
             },
             {
                 icon: SwapCallsOutlined,
                 title: 'System',
+                link: '/system',
+                links: ['/system']
             },
         ]
     },
