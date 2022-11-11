@@ -37,6 +37,6 @@ class GetRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun rocketsDemoAPI(): List<RocketModel> {
-        return client.get("rockets").body()
+        return client.get("api/rockets").body()
     }
 }

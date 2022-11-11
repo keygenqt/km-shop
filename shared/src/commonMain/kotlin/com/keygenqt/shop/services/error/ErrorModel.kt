@@ -13,26 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.services
+package com.keygenqt.shop.services.error
 
-import com.keygenqt.shop.services.impl.GetRequestPromise
-import io.ktor.client.*
-import io.ktor.client.engine.js.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
- * Get platform JS client
+ * Error response model
  */
-actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(Js) {
-    config(this)
-}
+@Serializable
+data class ResponseErrorModel(
+    @SerialName("code")
+    val code: Int,
+    @SerialName("message")
+    val message: String,
+)
 
 /**
- * JS service network
+ * Error response [Exception]
  */
 @JsExport
 @Suppress("NON_EXPORTABLE_TYPE")
-class ServiceRequestJS(apiUrl: String) {
-    private val request = ServiceRequest(apiUrl)
-
-    val get by lazy { GetRequestPromise(request) }
-}
+data class ResponseExceptionModel(
+    val code: Int,
+    override val message: String
+) : RuntimeException()

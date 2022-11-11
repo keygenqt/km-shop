@@ -18,6 +18,8 @@ package com.keygenqt.shop.services.impl
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
+@JsExport
+@Suppress("NON_EXPORTABLE_TYPE")
 class GetRequestPromise(private val request: ServiceRequest) {
 
     /**

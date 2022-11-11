@@ -15,9 +15,12 @@
  */
 package com.keygenqt.shop.services
 
+import com.keygenqt.shop.services.error.ResponseErrorModel
+import com.keygenqt.shop.services.error.ResponseExceptionModel
 import com.keygenqt.shop.services.impl.GetRequest
 import com.keygenqt.shop.utils.constants.AppConstants
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
@@ -33,7 +36,9 @@ expect fun httpClient(config: HttpClientConfig<*>.() -> Unit = {}): HttpClient
 /**
  * Common service network
  */
-class ServiceRequest {
+class ServiceRequest(
+    private val apiUrl: String? = null
+) {
 
     val get by lazy { GetRequest(httpClient) }
 
@@ -47,13 +52,29 @@ class ServiceRequest {
 
         expectSuccess = false
 
+        HttpResponseValidator {
+            validateResponse { response ->
+                if (response.status != HttpStatusCode.OK) {
+                    val error: ResponseErrorModel = response.body()
+                    throw ResponseExceptionModel(
+                        code = response.status.value,
+                        message = error.message,
+                    )
+                }
+            }
+        }
+
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.ALL
         }
 
         install(DefaultRequest) {
-            url(AppConstants.link.API_URL)
+            apiUrl?.let {
+                url(it)
+            } ?: run {
+                url(AppConstants.link.API_URL)
+            }
             contentType(ContentType.Application.Json)
         }
 

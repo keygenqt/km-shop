@@ -3,6 +3,7 @@ package com.keygenqt.shop.api.exceptions
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.utils.AppConstants
+import com.keygenqt.shop.services.error.ResponseErrorModel
 import io.ktor.http.*
 import io.ktor.server.auth.*
 import io.ktor.server.response.*
@@ -22,7 +23,13 @@ fun AuthenticationConfig.authentication() {
             null
         }
         challenge {
-            call.respond(HttpStatusCode.Unauthorized)
+            call.respond(
+                status = HttpStatusCode.Unauthorized,
+                message = ResponseErrorModel(
+                    code = HttpStatusCode.Unauthorized.value,
+                    message = HttpStatusCode.Unauthorized.description
+                )
+            )
         }
     }
 }

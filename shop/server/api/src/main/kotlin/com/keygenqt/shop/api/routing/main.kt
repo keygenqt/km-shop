@@ -24,10 +24,10 @@ fun Route.main() {
                 }
                 ul {
                     li {
-                        a("/greeting") { +"/greeting" }
+                        a("/api/greeting") { +"/api/greeting" }
                     }
                     li {
-                        a("/login") { +"/login" }
+                        a("/api/login") { +"/api/login" }
                     }
                 }
                 h3 {
@@ -35,7 +35,7 @@ fun Route.main() {
                 }
                 ul {
                     li {
-                        a("/rockets") { +"/rockets" }
+                        a("/api/rockets") { +"/api/rockets" }
                     }
                 }
             }

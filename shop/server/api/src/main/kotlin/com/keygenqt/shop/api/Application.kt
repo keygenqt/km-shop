@@ -100,13 +100,18 @@ fun Application.module() {
 
         // init routing
         install(Routing) {
-            // guest
+
+            // root
             main()
-            login()
-            greeting()
-            // user
-            authenticate(AppConstants.SESSION_KEY) {
-                rockets()
+
+            route("/api") {
+                // guest
+                login()
+                greeting()
+                // user
+                authenticate(AppConstants.SESSION_KEY) {
+                    rockets()
+                }
             }
         }
     }
