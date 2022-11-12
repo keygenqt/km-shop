@@ -80,7 +80,7 @@ AppCard.propTypes = {
     disabled: PropTypes.bool,
     variant: PropTypes.oneOf(['circles', 'lines', 'combine']),
     icon: PropTypes.oneOfType([
-        PropTypes.element,
+        PropTypes.object,
         PropTypes.oneOf([null]),
     ]),
     title: PropTypes.oneOfType([
