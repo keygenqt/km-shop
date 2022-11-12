@@ -16,6 +16,7 @@
 package com.keygenqt.shop.services
 
 import com.keygenqt.shop.services.impl.GetRequestPromise
+import com.keygenqt.shop.services.impl.PostRequestPromise
 import io.ktor.client.*
 import io.ktor.client.engine.js.*
 
@@ -30,9 +31,10 @@ actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(Js) {
  * JS service network
  */
 @JsExport
-@Suppress("NON_EXPORTABLE_TYPE")
+@Suppress("unused", "NON_EXPORTABLE_TYPE")
 class ServiceRequestJS(apiUrl: String) {
     private val request = ServiceRequest(apiUrl)
 
     val get by lazy { GetRequestPromise(request) }
+    val post by lazy { PostRequestPromise(request) }
 }

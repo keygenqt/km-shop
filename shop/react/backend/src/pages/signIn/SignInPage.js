@@ -19,12 +19,12 @@ import {
     useTheme
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {ConstantStorage, NavigateContext} from "../../base";
+import {AppCache, ConstantKMM, ConstantStorage, NavigateContext} from "../../base";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import {AlertError, AlertSuccess} from "../../components";
-import {AppCache} from "../../base/utils/AppCache";
+import {AppHelper} from "../../base/utils/AppHelper";
 
 export function SignInPage() {
 
@@ -98,19 +98,44 @@ export function SignInPage() {
                                 setStatus({success: null});
                                 setErrors({submit: null});
 
-                                await new Promise(r => setTimeout(r, 3000));
-
-                                // set result
-                                setStatus({success: true});
-                                setSubmitting(false);
-
+                                // delay animation loading
                                 await new Promise(r => setTimeout(r, 1000));
 
-                                // @todo
-                                AppCache.booleanSet(ConstantStorage.isAuth, true)
+                                try {
 
-                                // reload page
-                                route.toRefreshState(routes.dashboard)
+                                    const response = await ConstantKMM.request.post.login(
+                                        values.email,
+                                        values.password
+                                    )
+
+                                    // set result
+                                    setStatus({success: true});
+                                    setSubmitting(false);
+
+                                    // delay show success
+                                    await new Promise(r => setTimeout(r, 1000));
+
+                                    // save email user
+                                    AppCache.stringSet(ConstantStorage.userEmail, response.email)
+
+                                    // reload page
+                                    route.toRefreshState(routes.dashboard)
+
+                                } catch (error) {
+
+                                    const errors = {
+                                        email: AppHelper.findError('email', error.validate),
+                                        password: AppHelper.findError('password', error.validate),
+                                    }
+
+                                    setErrors(AppHelper.isNotEmpty(errors) ? errors : {
+                                        submit: "Email or password is incorrect"
+                                    });
+
+                                    setStatus({success: false});
+                                    setSubmitting(false);
+                                    setLoading(false);
+                                }
                             }}
                         >
                             {({

@@ -26,9 +26,6 @@ fun Route.main() {
                     li {
                         a("/api/greeting") { +"/api/greeting" }
                     }
-                    li {
-                        a("/api/login") { +"/api/login" }
-                    }
                 }
                 h3 {
                     +"Routes User:"

@@ -28,7 +28,7 @@
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "shared": "file:../shared-0.0.1668195905582.tgz",
+    "shared": "file:../shared-0.0.1668214206025.tgz",
     "web-vitals": "^3.0.4",
     "yup": "^0.32.11"
   },

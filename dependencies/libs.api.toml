@@ -13,10 +13,28 @@ logbackVersion = "1.4.4"
 jsonSerializationVersion="1.4.1"
 # https://github.com/JetBrains/Exposed/releases
 exposedVersion="0.39.2"
+# https://mvnrepository.com/artifact/org.glassfish/jakarta.el
+jakartaElVersion="4.0.2"
+# https://hibernate.org/validator/documentation/
+hibernateValidatorVersion="7.0.5.Final"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Hibernate Validator
+# Allows to express and validate application constraints.
+[libraries.hibernate-validator]
+module = "org.hibernate.validator:hibernate-validator"
+[libraries.hibernate-validator.version]
+ref = "hibernateValidatorVersion"
+
+# Jakarta
+# Expression Language defines an expression language for Java applications.
+[libraries.jakarta-el]
+module = "org.glassfish:jakarta.el"
+[libraries.jakarta-el.version]
+ref = "jakartaElVersion"
 
 # Exposed
 # ORM framework for Kotlin.
@@ -54,6 +72,11 @@ ref = "koinKtorVersion"
 [libraries.ktor-server-core-jvm]
 module = "io.ktor:ktor-server-core-jvm"
 [libraries.ktor-server-core-jvm.version]
+ref = "ktorVersion"
+
+[libraries.ktor-server-status-pages]
+module = "io.ktor:ktor-server-status-pages"
+[libraries.ktor-server-status-pages.version]
 ref = "ktorVersion"
 
 [libraries.ktor-server-sessions-jvm]
@@ -102,6 +125,8 @@ ref = "logbackVersion"
 
 [bundles]
 ktor = [
+    "jakarta-el",
+    "hibernate-validator",
     "exposed-core",
     "exposed-dao",
     "exposed-jdbc",
@@ -115,5 +140,6 @@ ktor = [
     "ktor-server-html-builder",
     "ktor-server-auth",
     "ktor-server-auth-jwt",
+    "ktor-server-status-pages",
     "logback-classic",
 ]

@@ -15,9 +15,10 @@
  */
 package com.keygenqt.shop.services
 
-import com.keygenqt.shop.services.error.ResponseErrorModel
-import com.keygenqt.shop.services.error.ResponseExceptionModel
+import com.keygenqt.shop.exception.ErrorResponse
+import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.services.impl.GetRequest
+import com.keygenqt.shop.services.impl.PostRequest
 import com.keygenqt.shop.utils.constants.AppConstants
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -41,6 +42,7 @@ class ServiceRequest(
 ) {
 
     val get by lazy { GetRequest(httpClient) }
+    val post by lazy { PostRequest(httpClient) }
 
     private val json = Json {
         prettyPrint = true
@@ -55,10 +57,11 @@ class ServiceRequest(
         HttpResponseValidator {
             validateResponse { response ->
                 if (response.status != HttpStatusCode.OK) {
-                    val error: ResponseErrorModel = response.body()
-                    throw ResponseExceptionModel(
+                    val error: ErrorResponse = response.body()
+                    throw ResponseException(
                         code = response.status.value,
                         message = error.message,
+                        validate = error.validate?.toTypedArray(),
                     )
                 }
             }

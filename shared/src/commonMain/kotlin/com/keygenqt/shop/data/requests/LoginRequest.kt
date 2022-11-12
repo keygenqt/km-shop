@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.security
+package com.keygenqt.shop.data.requests
 
-import io.ktor.server.auth.*
+import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
- * Session cookie
+ * Auth request
+ *
+ * @property email
+ * @property password
  */
-data class SessionUser(
-    val userId: Int,
-    val role: String,
-    val token: String
-): Principal
+@JsExport
+@Serializable
+data class LoginRequest(
+    val email: String,
+    val password: String,
+)

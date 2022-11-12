@@ -15,20 +15,31 @@
  */
 package com.keygenqt.shop.services.impl
 
-import com.keygenqt.shop.platform.wrapPromise
-import com.keygenqt.shop.services.ServiceRequest
+import com.keygenqt.shop.data.requests.LoginRequest
+import com.keygenqt.shop.data.responses.AdminModel
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.plugins.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 
-@JsExport
-@Suppress("unused", "NON_EXPORTABLE_TYPE")
-class GetRequestPromise(private val client: ServiceRequest) {
-
-    /**
-     * Override [GetRequest.rocketsDemoJetBrains] for JS
-     */
-    fun rocketsDemoJetBrains() = wrapPromise { client.get.rocketsDemoJetBrains() }
+class PostRequest(private val client: HttpClient) {
 
     /**
-     * Override [GetRequest.rocketsDemoAPI] for JS
+     * Login method
      */
-    fun rocketsDemoAPI() = wrapPromise { client.get.rocketsDemoAPI() }
+    @Throws(Exception::class)
+    suspend fun login(
+        email: String,
+        password: String,
+    ): AdminModel {
+        return client.post("api/login") {
+            setBody(
+                LoginRequest(
+                    email = email,
+                    password = password,
+                )
+            )
+        }.body()
+    }
 }

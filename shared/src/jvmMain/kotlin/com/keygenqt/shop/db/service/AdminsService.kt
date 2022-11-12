@@ -18,7 +18,10 @@ package com.keygenqt.shop.db.service
 import com.keygenqt.shop.data.responses.AdminModel
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.AdminEntity
+import com.keygenqt.shop.db.entities.Admins
+import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
+import com.keygenqt.shop.db.utils.Password
 
 class AdminsService(
     private val db: DatabaseMysql
@@ -37,5 +40,24 @@ class AdminsService(
         id: Int
     ): AdminEntity? = db.transaction {
         AdminEntity.findById(id)
+    }
+
+    /**
+     * Get user with check password for auth
+     */
+    suspend fun findUserByAuth(
+        email: String?,
+        password: String?
+    ) = db.transaction {
+        AdminEntity
+            .find { (Admins.email eq (email ?: "")) }
+            .firstOrNull()
+            ?.let { entity ->
+                if (Password.validate(password, entity.password)) {
+                    entity.toModel()
+                } else {
+                    return@transaction null
+                }
+            }
     }
 }

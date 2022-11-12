@@ -9,3 +9,6 @@ export * from './hooks/WindowScroll';
 export * from './hooks/LocalStorage';
 // route
 export * from './contexts/NavigateContext';
+// utils
+export * from './utils/AppHelper';
+export * from './utils/AppCache';

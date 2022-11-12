@@ -13,29 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.services.error
+package com.keygenqt.shop.services.impl
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlin.js.JsExport
+import com.keygenqt.shop.platform.wrapPromise
+import com.keygenqt.shop.services.ServiceRequest
 
-/**
- * Error response model
- */
-@Serializable
-data class ResponseErrorModel(
-    @SerialName("code")
-    val code: Int,
-    @SerialName("message")
-    val message: String,
-)
-
-/**
- * Error response [Exception]
- */
 @JsExport
-@Suppress("NON_EXPORTABLE_TYPE")
-data class ResponseExceptionModel(
-    val code: Int,
-    override val message: String
-) : RuntimeException()
+@Suppress("unused", "NON_EXPORTABLE_TYPE")
+class PostRequestPromise(private val client: ServiceRequest) {
+
+    /**
+     * Override [PostRequest.login] for JS
+     */
+    fun login(
+        email: String,
+        password: String,
+    ) = wrapPromise {
+        client.post.login(
+            email = email,
+            password = password,
+        )
+    }
+}

@@ -16,6 +16,7 @@
 package com.keygenqt.shop.api
 
 import com.keygenqt.shop.api.exceptions.authentication
+import com.keygenqt.shop.api.exceptions.configure
 import com.keygenqt.shop.api.exceptions.session
 import com.keygenqt.shop.api.routing.greeting
 import com.keygenqt.shop.api.routing.login
@@ -33,6 +34,7 @@ import io.ktor.server.auth.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
@@ -43,6 +45,7 @@ fun main(args: Array<String>) {
     embeddedServer(Netty, commandLineEnvironment(args)).start(wait = true)
 }
 
+@Suppress("unused")
 fun Application.module() {
     with(environment.config) {
 
@@ -86,6 +89,11 @@ fun Application.module() {
         // init auth
         install(Authentication) {
             authentication()
+        }
+
+        // catch errors
+        install(StatusPages) {
+            configure()
         }
 
         // init json
