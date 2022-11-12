@@ -1,7 +1,9 @@
 import * as React from 'react';
-import {Stack} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
+import {AppCard} from "../../components";
+import {NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
 
 export const FiltersOrders = {
     filterNew: 'New',
@@ -17,9 +19,22 @@ export function OrdersPage(props) {
 
     return (
         <Stack>
-            <Typography variant="h2">
-                Orders {filter}
-            </Typography>
+            <AppCard
+                icon={filter === FiltersOrders.filterNew ? NewReleasesOutlined : (filter === FiltersOrders.filterPending ? PendingActionsOutlined : VerifiedOutlined)}
+                color={'secondary.dark'}
+                variant={'combine'}
+                title={'Orders'}
+                subheader={'List of orders placed on the site'}
+            >
+                <Box sx={{
+                    paddingTop: 1,
+                    paddingBottom: 3
+                }}>
+                    <Typography variant="h3">
+                        Grid with type: {filter}
+                    </Typography>
+                </Box>
+            </AppCard>
         </Stack>
     );
 }

@@ -6,7 +6,10 @@ import {ConstantImages, useWindowResize} from "../../base";
 import {Menu} from "@mui/icons-material";
 import {useLocation} from "react-router-dom";
 
-export function Layout(props) {
+/**
+ * Layout dividing the page into toolbar, menu, page
+ */
+export function BaseLayout(props) {
 
     const {
         menu,
@@ -18,6 +21,7 @@ export function Layout(props) {
     const location = useLocation();
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
 
+    const ToolbarContent = toolbar
     const hideMenu = theme.breakpoints.values.lg
     const menuWith = 300
     const barHeight = 64
@@ -45,7 +49,7 @@ export function Layout(props) {
                 elevation={0}
                 sx={{
                     position: 'relative',
-                    zIndex: 1
+                    zIndex: 3
                 }}>
                 <Toolbar sx={{
                     paddingX: isMD ? '16px !important' : 'auto',
@@ -64,7 +68,9 @@ export function Layout(props) {
                         <Menu/>
                     </IconButton>
 
-                    {toolbar}
+                    <ToolbarContent
+                        disabled={isMD && isOpenMenu}
+                    />
 
                 </Toolbar>
             </AppBar>
@@ -80,7 +86,7 @@ export function Layout(props) {
                     left: isOpenMenu ? 0 : `-${menuWith}px`,
                     bottom: 0,
                     backgroundColor: 'background.paper',
-                    zIndex: isMD ? 1 : 0,
+                    zIndex: isMD ? 3 : 0,
                     transitionProperty: 'left',
                     transitionDuration: '300ms',
                 }}>
@@ -127,6 +133,7 @@ export function Layout(props) {
                         backgroundColor: 'black',
                         opacity: isOpenMenu ? 0.5 : 0,
                         transitionDuration: '300ms',
+                        zIndex: 2
                     }}/>
                     <Box sx={{
                         p: 2,
@@ -146,8 +153,8 @@ export function Layout(props) {
     )
 }
 
-Layout.propTypes = {
+BaseLayout.propTypes = {
+    toolbar: PropTypes.func.isRequired,
     menu: PropTypes.element.isRequired,
-    toolbar: PropTypes.element.isRequired,
     children: PropTypes.element.isRequired
 };

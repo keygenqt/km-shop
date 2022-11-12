@@ -72,3 +72,12 @@ html, body, #root {
     background: rgba(128, 128, 128, 0.4);
     border-radius: 4px;
 }
+
+/** spin **/
+.spin {
+    animation: spin 1000ms linear infinite;
+}
+
+@keyframes spin {
+    to {transform:rotate(360deg);}
+}

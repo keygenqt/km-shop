@@ -1,12 +1,18 @@
 import * as React from 'react';
-import {Avatar, Box, Stack} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import {ConstantImages} from "../../base";
+import {Stack} from "@mui/material";
+import {LabelToolbar} from "./elements/LabelToolbar";
+import {SettingsToolbar} from "./elements/SettingsToolbar";
+import PropTypes from "prop-types";
 
 /**
- * Application toolbar actions elements
+ * Application toolbar content body
  */
-export function AppToolbar() {
+export function AppToolbar(props) {
+
+    const {
+        disabled = false
+    } = props
+
     return (
         <Stack
             direction="row"
@@ -15,24 +21,14 @@ export function AppToolbar() {
             spacing={2}
             sx={{width: '100%'}}
         >
-            <Stack direction="row" spacing={1} alignItems="flex-start">
-                <Typography variant="h5" component="div">
-                    <Box component="span" sx={{
-                        color: 'secondary.main'
-                    }}>Sh</Box>op
-                </Typography>
-                <Typography variant="caption" sx={{paddingTop: '3px'}}>
-                    Admin Panel
-                </Typography>
-            </Stack>
-
-            <Avatar
-                alt="Remy Sharp"
-                sx={{width: 30, height: 30}}
-                src={ConstantImages.common.default_user_avatar}
+            <LabelToolbar/>
+            <SettingsToolbar
+                disabled={disabled}
             />
         </Stack>
     );
 }
 
-AppToolbar.propTypes = {};
+AppToolbar.propTypes = {
+    disabled: PropTypes.bool,
+};

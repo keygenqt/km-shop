@@ -1,31 +1,62 @@
 import * as React from 'react';
-import {Stack} from "@mui/material";
+import {useEffect} from 'react';
+import {Box, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
-import {useEffect} from "react";
 import {ConstantKMM} from "../../base";
+import {AppCard} from "../../components";
+import {DashboardOutlined} from "@mui/icons-material";
+
+let timeoutID
 
 export function DashboardPage() {
 
+    const [error, setError] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+    const [rocketsCount, setRocketsCount] = React.useState(true);
+
     useEffect(() => {
-
-        ConstantKMM.request.get.rocketsDemoAPI().then(async (response) => {
-
-
-        }).catch(async (response) => {
-            console.log(response)
-            console.log(response.code)
-            console.log(response.message)
-        });
-
-
-    }, [])
-
+        if (loading) {
+            clearTimeout(timeoutID)
+            timeoutID = setTimeout(() => {
+                ConstantKMM.request.get.rocketsDemoAPI().then(async (response) => {
+                    setRocketsCount(response.toArray().length)
+                    setLoading(false)
+                }).catch(async (response) => {
+                    setError(response.message)
+                    setLoading(false)
+                });
+            }, 1000)
+        }
+    }, [loading])
 
     return (
         <Stack>
-            <Typography variant="h2">
-                Dashboard
-            </Typography>
+            <AppCard
+                icon={DashboardOutlined}
+                color={'info.dark'}
+                variant={'combine'}
+                disabled={loading}
+                title={'Dashboard'}
+                subheader={'It will display statistics on sales, site visits and much more'}
+                onRefresh={() => {
+                    setLoading(true)
+                }}
+            >
+                <Box sx={{
+                    paddingTop: 1,
+                    paddingBottom: 3
+                }}>
+                    {loading || error ? (
+                        <Typography variant="h3">
+                            {error ? `Error: ${error}` : 'Loading...'}
+                        </Typography>
+                    ) : (
+                        <Typography variant="h3">
+                            Rockets count: {rocketsCount}
+                        </Typography>
+                    )}
+                </Box>
+            </AppCard>
         </Stack>
     );
 }

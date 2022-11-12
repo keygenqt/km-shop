@@ -24,7 +24,7 @@ import {Formik} from "formik";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import {AlertError, AlertSuccess} from "../../components";
-import {AppHelper} from "../../base/utils/AppHelper";
+import {AppHelper} from "../../base";
 
 export function SignInPage() {
 

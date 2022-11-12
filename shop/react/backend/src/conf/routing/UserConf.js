@@ -11,19 +11,7 @@ import {
     SystemPage,
     UploadsPage
 } from "../../pages";
-import {AppMenu, AppToolbar, Layout} from "../../components";
-import {MenuConf} from "../menu/MenuConf";
-
-function CommonLayout(props) {
-    return (
-        <Layout
-            menu={<AppMenu configuration={MenuConf}/>}
-            toolbar={<AppToolbar/>}
-        >
-            {props.children}
-        </Layout>
-    );
-}
+import {AppLayout} from "../../components";
 
 export const UserConf = {
     delay: 300,
@@ -36,9 +24,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <CategoriesPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -51,9 +39,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <DashboardPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -66,9 +54,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <HelpPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -81,9 +69,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <ManagersPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -96,9 +84,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <OrdersPage filter={FiltersOrders.filterNew}/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -111,9 +99,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <OrdersPage filter={FiltersOrders.filterPending}/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -126,9 +114,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <OrdersPage filter={FiltersOrders.filterCompleted}/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -141,9 +129,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <ProductsPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -156,9 +144,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <SystemPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
@@ -171,9 +159,9 @@ export const UserConf = {
                     exact
                     path={path}
                     element={
-                        <CommonLayout>
+                        <AppLayout>
                             <UploadsPage/>
-                        </CommonLayout>
+                        </AppLayout>
                     }
                 />
             }
