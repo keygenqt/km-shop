@@ -8,70 +8,73 @@ import kotlinx.html.*
 
 fun Route.main() {
     get("/") {
+
         val name = "API Shop"
+        val subtitle = "API for Shop 6 in 1"
+        val title = "API written in Ktor using multiplatform best practices"
+        val text = "You can check out the method documentation on GitHub Pages"
+        val button = "Documentation"
+        val footer = "This API is used on 4 platforms combined Kotlin Multiplatform"
+
         call.respondHtml(HttpStatusCode.OK) {
             head {
                 title {
                     +name
                 }
+                link(rel = "stylesheet", href = "/static/css/common.css", type = "text/css")
             }
             body {
-                h1 {
-                    +"Hello from $name!"
-                }
-                h3 {
-                    +"Routes Guest:"
-                }
-                ul {
-                    li {
-                        a("/api/greeting") { +"/api/greeting" }
+                div("Root Table") {
+                    div("Row") {
+                        div("ToolBar Cell") {
+                            style = "height: 86px"
+                            +"Welcome!"
+                        }
                     }
-                    li {
-                        a("/api/rockets") { +"/api/rockets" }
+                    div("Row") {
+                        div ("Cell") {
+                            div("Body") {
+                                div("Info") {
+                                    div("Subtitle") {
+                                        +subtitle
+                                    }
+                                    div("Title") {
+                                        +title
+                                    }
+                                    div("Text") {
+                                        +text
+                                    }
+                                    a(href = "https://keygenqt.github.io/km-shop/api/", classes = "Btn") {
+                                        target = "_blank"
+                                        +button
+                                    }
+                                }
+                                div("Image") {
+                                    img("Code", "/static/images/code.png")
+                                }
+                            }
+                        }
                     }
-                    li {
-                        a("/api/categories") { +"/api/categories" }
-                    }
-                    li {
-                        a("/api/products") { +"/api/products" }
-                    }
-                    li {
-                        a("/api/products/1") { +"/api/products/{ID}" }
-                    }
-                }
-                h3 {
-                    +"Routes User:"
-                }
-                ul {
-                    li {
-                        a("/api/sec/rockets") { +"/api/sec/rockets" }
-                    }
-                    li {
-                        a("/api/sec/categories") { +"/api/sec/categories" }
-                    }
-                    li {
-                        a("/api/sec/categories/uploads") { +"/api/sec/categories/uploads" }
-                    }
-                    li {
-                        a("/api/sec/products") { +"/api/sec/products" }
-                    }
-                    li {
-                        a("/api/sec/products/1") { +"/api/sec/products/{ID}" }
-                    }
-                    li {
-                        a("/api/sec/products/uploads") { +"/api/sec/products/uploads" }
-                    }
-                    li {
-                        a("/api/sec/products/uploads/1") { +"/api/sec/products/uploads/{ID}" }
-                    }
-                    li {
-                        a("/api/sec/orders") { +"/api/sec/orders" }
-                    }
-                    li {
-                        a("/api/sec/messages") { +"/api/sec/messages" }
-                    }
-                    li {
-                        a("/api/sec/uploads") { +"/api/sec/uploads" }
+                    div("Row") {
+                        div("Footer Cell") {
+                            p {
+                                +footer
+                            }
+                            ul {
+                                li {
+                                    img("Code", "/static/images/ic_android.png")
+                                }
+                                li {
+                                    img("Code", "/static/images/ic_apple.png")
+                                }
+                                li {
+                                    img("Code", "/static/images/ic_react.png")
+                                }
+                                li {
+                                    img("Code", "/static/images/ic_cli.png")
+                                }
+                            }
+                        }
                     }
                 }
             }
