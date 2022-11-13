@@ -133,3 +133,9 @@ html, body {
         font-size: 36px;
     }
 }
+
+@media (max-height: 950px) {
+    .Body .Image {
+        display: none;
+    }
+}
