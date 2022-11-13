@@ -20,6 +20,7 @@ import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.validators.NotNullNotBlank
+import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.service.AdminsService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -50,18 +51,21 @@ fun Route.login() {
 
         val request = call.receiveValidate<Request>()
 
-        adminsService.findUserByAuth(
-            email = request.email,
-            password = request.password
-        )?.let {
-            call.sessions.set(
-                SessionUser(
-                    userId = it.id.value,
-                    role = it.role.name,
-                    token = sessionService.generateToken(1),
-                )
+        val response = adminsService.transaction {
+            adminsService.findUserByAuth(
+                email = request.email,
+                password = request.password
+            )?.toModel() ?: throw Errors.Unauthorized()
+        }
+
+        call.sessions.set(
+            SessionUser(
+                userId = response.id,
+                role = response.role.name,
+                token = sessionService.generateToken(1),
             )
-            call.respond(it)
-        } ?: throw Errors.Unauthorized()
+        )
+
+        call.respond(response)
     }
 }

@@ -40,7 +40,7 @@
   },
   "name": "shop",
   "private": true,
-  "proxy": "http://localhost:8099",
+  "proxy": "http://localhost:8086",
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",

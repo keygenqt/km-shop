@@ -25,38 +25,33 @@ import org.jetbrains.exposed.sql.SizedIterable
 class AdminsService(
     override val db: DatabaseMysql
 ) : IService<AdminsService> {
+
     /**
      * Get all models
      */
-    suspend fun getAll(): SizedIterable<AdminEntity> = db.transaction {
-        AdminEntity.all()
-    }
+    fun getAll(): SizedIterable<AdminEntity> = AdminEntity.all()
 
     /**
      * Find data by id
      */
-    suspend fun findById(
+    fun findById(
         id: Int
-    ): AdminEntity? = db.transaction {
-        AdminEntity.findById(id)
-    }
+    ) = AdminEntity.findById(id)
 
     /**
      * Get user with check password for auth
      */
-    suspend fun findUserByAuth(
+    fun findUserByAuth(
         email: String?,
         password: String?
-    ): AdminEntity? = db.transaction {
-        AdminEntity
-            .find { (Admins.email eq (email ?: "")) }
-            .firstOrNull()
-            ?.let { entity ->
-                if (Password.validate(password, entity.password)) {
-                    entity
-                } else {
-                    return@transaction null
-                }
+    ) = AdminEntity
+        .find { (Admins.email eq (email ?: "")) }
+        .firstOrNull()
+        ?.let {
+            if (Password.validate(password, it.password)) {
+                it
+            } else {
+                null
             }
-    }
+        }
 }
