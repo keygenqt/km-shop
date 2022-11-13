@@ -13,3 +13,5 @@ kotlin-js-store
 ### APP ###
 dbconfig.properties
 app.properties
+package.json
+package-lock.json
