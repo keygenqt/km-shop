@@ -15,8 +15,8 @@
  */
 package com.keygenqt.shop.db.entities
 
-import com.keygenqt.shop.db.base.IntSubQueryEntityClass
 import com.keygenqt.shop.data.responses.RocketResponse
+import com.keygenqt.shop.db.base.IntSubQueryEntityClass
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable

@@ -18,9 +18,3 @@ package com.keygenqt.shop.api.utils
 object AppConstants {
     const val SESSION_KEY = "SESSION_SHOP"
 }
-
-
-
-
-
-

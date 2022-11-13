@@ -9,11 +9,17 @@ group = "com.keygenqt.shop.api"
 version = "0.0.1"
 
 application {
-    mainClass.set("com.keygenqt.ApplicationKt")
+    mainClass.set("com.keygenqt.shop.api.ApplicationKt")
 }
 
 dependencies {
     implementation(project(":shared"))
     // Ktor
     implementation(apiApp.bundles.ktor)
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("shop-api.jar")
+    }
 }

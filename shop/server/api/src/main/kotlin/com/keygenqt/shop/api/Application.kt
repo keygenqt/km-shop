@@ -67,27 +67,29 @@ fun Application.module() {
         // init koin
         startKoin {
             printLogger()
-            modules(koinModule {
-                // app config
-                single { conf }
+            modules(
+                koinModule {
+                    // app config
+                    single { conf }
 
-                // db services
-                single { AdminsService(db) }
-                single { RocketsService(db) }
-                single { CategoriesService(db) }
-                single { MessagesService(db) }
-                single { OrdersService(db) }
-                single { ProductsService(db) }
-                single { UploadsService(db) }
+                    // db services
+                    single { AdminsService(db) }
+                    single { RocketsService(db) }
+                    single { CategoriesService(db) }
+                    single { MessagesService(db) }
+                    single { OrdersService(db) }
+                    single { ProductsService(db) }
+                    single { UploadsService(db) }
 
-                // session service
-                single {
-                    SessionService(
-                        db = db,
-                        secret = conf.getPropOrNull("secret")
-                    )
+                    // session service
+                    single {
+                        SessionService(
+                            db = db,
+                            secret = conf.getPropOrNull("secret")
+                        )
+                    }
                 }
-            })
+            )
         }
 
         // init session
@@ -110,12 +112,14 @@ fun Application.module() {
 
         // init json
         install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-                coerceInputValues = true
-            })
+            json(
+                Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                    coerceInputValues = true
+                }
+            )
         }
 
         // init routing

@@ -24,4 +24,4 @@ data class SessionUser(
     val userId: Int,
     val role: String,
     val token: String
-): Principal
+) : Principal

@@ -47,12 +47,14 @@ fun main(args: Array<String>) {
 
         // init koin
         startKoin {
-            modules(module {
-                single { config }
-                single { arguments }
-                single { ServiceRequest() }
-                single { RocketsService(db) }
-            })
+            modules(
+                module {
+                    single { config }
+                    single { arguments }
+                    single { ServiceRequest() }
+                    single { RocketsService(db) }
+                }
+            )
         }
 
         // run features

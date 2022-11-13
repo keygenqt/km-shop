@@ -19,5 +19,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("com.keygenqt.shop.cli.MainKt")
 }

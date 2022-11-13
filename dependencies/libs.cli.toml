@@ -13,10 +13,19 @@ coroutinesVersion = "1.6.4"
 slf4jVersion = "2.0.3"
 # https://github.com/lightbend/config
 configVersion = "1.4.2"
+# https://github.com/JetBrains/Exposed/releases
+exposedVersion="0.39.2"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Exposed
+# ORM framework for Kotlin.
+[libraries.exposed-core]
+module = "org.jetbrains.exposed:exposed-core"
+[libraries.exposed-core.version]
+ref = "exposedVersion"
 
 # HOCON Config
 # Configuration library for JVM languages.
@@ -64,6 +73,7 @@ ref = "slf4jVersion"
 
 [bundles]
 cli = [
+    "exposed-core",
     "config",
     "koin-core",
     "kotlinx-cli",

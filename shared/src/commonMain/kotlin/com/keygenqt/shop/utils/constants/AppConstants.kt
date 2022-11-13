@@ -26,9 +26,3 @@ object AppConstants {
     val link = LinksConstants
     val other = OtherConstants
 }
-
-
-
-
-
-
