@@ -21,8 +21,6 @@ import com.keygenqt.shop.extension.toUTC
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.ColumnSet
-import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 
 /**
@@ -52,17 +50,7 @@ object ProductUploads : Table() {
  * Exposed entity
  */
 class ProductEntity(id: EntityID<Int>) : IntEntity(id) {
-
-    companion object : IntSubQueryEntityClass<ProductEntity>(Products) {
-        override val dependsOnTables: ColumnSet = Products.innerJoin(Categories)
-
-        override fun createInstance(entityId: EntityID<Int>, row: ResultRow?): ProductEntity {
-            row?.getOrNull(Categories.id)?.let {
-                CategoryEntity.wrap(it, row)
-            }
-            return super.createInstance(entityId, row)
-        }
-    }
+    companion object : IntSubQueryEntityClass<ProductEntity>(Products)
 
     var categoryID by Products.categoryID
     var image by Products.image
