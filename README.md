@@ -7,7 +7,7 @@ All platforms use the latest stack.
 
 ![picture](data/common/logo160.png)
 
-### 1. API
+## 1. API
 
 * Url: [Link](https://shop-api.keygenqt.com/)
 * Based: [Ktor](https://ktor.io/)
@@ -18,7 +18,7 @@ All platforms use the latest stack.
 
 ![picture](data/api/preview.png)
 
-### 2. Website
+## 2. Website
 
 * Url: [Link](https://shop.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
@@ -29,7 +29,7 @@ All platforms use the latest stack.
 
 *Coming soon*
 
-### 3. Admin Panel
+## 3. Admin Panel
 
 * Url: [Link](https://shop-admin.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
@@ -40,7 +40,7 @@ All platforms use the latest stack.
 
 ![picture](data/backend/Screen_Recording_2022-11-12_at_17.31.45.gif)
 
-### 4. Android App
+## 4. Android App
 
 * Url: *Coming soon*
 * Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
@@ -51,7 +51,7 @@ All platforms use the latest stack.
 
 *Coming soon*
 
-### 5. iOS App
+## 5. iOS App
 
 * Url: *Coming soon*
 * Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
@@ -62,7 +62,7 @@ All platforms use the latest stack.
 
 *Coming soon*
 
-### 6. CLI App
+## 6. CLI App
 
 * Url: *Coming soon*
 * Based: [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli)
