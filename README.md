@@ -3,24 +3,71 @@ Shop Kotlin Multiplatform 6 in 1
 
 ![picture](data/common/logo160.png)
 
-### 1. Website
+## 1. API
+
+* Url: [Link](https://shop-api.keygenqt.com/)
+* Based: [Ktor](https://ktor.io/)
+* Platform: **Web**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/api/)
+
+#### Preview
+
+![picture](data/api/preview.png)
+
+## 2. Website
+
 * Url: [Link](https://shop.keygenqt.com/)
+* Based: [React](https://reactjs.org/)
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
 
-### 1. Website
-* [Website](https://shop.keygenqt.com/) ([React](https://reactjs.org/))
-* [Admin panel](https://shop-admin.keygenqt.com/) ([React](https://reactjs.org/))
-* [API](https://shop-api.keygenqt.com/) ([Ktor](https://ktor.io/))
-* Android ([Jetpack Compose](https://developer.android.com/jetpack/compose))
-* iOS ([SwiftUI](https://developer.apple.com/xcode/swiftui/))
-* CLI ([kotlinx-cli](https://github.com/Kotlin/kotlinx-cli))
+#### Preview
 
-# Preview
+*Coming soon*
 
-<p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/Screen_Recording_2022-11-08_at_12.46.29.gif" width="100%"/>
-</p>
+## 3. Admin Panel
+
+* Url: [Link](https://shop-admin.keygenqt.com/)
+* Based: [React](https://reactjs.org/)
+* Platform: **Web**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/backend/)
+
+#### Preview
+
+![picture](data/backend/Screen_Recording_2022-11-12_at_17.31.45.gif)
+
+## 4. Android App
+
+* Url: *Coming soon*
+* Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
+* Platform: **Android**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/android/)
+
+#### Preview
+
+*Coming soon*
+
+## 5. iOS App
+
+* Url: *Coming soon*
+* Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
+* Platform: **iOS**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/ios/)
+
+#### Preview
+
+*Coming soon*
+
+## 6. CLI App
+
+* Url: *Coming soon*
+* Based: [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli)
+* Platform: **Native**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/cli/)
+
+#### Preview
+
+![picture](data/cli/Screenshot_2022-11-09_at_14.38.24.png)
 
 # License
 
