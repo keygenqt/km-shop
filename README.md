@@ -1,6 +1,10 @@
 Shop Kotlin Multiplatform 6 in 1
 ===================
 
+A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
+All applications use a common module and native UI for their platforms.
+All platforms use the latest stack.
+
 ![picture](data/common/logo160.png)
 
 ## 1. API
