@@ -3,12 +3,17 @@ Shop Kotlin Multiplatform 6 in 1
 
 ![picture](data/common/logo160.png)
 
-### Apps
-* [Web site](https://shop.keygenqt.com/) ([React](https://reactjs.org/))
+### 1. Website
+* Url: [Link](https://shop.keygenqt.com/)
+* Platform: **Web**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
+
+
+* [Website](https://shop.keygenqt.com/) ([React](https://reactjs.org/))
 * [Admin panel](https://shop-admin.keygenqt.com/) ([React](https://reactjs.org/))
+* [API](https://shop-api.keygenqt.com/) ([Ktor](https://ktor.io/))
 * Android ([Jetpack Compose](https://developer.android.com/jetpack/compose))
 * iOS ([SwiftUI](https://developer.apple.com/xcode/swiftui/))
-* API ([Ktor](https://ktor.io/))
 * CLI ([kotlinx-cli](https://github.com/Kotlin/kotlinx-cli))
 
 # Preview
