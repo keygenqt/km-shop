@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.exceptions
+package com.keygenqt.shop.api.extension
 
 import io.ktor.util.*
 import java.math.BigInteger

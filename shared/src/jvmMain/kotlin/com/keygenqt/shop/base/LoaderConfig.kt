@@ -34,17 +34,12 @@ class LoaderConfig(
                     prop.load(it)
                 } ?: run {
                     this::class.java.getResourceAsStream(path).use {
-
-                        println("!!!!!")
-
-
                         prop.load(it)
                     }
                 }
             } catch (ex: Exception) {
                 throw RuntimeException("Failed to read property file", ex)
             }
-
             return LoaderConfig(prop)
         }
     }

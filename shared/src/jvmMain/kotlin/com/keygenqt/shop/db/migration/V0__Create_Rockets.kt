@@ -1,7 +1,7 @@
 package com.keygenqt.shop.db.migration
 
 import com.keygenqt.shop.db.entities.Rockets
-import com.keygenqt.shop.data.responses.RocketModel
+import com.keygenqt.shop.data.responses.RocketResponse
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.flywaydb.core.api.migration.BaseJavaMigration
@@ -21,7 +21,7 @@ class V0__Create_Rockets : BaseJavaMigration() {
             }
 
             // insert demo date
-            Rockets.batchInsert(json.decodeFromString<List<RocketModel>>(rockets)) { model ->
+            Rockets.batchInsert(json.decodeFromString<List<RocketResponse>>(rockets)) { model ->
                 this[Rockets.missionName] = model.missionName
                 this[Rockets.launchDateUTC] = model.launchDateUTC
                 this[Rockets.launchSuccess] = model.launchSuccess ?: false

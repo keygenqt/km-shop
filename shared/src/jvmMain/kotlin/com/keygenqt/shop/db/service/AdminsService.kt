@@ -15,26 +15,25 @@
  */
 package com.keygenqt.shop.db.service
 
-import com.keygenqt.shop.data.responses.AdminModel
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.AdminEntity
 import com.keygenqt.shop.db.entities.Admins
-import com.keygenqt.shop.db.entities.toModel
-import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.utils.Password
+import com.keygenqt.shop.interfaces.IService
+import org.jetbrains.exposed.sql.SizedIterable
 
 class AdminsService(
-    private val db: DatabaseMysql
-) {
+    override val db: DatabaseMysql
+) : IService<AdminsService> {
     /**
      * Get all models
      */
-    suspend fun getAll(): List<AdminModel> = db.transaction {
-        AdminEntity.all().toModels()
+    suspend fun getAll(): SizedIterable<AdminEntity> = db.transaction {
+        AdminEntity.all()
     }
 
     /**
-     * Get all models
+     * Find data by id
      */
     suspend fun findById(
         id: Int
@@ -48,13 +47,13 @@ class AdminsService(
     suspend fun findUserByAuth(
         email: String?,
         password: String?
-    ) = db.transaction {
+    ): AdminEntity? = db.transaction {
         AdminEntity
             .find { (Admins.email eq (email ?: "")) }
             .firstOrNull()
             ?.let { entity ->
                 if (Password.validate(password, entity.password)) {
-                    entity.toModel()
+                    entity
                 } else {
                     return@transaction null
                 }

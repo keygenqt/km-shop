@@ -15,45 +15,52 @@
  */
 package com.keygenqt.shop.db.entities
 
-import com.keygenqt.shop.data.responses.AdminModel
-import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.MessageResponse
+import com.keygenqt.shop.extension.toUTC
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 /**
- * Table users
+ * Table for help desk
  */
-object Admins : IntIdTable() {
-    val email = varchar("email", 255).uniqueIndex()
-    val password = varchar("password", 255)
-    val role = enumeration("role", AdminRole::class).default(AdminRole.MANAGER)
+object Messages : IntIdTable() {
+    val email = varchar("email", 255)
+    val message = text("message")
+    val isSent = bool("isSent").default(false)
+    val createAt = long("createAt")
+    val updateAt = long("updateAt")
 }
 
 /**
  * Exposed entity
  */
-class AdminEntity(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<AdminEntity>(Admins)
+class MessageEntity(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<MessageEntity>(Messages)
 
-    var email by Admins.email
-    var password by Admins.password
-    var role by Admins.role
+    var email by Messages.email
+    var message by Messages.message
+    var isSent by Messages.isSent
+    var createAt by Messages.createAt
+    var updateAt by Messages.updateAt
 }
 
 /**
- * Convert
+ * Convert to [MessageResponse]
  */
-fun AdminEntity.toModel() = AdminModel(
+fun MessageEntity.toModel() = MessageResponse(
     id = id.value,
     email = email,
-    role = role,
+    message = message,
+    isSent = isSent,
+    createAt = createAt.toUTC(),
+    updateAt = updateAt.toUTC(),
 )
 
 /**
- * Convert list
+ * Convert to [List]
  */
-fun Iterable<AdminEntity>.toModels(): List<AdminModel> {
+fun Iterable<MessageEntity>.toModels(): List<MessageResponse> {
     return map { it.toModel() }
 }

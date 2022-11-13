@@ -114,6 +114,11 @@ module = "io.ktor:ktor-server-auth-jwt"
 [libraries.ktor-server-auth-jwt.version]
 ref = "ktorVersion"
 
+[libraries.ktor-server-call-loggin]
+module = "io.ktor:ktor-server-call-logging"
+[libraries.ktor-server-call-loggin.version]
+ref = "ktorVersion"
+
 [libraries.logback-classic]
 module = "ch.qos.logback:logback-classic"
 [libraries.logback-classic.version]
@@ -141,5 +146,6 @@ ktor = [
     "ktor-server-auth",
     "ktor-server-auth-jwt",
     "ktor-server-status-pages",
+    "ktor-server-call-loggin",
     "logback-classic",
 ]

@@ -1,10 +1,12 @@
-package com.keygenqt.shop.api.exceptions
+package com.keygenqt.shop.api.extension
 
 import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.utils.AppLogger
 import com.keygenqt.shop.exception.ErrorResponse
 import io.ktor.http.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
+import io.ktor.util.logging.*
 
 /**
  * Catch errors
@@ -45,6 +47,7 @@ fun StatusPagesConfig.configure() {
                 )
             }
         } else {
+            AppLogger.log.error(cause)
             call.respond(
                 status = HttpStatusCode.InternalServerError,
                 message = cause.message ?: HttpStatusCode.InternalServerError.description

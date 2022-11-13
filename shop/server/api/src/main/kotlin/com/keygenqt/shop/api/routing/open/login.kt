@@ -1,7 +1,7 @@
-package com.keygenqt.shop.api.routing
+package com.keygenqt.shop.api.routing.open
 
 import com.keygenqt.shop.api.base.Errors
-import com.keygenqt.shop.api.exceptions.receiveValidate
+import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.validators.NotNullNotBlank
@@ -41,7 +41,7 @@ fun Route.login() {
         )?.let {
             call.sessions.set(
                 SessionUser(
-                    userId = it.id,
+                    userId = it.id.value,
                     role = it.role.name,
                     token = sessionService.generateToken(1),
                 )

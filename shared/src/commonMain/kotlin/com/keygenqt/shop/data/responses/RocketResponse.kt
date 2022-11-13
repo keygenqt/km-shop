@@ -3,14 +3,13 @@ package com.keygenqt.shop.data.responses
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
-import kotlin.js.JsName
 
 /**
  * Test model query
  */
 @JsExport
 @Serializable
-data class RocketModel (
+data class RocketResponse (
     @SerialName("flight_number")
     val flightNumber: Int,
     @SerialName("name")

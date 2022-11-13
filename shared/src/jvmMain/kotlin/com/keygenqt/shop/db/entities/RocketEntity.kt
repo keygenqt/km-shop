@@ -16,7 +16,7 @@
 package com.keygenqt.shop.db.entities
 
 import com.keygenqt.shop.db.base.IntSubQueryEntityClass
-import com.keygenqt.shop.data.responses.RocketModel
+import com.keygenqt.shop.data.responses.RocketResponse
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
@@ -42,7 +42,7 @@ class RocketEntity(id: EntityID<Int>) : IntEntity(id) {
 /**
  * Convert to model
  */
-fun RocketEntity.toModel() = RocketModel(
+fun RocketEntity.toModel() = RocketResponse(
     flightNumber = id.value,
     missionName = missionName,
     launchDateUTC = launchDateUTC,
@@ -52,6 +52,6 @@ fun RocketEntity.toModel() = RocketModel(
 /**
  * Convert list
  */
-fun Iterable<RocketEntity>.toModels(): List<RocketModel> {
+fun Iterable<RocketEntity>.toModels(): List<RocketResponse> {
     return map { it.toModel() }
 }

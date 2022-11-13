@@ -1,4 +1,4 @@
-package com.keygenqt.shop.api.routing
+package com.keygenqt.shop.api.routing.open
 
 import com.keygenqt.shop.Greeting
 import io.ktor.server.application.*

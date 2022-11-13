@@ -16,26 +16,39 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.entities.RocketEntity
-import com.keygenqt.shop.db.entities.Rockets
+import com.keygenqt.shop.db.entities.ProductEntity
+import com.keygenqt.shop.db.entities.Products
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.sql.SortOrder
 
-class RocketsService(
+class ProductsService(
     override val db: DatabaseMysql
-) : IService<RocketsService> {
+) : IService<ProductsService> {
 
     /**
      * Get all entities
      */
-    fun getAll() = RocketEntity
+    fun getAll() = ProductEntity
         .all()
-        .orderBy(Pair(Rockets.missionName, SortOrder.ASC))
+        .orderBy(Pair(Products.createAt, SortOrder.DESC))
 
     /**
-     * Get entities if launch success
+     * Get all entities for guest
      */
-    fun getAllLaunchSuccess() = RocketEntity
-        .find { (Rockets.launchSuccess eq true) }
-        .orderBy(Pair(Rockets.missionName, SortOrder.ASC))
+    fun getAllPublished() = ProductEntity
+        .find { (Products.isPublished eq true) }
+        .orderBy(Pair(Products.createAt, SortOrder.DESC))
+        .filter { it.category.isPublished }
+
+    /**
+     * Get entity by ID
+     */
+    fun getById(id: Int) = ProductEntity.findById(id)
+
+    /**
+     * Get all entities for guest
+     */
+    fun getByIdPublished(id: Int) = ProductEntity
+        .findById(id)
+        ?.let { if (it.category.isPublished && it.isPublished) it else null }
 }

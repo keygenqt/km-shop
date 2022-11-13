@@ -15,19 +15,16 @@
  */
 package com.keygenqt.shop.api
 
-import com.keygenqt.shop.api.exceptions.authentication
-import com.keygenqt.shop.api.exceptions.configure
-import com.keygenqt.shop.api.exceptions.session
-import com.keygenqt.shop.api.routing.greeting
-import com.keygenqt.shop.api.routing.login
-import com.keygenqt.shop.api.routing.main
-import com.keygenqt.shop.api.routing.rockets
+import com.keygenqt.shop.api.extension.authentication
+import com.keygenqt.shop.api.extension.configure
+import com.keygenqt.shop.api.extension.session
+import com.keygenqt.shop.api.routing.open.*
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.utils.AppConstants
+import com.keygenqt.shop.api.utils.AppLogger.initAppLogger
 import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.service.AdminsService
-import com.keygenqt.shop.db.service.RocketsService
+import com.keygenqt.shop.db.service.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -39,6 +36,12 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
+import com.keygenqt.shop.api.routing.security.categories as categoriesSec
+import com.keygenqt.shop.api.routing.security.messages as messagesSec
+import com.keygenqt.shop.api.routing.security.orders as ordersSec
+import com.keygenqt.shop.api.routing.security.products as productsSec
+import com.keygenqt.shop.api.routing.security.rockets as rocketsSec
+import com.keygenqt.shop.api.routing.security.uploads as uploadsSec
 import org.koin.dsl.module as koinModule
 
 fun main(args: Array<String>) {
@@ -48,6 +51,9 @@ fun main(args: Array<String>) {
 @Suppress("unused")
 fun Application.module() {
     with(environment.config) {
+
+        // init logger
+        initAppLogger()
 
         // load config
         val conf = LoaderConfig.loadProperties(this.property("ktor.config.app").getString())
@@ -67,6 +73,11 @@ fun Application.module() {
                 // db services
                 single { AdminsService(db) }
                 single { RocketsService(db) }
+                single { CategoriesService(db) }
+                single { MessagesService(db) }
+                single { OrdersService(db) }
+                single { ProductsService(db) }
+                single { UploadsService(db) }
 
                 // session service
                 single {
@@ -116,9 +127,19 @@ fun Application.module() {
                 // guest
                 login()
                 greeting()
+                rockets()
+                categories()
+                products()
                 // user
                 authenticate(AppConstants.SESSION_KEY) {
-                    rockets()
+                    route("/sec") {
+                        rocketsSec()
+                        categoriesSec()
+                        productsSec()
+                        ordersSec()
+                        messagesSec()
+                        uploadsSec()
+                    }
                 }
             }
         }

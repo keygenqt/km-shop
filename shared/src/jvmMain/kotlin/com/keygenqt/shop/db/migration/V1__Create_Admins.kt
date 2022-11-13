@@ -1,6 +1,6 @@
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.data.responses.AdminModelRole
+import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.Admins
 import com.keygenqt.shop.db.utils.Password
 import org.flywaydb.core.api.migration.BaseJavaMigration
@@ -18,7 +18,7 @@ class V1__Create_Admins : BaseJavaMigration() {
             Admins.insert {
                 it[email] = "admin@keygenqt.com"
                 it[password] = Password.encode("12345678")
-                it[role] = AdminModelRole.ADMIN
+                it[role] = AdminRole.ADMIN
             }
         }
     }

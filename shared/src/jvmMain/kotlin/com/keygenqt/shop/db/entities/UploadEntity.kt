@@ -15,45 +15,49 @@
  */
 package com.keygenqt.shop.db.entities
 
-import com.keygenqt.shop.data.responses.AdminModel
-import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.UploadResponse
+import com.keygenqt.shop.extension.toUTC
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 /**
- * Table users
+ * Table upload files
  */
-object Admins : IntIdTable() {
-    val email = varchar("email", 255).uniqueIndex()
-    val password = varchar("password", 255)
-    val role = enumeration("role", AdminRole::class).default(AdminRole.MANAGER)
+object Uploads : IntIdTable() {
+    val fileName = varchar("fileName", 255).uniqueIndex()
+    val fileMime = varchar("fileMime", 255)
+    val originalFileName = varchar("originalFileName", 255)
+    val createAt = long("createAt")
 }
 
 /**
  * Exposed entity
  */
-class AdminEntity(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<AdminEntity>(Admins)
+class UploadEntity(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<UploadEntity>(Uploads)
 
-    var email by Admins.email
-    var password by Admins.password
-    var role by Admins.role
+    var fileName by Uploads.fileName
+    var fileMime by Uploads.fileMime
+    var originalFileName by Uploads.originalFileName
+    var createAt by Uploads.createAt
 }
 
 /**
- * Convert
+ * Convert to [UploadResponse]
  */
-fun AdminEntity.toModel() = AdminModel(
+fun UploadEntity.toModel() = UploadResponse(
     id = id.value,
-    email = email,
-    role = role,
+    fileName = fileName,
+    fileMime = fileMime,
+    originalFileName = originalFileName,
+    createAt = createAt.toUTC(),
 )
 
 /**
- * Convert list
+ * Convert to [List]
  */
-fun Iterable<AdminEntity>.toModels(): List<AdminModel> {
+fun Iterable<UploadEntity>.toModels(): List<UploadResponse> {
     return map { it.toModel() }
 }

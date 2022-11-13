@@ -16,26 +16,19 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.entities.RocketEntity
-import com.keygenqt.shop.db.entities.Rockets
+import com.keygenqt.shop.db.entities.UploadEntity
+import com.keygenqt.shop.db.entities.Uploads
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.sql.SortOrder
 
-class RocketsService(
+class UploadsService(
     override val db: DatabaseMysql
-) : IService<RocketsService> {
+) : IService<UploadsService> {
 
     /**
      * Get all entities
      */
-    fun getAll() = RocketEntity
+    fun getAll() = UploadEntity
         .all()
-        .orderBy(Pair(Rockets.missionName, SortOrder.ASC))
-
-    /**
-     * Get entities if launch success
-     */
-    fun getAllLaunchSuccess() = RocketEntity
-        .find { (Rockets.launchSuccess eq true) }
-        .orderBy(Pair(Rockets.missionName, SortOrder.ASC))
+        .orderBy(Pair(Uploads.createAt, SortOrder.DESC))
 }

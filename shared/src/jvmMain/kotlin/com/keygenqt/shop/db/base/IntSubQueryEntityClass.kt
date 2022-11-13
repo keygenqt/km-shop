@@ -60,12 +60,18 @@ abstract class IntSubQueryEntityClass<out E : IntEntity> constructor(
         }
     }
 
-    fun isHas(prop: KProperty<*>, op: SqlExpressionBuilder.() -> Op<Boolean>): IntSubQueryEntityClass<E> {
+    fun isHas(
+        prop: KProperty<*>,
+        op: SqlExpressionBuilder.() -> Op<Boolean>
+    ): IntSubQueryEntityClass<E> {
         isHasCondition[prop] = SqlExpressionBuilder.op()
         return this
     }
 
-    fun selectCount(prop: KProperty<*>, op: SqlExpressionBuilder.() -> Op<Boolean>): IntSubQueryEntityClass<E> {
+    fun selectCount(
+        prop: KProperty<*>,
+        op: SqlExpressionBuilder.() -> Op<Boolean>
+    ): IntSubQueryEntityClass<E> {
         selectCountCondition[prop] = SqlExpressionBuilder.op()
         return this
     }

@@ -1,4 +1,4 @@
-package com.keygenqt.shop.api.exceptions
+package com.keygenqt.shop.api.extension
 
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.utils.AppConstants

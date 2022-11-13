@@ -1,4 +1,4 @@
-package com.keygenqt.shop.api.exceptions
+package com.keygenqt.shop.api.extension
 
 import com.keygenqt.shop.api.base.Errors
 import com.keygenqt.shop.api.security.SessionService

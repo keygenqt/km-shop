@@ -7,8 +7,8 @@ import kotlin.js.JsExport
  * Role uer in app
  */
 @JsExport
-enum class AdminModelRole {
-    GUEST, ADMIN
+enum class AdminRole {
+    MANAGER, ADMIN
 }
 
 /**
@@ -19,5 +19,5 @@ enum class AdminModelRole {
 data class AdminModel(
     val id: Int,
     val email: String,
-    val role: AdminModelRole,
+    val role: AdminRole,
 )
