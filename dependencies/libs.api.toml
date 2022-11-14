@@ -119,6 +119,8 @@ module = "io.ktor:ktor-server-call-logging"
 [libraries.ktor-server-call-loggin.version]
 ref = "ktorVersion"
 
+# Logback Project
+# Logback is intended as a successor to the popular log4j project, picking up where log4j 1.x leaves off.
 [libraries.logback-classic]
 module = "ch.qos.logback:logback-classic"
 [libraries.logback-classic.version]

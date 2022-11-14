@@ -26,12 +26,14 @@ class ArgRoot {
     val backup: SubcommandBackup = SubcommandBackup()
     val cleaner: SubcommandCleaner = SubcommandCleaner()
     val notification: SubcommandNotification = SubcommandNotification()
+    val password: SubcommandPassword = SubcommandPassword()
 
     private val parser = ArgParser("Shop CLI", strictSubcommandOptionsOrder = true).apply {
         subcommands(
             backup,
             cleaner,
             notification,
+            password,
         )
     }
 

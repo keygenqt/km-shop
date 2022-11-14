@@ -15,18 +15,22 @@
  */
 package com.keygenqt.shop.api.utils
 
+import ch.qos.logback.classic.Level.DEBUG
+import ch.qos.logback.classic.Level.OFF
+import ch.qos.logback.classic.Logger
 import io.ktor.server.application.*
 import io.ktor.server.plugins.callloging.*
-import io.ktor.util.logging.*
+import org.slf4j.Logger.ROOT_LOGGER_NAME
 import org.slf4j.LoggerFactory
 import org.slf4j.event.Level
+import io.ktor.util.logging.Logger as KtorLogger
 
 object AppLogger {
 
     var isDebug: Boolean = false
         private set
 
-    lateinit var log: Logger
+    lateinit var log: KtorLogger
         private set
 
     fun Application.initAppLogger() {
@@ -36,8 +40,8 @@ object AppLogger {
         }
 
         // logger db
-        (LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME) as ch.qos.logback.classic.Logger).apply {
-            level = if (isDebug) ch.qos.logback.classic.Level.DEBUG else ch.qos.logback.classic.Level.OFF
+        (LoggerFactory.getLogger(ROOT_LOGGER_NAME) as Logger).apply {
+            level = if (isDebug) DEBUG else OFF
         }
 
         // configuration

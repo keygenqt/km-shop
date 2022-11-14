@@ -15,19 +15,20 @@
  */
 package com.keygenqt.shop.cli
 
+import ch.qos.logback.classic.Level.DEBUG
+import ch.qos.logback.classic.Level.OFF
+import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.cli.args.ArgRoot
-import com.keygenqt.shop.cli.features.BackupFeature
-import com.keygenqt.shop.cli.features.CleanerFeature
-import com.keygenqt.shop.cli.features.DemoFeature
-import com.keygenqt.shop.cli.features.NotificationFeature
+import com.keygenqt.shop.cli.features.*
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.service.RocketsService
+import com.keygenqt.shop.db.service.AdminsService
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>) {
 
@@ -36,6 +37,11 @@ fun main(args: Array<String>) {
 
     // load configuration app
     val config = LoaderConfig.loadProperties(conf.getString("config.app"))
+
+    // logger db
+    val logger = (LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger).apply {
+        level = if (conf.getBoolean("config.development")) DEBUG else OFF
+    }
 
     // parse arg
     ArgRoot.parse(args)?.let { arguments ->
@@ -51,16 +57,24 @@ fun main(args: Array<String>) {
                 module {
                     single { config }
                     single { arguments }
+                    // client services
                     single { ServiceRequest() }
-                    single { RocketsService(db) }
+                    // db services
+                    single { AdminsService(db) }
                 }
             )
         }
 
         // run features
-        DemoFeature.init()
-        BackupFeature.init()
-        CleanerFeature.init()
-        NotificationFeature.init()
+        try {
+            DemoFeature.init()
+            BackupFeature.init()
+            CleanerFeature.init()
+            PasswordFeature.init()
+            NotificationFeature.init()
+        } catch (ex: Exception) {
+            println("\n${ex.message}")
+            logger.error("Error", ex)
+        }
     }
 }

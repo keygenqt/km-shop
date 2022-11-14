@@ -39,6 +39,14 @@ class AdminsService(
     ) = AdminEntity.findById(id)
 
     /**
+     * Find entity by email
+     */
+    fun findByEmail(
+        email: String
+    ) = AdminEntity
+        .find { (Admins.email eq (email)) }.firstOrNull()
+
+    /**
      * Get user with check password for auth
      */
     fun findUserByAuth(

@@ -15,6 +15,8 @@ slf4jVersion = "2.0.3"
 configVersion = "1.4.2"
 # https://github.com/JetBrains/Exposed/releases
 exposedVersion="0.39.2"
+# https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+logbackVersion = "1.4.4"
 
 ##########################
 ## LIBRARIES
@@ -25,6 +27,11 @@ exposedVersion="0.39.2"
 [libraries.exposed-core]
 module = "org.jetbrains.exposed:exposed-core"
 [libraries.exposed-core.version]
+ref = "exposedVersion"
+
+[libraries.exposed-dao]
+module = "org.jetbrains.exposed:exposed-dao"
+[libraries.exposed-dao.version]
 ref = "exposedVersion"
 
 # HOCON Config
@@ -55,17 +62,12 @@ module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
 [libraries.kotlinx-coroutines-core.version]
 ref = "coroutinesVersion"
 
-# slf4j
-# The Simple Logging Facade for Java
-[libraries.slf4j-api]
-module = "org.slf4j:slf4j-api"
-[libraries.slf4j-api.version]
-ref = "slf4jVersion"
-
-[libraries.slf4j-simple]
-module = "org.slf4j:slf4j-simple"
-[libraries.slf4j-simple.version]
-ref = "slf4jVersion"
+# Logback Project
+# Logback is intended as a successor to the popular log4j project, picking up where log4j 1.x leaves off.
+[libraries.logback-classic]
+module = "ch.qos.logback:logback-classic"
+[libraries.logback-classic.version]
+ref = "logbackVersion"
 
 ##########################
 ## BUNDLES
@@ -74,10 +76,10 @@ ref = "slf4jVersion"
 [bundles]
 cli = [
     "exposed-core",
+    "exposed-dao",
     "config",
     "koin-core",
     "kotlinx-cli",
-    "slf4j-api",
-    "slf4j-simple",
     "kotlinx-coroutines-core",
+    "logback-classic",
 ]
