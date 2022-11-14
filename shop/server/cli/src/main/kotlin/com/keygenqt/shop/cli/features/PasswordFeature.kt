@@ -51,7 +51,7 @@ class PasswordFeature : KoinComponent {
             admin.password = Password.encode(password)
         }
 
-        println("\nPassword updated successfully: $password")
+        println("\nPassword updated successfully: $password\n")
     }
 
     companion object {

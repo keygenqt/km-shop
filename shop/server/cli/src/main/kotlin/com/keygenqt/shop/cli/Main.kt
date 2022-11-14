@@ -73,7 +73,7 @@ fun main(args: Array<String>) {
             PasswordFeature.init()
             NotificationFeature.init()
         } catch (ex: Exception) {
-            println("\n${ex.message}")
+            println("\n${ex.message}\n")
             logger.error("Error", ex)
         }
     }
