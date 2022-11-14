@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.db.service
 
+import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.AdminEntity
 import com.keygenqt.shop.db.entities.Admins
@@ -27,12 +28,12 @@ class AdminsService(
 ) : IService<AdminsService> {
 
     /**
-     * Get all models
+     * Get all entities
      */
     fun getAll(): SizedIterable<AdminEntity> = AdminEntity.all()
 
     /**
-     * Find data by id
+     * Find entity by id
      */
     fun findById(
         id: Int
@@ -47,7 +48,7 @@ class AdminsService(
         .find { (Admins.email eq (email)) }.firstOrNull()
 
     /**
-     * Get user with check password for auth
+     * Get entity with check password for auth
      */
     fun findUserByAuth(
         email: String?,
@@ -62,4 +63,29 @@ class AdminsService(
                 null
             }
         }
+
+    /**
+     * Create entity
+     */
+    fun insert(
+        email: String,
+        role: AdminRole,
+        password: String,
+    ) = AdminEntity.new {
+        this.role = role
+        this.email = email
+        this.password = Password.encode(password)
+    }
+
+    /**
+     * Update entity
+     */
+    fun AdminEntity.update(
+        role: AdminRole,
+        password: String?,
+    ) = let { entity ->
+        entity.role = role
+        password?.let { entity.password = Password.encode(it) }
+        entity
+    }
 }

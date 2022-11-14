@@ -16,8 +16,11 @@
 package com.keygenqt.shop.api.extension
 
 import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.security.SessionUser
+import com.keygenqt.shop.data.responses.AdminRole
 import io.ktor.server.application.*
 import io.ktor.server.request.*
+import io.ktor.server.sessions.*
 import jakarta.validation.Validation
 
 /**
@@ -50,3 +53,25 @@ fun ApplicationCall.getNumberParam(key: String = "id"): Int = parameters[key]
  */
 fun ApplicationCall.getStringParam(key: String = "name"): String = parameters[key]
     ?: throw throw Errors.NotFound()
+
+
+/**
+ * Check role auth is ADMIN
+ */
+fun ApplicationCall.checkRoleAdmin(): ApplicationCall {
+    val session = sessions.get<SessionUser>()
+    if (session == null || session.role != AdminRole.ADMIN.name) {
+        throw Errors.Forbidden()
+    }
+    return this
+}
+
+/**
+ * Check is not auth user
+ */
+fun ApplicationCall.isNotAuth() = sessions.get<SessionUser>() == null
+
+/**
+ * Get unique connect
+ */
+fun ApplicationCall.connectKey() = request.host().md5()

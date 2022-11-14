@@ -33,6 +33,10 @@ sealed class Errors(
         override val status: HttpStatusCode = HttpStatusCode.Unauthorized
     ) : Errors(status)
 
+    data class Forbidden(
+        override val status: HttpStatusCode = HttpStatusCode.Forbidden
+    ) : Errors(status)
+
     data class NotFound(
         override val status: HttpStatusCode = HttpStatusCode.NotFound
     ) : Errors(status)

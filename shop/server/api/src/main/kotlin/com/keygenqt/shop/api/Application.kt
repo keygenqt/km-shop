@@ -37,6 +37,7 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
+import com.keygenqt.shop.api.routing.security.admins as adminsSec
 import com.keygenqt.shop.api.routing.security.categories as categoriesSec
 import com.keygenqt.shop.api.routing.security.messages as messagesSec
 import com.keygenqt.shop.api.routing.security.orders as ordersSec
@@ -150,6 +151,7 @@ fun Application.module() {
                         ordersSec()
                         messagesSec()
                         uploadsSec()
+                        adminsSec()
                     }
                 }
             }
