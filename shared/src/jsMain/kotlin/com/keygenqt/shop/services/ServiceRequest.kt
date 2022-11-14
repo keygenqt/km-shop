@@ -17,6 +17,7 @@ package com.keygenqt.shop.services
 
 import com.keygenqt.shop.services.impl.GetRequestPromise
 import com.keygenqt.shop.services.impl.PostRequestPromise
+import com.keygenqt.shop.services.impl.PutRequestPromise
 import io.ktor.client.*
 import io.ktor.client.engine.js.*
 
@@ -36,5 +37,6 @@ class ServiceRequestJS(apiUrl: String) {
     private val request = ServiceRequest(apiUrl)
 
     val get by lazy { GetRequestPromise(request) }
+    val put by lazy { PutRequestPromise(request) }
     val post by lazy { PostRequestPromise(request) }
 }

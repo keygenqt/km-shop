@@ -34,4 +34,19 @@ class PostRequestPromise(private val client: ServiceRequest) {
             password = password,
         )
     }
+
+    /**
+     * Override [PostRequest.adminCreate] for JS
+     */
+    fun adminCreate(
+        email: String,
+        role: String,
+        password: String,
+    ) = wrapPromise {
+        client.post.adminCreate(
+            email = email,
+            role = role,
+            password = password,
+        )
+    }
 }

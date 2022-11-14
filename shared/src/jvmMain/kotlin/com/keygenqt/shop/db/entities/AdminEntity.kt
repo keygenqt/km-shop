@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.db.entities
 
-import com.keygenqt.shop.data.responses.AdminModel
+import com.keygenqt.shop.data.responses.AdminResponse
 import com.keygenqt.shop.data.responses.AdminRole
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -45,7 +45,7 @@ class AdminEntity(id: EntityID<Int>) : IntEntity(id) {
 /**
  * Convert
  */
-fun AdminEntity.toModel() = AdminModel(
+fun AdminEntity.toModel() = AdminResponse(
     id = id.value,
     email = email,
     role = role,
@@ -54,6 +54,6 @@ fun AdminEntity.toModel() = AdminModel(
 /**
  * Convert list
  */
-fun Iterable<AdminEntity>.toModels(): List<AdminModel> {
+fun Iterable<AdminEntity>.toModels(): List<AdminResponse> {
     return map { it.toModel() }
 }

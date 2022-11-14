@@ -20,25 +20,17 @@ import com.keygenqt.shop.services.ServiceRequest
 
 @JsExport
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
-class GetRequestPromise(private val client: ServiceRequest) {
-
+class PutRequestPromise(private val client: ServiceRequest) {
     /**
-     * Override [GetRequest.rocketsDemoJetBrains] for JS
+     * Override [PutRequest.adminUpdate] for JS
      */
-    fun rocketsDemoJetBrains() = wrapPromise { client.get.rocketsDemoJetBrains() }
-
-    /**
-     * Override [GetRequest.rocketsDemoAPI] for JS
-     */
-    fun rocketsDemoAPI() = wrapPromise { client.get.rocketsDemoAPI() }
-
-    /**
-     * Override [GetRequest.admins] for JS
-     */
-    fun admins() = wrapPromise { client.get.admins() }
-
-    /**
-     * Override [GetRequest.admin] for JS
-     */
-    fun admin(id: Int) = wrapPromise { client.get.admin(id) }
+    fun adminUpdate(
+        role: String,
+        password: String? = null,
+    ) = wrapPromise {
+        client.put.adminUpdate(
+            role = role,
+            password = password,
+        )
+    }
 }

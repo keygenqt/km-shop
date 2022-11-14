@@ -1,6 +1,6 @@
 import {List, styled} from "@mui/material";
 
-export const StyledMenuList = styled(List)(({theme}) => ({
+export const AppMenuStyled = styled(List)(({theme}) => ({
     width: '100%',
     '& .MuiListItemButton-root': {
         borderRadius: 10,

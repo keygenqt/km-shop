@@ -19,6 +19,7 @@ import com.keygenqt.shop.exception.ErrorResponse
 import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.services.impl.GetRequest
 import com.keygenqt.shop.services.impl.PostRequest
+import com.keygenqt.shop.services.impl.PutRequest
 import com.keygenqt.shop.utils.constants.AppConstants
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -42,6 +43,7 @@ class ServiceRequest(
 ) {
 
     val get by lazy { GetRequest(httpClient) }
+    val put by lazy { PutRequest(httpClient) }
     val post by lazy { PostRequest(httpClient) }
 
     private val json = Json {

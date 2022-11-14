@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.data.responses
+package com.keygenqt.shop.data.requests
 
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * Role uer in app
- */
-@JsExport
-enum class AdminRole {
-    MANAGER, ADMIN
-}
-
-/**
- * Test model query
+ * Request create admin
  */
 @JsExport
 @Serializable
-data class AdminResponse(
-    val id: Int,
+data class AdminCreateRequest(
     val email: String,
-    val role: AdminRole,
+    val role: String,
+    val password: String,
+)
+
+/**
+ * Request update admin
+ */
+@JsExport
+@Serializable
+data class AdminUpdateRequest(
+    val role: String,
+    val password: String?,
 )

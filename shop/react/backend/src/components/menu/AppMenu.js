@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useContext} from 'react';
 import PropTypes from "prop-types";
 import {NavigateContext} from "../../base";
-import {StyledMenuList} from "./styled/StyledMenuList";
+import {AppMenuStyled} from "./styled/AppMenuStyled";
 import {MenuItemGroup} from "./elements/MenuItemGroup";
 import {MenuItem} from "./elements/MenuItem";
 import {MenuDriver} from "./elements/MenuDriver";
@@ -65,9 +65,9 @@ export function AppMenu(props) {
     })
 
     return (
-        <StyledMenuList>
+        <AppMenuStyled>
             {listElements}
-        </StyledMenuList>
+        </AppMenuStyled>
     );
 }
 
