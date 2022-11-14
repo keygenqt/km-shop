@@ -2,19 +2,6 @@ import * as React from 'react';
 import PropTypes from "prop-types";
 import {AppDataGridStyled} from "./styled/AppDataGridStyled";
 
-// const gridColumnsClasses = {
-//     headerClassName: (params) => {
-//         return clsx('MuiDataGrid-custom', {
-//             'MuiDataGrid-fullWith': params.colDef.width === undefined,
-//         })
-//     },
-//     cellClassName: (params) => {
-//         return clsx('MuiDataGrid-custom', {
-//             'MuiDataGrid-fullWith': params.colDef.width === undefined,
-//         })
-//     },
-// }
-
 /**
  * Application Data Grid
  */
