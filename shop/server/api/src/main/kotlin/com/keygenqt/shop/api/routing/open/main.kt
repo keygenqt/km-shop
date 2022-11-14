@@ -37,6 +37,7 @@ fun Route.main() {
                     +name
                 }
                 link(rel = "stylesheet", href = "/static/css/common.css", type = "text/css")
+                meta(name = "viewport", content = "width=device-width, initial-scale=1")
             }
             body {
                 div("Root Table") {
