@@ -21,32 +21,36 @@ import jakarta.validation.ConstraintViolation
 /**
  * Errors app
  */
-sealed class Errors(
+sealed class Exceptions(
     open val status: HttpStatusCode,
 ) : RuntimeException() {
 
+    data class MethodNotAllowed(
+        override val status: HttpStatusCode = HttpStatusCode.MethodNotAllowed
+    ) : Exceptions(status)
+
     data class BadRequest(
         override val status: HttpStatusCode = HttpStatusCode.BadRequest
-    ) : Errors(status)
+    ) : Exceptions(status)
 
     data class Unauthorized(
         override val status: HttpStatusCode = HttpStatusCode.Unauthorized
-    ) : Errors(status)
+    ) : Exceptions(status)
 
     data class Forbidden(
         override val status: HttpStatusCode = HttpStatusCode.Forbidden
-    ) : Errors(status)
+    ) : Exceptions(status)
 
     data class NotFound(
         override val status: HttpStatusCode = HttpStatusCode.NotFound
-    ) : Errors(status)
+    ) : Exceptions(status)
 
     data class UnprocessableEntity(
         val validate: Set<ConstraintViolation<*>>,
         override val status: HttpStatusCode = HttpStatusCode.UnprocessableEntity,
-    ) : Errors(status)
+    ) : Exceptions(status)
 
     data class JsonDecodingException(
         override val status: HttpStatusCode = HttpStatusCode.BadRequest
-    ) : Errors(status)
+    ) : Exceptions(status)
 }

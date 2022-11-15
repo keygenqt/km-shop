@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.routing.open
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
@@ -40,7 +40,7 @@ fun Route.products() {
     get("/products/{id}") {
         call.respond(
             productsService.transaction {
-                getByIdPublished(call.getNumberParam())?.toModel() ?: throw Errors.NotFound()
+                getByIdPublished(call.getNumberParam())?.toModel() ?: throw Exceptions.NotFound()
             }
         )
     }

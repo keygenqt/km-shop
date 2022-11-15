@@ -1,70 +1,98 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {Box, Chip, Stack} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import {AppCard} from "../../components";
-import {DeleteOutline, EditOutlined, PeopleOutlined, VisibilityOutlined} from "@mui/icons-material";
+import {AppCard, SnackbarError} from "../../components";
+import {DeleteOutline, EditOutlined, PeopleOutlined} from "@mui/icons-material";
 import {ConstantKMM} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
+import {ManagerDeleteDialog} from "./elements/ManagerDeleteDialog";
 
-let timeoutID
+let timeoutList
 
 export function ManagersPage() {
 
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+    const [refresh, setRefresh] = React.useState(true);
+    const [deleteRow, setDeleteRow] = React.useState(null);
     const [data, setData] = React.useState([]);
 
     useEffect(() => {
-        if (loading) {
-            clearTimeout(timeoutID)
-            timeoutID = setTimeout(() => {
-                ConstantKMM.request.get.admins().then(async (response) => {
-                    setData(response.toArray())
-                    setLoading(false)
-                    setError(null)
-                }).catch(async (response) => {
-                    setError(response.message)
-                    setLoading(false)
-                });
-            }, 1000)
-        }
-    }, [loading])
+        setError(null)
+        setLoading(true)
+        clearTimeout(timeoutList)
+        timeoutList = setTimeout(() => {
+            setLoading(false)
+            ConstantKMM.request.get.admins().then(async (response) => {
+                setData(response.toArray())
+                setLoading(false)
+                setError(null)
+            }).catch(async (response) => {
+                setError(response.message)
+                setLoading(false)
+            });
+        }, 1000)
+    }, [refresh])
 
     return (
-        <Stack>
-            <AppCard
-                icon={PeopleOutlined}
-                color={'gray.dark'}
-                variant={'combine'}
-                title={'Managers'}
-                subheader={'List of site administrators with their access settings'}
-                disabled={loading}
-                onRefresh={() => {
-                    setLoading(true)
+        <>
+            <SnackbarError
+                error={error}
+                onClose={() => {
+                    setError(null)
                 }}
-            >
-                <Box sx={{
-                    paddingTop: 1,
-                    paddingBottom: 3
-                }}>
-                    {error ? (
-                        <Typography variant="h3">
-                            {error ? `Error: ${error}` : 'Loading...'}
-                        </Typography>
-                    ) : (
+            />
+
+            <ManagerDeleteDialog
+                open={Boolean(deleteRow)}
+                onPositive={() => {
+                    setError(null)
+                    setLoading(true)
+                    ConstantKMM.request.delete.admin(deleteRow.id).then(async () => {
+                        setData(data.filter(function (item) {
+                            return item.id !== deleteRow.id
+                        }))
+                        setLoading(false)
+                        setDeleteRow(null)
+                    }).catch(async (response) => {
+                        setLoading(false)
+                        setDeleteRow(null)
+                        setError(response.message)
+                    });
+                }}
+                onNegative={() => {
+                    setDeleteRow(null)
+                }}
+            />
+
+            <Stack>
+                <AppCard
+                    icon={PeopleOutlined}
+                    color={'gray.dark'}
+                    variant={'combine'}
+                    title={'Managers'}
+                    subheader={'List of site administrators with their access settings'}
+                    disabled={loading}
+                    onRefresh={() => {
+                        setRefresh(!refresh)
+                    }}
+                >
+                    <Box sx={{
+                        paddingTop: 1,
+                        paddingBottom: 3
+                    }}>
                         <AppDataGrid
                             loading={loading}
                             rows={data}
                             columns={[
                                 {
-                                    minWidth: 'auto',
+                                    minWidth: 0,
                                     field: 'email',
                                     headerName: 'Email'
                                 },
                                 {
-                                    minWidth: 120,
+                                    minWidth: 200,
                                     field: 'role',
                                     headerName: 'Role',
                                     disableColumnMenu: true,
@@ -75,22 +103,18 @@ export function ManagersPage() {
                                         label={params.row.role.name} variant="outlined"/>
                                 },
                                 {
-                                    minWidth: 145,
+                                    minWidth: 90,
                                     field: 'actions',
                                     type: 'actions',
                                     getActions: (params) => [
                                         (
-                                            <GridActionsCellItem color="error" onClick={(event) => {
-                                                console.log(params.row.id)
+                                            <GridActionsCellItem color="error" onClick={() => {
+                                                setError(null)
+                                                setDeleteRow(params.row)
                                             }} icon={<DeleteOutline/>} label="Delete"/>
                                         ),
                                         (
-                                            <GridActionsCellItem color="success" onClick={(event) => {
-                                                console.log(params.row.id)
-                                            }} icon={<VisibilityOutlined/>} label="Visible"/>
-                                        ),
-                                        (
-                                            <GridActionsCellItem color="secondary" onClick={(event) => {
+                                            <GridActionsCellItem color="secondary" onClick={() => {
                                                 console.log(params.row.id)
                                             }} icon={<EditOutlined/>} label="Edit"/>
                                         )
@@ -98,10 +122,10 @@ export function ManagersPage() {
                                 }
                             ]}
                         />
-                    )}
-                </Box>
-            </AppCard>
-        </Stack>
+                    </Box>
+                </AppCard>
+            </Stack>
+        </>
     );
 }
 

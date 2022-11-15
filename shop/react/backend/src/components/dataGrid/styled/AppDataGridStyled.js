@@ -17,10 +17,6 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
     '& .MuiDataGrid-row': {
         width: '100%'
     },
-    '& .MuiDataGrid-cell': {
-        width: '100%',
-        minWidth: 200
-    },
     '& .MuiDataGrid-columnHeaders': {
         width: '100%',
         backgroundColor: theme.palette.grey.A200
@@ -31,10 +27,6 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
     '& .MuiDataGrid-columnHeadersInner > div': {
         width: '100%'
     },
-    '& .MuiDataGrid-columnHeader': {
-        width: '100%',
-        minWidth: 200
-    },
     '& .MuiDataGrid-virtualScroller': {
         overflow: 'auto !important'
     },
@@ -43,5 +35,10 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
     },
     '& .MuiDataGrid-row:hover': {
         backgroundColor: 'inherit'
+    },
+    '& .MuiDataGrid-fullWith': {
+        width: '100% !important',
+        minWidth: '200px !important',
+        maxWidth: 'inherit !important'
     },
 }));

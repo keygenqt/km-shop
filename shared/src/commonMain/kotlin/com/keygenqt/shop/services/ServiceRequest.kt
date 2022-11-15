@@ -17,6 +17,7 @@ package com.keygenqt.shop.services
 
 import com.keygenqt.shop.exception.ErrorResponse
 import com.keygenqt.shop.exception.ResponseException
+import com.keygenqt.shop.services.impl.DeleteRequest
 import com.keygenqt.shop.services.impl.GetRequest
 import com.keygenqt.shop.services.impl.PostRequest
 import com.keygenqt.shop.services.impl.PutRequest
@@ -45,6 +46,7 @@ class ServiceRequest(
     val get by lazy { GetRequest(httpClient) }
     val put by lazy { PutRequest(httpClient) }
     val post by lazy { PostRequest(httpClient) }
+    val delete by lazy { DeleteRequest(httpClient) }
 
     private val json = Json {
         prettyPrint = true

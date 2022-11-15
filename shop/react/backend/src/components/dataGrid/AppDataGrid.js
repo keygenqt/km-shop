@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from "prop-types";
 import {AppDataGridStyled} from "./styled/AppDataGridStyled";
+import clsx from "clsx";
 
 /**
  * Application Data Grid
@@ -24,7 +25,20 @@ export function AppDataGrid(props) {
             rowsPerPageOptions={[12]}
             loading={loading}
             rows={rows}
-            columns={columns}
+            columns={columns.map((item) => ({
+                ...item, ...{
+                    headerClassName: (params) => {
+                        return clsx('MuiDataGrid-custom', {
+                            'MuiDataGrid-fullWith': params.colDef.minWidth === 0,
+                        })
+                    },
+                    cellClassName: (params) => {
+                        return clsx('MuiDataGrid-custom', {
+                            'MuiDataGrid-fullWith': params.colDef.minWidth === 0
+                        })
+                    },
+                }
+            }))}
         />
     );
 }

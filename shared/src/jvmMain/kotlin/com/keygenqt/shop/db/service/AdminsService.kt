@@ -28,6 +28,11 @@ class AdminsService(
 ) : IService<AdminsService> {
 
     /**
+     * Get count entities
+     */
+    fun countAdmins(): Int = AdminEntity.find { (Admins.role eq AdminRole.ADMIN) }.count().toInt()
+
+    /**
      * Get all entities
      */
     fun getAll(): SizedIterable<AdminEntity> = AdminEntity.all()

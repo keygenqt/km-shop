@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.routing.security
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.checkRoleAdmin
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.api.extension.receiveValidate
@@ -25,6 +25,7 @@ import com.keygenqt.shop.db.entities.AdminEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.AdminsService
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -70,50 +71,78 @@ fun Route.admins() {
 
     // get list entities
     get("/admins") {
-        call.checkRoleAdmin().respond(
-            adminsService.transaction {
-                getAll().toModels()
-            }
-        )
+        // check role
+        call.checkRoleAdmin()
+        // act
+        val response = adminsService.transaction {
+            getAll().toModels()
+        }
+        // response
+        call.respond(response)
     }
 
     // create entity
     post("/admins") {
+        // check role
+        call.checkRoleAdmin()
         // get request
         val request = call.receiveValidate<AdminPostRequest>()
+        // act
+        val response = adminsService.transaction {
+            insert(
+                role = request.role,
+                email = request.email,
+                password = request.password,
+            ).toModel()
+        }
         // response
-        call.checkRoleAdmin().respond(
-            adminsService.transaction {
-                insert(
-                    role = request.role,
-                    email = request.email,
-                    password = request.password,
-                ).toModel()
-            }
-        )
+        call.respond(response)
     }
 
     // get entity
     get("/admins/{id}") {
-        call.checkRoleAdmin().respond(
-            adminsService.transaction {
-                findById(call.getNumberParam())?.toModel() ?: throw Errors.NotFound()
-            }
-        )
+        // check role
+        call.checkRoleAdmin()
+        // act
+        val response = adminsService.transaction {
+            findById(call.getNumberParam())?.toModel() ?: throw Exceptions.NotFound()
+        }
+        // response
+        call.respond(response)
     }
 
     // update entity
     put("/admins/{id}") {
+        // check role
+        call.checkRoleAdmin()
         // get request
         val request = call.receiveValidate<AdminPutRequest>()
+        // act
+        val response = adminsService.transaction {
+            findById(call.getNumberParam())?.update(
+                role = request.role,
+                password = request.password,
+            )?.toModel() ?: throw Exceptions.NotFound()
+        }
         // response
-        call.checkRoleAdmin().respond(
-            adminsService.transaction {
-                findById(call.getNumberParam())?.update(
-                    role = request.role,
-                    password = request.password,
-                )?.toModel() ?: throw Errors.NotFound()
-            }
-        )
+        call.respond(response)
+    }
+
+    // delete entity
+    delete("/admins/{id}") {
+        // check role
+        call.checkRoleAdmin()
+        // act
+        adminsService.transaction {
+            findById(call.getNumberParam())?.let {
+                if (it.role == AdminRole.ADMIN && countAdmins() <= 1) {
+                    // if last admin
+                    throw Exceptions.MethodNotAllowed()
+                }
+                it.delete()
+            } ?: throw Exceptions.NotFound()
+        }
+        // response
+        call.respond(HttpStatusCode.OK)
     }
 }

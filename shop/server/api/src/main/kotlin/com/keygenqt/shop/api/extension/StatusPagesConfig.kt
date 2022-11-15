@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.extension
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.utils.AppLogger
 import com.keygenqt.shop.exception.ErrorResponse
 import io.ktor.http.*
@@ -37,14 +37,14 @@ fun StatusPagesConfig.configure() {
         )
     }
     exception<Throwable> { call, cause ->
-        if (cause is Errors.UnprocessableEntity) {
+        if (cause is Exceptions.UnprocessableEntity) {
             with(cause.status) {
                 call.respond(
                     status = this,
                     message = ErrorResponse(value, description, cause.validate.toListModels())
                 )
             }
-        } else if (cause is Errors) {
+        } else if (cause is Exceptions) {
             with(cause.status) {
                 call.respond(
                     status = this,
@@ -55,7 +55,7 @@ fun StatusPagesConfig.configure() {
             cause::class.simpleName == "JsonDecodingException" ||
             cause::class.simpleName == "MissingFieldException"
         ) {
-            with(Errors.JsonDecodingException().status) {
+            with(Exceptions.JsonDecodingException().status) {
                 call.respond(
                     status = this,
                     message = ErrorResponse(value, description)

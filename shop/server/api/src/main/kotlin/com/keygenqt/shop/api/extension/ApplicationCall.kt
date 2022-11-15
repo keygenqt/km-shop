@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.extension
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.data.responses.AdminRole
 import io.ktor.server.application.*
@@ -30,7 +30,7 @@ suspend inline fun <reified T : Any> ApplicationCall.receiveValidate(): T {
     val request = try {
         receive<T>()
     } catch (ex: Exception) {
-        throw Errors.BadRequest()
+        throw Exceptions.BadRequest()
     }
 
     val validate = Validation.buildDefaultValidatorFactory().validator.validate(request)
@@ -38,7 +38,7 @@ suspend inline fun <reified T : Any> ApplicationCall.receiveValidate(): T {
     if (validate.isEmpty()) {
         return request
     } else {
-        throw Errors.UnprocessableEntity(validate)
+        throw Exceptions.UnprocessableEntity(validate)
     }
 }
 
@@ -46,24 +46,23 @@ suspend inline fun <reified T : Any> ApplicationCall.receiveValidate(): T {
  * Get value from params with validate
  */
 fun ApplicationCall.getNumberParam(key: String = "id"): Int = parameters[key]
-    ?.toIntOrNull() ?: throw Errors.NotFound()
+    ?.toIntOrNull() ?: throw Exceptions.NotFound()
 
 /**
  * Get value from params with validate
  */
 fun ApplicationCall.getStringParam(key: String = "name"): String = parameters[key]
-    ?: throw throw Errors.NotFound()
+    ?: throw throw Exceptions.NotFound()
 
 
 /**
  * Check role auth is ADMIN
  */
-fun ApplicationCall.checkRoleAdmin(): ApplicationCall {
+fun ApplicationCall.checkRoleAdmin() {
     val session = sessions.get<SessionUser>()
     if (session == null || session.role != AdminRole.ADMIN.name) {
-        throw Errors.Forbidden()
+        throw Exceptions.Forbidden()
     }
-    return this
 }
 
 /**

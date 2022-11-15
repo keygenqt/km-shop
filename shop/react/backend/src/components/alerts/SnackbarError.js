@@ -1,39 +1,42 @@
 import * as React from "react";
-import {useEffect} from "react";
 import {Alert, Snackbar} from "@mui/material";
 import PropTypes from "prop-types";
+import {useEffect} from "react";
+
+let timeoutID
 
 export function SnackbarError(props) {
 
     const {
         error = null,
+        onClose,
     } = props
 
-    const [openSnackbarError, setOpenSnackbarError] = React.useState(false);
-
     useEffect(() => {
-        setOpenSnackbarError(error != null)
-    }, [error])
+        if (error != null) {
+            clearTimeout(timeoutID)
+            timeoutID = setTimeout(() => {
+                onClose()
+            }, 1500)
+        }
+    }, [error, onClose])
 
-    return (
+    return error !== null ? (
         <Snackbar
-            open={openSnackbarError}
-            autoHideDuration={2000}
+            open={true}
             anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
-            onClose={() => {
-                setOpenSnackbarError(false)
-            }}
         >
             <Alert severity="error" sx={{width: '100%'}}>
-                {error ? error.message : ""}
+                {error ? error : "..."}
             </Alert>
         </Snackbar>
-    );
+    ) : null;
 }
 
 SnackbarError.propTypes = {
     error: PropTypes.oneOfType([
-        PropTypes.object.isRequired,
+        PropTypes.string.isRequired,
         PropTypes.oneOf([null]).isRequired,
-    ])
+    ]),
+    onClose: PropTypes.func.isRequired
 };

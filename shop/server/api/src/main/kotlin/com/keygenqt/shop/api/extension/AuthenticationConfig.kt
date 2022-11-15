@@ -15,10 +15,11 @@
  */
 package com.keygenqt.shop.api.extension
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.utils.AppConstants
+import com.keygenqt.shop.api.utils.AppLogger
 import io.ktor.server.auth.*
 import org.koin.java.KoinJavaComponent.inject
 
@@ -36,7 +37,7 @@ fun AuthenticationConfig.authentication() {
             null
         }
         challenge {
-            throw Errors.Unauthorized()
+            throw Exceptions.Unauthorized()
         }
     }
 }

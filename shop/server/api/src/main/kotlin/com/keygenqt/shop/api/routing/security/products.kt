@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.routing.security
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModelWithUploads
@@ -50,7 +50,7 @@ fun Route.products() {
     get("/products/{id}") {
         call.respond(
             productsService.transaction {
-                getById(call.getNumberParam())?.toModel() ?: throw Errors.NotFound()
+                getById(call.getNumberParam())?.toModel() ?: throw Exceptions.NotFound()
             }
         )
     }
@@ -58,7 +58,7 @@ fun Route.products() {
     get("/products/uploads/{id}") {
         call.respond(
             productsService.transaction {
-                getById(call.getNumberParam())?.toModelWithUploads() ?: throw Errors.NotFound()
+                getById(call.getNumberParam())?.toModelWithUploads() ?: throw Exceptions.NotFound()
             }
         )
     }

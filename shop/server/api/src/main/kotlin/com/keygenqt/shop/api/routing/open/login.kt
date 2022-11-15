@@ -15,7 +15,7 @@
  */
 package com.keygenqt.shop.api.routing.open
 
-import com.keygenqt.shop.api.base.Errors
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
@@ -55,7 +55,7 @@ fun Route.login() {
             adminsService.findUserByAuth(
                 email = request.email,
                 password = request.password
-            )?.toModel() ?: throw Errors.Unauthorized()
+            )?.toModel() ?: throw Exceptions.Unauthorized()
         }
 
         call.sessions.set(

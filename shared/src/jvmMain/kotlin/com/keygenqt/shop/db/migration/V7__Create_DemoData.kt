@@ -15,21 +15,37 @@
  */
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.db.entities.Categories
-import com.keygenqt.shop.db.entities.CategoryEntity
-import com.keygenqt.shop.db.entities.ProductEntity
-import com.keygenqt.shop.db.entities.UploadEntity
+import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.db.entities.*
+import com.keygenqt.shop.db.utils.Password
 import com.keygenqt.shop.utils.helpers.ConstantsMime.toMime
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SizedCollection
+import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
 @Suppress("unused", "ClassName")
 class V7__Create_DemoData : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
+
+            (0..5).forEach { index ->
+                Admins.insert {
+                    it[email] = "admin$index@keygenqt.com"
+                    it[password] = Password.encode("12345678")
+                    it[role] = AdminRole.ADMIN
+                }
+            }
+
+            (0..5).forEach { index ->
+                Admins.insert {
+                    it[email] = "manager$index@keygenqt.com"
+                    it[password] = Password.encode("12345678")
+                    it[role] = AdminRole.MANAGER
+                }
+            }
 
             val listUploads = listOf(
                 UploadEntity.new {

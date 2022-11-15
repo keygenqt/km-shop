@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.services
 
+import com.keygenqt.shop.services.impl.DeleteRequestPromise
 import com.keygenqt.shop.services.impl.GetRequestPromise
 import com.keygenqt.shop.services.impl.PostRequestPromise
 import com.keygenqt.shop.services.impl.PutRequestPromise
@@ -39,4 +40,5 @@ class ServiceRequestJS(apiUrl: String) {
     val get by lazy { GetRequestPromise(request) }
     val put by lazy { PutRequestPromise(request) }
     val post by lazy { PostRequestPromise(request) }
+    val delete by lazy { DeleteRequestPromise(request) }
 }
