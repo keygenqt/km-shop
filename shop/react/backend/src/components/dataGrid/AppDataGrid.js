@@ -9,20 +9,24 @@ import clsx from "clsx";
 export function AppDataGrid(props) {
 
     const {
+        page,
         rows,
         loading,
         columns,
+        onChangePage,
     } = props
 
     return (
         <AppDataGridStyled
+            page={page}
+            onPageChange={onChangePage}
             autoHeight
             density={'standard'}
             disableSelectionOnClick
             disableColumnSelector
             disableColumnFilter
-            pageSize={12}
-            rowsPerPageOptions={[12]}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
             loading={loading}
             rows={rows}
             columns={columns.map((item) => ({
@@ -49,6 +53,8 @@ export function AppDataGrid(props) {
 
 AppDataGrid.propTypes = {
     loading: PropTypes.bool,
+    page: PropTypes.number.isRequired,
+    onChangePage: PropTypes.func.isRequired,
     rows: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
 };

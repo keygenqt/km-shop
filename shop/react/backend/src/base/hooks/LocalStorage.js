@@ -10,6 +10,8 @@ export function useLocalStorage(key, valueType = ValueType.string, defaultValue 
     const getValueType = useCallback(
         () => {
             switch (valueType) {
+                case ValueType.array:
+                    return AppCache.arrayGet(key, defaultValue)
                 case ValueType.object:
                     return AppCache.objectGet(key, defaultValue)
                 case ValueType.bool:

@@ -39,7 +39,7 @@ class V7__Create_DemoData : BaseJavaMigration() {
                 }
             }
 
-            (0..5).forEach { index ->
+            (0..10).forEach { index ->
                 Admins.insert {
                     it[email] = "manager$index@keygenqt.com"
                     it[password] = Password.encode("12345678")

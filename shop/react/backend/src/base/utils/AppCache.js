@@ -6,12 +6,25 @@ import {MD5} from "crypto-js";
 export const AppCache = {
 
     ////////////////////////////
-    // String
+    // Array
 
-    objectGet: function (key) {
+    arrayGet: function (key, defaultValue = []) {
         const string = localStorage.getItem(key)
         if (string) return JSON.parse(string)
-        return null
+        return defaultValue
+    },
+
+    arraySet: function (key, value) {
+        AppCache._setItem(key, JSON.stringify(value))
+    },
+
+    ////////////////////////////
+    // Object
+
+    objectGet: function (key, defaultValue = null) {
+        const string = localStorage.getItem(key)
+        if (string) return JSON.parse(string)
+        return defaultValue
     },
 
     objectSet: function (key, value) {

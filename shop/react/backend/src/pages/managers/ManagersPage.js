@@ -3,25 +3,46 @@ import {useContext, useEffect} from 'react';
 import {Box, Button, Chip, Stack, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined} from "@mui/icons-material";
-import {ConstantKMM, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {AppCache, ConstantKMM, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {ManagerDeleteDialog} from "./elements/ManagerDeleteDialog";
-import {ValueType} from "../../base/route/ValueType";
 
 let timeoutList
 
 export function ManagersPage() {
 
-    const userAuth = useLocalStorage(ConstantStorage.userAuth, ValueType.object);
+    // navigate app
     const {route, routes} = useContext(NavigateContext)
 
+    // get user auth
+    const [user] = React.useState(AppCache.objectGet(ConstantStorage.userAuth));
+
+    // get cache page
+    const [cache] = React.useState(AppCache.objectGet(ConstantStorage.ManagersPage, {
+        page: 1,
+        data: []
+    }));
+
+    // data
+    const [page, setPage] = React.useState(cache.page);
+    const [data, setData] = React.useState(cache.data);
+
+    // page logic variable
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [refresh, setRefresh] = React.useState(true);
     const [deleteRow, setDeleteRow] = React.useState(null);
-    const [data, setData] = React.useState([]);
 
+    // update cache
+    useEffect(() => {
+        AppCache.objectSet(ConstantStorage.ManagersPage, {
+            page: page,
+            data: data
+        })
+    }, [data, page])
+
+    // request data
     useEffect(() => {
         setError(null)
         setLoading(true)
@@ -29,7 +50,11 @@ export function ManagersPage() {
         timeoutList = setTimeout(() => {
             setLoading(false)
             ConstantKMM.request.get.admins().then(async (response) => {
-                setData(response.toArray())
+                setData(response.toArray().map((item) => ({
+                    id: item.id,
+                    role: item.role.name,
+                    email: item.email,
+                })))
                 setLoading(false)
                 setError(null)
             }).catch(async (response) => {
@@ -103,6 +128,8 @@ export function ManagersPage() {
                         paddingBottom: 3
                     }}>
                         <AppDataGrid
+                            page={page}
+                            onChangePage={(page) => setPage(page)}
                             loading={loading}
                             rows={data}
                             columns={[
@@ -119,10 +146,10 @@ export function ManagersPage() {
                                     sortable: false,
                                     renderCell: (params) => <Chip
                                         sx={{minWidth: 100}}
-                                        color={params.row.role.name === 'ADMIN' ? 'warning' : 'secondary'}
-                                        label={params.row.role.name} variant="outlined"/>
+                                        color={params.row.role === 'ADMIN' ? 'warning' : 'secondary'}
+                                        label={params.row.role} variant="outlined"/>
                                 },
-                                (userAuth.role === 'ADMIN' ? (
+                                (user.role === 'ADMIN' ? (
                                     {
                                         minWidth: 130,
                                         field: 'actions',
