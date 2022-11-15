@@ -9,8 +9,7 @@ import {
     ManagerUpdatePage,
     OrdersPage,
     ProductsPage,
-    SystemPage,
-    UploadsPage
+    SystemPage
 } from "../../pages";
 import {AppLayout} from "../../components";
 import {ValueType as RouteType} from "../../base/route/ValueType";
@@ -181,21 +180,6 @@ export const UserConf = {
                     element={
                         <AppLayout>
                             <SystemPage/>
-                        </AppLayout>
-                    }
-                />
-            }
-        },
-        uploads: {
-            path: '/uploads',
-            render: function (key, path) {
-                return <Route
-                    key={key}
-                    exact
-                    path={path}
-                    element={
-                        <AppLayout>
-                            <UploadsPage/>
                         </AppLayout>
                     }
                 />

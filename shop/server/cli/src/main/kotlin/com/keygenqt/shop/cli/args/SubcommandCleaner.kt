@@ -21,12 +21,12 @@ import kotlinx.cli.Subcommand
 
 enum class CleanerTypes {
     TOKENS,
-    IMAGES,
+    FILES,
 }
 
 @OptIn(ExperimentalCli::class)
 class SubcommandCleaner :
-    Subcommand("cleaner", "Cleaner old db data (default tokens) { tokens, images }") {
+    Subcommand("cleaner", "Cleaner old db data (default tokens) { tokens, files }") {
 
     private var _isInit: Boolean = false
 

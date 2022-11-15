@@ -23,6 +23,7 @@ import com.keygenqt.shop.cli.args.ArgRoot
 import com.keygenqt.shop.cli.features.*
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.service.AdminsService
+import com.keygenqt.shop.db.service.UploadsService
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
@@ -61,6 +62,7 @@ fun main(args: Array<String>) {
                     single { ServiceRequest() }
                     // db services
                     single { AdminsService(db) }
+                    single { UploadsService(db) }
                 }
             )
         }

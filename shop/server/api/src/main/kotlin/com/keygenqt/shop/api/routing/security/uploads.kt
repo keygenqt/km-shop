@@ -18,7 +18,6 @@ package com.keygenqt.shop.api.routing.security
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.getStringParam
 import com.keygenqt.shop.db.entities.UploadEntity
-import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.UploadsService
 import com.keygenqt.shop.utils.helpers.ConstantsMime.toExtension
 import io.ktor.http.*
@@ -36,12 +35,6 @@ fun Route.uploads() {
     val uploadsService: UploadsService by inject()
 
     route("/uploads") {
-        // get list entities
-        get {
-            call.respond(
-                uploadsService.getAll()
-            )
-        }
         // upload file
         post {
 

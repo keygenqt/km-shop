@@ -17,30 +17,44 @@ package com.keygenqt.shop.cli.features
 
 import com.keygenqt.shop.cli.args.ArgRoot
 import com.keygenqt.shop.cli.args.CleanerTypes
-import com.keygenqt.shop.db.entities.toModels
-import com.keygenqt.shop.db.service.RocketsService
+import com.keygenqt.shop.db.service.UploadsService
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.io.File
 
 class CleanerFeature : KoinComponent {
 
     private val arg: ArgRoot by inject()
 
-    private val rocketsService: RocketsService by inject()
+    private val uploadsService: UploadsService by inject()
 
     fun runClearTokens() {
         println("Clear tokens")
     }
 
-    fun runClearImages() {
+    fun runClearFiles() {
         runBlocking {
-            val rockets = rocketsService.transaction {
-                getAll().toModels()
+            val uploads = uploadsService.transaction {
+                getAllWithoutRelations()
             }
-            println("Rockets db count: ${rockets.size}")
+            uploads.forEach { upload ->
+                // delete files
+                val file = File("uploads/${upload.fileName}")
+                if (file.exists()) {
+                    file.delete()
+                }
+                // delete row
+                uploadsService.transaction {
+                    upload.delete()
+                }
+            }
+            if (uploads.isEmpty()) {
+                println("\nNot found files for remove\n")
+            } else {
+                println("\nRemove files (${uploads.size}) successfully\n")
+            }
         }
-        println("Clear IMAGES")
     }
 
     companion object {
@@ -49,7 +63,7 @@ class CleanerFeature : KoinComponent {
                 if (arg.cleaner.isInit) {
                     when (arg.cleaner.type) {
                         CleanerTypes.TOKENS, null -> runClearTokens()
-                        CleanerTypes.IMAGES -> runClearImages()
+                        CleanerTypes.FILES -> runClearFiles()
                     }
                 }
             }

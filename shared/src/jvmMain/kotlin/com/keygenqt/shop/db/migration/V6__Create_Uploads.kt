@@ -20,12 +20,20 @@ import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.io.File
 
 @Suppress("unused", "ClassName")
 class V6__Create_Uploads : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
             SchemaUtils.create(Uploads)
+
+            // create folder for uploads
+            val file = File("uploads")
+            if (file.exists()) {
+                file.deleteRecursively()
+            }
+            file.mkdir()
         }
     }
 }

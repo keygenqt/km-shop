@@ -1,7 +1,6 @@
 // assets
 import {
     CategoryOutlined,
-    CloudOutlined,
     ConnectWithoutContactOutlined,
     DashboardOutlined,
     FolderOutlined,
@@ -104,12 +103,6 @@ export const MenuConf = [
                 title: 'Managers',
                 link: '/managers',
                 links: ['/managers']
-            },
-            {
-                icon: CloudOutlined,
-                title: 'Uploads',
-                link: '/uploads',
-                links: ['/uploads']
             },
             {
                 icon: SwapCallsOutlined,

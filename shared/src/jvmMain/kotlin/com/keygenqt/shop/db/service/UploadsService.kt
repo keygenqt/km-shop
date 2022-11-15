@@ -16,24 +16,13 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.entities.CategoryUploads
-import com.keygenqt.shop.db.entities.ProductUploads
-import com.keygenqt.shop.db.entities.UploadEntity
-import com.keygenqt.shop.db.entities.Uploads
+import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
-import org.jetbrains.exposed.sql.SortOrder
-import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.*
 
 class UploadsService(
     override val db: DatabaseMysql
 ) : IService<UploadsService> {
-
-    /**
-     * Get all entities
-     */
-    fun getAll() = UploadEntity
-        .all()
-        .orderBy(Pair(Uploads.createAt, SortOrder.DESC))
 
     /**
      * Delete by [Uploads.fileName]
@@ -51,4 +40,13 @@ class UploadsService(
             upload.delete()
         }
     }
+
+    /**
+     * Get upload without relations with [Categories] or [Products]
+     */
+    fun getAllWithoutRelations() = Uploads
+        .selectAll()
+        .andHaving { Op.build { notExists(CategoryUploads.select { Uploads.id eq CategoryUploads.upload }) } }
+        .andHaving { Op.build { notExists(ProductUploads.select { Uploads.id eq ProductUploads.upload }) } }
+        .map { UploadEntity.wrapRow(it) }
 }
