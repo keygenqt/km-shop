@@ -8,6 +8,7 @@ export const ValueType = {
     integer: 'integer',
     float: 'float',
     bool: 'boolean',
+    object: 'object',
 
     validate: (type, value) => {
         switch (type) {

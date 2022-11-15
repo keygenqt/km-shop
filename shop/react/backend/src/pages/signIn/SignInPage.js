@@ -115,8 +115,12 @@ export function SignInPage() {
                                     // delay show success
                                     await new Promise(r => setTimeout(r, 1000));
 
-                                    // save email user
-                                    AppCache.stringSet(ConstantStorage.userEmail, response.email)
+                                    // save user
+                                    AppCache.objectSet(ConstantStorage.userAuth, {
+                                        id: response.id,
+                                        role: response.role.name,
+                                        email: response.email,
+                                    })
 
                                     // reload page
                                     route.toRefreshState(routes.dashboard)

@@ -1,16 +1,21 @@
 import * as React from 'react';
-import {useEffect} from 'react';
-import {Box, Chip, Stack} from "@mui/material";
+import {useContext, useEffect} from 'react';
+import {Box, Chip, Stack, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {DeleteOutline, EditOutlined, PeopleOutlined} from "@mui/icons-material";
-import {ConstantKMM} from "../../base";
+import {DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined, TuneOutlined} from "@mui/icons-material";
+import {ConstantKMM, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {ManagerDeleteDialog} from "./elements/ManagerDeleteDialog";
+import {ValueType} from "../../base/route/ValueType";
 
 let timeoutList
 
 export function ManagersPage() {
+
+    const userAuth = useLocalStorage(ConstantStorage.userAuth, ValueType.object);
+
+    const {route} = useContext(NavigateContext)
 
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
@@ -92,7 +97,7 @@ export function ManagersPage() {
                                     headerName: 'Email'
                                 },
                                 {
-                                    minWidth: 200,
+                                    minWidth: 130,
                                     field: 'role',
                                     headerName: 'Role',
                                     disableColumnMenu: true,
@@ -102,24 +107,61 @@ export function ManagersPage() {
                                         color={params.row.role.name === 'ADMIN' ? 'warning' : 'secondary'}
                                         label={params.row.role.name} variant="outlined"/>
                                 },
-                                {
-                                    minWidth: 90,
-                                    field: 'actions',
-                                    type: 'actions',
-                                    getActions: (params) => [
-                                        (
-                                            <GridActionsCellItem color="error" onClick={() => {
-                                                setError(null)
-                                                setDeleteRow(params.row)
-                                            }} icon={<DeleteOutline/>} label="Delete"/>
-                                        ),
-                                        (
-                                            <GridActionsCellItem color="secondary" onClick={() => {
-                                                console.log(params.row.id)
-                                            }} icon={<EditOutlined/>} label="Edit"/>
-                                        )
-                                    ]
-                                }
+                                (userAuth.role === 'ADMIN' ? (
+                                    {
+                                        minWidth: 130,
+                                        field: 'actions',
+                                        type: 'actions',
+                                        getActions: (params) => [
+                                            (
+                                                <GridActionsCellItem color="primary" onClick={() => {
+                                                    route.openEmail(params.row.email)
+                                                }} icon={(
+                                                    <Tooltip placement="top" arrow title="Send">
+                                                        <EmailOutlined/>
+                                                    </Tooltip>
+                                                )} label="Send"/>
+                                            ),
+                                            (
+                                                <GridActionsCellItem color="secondary" onClick={() => {
+                                                    console.log(params.row.id)
+                                                }} icon={(
+                                                    <Tooltip placement="top" arrow title="Edit">
+                                                        <EditOutlined/>
+                                                    </Tooltip>
+                                                )} label="Edit"/>
+                                            ),
+                                            (
+                                                <GridActionsCellItem color="error" onClick={() => {
+                                                    setError(null)
+                                                    setDeleteRow(params.row)
+                                                }} icon={(
+                                                    <Tooltip placement="top" arrow title="Delete">
+                                                        <DeleteOutline/>
+                                                    </Tooltip>
+
+                                                )} label="Delete"/>
+                                            ),
+                                        ]
+                                    }
+                                ) : (
+                                    {
+                                        minWidth: 50,
+                                        field: 'actions',
+                                        type: 'actions',
+                                        getActions: (params) => [
+                                            (
+                                                <GridActionsCellItem color="primary" onClick={() => {
+                                                    route.openEmail(params.row.email)
+                                                }} icon={(
+                                                    <Tooltip placement="top" arrow title="Send">
+                                                        <EmailOutlined/>
+                                                    </Tooltip>
+                                                )} label="Send"/>
+                                            ),
+                                        ]
+                                    }
+                                ))
                             ]}
                         />
                     </Box>

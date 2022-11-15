@@ -11,9 +11,9 @@ export const NavigateContext = createContext({})
 
 export default function NavigateContextProvider(props) {
 
-    const isAuth = useLocalStorage(ConstantStorage.userEmail, ValueType.string);
+    const userAuth = useLocalStorage(ConstantStorage.userAuth, ValueType.object);
 
-    let conf = isAuth ? UserConf : GuestConf
+    let conf = userAuth ? UserConf : GuestConf
 
     const location = useLocation()
     const navigate = useNavigate()

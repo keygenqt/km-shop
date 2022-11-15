@@ -4,6 +4,20 @@ import {MD5} from "crypto-js";
  * App for work with cache
  */
 export const AppCache = {
+
+    ////////////////////////////
+    // String
+
+    objectGet: function (key) {
+        const string = localStorage.getItem(key)
+        if (string) return JSON.parse(string)
+        return null
+    },
+
+    objectSet: function (key, value) {
+        AppCache._setItem(key, JSON.stringify(value))
+    },
+
     ////////////////////////////
     // Int
 
@@ -41,6 +55,7 @@ export const AppCache = {
     // Common
 
     clearByKey: function (key) {
+        AppCache._setItem(key, null)
         localStorage.removeItem(key)
     },
 

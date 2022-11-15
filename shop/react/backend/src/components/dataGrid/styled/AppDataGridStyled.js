@@ -41,4 +41,14 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
         minWidth: '200px !important',
         maxWidth: 'inherit !important'
     },
+    '& .MuiDataGrid-With50': {
+        width: '50px !important',
+        minWidth: '50px !important',
+        maxWidth: 'inherit !important'
+    },
+    '& .MuiDataGrid-With90': {
+        width: '90px !important',
+        minWidth: '90px !important',
+        maxWidth: 'inherit !important'
+    },
 }));

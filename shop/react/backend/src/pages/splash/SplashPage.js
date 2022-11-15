@@ -6,16 +6,16 @@ import {ValueType} from "../../base/route/ValueType";
 
 export function SplashPage() {
 
-    const isAuth = useLocalStorage(ConstantStorage.userEmail, ValueType.bool);
+    const userAuth = useLocalStorage(ConstantStorage.userAuth, ValueType.object);
     const {route, routes} = useContext(NavigateContext)
 
     useEffect(() => {
-        if (isAuth) {
+        if (userAuth) {
             route.toRefreshState(routes.dashboard)
         } else {
             route.toRefreshState(routes.login)
         }
-    }, [routes, isAuth, route])
+    }, [routes, userAuth, route])
 
     return (
         <Stack

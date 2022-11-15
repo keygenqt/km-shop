@@ -71,8 +71,6 @@ fun Route.admins() {
 
     // get list entities
     get("/admins") {
-        // check role
-        call.checkRoleAdmin()
         // act
         val response = adminsService.transaction {
             getAll().toModels()

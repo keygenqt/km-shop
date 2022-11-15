@@ -18,10 +18,8 @@ export function ManagerDeleteDialog(props) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title">
-                <Typography variant="h5">
-                    Delete
-                </Typography>
+            <DialogTitle id="alert-dialog-title" variant="h5">
+                Delete
             </DialogTitle>
             <DialogContent>
                 <Typography variant="body2">

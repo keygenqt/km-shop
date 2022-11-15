@@ -84,7 +84,7 @@ export function SettingsToolbar(props) {
                                 <AppCard
                                     shadow
                                     title={'Good Morning!'}
-                                    subheader={AppCache.stringGet(ConstantStorage.userEmail)}
+                                    subheader={AppCache.objectGet(ConstantStorage.userAuth).email}
                                 >
                                     <Stack spacing={1}>
                                         <Divider/>
@@ -101,7 +101,7 @@ export function SettingsToolbar(props) {
                                                 ConstantKMM.request.delete.logout()
 
                                                 // save email user
-                                                AppCache.stringSet(ConstantStorage.userEmail, null)
+                                                AppCache.clearByKey(ConstantStorage.userAuth)
 
                                                 // reload page
                                                 route.toRefreshState(routes.login)
