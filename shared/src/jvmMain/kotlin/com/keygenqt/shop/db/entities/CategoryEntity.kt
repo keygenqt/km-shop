@@ -27,7 +27,7 @@ import org.jetbrains.exposed.sql.Table
  * Table categories products
  */
 object Categories : IntIdTable() {
-    val name = varchar("title", 255)
+    val name = varchar("name", 255)
     val image = varchar("image", 255)
     val isPublished = bool("isPublished").default(false)
     val createAt = long("createAt")

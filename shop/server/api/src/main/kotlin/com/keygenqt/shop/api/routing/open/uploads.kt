@@ -13,19 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.db.migration
+package com.keygenqt.shop.api.routing.open
 
-import com.keygenqt.shop.db.entities.Admins
-import org.flywaydb.core.api.migration.BaseJavaMigration
-import org.flywaydb.core.api.migration.Context
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.transactions.transaction
+import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.getStringParam
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
+import java.io.File
 
-@Suppress("unused", "ClassName")
-class V1__Create_Admins : BaseJavaMigration() {
-    override fun migrate(context: Context?) {
-        transaction {
-            SchemaUtils.create(Admins)
-        }
+fun Route.uploads() {
+    // get file
+    get("/uploads/{name}") {
+        val name = call.getStringParam()
+        val file = File("uploads/$name")
+        if (file.exists()) {
+            call.respondFile(file)
+        } else throw Exceptions.NotFound()
     }
 }

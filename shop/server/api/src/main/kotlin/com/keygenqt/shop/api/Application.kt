@@ -37,9 +37,9 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
-import com.keygenqt.shop.api.routing.security.logout as logoutSec
 import com.keygenqt.shop.api.routing.security.admins as adminsSec
 import com.keygenqt.shop.api.routing.security.categories as categoriesSec
+import com.keygenqt.shop.api.routing.security.logout as logoutSec
 import com.keygenqt.shop.api.routing.security.messages as messagesSec
 import com.keygenqt.shop.api.routing.security.orders as ordersSec
 import com.keygenqt.shop.api.routing.security.products as productsSec
@@ -143,6 +143,7 @@ fun Application.module() {
                 rockets()
                 categories()
                 products()
+                uploads()
                 // user
                 authenticate(AppConstants.SESSION_KEY) {
                     route("/sec") {

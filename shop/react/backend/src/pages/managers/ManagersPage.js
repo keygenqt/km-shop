@@ -20,7 +20,7 @@ export function ManagersPage() {
 
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.ManagersPage, {
-        page: 1,
+        page: 0,
         data: []
     }));
 

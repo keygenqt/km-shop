@@ -16,10 +16,13 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
+import com.keygenqt.shop.db.entities.CategoryUploads
+import com.keygenqt.shop.db.entities.ProductUploads
 import com.keygenqt.shop.db.entities.UploadEntity
 import com.keygenqt.shop.db.entities.Uploads
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.deleteWhere
 
 class UploadsService(
     override val db: DatabaseMysql
@@ -31,4 +34,21 @@ class UploadsService(
     fun getAll() = UploadEntity
         .all()
         .orderBy(Pair(Uploads.createAt, SortOrder.DESC))
+
+    /**
+     * Delete by [Uploads.fileName]
+     */
+    fun deleteByFileName(
+        fileName: String
+    ) {
+        val upload = UploadEntity
+            .find { (Uploads.fileName eq fileName) }
+            .firstOrNull()
+
+        if (upload != null) {
+            CategoryUploads.deleteWhere { CategoryUploads.upload eq upload.id }
+            ProductUploads.deleteWhere { ProductUploads.upload eq upload.id }
+            upload.delete()
+        }
+    }
 }

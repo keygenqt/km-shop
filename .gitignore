@@ -16,3 +16,4 @@ app.properties
 package.json
 package-lock.json
 shared-0.0.*.tgz
+/uploads/

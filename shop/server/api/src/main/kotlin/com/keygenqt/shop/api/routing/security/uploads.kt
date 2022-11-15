@@ -15,22 +15,88 @@
  */
 package com.keygenqt.shop.api.routing.security
 
+import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.getStringParam
+import com.keygenqt.shop.db.entities.UploadEntity
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.UploadsService
+import com.keygenqt.shop.utils.helpers.ConstantsMime.toExtension
+import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.server.application.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
+import java.io.File
+import java.util.*
 
 fun Route.uploads() {
 
     val uploadsService: UploadsService by inject()
 
-    get("/uploads") {
-        call.respond(
-            uploadsService.transaction {
-                getAll().toModels()
+    route("/uploads") {
+        // get list entities
+        get {
+            call.respond(
+                uploadsService.getAll()
+            )
+        }
+        // upload file
+        post {
+
+            val uploads = mutableListOf<UploadEntity>()
+            val multipart = call.receiveMultipart()
+
+            multipart.forEachPart { part ->
+                if (part is PartData.FileItem) {
+
+                    val name = "${UUID.randomUUID()}.${part.contentType.toExtension()}"
+                    val file = File("uploads/$name")
+
+                    part.streamProvider().use { its ->
+                        file.outputStream().buffered().use {
+                            its.copyTo(it)
+                        }
+                    }
+
+                    uploadsService.transaction {
+                        uploads.add(
+                            UploadEntity.new {
+                                fileName = name
+                                fileMime = part.contentType.toString()
+                                originalFileName = part.originalFileName!!
+                            }
+                        )
+                    }
+                }
+                part.dispose()
             }
-        )
+
+            if (uploads.isNotEmpty()) {
+                if (uploads.size == 1) {
+                    call.respond(uploads.first())
+                } else {
+                    call.respond(call.respond(uploads))
+                }
+            } else {
+                throw Exceptions.BadRequest()
+            }
+        }
+
+        // delete file
+        delete("/{name}") {
+            val name = call.getStringParam()
+            // delete db row
+            uploadsService.transaction {
+                deleteByFileName(name)
+            }
+            // delete file
+            val file = File("uploads/$name")
+            if (file.exists()) {
+                file.delete()
+                call.respond(HttpStatusCode.OK)
+            } else throw Exceptions.NotFound()
+        }
     }
 }
