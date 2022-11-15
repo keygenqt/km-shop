@@ -24,27 +24,17 @@ import java.io.File
 
 
 @Suppress("unused", "ClassName")
-class V7__Create_DemoData : BaseJavaMigration() {
+class V8__Create_DemoData : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
 
             val configuration = Yaml().load<Map<String, Any>>(
-                File("configuration/migrations/V7__migration.yaml").readText()
-            )
-
-            MigrationHelper.insertAdmins(
-                admins = configuration["admins"] as List<*>
-            )
-
-            val ids = MigrationHelper.insertCategories(
-                host = configuration["host"] as String,
-                categories = configuration["categories"] as List<*>
+                File("configuration/migrations/V8__migration.yaml").readText()
             )
 
             MigrationHelper.insertProducts(
                 host = configuration["host"] as String,
                 products = configuration["products"] as List<*>,
-                categoriesIds = ids
             )
         }
     }

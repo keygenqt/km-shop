@@ -1,0 +1,131 @@
+### Configuration data migration
+
+### Host for generate link image
+host: http://localhost:8086
+
+### Admins data
+# role - ADMIN, MANAGER
+# email - account login email
+# password - account password 8-12 size
+admins:
+  - role: ADMIN
+    email: admin@keygenqt.com
+    password: "12345678"
+
+  - role: ADMIN
+    email: admin2@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager2@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager3@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager4@keygenqt.com
+    password: "12345678"
+
+### Categories data
+# key - for link project
+# name - name category
+# isPublished - if enable categories
+categories:
+  - key: bows
+    name: Бантики
+    image: configuration/migrations/data/category/categoryBows.png
+    isPublished: true
+
+  - key: headbands
+    name: Ободки
+    image: configuration/migrations/data/category/categoryHeadbands.png
+    isPublished: true
+
+  - key: box
+    name: Набор
+    image: configuration/migrations/data/category/categoryBox.png
+    isPublished: true
+
+### Product data
+# categoryKey - key category or categoryID
+# name - name product
+# description - description product
+# image - file path for upload
+# price - price double
+# isPublished - if enable product
+products:
+  - categoryKey: bows
+    name: Цветочные Бантики
+    description: Цветочные банттики для цветочков.
+    image: configuration/migrations/data/product/DSC_0004.png
+    price: 1000.50
+    isPublished: true
+
+  - categoryKey: bows
+    name: Бантик Крутой
+    description: Крутой бант для рокерш нерфомалок.
+    image: configuration/migrations/data/product/DSC_0007.png
+    price: 1200.50
+    isPublished: true
+
+  - categoryKey: bows
+    name: Сладкий Бантик
+    description: Бантики для сладкоежек.
+    image: configuration/migrations/data/product/DSC_0009.png
+    price: 900.50
+    isPublished: true
+
+  - categoryKey: bows
+    name: Бантик Красота
+    description: Топовый бантки для топовых девченок.
+    image: configuration/migrations/data/product/DSC_0017.png
+    price: 2100.90
+    isPublished: true
+
+  - categoryKey: bows
+    name: Бантик Морской Свет
+    description: Любишьш море? Носи море на черепушке.
+    image: configuration/migrations/data/product/DSC_0022.png
+    price: 1300.00
+    isPublished: true
+
+  - categoryKey: box
+    name: Наборчик
+    description: Набор для девочек любящих бантики.
+    image: configuration/migrations/data/product/DSC_0026.png
+    price: 3200.20
+    isPublished: true
+
+  - categoryKey: bows
+    name: Королина
+    description: Заколка стилизованная по Королину.
+    image: configuration/migrations/data/product/DSC_0033.png
+    price: 800.20
+    isPublished: true
+
+  - categoryKey: bows
+    name: Дорого-багато
+    description: Бантикти для буржуев.
+    image: configuration/migrations/data/product/DSC_0045.png
+    price: 3100.20
+    isPublished: true
+
+  - categoryKey: bows
+    name: Свадьба
+    description: Одень корапуза красивее невесты.
+    image: configuration/migrations/data/product/DSC_0053.png
+    price: 2800.70
+    isPublished: true
+
+  - categoryKey: bows
+    name: Микки
+    description: Стилизованные бантики по Дисней.
+    image: configuration/migrations/data/product/DSC_0072.png
+    price: 900.50
+    isPublished: true

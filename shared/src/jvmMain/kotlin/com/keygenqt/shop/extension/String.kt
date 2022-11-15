@@ -17,25 +17,14 @@ package com.keygenqt.shop.extension
 
 import com.keygenqt.shop.db.entities.UploadEntity
 import com.keygenqt.shop.utils.helpers.ConstantsMime.toMime
-import com.mysql.cj.Constants
 import java.io.File
 import java.util.*
 
 /**
- * Create upload from data for migrate products
- */
-fun String.createFileUploadProducts() = createFileUpload("products")
-
-/**
- * Create upload from data for migrate category
- */
-fun String.createFileUploadCategory() = createFileUpload("category")
-
-/**
  * Create upload from data for migrate
  */
-private fun String.createFileUpload(type: String): UploadEntity? {
-    val file = File("data/migration/$type/$this")
+fun String.createFileUpload(): UploadEntity? {
+    val file = File(this)
     return if (file.isFile) {
         val upload = UploadEntity.new {
             this.fileName = "${UUID.randomUUID()}.${file.extension}"

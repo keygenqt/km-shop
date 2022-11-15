@@ -1,0 +1,19 @@
+### Configuration data migration
+
+### Host for generate link image
+host: http://localhost:8086
+
+### Product data
+# categoryKey - key category or categoryID
+# name - name product
+# description - description product
+# image - file path for upload
+# price - price double
+# isPublished - if enable product
+products:
+  - categoryID: 3
+    name: Ободок красота
+    description: Крутой ободок для крутых карапузов.
+    image: configuration/migrations/data/product/DSC_0093.png
+    price: 3200.20
+    isPublished: true
