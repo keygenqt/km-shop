@@ -6,12 +6,14 @@ import {
     FiltersOrders,
     HelpPage,
     ManagersPage,
+    ManagerUpdatePage,
     OrdersPage,
     ProductsPage,
     SystemPage,
     UploadsPage
 } from "../../pages";
 import {AppLayout} from "../../components";
+import {ValueType as RouteType} from "../../base/route/ValueType";
 
 export const UserConf = {
     delay: 300,
@@ -71,6 +73,39 @@ export const UserConf = {
                     element={
                         <AppLayout>
                             <ManagersPage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        managerCreate: {
+            path: '/manager/add',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <ManagerUpdatePage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        managerEdit: {
+            path: '/manager/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <ManagerUpdatePage/>
                         </AppLayout>
                     }
                 />

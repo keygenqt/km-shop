@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Box, Chip, Stack, Tooltip} from "@mui/material";
+import {Box, Button, Chip, Stack, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined, TuneOutlined} from "@mui/icons-material";
+import {AddOutlined, DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined} from "@mui/icons-material";
 import {ConstantKMM, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
@@ -14,8 +14,7 @@ let timeoutList
 export function ManagersPage() {
 
     const userAuth = useLocalStorage(ConstantStorage.userAuth, ValueType.object);
-
-    const {route} = useContext(NavigateContext)
+    const {route, routes} = useContext(NavigateContext)
 
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
@@ -71,7 +70,23 @@ export function ManagersPage() {
                 }}
             />
 
-            <Stack>
+            <Stack spacing={2}>
+
+                <Box>
+                    <Button
+                        disableElevation
+                        color='success'
+                        variant='contained'
+                        sx={{color: 'white', borderRadius: 2}}
+                        startIcon={<AddOutlined/>}
+                        onClick={() => {
+                            route.toLocation(routes.managerCreate)
+                        }}
+                    >
+                        Add
+                    </Button>
+                </Box>
+
                 <AppCard
                     icon={PeopleOutlined}
                     color={'gray.dark'}
@@ -124,7 +139,7 @@ export function ManagersPage() {
                                             ),
                                             (
                                                 <GridActionsCellItem color="secondary" onClick={() => {
-                                                    console.log(params.row.id)
+                                                    route.toLocation(routes.managerEdit, params.row.id)
                                                 }} icon={(
                                                     <Tooltip placement="top" arrow title="Edit">
                                                         <EditOutlined/>
