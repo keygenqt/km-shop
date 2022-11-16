@@ -3,7 +3,7 @@ import {useContext, useEffect} from 'react';
 import {Box, Button, Chip, Stack, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined} from "@mui/icons-material";
-import {AppCache, ConstantKMM, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {AppCache, ConstantKMM, ConstantStorage, HttpClient, NavigateContext} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {ManagerDeleteDialog} from "./elements/ManagerDeleteDialog";
@@ -49,7 +49,7 @@ export function ManagersPage() {
         clearTimeout(timeoutList)
         timeoutList = setTimeout(() => {
             setLoading(false)
-            ConstantKMM.request.get.admins().then(async (response) => {
+            HttpClient.get.admins().then(async (response) => {
                 setData(response.toArray().map((item) => ({
                     id: item.id,
                     role: item.role.name,
@@ -78,7 +78,7 @@ export function ManagersPage() {
                 onPositive={() => {
                     setError(null)
                     setLoading(true)
-                    ConstantKMM.request.delete.admin(deleteRow.id).then(async () => {
+                    HttpClient.delete.admin(deleteRow.id).then(async () => {
                         setData(data.filter(function (item) {
                             return item.id !== deleteRow.id
                         }))

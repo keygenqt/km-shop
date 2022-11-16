@@ -15,6 +15,8 @@
  */
 package com.keygenqt.shop.services.impl
 
+import com.keygenqt.shop.data.requests.AdminUpdateRequest
+import com.keygenqt.shop.data.requests.MessageRequest
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
@@ -22,15 +24,22 @@ import com.keygenqt.shop.services.ServiceRequest
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class PutRequestPromise(private val client: ServiceRequest) {
     /**
-     * Override [PutRequest.adminUpdate] for JS
+     * Override [PutRequest.messages] for JS
      */
-    fun adminUpdate(
-        role: String,
-        password: String? = null,
+    fun messages(
+        id: Int,
+        request: MessageRequest
     ) = wrapPromise {
-        client.put.adminUpdate(
-            role = role,
-            password = password,
-        )
+        client.put.messages(id, request)
+    }
+
+    /**
+     * Override [PutRequest.admin] for JS
+     */
+    fun admin(
+        id: Int,
+        request: AdminUpdateRequest
+    ) = wrapPromise {
+        client.put.admin(id, request)
     }
 }

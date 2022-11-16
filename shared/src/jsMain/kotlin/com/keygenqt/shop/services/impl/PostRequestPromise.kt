@@ -15,38 +15,39 @@
  */
 package com.keygenqt.shop.services.impl
 
+import com.keygenqt.shop.data.requests.AdminCreateRequest
+import com.keygenqt.shop.data.requests.LoginRequest
+import com.keygenqt.shop.data.requests.MessageRequest
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
 @JsExport
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class PostRequestPromise(private val client: ServiceRequest) {
-
     /**
      * Override [PostRequest.login] for JS
      */
-    fun login(
-        email: String,
-        password: String,
-    ) = wrapPromise {
-        client.post.login(
-            email = email,
-            password = password,
-        )
+    fun login(request: LoginRequest) = wrapPromise {
+        client.post.login(request)
     }
 
     /**
-     * Override [PostRequest.adminCreate] for JS
+     * Override [PostRequest.messages] for JS
      */
-    fun adminCreate(
-        email: String,
-        role: String,
-        password: String,
+    fun messages(
+        id: Int,
+        request: MessageRequest
     ) = wrapPromise {
-        client.post.adminCreate(
-            email = email,
-            role = role,
-            password = password,
-        )
+        client.post.messages(id, request)
+    }
+
+    /**
+     * Override [PostRequest.admin] for JS
+     */
+    fun admin(
+        id: Int,
+        request: AdminCreateRequest
+    ) = wrapPromise {
+        client.post.admin(id, request)
     }
 }

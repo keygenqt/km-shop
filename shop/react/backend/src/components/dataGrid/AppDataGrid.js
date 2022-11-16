@@ -34,15 +34,21 @@ export function AppDataGrid(props) {
                     headerClassName: (params) => {
                         return clsx('MuiDataGrid-custom', {
                             'MuiDataGrid-fullWith': params.colDef.minWidth === 0,
-                            'MuiDataGrid-With30': params.colDef.minWidth === 50,
                             'MuiDataGrid-With90': params.colDef.minWidth === 90,
+                            'MuiDataGrid-With80': params.colDef.minWidth === 80,
+                            'MuiDataGrid-With70': params.colDef.minWidth === 70,
+                            'MuiDataGrid-With60': params.colDef.minWidth === 60,
+                            'MuiDataGrid-With50': params.colDef.minWidth === 50,
                         })
                     },
                     cellClassName: (params) => {
                         return clsx('MuiDataGrid-custom', {
                             'MuiDataGrid-fullWith': params.colDef.minWidth === 0,
-                            'MuiDataGrid-With50': params.colDef.minWidth === 50,
                             'MuiDataGrid-With90': params.colDef.minWidth === 90,
+                            'MuiDataGrid-With80': params.colDef.minWidth === 80,
+                            'MuiDataGrid-With70': params.colDef.minWidth === 70,
+                            'MuiDataGrid-With60': params.colDef.minWidth === 60,
+                            'MuiDataGrid-With50': params.colDef.minWidth === 50,
                         })
                     },
                 }

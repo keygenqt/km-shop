@@ -13,21 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.data.responses
+package com.keygenqt.shop.data.requests
 
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * Response for help desk
+ * Request Message
  */
 @JsExport
 @Serializable
-data class MessageResponse(
-    val id: Int,
+data class MessageRequest(
     val email: String,
     val message: String,
     val isChecked: Boolean,
-    val createAt: String,
-    val updateAt: String,
 )

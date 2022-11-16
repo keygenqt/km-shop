@@ -26,6 +26,13 @@ class CategoriesService(
 ) : IService<CategoriesService> {
 
     /**
+     * Find entity by id
+     */
+    fun findById(
+        id: Int
+    ) = CategoryEntity.findById(id)
+
+    /**
      * Get all entities
      */
     fun getAll() = CategoryEntity

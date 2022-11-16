@@ -23,7 +23,6 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.yaml.snakeyaml.Yaml
 import java.io.File
 
-
 @Suppress("unused", "ClassName")
 class V7__Create_DemoData : BaseJavaMigration() {
 

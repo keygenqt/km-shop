@@ -26,9 +26,43 @@ class MessagesService(
 ) : IService<MessagesService> {
 
     /**
+     * Find entity by id
+     */
+    fun findById(
+        id: Int
+    ) = MessageEntity.findById(id)
+
+    /**
      * Get all entities
      */
     fun getAll() = MessageEntity
         .all()
         .orderBy(Pair(Messages.createAt, SortOrder.DESC))
+
+    /**
+     * Create entity
+     */
+    fun insert(
+        email: String,
+        message: String,
+        isChecked: Boolean,
+    ) = MessageEntity.new {
+        this.email = email
+        this.message = message
+        this.isChecked = isChecked
+    }
+
+    /**
+     * Update entity
+     */
+    fun MessageEntity.update(
+        email: String,
+        message: String,
+        isChecked: Boolean,
+    ) = let { entity ->
+        entity.email = email
+        entity.message = message
+        entity.isChecked = isChecked
+        entity
+    }
 }

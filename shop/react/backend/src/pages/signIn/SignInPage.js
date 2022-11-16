@@ -19,12 +19,11 @@ import {
     useTheme
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {AppCache, ConstantKMM, ConstantStorage, NavigateContext} from "../../base";
+import {AppCache, AppHelper, ConstantStorage, HttpClient, NavigateContext, Requests} from "../../base";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import {AlertError, AlertSuccess} from "../../components";
-import {AppHelper} from "../../base";
 
 export function SignInPage() {
 
@@ -103,10 +102,10 @@ export function SignInPage() {
 
                                 try {
 
-                                    const response = await ConstantKMM.request.post.login(
+                                    const response = await HttpClient.post.login(new Requests.LoginRequest(
                                         values.email,
                                         values.password
-                                    )
+                                    ))
 
                                     // set result
                                     setStatus({success: true});

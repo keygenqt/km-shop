@@ -12,7 +12,15 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import {useContext, useEffect} from "react";
-import {AppCache, ConstantImages, ConstantKMM, ConstantStorage, NavigateContext, useWindowResize} from "../../../base";
+import {
+    AppCache,
+    ConstantImages,
+    ConstantKMM,
+    ConstantStorage,
+    HttpClient,
+    NavigateContext,
+    useWindowResize
+} from "../../../base";
 import {ChipSettingsStyled} from "../styled/ChipSettingsStyled";
 import {ExitToAppOutlined, SettingsOutlined} from "@mui/icons-material";
 import PropTypes from "prop-types";
@@ -98,7 +106,7 @@ export function SettingsToolbar(props) {
                                         >
                                             <ListItemButton onClick={() => {
                                                 // call clear session
-                                                ConstantKMM.request.delete.logout()
+                                                HttpClient.delete.logout()
 
                                                 // save email user
                                                 AppCache.clearByKey(ConstantStorage.userAuth)

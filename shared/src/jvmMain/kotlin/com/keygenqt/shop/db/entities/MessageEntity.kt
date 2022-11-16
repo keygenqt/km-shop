@@ -28,7 +28,7 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 object Messages : IntIdTable() {
     val email = varchar("email", 255)
     val message = text("message")
-    val isSent = bool("isSent").default(false)
+    val isChecked = bool("isChecked").default(false)
     val createAt = long("createAt")
     val updateAt = long("updateAt")
 }
@@ -41,7 +41,7 @@ class MessageEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var email by Messages.email
     var message by Messages.message
-    var isSent by Messages.isSent
+    var isChecked by Messages.isChecked
     var createAt by Messages.createAt
     var updateAt by Messages.updateAt
 }
@@ -53,7 +53,7 @@ fun MessageEntity.toModel() = MessageResponse(
     id = id.value,
     email = email,
     message = message,
-    isSent = isSent,
+    isChecked = isChecked,
     createAt = createAt.toUTC(),
     updateAt = updateAt.toUTC(),
 )

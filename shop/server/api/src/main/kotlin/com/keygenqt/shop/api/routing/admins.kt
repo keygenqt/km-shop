@@ -67,80 +67,78 @@ fun Route.admins() {
 
     val adminsService: AdminsService by inject()
 
-    // get list entities
-    get("/admins") {
-        // check role
-        call.checkRoleAuth()
-        // act
-        val response = adminsService.transaction {
-            getAll().toModels()
+    route("/admins") {
+        get {
+            // check role
+            call.checkRoleAuth()
+            // act
+            val response = adminsService.transaction {
+                getAll().toModels()
+            }
+            // response
+            call.respond(response)
         }
-        // response
-        call.respond(response)
-    }
-
-    // create entity
-    post("/admins") {
-        // check role
-        call.checkRoleAdmin()
-        // get request
-        val request = call.receiveValidate<AdminPostRequest>()
-        // act
-        val response = adminsService.transaction {
-            insert(
-                role = request.role,
-                email = request.email,
-                password = request.password,
-            ).toModel()
+        post {
+            // check role
+            call.checkRoleAdmin()
+            // get request
+            val request = call.receiveValidate<AdminPostRequest>()
+            // act
+            val response = adminsService.transaction {
+                insert(
+                    role = request.role,
+                    email = request.email,
+                    password = request.password,
+                ).toModel()
+            }
+            // response
+            call.respond(response)
         }
-        // response
-        call.respond(response)
-    }
-
-    // get entity
-    get("/admins/{id}") {
-        // check role
-        call.checkRoleAdmin()
-        // act
-        val response = adminsService.transaction {
-            findById(call.getNumberParam())?.toModel() ?: throw Exceptions.NotFound()
+        get("/{id}") {
+            // check role
+            call.checkRoleAdmin()
+            // get request
+            val id = call.getNumberParam()
+            // act
+            val response = adminsService.transaction {
+                findById(id)?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
         }
-        // response
-        call.respond(response)
-    }
-
-    // update entity
-    put("/admins/{id}") {
-        // check role
-        call.checkRoleAdmin()
-        // get request
-        val request = call.receiveValidate<AdminPutRequest>()
-        // act
-        val response = adminsService.transaction {
-            findById(call.getNumberParam())?.update(
-                role = request.role,
-                password = request.password,
-            )?.toModel() ?: throw Exceptions.NotFound()
+        put("/{id}") {
+            // check role
+            call.checkRoleAdmin()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<AdminPutRequest>()
+            // act
+            val response = adminsService.transaction {
+                findById(id)?.update(
+                    role = request.role,
+                    password = request.password,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
         }
-        // response
-        call.respond(response)
-    }
-
-    // delete entity
-    delete("/admins/{id}") {
-        // check role
-        call.checkRoleAdmin()
-        // act
-        adminsService.transaction {
-            findById(call.getNumberParam())?.let {
-                if (it.role == AdminRole.ADMIN && countAdmins() <= 1) {
-                    // if last admin
-                    throw Exceptions.MethodNotAllowed()
-                }
-                it.delete()
-            } ?: throw Exceptions.NotFound()
+        delete("/{id}") {
+            // check role
+            call.checkRoleAdmin()
+            // get request
+            val id = call.getNumberParam()
+            // act
+            adminsService.transaction {
+                findById(id)?.let {
+                    if (it.role == AdminRole.ADMIN && countAdmins() <= 1) {
+                        // if last admin
+                        throw Exceptions.MethodNotAllowed()
+                    }
+                    it.delete()
+                } ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(HttpStatusCode.OK)
         }
-        // response
-        call.respond(HttpStatusCode.OK)
     }
 }

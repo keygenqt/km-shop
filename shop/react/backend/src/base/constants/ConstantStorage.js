@@ -6,4 +6,5 @@ export const ConstantStorage = {
     userAuth: "userAuth",
     // pages
     ManagersPage: "ManagersPage",
+    HelpPage: "HelpPage",
 };

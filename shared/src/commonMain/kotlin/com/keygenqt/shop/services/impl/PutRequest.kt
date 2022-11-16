@@ -16,7 +16,9 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.AdminUpdateRequest
+import com.keygenqt.shop.data.requests.MessageRequest
 import com.keygenqt.shop.data.responses.AdminResponse
+import com.keygenqt.shop.data.responses.MessageResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -25,20 +27,24 @@ import io.ktor.http.*
 
 class PutRequest(private val client: HttpClient) {
     /**
+     * Update message method
+     */
+    @Throws(Exception::class)
+    suspend fun messages(
+        id: Int,
+        request: MessageRequest
+    ): MessageResponse {
+        return client.put("api/messages/$id") { setBody(request) }.body()
+    }
+
+    /**
      * Update admin method
      */
     @Throws(Exception::class)
-    suspend fun adminUpdate(
-        role: String,
-        password: String? = null,
+    suspend fun admin(
+        id: Int,
+        request: AdminUpdateRequest
     ): AdminResponse {
-        return client.post("api/admins") {
-            setBody(
-                AdminUpdateRequest(
-                    role = role,
-                    password = password,
-                )
-            )
-        }.body()
+        return client.put("api/admins/$id") { setBody(request) }.body()
     }
 }

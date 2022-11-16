@@ -22,6 +22,56 @@ import com.keygenqt.shop.services.ServiceRequest
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class GetRequestPromise(private val client: ServiceRequest) {
     /**
+     * Override [GetRequest.categories] for JS
+     */
+    fun categories() = wrapPromise { client.get.categories() }
+
+    /**
+     * Override [GetRequest.category] for JS
+     */
+    fun category(id: Int) = wrapPromise { client.get.category(id) }
+
+    /**
+     * Override [GetRequest.messages] for JS
+     */
+    fun messages() = wrapPromise { client.get.messages() }
+
+    /**
+     * Override [GetRequest.message] for JS
+     */
+    fun message(id: Int) = wrapPromise { client.get.message(id) }
+
+    /**
+     * Override [GetRequest.products] for JS
+     */
+    fun products() = wrapPromise { client.get.products() }
+
+    /**
+     * Override [GetRequest.product] for JS
+     */
+    fun product(id: Int) = wrapPromise { client.get.product(id) }
+
+    /**
+     * Override [GetRequest.ordersNew] for JS
+     */
+    fun ordersNew() = wrapPromise { client.get.ordersNew() }
+
+    /**
+     * Override [GetRequest.ordersNew] for JS
+     */
+    fun ordersPending() = wrapPromise { client.get.ordersPending() }
+
+    /**
+     * Override [GetRequest.ordersCompleted] for JS
+     */
+    fun ordersCompleted() = wrapPromise { client.get.ordersCompleted() }
+
+    /**
+     * Override [GetRequest.order] for JS
+     */
+    fun order(id: Int) = wrapPromise { client.get.order(id) }
+
+    /**
      * Override [GetRequest.admins] for JS
      */
     fun admins() = wrapPromise { client.get.admins() }

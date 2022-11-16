@@ -31,33 +31,34 @@ fun Route.products() {
 
     val productsService: ProductsService by inject()
 
-    get("/products") {
-        // check role
-        val role = call.checkRoleFull()
-        // act
-        val entities = productsService.transaction {
-            when (role) {
-                AdminRole.GUEST -> getAllPublished()
-                else -> getAll()
-            }.toModels()
+    route("/products") {
+        get {
+            // check role
+            val role = call.checkRoleFull()
+            // act
+            val entities = productsService.transaction {
+                when (role) {
+                    AdminRole.GUEST -> getAllPublished()
+                    else -> getAll()
+                }.toModels()
+            }
+            // response
+            call.respond(entities)
         }
-        // response
-        call.respond(entities)
-    }
-
-    get("/products/{id}") {
-        // check role
-        val role = call.checkRoleFull()
-        // get request
-        val id = call.getNumberParam()
-        // act
-        val entity = productsService.transaction {
-            when (role) {
-                AdminRole.GUEST -> getByIdPublished(id)
-                else -> getById(id)
-            }?.toModel() ?: throw Exceptions.NotFound()
+        get("/{id}") {
+            // check role
+            val role = call.checkRoleFull()
+            // get request
+            val id = call.getNumberParam()
+            // act
+            val entity = productsService.transaction {
+                when (role) {
+                    AdminRole.GUEST -> getByIdPublished(id)
+                    else -> getById(id)
+                }?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(entity)
         }
-        // response
-        call.respond(entity)
     }
 }
