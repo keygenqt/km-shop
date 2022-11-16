@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.open
+package com.keygenqt.shop.api.routing
 
+import com.keygenqt.shop.api.extension.capitalize
+import com.keygenqt.shop.api.extension.checkRoleFull
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.html.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 
-fun Route.main() {
+fun Route.home() {
     get("/") {
+
+        // check role
+        val role = call.checkRoleFull()
 
         val name = "API Shop"
         val subtitle = "API for Shop 6 in 1"
@@ -44,7 +49,7 @@ fun Route.main() {
                     div("Row") {
                         div("ToolBar Cell") {
                             style = "height: 86px"
-                            +"Welcome!"
+                            +"Welcome ${role.name.lowercase().capitalize()}!"
                         }
                     }
                     div("Row") {
@@ -60,7 +65,10 @@ fun Route.main() {
                                     div("Text") {
                                         +text
                                     }
-                                    a(href = "https://keygenqt.github.io/km-shop/api/", classes = "Btn") {
+                                    a(
+                                        href = "https://keygenqt.github.io/km-shop/api/",
+                                        classes = "Btn"
+                                    ) {
                                         target = "_blank"
                                         +button
                                     }

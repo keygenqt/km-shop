@@ -52,7 +52,7 @@ class PostRequest(private val client: HttpClient) {
         role: String,
         password: String,
     ): AdminResponse {
-        return client.post("api/sec/admins") {
+        return client.post("api/admins") {
             setBody(
                 AdminCreateRequest(
                     email = email,

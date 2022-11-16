@@ -18,7 +18,7 @@ package com.keygenqt.shop.api
 import com.keygenqt.shop.api.extension.authentication
 import com.keygenqt.shop.api.extension.configure
 import com.keygenqt.shop.api.extension.session
-import com.keygenqt.shop.api.routing.open.*
+import com.keygenqt.shop.api.routing.*
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.utils.AppConstants
 import com.keygenqt.shop.api.utils.AppLogger.initAppLogger
@@ -37,14 +37,6 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
-import com.keygenqt.shop.api.routing.security.admins as adminsSec
-import com.keygenqt.shop.api.routing.security.categories as categoriesSec
-import com.keygenqt.shop.api.routing.security.logout as logoutSec
-import com.keygenqt.shop.api.routing.security.messages as messagesSec
-import com.keygenqt.shop.api.routing.security.orders as ordersSec
-import com.keygenqt.shop.api.routing.security.products as productsSec
-import com.keygenqt.shop.api.routing.security.rockets as rocketsSec
-import com.keygenqt.shop.api.routing.security.uploads as uploadsSec
 import org.koin.dsl.module as koinModule
 
 fun main(args: Array<String>) {
@@ -76,7 +68,6 @@ fun Application.module() {
 
                     // db services
                     single { AdminsService(db) }
-                    single { RocketsService(db) }
                     single { CategoriesService(db) }
                     single { MessagesService(db) }
                     single { OrdersService(db) }
@@ -134,28 +125,18 @@ fun Application.module() {
             }
 
             // root
-            main()
+            home()
 
             route("/api") {
-                // guest
-                login()
-                greeting()
-                rockets()
-                categories()
-                products()
-                uploads()
-                // user
                 authenticate(AppConstants.SESSION_KEY) {
-                    route("/sec") {
-                        logoutSec()
-                        rocketsSec()
-                        categoriesSec()
-                        productsSec()
-                        ordersSec()
-                        messagesSec()
-                        uploadsSec()
-                        adminsSec()
-                    }
+                    admins()
+                    categories()
+                    login()
+                    logout()
+                    messages()
+                    orders()
+                    products()
+                    uploads()
                 }
             }
         }

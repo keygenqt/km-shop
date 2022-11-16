@@ -13,23 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
+import com.keygenqt.shop.api.extension.checkRoleFull
+import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.toModels
-import com.keygenqt.shop.db.service.MessagesService
+import com.keygenqt.shop.db.service.CategoriesService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 
-fun Route.messages() {
+fun Route.categories() {
 
-    val messagesService: MessagesService by inject()
+    val categoriesService: CategoriesService by inject()
 
-    get("/messages") {
+    get("/categories") {
+        // check role
+        val role = call.checkRoleFull()
         // act
-        val entities = messagesService.transaction {
-            getAll().toModels()
+        val entities = categoriesService.transaction {
+            when (role) {
+                AdminRole.GUEST -> getAllPublished()
+                else -> getAll()
+            }.toModels()
         }
         // response
         call.respond(entities)

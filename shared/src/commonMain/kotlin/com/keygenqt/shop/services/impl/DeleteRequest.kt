@@ -27,7 +27,7 @@ class DeleteRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun logout() {
-        client.delete("api/sec/logout")
+        client.delete("api/logout")
     }
 
     /**
@@ -37,6 +37,6 @@ class DeleteRequest(private val client: HttpClient) {
     suspend fun admin(
         id: Int
     ) {
-        client.delete("api/sec/admins/$id")
+        client.delete("api/admins/$id")
     }
 }

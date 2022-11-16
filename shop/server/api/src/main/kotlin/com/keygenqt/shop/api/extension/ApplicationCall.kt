@@ -54,21 +54,50 @@ fun ApplicationCall.getNumberParam(key: String = "id"): Int = parameters[key]
 fun ApplicationCall.getStringParam(key: String = "name"): String = parameters[key]
     ?: throw throw Exceptions.NotFound()
 
-
 /**
- * Check role auth is ADMIN
+ * Check role
  */
-fun ApplicationCall.checkRoleAdmin() {
+fun ApplicationCall.checkRole(vararg roles: AdminRole): AdminRole {
     val session = sessions.get<SessionUser>()
-    if (session == null || session.role != AdminRole.ADMIN.name) {
-        throw Exceptions.Forbidden()
-    }
+    val role = if (session == null) AdminRole.GUEST else AdminRole.valueOf(session.role)
+    if (!roles.contains(role)) throw Exceptions.Forbidden()
+    return role
 }
 
 /**
- * Check is not auth user
+ * All roles allowed
  */
-fun ApplicationCall.isNotAuth() = sessions.get<SessionUser>() == null
+fun ApplicationCall.checkRoleFull(): AdminRole {
+    return checkRole(AdminRole.MANAGER, AdminRole.ADMIN, AdminRole.GUEST)
+}
+
+/**
+ * Auth roles allowed
+ */
+fun ApplicationCall.checkRoleAuth(): AdminRole {
+    return checkRole(AdminRole.MANAGER, AdminRole.ADMIN)
+}
+
+/**
+ * Admin role allowed
+ */
+fun ApplicationCall.checkRoleAdmin(): AdminRole {
+    return checkRole(AdminRole.ADMIN)
+}
+
+/**
+ * Manager role allowed
+ */
+fun ApplicationCall.checkRoleManager(): AdminRole {
+    return checkRole(AdminRole.MANAGER)
+}
+
+/**
+ * Guest role allowed
+ */
+fun ApplicationCall.checkRoleGuest(): AdminRole {
+    return checkRole(AdminRole.GUEST)
+}
 
 /**
  * Get unique connect

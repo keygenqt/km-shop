@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.open
+package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.checkRoleGuest
 import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
@@ -49,15 +50,19 @@ fun Route.login() {
 
     post("/login") {
 
+        // check role
+        call.checkRoleGuest()
+
+        // get request
         val request = call.receiveValidate<Request>()
 
+        // act
         val response = adminsService.transaction {
             adminsService.findUserByAuth(
                 email = request.email,
                 password = request.password
             )?.toModel() ?: throw Exceptions.Unauthorized()
         }
-
         call.sessions.set(
             SessionUser(
                 userId = response.id,
@@ -66,6 +71,7 @@ fun Route.login() {
             )
         )
 
+        // response
         call.respond(response)
     }
 }

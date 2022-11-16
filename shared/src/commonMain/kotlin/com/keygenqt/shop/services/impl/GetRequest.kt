@@ -16,7 +16,6 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.responses.AdminResponse
-import com.keygenqt.shop.data.responses.RocketResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -25,28 +24,11 @@ import io.ktor.http.*
 
 class GetRequest(private val client: HttpClient) {
     /**
-     * Test query without tokens from demo KM
-     */
-    @Throws(Exception::class)
-    suspend fun rocketsDemoJetBrains(): List<RocketResponse> {
-        return client.get("https://api.spacexdata.com/v4/launches").body()
-    }
-
-    /**
-     * Test query without tokens from demo KM ktor API
-     */
-    @Throws(Exception::class)
-    suspend fun rocketsDemoAPI(): List<RocketResponse> {
-        return client.get("api/rockets").body()
-    }
-
-
-    /**
      * Get managers admin-panel
      */
     @Throws(Exception::class)
     suspend fun admins(): List<AdminResponse> {
-        return client.get("api/sec/admins").body()
+        return client.get("api/admins").body()
     }
 
     /**
@@ -56,7 +38,7 @@ class GetRequest(private val client: HttpClient) {
     suspend fun admin(
         id: Int
     ): AdminResponse {
-        return client.get("api/sec/admins") {
+        return client.get("api/admins") {
             url {
                 parameters.append("id", id.toString())
             }

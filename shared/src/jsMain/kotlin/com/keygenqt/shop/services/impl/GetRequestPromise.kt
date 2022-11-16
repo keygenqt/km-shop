@@ -21,17 +21,6 @@ import com.keygenqt.shop.services.ServiceRequest
 @JsExport
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class GetRequestPromise(private val client: ServiceRequest) {
-
-    /**
-     * Override [GetRequest.rocketsDemoJetBrains] for JS
-     */
-    fun rocketsDemoJetBrains() = wrapPromise { client.get.rocketsDemoJetBrains() }
-
-    /**
-     * Override [GetRequest.rocketsDemoAPI] for JS
-     */
-    fun rocketsDemoAPI() = wrapPromise { client.get.rocketsDemoAPI() }
-
     /**
      * Override [GetRequest.admins] for JS
      */

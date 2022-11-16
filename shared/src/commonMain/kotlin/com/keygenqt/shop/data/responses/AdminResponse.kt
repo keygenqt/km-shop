@@ -23,7 +23,7 @@ import kotlin.js.JsExport
  */
 @JsExport
 enum class AdminRole {
-    MANAGER, ADMIN
+    GUEST, MANAGER, ADMIN
 }
 
 /**

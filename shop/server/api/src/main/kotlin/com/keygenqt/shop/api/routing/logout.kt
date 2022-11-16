@@ -13,18 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.open
+package com.keygenqt.shop.api.routing
 
-import com.keygenqt.shop.Greeting
+import com.keygenqt.shop.api.extension.checkRoleAuth
+import com.keygenqt.shop.api.security.SessionUser
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.sessions.*
 
-fun Route.greeting() {
-
-    val greeting = Greeting().greeting()
-
-    get("/greeting") {
-        call.respondText("Greeting: $greeting")
+fun Route.logout() {
+    delete("/logout") {
+        // check role
+        call.checkRoleAuth()
+        // act
+        call.sessions.clear<SessionUser>()
+        // response
+        call.respond(HttpStatusCode.OK)
     }
 }

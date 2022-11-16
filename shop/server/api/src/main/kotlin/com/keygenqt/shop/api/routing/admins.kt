@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.checkRoleAdmin
-import com.keygenqt.shop.api.extension.getNumberParam
-import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.AdminEntity
@@ -71,6 +69,8 @@ fun Route.admins() {
 
     // get list entities
     get("/admins") {
+        // check role
+        call.checkRoleAuth()
         // act
         val response = adminsService.transaction {
             getAll().toModels()

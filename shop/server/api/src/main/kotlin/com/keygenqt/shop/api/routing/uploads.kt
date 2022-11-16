@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.checkRoleAuth
+import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getStringParam
 import com.keygenqt.shop.db.entities.UploadEntity
 import com.keygenqt.shop.db.service.UploadsService
@@ -35,10 +37,24 @@ fun Route.uploads() {
     val uploadsService: UploadsService by inject()
 
     route("/uploads") {
-        // upload file
+        get("/{name}") {
+            // check role
+            call.checkRoleFull()
+            // get request
+            val name = call.getStringParam()
+            // act
+            val file = File("uploads/$name")
+            if (!file.exists()) throw Exceptions.NotFound()
+            // response
+            call.respondFile(file)
+        }
         post {
 
+            // check role
+            call.checkRoleAuth()
+            // get request
             val uploads = mutableListOf<UploadEntity>()
+            // act
             val multipart = call.receiveMultipart()
 
             multipart.forEachPart { part ->
@@ -65,7 +81,7 @@ fun Route.uploads() {
                 }
                 part.dispose()
             }
-
+            // response
             if (uploads.isNotEmpty()) {
                 if (uploads.size == 1) {
                     call.respond(uploads.first())
@@ -76,9 +92,9 @@ fun Route.uploads() {
                 throw Exceptions.BadRequest()
             }
         }
-
-        // delete file
         delete("/{name}") {
+            // check role
+            call.checkRoleAuth()
             // get request
             val name = call.getStringParam()
             // delete db row

@@ -32,7 +32,7 @@ class PutRequest(private val client: HttpClient) {
         role: String,
         password: String? = null,
     ): AdminResponse {
-        return client.post("api/sec/admins") {
+        return client.post("api/admins") {
             setBody(
                 AdminUpdateRequest(
                     role = role,

@@ -18,6 +18,7 @@ package com.keygenqt.shop.api.extension
 import io.ktor.util.*
 import java.math.BigInteger
 import java.security.MessageDigest
+import java.util.*
 
 /**
  * Create md5 string
@@ -31,3 +32,10 @@ fun String?.md5() = this?.toByteArray(Charsets.UTF_8)
  * Create hex md5 string
  */
 fun String?.md5Hex() = hex(md5())
+
+/**
+ * Capitalize word
+ */
+fun String.capitalize() = replaceFirstChar {
+    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+}

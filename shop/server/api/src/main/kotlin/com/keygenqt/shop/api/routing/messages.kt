@@ -13,20 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
-import com.keygenqt.shop.api.security.SessionUser
-import io.ktor.http.*
+import com.keygenqt.shop.api.extension.checkRoleAuth
+import com.keygenqt.shop.db.entities.toModels
+import com.keygenqt.shop.db.service.MessagesService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import io.ktor.server.sessions.*
+import org.koin.ktor.ext.inject
 
-fun Route.logout() {
-    delete("/logout") {
+fun Route.messages() {
+
+    val messagesService: MessagesService by inject()
+
+    get("/messages") {
+        // check role
+        call.checkRoleAuth()
         // act
-        call.sessions.clear<SessionUser>()
+        val entities = messagesService.transaction {
+            getAll().toModels()
+        }
         // response
-        call.respond(HttpStatusCode.OK)
+        call.respond(entities)
     }
 }

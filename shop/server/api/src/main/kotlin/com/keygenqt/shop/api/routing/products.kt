@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.toModel
-import com.keygenqt.shop.db.entities.toModelWithUploads
 import com.keygenqt.shop.db.entities.toModels
-import com.keygenqt.shop.db.entities.toModelsWithUploads
 import com.keygenqt.shop.db.service.ProductsService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -32,40 +32,30 @@ fun Route.products() {
     val productsService: ProductsService by inject()
 
     get("/products") {
+        // check role
+        val role = call.checkRoleFull()
         // act
         val entities = productsService.transaction {
-            getAll().toModels()
-        }
-        // response
-        call.respond(entities)
-    }
-
-    get("/products/uploads") {
-        // act
-        val entities = productsService.transaction {
-            getAll().toModelsWithUploads()
+            when (role) {
+                AdminRole.GUEST -> getAllPublished()
+                else -> getAll()
+            }.toModels()
         }
         // response
         call.respond(entities)
     }
 
     get("/products/{id}") {
+        // check role
+        val role = call.checkRoleFull()
         // get request
         val id = call.getNumberParam()
         // act
         val entity = productsService.transaction {
-            getById(id)?.toModel() ?: throw Exceptions.NotFound()
-        }
-        // response
-        call.respond(entity)
-    }
-
-    get("/products/uploads/{id}") {
-        // get request
-        val id = call.getNumberParam()
-        // act
-        val entity = productsService.transaction {
-            getById(id)?.toModelWithUploads() ?: throw Exceptions.NotFound()
+            when (role) {
+                AdminRole.GUEST -> getByIdPublished(id)
+                else -> getById(id)
+            }?.toModel() ?: throw Exceptions.NotFound()
         }
         // response
         call.respond(entity)

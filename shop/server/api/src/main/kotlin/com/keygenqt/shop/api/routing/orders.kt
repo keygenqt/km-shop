@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.routing.security
+package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
@@ -31,6 +32,8 @@ fun Route.orders() {
 
     route("/orders") {
         get("/{id}") {
+            // check role
+            call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
             // act
@@ -41,6 +44,8 @@ fun Route.orders() {
             call.respond(entity)
         }
         get {
+            // check role
+            call.checkRoleAuth()
             // act
             val entities = ordersService.transaction {
                 getAll().toModels()
@@ -49,6 +54,8 @@ fun Route.orders() {
             call.respond(entities)
         }
         get("/new") {
+            // check role
+            call.checkRoleAuth()
             // act
             val entities = ordersService.transaction {
                 getAllNew().toModels()
@@ -57,6 +64,8 @@ fun Route.orders() {
             call.respond(entities)
         }
         get("/pending") {
+            // check role
+            call.checkRoleAuth()
             // act
             val entities = ordersService.transaction {
                 getAllPending().toModels()
@@ -65,6 +74,8 @@ fun Route.orders() {
             call.respond(entities)
         }
         get("/completed") {
+            // check role
+            call.checkRoleAuth()
             // act
             val entities = ordersService.transaction {
                 getAllCompleted().toModels()
