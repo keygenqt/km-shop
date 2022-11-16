@@ -11,3 +11,4 @@ export * from './system/SystemPage';
 export * from './managerUpdate/ManagerUpdatePage';
 export * from './categoryUpdate/CategoryUpdatePage';
 export * from './productUpdate/ProductUpdatePage';
+export * from './orderView/OrderViewPage';

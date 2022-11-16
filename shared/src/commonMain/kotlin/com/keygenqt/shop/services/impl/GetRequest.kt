@@ -75,24 +75,12 @@ class GetRequest(private val client: HttpClient) {
      * Get orders type [OrderState.NEW]
      */
     @Throws(Exception::class)
-    suspend fun ordersNew(): List<OrderResponse> {
-        return client.get("api/orders/new").body()
-    }
-
-    /**
-     * Get orders type [OrderState.PENDING]
-     */
-    @Throws(Exception::class)
-    suspend fun ordersPending(): List<OrderResponse> {
-        return client.get("api/orders/pending").body()
-    }
-
-    /**
-     * Get orders type [OrderState.COMPLETED]
-     */
-    @Throws(Exception::class)
-    suspend fun ordersCompleted(): List<OrderResponse> {
-        return client.get("api/orders/completed").body()
+    suspend fun orders(filter: OrderState): List<OrderResponse> {
+        return when (filter) {
+            OrderState.NEW -> client.get("api/orders/new").body()
+            OrderState.PENDING -> client.get("api/orders/pending").body()
+            OrderState.COMPLETED -> client.get("api/orders/completed").body()
+        }
     }
 
     /**

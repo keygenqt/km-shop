@@ -1,18 +1,22 @@
 import {Route} from "react-router-dom";
 import * as React from "react";
 import {
-    CategoriesPage, CategoryUpdatePage,
+    CategoriesPage,
+    CategoryUpdatePage,
     DashboardPage,
-    FiltersOrders,
     HelpPage,
     ManagersPage,
     ManagerUpdatePage,
     OrdersPage,
-    ProductsPage, ProductUpdatePage,
+    OrderViewPage,
+    ProductsPage,
+    ProductUpdatePage,
     SystemPage
 } from "../../pages";
 import {AppLayout} from "../../components";
 import {ValueType as RouteType} from "../../base/route/ValueType";
+import {NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
+import {OrderState} from "../../base";
 
 export const UserConf = {
     delay: 300,
@@ -33,7 +37,7 @@ export const UserConf = {
             }
         },
         categoryCreate: {
-            path: '/category/add',
+            path: '/categories/add',
             render: function (key, path) {
                 return <Route
                     key={key}
@@ -48,7 +52,7 @@ export const UserConf = {
             }
         },
         categoryEdit: {
-            path: '/category/:id',
+            path: '/categories/:id',
             match: {
                 id: RouteType.integer,
             },
@@ -111,7 +115,7 @@ export const UserConf = {
             }
         },
         managerCreate: {
-            path: '/manager/add',
+            path: '/managers/add',
             render: function (key, path) {
                 return <Route
                     key={key}
@@ -126,7 +130,7 @@ export const UserConf = {
             }
         },
         managerEdit: {
-            path: '/manager/:id',
+            path: '/managers/:id',
             match: {
                 id: RouteType.integer,
             },
@@ -152,7 +156,10 @@ export const UserConf = {
                     path={path}
                     element={
                         <AppLayout>
-                            <OrdersPage filter={FiltersOrders.filterNew}/>
+                            <OrdersPage
+                                icon={NewReleasesOutlined}
+                                filter={OrderState.NEW}
+                            />
                         </AppLayout>
                     }
                 />
@@ -167,7 +174,10 @@ export const UserConf = {
                     path={path}
                     element={
                         <AppLayout>
-                            <OrdersPage filter={FiltersOrders.filterPending}/>
+                            <OrdersPage
+                                icon={PendingActionsOutlined}
+                                filter={OrderState.PENDING}
+                            />
                         </AppLayout>
                     }
                 />
@@ -182,7 +192,73 @@ export const UserConf = {
                     path={path}
                     element={
                         <AppLayout>
-                            <OrdersPage filter={FiltersOrders.filterCompleted}/>
+                            <OrdersPage
+                                icon={VerifiedOutlined}
+                                filter={OrderState.COMPLETED}
+                            />
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        orderNewView: {
+            path: '/orders/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <OrderViewPage
+                                icon={NewReleasesOutlined}
+                                filter={OrderState.NEW}
+                            />
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        orderPendingView: {
+            path: '/orders/pending/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <OrderViewPage
+                                icon={PendingActionsOutlined}
+                                filter={OrderState.PENDING}
+                            />
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        orderCompletedView: {
+            path: '/orders/completed/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <OrderViewPage
+                                icon={VerifiedOutlined}
+                                filter={OrderState.COMPLETED}
+                            />
                         </AppLayout>
                     }
                 />
@@ -204,7 +280,7 @@ export const UserConf = {
             }
         },
         productCreate: {
-            path: '/product/add',
+            path: '/products/add',
             render: function (key, path) {
                 return <Route
                     key={key}
@@ -219,7 +295,7 @@ export const UserConf = {
             }
         },
         productEdit: {
-            path: '/product/:id',
+            path: '/products/:id',
             match: {
                 id: RouteType.integer,
             },

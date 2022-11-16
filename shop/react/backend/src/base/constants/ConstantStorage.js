@@ -9,4 +9,5 @@ export const ConstantStorage = {
     HelpPage: "HelpPage",
     CategoriesPage: "CategoriesPage",
     ProductsPage: "ProductsPage",
+    OrdersPage: "OrdersPage",
 };

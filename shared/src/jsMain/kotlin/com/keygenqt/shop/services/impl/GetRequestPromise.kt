@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.services.impl
 
+import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
@@ -52,19 +53,9 @@ class GetRequestPromise(private val client: ServiceRequest) {
     fun product(id: Int) = wrapPromise { client.get.product(id) }
 
     /**
-     * Override [GetRequest.ordersNew] for JS
+     * Override [GetRequest.orders] for JS
      */
-    fun ordersNew() = wrapPromise { client.get.ordersNew() }
-
-    /**
-     * Override [GetRequest.ordersNew] for JS
-     */
-    fun ordersPending() = wrapPromise { client.get.ordersPending() }
-
-    /**
-     * Override [GetRequest.ordersCompleted] for JS
-     */
-    fun ordersCompleted() = wrapPromise { client.get.ordersCompleted() }
+    fun orders(filter: OrderState) = wrapPromise { client.get.orders(filter) }
 
     /**
      * Override [GetRequest.order] for JS

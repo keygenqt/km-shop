@@ -50,13 +50,13 @@ export const MenuConf = [
                 icon: CategoryOutlined,
                 title: 'Categories',
                 link: '/categories',
-                links: ['/categories', '/category/:id']
+                links: ['/categories', '/categories/:id']
             },
             {
                 icon: FolderOutlined,
                 title: 'Products',
                 link: '/products',
-                links: ['/products', '/product/:id']
+                links: ['/products', '/products/:id']
             },
         ]
     },
@@ -73,19 +73,19 @@ export const MenuConf = [
                 icon: NewReleasesOutlined,
                 title: 'New',
                 link: '/orders',
-                links: ['/orders']
+                links: ['/orders', '/orders/:id']
             },
             {
                 icon: PendingActionsOutlined,
                 title: 'Pending',
                 link: '/orders/pending',
-                links: ['/orders/pending']
+                links: ['/orders/pending', '/orders/pending/:id']
             },
             {
                 icon: VerifiedOutlined,
                 title: 'Completed',
                 link: '/orders/completed',
-                links: ['/orders/completed']
+                links: ['/orders/completed', '/orders/completed/:id']
             },
         ]
     },
@@ -102,7 +102,7 @@ export const MenuConf = [
                 icon: PeopleOutlined,
                 title: 'Managers',
                 link: '/managers',
-                links: ['/managers', '/manager/:id']
+                links: ['/managers', '/managers/:id']
             },
             {
                 icon: SwapCallsOutlined,

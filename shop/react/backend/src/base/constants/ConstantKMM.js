@@ -4,6 +4,11 @@ import {ConstantConf} from "../../conf/app/ConstantConf";
 const greeting = new shared.com.keygenqt.shop.Greeting().greeting()
 
 /**
+ * OrderState
+ */
+export const OrderState = shared.com.keygenqt.shop.data.responses.OrderState
+
+/**
  * Ktor client
  */
 export const HttpClient = new shared.com.keygenqt.shop.services.ServiceRequestJS(ConstantConf.publicPath)

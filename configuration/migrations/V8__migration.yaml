@@ -4,7 +4,7 @@
 # email/phone client
 # state - NEW/PENDING/COMPLETED
 orders:
-  - email: order@gmail.com
+  - email: order1@gmail.com
     state: NEW
     products:
       - id: 1
@@ -12,7 +12,7 @@ orders:
       - id: 2
         count: 1
 
-  - email: order@gmail.com
+  - email: order2@gmail.com
     state: NEW
     products:
       - id: 1
@@ -20,7 +20,7 @@ orders:
       - id: 2
         count: 2
 
-  - phone: "+16505130511"
+  - phone: "+16505130513"
     state: NEW
     products:
       - id: 5
@@ -28,7 +28,7 @@ orders:
       - id: 3
         count: 1
 
-  - phone: "+16505130511"
+  - phone: "+16505130514"
     state: PENDING
     products:
       - id: 4
@@ -36,7 +36,7 @@ orders:
       - id: 6
         count: 2
 
-  - email: order@gmail.com
+  - email: order5@gmail.com
     state: PENDING
     products:
       - id: 9
@@ -44,7 +44,7 @@ orders:
       - id: 7
         count: 1
 
-  - email: order@gmail.com
+  - email: order6@gmail.com
     state: COMPLETED
     products:
       - id: 5
@@ -52,7 +52,7 @@ orders:
       - id: 2
         count: 1
 
-  - phone: "+16505130511"
+  - phone: "+16505130517"
     state: COMPLETED
     products:
       - id: 8
