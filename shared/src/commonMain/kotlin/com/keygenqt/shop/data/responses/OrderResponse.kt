@@ -27,6 +27,17 @@ enum class OrderState {
 }
 
 /**
+ * Response order info
+ */
+@JsExport
+@Serializable
+data class OrderProductResponse(
+    val price: Double,
+    val count: Int,
+    val product: ProductResponse,
+)
+
+/**
  * Response user orders
  */
 @JsExport
@@ -36,6 +47,35 @@ data class OrderResponse(
     val email: String,
     val phone: String,
     val state: OrderState,
+    val products: Array<OrderProductResponse>,
     val createAt: String,
     val updateAt: String,
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as OrderResponse
+
+        if (id != other.id) return false
+        if (email != other.email) return false
+        if (phone != other.phone) return false
+        if (state != other.state) return false
+        if (!products.contentEquals(other.products)) return false
+        if (createAt != other.createAt) return false
+        if (updateAt != other.updateAt) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + email.hashCode()
+        result = 31 * result + phone.hashCode()
+        result = 31 * result + state.hashCode()
+        result = 31 * result + products.contentHashCode()
+        result = 31 * result + createAt.hashCode()
+        result = 31 * result + updateAt.hashCode()
+        return result
+    }
+}

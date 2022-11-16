@@ -1,5 +1,7 @@
 package com.keygenqt.shop.db.entities
 
+import com.keygenqt.shop.data.responses.OrderProductResponse
+import com.keygenqt.shop.data.responses.OrderResponse
 import com.keygenqt.shop.db.base.IntSubQueryEntityClass
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID
@@ -25,4 +27,20 @@ class OrderProductEntity(id: EntityID<Int>) : IntEntity(id) {
     var count by OrderProducts.count
 
     var product by ProductEntity referencedOn OrderProducts.productID
+}
+
+/**
+ * Convert to [OrderResponse]
+ */
+fun OrderProductEntity.toModel() = OrderProductResponse(
+    price = price,
+    count = count,
+    product = product.toModel(),
+)
+
+/**
+ * Convert to [List]
+ */
+fun Iterable<OrderProductEntity>.toModels(): List<OrderProductResponse> {
+    return map { it.toModel() }
 }

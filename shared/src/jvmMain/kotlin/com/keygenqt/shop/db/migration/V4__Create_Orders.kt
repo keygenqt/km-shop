@@ -16,7 +16,6 @@
 package com.keygenqt.shop.db.migration
 
 import com.keygenqt.shop.db.entities.OrderInfo
-import com.keygenqt.shop.db.entities.OrderProducts
 import com.keygenqt.shop.db.entities.Orders
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
@@ -29,7 +28,7 @@ class V4__Create_Orders : BaseJavaMigration() {
         transaction {
             SchemaUtils.create(Orders)
             SchemaUtils.create(OrderInfo)
-            SchemaUtils.create(OrderProducts)
+            SchemaUtils.create(OrderInfo)
         }
     }
 }

@@ -56,7 +56,7 @@ class OrderEntity(id: EntityID<Int>) : IntEntity(id) {
     var createAt by Orders.createAt
     var updateAt by Orders.updateAt
 
-    var info by OrderProductEntity via OrderInfo
+    var products by OrderProductEntity via OrderInfo
 }
 
 /**
@@ -67,6 +67,7 @@ fun OrderEntity.toModel() = OrderResponse(
     email = email,
     phone = phone,
     state = state,
+    products = products.toModels().toTypedArray(),
     createAt = createAt.toUTC(),
     updateAt = updateAt.toUTC(),
 )

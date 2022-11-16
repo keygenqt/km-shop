@@ -33,7 +33,7 @@ object MigrationHelper {
                     OrderProductEntity.new {
                         productID = product.id
                         count = products.first { (it["id"] as Int) == product.id.value }["count"] as Int
-                        price = product.price * count
+                        price = product.price
                     }
                 )
             }
@@ -45,7 +45,7 @@ object MigrationHelper {
                 this.state = OrderState.valueOf(state)
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()
-                this.info = SizedCollection(*orderProducts.toList().toTypedArray())
+                this.products = SizedCollection(*orderProducts.toList().toTypedArray())
             }
         }
     }
