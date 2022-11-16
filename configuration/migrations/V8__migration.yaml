@@ -1,19 +1,61 @@
 ### Configuration data migration
 
-### Host for generate link image
-host: http://localhost:8086
+### Orders data
+# email/phone client
+# state - NEW/PENDING/COMPLETED
+orders:
+  - email: order@gmail.com
+    state: NEW
+    products:
+      - id: 1
+        count: 1
+      - id: 2
+        count: 1
 
-### Product data
-# categoryKey - key category or categoryID
-# name - name product
-# description - description product
-# image - file path for upload
-# price - price double
-# isPublished - if enable product
-products:
-  - categoryID: 3
-    name: Ободок красота
-    description: Крутой ободок для крутых карапузов.
-    image: configuration/migrations/data/product/DSC_0093.png
-    price: 3200.20
-    isPublished: true
+  - email: order@gmail.com
+    state: NEW
+    products:
+      - id: 1
+        count: 2
+      - id: 2
+        count: 2
+
+  - phone: "+16505130511"
+    state: NEW
+    products:
+      - id: 5
+        count: 4
+      - id: 3
+        count: 1
+
+  - phone: "+16505130511"
+    state: PENDING
+    products:
+      - id: 4
+        count: 1
+      - id: 6
+        count: 2
+
+  - email: order@gmail.com
+    state: PENDING
+    products:
+      - id: 9
+        count: 1
+      - id: 7
+        count: 1
+
+  - email: order@gmail.com
+    state: COMPLETED
+    products:
+      - id: 5
+        count: 5
+      - id: 2
+        count: 1
+
+  - phone: "+16505130511"
+    state: COMPLETED
+    products:
+      - id: 8
+        count: 1
+      - id: 2
+        count: 1

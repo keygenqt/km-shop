@@ -26,15 +26,14 @@ import java.io.File
 @Suppress("unused", "ClassName")
 class V8__Create_DemoData : BaseJavaMigration() {
     override fun migrate(context: Context?) {
+
+        val configuration = Yaml().load<Map<String, Any>>(
+            File("configuration/migrations/V8__migration.yaml").readText()
+        )
+
         transaction {
-
-            val configuration = Yaml().load<Map<String, Any>>(
-                File("configuration/migrations/V8__migration.yaml").readText()
-            )
-
-            MigrationHelper.insertProducts(
-                host = configuration["host"] as String,
-                products = configuration["products"] as List<*>,
+            MigrationHelper.insertOrders(
+                orders = configuration["orders"] as List<*>,
             )
         }
     }

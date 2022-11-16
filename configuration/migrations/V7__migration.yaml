@@ -129,3 +129,36 @@ products:
     image: configuration/migrations/data/product/DSC_0072.png
     price: 900.50
     isPublished: true
+
+  - categoryID: 3
+    name: Ободок красота
+    description: Крутой ободок для крутых карапузов.
+    image: configuration/migrations/data/product/DSC_0093.png
+    price: 3200.20
+    isPublished: true
+
+### Messages to help desk
+# email - email client
+# message - message client for help
+messages:
+  - email: client1@gmail.com
+    message: Здавсвуйте! А вы можете сделать доставку в Мумба-Юмбу?
+
+  - email: client2@gmail.com
+    message: Привет. А можено получить скидку 100%. 
+             Просто нет бабосов а очень хочется быть круче всех.
+
+  - email: client3@gmail.com
+    message: Хелло. Я пишу из америки. Можем ли мы наладить поставки в эту страну?
+
+  - email: client4@gmail.com
+    message: Привет. Мне 20 лет могу ли я сейчас носить еще бантики? 
+             Мама говорит что нет, как вы считаете?
+
+  - email: client5@gmail.com
+    message: Привет. Пишу просто так. Как дела? 
+             Мне вот скучно я и пишу письма всем подряд.
+
+  - email: client6@gmail.com
+    message: Здавсвуйте. А вы можете сделать бантик метр на метр?
+             Мне нужен для моего сына великана.

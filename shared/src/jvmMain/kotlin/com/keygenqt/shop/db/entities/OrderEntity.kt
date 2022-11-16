@@ -38,12 +38,10 @@ object Orders : IntIdTable() {
 /**
  * References table
  */
-object OrderProducts : Table() {
+object OrderInfo : Table() {
     val order = reference("order", Orders)
-    val product = reference("product", Products)
-    val price = double("price")
-    val count = integer("count")
-    override val primaryKey = PrimaryKey(order, product, name = "PK_orderProducts_p_u")
+    val products = reference("products", OrderProducts)
+    override val primaryKey = PrimaryKey(order, products, name = "PK_orderProducts_o_p")
 }
 
 /**
@@ -58,7 +56,7 @@ class OrderEntity(id: EntityID<Int>) : IntEntity(id) {
     var createAt by Orders.createAt
     var updateAt by Orders.updateAt
 
-    var products by ProductEntity via OrderProducts
+    var info by OrderProductEntity via OrderInfo
 }
 
 /**

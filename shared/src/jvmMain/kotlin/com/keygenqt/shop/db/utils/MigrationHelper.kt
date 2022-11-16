@@ -1,16 +1,74 @@
 package com.keygenqt.shop.db.utils
 
 import com.keygenqt.shop.data.responses.AdminRole
-import com.keygenqt.shop.db.entities.Admins
-import com.keygenqt.shop.db.entities.Categories
-import com.keygenqt.shop.db.entities.CategoryEntity
-import com.keygenqt.shop.db.entities.ProductEntity
+import com.keygenqt.shop.data.responses.OrderState
+import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.extension.createFileUpload
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.insert
 
 object MigrationHelper {
+
+    /**
+     * Insert messages by yml config
+     */
+    fun insertOrders(orders: List<*>) {
+        orders.forEach { item ->
+            item as Map<*, *>
+            // load variable
+            val email = item["email"]?.let { it as String }
+            val phone = item["phone"]?.let { it as String }
+            val state = item["state"] as String
+            val products = (item["products"] as List<*>).map { it as Map<*, *> }
+
+            val productsEntities = ProductEntity.find {
+                (Products.id inList products.map { it["id"] as Int })
+            }
+
+            val orderProducts = mutableListOf<OrderProductEntity>()
+
+            productsEntities.forEach { product ->
+                orderProducts.add(
+                    OrderProductEntity.new {
+                        productID = product.id
+                        count = products.first { (it["id"] as Int) == product.id.value }["count"] as Int
+                        price = product.price * count
+                    }
+                )
+            }
+
+            // create user
+            OrderEntity.new {
+                this.email = email ?: ""
+                this.phone = phone ?: ""
+                this.state = OrderState.valueOf(state)
+                this.createAt = System.currentTimeMillis()
+                this.updateAt = System.currentTimeMillis()
+                this.info = SizedCollection(*orderProducts.toList().toTypedArray())
+            }
+        }
+    }
+
+    /**
+     * Insert messages by yml config
+     */
+    fun insertMessages(messages: List<*>) {
+        messages.forEach { item ->
+            item as Map<*, *>
+            // load variable
+            val email = item["email"] as String
+            val message = item["message"] as String
+
+            // create user
+            Messages.insert {
+                it[Messages.email] = email
+                it[Messages.message] = message
+                it[createAt] = System.currentTimeMillis()
+                it[updateAt] = System.currentTimeMillis()
+            }
+        }
+    }
 
     /**
      * Insert admins by yml config
@@ -80,12 +138,11 @@ object MigrationHelper {
             item as Map<*, *>
 
             // get id category
-            val entityID =  item["categoryKey"]
+            val entityID = item["categoryKey"]
                 ?.let { categoriesIds[it as String]!! }
                 ?: EntityID(item["categoryID"] as Int, Categories)
 
             // load variable
-            val categoryID = item["categoryID"]
             val name = item["name"] as String
             val description = item["description"] as String
             val price = item["price"] as Double
