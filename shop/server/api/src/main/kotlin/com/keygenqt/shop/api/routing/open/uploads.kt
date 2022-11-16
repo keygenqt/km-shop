@@ -23,12 +23,13 @@ import io.ktor.server.routing.*
 import java.io.File
 
 fun Route.uploads() {
-    // get file
     get("/uploads/{name}") {
+        // get request
         val name = call.getStringParam()
+        // act
         val file = File("uploads/$name")
-        if (file.exists()) {
-            call.respondFile(file)
-        } else throw Exceptions.NotFound()
+        if (!file.exists()) throw Exceptions.NotFound()
+        // response
+        call.respondFile(file)
     }
 }

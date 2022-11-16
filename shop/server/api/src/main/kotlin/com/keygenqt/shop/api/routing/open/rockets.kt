@@ -27,10 +27,11 @@ fun Route.rockets() {
     val rocketsService: RocketsService by inject()
 
     get("/rockets") {
-        call.respond(
-            rocketsService.transaction {
-                getAllLaunchSuccess().toModels()
-            }
-        )
+        // act
+        val entities = rocketsService.transaction {
+            getAllLaunchSuccess().toModels()
+        }
+        // response
+        call.respond(entities)
     }
 }

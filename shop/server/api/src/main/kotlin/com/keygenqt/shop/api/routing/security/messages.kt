@@ -27,10 +27,11 @@ fun Route.messages() {
     val messagesService: MessagesService by inject()
 
     get("/messages") {
-        call.respond(
-            messagesService.transaction {
-                getAll().toModels()
-            }
-        )
+        // act
+        val entities = messagesService.transaction {
+            getAll().toModels()
+        }
+        // response
+        call.respond(entities)
     }
 }

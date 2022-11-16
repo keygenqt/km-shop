@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.db.service
 
+import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.OrderEntity
 import com.keygenqt.shop.db.entities.Orders
@@ -26,9 +27,35 @@ class OrdersService(
 ) : IService<OrdersService> {
 
     /**
+     * Get entity by ID
+     */
+    fun findById(id: Int) = OrderEntity.findById(id)
+
+    /**
      * Get all entities
      */
     fun getAll() = OrderEntity
         .all()
+        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
+     * Get all [OrderState.NEW] entities
+     */
+    fun getAllNew() = OrderEntity
+        .find { (Orders.state eq OrderState.NEW) }
+        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
+     * Get all [OrderState.PENDING] entities
+     */
+    fun getAllPending() = OrderEntity
+        .find { (Orders.state eq OrderState.PENDING) }
+        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
+     * Get all [OrderState.COMPLETED] entities
+     */
+    fun getAllCompleted() = OrderEntity
+        .find { (Orders.state eq OrderState.COMPLETED) }
         .orderBy(Pair(Orders.createAt, SortOrder.DESC))
 }

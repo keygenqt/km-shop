@@ -79,6 +79,7 @@ fun Route.uploads() {
 
         // delete file
         delete("/{name}") {
+            // get request
             val name = call.getStringParam()
             // delete db row
             uploadsService.transaction {

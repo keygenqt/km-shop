@@ -32,34 +32,42 @@ fun Route.products() {
     val productsService: ProductsService by inject()
 
     get("/products") {
-        call.respond(
-            productsService.transaction {
-                getAll().toModels()
-            }
-        )
+        // act
+        val entities = productsService.transaction {
+            getAll().toModels()
+        }
+        // response
+        call.respond(entities)
     }
 
     get("/products/uploads") {
-        call.respond(
-            productsService.transaction {
-                getAll().toModelsWithUploads()
-            }
-        )
+        // act
+        val entities = productsService.transaction {
+            getAll().toModelsWithUploads()
+        }
+        // response
+        call.respond(entities)
     }
 
     get("/products/{id}") {
-        call.respond(
-            productsService.transaction {
-                getById(call.getNumberParam())?.toModel() ?: throw Exceptions.NotFound()
-            }
-        )
+        // get request
+        val id = call.getNumberParam()
+        // act
+        val entity = productsService.transaction {
+            getById(id)?.toModel() ?: throw Exceptions.NotFound()
+        }
+        // response
+        call.respond(entity)
     }
 
     get("/products/uploads/{id}") {
-        call.respond(
-            productsService.transaction {
-                getById(call.getNumberParam())?.toModelWithUploads() ?: throw Exceptions.NotFound()
-            }
-        )
+        // get request
+        val id = call.getNumberParam()
+        // act
+        val entity = productsService.transaction {
+            getById(id)?.toModelWithUploads() ?: throw Exceptions.NotFound()
+        }
+        // response
+        call.respond(entity)
     }
 }

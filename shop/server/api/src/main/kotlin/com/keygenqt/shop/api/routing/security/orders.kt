@@ -15,6 +15,9 @@
  */
 package com.keygenqt.shop.api.routing.security
 
+import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.OrdersService
 import io.ktor.server.application.*
@@ -26,11 +29,48 @@ fun Route.orders() {
 
     val ordersService: OrdersService by inject()
 
-    get("/orders") {
-        call.respond(
-            ordersService.transaction {
+    route("/orders") {
+        get("/{id}") {
+            // get request
+            val id = call.getNumberParam()
+            // act
+            val entity = ordersService.transaction {
+                findById(id)?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(entity)
+        }
+        get {
+            // act
+            val entities = ordersService.transaction {
                 getAll().toModels()
             }
-        )
+            // response
+            call.respond(entities)
+        }
+        get("/new") {
+            // act
+            val entities = ordersService.transaction {
+                getAllNew().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/pending") {
+            // act
+            val entities = ordersService.transaction {
+                getAllPending().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/completed") {
+            // act
+            val entities = ordersService.transaction {
+                getAllCompleted().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
     }
 }

@@ -27,10 +27,11 @@ fun Route.categories() {
     val categoriesService: CategoriesService by inject()
 
     get("/categories") {
-        call.respond(
-            categoriesService.transaction {
-                getAllPublished().toModels()
-            }
-        )
+        // act
+        val entities = categoriesService.transaction {
+            getAllPublished().toModels()
+        }
+        // response
+        call.respond(entities)
     }
 }
