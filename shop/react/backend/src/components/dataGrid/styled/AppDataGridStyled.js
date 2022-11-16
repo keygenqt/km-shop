@@ -41,9 +41,19 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
         minWidth: '200px !important',
         maxWidth: 'inherit !important'
     },
+    '& .MuiDataGrid-With95': {
+        width: '95px !important',
+        minWidth: '95px !important',
+        maxWidth: 'inherit !important'
+    },
     '& .MuiDataGrid-With90': {
         width: '90px !important',
         minWidth: '90px !important',
+        maxWidth: 'inherit !important'
+    },
+    '& .MuiDataGrid-With85': {
+        width: '85px !important',
+        minWidth: '85px !important',
         maxWidth: 'inherit !important'
     },
     '& .MuiDataGrid-With80': {
@@ -51,14 +61,29 @@ export const AppDataGridStyled = styled(DataGrid)(({theme}) => ({
         minWidth: '80px !important',
         maxWidth: 'inherit !important'
     },
+    '& .MuiDataGrid-With75': {
+        width: '75px !important',
+        minWidth: '75px !important',
+        maxWidth: 'inherit !important'
+    },
     '& .MuiDataGrid-With70': {
         width: '70px !important',
         minWidth: '70px !important',
         maxWidth: 'inherit !important'
     },
+    '& .MuiDataGrid-With65': {
+        width: '65px !important',
+        minWidth: '65px !important',
+        maxWidth: 'inherit !important'
+    },
     '& .MuiDataGrid-With60': {
         width: '60px !important',
         minWidth: '60px !important',
+        maxWidth: 'inherit !important'
+    },
+    '& .MuiDataGrid-With55': {
+        width: '55px !important',
+        minWidth: '55px !important',
         maxWidth: 'inherit !important'
     },
     '& .MuiDataGrid-With50': {

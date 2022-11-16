@@ -16,7 +16,9 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.AdminUpdateRequest
+import com.keygenqt.shop.data.requests.CategoryRequest
 import com.keygenqt.shop.data.requests.MessageRequest
+import com.keygenqt.shop.data.requests.ProductRequest
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
@@ -24,13 +26,33 @@ import com.keygenqt.shop.services.ServiceRequest
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class PutRequestPromise(private val client: ServiceRequest) {
     /**
-     * Override [PutRequest.messages] for JS
+     * Override [PutRequest.message] for JS
      */
-    fun messages(
+    fun message(
         id: Int,
         request: MessageRequest
     ) = wrapPromise {
-        client.put.messages(id, request)
+        client.put.message(id, request)
+    }
+
+    /**
+     * Override [PutRequest.category] for JS
+     */
+    fun category(
+        id: Int,
+        request: CategoryRequest
+    ) = wrapPromise {
+        client.put.category(id, request)
+    }
+
+    /**
+     * Override [PutRequest.product] for JS
+     */
+    fun product(
+        id: Int,
+        request: ProductRequest
+    ) = wrapPromise {
+        client.put.product(id, request)
     }
 
     /**

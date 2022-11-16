@@ -13,7 +13,7 @@ let timeoutList
 export function HelpPage() {
 
     // navigate app
-    const {route, routes} = useContext(NavigateContext)
+    const {route} = useContext(NavigateContext)
 
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.HelpPage, {
@@ -103,6 +103,41 @@ export function HelpPage() {
                             rows={data}
                             columns={[
                                 {
+                                    minWidth: 0,
+                                    field: 'message',
+                                    headerName: 'Message'
+                                },
+                                {
+                                    field: 'isChecked',
+                                    headerName: 'Checked',
+                                    minWidth: 80,
+                                    disableColumnMenu: true,
+                                    sortable: false,
+                                    renderCell: (params) => {
+                                        return <Switch
+                                            sx={{
+                                                marginLeft: '-4px',
+                                            }}
+                                            checked={Boolean(params.row.isChecked)}
+                                            onChange={(event, checked) => {
+                                                setError(null)
+                                                setLoading(true)
+                                                params.row.isChecked = checked
+                                                HttpClient.put.message(params.row.id, new Requests.MessageRequest(
+                                                    params.row.email,
+                                                    params.row.message,
+                                                    params.row.isChecked,
+                                                )).then(async (response) => {
+                                                    setRefresh(!refresh)
+                                                }).catch(async (response) => {
+                                                    setError(response.message)
+                                                    setLoading(false)
+                                                });
+                                            }}
+                                        />
+                                    }
+                                },
+                                {
                                     minWidth: 90,
                                     field: 'actions',
                                     type: 'actions',
@@ -126,41 +161,6 @@ export function HelpPage() {
                                             )} label="Read"/>
                                         ),
                                     ]
-                                },
-                                {
-                                    minWidth: 0,
-                                    field: 'message',
-                                    headerName: 'Message'
-                                },
-                                {
-                                    field: 'isChecked',
-                                    headerName: 'Checked',
-                                    minWidth: 80,
-                                    disableColumnMenu: true,
-                                    sortable: false,
-                                    renderCell: (params) => {
-                                        return <Switch
-                                            sx={{
-                                                marginLeft: '-4px',
-                                            }}
-                                            checked={Boolean(params.row.isChecked)}
-                                            onChange={(event, checked) => {
-                                                setError(null)
-                                                setLoading(true)
-                                                params.row.isChecked = checked
-                                                HttpClient.put.messages(params.row.id, new Requests.MessageRequest(
-                                                    params.row.email,
-                                                    params.row.message,
-                                                    params.row.isChecked,
-                                                )).then(async (response) => {
-                                                    setRefresh(!refresh)
-                                                }).catch(async (response) => {
-                                                    setError(response.message)
-                                                    setLoading(false)
-                                                });
-                                            }}
-                                        />
-                                    }
                                 },
                             ]}
                         />

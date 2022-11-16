@@ -50,6 +50,8 @@ class MessagesService(
         this.email = email
         this.message = message
         this.isChecked = isChecked
+        this.createAt = System.currentTimeMillis()
+        this.updateAt = System.currentTimeMillis()
     }
 
     /**
@@ -63,6 +65,7 @@ class MessagesService(
         entity.email = email
         entity.message = message
         entity.isChecked = isChecked
+        entity.updateAt = System.currentTimeMillis()
         entity
     }
 }

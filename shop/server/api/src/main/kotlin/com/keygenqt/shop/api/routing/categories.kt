@@ -16,17 +16,36 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.checkRoleAuth
-import com.keygenqt.shop.api.extension.checkRoleFull
-import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.db.entities.CategoryEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.CategoriesService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
+
+/**
+ * Request update [CategoryEntity]
+ */
+@Serializable
+data class CategoryRequest(
+    @field:NotNull
+    @field:Size(max = 255, message = "Max size must 255")
+    val image: String,
+
+    @field:NotNull
+    @field:Size(min = 3, max = 255, message = "Size must be between 3 and 255")
+    val name: String,
+
+    @field:NotNull
+    val isPublished: Boolean
+)
 
 fun Route.categories() {
 
@@ -54,6 +73,40 @@ fun Route.categories() {
             // act
             val response = categoriesService.transaction {
                 findById(id)?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
+        }
+
+        post {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val request = call.receiveValidate<CategoryRequest>()
+            // act
+            val response = categoriesService.transaction {
+                insert(
+                    name = request.name,
+                    image = request.image,
+                    isPublished = request.isPublished,
+                ).toModel()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<CategoryRequest>()
+            // act
+            val response = categoriesService.transaction {
+                findById(id)?.update(
+                    name = request.name,
+                    image = request.image,
+                    isPublished = request.isPublished,
+                )?.toModel() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)

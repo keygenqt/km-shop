@@ -45,4 +45,34 @@ class CategoriesService(
     fun getAllPublished() = CategoryEntity
         .find { (Categories.isPublished eq true) }
         .orderBy(Pair(Categories.name, SortOrder.ASC))
+
+    /**
+     * Create entity
+     */
+    fun insert(
+        name: String,
+        image: String,
+        isPublished: Boolean,
+    ) = CategoryEntity.new {
+        this.name = name
+        this.image = image
+        this.isPublished = isPublished
+        this.createAt = System.currentTimeMillis()
+        this.updateAt = System.currentTimeMillis()
+    }
+
+    /**
+     * Update entity
+     */
+    fun CategoryEntity.update(
+        name: String,
+        image: String,
+        isPublished: Boolean,
+    ) = let { entity ->
+        entity.name = name
+        entity.image = image
+        entity.isPublished = isPublished
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
 }

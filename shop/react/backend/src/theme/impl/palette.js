@@ -36,7 +36,7 @@ export const palette = () => {
         },
         success: {
             light: '#ccffca',
-            main: '#69c267',
+            main: '#4aad49',
             dark: '#317731',
         },
         gray: {

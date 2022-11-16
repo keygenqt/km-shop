@@ -16,14 +16,30 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
+import com.keygenqt.shop.db.entities.Categories
 import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.Products
 import com.keygenqt.shop.interfaces.IService
+import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SortOrder
 
 class ProductsService(
     override val db: DatabaseMysql
 ) : IService<ProductsService> {
+
+    /**
+     * Find entity by id
+     */
+    fun findById(
+        id: Int
+    ) = ProductEntity.findById(id)
+
+    /**
+     * Get all entities for guest
+     */
+    fun findByIdPublished(id: Int) = ProductEntity
+        .findById(id)
+        ?.let { if (it.category.isPublished && it.isPublished) it else null }
 
     /**
      * Get all entities
@@ -41,14 +57,44 @@ class ProductsService(
         .filter { it.category.isPublished }
 
     /**
-     * Get entity by ID
+     * Create entity
      */
-    fun getById(id: Int) = ProductEntity.findById(id)
+    fun insert(
+        categoryID: Int,
+        image: String,
+        name: String,
+        description: String,
+        price: Double,
+        isPublished: Boolean,
+    ) = ProductEntity.new {
+        this.categoryID = EntityID(categoryID, Categories)
+        this.image = image
+        this.name = name
+        this.description = description
+        this.price = price
+        this.isPublished = isPublished
+        this.createAt = System.currentTimeMillis()
+        this.updateAt = System.currentTimeMillis()
+    }
 
     /**
-     * Get all entities for guest
+     * Update entity
      */
-    fun getByIdPublished(id: Int) = ProductEntity
-        .findById(id)
-        ?.let { if (it.category.isPublished && it.isPublished) it else null }
+    fun ProductEntity.update(
+        categoryID: Int,
+        image: String,
+        name: String,
+        description: String,
+        price: Double,
+        isPublished: Boolean,
+    ) = let { entity ->
+        entity.categoryID = EntityID(categoryID, Categories)
+        entity.image = image
+        entity.name = name
+        entity.description = description
+        entity.price = price
+        entity.isPublished = isPublished
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
 }

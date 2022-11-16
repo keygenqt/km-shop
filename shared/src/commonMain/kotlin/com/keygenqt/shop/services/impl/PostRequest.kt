@@ -15,11 +15,11 @@
  */
 package com.keygenqt.shop.services.impl
 
-import com.keygenqt.shop.data.requests.AdminCreateRequest
-import com.keygenqt.shop.data.requests.LoginRequest
-import com.keygenqt.shop.data.requests.MessageRequest
+import com.keygenqt.shop.data.requests.*
 import com.keygenqt.shop.data.responses.AdminResponse
+import com.keygenqt.shop.data.responses.CategoryResponse
 import com.keygenqt.shop.data.responses.MessageResponse
+import com.keygenqt.shop.data.responses.ProductResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -32,22 +32,40 @@ class PostRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun login(request: LoginRequest): AdminResponse {
-        return client.post("api/login") {
-            setBody(request)
-        }.body()
+        return client.post("api/login") { setBody(request) }.body()
     }
 
     /**
-     * Update message method
+     * Create message method
      */
     @Throws(Exception::class)
-    suspend fun messages(
+    suspend fun message(
         id: Int,
         request: MessageRequest
     ): MessageResponse {
-        return client.post("api/messages/$id") {
-            setBody(request)
-        }.body()
+        return client.post("api/messages/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Create category method
+     */
+    @Throws(Exception::class)
+    suspend fun category(
+        id: Int,
+        request: CategoryRequest
+    ): CategoryResponse {
+        return client.post("api/categories/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Create product method
+     */
+    @Throws(Exception::class)
+    suspend fun product(
+        id: Int,
+        request: ProductRequest
+    ): ProductResponse {
+        return client.post("api/products/$id") { setBody(request) }.body()
     }
 
     /**
@@ -58,8 +76,6 @@ class PostRequest(private val client: HttpClient) {
         id: Int,
         request: AdminCreateRequest
     ): AdminResponse {
-        return client.post("api/admins/$id") {
-            setBody(request)
-        }.body()
+        return client.post("api/admins/$id") { setBody(request) }.body()
     }
 }

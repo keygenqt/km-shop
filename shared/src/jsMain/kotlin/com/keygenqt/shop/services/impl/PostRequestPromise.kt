@@ -15,9 +15,7 @@
  */
 package com.keygenqt.shop.services.impl
 
-import com.keygenqt.shop.data.requests.AdminCreateRequest
-import com.keygenqt.shop.data.requests.LoginRequest
-import com.keygenqt.shop.data.requests.MessageRequest
+import com.keygenqt.shop.data.requests.*
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
@@ -32,13 +30,33 @@ class PostRequestPromise(private val client: ServiceRequest) {
     }
 
     /**
-     * Override [PostRequest.messages] for JS
+     * Override [PostRequest.message] for JS
      */
-    fun messages(
+    fun message(
         id: Int,
         request: MessageRequest
     ) = wrapPromise {
-        client.post.messages(id, request)
+        client.post.message(id, request)
+    }
+
+    /**
+     * Override [PostRequest.category] for JS
+     */
+    fun category(
+        id: Int,
+        request: CategoryRequest
+    ) = wrapPromise {
+        client.post.category(id, request)
+    }
+
+    /**
+     * Override [PostRequest.product] for JS
+     */
+    fun product(
+        id: Int,
+        request: ProductRequest
+    ) = wrapPromise {
+        client.post.product(id, request)
     }
 
     /**

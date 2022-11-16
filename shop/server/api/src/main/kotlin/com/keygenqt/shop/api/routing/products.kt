@@ -16,16 +16,51 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
+import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.ProductsService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Positive
+import jakarta.validation.constraints.Size
+import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
+
+/**
+ * Request update [ProductEntity]
+ */
+@Serializable
+data class ProductRequest(
+    @field:NotNull
+    val categoryID: Int,
+
+    @field:NotNull
+    @field:Size(max = 255, message = "Max size must 255")
+    val image: String,
+
+    @field:NotNull
+    @field:Size(min = 3, max = 255, message = "Size must be between 3 and 255")
+    val name: String,
+
+    @field:NotNull
+    @field:Size(min = 3, max = 1000, message = "Size must be between 3 and 1000")
+    val description: String,
+
+    @field:NotNull
+    @field:Positive
+    val price: Double,
+
+    @field:NotNull
+    val isPublished: Boolean
+)
 
 fun Route.products() {
 
@@ -53,12 +88,51 @@ fun Route.products() {
             // act
             val entity = productsService.transaction {
                 when (role) {
-                    AdminRole.GUEST -> getByIdPublished(id)
-                    else -> getById(id)
+                    AdminRole.GUEST -> findByIdPublished(id)
+                    else -> findById(id)
                 }?.toModel() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(entity)
+        }
+        post {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val request = call.receiveValidate<ProductRequest>()
+            // act
+            val response = productsService.transaction {
+                insert(
+                    categoryID = request.categoryID,
+                    image = request.image,
+                    name = request.name,
+                    description = request.description,
+                    price = request.price,
+                    isPublished = request.isPublished,
+                ).toModel()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<ProductRequest>()
+            // act
+            val response = productsService.transaction {
+                findById(id)?.update(
+                    categoryID = request.categoryID,
+                    image = request.image,
+                    name = request.name,
+                    description = request.description,
+                    price = request.price,
+                    isPublished = request.isPublished,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
         }
     }
 }

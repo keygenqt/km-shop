@@ -16,9 +16,13 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.AdminUpdateRequest
+import com.keygenqt.shop.data.requests.CategoryRequest
 import com.keygenqt.shop.data.requests.MessageRequest
+import com.keygenqt.shop.data.requests.ProductRequest
 import com.keygenqt.shop.data.responses.AdminResponse
+import com.keygenqt.shop.data.responses.CategoryResponse
 import com.keygenqt.shop.data.responses.MessageResponse
+import com.keygenqt.shop.data.responses.ProductResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -30,11 +34,33 @@ class PutRequest(private val client: HttpClient) {
      * Update message method
      */
     @Throws(Exception::class)
-    suspend fun messages(
+    suspend fun message(
         id: Int,
         request: MessageRequest
     ): MessageResponse {
         return client.put("api/messages/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update category method
+     */
+    @Throws(Exception::class)
+    suspend fun category(
+        id: Int,
+        request: CategoryRequest
+    ): CategoryResponse {
+        return client.put("api/categories/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update product method
+     */
+    @Throws(Exception::class)
+    suspend fun product(
+        id: Int,
+        request: ProductRequest
+    ): ProductResponse {
+        return client.put("api/products/$id") { setBody(request) }.body()
     }
 
     /**

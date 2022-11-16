@@ -39,17 +39,17 @@ admins:
 categories:
   - key: bows
     name: Бантики
-    image: configuration/migrations/data/category/categoryBows.png
+    image: configuration/migrations/data/category/cat_1.png
     isPublished: true
 
   - key: headbands
     name: Ободки
-    image: configuration/migrations/data/category/categoryHeadbands.png
+    image: configuration/migrations/data/category/cat_2.png
     isPublished: true
 
   - key: box
     name: Набор
-    image: configuration/migrations/data/category/categoryBox.png
+    image: configuration/migrations/data/category/cat_3.png
     isPublished: true
 
 ### Product data

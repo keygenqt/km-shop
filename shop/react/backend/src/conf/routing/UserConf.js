@@ -1,14 +1,14 @@
 import {Route} from "react-router-dom";
 import * as React from "react";
 import {
-    CategoriesPage,
+    CategoriesPage, CategoryUpdatePage,
     DashboardPage,
     FiltersOrders,
     HelpPage,
     ManagersPage,
     ManagerUpdatePage,
     OrdersPage,
-    ProductsPage,
+    ProductsPage, ProductUpdatePage,
     SystemPage
 } from "../../pages";
 import {AppLayout} from "../../components";
@@ -27,6 +27,39 @@ export const UserConf = {
                     element={
                         <AppLayout>
                             <CategoriesPage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        categoryCreate: {
+            path: '/category/add',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <CategoryUpdatePage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        categoryEdit: {
+            path: '/category/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <CategoryUpdatePage/>
                         </AppLayout>
                     }
                 />
@@ -165,6 +198,39 @@ export const UserConf = {
                     element={
                         <AppLayout>
                             <ProductsPage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        productCreate: {
+            path: '/product/add',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <ProductUpdatePage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        productEdit: {
+            path: '/product/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <ProductUpdatePage/>
                         </AppLayout>
                     }
                 />
