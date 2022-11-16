@@ -114,7 +114,7 @@ export function ManagersPage() {
 
                 <AppCard
                     icon={PeopleOutlined}
-                    color={'gray.dark'}
+                    color={'secondary.dark'}
                     variant={'combine'}
                     title={'Managers'}
                     subheader={'List of site administrators with their access settings'}

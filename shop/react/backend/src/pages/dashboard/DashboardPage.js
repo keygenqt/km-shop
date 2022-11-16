@@ -10,7 +10,7 @@ export function DashboardPage() {
         <Stack>
             <AppCard
                 icon={DashboardOutlined}
-                color={'info.dark'}
+                color={'secondary.dark'}
                 variant={'combine'}
                 title={'Dashboard'}
                 subheader={'It will display statistics on sales, site visits and much more'}

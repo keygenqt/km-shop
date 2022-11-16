@@ -9,7 +9,7 @@ export function SystemPage() {
         <Stack>
             <AppCard
                 icon={SwapCallsOutlined}
-                color={'gray.dark'}
+                color={'secondary.dark'}
                 variant={'combine'}
                 title={'System'}
                 subheader={'Running tasks on the server manually'}

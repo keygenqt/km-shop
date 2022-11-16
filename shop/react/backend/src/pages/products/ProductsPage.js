@@ -93,7 +93,7 @@ export function ProductsPage() {
 
                 <AppCard
                     icon={FolderOutlined}
-                    color={'primary.dark'}
+                    color={'secondary.dark'}
                     variant={'combine'}
                     title={'Products'}
                     subheader={'List of products for sale'}

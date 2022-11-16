@@ -50,13 +50,13 @@ export const MenuConf = [
                 icon: CategoryOutlined,
                 title: 'Categories',
                 link: '/categories',
-                links: ['/categories']
+                links: ['/categories', '/category/:id']
             },
             {
                 icon: FolderOutlined,
                 title: 'Products',
                 link: '/products',
-                links: ['/products']
+                links: ['/products', '/product/:id']
             },
         ]
     },
@@ -102,7 +102,7 @@ export const MenuConf = [
                 icon: PeopleOutlined,
                 title: 'Managers',
                 link: '/managers',
-                links: ['/managers']
+                links: ['/managers', '/manager/:id']
             },
             {
                 icon: SwapCallsOutlined,

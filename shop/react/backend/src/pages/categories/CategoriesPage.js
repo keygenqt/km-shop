@@ -90,7 +90,7 @@ export function CategoriesPage() {
 
                 <AppCard
                     icon={CategoryOutlined}
-                    color={'primary.dark'}
+                    color={'secondary.dark'}
                     variant={'combine'}
                     title={'Categories'}
                     subheader={'List of product categories'}

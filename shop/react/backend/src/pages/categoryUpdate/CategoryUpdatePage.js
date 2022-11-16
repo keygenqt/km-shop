@@ -15,7 +15,7 @@ export function CategoryUpdatePage() {
         <Stack>
             <AppCard
                 icon={CategoryOutlined}
-                color={'primary.dark'}
+                color={'secondary.dark'}
                 variant={'combine'}
                 title={'Category'}
                 subheader={modelId ? 'Here you can edit the category' : 'Here you can create a new category'}

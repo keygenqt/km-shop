@@ -15,7 +15,7 @@ export function ManagerUpdatePage() {
         <Stack>
             <AppCard
                 icon={PeopleOutlined}
-                color={'gray.dark'}
+                color={'secondary.dark'}
                 variant={'combine'}
                 title={'Managers'}
                 subheader={modelId ? 'Here you can edit the account' : 'Here you can create a new account'}

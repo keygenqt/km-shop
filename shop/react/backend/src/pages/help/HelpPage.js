@@ -83,7 +83,7 @@ export function HelpPage() {
             <Stack>
                 <AppCard
                     icon={ConnectWithoutContactOutlined}
-                    color={'warning.dark'}
+                    color={'secondary.dark'}
                     variant={'combine'}
                     title={'Help Desk'}
                     subheader={'Communication with buyers and help them with purchases'}
