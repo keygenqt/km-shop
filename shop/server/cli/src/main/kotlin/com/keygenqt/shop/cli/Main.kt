@@ -20,7 +20,10 @@ import ch.qos.logback.classic.Level.OFF
 import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.cli.args.ArgRoot
-import com.keygenqt.shop.cli.features.*
+import com.keygenqt.shop.cli.features.BackupFeature
+import com.keygenqt.shop.cli.features.CleanerFeature
+import com.keygenqt.shop.cli.features.NotificationFeature
+import com.keygenqt.shop.cli.features.PasswordFeature
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.service.AdminsService
 import com.keygenqt.shop.db.service.UploadsService
@@ -69,7 +72,6 @@ fun main(args: Array<String>) {
 
         // run features
         try {
-            DemoFeature.init()
             BackupFeature.init()
             CleanerFeature.init()
             PasswordFeature.init()
