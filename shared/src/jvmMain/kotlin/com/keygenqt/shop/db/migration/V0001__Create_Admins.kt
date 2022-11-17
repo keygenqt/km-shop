@@ -15,20 +15,17 @@
  */
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.db.entities.OrderInfo
-import com.keygenqt.shop.db.entities.Orders
+import com.keygenqt.shop.db.entities.Admins
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
 @Suppress("unused", "ClassName")
-class V4__Create_Orders : BaseJavaMigration() {
+class V0001__Create_Admins : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
-            SchemaUtils.create(Orders)
-            SchemaUtils.create(OrderInfo)
-            SchemaUtils.create(OrderInfo)
+            SchemaUtils.create(Admins)
         }
     }
 }

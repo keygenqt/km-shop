@@ -15,17 +15,23 @@
  */
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.db.entities.Admins
+import com.keygenqt.shop.db.utils.MigrationHelper
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
-import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.yaml.snakeyaml.Yaml
+import java.io.File
 
 @Suppress("unused", "ClassName")
-class V1__Create_Admins : BaseJavaMigration() {
+class V0011__Create_DemoOrders : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
-            SchemaUtils.create(Admins)
+            val configuration = Yaml().load<Map<String, Any>>(
+                File("configuration/migrations/V0011__Create_DemoOrders.yaml").readText()
+            )
+            MigrationHelper.insertOrders(
+                orders = configuration["orders"] as List<*>,
+            )
         }
     }
 }

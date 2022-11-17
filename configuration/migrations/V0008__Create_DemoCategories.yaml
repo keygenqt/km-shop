@@ -1,0 +1,18 @@
+### Configuration data migration
+### Categories data
+
+# name        | string
+# isPublished | Bool
+
+categories:
+  - name: Бантики
+    image: configuration/migrations/data/category/cat_1.png
+    isPublished: true
+
+  - name: Ободки
+    image: configuration/migrations/data/category/cat_2.png
+    isPublished: true
+
+  - name: Набор
+    image: configuration/migrations/data/category/cat_3.png
+    isPublished: true

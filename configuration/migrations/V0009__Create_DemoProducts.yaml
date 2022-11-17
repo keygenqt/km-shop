@@ -1,0 +1,87 @@
+### Configuration data migration
+### Product data
+
+# categoryID  | Int
+# name        | String
+# description | String
+# image       | String
+# price       | Double
+# isPublished | Bool
+
+products:
+  - categoryID: 1
+    name: Цветочные Бантики
+    description: Цветочные банттики для цветочков.
+    image: configuration/migrations/data/product/DSC_0004.png
+    price: 1000.50
+    isPublished: true
+
+  - categoryID: 1
+    name: Бантик Крутой
+    description: Крутой бант для рокерш нерфомалок.
+    image: configuration/migrations/data/product/DSC_0007.png
+    price: 1200.50
+    isPublished: true
+
+  - categoryID: 1
+    name: Сладкий Бантик
+    description: Бантики для сладкоежек.
+    image: configuration/migrations/data/product/DSC_0009.png
+    price: 900.50
+    isPublished: true
+
+  - categoryID: 1
+    name: Бантик Красота
+    description: Топовый бантки для топовых девченок.
+    image: configuration/migrations/data/product/DSC_0017.png
+    price: 2100.90
+    isPublished: true
+
+  - categoryID: 1
+    name: Бантик Морской Свет
+    description: Любишьш море? Носи море на черепушке.
+    image: configuration/migrations/data/product/DSC_0022.png
+    price: 1300.00
+    isPublished: true
+
+  - categoryID: 2
+    name: Наборчик
+    description: Набор для девочек любящих бантики.
+    image: configuration/migrations/data/product/DSC_0026.png
+    price: 3200.20
+    isPublished: true
+
+  - categoryID: 1
+    name: Королина
+    description: Заколка стилизованная по Королину.
+    image: configuration/migrations/data/product/DSC_0033.png
+    price: 800.20
+    isPublished: true
+
+  - categoryID: 1
+    name: Дорого-багато
+    description: Бантикти для буржуев.
+    image: configuration/migrations/data/product/DSC_0045.png
+    price: 3100.20
+    isPublished: true
+
+  - categoryID: 1
+    name: Свадьба
+    description: Одень корапуза красивее невесты.
+    image: configuration/migrations/data/product/DSC_0053.png
+    price: 2800.70
+    isPublished: true
+
+  - categoryID: 1
+    name: Микки
+    description: Стилизованные бантики по Дисней.
+    image: configuration/migrations/data/product/DSC_0072.png
+    price: 900.50
+    isPublished: true
+
+  - categoryID: 3
+    name: Ободок красота
+    description: Крутой ободок для крутых карапузов.
+    image: configuration/migrations/data/product/DSC_0093.png
+    price: 3200.20
+    isPublished: true

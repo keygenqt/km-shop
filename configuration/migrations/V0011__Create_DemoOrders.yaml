@@ -1,8 +1,12 @@
 ### Configuration data migration
-
 ### Orders data
-# email/phone client
-# state - NEW/PENDING/COMPLETED
+
+# email/phone   | string
+# state         | string (NEW/PENDING/COMPLETED)
+# products      | array
+#   id          | int
+#   count       | int
+
 orders:
   - email: order1@gmail.com
     state: NEW

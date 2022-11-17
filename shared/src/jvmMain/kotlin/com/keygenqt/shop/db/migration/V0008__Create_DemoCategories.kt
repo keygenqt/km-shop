@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.db.migration
 
+import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.db.utils.MigrationHelper
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
@@ -23,16 +24,21 @@ import org.yaml.snakeyaml.Yaml
 import java.io.File
 
 @Suppress("unused", "ClassName")
-class V8__Create_DemoData : BaseJavaMigration() {
+class V0008__Create_DemoCategories : BaseJavaMigration() {
     override fun migrate(context: Context?) {
-
-        val configuration = Yaml().load<Map<String, Any>>(
-            File("configuration/migrations/V8__migration.yaml").readText()
-        )
-
         transaction {
-            MigrationHelper.insertOrders(
-                orders = configuration["orders"] as List<*>,
+
+            val host = LoaderConfig
+                .loadProperties("configuration/app.properties")
+                .getPropOrNull<String>("hostAPI")
+
+            val configuration = Yaml().load<Map<String, Any>>(
+                File("configuration/migrations/V0008__Create_DemoCategories.yaml").readText()
+            )
+
+            MigrationHelper.insertCategories(
+                host = host!!,
+                categories = configuration["categories"] as List<*>
             )
         }
     }

@@ -15,25 +15,24 @@
  */
 package com.keygenqt.shop.db.migration
 
-import com.keygenqt.shop.db.entities.Uploads
+import com.keygenqt.shop.db.utils.MigrationHelper
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
-import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.yaml.snakeyaml.Yaml
 import java.io.File
 
 @Suppress("unused", "ClassName")
-class V6__Create_Uploads : BaseJavaMigration() {
+class V0007__Create_DemoAdmins : BaseJavaMigration() {
+
     override fun migrate(context: Context?) {
         transaction {
-            SchemaUtils.create(Uploads)
-
-            // create folder for uploads
-            val file = File("uploads")
-            if (file.exists()) {
-                file.deleteRecursively()
-            }
-            file.mkdir()
+            val configuration = Yaml().load<Map<String, Any>>(
+                File("configuration/migrations/V0007__Create_DemoAdmins.yaml").readText()
+            )
+            MigrationHelper.insertAdmins(
+                admins = configuration["admins"] as List<*>
+            )
         }
     }
 }

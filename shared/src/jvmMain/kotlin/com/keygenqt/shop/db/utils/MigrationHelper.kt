@@ -47,7 +47,8 @@ object MigrationHelper {
                 orderProducts.add(
                     OrderProductEntity.new {
                         productID = product.id
-                        count = products.first { (it["id"] as Int) == product.id.value }["count"] as Int
+                        count =
+                            products.first { (it["id"] as Int) == product.id.value }["count"] as Int
                         price = product.price
                     }
                 )
@@ -111,14 +112,10 @@ object MigrationHelper {
     fun insertCategories(
         host: String,
         categories: List<*>
-    ): Map<String, EntityID<Int>> {
-
-        val ids = mutableMapOf<String, EntityID<Int>>()
-
+    ) {
         categories.forEach { item ->
             item as Map<*, *>
             // load variable
-            val key = item["key"] as String
             val name = item["name"] as String
             val image = item["image"] as String
             val isPublished = item["isPublished"] as Boolean
@@ -127,7 +124,7 @@ object MigrationHelper {
             val uploadEntity = image.createFileUpload()
 
             // create category
-            val entity = CategoryEntity.new {
+            CategoryEntity.new {
                 this.name = name
                 this.isPublished = isPublished
                 this.createAt = System.currentTimeMillis()
@@ -135,10 +132,7 @@ object MigrationHelper {
                 this.image = "$host/api/uploads/${uploadEntity?.fileName}"
                 this.uploads = SizedCollection(*listOfNotNull(uploadEntity).toTypedArray())
             }
-            ids[key] = entity.id
         }
-
-        return ids
     }
 
     /**
@@ -147,15 +141,12 @@ object MigrationHelper {
     fun insertProducts(
         host: String,
         products: List<*>,
-        categoriesIds: Map<String, EntityID<Int>> = emptyMap()
     ) {
         products.forEach { item ->
             item as Map<*, *>
 
             // get id category
-            val entityID = item["categoryKey"]
-                ?.let { categoriesIds[it as String]!! }
-                ?: EntityID(item["categoryID"] as Int, Categories)
+            val entityID = EntityID(item["categoryID"] as Int, Categories)
 
             // load variable
             val name = item["name"] as String

@@ -1,0 +1,36 @@
+### Configuration data migration
+### Admins data
+
+# role      | String (ADMIN, MANAGER)
+# email     | String
+# password  | String (8-12 length)
+
+admins:
+  - role: ADMIN
+    email: admin@keygenqt.com
+    password: "12345678"
+
+  - role: ADMIN
+    email: admin2@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager2@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager3@keygenqt.com
+    password: "12345678"
+
+  - role: MANAGER
+    email: manager4@keygenqt.com
+    password: "12345678"
+
+
+
+
+
