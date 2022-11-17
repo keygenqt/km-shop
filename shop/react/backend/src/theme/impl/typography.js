@@ -31,7 +31,7 @@ export const typography = {
         fontFamily: fontFamily,
     },
     h5: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: '400',
         textTransform: "none",
         fontFamily: fontFamily,
@@ -53,7 +53,7 @@ export const typography = {
     },
     caption: {
         fontSize: 12,
-        color: 'gray'
+        color: '#676767'
     },
     overline: {}
 }

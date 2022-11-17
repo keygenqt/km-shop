@@ -49,7 +49,14 @@ export function AppCard(props) {
                     </Avatar>
                 }
                 action={onRefresh ? (
-                    <IconButton disabled={disabled} aria-label="refresh" onClick={onRefresh}>
+                    <IconButton
+                        disabled={disabled}
+                        aria-label="refresh"
+                        onClick={onRefresh}
+                        sx={{
+                            marginLeft: '20px'
+                        }}
+                    >
                         <CachedOutlined className={disabled ? 'spin' : ''}/>
                     </IconButton>
                 ) : null}
@@ -59,7 +66,12 @@ export function AppCard(props) {
                     </Typography>
                 ) : null}
                 subheader={subheader ? (
-                    <Typography variant="caption">
+                    <Typography variant="caption" sx={{
+                        background: "#ffffffb5",
+                        display: 'inline-block',
+                        borderRadius: '5px',
+                        paddingRight: 1
+                    }}>
                         {subheader}
                     </Typography>
                 ) : null}

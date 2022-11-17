@@ -16,13 +16,13 @@ export const palette = () => {
         },
         secondary: {
             light: '#E3F2FD',
-            main: '#77BCFA',
-            dark: '#2196F3',
+            main: '#1e9eff',
+            dark: '#0f92ef',
         },
         error: {
-            light: '#bc291a',
-            main: '#bc291a',
-            dark: '#bc291a',
+            light: '#e37bb0',
+            main: '#e93b9f',
+            dark: '#ab186c',
         },
         warning: {
             light: '#895d6b',
@@ -30,9 +30,9 @@ export const palette = () => {
             dark: '#895d6b',
         },
         info: {
-            light: '#6d667d',
-            main: '#6d667d',
-            dark: '#6d667d',
+            light: '#940fa8',
+            main: '#940fa8',
+            dark: '#940fa8',
         },
         success: {
             light: '#ccffca',
