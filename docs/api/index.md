@@ -14,4 +14,4 @@ The API, like 5 applications, uses a common module on Kotlin Multiplatform.
 
 ### Preview
 
-![picture](/km-shop/data/api/preview.png)
+![picture](/km-shop/data/api/Screenshot_2022-11-17_at_18.04.50.png)

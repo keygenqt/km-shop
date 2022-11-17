@@ -3,4 +3,4 @@ Part Admin-Panel
 
 Admin-Panel for store content management
 
-![picture](/km-shop/data/backend/Screen_Recording_2022-11-12_at_17.31.45.gif)
+![picture](/km-shop/data/backend/Screenshot_2022-11-17_at_18.04.19.png)
