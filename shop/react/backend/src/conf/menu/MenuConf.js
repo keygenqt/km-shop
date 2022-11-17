@@ -9,9 +9,7 @@ import {
     NewReleasesOutlined,
     PendingActionsOutlined,
     PeopleOutlined,
-    SettingsOutlined,
     ShoppingBagOutlined,
-    SwapCallsOutlined,
     VerifiedOutlined,
 } from "@mui/icons-material";
 
@@ -30,12 +28,6 @@ export const MenuConf = [
         link: '/',
         // selected check route
         links: ['/']
-    },
-    {
-        icon: ConnectWithoutContactOutlined,
-        title: 'Help Desk',
-        link: '/help-desk',
-        links: ['/help-desk']
     },
     {
         type: 'driver',
@@ -90,26 +82,18 @@ export const MenuConf = [
         ]
     },
     {
-        type: 'driver',
-        icon: InfoOutlined,
-        title: 'Settings and running system scripts that allow you to execute them manually'
+        type: 'driver'
     },
     {
-        group: 'Settings',
-        icon: SettingsOutlined,
-        children: [
-            {
-                icon: PeopleOutlined,
-                title: 'Managers',
-                link: '/managers',
-                links: ['/managers', '/managers/:id']
-            },
-            {
-                icon: SwapCallsOutlined,
-                title: 'System',
-                link: '/system',
-                links: ['/system']
-            },
-        ]
+        icon: PeopleOutlined,
+        title: 'Managers',
+        link: '/managers',
+        links: ['/managers', '/managers/:id']
+    },
+    {
+        icon: ConnectWithoutContactOutlined,
+        title: 'Help Desk',
+        link: '/help-desk',
+        links: ['/help-desk']
     },
 ];
