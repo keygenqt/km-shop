@@ -3,7 +3,7 @@ Part Admin-Panel
 
 #### Preview
 
-![picture](/km-shop/data/backend/Screenshot_2022-11-17_at_18.04.20.png)
+![picture](/km-shop/data/backend/Screenshot_2022-11-18_at_00.30.57.png)
 
 Store admin panel. The main place to manage content and user interactions.
 
