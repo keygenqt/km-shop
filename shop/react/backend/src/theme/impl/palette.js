@@ -25,9 +25,9 @@ export const palette = () => {
             dark: '#ab186c',
         },
         warning: {
-            light: '#895d6b',
-            main: '#895d6b',
-            dark: '#895d6b',
+            light: '#ffc459',
+            main: '#f8ba00',
+            dark: '#b68900',
         },
         info: {
             light: '#940fa8',
@@ -40,7 +40,7 @@ export const palette = () => {
             dark: '#317731',
         },
         gray: {
-            light: '#ecf0f1',
+            light: '#0000001f',
             main: '#8b8b8b',
             dark: '#515151',
         },

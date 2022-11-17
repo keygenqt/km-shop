@@ -129,7 +129,7 @@ export function OrdersPage(props) {
                                     sortable: false,
                                     renderCell: (params) => <Chip
                                         sx={{minWidth: 60}}
-                                        color={'warning'}
+                                        color={'secondary'}
                                         label={params.row.productsCount} variant="outlined"/>
                                 },
                                 {
