@@ -21,11 +21,11 @@ import kotlinx.cli.Subcommand
 
 enum class BackupTypes {
     DB,
-    IMAGES,
+    FILES,
 }
 
 @OptIn(ExperimentalCli::class)
-class SubcommandBackup : Subcommand("backup", "Backup data (default db) { db, images }") {
+class SubcommandBackup : Subcommand("backup", "Backup data (default db) { db, files }") {
 
     private var _isInit: Boolean = false
 

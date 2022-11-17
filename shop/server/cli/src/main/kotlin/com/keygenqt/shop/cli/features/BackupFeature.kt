@@ -17,9 +17,6 @@ package com.keygenqt.shop.cli.features
 
 import com.keygenqt.shop.cli.args.ArgRoot
 import com.keygenqt.shop.cli.args.BackupTypes
-import com.keygenqt.shop.db.entities.toModels
-import com.keygenqt.shop.db.service.RocketsService
-import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -27,20 +24,12 @@ class BackupFeature : KoinComponent {
 
     private val arg: ArgRoot by inject()
 
-    private val rocketsService: RocketsService by inject()
-
     fun runBackupDb() {
         println("Backup DB")
     }
 
-    fun runBackupImages() {
-        runBlocking {
-            val rockets = rocketsService.transaction {
-                getAll().toModels()
-            }
-            println("Rockets db count: ${rockets.size}")
-        }
-        println("Backup IMAGES")
+    fun runBackupFiles() {
+        println("Backup Files")
     }
 
     companion object {
@@ -49,7 +38,7 @@ class BackupFeature : KoinComponent {
                 if (arg.backup.isInit) {
                     when (arg.backup.type) {
                         BackupTypes.DB, null -> runBackupDb()
-                        BackupTypes.IMAGES -> runBackupImages()
+                        BackupTypes.FILES -> runBackupFiles()
                     }
                 }
             }
