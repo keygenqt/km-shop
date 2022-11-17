@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {AddOutlined, CategoryOutlined, EditOutlined, EmailOutlined, VisibilityOutlined} from "@mui/icons-material";
+import {AddOutlined, CategoryOutlined, EditOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
@@ -17,7 +17,7 @@ export function CategoriesPage() {
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.CategoriesPage, {
         page: 0,
-        data: []
+        data: null
     }));
 
     // data
@@ -163,7 +163,7 @@ export function CategoriesPage() {
                                                 route.openUrlNewTab(`http://localhost:8086/${params.row.id}`)
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Look">
-                                                    <VisibilityOutlined />
+                                                    <VisibilityOutlined/>
                                                 </Tooltip>
                                             )} label="Look"/>
                                         ),

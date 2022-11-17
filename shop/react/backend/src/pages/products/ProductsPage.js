@@ -17,7 +17,7 @@ export function ProductsPage() {
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.ProductsPage, {
         page: 0,
-        data: []
+        data: null
     }));
 
     // data

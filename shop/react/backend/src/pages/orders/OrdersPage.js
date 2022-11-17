@@ -25,7 +25,7 @@ export function OrdersPage(props) {
     // get cache page
     const [cache, setCache] = React.useState(AppCache.objectGet(cacheKey, {
         page: 0,
-        data: []
+        data: null
     }));
 
     // data
@@ -41,7 +41,7 @@ export function OrdersPage(props) {
     useEffect(() => {
         setCache(AppCache.objectGet(cacheKey, {
             page: 0,
-            data: []
+            data: null
         }))
     }, [cacheKey])
 

@@ -18,7 +18,7 @@ export function HelpPage() {
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.HelpPage, {
         page: 0,
-        data: []
+        data: null
     }));
 
     // data
