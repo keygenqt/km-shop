@@ -26,6 +26,7 @@ export const typography = {
         fontFamily: fontFamily,
     },
     h4: {
+        fontSize: 24,
         fontWeight: '400',
         textTransform: "none",
         fontFamily: fontFamily,

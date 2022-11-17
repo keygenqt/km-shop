@@ -17,7 +17,7 @@ export function AppToolbar(props) {
         <Stack
             direction="row"
             justifyContent="space-between"
-            alignItems="flex-start"
+            alignItems="center"
             spacing={2}
             sx={{width: '100%'}}
         >

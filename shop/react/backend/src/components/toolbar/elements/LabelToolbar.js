@@ -7,8 +7,12 @@ import Typography from "@mui/material/Typography";
  */
 export function LabelToolbar() {
     return (
-        <Stack direction="row" spacing={1} alignItems="flex-start">
-            <Typography variant="h5" component="div">
+        <Stack
+            direction="row"
+            spacing={1}
+            alignItems="flex-start"
+        >
+            <Typography variant="h4" component="div">
                 <Box component="span" sx={{
                     color: 'secondary.main'
                 }}>Sh</Box>op
