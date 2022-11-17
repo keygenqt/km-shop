@@ -29,7 +29,7 @@ fun Route.home() {
         // check role
         val role = call.checkRoleFull()
 
-        val name = "API Shop"
+        val name = "Shop API"
         val subtitle = "API for Shop 6 in 1"
         val title = "API written in Ktor using multiplatform best practices"
         val text = "You can check out the method documentation on GitHub Pages"
@@ -41,6 +41,7 @@ fun Route.home() {
                 title {
                     +name
                 }
+                link(rel = "icon", href = "/static/images/favicon.ico", type = "text/css")
                 link(rel = "stylesheet", href = "/static/css/common.css", type = "text/css")
                 meta(name = "viewport", content = "width=device-width, initial-scale=1")
             }
