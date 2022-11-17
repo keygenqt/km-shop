@@ -39,7 +39,6 @@ export function AppMenu(props) {
         if (item.type === 'driver') {
             listElements.push(
                 <MenuDriver
-                    icon={item.icon}
                     title={item.title}
                     key={`menu-item-driver-${index}`}
                 />

@@ -4,7 +4,6 @@ import {
     ConnectWithoutContactOutlined,
     DashboardOutlined,
     FolderOutlined,
-    InfoOutlined,
     ListAltOutlined,
     NewReleasesOutlined,
     PendingActionsOutlined,
@@ -31,7 +30,6 @@ export const MenuConf = [
     },
     {
         type: 'driver',
-        icon: InfoOutlined,
         title: 'Your store, setting price categories and product characteristic'
     },
     {
@@ -54,7 +52,6 @@ export const MenuConf = [
     },
     {
         type: 'driver',
-        icon: InfoOutlined,
         title: 'Orders made on the site or in applications divided by status'
     },
     {

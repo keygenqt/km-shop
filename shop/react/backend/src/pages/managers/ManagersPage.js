@@ -146,7 +146,7 @@ export function ManagersPage() {
                                     sortable: false,
                                     renderCell: (params) => <Chip
                                         sx={{minWidth: 100}}
-                                        color={params.row.role === 'ADMIN' ? 'warning' : 'secondary'}
+                                        color={params.row.role === 'ADMIN' ? 'error' : 'secondary'}
                                         label={params.row.role} variant="outlined"/>
                                 },
                                 (user.role === 'ADMIN' ? (

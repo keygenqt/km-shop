@@ -2,15 +2,13 @@ import {Divider, Stack} from "@mui/material";
 import * as React from "react";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
+import {InfoOutlined} from "@mui/icons-material";
 
 export function MenuDriver(props) {
 
     const {
-        icon,
         title,
     } = props
-
-    const IconMenuDriver = icon;
 
     return (
         <Stack
@@ -21,8 +19,8 @@ export function MenuDriver(props) {
 
             {title ? (
                 <Typography variant="caption" component="div">
-                    {icon ? (
-                        <IconMenuDriver sx={{
+                    {title ? (
+                        <InfoOutlined sx={{
                             width: '15px',
                             height: '15px',
                             position: 'relative',
@@ -40,6 +38,5 @@ export function MenuDriver(props) {
 }
 
 MenuDriver.propTypes = {
-    icon: PropTypes.object,
     title: PropTypes.string,
 };
