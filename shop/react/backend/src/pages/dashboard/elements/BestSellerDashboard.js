@@ -31,7 +31,7 @@ export function BestSellerDashboard() {
 
     items.forEach((item, index) => {
         data.push((
-            <>
+            <Box key={`seller-key-${index}`}>
                 <ListItem
                     secondaryAction={
                         <IconButton edge="end" aria-label="delete">
@@ -58,7 +58,7 @@ export function BestSellerDashboard() {
                     <Divider/>
                 ) : null}
 
-            </>
+            </Box>
         ))
     })
 
