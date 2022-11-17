@@ -16,7 +16,7 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/api/Screenshot_2022-11-17_at_18.04.50.png)
+![picture](data/api/Screenshot_2022-11-17_at_18.04.51.png)
 
 ## 2. Website
 
@@ -38,7 +38,7 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/backend/Screenshot_2022-11-17_at_18.04.19.png)
+![picture](data/backend/Screenshot_2022-11-17_at_18.04.20.png)
 
 ## 4. Android App
 
