@@ -108,14 +108,11 @@ export function SettingsToolbar(props) {
                                                 // call clear session
                                                 HttpClient.delete.logout()
 
-                                                // save email user
-                                                AppCache.clearByKey(ConstantStorage.userAuth)
+                                                // clear cache
+                                                AppCache.clearAll()
 
                                                 // reload page
                                                 route.toRefreshState(routes.login)
-
-                                                // clear cache
-                                                AppCache.clearAll()
                                             }}>
                                                 <ListItemIcon sx={{
                                                     marginRight: '-10px'

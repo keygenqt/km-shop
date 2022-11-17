@@ -21,32 +21,9 @@ import kotlin.js.JsExport
  * Error response [Exception]
  */
 @JsExport
-@Suppress("NON_EXPORTABLE_TYPE")
+@Suppress("ArrayInDataClass", "NON_EXPORTABLE_TYPE")
 data class ResponseException(
     val code: Int,
     override val message: String,
     val validate: Array<ValidateViolation>? = null
-) : RuntimeException() {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || this::class != other::class) return false
-
-        other as ResponseException
-
-        if (code != other.code) return false
-        if (message != other.message) return false
-        if (validate != null) {
-            if (other.validate == null) return false
-            if (!validate.contentEquals(other.validate)) return false
-        } else if (other.validate != null) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = code
-        result = 31 * result + message.hashCode()
-        result = 31 * result + (validate?.contentHashCode() ?: 0)
-        return result
-    }
-}
+) : RuntimeException()
