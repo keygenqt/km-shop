@@ -1,4 +1,5 @@
 import {MD5} from "crypto-js";
+import LZString from "lz-string"
 
 /**
  * App for work with cache
@@ -9,7 +10,7 @@ export const AppCache = {
     // Array
 
     arrayGet: function (key, defaultValue = []) {
-        const string = localStorage.getItem(key)
+        const string = AppCache._getItem(key)
         if (string) return JSON.parse(string)
         return defaultValue
     },
@@ -22,7 +23,7 @@ export const AppCache = {
     // Object
 
     objectGet: function (key, defaultValue = null) {
-        const string = localStorage.getItem(key)
+        const string = AppCache._getItem(key)
         if (string) return JSON.parse(string)
         return defaultValue
     },
@@ -35,7 +36,9 @@ export const AppCache = {
     // Int
 
     intGet: function (key, defaultValue = 0) {
-        return parseInt(localStorage.getItem(key)) ?? defaultValue
+        const string = AppCache._getItem(key)
+        if (string) return parseInt(string)
+        return defaultValue
     },
 
     intSet: function (key, value) {
@@ -46,7 +49,9 @@ export const AppCache = {
     // String
 
     stringGet: function (key, defaultValue = '') {
-        return localStorage.getItem(key) ?? defaultValue
+        const string = AppCache._getItem(key)
+        if (string) return string
+        return defaultValue
     },
 
     stringSet: function (key, value) {
@@ -57,7 +62,9 @@ export const AppCache = {
     // Boolean
 
     booleanGet: function (key, defaultValue = false) {
-        return localStorage.getItem(key) === null ? defaultValue : localStorage.getItem(key) === 'true'
+        const string = AppCache._getItem(key)
+        if (string) return string === 'true'
+        return defaultValue
     },
 
     booleanSet: function (key, value) {
@@ -74,14 +81,30 @@ export const AppCache = {
 
     clearAll: function () {
         localStorage.clear()
+        // update root
+        document.querySelector('#root').dataset.cache = ""
     },
 
     ////////////////////////////
     // Private
+    _getItem: function (key) {
+        const val = localStorage.getItem(MD5(key))
+        return val ? LZString.decompress(val) : null
+    },
+
     _setItem: function (key, value) {
-        localStorage.setItem(key, `${value}`)
+
+        // get values
+        const valueKey = MD5(key)
+        const valueLz = LZString.compress(value)
+
+        // save value
+        localStorage.setItem(valueKey, valueLz)
+
+        // update root
         const el = document.querySelector('#root');
-        const hash = MD5(AppCache._allStorage().toString())
+        const cont = AppCache._allStorage().toString()
+        const hash = cont.slice(-10) + cont.slice(0, 10) + MD5(cont.length + Object.keys(localStorage))
         if (el.dataset.cache !== hash) {
             el.dataset.cache = hash
         }
