@@ -21,9 +21,11 @@ export function PercentDashboard(props) {
             spacing={2}
             sx={{paddingY: 2}}
         >
-            <Typography variant="h4" color={color}>
-                {count}
-            </Typography>
+            {typeof count === 'string' || count instanceof String ? (
+                <Typography variant="h4" color={color}>
+                    {count}
+                </Typography>
+            ) : count}
 
             {percent ? (
                 <Stack
@@ -56,5 +58,8 @@ PercentDashboard.propTypes = {
     percent: PropTypes.number,
     isPositive: PropTypes.bool,
     color: PropTypes.string.isRequired,
-    count: PropTypes.string.isRequired,
+    count: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+    ]).isRequired,
 };

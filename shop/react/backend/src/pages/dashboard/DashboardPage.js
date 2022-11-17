@@ -11,6 +11,7 @@ import {
 import {PercentDashboard} from "./elements/PercentDashboard";
 import {ChartDashboard} from "./elements/ChartDashboard";
 import {BestSellerDashboard} from "./elements/BestSellerDashboard";
+import Typography from "@mui/material/Typography";
 
 export function DashboardPage() {
     return (
@@ -58,7 +59,13 @@ export function DashboardPage() {
                     >
                         <PercentDashboard
                             color={'error.main'}
-                            count={"$ 1500.30"}
+                            count={
+                                <Typography variant="h4" color={'error.dark'} sx={{
+                                    fontSize: '32px'
+                                }}>
+                                    {'$ 1500.30'}
+                                </Typography>
+                            }
                         />
                     </AppCard>
                 </Grid>

@@ -38,7 +38,7 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/backend/Screenshot_2022-11-18_at_00.43.01.png)
+![picture](data/backend/Screenshot_2022-11-18_at_00.57.28.png)
 
 ## 4. Android App
 
