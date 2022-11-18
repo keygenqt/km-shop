@@ -91,18 +91,12 @@ AppCard.propTypes = {
     shadow: PropTypes.bool,
     disabled: PropTypes.bool,
     variant: PropTypes.oneOf(['circles', 'lines', 'combine']),
-    icon: PropTypes.oneOfType([
-        PropTypes.object,
-        PropTypes.oneOf([null]),
-    ]),
+    icon: PropTypes.object,
     title: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
     ]),
     subheader: PropTypes.string,
-    onRefresh: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.oneOf([null]),
-    ]),
+    onRefresh: PropTypes.func,
     children: PropTypes.element.isRequired
 };

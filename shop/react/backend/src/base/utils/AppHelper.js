@@ -1,3 +1,5 @@
+import {ConstantConf} from "../../conf/app/ConstantConf";
+
 /**
  * App helper functions
  */
@@ -33,4 +35,19 @@ export const AppHelper = {
         return !AppHelper.isEmpty(obj)
     },
 
+    /**
+     * Check is image
+     */
+    isImage: (fileMime) => {
+        return fileMime.includes('png')
+            || fileMime.includes('jpg')
+            || fileMime.includes('jpeg')
+    },
+
+    /**
+     * Create file link
+     */
+    getFileUrl: (fileName) => {
+        return `${ConstantConf.apiPath}/api/uploads/${fileName}`
+    },
 };

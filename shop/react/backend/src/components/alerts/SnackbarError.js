@@ -34,9 +34,6 @@ export function SnackbarError(props) {
 }
 
 SnackbarError.propTypes = {
-    error: PropTypes.oneOfType([
-        PropTypes.string.isRequired,
-        PropTypes.oneOf([null]).isRequired,
-    ]),
+    error: PropTypes.string,
     onClose: PropTypes.func.isRequired
 };

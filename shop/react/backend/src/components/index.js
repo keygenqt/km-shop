@@ -15,6 +15,7 @@ export * from './toolbar/AppToolbar';
 
 // other
 export * from './other/ScrollToTop';
+export * from './dropzone/MultipleFiles';
 
 // cards
 export * from './cards/AppCard';

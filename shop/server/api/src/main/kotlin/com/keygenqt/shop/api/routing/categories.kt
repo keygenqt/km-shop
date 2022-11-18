@@ -16,10 +16,14 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.*
+import com.keygenqt.shop.api.extension.checkRoleAuth
+import com.keygenqt.shop.api.extension.checkRoleFull
+import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.CategoryEntity
 import com.keygenqt.shop.db.entities.toModel
+import com.keygenqt.shop.db.entities.toModelWithUploads
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.CategoriesService
 import io.ktor.server.application.*
@@ -67,12 +71,15 @@ fun Route.categories() {
         }
         get("/{id}") {
             // check role
-            call.checkRoleAuth()
+            val role = call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
             // act
             val response = categoriesService.transaction {
-                findById(id)?.toModel() ?: throw Exceptions.NotFound()
+                when (role) {
+                    AdminRole.GUEST -> findById(id)?.toModel()
+                    else -> findById(id)?.toModelWithUploads()
+                } ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)
