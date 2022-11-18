@@ -16,7 +16,10 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.*
+import com.keygenqt.shop.api.extension.checkRoleAdmin
+import com.keygenqt.shop.api.extension.checkRoleAuth
+import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.AdminEntity
@@ -46,7 +49,6 @@ data class AdminPostRequest(
     @field:NotNull(message = "Select role required")
     val role: AdminRole,
 
-    @field:NotNullNotBlank
     @field:Size(min = 8, max = 12, message = "Size must be between 8 and 12")
     val password: String
 )

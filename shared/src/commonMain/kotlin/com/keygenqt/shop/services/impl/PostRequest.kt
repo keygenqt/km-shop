@@ -40,10 +40,9 @@ class PostRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun message(
-        id: Int,
         request: MessageRequest
     ): MessageResponse {
-        return client.post("api/messages/$id") { setBody(request) }.body()
+        return client.post("api/messages") { setBody(request) }.body()
     }
 
     /**
@@ -51,10 +50,9 @@ class PostRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun category(
-        id: Int,
         request: CategoryRequest
     ): CategoryResponse {
-        return client.post("api/categories/$id") { setBody(request) }.body()
+        return client.post("api/categories") { setBody(request) }.body()
     }
 
     /**
@@ -62,10 +60,9 @@ class PostRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun product(
-        id: Int,
         request: ProductRequest
     ): ProductResponse {
-        return client.post("api/products/$id") { setBody(request) }.body()
+        return client.post("api/products") { setBody(request) }.body()
     }
 
     /**
@@ -73,9 +70,8 @@ class PostRequest(private val client: HttpClient) {
      */
     @Throws(Exception::class)
     suspend fun admin(
-        id: Int,
         request: AdminCreateRequest
     ): AdminResponse {
-        return client.post("api/admins/$id") { setBody(request) }.body()
+        return client.post("api/admins") { setBody(request) }.body()
     }
 }

@@ -37,7 +37,7 @@ export function MenuItemGroup(props) {
 
             listChildren.push(
                 <ListItemButton
-                    disabled={item.selected}
+                    disabled={item.disabled}
                     className={'MuiCollapse'}
                     selected={item.selected}
                     key={`sub-item-menu-${index}`}

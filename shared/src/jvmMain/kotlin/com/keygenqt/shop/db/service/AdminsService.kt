@@ -90,7 +90,7 @@ class AdminsService(
         password: String?,
     ) = let { entity ->
         entity.role = role
-        password?.let { entity.password = Password.encode(it) }
+        password?.let { if (it.isNotBlank()) entity.password = Password.encode(it) }
         entity
     }
 }

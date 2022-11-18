@@ -26,7 +26,7 @@ export function SnackbarError(props) {
             open={true}
             anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
         >
-            <Alert severity="error" sx={{width: '100%'}}>
+            <Alert severity="error" sx={{width: '100%', backgroundColor: 'error.main', color: 'white'}}>
                 {error ? error : "..."}
             </Alert>
         </Snackbar>

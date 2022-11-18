@@ -13,13 +13,14 @@ export function MenuItem(props) {
         icon,
         title,
         selected,
+        disabled,
     } = props
 
     const IconMenuItem = icon;
 
     return (
         <ListItemButton
-            disabled={selected}
+            disabled={disabled}
             selected={selected}
             onClick={() => {
                 route.toLocationDelay(link)
@@ -40,4 +41,5 @@ MenuItem.propTypes = {
     icon: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired,
+    disabled: PropTypes.bool.isRequired,
 };

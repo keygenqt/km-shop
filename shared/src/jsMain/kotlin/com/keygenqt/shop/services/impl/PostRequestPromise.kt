@@ -33,39 +33,35 @@ class PostRequestPromise(private val client: ServiceRequest) {
      * Override [PostRequest.message] for JS
      */
     fun message(
-        id: Int,
         request: MessageRequest
     ) = wrapPromise {
-        client.post.message(id, request)
+        client.post.message(request)
     }
 
     /**
      * Override [PostRequest.category] for JS
      */
     fun category(
-        id: Int,
         request: CategoryRequest
     ) = wrapPromise {
-        client.post.category(id, request)
+        client.post.category(request)
     }
 
     /**
      * Override [PostRequest.product] for JS
      */
     fun product(
-        id: Int,
         request: ProductRequest
     ) = wrapPromise {
-        client.post.product(id, request)
+        client.post.product(request)
     }
 
     /**
      * Override [PostRequest.admin] for JS
      */
     fun admin(
-        id: Int,
         request: AdminCreateRequest
     ) = wrapPromise {
-        client.post.admin(id, request)
+        client.post.admin(request)
     }
 }

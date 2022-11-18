@@ -22,11 +22,13 @@ export function AppMenu(props) {
 
     configuration.map((item) => {
         if (item.links) {
+            item["disabled"] = route.isPage(item.link)
             item["selected"] = route.isPages(item.links)
         }
         if (item.children) {
             item.children.map((item) => {
                 if (item.links) {
+                    item["disabled"] = route.isPage(item.link)
                     item["selected"] = route.isPages(item.links)
                 }
                 return item
@@ -56,6 +58,7 @@ export function AppMenu(props) {
                     link={item.link}
                     icon={item.icon}
                     title={item.title}
+                    disabled={item.disabled === true}
                     selected={item.selected === true}
                     key={`menu-item-${index}`}
                 />

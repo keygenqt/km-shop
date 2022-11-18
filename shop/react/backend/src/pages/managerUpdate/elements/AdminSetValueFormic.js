@@ -20,6 +20,8 @@ export function AdminSetValueFormic(props) {
             setValues({
                 ...values,
                 email: dataFormic.email,
+                role: dataFormic.role.name,
+                password: "",
             });
             setDataFormic(null)
         }

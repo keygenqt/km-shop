@@ -4,6 +4,11 @@ import {ConstantConf} from "../../conf/app/ConstantConf";
 const greeting = new shared.com.keygenqt.shop.Greeting().greeting()
 
 /**
+ * AdminRole
+ */
+export const AdminRole = shared.com.keygenqt.shop.data.responses.AdminRole
+
+/**
  * OrderState
  */
 export const OrderState = shared.com.keygenqt.shop.data.responses.OrderState
