@@ -19,14 +19,13 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * Request Category
+ * Request upload file
  */
 @JsExport
 @Serializable
 @Suppress("ArrayInDataClass")
-data class CategoryRequest(
-    val image: String,
+data class FileRequest(
     val name: String,
-    val isPublished: Boolean,
-    val uploads: Array<String>,
+    val contentType: String,
+    val file: ByteArray,
 )

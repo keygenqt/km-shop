@@ -18,7 +18,10 @@ package com.keygenqt.shop.db.service
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.Categories
 import com.keygenqt.shop.db.entities.CategoryEntity
+import com.keygenqt.shop.db.entities.UploadEntity
+import com.keygenqt.shop.db.entities.Uploads
 import com.keygenqt.shop.interfaces.IService
+import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SortOrder
 
 class CategoriesService(
@@ -52,6 +55,7 @@ class CategoriesService(
     fun insert(
         name: String,
         image: String,
+        uploads: List<String>,
         isPublished: Boolean,
     ) = CategoryEntity.new {
         this.name = name
@@ -59,6 +63,9 @@ class CategoriesService(
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
+        this.uploads = SizedCollection(uploads.mapNotNull {
+            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+        })
     }
 
     /**
@@ -67,12 +74,16 @@ class CategoriesService(
     fun CategoryEntity.update(
         name: String,
         image: String,
+        uploads: List<String>,
         isPublished: Boolean,
     ) = let { entity ->
         entity.name = name
         entity.image = image
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
+        entity.uploads = SizedCollection(uploads.mapNotNull {
+            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+        })
         entity
     }
 }

@@ -48,7 +48,12 @@ data class CategoryRequest(
     val name: String,
 
     @field:NotNull
-    val isPublished: Boolean
+    val isPublished: Boolean,
+
+    /**
+     * List urls uploads
+     */
+    val uploads: List<String> = listOf()
 )
 
 fun Route.categories() {
@@ -95,8 +100,9 @@ fun Route.categories() {
                 insert(
                     name = request.name,
                     image = request.image,
+                    uploads = request.uploads,
                     isPublished = request.isPublished,
-                ).toModel()
+                ).toModelWithUploads()
             }
             // response
             call.respond(response)
@@ -112,8 +118,9 @@ fun Route.categories() {
                 findById(id)?.update(
                     name = request.name,
                     image = request.image,
+                    uploads = request.uploads,
                     isPublished = request.isPublished,
-                )?.toModel() ?: throw Exceptions.NotFound()
+                )?.toModelWithUploads() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)

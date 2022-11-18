@@ -64,4 +64,13 @@ class PostRequestPromise(private val client: ServiceRequest) {
     ) = wrapPromise {
         client.post.admin(request)
     }
+
+    /**
+     * Override [PostRequest.uploads] for JS
+     */
+    fun uploads(
+        files: Array<FileRequest>
+    ) = wrapPromise {
+        client.post.uploads(files)
+    }
 }

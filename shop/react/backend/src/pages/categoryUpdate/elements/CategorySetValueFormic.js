@@ -10,10 +10,11 @@ import {AppHelper} from "../../../base";
 export function CategorySetValueFormic(props) {
 
     const {
-        data
+        data,
+        refresh,
     } = props
 
-    const {values, setValues} = useFormikContext();
+    const {values, setValues, setStatus, setErrors} = useFormikContext();
     const [dataFormic, setDataFormic] = React.useState(null);
 
     useEffect(() => {
@@ -23,11 +24,16 @@ export function CategorySetValueFormic(props) {
                 name: dataFormic.name,
                 image: dataFormic.image,
                 isPublished: dataFormic.isPublished,
-                uploads: dataFormic.uploads.map((it) => AppHelper.getFileUrl(it.fileName))
+                uploads: dataFormic.uploads.reverse().map((it) => AppHelper.getFileUrl(it.fileName))
             });
             setDataFormic(null)
         }
     }, [dataFormic, setValues, values])
+
+    useEffect(() => {
+        setStatus({success: null});
+        setErrors({submit: null});
+    }, [refresh, setErrors, setStatus])
 
     useEffect(() => {
         if (data) {
@@ -38,4 +44,5 @@ export function CategorySetValueFormic(props) {
 
 CategorySetValueFormic.propTypes = {
     data: PropTypes.object,
+    refresh: PropTypes.bool,
 };

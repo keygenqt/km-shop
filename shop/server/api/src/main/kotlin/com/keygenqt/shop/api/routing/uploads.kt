@@ -20,6 +20,7 @@ import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getStringParam
 import com.keygenqt.shop.db.entities.UploadEntity
+import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.UploadsService
 import com.keygenqt.shop.utils.helpers.ConstantsMime.toExtension
 import io.ktor.http.*
@@ -69,28 +70,20 @@ fun Route.uploads() {
                         }
                     }
 
-                    uploadsService.transaction {
-                        uploads.add(
-                            UploadEntity.new {
-                                fileName = name
-                                fileMime = part.contentType.toString()
-                                originalFileName = part.originalFileName!!
-                            }
+                    uploads.add(uploadsService.transaction {
+                        insert(
+                            fileName = name,
+                            contentType = part.contentType ?: throw Exceptions.BadRequest(),
+                            originalFileName = part.originalFileName
+                                ?: throw Exceptions.BadRequest()
                         )
-                    }
+                    })
+
                 }
                 part.dispose()
             }
             // response
-            if (uploads.isNotEmpty()) {
-                if (uploads.size == 1) {
-                    call.respond(uploads.first())
-                } else {
-                    call.respond(call.respond(uploads))
-                }
-            } else {
-                throw Exceptions.BadRequest()
-            }
+            call.respond(uploads.toModels())
         }
         delete("/{name}") {
             // check role

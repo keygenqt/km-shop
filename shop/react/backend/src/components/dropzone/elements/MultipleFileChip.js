@@ -3,6 +3,12 @@ import {Avatar, Chip} from "@mui/material";
 import PropTypes from "prop-types";
 import {FilePresent} from "@mui/icons-material";
 
+function isImage(url) {
+    return url.includes('.png')
+        || url.includes('.jpg')
+        || url.includes('.jpeg')
+}
+
 export function MultipleFileChip(props) {
 
     const {
@@ -15,14 +21,14 @@ export function MultipleFileChip(props) {
     return (
         <Chip
             disabled={disabled}
-            avatar={<Avatar alt={'File'} src={`${url}`} sx={{
+            avatar={ <Avatar alt={'File'} src={isImage(url) ? `${url}` : null} sx={{
                 border: '1px solid #bfbfbf',
                 backgroundColor: 'white',
             }}>
                 <FilePresent sx={{
-                    fontSize: '17px',
-                }}/>
-            </Avatar>}
+                fontSize: '17px',
+            }}/>
+                </Avatar>}
             variant="outlined"
             onClick={() => {
                 onClick(url)

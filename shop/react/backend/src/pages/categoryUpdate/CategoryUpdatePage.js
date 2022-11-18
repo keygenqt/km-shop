@@ -9,6 +9,7 @@ import {NotFoundPage} from "../error/NotFoundPage";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {CategorySetValueFormic} from "./elements/CategorySetValueFormic";
+import {FileDialog} from "../../components/dialogs/FileDialog";
 
 export function CategoryUpdatePage() {
 
@@ -24,6 +25,7 @@ export function CategoryUpdatePage() {
     const [errorFile, setErrorFile] = React.useState(null);
     const [errorCode, setErrorCode] = React.useState(200);
     const [loading, setLoading] = React.useState(id !== undefined);
+    const [showFile, setShowFile] = React.useState(null);
 
     // load
     useEffectTimout(() => {
@@ -51,6 +53,13 @@ export function CategoryUpdatePage() {
                 error={error}
                 onClose={() => {
                     setError(null)
+                }}
+            />
+
+            <FileDialog
+                url={showFile}
+                onClose={() => {
+                    setShowFile(null)
                 }}
             />
 
@@ -105,12 +114,14 @@ export function CategoryUpdatePage() {
                                                 values.image,
                                                 values.name,
                                                 values.isPublished,
+                                                values.uploads,
                                             ))
                                         ) : (
                                             await HttpClient.post.category(new Requests.CategoryRequest(
                                                 values.image,
                                                 values.name,
-                                                values.isPublished
+                                                values.isPublished,
+                                                values.uploads,
                                             ))
                                         )
 
@@ -152,6 +163,7 @@ export function CategoryUpdatePage() {
 
                                         <CategorySetValueFormic
                                             data={data}
+                                            refresh={refresh}
                                         />
 
                                         {errors.submit && (
@@ -174,35 +186,44 @@ export function CategoryUpdatePage() {
                                                     disabled={loading}
                                                     values={values.uploads}
                                                     onUpload={async (uploads) => {
-
                                                         // clear state file upload
                                                         setErrorFile(null)
                                                         setLoading(true)
+                                                        // create requests
+                                                        const requests = []
+                                                        for (const file of uploads) {
+                                                            requests.push(
+                                                                new Requests.FileRequest(
+                                                                    file.name,
+                                                                    file.type,
+                                                                    new Int8Array(await file.arrayBuffer())
+                                                                )
+                                                            )
+                                                        }
+                                                        // request
+                                                        try {
+                                                            const response = await HttpClient
+                                                                .post
+                                                                .uploads(requests)
 
-                                                        // @todo
-                                                        await new Promise(r => setTimeout(r, 2000));
+                                                            setFieldValue('uploads', response
+                                                                .toArray()
+                                                                .reverse()
+                                                                .map((it) => AppHelper.getFileUrl(it.fileName))
+                                                                .concat(values.uploads)
+                                                            )
 
-                                                        uploads.forEach((file) => {
-                                                            // upload
-                                                            try {
-                                                                const form = new FormData();
-                                                                form.append("file", file);
-
-                                                                // @todo upload
-                                                                console.log(file)
-
-                                                                setLoading(false)
-                                                            } catch (error) {
-                                                                setLoading(false)
-                                                                setErrorFile(error.message)
-                                                            }
-                                                        })
+                                                            setLoading(false)
+                                                        } catch (error) {
+                                                            setLoading(false)
+                                                            setErrorFile(error.message)
+                                                        }
                                                     }}
                                                     onClickChip={(url) => {
-                                                        console.log(url)
+                                                        setShowFile(url)
                                                     }}
                                                     onDeleteChip={(url) => {
-                                                        console.log(url)
+                                                        setFieldValue('uploads', values.uploads.filter((it) => it !== url))
                                                     }}
                                                 />
 

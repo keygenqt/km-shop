@@ -16,15 +16,14 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.*
-import com.keygenqt.shop.data.responses.AdminResponse
-import com.keygenqt.shop.data.responses.CategoryResponse
-import com.keygenqt.shop.data.responses.MessageResponse
-import com.keygenqt.shop.data.responses.ProductResponse
+import com.keygenqt.shop.data.responses.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
 import io.ktor.http.*
+import io.ktor.http.content.*
 
 class PostRequest(private val client: HttpClient) {
     /**
@@ -73,5 +72,25 @@ class PostRequest(private val client: HttpClient) {
         request: AdminCreateRequest
     ): AdminResponse {
         return client.post("api/admins") { setBody(request) }.body()
+    }
+
+    /**
+     * Upload file
+     */
+    @Throws(Exception::class)
+    suspend fun uploads(
+        files: Array<FileRequest>
+    ): List<UploadResponse> {
+        return client.submitFormWithBinaryData(
+            url = "api/uploads",
+            formData = formData {
+                files.forEach {
+                    append("file", it.file, Headers.build {
+                        append(HttpHeaders.ContentType, it.contentType)
+                        append(HttpHeaders.ContentDisposition, "filename=\"${it.name}\"")
+                    })
+                }
+            }
+        ).body()
     }
 }

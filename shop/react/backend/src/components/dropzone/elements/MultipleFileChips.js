@@ -29,7 +29,7 @@ export function MultipleFileChips(props) {
         if (boxScroll.current) {
             setIsScroll(boxScroll.current.scrollWidth > boxScroll.current.offsetWidth)
         }
-    }, [boxScroll])
+    }, [boxScroll, chips])
 
     values.forEach((item, index) => {
         chips.push(

@@ -18,6 +18,7 @@ package com.keygenqt.shop.db.service
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
+import io.ktor.http.*
 import org.jetbrains.exposed.sql.*
 
 class UploadsService(
@@ -39,6 +40,20 @@ class UploadsService(
             ProductUploads.deleteWhere { ProductUploads.upload eq upload.id }
             upload.delete()
         }
+    }
+
+    /**
+     * Create entity
+     */
+    fun insert(
+        fileName: String,
+        contentType: ContentType,
+        originalFileName: String
+    ) = UploadEntity.new {
+        this.fileName = fileName
+        this.fileMime = contentType.toString()
+        this.originalFileName = originalFileName
+        this.createAt = System.currentTimeMillis()
     }
 
     /**
