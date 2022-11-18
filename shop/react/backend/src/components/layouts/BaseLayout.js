@@ -110,7 +110,7 @@ export function BaseLayout(props) {
                         {menu}
                     </Box>
                 </Box>
-                <Box className={'custom-scroll'} sx={{
+                <Box id={'page-scroll'} className={'custom-scroll'} sx={{
                     p: isMD ? 1 : 2,
                     paddingLeft: isOpenMenu ? 1 : isMD ? 1 : 2,
                     paddingTop: 1,

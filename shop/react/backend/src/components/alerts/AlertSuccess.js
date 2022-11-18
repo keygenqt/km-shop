@@ -14,12 +14,12 @@ export function AlertSuccess(props) {
                 style={props.style}
                 severity="success"
                 sx={{
-                    backgroundColor: '#dcffd4',
-                    color: '#002e04',
+                    color: 'success.dark',
+                    backgroundColor: 'success.light',
                     borderRadius: 2,
                     marginBottom: 2,
                     '& svg': {
-                        color: '#002e04',
+                        color: 'success.dark',
                     }
                 }}
                 action={

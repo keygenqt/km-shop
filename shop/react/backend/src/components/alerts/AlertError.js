@@ -14,12 +14,12 @@ export function AlertError(props) {
                 style={props.style}
                 severity="error"
                 sx={{
-                    backgroundColor: '#ffdbec',
-                    color: '#2e0000',
+                    color: 'error.dark',
+                    backgroundColor: 'error.light',
                     borderRadius: 2,
                     marginBottom: 2,
                     '& svg': {
-                        color: '#2e0000',
+                        color: 'error.dark',
                     }
                 }}
                 action={

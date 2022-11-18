@@ -3,11 +3,9 @@ import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, CategoryOutlined, EditOutlined, VisibilityOutlined} from "@mui/icons-material";
-import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests} from "../../base";
+import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
-
-let timeoutList
 
 export function CategoriesPage() {
 
@@ -38,29 +36,26 @@ export function CategoriesPage() {
     }, [data, page])
 
     // request data
-    useEffect(() => {
+    useEffectTimout(() => {
+        HttpClient.get.categories().then(async (response) => {
+            setData(response.toArray().map((item) => ({
+                id: item.id,
+                name: item.name,
+                image: item.image,
+                isPublished: item.isPublished,
+                createAt: item.createAt,
+                updateAt: item.updateAt,
+            })))
+            setLoading(false)
+            setError(null)
+        }).catch(async (response) => {
+            setError(response.message)
+            setLoading(false)
+        });
+    }, [refresh], () => {
         setError(null)
         setLoading(true)
-        clearTimeout(timeoutList)
-        timeoutList = setTimeout(() => {
-            setLoading(false)
-            HttpClient.get.categories().then(async (response) => {
-                setData(response.toArray().map((item) => ({
-                    id: item.id,
-                    name: item.name,
-                    image: item.image,
-                    isPublished: item.isPublished,
-                    createAt: item.createAt,
-                    updateAt: item.updateAt,
-                })))
-                setLoading(false)
-                setError(null)
-            }).catch(async (response) => {
-                setError(response.message)
-                setLoading(false)
-            });
-        }, 1000)
-    }, [refresh])
+    })
 
     return (
         <>

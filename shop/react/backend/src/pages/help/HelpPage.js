@@ -3,12 +3,10 @@ import {useContext, useEffect} from 'react';
 import {Box, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {ConnectWithoutContactOutlined, EmailOutlined, VisibilityOutlined} from "@mui/icons-material";
-import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests} from "../../base";
+import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {MessageDialog} from "./elements/MessageDialog";
-
-let timeoutList
 
 export function HelpPage() {
 
@@ -40,29 +38,26 @@ export function HelpPage() {
     }, [data, page])
 
     // request data
-    useEffect(() => {
+    useEffectTimout(() => {
+        HttpClient.get.messages().then(async (response) => {
+            setData(response.toArray().map((item) => ({
+                id: item.id,
+                email: item.email,
+                message: item.message,
+                isChecked: item.isChecked,
+                createAt: item.createAt,
+                updateAt: item.updateAt,
+            })))
+            setLoading(false)
+            setError(null)
+        }).catch(async (response) => {
+            setError(response.message)
+            setLoading(false)
+        });
+    }, [refresh], () => {
         setError(null)
         setLoading(true)
-        clearTimeout(timeoutList)
-        timeoutList = setTimeout(() => {
-            setLoading(false)
-            HttpClient.get.messages().then(async (response) => {
-                setData(response.toArray().map((item) => ({
-                    id: item.id,
-                    email: item.email,
-                    message: item.message,
-                    isChecked: item.isChecked,
-                    createAt: item.createAt,
-                    updateAt: item.updateAt,
-                })))
-                setLoading(false)
-                setError(null)
-            }).catch(async (response) => {
-                setError(response.message)
-                setLoading(false)
-            });
-        }, 1000)
-    }, [refresh])
+    })
 
     return (
         <>

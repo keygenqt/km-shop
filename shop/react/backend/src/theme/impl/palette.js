@@ -20,9 +20,9 @@ export const palette = () => {
             dark: '#0f92ef',
         },
         error: {
-            light: '#e37bb0',
+            light: '#ffc5e3',
             main: '#e93b9f',
-            dark: '#ab186c',
+            dark: '#92185e',
         },
         warning: {
             light: '#ffc459',
@@ -37,7 +37,7 @@ export const palette = () => {
         success: {
             light: '#ccffca',
             main: '#4aad49',
-            dark: '#317731',
+            dark: '#1c6e1c',
         },
         gray: {
             light: '#0000001f',

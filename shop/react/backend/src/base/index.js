@@ -7,6 +7,7 @@ export * from './constants/ConstantStorage';
 export * from './hooks/WindowResize';
 export * from './hooks/WindowScroll';
 export * from './hooks/LocalStorage';
+export * from './hooks/EffectTimout';
 // route
 export * from './contexts/NavigateContext';
 // utils

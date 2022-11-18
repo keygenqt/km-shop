@@ -3,12 +3,10 @@ import {useContext, useEffect} from 'react';
 import {Box, Button, Chip, Stack, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, DeleteOutline, EditOutlined, EmailOutlined, PeopleOutlined} from "@mui/icons-material";
-import {AppCache, ConstantKMM, ConstantStorage, HttpClient, NavigateContext} from "../../base";
+import {AppCache, ConstantStorage, HttpClient, NavigateContext, useEffectTimout} from "../../base";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {ManagerDeleteDialog} from "./elements/ManagerDeleteDialog";
-
-let timeoutList
 
 export function ManagersPage() {
 
@@ -43,26 +41,23 @@ export function ManagersPage() {
     }, [data, page])
 
     // request data
-    useEffect(() => {
+    useEffectTimout(() => {
+        HttpClient.get.admins().then(async (response) => {
+            setData(response.toArray().map((item) => ({
+                id: item.id,
+                role: item.role.name,
+                email: item.email,
+            })))
+            setLoading(false)
+            setError(null)
+        }).catch(async (response) => {
+            setError(response.message)
+            setLoading(false)
+        });
+    }, [refresh], () => {
         setError(null)
         setLoading(true)
-        clearTimeout(timeoutList)
-        timeoutList = setTimeout(() => {
-            setLoading(false)
-            HttpClient.get.admins().then(async (response) => {
-                setData(response.toArray().map((item) => ({
-                    id: item.id,
-                    role: item.role.name,
-                    email: item.email,
-                })))
-                setLoading(false)
-                setError(null)
-            }).catch(async (response) => {
-                setError(response.message)
-                setLoading(false)
-            });
-        }, 1000)
-    }, [refresh])
+    })
 
     return (
         <>
