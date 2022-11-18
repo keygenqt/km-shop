@@ -75,7 +75,7 @@ export function ManagerUpdatePage() {
                             submit: null
                         }}
                         validationSchema={Yup.object().shape({
-                            // email: Yup.string().required('Email is required'),
+                            email: Yup.string().required('Email is required'),
                             role: Yup.string().required('Role is required'),
                             password: Boolean(modelId) ? Yup.string() : Yup.string()
                                 .required('Password is required')
