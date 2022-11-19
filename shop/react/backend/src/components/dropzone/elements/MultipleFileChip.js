@@ -2,12 +2,7 @@ import * as React from "react";
 import {Avatar, Chip} from "@mui/material";
 import PropTypes from "prop-types";
 import {FilePresent} from "@mui/icons-material";
-
-function isImage(url) {
-    return url.includes('.png')
-        || url.includes('.jpg')
-        || url.includes('.jpeg')
-}
+import {AppHelper} from "../../../base";
 
 export function MultipleFileChip(props) {
 
@@ -21,14 +16,16 @@ export function MultipleFileChip(props) {
     return (
         <Chip
             disabled={disabled}
-            avatar={ <Avatar alt={'File'} src={isImage(url) ? `${url}` : null} sx={{
-                border: '1px solid #bfbfbf',
-                backgroundColor: 'white',
-            }}>
-                <FilePresent sx={{
-                fontSize: '17px',
-            }}/>
-                </Avatar>}
+            avatar={(
+                <Avatar alt={'File'} src={AppHelper.isImage(url) ? `${url}` : null} sx={{
+                    border: '1px solid #bfbfbf',
+                    backgroundColor: 'white',
+                }}>
+                    <FilePresent sx={{
+                        fontSize: '17px',
+                    }}/>
+                </Avatar>
+            )}
             variant="outlined"
             onClick={() => {
                 onClick(url)

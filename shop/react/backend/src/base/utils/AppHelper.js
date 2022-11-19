@@ -1,4 +1,5 @@
 import {ConstantConf} from "../../conf/app/ConstantConf";
+import {Requests} from "../constants/ConstantKMM";
 
 /**
  * App helper functions
@@ -39,9 +40,8 @@ export const AppHelper = {
      * Check is image
      */
     isImage: (fileMime) => {
-        return fileMime.includes('png')
-            || fileMime.includes('jpg')
-            || fileMime.includes('jpeg')
+        return fileMime !== null
+            && (fileMime.includes('png') || fileMime.includes('jpg') | fileMime.includes('jpeg'))
     },
 
     /**
@@ -49,5 +49,22 @@ export const AppHelper = {
      */
     getFileUrl: (fileName) => {
         return `${ConstantConf.apiPath}/api/uploads/${fileName}`
+    },
+
+    /**
+     * Convert array uploads to array request
+     */
+    convertUploads: async (uploads) => {
+        const requests = []
+        for (const file of uploads) {
+            requests.push(
+                new Requests.FileRequest(
+                    file.name,
+                    file.type,
+                    new Int8Array(await file.arrayBuffer())
+                )
+            )
+        }
+        return requests
     },
 };

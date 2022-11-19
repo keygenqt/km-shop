@@ -1,15 +1,16 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
+import {Avatar, Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
 import {useParams} from "react-router";
 import {AlertError, AlertSuccess, AppCard, MultipleFiles, SnackbarError} from "../../components";
-import {CategoryOutlined} from "@mui/icons-material";
+import {BrokenImage, CategoryOutlined} from "@mui/icons-material";
 import {AppHelper, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {NotFoundPage} from "../error/NotFoundPage";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {CategorySetValueFormic} from "./elements/CategorySetValueFormic";
 import {FileDialog} from "../../components/dialogs/FileDialog";
+import {ImageTextField} from "../../components/fields/ImageTextField";
 
 export function CategoryUpdatePage() {
 
@@ -190,16 +191,7 @@ export function CategoryUpdatePage() {
                                                         setErrorFile(null)
                                                         setLoading(true)
                                                         // create requests
-                                                        const requests = []
-                                                        for (const file of uploads) {
-                                                            requests.push(
-                                                                new Requests.FileRequest(
-                                                                    file.name,
-                                                                    file.type,
-                                                                    new Int8Array(await file.arrayBuffer())
-                                                                )
-                                                            )
-                                                        }
+                                                        const requests = await AppHelper.convertUploads(uploads)
                                                         // request
                                                         try {
                                                             const response = await HttpClient
@@ -241,7 +233,7 @@ export function CategoryUpdatePage() {
                                                     variant="filled"
                                                 />
 
-                                                <TextField
+                                                <ImageTextField
                                                     disabled={loading}
                                                     type={'url'}
                                                     name={'image'}
@@ -253,6 +245,9 @@ export function CategoryUpdatePage() {
                                                     fullWidth
                                                     label="Image Url"
                                                     variant="filled"
+                                                    onClickImage={() => {
+                                                        setShowFile(values.image)
+                                                    }}
                                                 />
 
                                                 <FormControlLabel

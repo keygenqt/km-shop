@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
-import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
+import {AppHelper} from "../../base";
 
 export function FileDialog(props) {
 
@@ -12,6 +12,7 @@ export function FileDialog(props) {
     } = props
 
     const [urlData, setUrlData] = React.useState(url);
+    const isImage = AppHelper.isImage(urlData)
 
     useEffect(() => {
         if (url) setUrlData(url)
@@ -24,17 +25,30 @@ export function FileDialog(props) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogContent sx={{
-                p: 1
-            }}>
-                <Avatar alt={'File'} src={urlData} sx={{
-                    borderRadius: 2,
-                    height: 'inherit',
-                    width: '500px',
-                    border: '1px dotted #808080',
-                    marginBottom: '-8px'
-                }}/>
-            </DialogContent>
+            {isImage ? (
+                <DialogContent sx={{
+                    p: 1
+                }}>
+                    <Avatar alt={'File'} src={urlData} sx={{
+                        borderRadius: 2,
+                        height: 'inherit',
+                        width: '500px',
+                        marginBottom: '-8px'
+                    }}/>
+                </DialogContent>
+            ) : (
+                <>
+                    <DialogTitle variant="h5" id="alert-dialog-title" sx={{p: 2}}>
+                        Unknown file type
+                    </DialogTitle>
+                    <DialogContent sx={{
+                        p: 2
+                    }}>
+                        You can upload different types of files, but be careful when linking them to a form.
+                    </DialogContent>
+                </>
+            )}
+
             <DialogActions>
                 <Button
                     onClick={() => {
