@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.api.extension
 
+import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.utils.AppConstants
@@ -28,11 +29,12 @@ fun AuthenticationConfig.authentication() {
     session<SessionUser>(AppConstants.SESSION_KEY) {
         validate { session ->
             sessionService.verify(session.token)?.let { userId ->
-                sessionService.findUserByID(userId)?.let {
-                    return@validate session
-                }
+                return@validate sessionService.findUserByID(userId)?.let { session }
+                    ?: throw Exceptions.Unauthorized()
             }
-            null
+        }
+        challenge {
+            // Guest
         }
     }
 }

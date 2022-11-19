@@ -37,9 +37,10 @@ export function CategoryUpdatePage() {
             HttpClient.get.category(modelId).then(async (response) => {
                 setData(response)
                 setLoading(false)
-            }).catch(async (response) => {
-                setErrorCode(response.code)
-                setError(response.message)
+            }).catch(async (error) => {
+                route.logout(error)
+                setErrorCode(error.code)
+                setError(error.message)
                 setLoading(false)
             });
         }
@@ -149,6 +150,8 @@ export function CategoryUpdatePage() {
                                         setLoading(false);
 
                                     } catch (error) {
+
+                                        route.logout(error)
 
                                         const errors = {
                                             role: AppHelper.findError('name', error.validate),

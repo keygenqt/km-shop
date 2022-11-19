@@ -50,8 +50,9 @@ export function ManagersPage() {
             })))
             setLoading(false)
             setError(null)
-        }).catch(async (response) => {
-            setError(response.message)
+        }).catch(async (error) => {
+            route.logout(error)
+            setError(error.message)
             setLoading(false)
         });
     }, [refresh], () => {
@@ -79,10 +80,11 @@ export function ManagersPage() {
                         }))
                         setLoading(false)
                         setDeleteRow(null)
-                    }).catch(async (response) => {
+                    }).catch(async (error) => {
+                        route.logout(error)
                         setLoading(false)
                         setDeleteRow(null)
-                        setError(response.message)
+                        setError(error.message)
                     });
                 }}
                 onNegative={() => {

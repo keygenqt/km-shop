@@ -128,11 +128,13 @@ fun Application.module() {
             home()
 
             route("/api") {
+                // clear session without check session
+                logout()
+                // auth or guest
                 authenticate(AppConstants.SESSION_KEY) {
                     admins()
                     categories()
                     login()
-                    logout()
                     messages()
                     orders()
                     products()

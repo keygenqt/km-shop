@@ -59,6 +59,20 @@ data class ProductRequest(
     val price: Double,
 
     @field:NotNull
+    val isPublished: Boolean,
+
+    /**
+     * List urls uploads
+     */
+    val uploads: List<String> = listOf()
+)
+
+/**
+ * Request update [ProductEntity.isPublished]
+ */
+@Serializable
+data class ProductStateRequest(
+    @field:NotNull
     val isPublished: Boolean
 )
 
@@ -109,6 +123,7 @@ fun Route.products() {
                     description = request.description,
                     price = request.price,
                     isPublished = request.isPublished,
+                    uploads = request.uploads,
                 ).toModel()
             }
             // response
@@ -128,6 +143,22 @@ fun Route.products() {
                     name = request.name,
                     description = request.description,
                     price = request.price,
+                    isPublished = request.isPublished,
+                    uploads = request.uploads,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/state/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<ProductStateRequest>()
+            // act
+            val response = productsService.transaction {
+                findById(id)?.updateState(
                     isPublished = request.isPublished,
                 )?.toModel() ?: throw Exceptions.NotFound()
             }

@@ -50,8 +50,9 @@ export function HelpPage() {
             })))
             setLoading(false)
             setError(null)
-        }).catch(async (response) => {
-            setError(response.message)
+        }).catch(async (error) => {
+            route.logout(error)
+            setError(error.message)
             setLoading(false)
         });
     }, [refresh], () => {
@@ -122,10 +123,11 @@ export function HelpPage() {
                                                     params.row.email,
                                                     params.row.message,
                                                     params.row.isChecked,
-                                                )).then(async (response) => {
+                                                )).then(async () => {
                                                     setRefresh(!refresh)
-                                                }).catch(async (response) => {
-                                                    setError(response.message)
+                                                }).catch(async (error) => {
+                                                    route.logout(error)
+                                                    setError(error.message)
                                                     setLoading(false)
                                                 });
                                             }}

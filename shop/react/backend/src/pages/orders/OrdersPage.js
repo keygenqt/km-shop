@@ -71,8 +71,9 @@ export function OrdersPage(props) {
             })))
             setLoading(false)
             setError(null)
-        }).catch(async (response) => {
-            setError(response.message)
+        }).catch(async (error) => {
+            route.logout(error)
+            setError(error.message)
             setLoading(false)
         });
     }, [filter, refresh], () => {

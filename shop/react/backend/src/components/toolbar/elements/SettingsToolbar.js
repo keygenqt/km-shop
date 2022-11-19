@@ -104,16 +104,7 @@ export function SettingsToolbar(props) {
                                                 },
                                             }}
                                         >
-                                            <ListItemButton onClick={() => {
-                                                // call clear session
-                                                HttpClient.delete.logout()
-
-                                                // clear cache
-                                                AppCache.clearAll()
-
-                                                // reload page
-                                                route.toRefreshState(routes.login)
-                                            }}>
+                                            <ListItemButton onClick={() => route.logout()}>
                                                 <ListItemIcon sx={{
                                                     marginRight: '-10px'
                                                 }}>

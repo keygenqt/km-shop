@@ -54,8 +54,9 @@ export function ProductsPage() {
             })).filter((it) => published ? it.isPublished : true))
             setLoading(false)
             setError(null)
-        }).catch(async (response) => {
-            setError(response.message)
+        }).catch(async (error) => {
+            route.logout(error)
+            setError(error.message)
             setLoading(false)
         });
     }, [refresh, published], () => {
@@ -155,17 +156,13 @@ export function ProductsPage() {
                                                 setError(null)
                                                 setLoading(true)
                                                 params.row.isPublished = checked
-                                                HttpClient.put.product(params.row.id, new Requests.ProductRequest(
-                                                    params.row.categoryID,
-                                                    params.row.image,
-                                                    params.row.name,
-                                                    params.row.description,
-                                                    params.row.price,
+                                                HttpClient.put.productState(params.row.id, new Requests.ProductStateRequest(
                                                     params.row.isPublished,
-                                                )).then(async (response) => {
+                                                )).then(async () => {
                                                     setRefresh(!refresh)
-                                                }).catch(async (response) => {
-                                                    setError(response.message)
+                                                }).catch(async (error) => {
+                                                    route.logout(error)
+                                                    setError(error.message)
                                                     setLoading(false)
                                                 });
                                             }}

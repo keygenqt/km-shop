@@ -3,6 +3,8 @@ import {ScrollToTop} from "../../components";
 import {Route, Routes} from "react-router-dom";
 import {ValueType} from "./ValueType";
 import {ErrorPage} from "../../pages";
+import {HttpClient} from "../constants/ConstantKMM";
+import {AppCache} from "../utils/AppCache";
 
 export default class RouteCore {
 
@@ -413,5 +415,19 @@ export default class RouteCore {
      */
     refreshLocation() {
         this.navigate(this.pathname);
+    }
+
+    /**
+     * Custom logout - with check error or just logout
+     */
+    logout(error = null) {
+        if (error == null || error.code === 401) {
+            // request logout
+            HttpClient.delete.logout().then(() => { }).catch(async () => { });
+            // clear cache
+            AppCache.clearAll()
+            // reload page
+            this.toRefreshState(this.conf.login)
+        }
     }
 }

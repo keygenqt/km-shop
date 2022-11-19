@@ -50,7 +50,7 @@ class PutRequest(private val client: HttpClient) {
     }
 
     /**
-     * Update category method
+     * Update category state method
      */
     @Throws(Exception::class)
     suspend fun categoryState(
@@ -69,6 +69,17 @@ class PutRequest(private val client: HttpClient) {
         request: ProductRequest
     ): ProductResponse {
         return client.put("api/products/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update product state method
+     */
+    @Throws(Exception::class)
+    suspend fun productState(
+        id: Int,
+        request: ProductStateRequest
+    ): ProductResponse {
+        return client.put("api/products/state/$id") { setBody(request) }.body()
     }
 
     /**

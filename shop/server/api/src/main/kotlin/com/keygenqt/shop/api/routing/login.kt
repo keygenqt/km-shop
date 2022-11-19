@@ -63,11 +63,12 @@ fun Route.login() {
                 password = request.password
             )?.toModel() ?: throw Exceptions.Unauthorized()
         }
+
         call.sessions.set(
             SessionUser(
                 userId = response.id,
                 role = response.role.name,
-                token = sessionService.generateToken(1),
+                token = sessionService.generateToken(response.id),
             )
         )
 

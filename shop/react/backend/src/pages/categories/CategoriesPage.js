@@ -51,8 +51,9 @@ export function CategoriesPage() {
             })).filter((it) => published ? it.isPublished : true))
             setLoading(false)
             setError(null)
-        }).catch(async (response) => {
-            setError(response.message)
+        }).catch(async (error) => {
+            route.logout(error)
+            setError(error.message)
             setLoading(false)
         });
     }, [refresh, published], () => {
@@ -154,10 +155,11 @@ export function CategoriesPage() {
                                                 params.row.isPublished = checked
                                                 HttpClient.put.categoryState(params.row.id, new Requests.CategoryStateRequest(
                                                     params.row.isPublished,
-                                                )).then(async (response) => {
+                                                )).then(async () => {
                                                     setRefresh(!refresh)
-                                                }).catch(async (response) => {
-                                                    setError(response.message)
+                                                }).catch(async (error) => {
+                                                    route.logout(error)
+                                                    setError(error.message)
                                                     setLoading(false)
                                                 });
                                             }}

@@ -23,11 +23,22 @@ import kotlin.js.JsExport
  */
 @JsExport
 @Serializable
+@Suppress("ArrayInDataClass")
 data class ProductRequest(
     val categoryID: Int,
     val image: String,
     val name: String,
     val description: String,
     val price: Double,
+    val isPublished: Boolean,
+    val uploads: Array<String>,
+)
+
+/**
+ * Request Product state
+ */
+@JsExport
+@Serializable
+data class ProductStateRequest(
     val isPublished: Boolean,
 )

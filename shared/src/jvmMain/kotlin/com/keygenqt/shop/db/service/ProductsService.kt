@@ -16,11 +16,10 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.entities.Categories
-import com.keygenqt.shop.db.entities.ProductEntity
-import com.keygenqt.shop.db.entities.Products
+import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SortOrder
 
 class ProductsService(
@@ -66,6 +65,7 @@ class ProductsService(
         description: String,
         price: Double,
         isPublished: Boolean,
+        uploads: List<String>,
     ) = ProductEntity.new {
         this.categoryID = EntityID(categoryID, Categories)
         this.image = image
@@ -75,6 +75,9 @@ class ProductsService(
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
+        this.uploads = SizedCollection(uploads.mapNotNull {
+            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+        })
     }
 
     /**
@@ -87,12 +90,27 @@ class ProductsService(
         description: String,
         price: Double,
         isPublished: Boolean,
+        uploads: List<String>,
     ) = let { entity ->
         entity.categoryID = EntityID(categoryID, Categories)
         entity.image = image
         entity.name = name
         entity.description = description
         entity.price = price
+        entity.isPublished = isPublished
+        entity.updateAt = System.currentTimeMillis()
+        entity.uploads = SizedCollection(uploads.mapNotNull {
+            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+        })
+        entity
+    }
+
+    /**
+     * Update entity state
+     */
+    fun ProductEntity.updateState(
+        isPublished: Boolean,
+    ) = let { entity ->
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
         entity

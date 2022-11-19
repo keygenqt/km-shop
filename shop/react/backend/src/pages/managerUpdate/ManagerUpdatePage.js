@@ -32,9 +32,10 @@ export function ManagerUpdatePage() {
             HttpClient.get.admin(modelId).then(async (response) => {
                 setData(response)
                 setLoading(false)
-            }).catch(async (response) => {
-                setErrorCode(response.code)
-                setError(response.message)
+            }).catch(async (error) => {
+                route.logout(error)
+                setErrorCode(error.code)
+                setError(error.message)
                 setLoading(false)
             });
         }
@@ -124,7 +125,7 @@ export function ManagerUpdatePage() {
 
                                     } catch (error) {
 
-                                        console.error(error)
+                                        route.logout(error)
 
                                         const errors = {
                                             role: AppHelper.findError('role', error.validate),
@@ -154,6 +155,7 @@ export function ManagerUpdatePage() {
 
                                         <AdminSetValueFormic
                                             data={data}
+                                            refresh={refresh}
                                         />
 
                                         {errors.submit && (
