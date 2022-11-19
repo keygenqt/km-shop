@@ -15,10 +15,7 @@
  */
 package com.keygenqt.shop.services.impl
 
-import com.keygenqt.shop.data.requests.AdminUpdateRequest
-import com.keygenqt.shop.data.requests.CategoryRequest
-import com.keygenqt.shop.data.requests.MessageRequest
-import com.keygenqt.shop.data.requests.ProductRequest
+import com.keygenqt.shop.data.requests.*
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
 
@@ -43,6 +40,16 @@ class PutRequestPromise(private val client: ServiceRequest) {
         request: CategoryRequest
     ) = wrapPromise {
         client.put.category(id, request)
+    }
+
+    /**
+     * Override [PutRequest.categoryState] for JS
+     */
+    fun categoryState(
+        id: Int,
+        request: CategoryStateRequest
+    ) = wrapPromise {
+        client.put.categoryState(id, request)
     }
 
     /**

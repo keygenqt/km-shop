@@ -30,3 +30,12 @@ data class CategoryRequest(
     val isPublished: Boolean,
     val uploads: Array<String>,
 )
+
+/**
+ * Request Category State
+ */
+@JsExport
+@Serializable
+data class CategoryStateRequest(
+    val isPublished: Boolean,
+)

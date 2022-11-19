@@ -15,10 +15,7 @@
  */
 package com.keygenqt.shop.services.impl
 
-import com.keygenqt.shop.data.requests.AdminUpdateRequest
-import com.keygenqt.shop.data.requests.CategoryRequest
-import com.keygenqt.shop.data.requests.MessageRequest
-import com.keygenqt.shop.data.requests.ProductRequest
+import com.keygenqt.shop.data.requests.*
 import com.keygenqt.shop.data.responses.AdminResponse
 import com.keygenqt.shop.data.responses.CategoryResponse
 import com.keygenqt.shop.data.responses.MessageResponse
@@ -50,6 +47,17 @@ class PutRequest(private val client: HttpClient) {
         request: CategoryRequest
     ): CategoryResponse {
         return client.put("api/categories/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update category method
+     */
+    @Throws(Exception::class)
+    suspend fun categoryState(
+        id: Int,
+        request: CategoryStateRequest
+    ): CategoryResponse {
+        return client.put("api/categories/state/$id") { setBody(request) }.body()
     }
 
     /**

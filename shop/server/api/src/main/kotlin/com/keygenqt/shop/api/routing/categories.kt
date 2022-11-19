@@ -56,6 +56,15 @@ data class CategoryRequest(
     val uploads: List<String> = listOf()
 )
 
+/**
+ * Request update [CategoryEntity]
+ */
+@Serializable
+data class CategoryStateRequest(
+    @field:NotNull
+    val isPublished: Boolean,
+)
+
 fun Route.categories() {
 
     val categoriesService: CategoriesService by inject()
@@ -119,6 +128,21 @@ fun Route.categories() {
                     name = request.name,
                     image = request.image,
                     uploads = request.uploads,
+                    isPublished = request.isPublished,
+                )?.toModelWithUploads() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/state/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<CategoryStateRequest>()
+            // act
+            val response = categoriesService.transaction {
+                findById(id)?.updateState(
                     isPublished = request.isPublished,
                 )?.toModelWithUploads() ?: throw Exceptions.NotFound()
             }

@@ -134,9 +134,7 @@ export function CategoriesPage() {
                                                 setError(null)
                                                 setLoading(true)
                                                 params.row.isPublished = checked
-                                                HttpClient.put.category(params.row.id, new Requests.CategoryRequest(
-                                                    params.row.image,
-                                                    params.row.name,
+                                                HttpClient.put.categoryState(params.row.id, new Requests.CategoryStateRequest(
                                                     params.row.isPublished,
                                                 )).then(async (response) => {
                                                     setRefresh(!refresh)

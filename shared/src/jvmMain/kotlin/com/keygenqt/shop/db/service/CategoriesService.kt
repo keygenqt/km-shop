@@ -86,4 +86,15 @@ class CategoriesService(
         })
         entity
     }
+
+    /**
+     * Update state entity
+     */
+    fun CategoryEntity.updateState(
+        isPublished: Boolean,
+    ) = let { entity ->
+        entity.isPublished = isPublished
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
 }
