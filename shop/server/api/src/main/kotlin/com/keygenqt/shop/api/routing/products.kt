@@ -23,6 +23,7 @@ import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.toModel
+import com.keygenqt.shop.db.entities.toModelWithUploads
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.ProductsService
 import io.ktor.server.application.*
@@ -83,13 +84,20 @@ fun Route.products() {
     route("/products") {
         get {
             // check role
-            val role = call.checkRoleFull()
+            call.checkRoleAuth()
             // act
             val entities = productsService.transaction {
-                when (role) {
-                    AdminRole.GUEST -> getAllPublished()
-                    else -> getAll()
-                }.toModels()
+                getAll().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/published") {
+            // check role
+            call.checkRoleFull()
+            // act
+            val entities = productsService.transaction {
+                getAllPublished().toModels()
             }
             // response
             call.respond(entities)
@@ -102,9 +110,9 @@ fun Route.products() {
             // act
             val entity = productsService.transaction {
                 when (role) {
-                    AdminRole.GUEST -> findByIdPublished(id)
-                    else -> findById(id)
-                }?.toModel() ?: throw Exceptions.NotFound()
+                    AdminRole.GUEST -> findByIdPublished(id)?.toModel()
+                    else -> findById(id)?.toModelWithUploads()
+                } ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(entity)

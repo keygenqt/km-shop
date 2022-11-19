@@ -154,8 +154,8 @@ export function CategoryUpdatePage() {
                                         route.logout(error)
 
                                         const errors = {
-                                            role: AppHelper.findError('name', error.validate),
-                                            email: AppHelper.findError('image', error.validate),
+                                            image: AppHelper.findError('image', error.validate),
+                                            name: AppHelper.findError('name', error.validate),
                                         }
 
                                         setErrors(AppHelper.isNotEmpty(errors) ? errors : {

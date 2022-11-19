@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Box, Stack, Switch, Tooltip} from "@mui/material";
+import {Box, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {ConnectWithoutContactOutlined, EmailOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
@@ -16,12 +16,14 @@ export function HelpPage() {
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.HelpPage, {
         page: 0,
-        data: null
+        data: null,
+        notChecked: true
     }));
 
     // data
     const [page, setPage] = React.useState(cache.page);
     const [data, setData] = React.useState(cache.data);
+    const [notChecked, setNotChecked] = React.useState(cache.notChecked);
 
     // page logic variable
     const [error, setError] = React.useState(null);
@@ -33,9 +35,10 @@ export function HelpPage() {
     useEffect(() => {
         AppCache.objectSet(ConstantStorage.HelpPage, {
             page: page,
-            data: data
+            data: data,
+            notChecked: notChecked,
         })
-    }, [data, page])
+    }, [data, page, notChecked])
 
     // request data
     useEffectTimout(() => {
@@ -47,7 +50,7 @@ export function HelpPage() {
                 isChecked: item.isChecked,
                 createAt: item.createAt,
                 updateAt: item.updateAt,
-            })))
+            })).filter((it) => notChecked ? !it.isChecked : true))
             setLoading(false)
             setError(null)
         }).catch(async (error) => {
@@ -55,7 +58,7 @@ export function HelpPage() {
             setError(error.message)
             setLoading(false)
         });
-    }, [refresh], () => {
+    }, [refresh, notChecked], () => {
         setError(null)
         setLoading(true)
     })
@@ -77,6 +80,24 @@ export function HelpPage() {
             />
 
             <Stack>
+
+                <Stack
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignItems="center"
+                    sx={{paddingBottom: 2}}
+                >
+                    <FormControlLabel
+                        control={<Switch
+                            disabled={loading}
+                            checked={Boolean(notChecked)}
+                            onChange={(event, checked) => setNotChecked(checked)}
+                        />}
+                        label={"Not Checked"}
+                        labelPlacement={'start'}
+                    />
+                </Stack>
+
                 <AppCard
                     icon={ConnectWithoutContactOutlined}
                     color={'secondary.dark'}

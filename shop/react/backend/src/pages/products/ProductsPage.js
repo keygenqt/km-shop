@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Avatar, Box, Button, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
+import {Avatar, Box, Button, Chip, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, EditOutlined, FolderOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
@@ -142,6 +142,17 @@ export function ProductsPage() {
                                     minWidth: 0,
                                     field: 'name',
                                     headerName: 'Name'
+                                },
+                                {
+                                    minWidth: 120,
+                                    field: 'price',
+                                    headerName: 'Price',
+                                    disableColumnMenu: true,
+                                    sortable: false,
+                                    renderCell: (params) => <Chip
+                                        sx={{minWidth: 90}}
+                                        color={'secondary'}
+                                        label={params.row.price.toFixed(2)} variant="outlined"/>
                                 },
                                 {
                                     field: 'isPublished',

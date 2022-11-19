@@ -9,8 +9,8 @@ export function useEffectTimout(create, deps = [], before = () => {}, ms = 600) 
     useEffect(() => {
         before()
         clearTimeout(timeoutID)
-        timeoutID = setTimeout(() => {
-            create()
+        timeoutID = setTimeout(async () => {
+            await create()
         }, ms)
     }, deps)
 }

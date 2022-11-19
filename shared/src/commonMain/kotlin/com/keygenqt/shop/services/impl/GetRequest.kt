@@ -32,6 +32,14 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get categories published
+     */
+    @Throws(Exception::class)
+    suspend fun categoriesPublished(): List<CategoryResponse> {
+        return client.get("api/categories/published").body()
+    }
+
+    /**
      * Get category by id
      */
     @Throws(Exception::class)
@@ -61,6 +69,14 @@ class GetRequest(private val client: HttpClient) {
     @Throws(Exception::class)
     suspend fun products(): List<ProductResponse> {
         return client.get("api/products").body()
+    }
+
+    /**
+     * Get products published
+     */
+    @Throws(Exception::class)
+    suspend fun productsPublished(): List<ProductResponse> {
+        return client.get("api/products/published").body()
     }
 
     /**

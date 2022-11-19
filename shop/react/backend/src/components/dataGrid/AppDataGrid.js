@@ -56,10 +56,10 @@ export function AppDataGrid(props) {
 }
 
 AppDataGrid.propTypes = {
+    rows: PropTypes.array,
     loading: PropTypes.bool,
     page: PropTypes.number.isRequired,
     onChangePage: PropTypes.func.isRequired,
-    rows: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
 };
 

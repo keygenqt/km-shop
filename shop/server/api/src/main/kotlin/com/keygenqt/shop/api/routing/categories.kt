@@ -72,13 +72,20 @@ fun Route.categories() {
     route("/categories") {
         get {
             // check role
-            val role = call.checkRoleFull()
+            call.checkRoleAuth()
             // act
             val entities = categoriesService.transaction {
-                when (role) {
-                    AdminRole.GUEST -> getAllPublished()
-                    else -> getAll()
-                }.toModels()
+                getAll().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/published") {
+            // check role
+            call.checkRoleFull()
+            // act
+            val entities = categoriesService.transaction {
+                getAllPublished().toModels()
             }
             // response
             call.respond(entities)
