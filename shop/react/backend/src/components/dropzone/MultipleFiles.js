@@ -18,17 +18,18 @@ export function MultipleFiles(props) {
         onDeleteChip,
     } = props
 
-    const classes = [
-        error ? 'FilesZone-Error' : null,
-        disabled ? 'FilesZone-Disable' : null,
-    ]
-
     const {getRootProps, getInputProps, isDragActive} = useDropzone({
         accept: accept,
         disabled: disabled,
         onDrop: onUpload,
         noClick: true
     })
+
+    const classes = [
+        error ? 'FilesZone-Error' : null,
+        disabled ? 'FilesZone-Disable' : null,
+        isDragActive ? 'FilesZone-Active' : null,
+    ]
 
     return (
         <Stack spacing={2}>

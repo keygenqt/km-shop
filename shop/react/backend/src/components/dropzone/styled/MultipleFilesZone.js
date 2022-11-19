@@ -7,29 +7,38 @@ export const MultipleFilesZone = styled(Box)(({theme}) => ({
     borderTopRightRadius: '4px',
     borderTopLeftRadius: '4px',
     background: '#0000000f',
-    border: '1px dotted ' + theme.palette.primary.main,
+    borderBottom: '1px dotted transparent',
     '&:after': {
         content: '""',
         position: 'absolute',
-        bottom: -1,
+        bottom: 0,
         margin: '0 auto',
         left: 0,
         right: 0,
         width: '100%',
-        borderBottom: '2px solid ' + theme.palette.primary.main
+        height: 1,
+        backgroundColor: '#0000006b'
     },
     '&.FilesZone-Disable': {
         color: '#00000061',
-        background: '#E0E0E0'
+        background: '#E0E0E0',
+        borderBottom: '1px dotted #0000006b',
     },
     '&.FilesZone-Disable:after': {
         display: 'none'
     },
     '&.FilesZone-Error': {
         color: theme.palette.error.main,
-        border: '1px dotted ' + theme.palette.error.main,
     },
     '&.FilesZone-Error:after': {
-        borderBottom: '2px solid ' + theme.palette.error.main
-    }
+        height: 2,
+        backgroundColor: theme.palette.error.main
+    },
+    '&.FilesZone-Active': {
+        color: theme.palette.primary.main,
+    },
+    '&.FilesZone-Active:after': {
+        height: 2,
+        backgroundColor: theme.palette.primary.main
+    },
 }));
