@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Avatar, Box, Button, Stack, Switch, Tooltip} from "@mui/material";
+import {Avatar, Box, Button, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
 import {AddOutlined, CategoryOutlined, EditOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
@@ -15,12 +15,14 @@ export function CategoriesPage() {
     // get cache page
     const [cache] = React.useState(AppCache.objectGet(ConstantStorage.CategoriesPage, {
         page: 0,
-        data: null
+        data: null,
+        published: true
     }));
 
     // data
     const [page, setPage] = React.useState(cache.page);
     const [data, setData] = React.useState(cache.data);
+    const [published, setPublished] = React.useState(cache.published);
 
     // page logic variable
     const [error, setError] = React.useState(null);
@@ -31,9 +33,10 @@ export function CategoriesPage() {
     useEffect(() => {
         AppCache.objectSet(ConstantStorage.CategoriesPage, {
             page: page,
-            data: data
+            data: data,
+            published: published,
         })
-    }, [data, page])
+    }, [data, page, published])
 
     // request data
     useEffectTimout(() => {
@@ -45,14 +48,14 @@ export function CategoriesPage() {
                 isPublished: item.isPublished,
                 createAt: item.createAt,
                 updateAt: item.updateAt,
-            })))
+            })).filter((it) => published ? it.isPublished : true))
             setLoading(false)
             setError(null)
         }).catch(async (response) => {
             setError(response.message)
             setLoading(false)
         });
-    }, [refresh], () => {
+    }, [refresh, published], () => {
         setError(null)
         setLoading(true)
     })
@@ -68,7 +71,12 @@ export function CategoriesPage() {
 
             <Stack spacing={2}>
 
-                <Box>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
+                >
                     <Button
                         disableElevation
                         color='success'
@@ -81,7 +89,17 @@ export function CategoriesPage() {
                     >
                         Add
                     </Button>
-                </Box>
+
+                    <FormControlLabel
+                        control={<Switch
+                            disabled={loading}
+                            checked={Boolean(published)}
+                            onChange={(event, checked) => setPublished(checked)}
+                        />}
+                        label={"Only Published"}
+                        labelPlacement={'start'}
+                    />
+                </Stack>
 
                 <AppCard
                     icon={CategoryOutlined}

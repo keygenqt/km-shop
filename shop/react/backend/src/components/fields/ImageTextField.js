@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import {AppHelper} from "../../base";
 import {BrokenImage} from "@mui/icons-material";
 
+function _delete(obj, prop) {
+    if (obj[prop] && ! obj[prop].length) delete obj[prop];
+}
+
 export function ImageTextField(props) {
 
     const {
@@ -12,6 +16,10 @@ export function ImageTextField(props) {
         onClickImage,
     } = props
 
+    const fieldProps = { ...props };
+
+    delete fieldProps.onClickImage;
+
     return (
         <Stack
             direction="row"
@@ -19,7 +27,7 @@ export function ImageTextField(props) {
             alignItems="flex-start"
             spacing={1}
         >
-            <TextField {...props} />
+            <TextField {...fieldProps} />
 
             {value ? (
                 <Button

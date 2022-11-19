@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {Avatar, Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
+import {Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
 import {useParams} from "react-router";
 import {AlertError, AlertSuccess, AppCard, MultipleFiles, SnackbarError} from "../../components";
-import {BrokenImage, CategoryOutlined} from "@mui/icons-material";
+import {CategoryOutlined} from "@mui/icons-material";
 import {AppHelper, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {NotFoundPage} from "../error/NotFoundPage";
 import {Formik} from "formik";
@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import {CategorySetValueFormic} from "./elements/CategorySetValueFormic";
 import {FileDialog} from "../../components/dialogs/FileDialog";
 import {ImageTextField} from "../../components/fields/ImageTextField";
+import {FileDeleteDialog} from "../../components/dialogs/FileDeleteDialog";
 
 export function CategoryUpdatePage() {
 
@@ -27,6 +28,8 @@ export function CategoryUpdatePage() {
     const [errorCode, setErrorCode] = React.useState(200);
     const [loading, setLoading] = React.useState(id !== undefined);
     const [showFile, setShowFile] = React.useState(null);
+    const [deleteFile, setDeleteFile] = React.useState(null);
+    const [deleteFilePositive, setDeleteFilePositive] = React.useState(null);
 
     // load
     useEffectTimout(() => {
@@ -61,6 +64,17 @@ export function CategoryUpdatePage() {
                 url={showFile}
                 onClose={() => {
                     setShowFile(null)
+                }}
+            />
+
+            <FileDeleteDialog
+                open={Boolean(deleteFile)}
+                onNegative={() => {
+                    setDeleteFile(null)
+                }}
+                onPositive={() => {
+                    setDeleteFilePositive(deleteFile)
+                    setDeleteFile(null)
                 }}
             />
 
@@ -165,6 +179,7 @@ export function CategoryUpdatePage() {
                                         <CategorySetValueFormic
                                             data={data}
                                             refresh={refresh}
+                                            removeRelation={deleteFilePositive}
                                         />
 
                                         {errors.submit && (
@@ -215,7 +230,7 @@ export function CategoryUpdatePage() {
                                                         setShowFile(url)
                                                     }}
                                                     onDeleteChip={(url) => {
-                                                        setFieldValue('uploads', values.uploads.filter((it) => it !== url))
+                                                        setDeleteFile((url))
                                                     }}
                                                 />
 

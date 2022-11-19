@@ -1,7 +1,7 @@
 import {useFormikContext} from "formik";
+import * as React from "react";
 import {useEffect} from "react";
 import PropTypes from "prop-types";
-import * as React from "react";
 import {AppHelper} from "../../../base";
 
 /**
@@ -12,11 +12,20 @@ export function CategorySetValueFormic(props) {
     const {
         data,
         refresh,
+        removeRelation
     } = props
 
-    const {values, setValues, setStatus, setErrors} = useFormikContext();
+    const {values, setValues, setStatus, setErrors, setFieldValue} = useFormikContext();
     const [dataFormic, setDataFormic] = React.useState(null);
 
+    // block effect change setValues, values
+    useEffect(() => {
+        if (data) {
+            setDataFormic(data)
+        }
+    }, [data])
+
+    // update all form
     useEffect(() => {
         if (dataFormic) {
             setValues({
@@ -30,19 +39,22 @@ export function CategorySetValueFormic(props) {
         }
     }, [dataFormic, setValues, values])
 
+    // remove relation file
+    useEffect(() => {
+        if (removeRelation) {
+            setFieldValue('uploads', values.uploads.filter((it) => it !== removeRelation))
+        }
+    }, [removeRelation, setFieldValue, setValues, values])
+
+    // clear states
     useEffect(() => {
         setStatus({success: null});
         setErrors({submit: null});
     }, [refresh, setErrors, setStatus])
-
-    useEffect(() => {
-        if (data) {
-            setDataFormic(data)
-        }
-    }, [data])
 }
 
 CategorySetValueFormic.propTypes = {
     data: PropTypes.object,
     refresh: PropTypes.bool,
+    removeRelation: PropTypes.string,
 };
