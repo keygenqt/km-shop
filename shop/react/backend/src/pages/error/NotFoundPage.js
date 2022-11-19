@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {Button, Container, Stack} from "@mui/material";
+import {Box, Button, Container, Stack} from "@mui/material";
 import Lottie from "lottie-react";
 import {ArrowBackOutlined} from "@mui/icons-material";
 import {ConstantLottie, NavigateContext} from "../../base";
@@ -19,20 +19,37 @@ export function NotFoundPage() {
             }}
         >
             <Container maxWidth={"sm"} className={'content'}>
-                <Stack alignItems={"center"} spacing={1}>
-                    <Lottie animationData={ConstantLottie.error} style={{
-                        width: 300,
-                    }}/>
+                <Stack alignItems={"center"} spacing={3}>
 
-                    <Button size={'medium'} variant="outlined" startIcon={<ArrowBackOutlined/>} sx={{
-                        '& .MuiButton-startIcon': {
-                            paddingBottom: '1px'
-                        }
-                    }} onClick={() => {
-                        route.toBack()
+                    <Box sx={{
+                        position: 'relative',
+                        backgroundColor: 'white',
+                        borderRadius: '50%',
+                        p: 3
                     }}>
-                        To Back
-                    </Button>
+                        <Lottie animationData={ConstantLottie.error} style={{
+                            width: 300,
+                        }}/>
+
+                        <Box sx={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            bottom: -8,
+                            textAlign: 'center'
+                        }}>
+                            <Button size={'medium'} variant="contained" startIcon={<ArrowBackOutlined/>} sx={{
+                                '& .MuiButton-startIcon': {
+                                    paddingBottom: '1px'
+                                }
+                            }} onClick={() => {
+                                route.toBack()
+                            }}>
+                                To Back
+                            </Button>
+                        </Box>
+
+                    </Box>
 
                 </Stack>
             </Container>
