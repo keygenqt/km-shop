@@ -33,20 +33,17 @@ export function ChartDashboard(props) {
                     type: 'category',
                     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                 },
-                tooltip: {
-                    x: {
-                        format: 'dd/MM/yy HH:mm'
-                    },
-                },
-            }} series={[{
-            color: palette.success.main,
-            name: 'Completed',
-            data: data.series1
-        }, {
-            color: palette.error.main,
-            name: 'Canceled',
-            data: data.series2
-        }]}/>
+            }}
+            series={[{
+                color: palette.success.main,
+                name: 'Completed',
+                data: data.series1
+            }, {
+                color: palette.error.main,
+                name: 'Canceled',
+                data: data.series2
+            }]}
+        />
     );
 }
 

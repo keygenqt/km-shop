@@ -16,11 +16,16 @@
 package com.keygenqt.shop.interfaces
 
 import com.keygenqt.shop.db.base.DatabaseMysql
+import org.jetbrains.exposed.sql.Transaction
+import org.jetbrains.exposed.sql.transactions.TransactionManager
 
 @Suppress("UNCHECKED_CAST")
 interface IService<T> {
     val db: DatabaseMysql
     suspend fun <R> transaction(query: T.() -> R) = db.transaction {
         query.invoke(this as T)
+    }
+    suspend fun <R> transactionRaw(query: Transaction.() -> R) = db.transaction {
+        query.invoke(TransactionManager.current())
     }
 }

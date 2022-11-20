@@ -19,8 +19,12 @@ import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.OrderEntity
 import com.keygenqt.shop.db.entities.Orders
+import com.keygenqt.shop.extension.getTimestampDayFirstDayOfMonth
+import com.keygenqt.shop.extension.getTimestampDayLastDayOfMonth
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.and
+import java.time.Month
 
 class OrdersService(
     override val db: DatabaseMysql
@@ -32,13 +36,42 @@ class OrdersService(
     fun findById(id: Int) = OrderEntity.findById(id)
 
     /**
-     * Get all entities
+     * Get orders count by month & year entities
      */
-    // @todo
-    fun getBestSeller() = OrderEntity
-        .all()
-        .limit(5)
-        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+    fun getMonthCount(
+        month: Month,
+        year: Int,
+        state: OrderState? = null
+    ) = OrderEntity
+        .find {
+            state?.let {
+                (Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
+                    month = month
+                )) and (Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
+                    month = month
+                )) and (Orders.state eq state)
+            } ?: run {
+                (Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
+                    month = month
+                )) and (Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
+                    month = month
+                ))
+            }
+
+        }
+        .count()
+        .toInt()
+
+    /**
+     * Get "Best Seller" by ids
+     */
+    fun getBestSeller(
+        ids: List<Int>
+    ) = OrderEntity
+        .find { (Orders.id inList ids) }
+        // order by ids
+        .associateBy { it.id.value }
+        .let { entities -> ids.mapNotNull { entities[it] } }
 
     /**
      * Get all [OrderState.NEW] entities
@@ -105,3 +138,5 @@ class OrdersService(
         entity
     }
 }
+
+
