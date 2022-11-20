@@ -1,7 +1,7 @@
 import {Collapse, Divider, List, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import {ExpandLessOutlined, ExpandMoreOutlined} from "@mui/icons-material";
 import * as React from "react";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import PropTypes from "prop-types";
 import {NavigateContext} from "../../../base";
 
@@ -22,6 +22,12 @@ export function MenuItemGroup(props) {
     const selected = !!children.find(it => it.selected === true)
 
     const [open, setOpen] = React.useState(selected);
+
+    useEffect(() => {
+        if (selected) {
+            setOpen(selected)
+        }
+    }, [selected])
 
     children.forEach((item, index) => {
 

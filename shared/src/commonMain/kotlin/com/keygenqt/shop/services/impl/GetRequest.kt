@@ -123,4 +123,44 @@ class GetRequest(private val client: HttpClient) {
     suspend fun admin(id: Int): AdminResponse {
         return client.get("api/admins/$id").body()
     }
+
+    /**
+     * Get dashboard info "Made Orders"
+     */
+    @Throws(Exception::class)
+    suspend fun dashboardMadeOrders(): DashboardCountResponse {
+        return client.get("api/dashboard/made-orders").body()
+    }
+
+    /**
+     * Get dashboard info "Orders Completed"
+     */
+    @Throws(Exception::class)
+    suspend fun dashboardOrdersCompleted(): DashboardCountResponse {
+        return client.get("api/dashboard/orders-completed").body()
+    }
+
+    /**
+     * Get dashboard info "Total Earnings"
+     */
+    @Throws(Exception::class)
+    suspend fun dashboardTotalEarnings(): DashboardAmountResponse {
+        return client.get("api/dashboard/total-earnings").body()
+    }
+
+    /**
+     * Get dashboard info "Best Seller"
+     */
+    @Throws(Exception::class)
+    suspend fun dashboardSeller(): List<OrderResponse> {
+        return client.get("api/dashboard/seller").body()
+    }
+
+    /**
+     * Get dashboard info "Chart"
+     */
+    @Throws(Exception::class)
+    suspend fun dashboardChart(): DashboardChartResponse {
+        return client.get("api/dashboard/chart").body()
+    }
 }

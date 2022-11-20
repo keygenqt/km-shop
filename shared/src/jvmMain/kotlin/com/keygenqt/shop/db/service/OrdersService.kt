@@ -32,6 +32,15 @@ class OrdersService(
     fun findById(id: Int) = OrderEntity.findById(id)
 
     /**
+     * Get all entities
+     */
+    // @todo
+    fun getBestSeller() = OrderEntity
+        .all()
+        .limit(5)
+        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
      * Get all [OrderState.NEW] entities
      */
     fun getAllNew() = OrderEntity

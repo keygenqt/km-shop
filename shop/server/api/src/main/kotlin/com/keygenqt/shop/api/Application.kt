@@ -132,6 +132,7 @@ fun Application.module() {
                 logout()
                 // auth or guest
                 authenticate(AppConstants.SESSION_KEY) {
+                    dashboard()
                     admins()
                     categories()
                     login()

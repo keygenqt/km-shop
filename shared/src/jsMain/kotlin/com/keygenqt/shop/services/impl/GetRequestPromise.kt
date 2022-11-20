@@ -81,4 +81,29 @@ class GetRequestPromise(private val client: ServiceRequest) {
      * Override [GetRequest.admin] for JS
      */
     fun admin(id: Int) = wrapPromise { client.get.admin(id) }
+
+    /**
+     * Override [GetRequest.dashboardMadeOrders] for JS
+     */
+    fun dashboardMadeOrders() = wrapPromise { client.get.dashboardMadeOrders() }
+
+    /**
+     * Override [GetRequest.dashboardOrdersCompleted] for JS
+     */
+    fun dashboardOrdersCompleted() = wrapPromise { client.get.dashboardOrdersCompleted() }
+
+    /**
+     * Override [GetRequest.dashboardTotalEarnings] for JS
+     */
+    fun dashboardTotalEarnings() = wrapPromise { client.get.dashboardTotalEarnings() }
+
+    /**
+     * Override [GetRequest.dashboardSeller] for JS
+     */
+    fun dashboardSeller() = wrapPromise { client.get.dashboardSeller() }
+
+    /**
+     * Override [GetRequest.dashboardChart] for JS
+     */
+    fun dashboardChart() = wrapPromise { client.get.dashboardChart() }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Stack} from "@mui/material";
+import {Skeleton, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import {TrendingDownOutlined, TrendingUpOutlined} from "@mui/icons-material";
@@ -10,7 +10,6 @@ export function PercentDashboard(props) {
         percent,
         color,
         count,
-        isPositive,
     } = props
 
     return (
@@ -21,11 +20,27 @@ export function PercentDashboard(props) {
             spacing={2}
             sx={{paddingY: 2}}
         >
-            {typeof count === 'string' || count instanceof String ? (
-                <Typography variant="h4" color={color}>
+            {count ? (
+                <Typography variant="h4" color={color} sx={{
+                    fontSize: '32px'
+                }}>
                     {count}
                 </Typography>
-            ) : count}
+            ) : (
+                <Stack
+                    width={'100%'}
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="space-between"
+                    spacing={2}
+                >
+                    <Skeleton variant={'rounded'} height={40} width={150}/>
+
+                    {percent !== undefined ? (
+                        <Skeleton variant={'rounded'} height={40} width={98}/>
+                    ) : null}
+                </Stack>
+            )}
 
             {percent ? (
                 <Stack
@@ -34,17 +49,17 @@ export function PercentDashboard(props) {
                     alignItems="center"
                     spacing={2}
                     sx={{
-                        color: isPositive ? 'success.main' : 'error.main',
+                        color: percent >= 0 ? 'success.main' : 'error.main',
                         background: "#ffffffb5",
                         borderRadius: '5px',
                         paddingY: 1,
                         paddingX: 2
                     }}
                 >
-                    {isPositive ? <TrendingUpOutlined/> : <TrendingDownOutlined/>}
+                    {percent >= 0 ? <TrendingUpOutlined/> : <TrendingDownOutlined/>}
 
                     <Typography variant="h5">
-                        {percent}%
+                        {percent >= 0 ? (percent) : (percent * -1)}%
                     </Typography>
 
                 </Stack>
@@ -55,11 +70,7 @@ export function PercentDashboard(props) {
 }
 
 PercentDashboard.propTypes = {
+    count: PropTypes.number,
     percent: PropTypes.number,
-    isPositive: PropTypes.bool,
     color: PropTypes.string.isRequired,
-    count: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element,
-    ]).isRequired,
 };

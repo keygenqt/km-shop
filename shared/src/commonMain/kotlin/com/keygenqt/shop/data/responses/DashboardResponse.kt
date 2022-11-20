@@ -19,20 +19,31 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * Role uer in app
- */
-@JsExport
-enum class AdminRole {
-    GUEST, MANAGER, ADMIN
-}
-
-/**
- * Admin response
+ * Dashboard count/percent
  */
 @JsExport
 @Serializable
-data class AdminResponse(
-    val id: Int,
-    val email: String,
-    val role: AdminRole,
+data class DashboardCountResponse(
+    val count: Int,
+    val percent: Int,
+)
+
+/**
+ * Dashboard Amount
+ */
+@JsExport
+@Serializable
+data class DashboardAmountResponse(
+    val amount: Double,
+)
+
+/**
+ * Test model query
+ */
+@JsExport
+@Serializable
+@Suppress("ArrayInDataClass")
+data class DashboardChartResponse(
+    val series1: Array<Int>,
+    val series2: Array<Int>,
 )

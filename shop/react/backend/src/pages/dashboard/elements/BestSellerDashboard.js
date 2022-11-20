@@ -1,40 +1,32 @@
 import * as React from 'react';
 import {Box, Button, Divider, IconButton, List, ListItem, ListItemText, Stack} from "@mui/material";
 import {FeedOutlined} from "@mui/icons-material";
+import PropTypes from "prop-types";
+import {useContext} from "react";
+import {NavigateContext} from "../../../base";
 
-const items = [
-    {
-        primary: 'client@gmail.com',
-        secondary: 'Products: 16, Price: $ 1100.80',
-    },
-    {
-        primary: '+1 (869) 304 23 80',
-        secondary: 'Products: 13, Price: $ 980.00'
-    },
-    {
-        primary: '+1 (845) 618 11 88',
-        secondary: 'Products: 11, Price: $ 760.00'
-    },
-    {
-        primary: 'client2@gmail.com',
-        secondary: 'Products: 8, Price: $ 720.30'
-    },
-    {
-        primary: 'client3@gmail.com',
-        secondary: 'Products: 4, Price: $ 320.30'
-    }
-]
+export function BestSellerDashboard(props) {
 
-export function BestSellerDashboard() {
+    const {
+        rows
+    } = props
+
+    // navigate app
+    const {route, routes} = useContext(NavigateContext)
 
     const data = []
 
-    items.forEach((item, index) => {
+    rows.forEach((item, index) => {
         data.push((
             <Box key={`seller-key-${index}`}>
                 <ListItem
                     secondaryAction={
-                        <IconButton edge="end" aria-label="delete">
+                        <IconButton
+                            edge="end"
+                            onClick={() => {
+                                route.toLocation(routes.orderCompletedView, item.id)
+                            }}
+                        >
                             <FeedOutlined/>
                         </IconButton>
                     }
@@ -54,7 +46,7 @@ export function BestSellerDashboard() {
                     />
                 </ListItem>
 
-                {index < items.length - 1 ? (
+                {index < rows.length - 1 ? (
                     <Divider/>
                 ) : null}
 
@@ -76,6 +68,9 @@ export function BestSellerDashboard() {
                 <Button
                     variant="outlined"
                     color={'secondary'}
+                    onClick={() => {
+                        route.toLocation(routes.ordersCompleted)
+                    }}
                 >
                     View All
                 </Button>
@@ -84,4 +79,6 @@ export function BestSellerDashboard() {
     );
 }
 
-BestSellerDashboard.propTypes = {};
+BestSellerDashboard.propTypes = {
+    rows: PropTypes.array.isRequired,
+};
