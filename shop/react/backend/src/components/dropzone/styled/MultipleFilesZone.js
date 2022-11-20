@@ -21,7 +21,7 @@ export const MultipleFilesZone = styled(Box)(({theme}) => ({
     },
     '&.FilesZone-Disable': {
         color: '#00000061',
-        background: '#E0E0E0',
+        background: '#E4E4E4',
         borderBottom: '1px dotted #0000006b',
     },
     '&.FilesZone-Disable:after': {
