@@ -27,8 +27,8 @@ import org.jetbrains.exposed.dao.id.IntIdTable
  */
 object OrderProducts : IntIdTable() {
     val productID = reference("productID", Products)
-    val price = double("price")
     val count = integer("count")
+    val price = double("price")
 }
 
 /**
@@ -38,8 +38,8 @@ class OrderProductEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntSubQueryEntityClass<OrderProductEntity>(OrderProducts)
 
     var productID by OrderProducts.productID
-    var price by OrderProducts.price
     var count by OrderProducts.count
+    var price by OrderProducts.price
 
     var product by ProductEntity referencedOn OrderProducts.productID
 }
@@ -48,8 +48,9 @@ class OrderProductEntity(id: EntityID<Int>) : IntEntity(id) {
  * Convert to [OrderResponse]
  */
 fun OrderProductEntity.toModel() = OrderProductResponse(
-    price = price,
     count = count,
+    price = price,
+    sum = price * count,
     product = product.toModel(),
 )
 
@@ -58,4 +59,11 @@ fun OrderProductEntity.toModel() = OrderProductResponse(
  */
 fun Iterable<OrderProductEntity>.toModels(): List<OrderProductResponse> {
     return map { it.toModel() }
+}
+
+/**
+ * Get sum order
+ */
+fun Iterable<OrderProductEntity>.sum(): Double {
+    return map { it.toModel() }.sumOf { it.sum }
 }

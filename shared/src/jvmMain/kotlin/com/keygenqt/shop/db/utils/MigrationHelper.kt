@@ -58,6 +58,8 @@ object MigrationHelper {
             OrderEntity.new {
                 this.email = email ?: ""
                 this.phone = phone ?: ""
+                this.address = ""
+                this.note = ""
                 this.state = OrderState.valueOf(state)
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()

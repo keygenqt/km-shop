@@ -7,6 +7,7 @@ import {AppCache, ConstantStorage, HttpClient, NavigateContext, OrderState, useE
 import {EmailOutlined, FeedOutlined} from "@mui/icons-material";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
+import Typography from "@mui/material/Typography";
 
 export function OrdersPage(props) {
 
@@ -62,12 +63,14 @@ export function OrdersPage(props) {
                 id: item.id,
                 email: item.email,
                 phone: item.phone,
+                address: item.address,
+                note: item.note,
+                sum: item.sum.toFixed(2),
                 state: item.state.name,
                 createAt: item.createAt,
                 updateAt: item.updateAt,
                 // custom
                 contact: item.email ? item.email : item.phone,
-                productsCount: item.products.length,
             })))
             setLoading(false)
             setError(null)
@@ -113,20 +116,39 @@ export function OrdersPage(props) {
                             rows={data}
                             columns={[
                                 {
-                                    minWidth: 0,
+                                    minWidth: 200,
                                     field: 'contact',
                                     headerName: 'Contact'
                                 },
                                 {
-                                    minWidth: 90,
-                                    field: 'productsCount',
-                                    headerName: 'Products',
+                                    minWidth: 0,
+                                    field: 'note',
+                                    headerName: 'Note',
+                                    disableColumnMenu: true,
+                                    sortable: false,
+                                    renderCell: (params) => params.row.note ? (
+                                        <Typography variant="body2">
+                                            {params.row.note}
+                                        </Typography>
+                                    ) : (
+                                        <Typography variant="body2" sx={{
+                                            color: '#676767',
+                                            fontStyle: 'italic'
+                                        }}>
+                                            Empty
+                                        </Typography>
+                                    )
+                                },
+                                {
+                                    minWidth: 140,
+                                    field: 'sum',
+                                    headerName: 'Sum',
                                     disableColumnMenu: true,
                                     sortable: false,
                                     renderCell: (params) => <Chip
-                                        sx={{minWidth: 60}}
-                                        color={'secondary'}
-                                        label={params.row.productsCount} variant="outlined"/>
+                                        sx={{minWidth: 110}}
+                                        color={'error'}
+                                        label={params.row.sum} variant="outlined"/>
                                 },
                                 {
                                     minWidth: 90,

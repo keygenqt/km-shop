@@ -81,4 +81,34 @@ class PutRequestPromise(private val client: ServiceRequest) {
     ) = wrapPromise {
         client.put.admin(id, request)
     }
+
+    /**
+     * Override [PutRequest.orderCustomer] for JS
+     */
+    fun orderCustomer(
+        id: Int,
+        request: OrderCustomerRequest
+    ) = wrapPromise {
+        client.put.orderCustomer(id, request)
+    }
+
+    /**
+     * Override [PutRequest.orderNote] for JS
+     */
+    fun orderNote(
+        id: Int,
+        request: OrderNoteRequest
+    ) = wrapPromise {
+        client.put.orderNote(id, request)
+    }
+
+    /**
+     * Override [PutRequest.orderState] for JS
+     */
+    fun orderState(
+        id: Int,
+        request: OrderStateRequest
+    ) = wrapPromise {
+        client.put.orderState(id, request)
+    }
 }

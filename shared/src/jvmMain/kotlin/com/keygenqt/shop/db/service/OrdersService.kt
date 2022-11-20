@@ -32,13 +32,6 @@ class OrdersService(
     fun findById(id: Int) = OrderEntity.findById(id)
 
     /**
-     * Get all entities
-     */
-    fun getAll() = OrderEntity
-        .all()
-        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
-
-    /**
      * Get all [OrderState.NEW] entities
      */
     fun getAllNew() = OrderEntity
@@ -58,4 +51,41 @@ class OrdersService(
     fun getAllCompleted() = OrderEntity
         .find { (Orders.state eq OrderState.COMPLETED) }
         .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
+     * Update customer entity
+     */
+    fun OrderEntity.updateCustomer(
+        email: String,
+        phone: String,
+        address: String,
+    ) = let { entity ->
+        entity.email = email
+        entity.phone = phone
+        entity.address = address
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
+
+    /**
+     * Update note entity
+     */
+    fun OrderEntity.updateNote(
+        note: String,
+    ) = let { entity ->
+        entity.note = note
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
+
+    /**
+     * Update state entity
+     */
+    fun OrderEntity.updateState(
+        state: OrderState,
+    ) = let { entity ->
+        entity.state = state
+        entity.updateAt = System.currentTimeMillis()
+        entity
+    }
 }

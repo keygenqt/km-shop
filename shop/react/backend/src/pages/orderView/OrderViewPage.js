@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Box, Stack} from "@mui/material";
-import {AppCard, SnackbarError} from "../../components";
+import {Grid, Stack} from "@mui/material";
+import {SnackbarError} from "../../components";
 import {useParams} from "react-router";
-import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import {HttpClient, NavigateContext, OrderState, useEffectTimout} from "../../base";
 import {NotFoundPage} from "../error/NotFoundPage";
 import {LoadingOrderPage} from "./elements/LoadingOrderPage";
+import {OrderViewCustomer} from "./elements/OrderViewCustomer";
+import {OrderViewNote} from "./elements/OrderViewNote";
+import {OrderViewDetails} from "./elements/OrderViewDetails";
 
 export function OrderViewPage(props) {
 
@@ -81,39 +83,32 @@ export function OrderViewPage(props) {
                     <LoadingOrderPage/>
                 ) : (
                     <Stack>
-                        <AppCard
-                            disabled={loading}
-                            onRefresh={() => setRefresh(!refresh)}
-                            icon={icon}
-                            color={'secondary.dark'}
-                            variant={'combine'}
-                            title={'Orders'}
-                            subheader={'Here is the complete information about the order'}
-                        >
-                            <Box sx={{
-                                paddingTop: 1,
-                                paddingBottom: 3
-                            }}>
+                        <Grid container spacing={2}>
+                            <Grid item xl={8} lg={8} md={8} sm={12} xs={12} min={12} null={12}>
                                 <Stack spacing={2}>
-
-                                    <Typography variant="h4">
-                                        ID: {data.id}
-                                    </Typography>
-
-                                    <Typography variant="h4">
-                                        State: {data.state.name}
-                                    </Typography>
-
-                                    <Typography variant="h4">
-                                        Email: {data.email}
-                                    </Typography>
-
+                                    <OrderViewDetails
+                                        icon={icon}
+                                        data={data}
+                                        onChange={(data) => setData(data)}
+                                        onError={(error) => setError(error)}
+                                    />
                                 </Stack>
-                            </Box>
-                        </AppCard>
+                            </Grid>
+                            <Grid item xl={4} lg={4} md={4} sm={12} xs={12} min={12} null={12}>
+                                <Stack spacing={2}>
+                                    <OrderViewCustomer
+                                        data={data}
+                                        onChange={(data) => setData(data)}
+                                    />
+                                    <OrderViewNote
+                                        data={data}
+                                        onChange={(data) => setData(data)}
+                                    />
+                                </Stack>
+                            </Grid>
+                        </Grid>
                     </Stack>
                 )
-
             )}
         </>
     );

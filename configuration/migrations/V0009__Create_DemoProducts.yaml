@@ -18,7 +18,8 @@ products:
 
   - categoryID: 1
     name: Бантик Крутой
-    description: Крутой бант для рокерш нерфомалок.
+    description: Крутой бант для рокерш. Если ты крутыха покупай этот бантик и становись еще круче.
+                 Все крутыхи уже его купили, и ты давай присоединяйся к ним.
     image: configuration/migrations/data/product/DSC_0007.png
     price: 1200.50
     isPublished: true

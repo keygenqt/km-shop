@@ -30,6 +30,8 @@ import org.jetbrains.exposed.sql.Table
 object Orders : IntIdTable() {
     val email = varchar("email", 255)
     val phone = varchar("phone", 255)
+    val address = text("address")
+    val note = text("note")
     val state = enumeration("state", OrderState::class).default(OrderState.NEW)
     val createAt = long("createAt")
     val updateAt = long("updateAt")
@@ -52,6 +54,8 @@ class OrderEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var email by Orders.email
     var phone by Orders.phone
+    var address by Orders.address
+    var note by Orders.note
     var state by Orders.state
     var createAt by Orders.createAt
     var updateAt by Orders.updateAt
@@ -66,7 +70,10 @@ fun OrderEntity.toModel() = OrderResponse(
     id = id.value,
     email = email,
     phone = phone,
+    address = address,
+    note = note,
     state = state,
+    sum = products.sum(),
     products = products.toModels().toTypedArray(),
     createAt = createAt.toUTC(),
     updateAt = updateAt.toUTC(),

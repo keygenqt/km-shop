@@ -48,7 +48,7 @@ export function AppCard(props) {
                         {icon ? <CardIcon/> : <GridViewOutlined/>}
                     </Avatar>
                 }
-                action={onRefresh ? (
+                action={onRefresh || disabled === true ? (
                     <IconButton
                         disabled={disabled}
                         aria-label="refresh"

@@ -13,46 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.data.responses
+package com.keygenqt.shop.data.requests
 
+import com.keygenqt.shop.data.responses.OrderState
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * State order
- */
-@JsExport
-enum class OrderState {
-    NEW, PENDING, COMPLETED
-}
-
-/**
- * Response order info
+ * Request update order note
  */
 @JsExport
 @Serializable
-data class OrderProductResponse(
-    val price: Double,
-    val count: Int,
-    val sum: Double,
-    val product: ProductResponse,
+data class OrderNoteRequest(
+    val note: String,
 )
 
 /**
- * Response user orders
+ * Request update order customer
  */
 @JsExport
 @Serializable
-@Suppress("ArrayInDataClass")
-data class OrderResponse(
-    val id: Int,
+data class OrderCustomerRequest(
     val email: String,
     val phone: String,
     val address: String,
-    val note: String,
+)
+
+/**
+ * Request update order state
+ */
+@JsExport
+@Serializable
+data class OrderStateRequest(
     val state: OrderState,
-    val sum: Double,
-    val products: Array<OrderProductResponse>,
-    val createAt: String,
-    val updateAt: String,
 )

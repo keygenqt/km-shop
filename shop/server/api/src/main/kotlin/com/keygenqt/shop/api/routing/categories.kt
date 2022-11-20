@@ -40,7 +40,7 @@ import org.koin.ktor.ext.inject
 @Serializable
 data class CategoryRequest(
     @field:NotNull
-    @field:Size(max = 255, message = "Max size must 255")
+    @field:Size(max = 255, message = "Max size must less 255")
     val image: String,
 
     @field:NotNull

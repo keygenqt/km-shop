@@ -16,10 +16,7 @@
 package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.*
-import com.keygenqt.shop.data.responses.AdminResponse
-import com.keygenqt.shop.data.responses.CategoryResponse
-import com.keygenqt.shop.data.responses.MessageResponse
-import com.keygenqt.shop.data.responses.ProductResponse
+import com.keygenqt.shop.data.responses.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -91,5 +88,38 @@ class PutRequest(private val client: HttpClient) {
         request: AdminUpdateRequest
     ): AdminResponse {
         return client.put("api/admins/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update order address method
+     */
+    @Throws(Exception::class)
+    suspend fun orderCustomer(
+        id: Int,
+        request: OrderCustomerRequest
+    ): OrderResponse {
+        return client.put("api/orders/customer/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update order note method
+     */
+    @Throws(Exception::class)
+    suspend fun orderNote(
+        id: Int,
+        request: OrderNoteRequest
+    ): OrderResponse {
+        return client.put("api/orders/note/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update order state method
+     */
+    @Throws(Exception::class)
+    suspend fun orderState(
+        id: Int,
+        request: OrderStateRequest
+    ): OrderResponse {
+        return client.put("api/orders/state/$id") { setBody(request) }.body()
     }
 }

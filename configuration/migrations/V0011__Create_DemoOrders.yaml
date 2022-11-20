@@ -62,4 +62,10 @@ orders:
       - id: 8
         count: 1
       - id: 2
+        count: 3
+      - id: 3
         count: 1
+      - id: 1
+        count: 4
+      - id: 6
+        count: 2

@@ -18,13 +18,54 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.data.responses.OrderState
+import com.keygenqt.shop.db.entities.OrderEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.OrdersService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
+
+/**
+ * Request update [OrderEntity]
+ */
+@Serializable
+data class OrderCustomerRequest(
+
+    val phone: String,
+
+    @field:Email(message = "Must be a valid Email")
+    val email: String,
+
+    @field:NotNull
+    @field:Size(max = 1000, message = "Max size must less 1000")
+    val address: String,
+)
+
+/**
+ * Request update [OrderEntity]
+ */
+@Serializable
+data class OrderNoteRequest(
+    @field:NotNull
+    @field:Size(max = 1000, message = "Max size must less 1000")
+    val note: String,
+)
+
+/**
+ * Request state [OrderEntity]
+ */
+@Serializable
+data class OrderStateRequest(
+    val state: OrderState,
+)
 
 fun Route.orders() {
 
@@ -42,16 +83,6 @@ fun Route.orders() {
             }
             // response
             call.respond(entity)
-        }
-        get {
-            // check role
-            call.checkRoleAuth()
-            // act
-            val entities = ordersService.transaction {
-                getAll().toModels()
-            }
-            // response
-            call.respond(entities)
         }
         get("/new") {
             // check role
@@ -82,6 +113,53 @@ fun Route.orders() {
             }
             // response
             call.respond(entities)
+        }
+        put("/note/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<OrderNoteRequest>()
+            // act
+            val response = ordersService.transaction {
+                findById(id)?.updateNote(
+                    note = request.note,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/customer/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<OrderCustomerRequest>()
+            // act
+            val response = ordersService.transaction {
+                findById(id)?.updateCustomer(
+                    email = request.email,
+                    phone = request.phone,
+                    address = request.address,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
+        }
+        put("/state/{id}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val id = call.getNumberParam()
+            val request = call.receiveValidate<OrderStateRequest>()
+            // act
+            val response = ordersService.transaction {
+                findById(id)?.updateState(
+                    state = request.state,
+                )?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(response)
         }
     }
 }
