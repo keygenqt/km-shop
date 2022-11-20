@@ -23,7 +23,7 @@ import kotlin.js.JsExport
  */
 @JsExport
 enum class OrderState {
-    NEW, PENDING, COMPLETED
+    NEW, PENDING, COMPLETED, CANCELED
 }
 
 /**

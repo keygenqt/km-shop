@@ -63,6 +63,9 @@ export function OrderViewPage(props) {
                 case OrderState.COMPLETED:
                     route.toRefreshState(routes.orderCompletedView, data.id)
                     break;
+                case OrderState.CANCELED:
+                    route.toRefreshState(routes.orderCanceledView, data.id)
+                    break;
             }
         }
     }, [data, filter, route, routes])

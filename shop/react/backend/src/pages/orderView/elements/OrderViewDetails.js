@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import {AppCard} from "../../../components";
-import {Box, Chip, Divider, Stack, ToggleButton, ToggleButtonGroup} from "@mui/material";
+import {Box, Chip, Divider, Stack, ToggleButton, ToggleButtonGroup, useMediaQuery, useTheme} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
-import {NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
+import {BlockOutlined, NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
 import {HttpClient, OrderState, Requests} from "../../../base";
 import {OrderViewDetailsProducts} from "./OrderViewDetailsProducts";
 
@@ -20,6 +20,9 @@ export function OrderViewDetails(props) {
 
     const [state, setState] = React.useState(data.state);
     const [loading, setLoading] = React.useState(false);
+
+    const theme = useTheme();
+    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
 
     useEffect(() => {
         setLoading(props.loading)
@@ -42,9 +45,9 @@ export function OrderViewDetails(props) {
                 <Stack spacing={2}>
 
                     <Stack
-                        direction="row"
+                        direction={isXS ? 'column' : 'row'}
                         justifyContent="space-between"
-                        alignItems="center"
+                        alignItems={isXS ? 'flex-start' : 'center'}
                         spacing={2}
                     >
 
@@ -63,17 +66,22 @@ export function OrderViewDetails(props) {
                             value={state}
                             exclusive
                             onChange={(event, it) => {
+                                const saveState = state
+                                setState(it)
                                 setLoading(true)
-                                HttpClient.put.orderState(data.id, new Requests.OrderStateRequest(
-                                    it
-                                )).then(async (response) => {
-                                    setState(it)
-                                    setLoading(false)
-                                    onChange(response)
-                                }).catch(async (error) => {
-                                    onError(error.message)
-                                    setLoading(false)
-                                });
+                                setTimeout(() => {
+                                    HttpClient.put.orderState(data.id, new Requests.OrderStateRequest(
+                                        it
+                                    )).then(async (response) => {
+                                        setState(it)
+                                        setLoading(false)
+                                        onChange(response)
+                                    }).catch(async (error) => {
+                                        setState(saveState)
+                                        onError(error.message)
+                                        setLoading(false)
+                                    });
+                                }, 500)
                             }}
                             aria-label="text alignment"
                         >
@@ -97,6 +105,13 @@ export function OrderViewDetails(props) {
                                 aria-label="right aligned"
                             >
                                 <VerifiedOutlined/>
+                            </ToggleButton>
+                            <ToggleButton
+                                color="error"
+                                value={OrderState.CANCELED}
+                                aria-label="right aligned"
+                            >
+                                <BlockOutlined/>
                             </ToggleButton>
                         </ToggleButtonGroup>
 

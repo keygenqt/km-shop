@@ -1,5 +1,6 @@
 // assets
 import {
+    BlockOutlined,
     CategoryOutlined,
     ConnectWithoutContactOutlined,
     DashboardOutlined,
@@ -75,6 +76,12 @@ export const MenuConf = [
                 title: 'Completed',
                 link: '/orders/completed',
                 links: ['/orders/completed', '/orders/completed/:id']
+            },
+            {
+                icon: BlockOutlined,
+                title: 'Canceled',
+                link: '/orders/canceled',
+                links: ['/orders/canceled', '/orders/canceled/:id']
             },
         ]
     },

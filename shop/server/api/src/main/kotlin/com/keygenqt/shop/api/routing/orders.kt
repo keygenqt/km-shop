@@ -114,6 +114,16 @@ fun Route.orders() {
             // response
             call.respond(entities)
         }
+        get("/canceled") {
+            // check role
+            call.checkRoleAuth()
+            // act
+            val entities = ordersService.transaction {
+                getAllCanceled().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
         put("/note/{id}") {
             // check role
             call.checkRoleAuth()

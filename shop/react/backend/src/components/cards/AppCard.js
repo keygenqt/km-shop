@@ -1,6 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import {Avatar, CardContent, CardHeader, IconButton} from "@mui/material";
+import {Avatar, Box, CardContent, CardHeader, IconButton} from "@mui/material";
 import {CachedOutlined, GridViewOutlined} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import {AppCardStyled} from "./styled/AppCardStyled";
@@ -49,16 +49,18 @@ export function AppCard(props) {
                     </Avatar>
                 }
                 action={onRefresh || disabled === true ? (
-                    <IconButton
-                        disabled={disabled}
-                        aria-label="refresh"
-                        onClick={onRefresh}
-                        sx={{
-                            marginLeft: '20px'
-                        }}
-                    >
-                        <CachedOutlined className={disabled ? 'spin' : ''}/>
-                    </IconButton>
+                    <Box sx={{
+                        backgroundColor: '#ffffff6b',
+                        borderRadius: '50%'
+                    }}>
+                        <IconButton
+                            disabled={disabled}
+                            aria-label="refresh"
+                            onClick={onRefresh}
+                        >
+                            <CachedOutlined className={disabled ? 'spin' : ''}/>
+                        </IconButton>
+                    </Box>
                 ) : null}
                 title={title ? (
                     <Typography variant="h6">

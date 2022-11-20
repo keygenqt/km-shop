@@ -180,6 +180,8 @@ export function OrdersPage(props) {
                                                     route.toLocation(routes.orderPendingView, params.row.id)
                                                 } else if (filter === OrderState.COMPLETED) {
                                                     route.toLocation(routes.orderCompletedView, params.row.id)
+                                                } else if (filter === OrderState.CANCELED) {
+                                                    route.toLocation(routes.orderCanceledView, params.row.id)
                                                 }
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Info">

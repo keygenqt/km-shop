@@ -96,6 +96,7 @@ class GetRequest(private val client: HttpClient) {
             OrderState.NEW -> client.get("api/orders/new").body()
             OrderState.PENDING -> client.get("api/orders/pending").body()
             OrderState.COMPLETED -> client.get("api/orders/completed").body()
+            OrderState.CANCELED -> client.get("api/orders/canceled").body()
         }
     }
 

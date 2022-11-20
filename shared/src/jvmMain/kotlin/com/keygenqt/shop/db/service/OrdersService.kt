@@ -53,6 +53,13 @@ class OrdersService(
         .orderBy(Pair(Orders.createAt, SortOrder.DESC))
 
     /**
+     * Get all [OrderState.CANCELED] entities
+     */
+    fun getAllCanceled() = OrderEntity
+        .find { (Orders.state eq OrderState.CANCELED) }
+        .orderBy(Pair(Orders.createAt, SortOrder.DESC))
+
+    /**
      * Update customer entity
      */
     fun OrderEntity.updateCustomer(

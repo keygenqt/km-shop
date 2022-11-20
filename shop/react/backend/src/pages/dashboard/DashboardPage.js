@@ -14,6 +14,10 @@ import {BestSellerDashboard} from "./elements/BestSellerDashboard";
 import Typography from "@mui/material/Typography";
 
 export function DashboardPage() {
+
+    // @todo
+    const [loading, setLoading] = React.useState(false);
+
     return (
         <Stack>
             <Grid container spacing={2}>

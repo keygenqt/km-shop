@@ -14,7 +14,7 @@ import {
 } from "../../pages";
 import {AppLayout} from "../../components";
 import {ValueType as RouteType} from "../../base/route/ValueType";
-import {NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
+import {BlockOutlined, NewReleasesOutlined, PendingActionsOutlined, VerifiedOutlined} from "@mui/icons-material";
 import {OrderState} from "../../base";
 
 export const UserConf = {
@@ -200,6 +200,24 @@ export const UserConf = {
                 />
             }
         },
+        ordersCanceled: {
+            path: '/orders/canceled',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <OrdersPage
+                                icon={BlockOutlined}
+                                filter={OrderState.CANCELED}
+                            />
+                        </AppLayout>
+                    }
+                />
+            }
+        },
         orderNewView: {
             path: '/orders/:id',
             match: {
@@ -257,6 +275,27 @@ export const UserConf = {
                             <OrderViewPage
                                 icon={VerifiedOutlined}
                                 filter={OrderState.COMPLETED}
+                            />
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        orderCanceledView: {
+            path: '/orders/canceled/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <OrderViewPage
+                                icon={BlockOutlined}
+                                filter={OrderState.CANCELED}
                             />
                         </AppLayout>
                     }
