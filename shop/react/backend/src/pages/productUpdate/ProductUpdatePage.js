@@ -135,9 +135,9 @@ export function ProductUpdatePage() {
                                         .positive('Category is required'),
                                     image: Yup.string().required('Image is required'),
                                     name: Yup.string()
-                                        .required('Password is required')
+                                        .required('Name is required')
                                         .min(3, 'Size must be between 3 and 255')
-                                        .max(12, 'Size must be between 3 and 255'),
+                                        .max(255, 'Size must be between 3 and 255'),
                                     description: Yup.string()
                                         .required('Description is required')
                                         .min(3, 'Size must be between 3 and 1000')
