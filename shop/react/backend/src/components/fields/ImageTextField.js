@@ -42,7 +42,7 @@ export function ImageTextField(props) {
                         alt={'File'}
                         src={AppHelper.isImage(value) ? `${value}` : null}
                         sx={{
-                            backgroundColor: disabled ? '#E0E0E0' : '#F2F2F2',
+                            backgroundColor: disabled ? '#E4E4E4' : '#F2F2F2',
                             height: 40,
                             width: 40,
                             p: 1,
