@@ -106,7 +106,6 @@ export function OrderViewDetails(props) {
                         alignItems="flex-start"
                         spacing={2}
                         sx={{
-                            paddingX: 2,
                             paddingTop: 1
                         }}
                     >
