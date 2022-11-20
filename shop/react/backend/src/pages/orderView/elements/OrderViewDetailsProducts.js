@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Box, Divider, Stack} from "@mui/material";
+import {Box, Divider, Paper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import {OrderViewDetailsProduct} from "./OrderViewDetailsProduct";
 
@@ -13,27 +13,25 @@ export function OrderViewDetailsProducts(props) {
 
     rows.forEach((item, index) => {
         products.push((
-            <Stack
+            <Paper
                 key={`detail-product-${index}`}
-                spacing={2}
+                elevation={0}
+                sx={{ p: 2 }}
             >
                 <OrderViewDetailsProduct
                     row={item}
                 />
-
-                {index < rows.length - 1 ? (
-                    <Divider/>
-                ) : null}
-
-            </Stack>
+            </Paper>
         ))
     })
 
     return (
         <Stack spacing={2} sx={{
             p: 2,
-            backgroundColor: '#f6f6f6a3',
-            borderRadius: 3
+            backgroundColor: '#0000000f',
+            borderBottom: '1px solid #0000006b',
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4
         }}>
             {products}
         </Stack>

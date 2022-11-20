@@ -51,6 +51,7 @@ export function OrderViewDetails(props) {
                         </Stack>
 
                         <ToggleButtonGroup
+                            size={'small'}
                             value={state}
                             exclusive
                             onChange={(event, it) => {
@@ -98,8 +99,6 @@ export function OrderViewDetails(props) {
                     <OrderViewDetailsProducts
                         rows={data.products}
                     />
-
-                    <Divider/>
 
                     <Stack
                         direction="row"

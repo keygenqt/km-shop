@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Avatar, Box, Button, Chip, Stack} from "@mui/material";
+import {Avatar, Box, Button, Chip, Stack, useMediaQuery, useTheme} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import {AppHelper, NavigateContext} from "../../../base";
@@ -21,20 +21,23 @@ export function OrderViewDetailsProduct(props) {
         product,
     } = row
 
+    const theme = useTheme();
+    const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
+
     return (
         <Stack
-            direction="row"
+            direction={isMD ? 'column' : 'row'}
             justifyContent="space-between"
             alignItems="flex-start"
             spacing={2}
         >
             <Stack
-                direction="row"
+                direction={isXS ? 'column' : 'row'}
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={2}
             >
-
                 <Avatar
                     variant="rounded"
                     alt={product.name}
@@ -49,7 +52,6 @@ export function OrderViewDetailsProduct(props) {
                     sx={{minHeight: 72}}
                     spacing={0.5}
                 >
-
                     <Box>
                         <Button
                             color={'inherit'}
@@ -57,7 +59,9 @@ export function OrderViewDetailsProduct(props) {
                                 paddingY: 0,
                                 paddingX: 1,
                                 position: 'relative',
-                                left: -8
+                                left: -8,
+                                whiteSpace: 'normal',
+                                textAlign: 'left'
                             }}
                             onClick={() => {
                                 route.openUrlNewTab(route.createLink(routes.productEdit, product.id))
@@ -100,6 +104,7 @@ export function OrderViewDetailsProduct(props) {
                     variant="outlined"
                 />
             </Stack>
+
         </Stack>
     );
 }
