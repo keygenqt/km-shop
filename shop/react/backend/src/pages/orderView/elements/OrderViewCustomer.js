@@ -6,7 +6,7 @@ import {Formik} from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import {AppHelper, HttpClient, NavigateContext, Requests} from "../../../base";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 export function OrderViewCustomer(props) {
 
@@ -17,6 +17,10 @@ export function OrderViewCustomer(props) {
 
     const {route} = useContext(NavigateContext)
     const [loading, setLoading] = React.useState(false);
+
+    useEffect(() => {
+        setLoading(props.loading)
+    }, [props.loading])
 
     return (
         <AppCard
@@ -177,6 +181,7 @@ export function OrderViewCustomer(props) {
 }
 
 OrderViewCustomer.propTypes = {
+    loading: PropTypes.bool.isRequired,
     data: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
 };

@@ -55,13 +55,13 @@ export function OrderViewPage(props) {
             // eslint-disable-next-line default-case
             switch (data.state) {
                 case OrderState.NEW:
-                    route.toLocationPush(routes.orderNewView, data.id)
+                    route.toRefreshState(routes.orderNewView, data.id)
                     break;
                 case OrderState.PENDING:
-                    route.toLocationPush(routes.orderPendingView, data.id)
+                    route.toRefreshState(routes.orderPendingView, data.id)
                     break;
                 case OrderState.COMPLETED:
-                    route.toLocationPush(routes.orderCompletedView, data.id)
+                    route.toRefreshState(routes.orderCompletedView, data.id)
                     break;
             }
         }
@@ -87,20 +87,24 @@ export function OrderViewPage(props) {
                             <Grid item xl={8} lg={8} md={8} sm={12} xs={12} min={12} null={12}>
                                 <Stack spacing={2}>
                                     <OrderViewDetails
+                                        loading={loading}
                                         icon={icon}
                                         data={data}
                                         onChange={(data) => setData(data)}
                                         onError={(error) => setError(error)}
+                                        onRefresh={() => setRefresh(!refresh)}
                                     />
                                 </Stack>
                             </Grid>
                             <Grid item xl={4} lg={4} md={4} sm={12} xs={12} min={12} null={12}>
                                 <Stack spacing={2}>
                                     <OrderViewCustomer
+                                        loading={loading}
                                         data={data}
                                         onChange={(data) => setData(data)}
                                     />
                                     <OrderViewNote
+                                        loading={loading}
                                         data={data}
                                         onChange={(data) => setData(data)}
                                     />

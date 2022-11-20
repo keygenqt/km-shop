@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import {AppCard} from "../../../components";
 import {Box, Chip, Divider, Stack, ToggleButton, ToggleButtonGroup} from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -14,14 +15,20 @@ export function OrderViewDetails(props) {
         data,
         onChange,
         onError,
+        onRefresh,
     } = props
 
     const [state, setState] = React.useState(data.state);
     const [loading, setLoading] = React.useState(false);
 
+    useEffect(() => {
+        setLoading(props.loading)
+    }, [props.loading])
+
     return (
         <AppCard
             disabled={loading}
+            onRefresh={onRefresh}
             icon={icon}
             color={'secondary.dark'}
             variant={'combine'}
@@ -51,6 +58,7 @@ export function OrderViewDetails(props) {
                         </Stack>
 
                         <ToggleButtonGroup
+                            disabled={loading}
                             size={'small'}
                             value={state}
                             exclusive
@@ -97,6 +105,7 @@ export function OrderViewDetails(props) {
                     <Divider/>
 
                     <OrderViewDetailsProducts
+                        loading={loading}
                         rows={data.products}
                     />
 
@@ -114,7 +123,10 @@ export function OrderViewDetails(props) {
                         </Typography>
 
                         <Chip
-                            sx={{minWidth: 130}}
+                            sx={{
+                                minWidth: 130,
+                                opacity: loading ? 0.6 : 1
+                            }}
                             color={'error'}
                             label={data.sum.toFixed(2)}
                             variant="outlined"
@@ -129,8 +141,10 @@ export function OrderViewDetails(props) {
 }
 
 OrderViewDetails.propTypes = {
+    loading: PropTypes.bool.isRequired,
     icon: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
+    onRefresh: PropTypes.func.isRequired,
 };

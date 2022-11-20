@@ -6,7 +6,7 @@ import {Formik} from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import {AppHelper, HttpClient, NavigateContext, Requests} from "../../../base";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 export function OrderViewNote(props) {
 
@@ -17,6 +17,10 @@ export function OrderViewNote(props) {
 
     const {route} = useContext(NavigateContext)
     const [loading, setLoading] = React.useState(false);
+
+    useEffect(() => {
+        setLoading(props.loading)
+    }, [props.loading])
 
     return (
         <AppCard
@@ -123,7 +127,7 @@ export function OrderViewNote(props) {
                                             sx={{paddingTop: '6px'}}
                                             variant={'outlined'}
                                             color={'info'}
-                                            disabled={false}
+                                            disabled={loading}
                                             type={'submit'}
                                             size={'small'}
                                         >
@@ -142,6 +146,7 @@ export function OrderViewNote(props) {
 }
 
 OrderViewNote.propTypes = {
+    loading: PropTypes.bool.isRequired,
     data: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
 };
