@@ -70,7 +70,10 @@ export function PercentDashboard(props) {
 }
 
 PercentDashboard.propTypes = {
-    count: PropTypes.number,
+    count: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
     percent: PropTypes.number,
     color: PropTypes.string.isRequired,
 };
