@@ -4,7 +4,7 @@ import {Box, Chip, Stack, Tooltip} from "@mui/material";
 import PropTypes from "prop-types";
 import {AppCard, SnackbarError} from "../../components";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, OrderState, useEffectTimout} from "../../base";
-import {EmailOutlined, FeedOutlined} from "@mui/icons-material";
+import {EmailOutlined, FeedOutlined, PhoneOutlined} from "@mui/icons-material";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
@@ -164,7 +164,11 @@ export function OrdersPage(props) {
                                                 }
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Send">
-                                                    <EmailOutlined/>
+                                                    {params.row.email ? (
+                                                        <EmailOutlined/>
+                                                    ) : (
+                                                        <PhoneOutlined/>
+                                                    )}
                                                 </Tooltip>
                                             )} label="Send"/>
                                         ),
