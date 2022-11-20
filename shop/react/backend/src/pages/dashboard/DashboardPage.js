@@ -113,8 +113,8 @@ export function DashboardPage() {
                             icon={StackedBarChartOutlined}
                             color={'info.dark'}
                             variant={'lines'}
-                            title={'Chart'}
-                            subheader={'There will be a chart that will display some necessary data'}
+                            title={'Orders'}
+                            subheader={'Statistics of orders made this year by month'}
                         >
                             {dataChart ? (
                                 <ChartDashboard

@@ -1,12 +1,15 @@
 import * as React from 'react';
 import ReactApexChart from "react-apexcharts";
 import PropTypes from "prop-types";
+import {useTheme} from "@mui/material";
 
 export function ChartDashboard(props) {
 
     const {
         data
     } = props
+
+    const {palette} = useTheme();
 
     return (
         <ReactApexChart
@@ -27,8 +30,8 @@ export function ChartDashboard(props) {
                     curve: 'smooth'
                 },
                 xaxis: {
-                    type: 'datetime',
-                    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                    type: 'category',
+                    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                 },
                 tooltip: {
                     x: {
@@ -36,10 +39,12 @@ export function ChartDashboard(props) {
                     },
                 },
             }} series={[{
-            name: 'series1',
+            color: palette.success.main,
+            name: 'Completed',
             data: data.series1
         }, {
-            name: 'series2',
+            color: palette.error.main,
+            name: 'Canceled',
             data: data.series2
         }]}/>
     );

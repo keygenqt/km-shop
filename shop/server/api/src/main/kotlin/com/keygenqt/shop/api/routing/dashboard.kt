@@ -87,8 +87,8 @@ fun Route.dashboard() {
             // response
             call.respond(
                 DashboardChartResponse(
-                    series1 = arrayOf(31, 40, 28, 51, 42, 109, 100),
-                    series2 = arrayOf(11, 32, 45, 32, 34, 52, 41),
+                    series1 = arrayOf(31, 40, 28, 51, 42, 109, 100, 120, 111, 119, 130, 133),
+                    series2 = arrayOf(11, 32, 45, 32, 34, 52, 41, 60, 76, 33, 67, 50),
                 )
             )
         }
