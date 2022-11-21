@@ -40,7 +40,7 @@ All platforms use the latest stack.
 
 ## 3. CLI App
 
-* Url: *Coming soon*
+* Url: [Link](https://github.com/keygenqt/km-shop/blob/master/data/cli/shop-cli.jar?raw=true)
 * Based: [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli)
 * Platform: **Native**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/cli/)
