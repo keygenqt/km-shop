@@ -80,7 +80,17 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/cli/Screenshot_2022-11-09_at_14.38.24.png)
+```
+Usage: Shop CLI options_list
+Subcommands: 
+    backup - Backup data (default db) { db, files }
+    cleaner - Cleaner files without relations in db
+    password - Password update
+
+Options: 
+    --debug [false] -> Enable debug mode 
+    --help, -h -> Usage info 
+```
 
 # License
 
