@@ -1,6 +1,12 @@
 Shop Kotlin Multiplatform 6 in 1
 ===================
 
+A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
+All applications use a common module and native UI for their platforms.
+All platforms use the latest stack.
+
+![picture](data/common/logo160.png)
+
 ### Apps
 * API (ktor)
 * CLI (kotlinx-cli)
@@ -8,6 +14,15 @@ Shop Kotlin Multiplatform 6 in 1
 * Web site (react)
 * Android (Jetpack Compose)
 * iOS (SwiftUI)
+
+### Roadmap
+
+1. Make an API ✅
+2. Write admin panel ✅
+3. Implement a CLI application for the server 👈
+4. Write a website for clients ⌛
+5. Write an Android application ⌛
+5. Write an iOS application ⌛
 
 # License
 

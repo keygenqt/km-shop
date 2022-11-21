@@ -5,14 +5,14 @@
 # isPublished | Bool
 
 categories:
-  - name: Бантики
+  - name: Bows
     image: configuration/migrations/data/category/cat_1.png
     isPublished: true
 
-  - name: Ободки
+  - name: Headbands
     image: configuration/migrations/data/category/cat_2.png
     isPublished: true
 
-  - name: Набор
+  - name: Sets
     image: configuration/migrations/data/category/cat_3.png
     isPublished: true

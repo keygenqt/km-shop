@@ -7,6 +7,15 @@ All platforms use the latest stack.
 
 ![picture](data/common/logo160.png)
 
+### Roadmap
+
+1. Make an API ✅
+2. Write admin panel ✅
+3. Implement a CLI application for the server 👈
+4. Write a website for clients ⌛
+5. Write an Android application ⌛
+5. Write an iOS application ⌛
+
 ## 1. API
 
 * Url: [Link](https://shop-api.keygenqt.com/)
@@ -38,7 +47,7 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/backend/Screenshot_2022-11-18_at_00.57.28.png)
+![picture](data/backend/Screenshot_2022-11-21_at_07.17.20.png)
 
 ## 4. Android App
 

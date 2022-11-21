@@ -11,6 +11,12 @@ nav:
       - 'About': frontend/index.md
   - 'Admin Panel':
       - 'About': backend/index.md
+      - 'Dashboard': backend/dashboard.md
+      - 'Categories': backend/categories.md
+      - 'Products': backend/products.md
+      - 'Orders': backend/orders.md
+      - 'Managers': backend/managers.md
+      - 'Help Desk': backend/help.md
   - 'iOS':
       - 'About': ios/index.md
   - 'Android':

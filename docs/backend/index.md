@@ -1,13 +1,10 @@
 Part Admin-Panel
 ===================
 
-#### Preview
-
-![picture](/km-shop/data/backend/Screenshot_2022-11-18_at_00.57.28.png)
-
 Store admin panel. The main place to manage content and user interactions.
 
-### Contains:
+### Features
+
 * Dashboard
 * Categories
 * Products
@@ -15,26 +12,21 @@ Store admin panel. The main place to manage content and user interactions.
 * Managers
 * Help Desc
 
-### Dashboard
+### Contains
 
-Store statistics. Here you can find sales information and much more.
+* Role division
+* Session authorization
+* Missing reboot
+* HOCON configuration
+* Kotlin multiplatform module
+* Validation on the client and error handling from the server
+* MUI Components and Theme
+* Charts on ApexCharts.js
+* Cache local storage with lz-string
+* Uploading files using react-dropzone
+* Mobile device support
+* And much more
 
-### Categories
+#### Preview
 
-Categories of products. The product belongs to one of the categories, which makes it easier to find it on the site.
-
-### Products
-
-Products for sale. You can control the scope of products both individually and for entire categories.
-
-### Orders
-
-Orders placed on the website or in the mobile application. Broken down by status: new, pending, completed.
-
-### Managers
-
-Here you can find all site administrators. A user with the Admin role can manage accounts.
-
-### Help Desc
-
-Here are messages sent by users that you can reply to.
+![picture](/km-shop/data/backend/Screenshot_2022-11-21_at_07.20.32.png)

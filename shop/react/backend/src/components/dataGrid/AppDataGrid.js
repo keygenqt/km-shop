@@ -44,8 +44,8 @@ export function AppDataGrid(props) {
             disableSelectionOnClick
             disableColumnSelector
             disableColumnFilter
-            pageSize={10}
-            rowsPerPageOptions={[10]}
+            pageSize={9}
+            rowsPerPageOptions={[9]}
             loading={loading || rows === null}
             rows={rows ?? []}
             columns={columns.map((item) => ({

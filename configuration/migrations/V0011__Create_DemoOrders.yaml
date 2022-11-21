@@ -2,7 +2,7 @@
 ### Orders data
 
 # email/phone   | string
-# state         | string (NEW/PENDING/COMPLETED)
+# state         | string (NEW/PENDING/COMPLETED/CANCELED)
 # products      | array
 #   id          | int
 #   count       | int
@@ -12,7 +12,7 @@ orders:
     state: NEW
     products:
       - id: 1
-        count: 1
+        count: 4
       - id: 2
         count: 1
 
@@ -20,7 +20,7 @@ orders:
     state: NEW
     products:
       - id: 1
-        count: 2
+        count: 3
       - id: 2
         count: 2
 
@@ -41,14 +41,24 @@ orders:
         count: 2
 
   - email: order5@gmail.com
+    state: CANCELED
+    products:
+      - id: 9
+        count: 1
+      - id: 7
+        count: 2
+
+  - email: order6@gmail.com
     state: PENDING
     products:
       - id: 9
         count: 1
       - id: 7
-        count: 1
+        count: 2
+      - id: 8
+        count: 5
 
-  - email: order6@gmail.com
+  - email: order7@gmail.com
     state: COMPLETED
     products:
       - id: 5
@@ -65,7 +75,5 @@ orders:
         count: 3
       - id: 3
         count: 1
-      - id: 1
-        count: 4
       - id: 6
         count: 2
