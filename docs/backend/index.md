@@ -8,7 +8,9 @@ Store admin panel. The main place to manage content and user interactions.
 Demo mode is working now, you can see. But be smart ;)
 
 **Panel**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
+
 **Login**: admin@keygenqt.com
+
 **Passw**: 12345678
 
 ### Features
