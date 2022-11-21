@@ -11,7 +11,7 @@ Demo mode is working now, you can see. But be smart ;)
 
 **Login**: admin@keygenqt.com
 
-**Passw**: 12345678
+**Pass**: 12345678
 
 ### Features
 
