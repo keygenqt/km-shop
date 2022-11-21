@@ -25,28 +25,26 @@ class ArgRoot {
 
     val backup: SubcommandBackup = SubcommandBackup()
     val cleaner: SubcommandCleaner = SubcommandCleaner()
-    val notification: SubcommandNotification = SubcommandNotification()
     val password: SubcommandPassword = SubcommandPassword()
 
     private val parser = ArgParser("Shop CLI", strictSubcommandOptionsOrder = true).apply {
         subcommands(
             backup,
             cleaner,
-            notification,
             password,
         )
     }
 
-    val demo by parser.option(
+    val debug by parser.option(
         ArgType.Boolean,
-        fullName = "demo",
-        description = "Demo multiplatform request"
+        fullName = "debug",
+        description = "Enable debug mode"
     ).default(false)
 
     companion object {
         fun parse(args: Array<String>): ArgRoot? {
             return ArgRoot().let {
-                it.parser.parse(if (args.isEmpty()) arrayOf("--help") else args)
+                it.parser.parse(if (args.isEmpty() || args.toList() == listOf("--debug")) arrayOf("--help") else args)
                 if (args.isEmpty()) {
                     null
                 } else {

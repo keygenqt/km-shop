@@ -16,7 +16,6 @@
 package com.keygenqt.shop.cli.features
 
 import com.keygenqt.shop.cli.args.ArgRoot
-import com.keygenqt.shop.cli.args.CleanerTypes
 import com.keygenqt.shop.db.service.UploadsService
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
@@ -28,10 +27,6 @@ class CleanerFeature : KoinComponent {
     private val arg: ArgRoot by inject()
 
     private val uploadsService: UploadsService by inject()
-
-    fun runClearTokens() {
-        println("Clear tokens")
-    }
 
     fun runClearFiles() {
         runBlocking {
@@ -50,9 +45,9 @@ class CleanerFeature : KoinComponent {
                 }
             }
             if (uploads.isEmpty()) {
-                println("\nNot found files for remove\n")
+                println("\nNot found files for remove.\n")
             } else {
-                println("\nRemove files (${uploads.size}) successfully\n")
+                println("\nRemove files (${uploads.size}) successfully.\n")
             }
         }
     }
@@ -61,10 +56,7 @@ class CleanerFeature : KoinComponent {
         fun init() {
             with(CleanerFeature()) {
                 if (arg.cleaner.isInit) {
-                    when (arg.cleaner.type) {
-                        CleanerTypes.TOKENS, null -> runClearTokens()
-                        CleanerTypes.FILES -> runClearFiles()
-                    }
+                    runClearFiles()
                 }
             }
         }

@@ -15,29 +15,17 @@
  */
 package com.keygenqt.shop.cli.args
 
-import kotlinx.cli.ArgType
 import kotlinx.cli.ExperimentalCli
 import kotlinx.cli.Subcommand
 
-enum class CleanerTypes {
-    TOKENS,
-    FILES,
-}
 
 @OptIn(ExperimentalCli::class)
 class SubcommandCleaner :
-    Subcommand("cleaner", "Cleaner old db data (default tokens) { tokens, files }") {
+    Subcommand("cleaner", "Cleaner files without relations in db") {
 
     private var _isInit: Boolean = false
 
     val isInit get() = _isInit
-
-    val type by option(
-        ArgType.Choice<CleanerTypes>(),
-        fullName = "type",
-        shortName = "t",
-        description = "Cleaner data type"
-    )
 
     override fun execute() {
         _isInit = true

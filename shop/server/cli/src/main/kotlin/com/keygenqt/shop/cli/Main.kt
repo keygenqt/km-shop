@@ -22,7 +22,6 @@ import com.keygenqt.shop.base.LoaderConfig
 import com.keygenqt.shop.cli.args.ArgRoot
 import com.keygenqt.shop.cli.features.BackupFeature
 import com.keygenqt.shop.cli.features.CleanerFeature
-import com.keygenqt.shop.cli.features.NotificationFeature
 import com.keygenqt.shop.cli.features.PasswordFeature
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.service.AdminsService
@@ -40,15 +39,18 @@ fun main(args: Array<String>) {
     val conf: Config = ConfigFactory.load()
 
     // load configuration app
-    val config = LoaderConfig.loadProperties(conf.getString("config.app"))
-
-    // logger db
-    val logger = (LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger).apply {
-        level = if (conf.getBoolean("config.development")) DEBUG else OFF
-    }
+    val config = LoaderConfig.loadProperties(
+        conf.getString("config.app"),
+        conf.getString("config.dbconfig")
+    )
 
     // parse arg
     ArgRoot.parse(args)?.let { arguments ->
+
+        // logger db
+        val logger = (LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger).apply {
+            level = if (conf.getBoolean("config.development") || arguments.debug) DEBUG else OFF
+        }
 
         // init db app
         val db = DatabaseMysql(
@@ -75,7 +77,6 @@ fun main(args: Array<String>) {
             BackupFeature.init()
             CleanerFeature.init()
             PasswordFeature.init()
-            NotificationFeature.init()
         } catch (ex: Exception) {
             println("\n${ex.message}\n")
             logger.error("Error", ex)

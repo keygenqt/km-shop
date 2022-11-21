@@ -25,20 +25,20 @@ class LoaderConfig(
         /**
          * Load file conf
          */
-        fun loadProperties(path: String): LoaderConfig {
+        fun loadProperties(vararg paths: String): LoaderConfig {
             val prop = Properties()
-
-            try {
-                File(path).let { if (it.isFile) it else null }?.inputStream()?.use {
-
-                    prop.load(it)
-                } ?: run {
-                    this::class.java.getResourceAsStream(path).use {
+            paths.forEach { path ->
+                try {
+                    File(path).let { if (it.isFile) it else null }?.inputStream()?.use {
                         prop.load(it)
+                    } ?: run {
+                        this::class.java.getResourceAsStream(path).use {
+                            prop.load(it)
+                        }
                     }
+                } catch (ex: Exception) {
+                    throw RuntimeException("Failed to read property file", ex)
                 }
-            } catch (ex: Exception) {
-                throw RuntimeException("Failed to read property file", ex)
             }
             return LoaderConfig(prop)
         }

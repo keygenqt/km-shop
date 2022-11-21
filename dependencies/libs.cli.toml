@@ -17,10 +17,19 @@ configVersion = "1.4.2"
 exposedVersion="0.39.2"
 # https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
 logbackVersion = "1.4.4"
+# https://commons.apache.org/proper/commons-net/
+commonsNetVersion = "3.6"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Apache Commons Net
+# Apache Commons Net™ library implements the client side of many basic Internet protocols.
+[libraries.commons-net]
+module = "commons-net:commons-net"
+[libraries.commons-net.version]
+ref = "commonsNetVersion"
 
 # Exposed
 # ORM framework for Kotlin.
@@ -75,6 +84,7 @@ ref = "logbackVersion"
 
 [bundles]
 cli = [
+    "commons-net",
     "exposed-core",
     "exposed-dao",
     "config",
