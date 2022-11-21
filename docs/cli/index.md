@@ -26,12 +26,16 @@ Options:
 ```shell
 ## Cleaning files without relations in db
 shop cleaner
+
 ## backup database
 shop backup --type db
+
 ## backup uploads folder
 shop backup --type files
+
 ## Update password
 shop password --email admin@gmail.com --password 12345678
+
 ## Update with random password
 shop password --email admin@gmail.com
 ```
