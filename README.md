@@ -27,18 +27,7 @@ All platforms use the latest stack.
 
 ![picture](data/api/Screenshot_2022-11-17_at_18.04.51.png)
 
-## 2. Website
-
-* Url: [Link](https://shop.keygenqt.com/)
-* Based: [React](https://reactjs.org/)
-* Platform: **Web**
-* Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
-
-#### Preview
-
-*Coming soon*
-
-## 3. Admin Panel
+## 2. Admin Panel
 
 * Url: [Link](https://shop-admin.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
@@ -49,29 +38,7 @@ All platforms use the latest stack.
 
 ![picture](data/backend/Screenshot_2022-11-21_at_07.17.20.png)
 
-## 4. Android App
-
-* Url: *Coming soon*
-* Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
-* Platform: **Android**
-* Documentation: [Link](https://keygenqt.github.io/km-shop/android/)
-
-#### Preview
-
-*Coming soon*
-
-## 5. iOS App
-
-* Url: *Coming soon*
-* Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
-* Platform: **iOS**
-* Documentation: [Link](https://keygenqt.github.io/km-shop/ios/)
-
-#### Preview
-
-*Coming soon*
-
-## 6. CLI App
+## 3. CLI App
 
 * Url: *Coming soon*
 * Based: [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli)
@@ -91,6 +58,39 @@ Options:
     --debug [false] -> Enable debug mode 
     --help, -h -> Usage info 
 ```
+
+## 4. Website
+
+* Url: [Link](https://shop.keygenqt.com/)
+* Based: [React](https://reactjs.org/)
+* Platform: **Web**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
+
+#### Preview
+
+*Coming soon*
+
+## 5. Android App
+
+* Url: *Coming soon*
+* Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
+* Platform: **Android**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/android/)
+
+#### Preview
+
+*Coming soon*
+
+## 6. iOS App
+
+* Url: *Coming soon*
+* Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
+* Platform: **iOS**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/ios/)
+
+#### Preview
+
+*Coming soon*
 
 # License
 
