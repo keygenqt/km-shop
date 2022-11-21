@@ -19,8 +19,8 @@ All platforms use the latest stack.
 
 1. Make an API ✅
 2. Write admin panel ✅
-3. Implement a CLI application for the server 👈
-4. Write a website for clients ⌛
+3. Implement a CLI application for the server ✅
+4. Write a website for clients 👈
 5. Write an Android application ⌛
 5. Write an iOS application ⌛
 
