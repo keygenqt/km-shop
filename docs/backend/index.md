@@ -11,15 +11,14 @@ Demo mode is working now, you can see. But be smart ;)
 **Login**: admin@keygenqt.com
 **Passw**: 12345678
 
-
 ### Features
 
-* Dashboard
-* Categories
-* Products
-* Orders
-* Managers
-* Help Desc
+* [Dashboard](/km-shop/backend/dashboard/)
+* [Categories](/km-shop/backend/categories/)
+* [Products](/km-shop/backend/products/)
+* [Orders](/km-shop/backend/orders/)
+* [Managers](/km-shop/backend/managers/)
+* [Help Desc](/km-shop/backend/help/)
 
 ### Contains
 
@@ -36,6 +35,20 @@ Demo mode is working now, you can see. But be smart ;)
 * Mobile device support
 * And much more
 
-#### Preview
+# License
 
-![picture](/km-shop/data/backend/Screenshot_2022-11-21_at_07.20.32.png)
+```
+Copyright 2022 Vitaliy Zarubin
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
