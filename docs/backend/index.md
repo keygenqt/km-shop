@@ -3,6 +3,14 @@ Part Admin-Panel
 
 Store admin panel. The main place to manage content and user interactions.
 
+### Access
+
+Demo mode is working now, you can see. But be smart ;)
+
+**Login**: admin@keygenqt.com
+**Passw**: 12345678
+
+
 ### Features
 
 * Dashboard
