@@ -1,4 +1,4 @@
-Shop Kotlin Multiplatform 6 in 1
+Shop 6 in 1
 ===================
 
 A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
