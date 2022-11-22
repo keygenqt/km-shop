@@ -5,4 +5,4 @@ Website for customer purchases
 
 #### Preview
 
-![picture](/km-shop/data/frontend/Screenshot_2022-11-22_at_11.30.59.png)
+![picture](/km-shop/data/frontend/Screenshot_2022-11-22_at_17.08.27.png)

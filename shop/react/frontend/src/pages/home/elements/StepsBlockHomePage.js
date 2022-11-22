@@ -11,8 +11,6 @@ export function StepsBlockHomePage() {
             alignItems="self-start"
             spacing={8}
             sx={{
-                paddingTop: 6,
-                paddingBottom: 6,
                 position: 'relative',
                 '&:after': {
                     content: '""',
@@ -20,7 +18,7 @@ export function StepsBlockHomePage() {
                     position: 'absolute',
                     left: 140,
                     right: 140,
-                    top: 206
+                    top: 157
                 },
             }}
         >

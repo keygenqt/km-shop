@@ -15,8 +15,6 @@ export function FirstBlockHomePage() {
                 paddingX: 10,
                 paddingY: 12,
                 position: 'relative',
-                left: -80,
-                width: '100%',
                 '&:after': {
                     content: '""',
                     position: 'absolute',
@@ -29,31 +27,49 @@ export function FirstBlockHomePage() {
                 }
             }}
         >
-            <Stack spacing={3}>
+            <Stack
+                spacing={3}
+                direction="row"
+            >
+                <Box>
+                    <Box sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        backgroundColor: '#f7f0eade',
+                        borderRadius: 4,
+                        p: 4,
+                        paddingLeft: 0
+                    }}>
+                        <Typography variant="h5">
+                            In this season, find the best 🔥
+                        </Typography>
 
-                <Typography variant="h5">
-                    In this season, find the best 🔥
-                </Typography>
+                        <Typography variant="h2">
+                            Collections for
+                            <br/>
+                            your style
+                        </Typography>
 
-                <Typography variant="h2">
-                    Collections for
-                    <br/>
-                    your style
-                </Typography>
-
-                <Box sx={{
-                    paddingTop: 2
-                }}>
-                    <img
-                        alt={'bow'}
-                        src={ConstantImages.home.bow}
-                        style={{
-                            position: 'absolute',
-                            top: -40,
-                            right: -50,
-                            width: 650
-                        }}
-                    />
+                        <Box sx={{
+                            paddingTop: 2
+                        }}>
+                            <Button
+                                disableElevation
+                                variant={'contained'}
+                                color={'black'}
+                                sx={{
+                                    color: 'white',
+                                    borderRadius: 7,
+                                    paddingY: 2,
+                                    paddingX: 4
+                                }}
+                            >
+                                <Typography variant="h5">
+                                    Start your search
+                                </Typography>
+                            </Button>
+                        </Box>
+                    </Box>
 
                     <Box
                         sx={{
@@ -78,22 +94,74 @@ export function FirstBlockHomePage() {
                         />
                     </Box>
 
-                    <Button
-                        disableElevation
-                        variant={'contained'}
-                        color={'black'}
+                    <Box
                         sx={{
-                            color: 'white',
-                            borderRadius: 7,
-                            paddingY: 2,
-                            paddingX: 4
+                            height: 80,
+                            width: 80,
+                            position: 'absolute',
+                            top: 100,
+                            right: 0,
+                            left: 100,
+                            margin: 'auto'
                         }}
                     >
-                        <Typography variant="h5">
-                            Start your search
-                        </Typography>
-                    </Button>
+                        <Box
+                            sx={{
+                                height: 40,
+                                width: 80,
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                overflow: 'hidden',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    height: 80,
+                                    width: 80,
+                                    top: 0,
+                                    borderRadius: '50%',
+                                    backgroundColor: 'primary.main',
+                                    position: 'absolute',
+                                }}
+                            />
+                        </Box>
+                        <Box
+                            sx={{
+                                height: 40,
+                                width: 80,
+                                position: 'absolute',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                overflow: 'hidden',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    height: 80,
+                                    width: 80,
+                                    bottom: 0,
+                                    borderRadius: '50%',
+                                    backgroundColor: 'secondary.main',
+                                    position: 'absolute',
+                                }}
+                            />
+                        </Box>
+                    </Box>
                 </Box>
+
+                <Box sx={{
+                    position: 'absolute',
+                    right: 30,
+                    top: 30,
+                    bottom: 0,
+                    backgroundImage: `url(${ConstantImages.home.girl})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    width: 465
+                }}/>
             </Stack>
         </Stack>
     );

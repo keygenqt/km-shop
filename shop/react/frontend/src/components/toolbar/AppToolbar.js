@@ -33,7 +33,7 @@ export function AppToolbar(props) {
                     >
                         Shop
                         <Box component={'span'} sx={{
-                            color: 'primary.dark',
+                            color: 'secondary.dark',
                             ml: 1,
                             fontWeight: '100'
                         }}>

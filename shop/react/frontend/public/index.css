@@ -59,7 +59,7 @@ html, body, #root {
 }
 
 .custom-scroll::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
     height: 6px;
 }
 
@@ -68,7 +68,7 @@ html, body, #root {
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-    background: rgba(128, 128, 128, 0.4);
+    background: #969696;
     border-radius: 4px;
 }
 
