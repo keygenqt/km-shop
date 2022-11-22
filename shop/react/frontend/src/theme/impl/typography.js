@@ -3,7 +3,7 @@
  * @type {string}
  */
 const fontFamily = [
-    '"Albert Sans"',
+    'Ubuntu',
     'Roboto',
     'sans-serif',
 ].join(',')
@@ -16,7 +16,8 @@ export const typography = {
         fontFamily: fontFamily,
     },
     h2: {
-        fontWeight: '400',
+        fontSize: 70,
+        fontWeight: '500',
         textTransform: "none",
         fontFamily: fontFamily,
     },
@@ -44,17 +45,20 @@ export const typography = {
         fontFamily: fontFamily,
     },
     body1: {
-
+        fontFamily: fontFamily,
     },
     body2: {
-
+        fontWeight: '100',
+        fontFamily: fontFamily,
     },
     button: {
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
+        fontFamily: fontFamily,
     },
     caption: {
         fontSize: 12,
-        color: '#676767'
+        color: '#676767',
+        fontFamily: fontFamily,
     },
     overline: {}
 }

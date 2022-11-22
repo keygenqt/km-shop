@@ -10,13 +10,13 @@ export const palette = () => {
             default: '#fff',
         },
         primary: {
-            light: '#C5AEF6',
-            main: '#9878D8',
-            dark: '#6739B7',
+            light: '#ad8aef',
+            main: '#966fe1',
+            dark: '#3e207b',
         },
         secondary: {
             light: '#E3F2FD',
-            main: '#1e9eff',
+            main: '#50b3ff',
             dark: '#0f92ef',
         },
         error: {
@@ -25,9 +25,9 @@ export const palette = () => {
             dark: '#92185e',
         },
         warning: {
-            light: '#ffc459',
-            main: '#f8ba00',
-            dark: '#b68900',
+            light: '#ffc767',
+            main: '#d09c00',
+            dark: '#916e00',
         },
         info: {
             light: '#eba4fd',
@@ -36,13 +36,18 @@ export const palette = () => {
         },
         success: {
             light: '#ccffca',
-            main: '#4aad49',
+            main: '#72c871',
             dark: '#1c6e1c',
         },
         gray: {
             light: '#0000001f',
             main: '#8b8b8b',
             dark: '#515151',
+        },
+        black: {
+            light: 'black',
+            main: '#1f1f1f',
+            dark: '#3b3b3b',
         },
     }
 }

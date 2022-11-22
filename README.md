@@ -68,7 +68,7 @@ Options:
 
 #### Preview
 
-*Coming soon*
+![picture](data/frontend/Screenshot_2022-11-22_at_11.21.06.png)
 
 ## 5. Android App
 

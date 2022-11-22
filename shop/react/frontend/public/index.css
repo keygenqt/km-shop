@@ -65,7 +65,6 @@ html, body, #root {
 
 .custom-scroll::-webkit-scrollbar-track {
     background-color: white;
-    margin-top: 10px;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
