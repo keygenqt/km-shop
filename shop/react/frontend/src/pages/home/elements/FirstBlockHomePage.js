@@ -40,35 +40,39 @@ export function FirstBlockHomePage() {
                         p: 4,
                         paddingLeft: 0
                     }}>
-                        <Typography variant="h5">
-                            In this season, find the best 🔥
-                        </Typography>
+                        <Stack
+                            spacing={3}
+                        >
+                            <Typography variant="h5">
+                                In this season, find the best 🔥
+                            </Typography>
 
-                        <Typography variant="h2">
-                            Collections for
-                            <br/>
-                            your style
-                        </Typography>
+                            <Typography variant="h2">
+                                Collections for
+                                <br/>
+                                your style
+                            </Typography>
 
-                        <Box sx={{
-                            paddingTop: 2
-                        }}>
-                            <Button
-                                disableElevation
-                                variant={'contained'}
-                                color={'black'}
-                                sx={{
-                                    color: 'white',
-                                    borderRadius: 7,
-                                    paddingY: 2,
-                                    paddingX: 4
-                                }}
-                            >
-                                <Typography variant="h5">
-                                    Start your search
-                                </Typography>
-                            </Button>
-                        </Box>
+                            <Box sx={{
+                                paddingTop: 2
+                            }}>
+                                <Button
+                                    disableElevation
+                                    variant={'contained'}
+                                    color={'black'}
+                                    sx={{
+                                        color: 'white',
+                                        borderRadius: 7,
+                                        paddingY: 2,
+                                        paddingX: 4
+                                    }}
+                                >
+                                    <Typography variant="h5">
+                                        Start your search
+                                    </Typography>
+                                </Button>
+                            </Box>
+                        </Stack>
                     </Box>
 
                     <Box
@@ -160,7 +164,7 @@ export function FirstBlockHomePage() {
                     backgroundImage: `url(${ConstantImages.home.girl})`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
-                    width: 465
+                    width: 512
                 }}/>
             </Stack>
         </Stack>
