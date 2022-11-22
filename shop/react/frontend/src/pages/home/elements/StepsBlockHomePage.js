@@ -3,7 +3,7 @@ import {Avatar, Box, Chip, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {ConstantImages} from "../../../base";
 
-export function StepBlockHomePage() {
+export function StepsBlockHomePage() {
     return (
         <Stack
             direction="row"
@@ -12,6 +12,7 @@ export function StepBlockHomePage() {
             spacing={8}
             sx={{
                 paddingTop: 6,
+                paddingBottom: 6,
                 position: 'relative',
                 '&:after': {
                     content: '""',
@@ -177,4 +178,4 @@ export function StepBlockHomePage() {
     );
 }
 
-StepBlockHomePage.propTypes = {};
+StepsBlockHomePage.propTypes = {};

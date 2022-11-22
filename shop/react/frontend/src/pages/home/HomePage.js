@@ -1,16 +1,30 @@
 import * as React from 'react';
-import {Stack} from "@mui/material";
+import {Box, Container, Stack} from "@mui/material";
 import {FirstBlockHomePage} from "./elements/FirstBlockHomePage";
-import {StepBlockHomePage} from "./elements/StepBlockHomePage";
+import {StepsBlockHomePage} from "./elements/StepsBlockHomePage";
+import {CategoriesBlockHomePage} from "./elements/CategoriesBlockHomePage";
 
 export function HomePage() {
     return (
-        <Stack spacing={10} sx={{
-            paddingY: 10
-        }}>
-            <FirstBlockHomePage/>
-            <StepBlockHomePage/>
-        </Stack>
+        <Box>
+            <Container maxWidth={"xl"} sx={{
+                paddingY: 10
+            }}>
+                <FirstBlockHomePage/>
+            </Container>
+
+            <Container maxWidth={"lg"} sx={{
+                paddingBottom: 10
+            }}>
+                <StepsBlockHomePage/>
+            </Container>
+
+            <Container maxWidth={"xl"} sx={{
+                paddingBottom: 10
+            }}>
+                <CategoriesBlockHomePage/>
+            </Container>
+        </Box>
     );
 }
 

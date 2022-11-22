@@ -22,19 +22,20 @@ export const typography = {
         fontFamily: fontFamily,
     },
     h3: {
-        fontWeight: '400',
+        fontSize: 46,
+        fontWeight: '500',
         textTransform: "none",
         fontFamily: fontFamily,
     },
     h4: {
-        fontSize: 24,
-        fontWeight: '400',
+        fontSize: 30,
+        fontWeight: '500',
         textTransform: "none",
         fontFamily: fontFamily,
     },
     h5: {
         fontSize: 18,
-        fontWeight: '400',
+        fontWeight: '500',
         textTransform: "none",
         fontFamily: fontFamily,
     },
@@ -45,9 +46,11 @@ export const typography = {
         fontFamily: fontFamily,
     },
     body1: {
+        fontSize: 16,
         fontFamily: fontFamily,
     },
     body2: {
+        fontSize: 14,
         fontWeight: '100',
         fontFamily: fontFamily,
     },
@@ -57,7 +60,7 @@ export const typography = {
     },
     caption: {
         fontSize: 12,
-        color: '#676767',
+        color: '#838383',
         fontFamily: fontFamily,
     },
     overline: {}
