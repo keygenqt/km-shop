@@ -68,7 +68,7 @@ Options:
 
 #### Preview
 
-![picture](data/frontend/Screenshot_2022-11-22_at_17.08.27.png)
+![picture](data/frontend/Screenshot_2022-11-22_at_17.19.39.png)
 
 ## 5. Android App
 
