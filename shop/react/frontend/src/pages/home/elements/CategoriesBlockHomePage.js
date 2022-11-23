@@ -13,39 +13,10 @@ import {
     useTheme
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import {
-    ArrowForwardOutlined,
-    Brightness5Outlined,
-    BusinessOutlined,
-    CelebrationOutlined,
-    Diversity3Outlined,
-    ForestOutlined
-} from "@mui/icons-material";
+import {ArrowForwardOutlined} from "@mui/icons-material";
 import {ConstantImages} from "../../../base";
 import {TabsBlackStyled} from "../../../components/tabs/styled/TabsBlackStyled";
-
-const filtersData = [
-    {
-        icon: BusinessOutlined,
-        name: 'School',
-    },
-    {
-        icon: Brightness5Outlined,
-        name: 'Walk',
-    },
-    {
-        icon: Diversity3Outlined,
-        name: 'Birthday',
-    },
-    {
-        icon: CelebrationOutlined,
-        name: 'Holiday',
-    },
-    {
-        icon: ForestOutlined,
-        name: 'New Year',
-    },
-]
+import {ConstantCollections} from "../../../base/constants/ConstantCollections";
 
 const categoriesData = [
     {
@@ -81,7 +52,7 @@ export function CategoriesBlockHomePage() {
     const filters = []
     const categories = []
 
-    filtersData.forEach((it, index) => {
+    ConstantCollections.forEach((it, index) => {
         const Icon = it.icon
         filters.push((
             <Tab

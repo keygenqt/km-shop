@@ -64,7 +64,8 @@ export function CartToolbar(props) {
                             src={it.image}
                             sx={{
                                 width: 70,
-                                height: 70
+                                height: 70,
+                                borderRadius: 4
                             }}
                         />
 
@@ -150,8 +151,8 @@ export function CartToolbar(props) {
                             <Paper elevation={1} sx={{
                                 zIndex: 999,
                                 pt: 2,
-                                pl: 2,
-                                pr: 2,
+                                pl: 4,
+                                pr: 4,
                                 borderRadius: 4,
                                 maxWidth: 400,
                                 overflow: 'hidden'
@@ -170,12 +171,13 @@ export function CartToolbar(props) {
                                         spacing={2}
                                         sx={{
                                             backgroundColor: '#F9FAFB',
-                                            width: '100%',
+                                            width: 'calc(100% + 64px)',
                                             position: 'relative',
-                                            left: -16,
-                                            marginBottom: -16,
-                                            paddingX: 2,
-                                            paddingY: 3
+                                            left: -32,
+                                            marginBottom: -32,
+                                            paddingX: 4,
+                                            paddingY: 3,
+                                            boxSizing: 'border-box'
                                         }}
                                     >
                                         <Stack
