@@ -15,11 +15,19 @@ import cat_bg_6 from "../../assets/images/home/cat_bg_6.svg";
 import iphone from "../../assets/images/home/iphone.png";
 import appstore from "../../assets/images/home/appstore.png";
 import googlePlay from "../../assets/images/home/googleplay.png";
+import DSC_0004 from "../../assets/images/common/DSC_0004.png";
+import DSC_0007 from "../../assets/images/common/DSC_0007.png";
+import DSC_0009 from "../../assets/images/common/DSC_0009.png";
 
 /**
  * Apps constants sundries
  */
 export const ConstantImages = {
+    common: {
+        DSC_0004: DSC_0004,
+        DSC_0007: DSC_0007,
+        DSC_0009: DSC_0009,
+    },
     home: {
         iphone: iphone,
         appstore: appstore,
