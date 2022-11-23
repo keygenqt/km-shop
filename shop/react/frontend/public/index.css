@@ -81,7 +81,9 @@ html, body, #root {
     to {transform:rotate(360deg);}
 }
 
-.MuiContainer-root .MuiContainer-root {
-    padding-left: 0;
-    padding-right: 0;
+@media (max-width: 450px) {
+    .MuiContainer-root .MuiContainer-root {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }

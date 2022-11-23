@@ -10,7 +10,7 @@ import {ContainerLG, ContainerXL} from "../containers/styled/Containers";
  */
 export function BaseLayout(props) {
     return (
-        <Box className={'custom-scroll'} sx={{
+        <Box id={'page-scroll'} className={'custom-scroll'} sx={{
             height: '100%'
         }}>
             <Stack

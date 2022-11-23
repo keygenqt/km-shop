@@ -3,6 +3,8 @@ import {Box, Button, ButtonGroup, Container, Stack, useMediaQuery, useTheme} fro
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ArrowUpwardOutlined, EmailOutlined, Telegram} from "@mui/icons-material";
+import {useContext} from "react";
+import {NavigateContext} from "../../base";
 
 /**
  * Application footer
@@ -11,6 +13,7 @@ export function AppFooter(props) {
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const {route} = useContext(NavigateContext)
 
     return (
         <Box sx={{
@@ -68,7 +71,7 @@ export function AppFooter(props) {
                         <EmailOutlined/>
                     </Button>
                     <Button onClick={() => {
-
+                        route.scrollToTopSmooth()
                     }}>
                         <ArrowUpwardOutlined/>
                     </Button>

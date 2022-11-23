@@ -81,25 +81,31 @@ export function CategoriesBlockHomePage() {
     const filters = []
     const categories = []
 
-    filtersData.forEach((it) => {
+    filtersData.forEach((it, index) => {
         const Icon = it.icon
         filters.push((
-            <Tab label={(
-                <Stack
-                    direction={'row'}
-                    spacing={1}
-                    alignItems={'center'}
-                >
-                    <Icon sx={{width: 20, height: 20}}/>
-                    <Typography variant={'body1'}>{it.name}</Typography>
-                </Stack>
-            )}/>
+            <Tab
+                key={`filter-item-${index}`}
+                label={(
+                    <Stack
+                        direction={'row'}
+                        spacing={1}
+                        alignItems={'center'}
+                    >
+                        <Icon sx={{width: 20, height: 20}}/>
+                        <Typography variant={'body1'}>{it.name}</Typography>
+                    </Stack>
+                )}
+            />
         ));
     })
 
-    categoriesData.forEach((it) => {
+    categoriesData.forEach((it, index) => {
         categories.push((
-            <Grid item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
+            <Grid
+                key={`category-item-${index}`}
+                item
+                xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
                 <Card variant="outlined" sx={{
                     borderRadius: 4,
                     p: 2,
