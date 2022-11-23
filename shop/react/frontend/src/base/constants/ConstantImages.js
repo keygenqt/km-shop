@@ -12,12 +12,18 @@ import cat_bg_3 from "../../assets/images/home/cat_bg_3.svg";
 import cat_bg_4 from "../../assets/images/home/cat_bg_4.svg";
 import cat_bg_5 from "../../assets/images/home/cat_bg_5.svg";
 import cat_bg_6 from "../../assets/images/home/cat_bg_6.svg";
+import iphone from "../../assets/images/home/iphone.png";
+import appstore from "../../assets/images/home/appstore.png";
+import googlePlay from "../../assets/images/home/googleplay.png";
 
 /**
  * Apps constants sundries
  */
 export const ConstantImages = {
     home: {
+        iphone: iphone,
+        appstore: appstore,
+        googlePlay: googlePlay,
         girl: girl,
         bestSeller: bestSeller,
         deliveryTruck: deliveryTruck,

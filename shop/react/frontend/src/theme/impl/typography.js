@@ -40,7 +40,7 @@ export const typography = {
         fontFamily: fontFamily,
     },
     h6: {
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: '600',
         textTransform: "none",
         fontFamily: fontFamily,

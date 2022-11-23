@@ -10,7 +10,7 @@ export const palette = () => {
             default: '#fff',
         },
         primary: {
-            light: '#d99aea',
+            light: '#955ba526',
             main: '#955BA5',
             dark: '#70387e',
         },

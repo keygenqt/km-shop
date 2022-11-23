@@ -29,5 +29,28 @@ export const TabsBlackStyled = styled(Tabs)(({theme}) => ({
     '& .Mui-selected .MuiTouchRipple-root': {
         opacity: 0,
         transitionDuration: '200ms'
+    },
+    ['@media(max-width: '+ theme.breakpoints.values.md + 'px)']: {
+        width: '100%',
+        maxWidth: 350,
+        '& .MuiTabs-flexContainer': {
+            display: 'grid',
+        },
+        '& .MuiTabs-indicator': {
+            display: 'none'
+        },
+        '& .Mui-selected': {
+            color: theme.palette.primary.main + '!important',
+        },
+        '& .MuiButtonBase-root': {
+            backgroundColor: theme.palette.primary.light + '!important',
+            marginBottom: 5
+        },
+        '& .MuiButtonBase-root:last-child': {
+            marginBottom: 0
+        },
+        '& .Mui-selected .MuiTouchRipple-root': {
+            opacity: 'inherit'
+        },
     }
 }));

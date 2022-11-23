@@ -1,5 +1,17 @@
 import * as React from 'react';
-import {Avatar, Button, Card, CardActions, CardContent, CardHeader, Grid, Stack, Tab} from "@mui/material";
+import {
+    Avatar,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    Grid,
+    Stack,
+    Tab,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {
     ArrowForwardOutlined,
@@ -12,27 +24,189 @@ import {
 import {ConstantImages} from "../../../base";
 import {TabsBlackStyled} from "../../../components/tabs/styled/TabsBlackStyled";
 
+const filtersData = [
+    {
+        icon: BusinessOutlined,
+        name: 'School',
+    },
+    {
+        icon: Brightness5Outlined,
+        name: 'Walk',
+    },
+    {
+        icon: Diversity3Outlined,
+        name: 'Birthday',
+    },
+    {
+        icon: CelebrationOutlined,
+        name: 'Holiday',
+    },
+    {
+        icon: ForestOutlined,
+        name: 'New Year',
+    },
+]
+
+const categoriesData = [
+    {
+        icon: ConstantImages.home.cat_1,
+        bg: ConstantImages.home.cat_bg_1,
+        products: 143,
+        title: 'Bows',
+        subtitle: 'For loved ones',
+    },
+    {
+        icon: ConstantImages.home.cat_2,
+        bg: ConstantImages.home.cat_bg_2,
+        products: 987,
+        title: 'Headbands',
+        subtitle: 'Stylish beauty',
+    },
+    {
+        icon: ConstantImages.home.cat_3,
+        bg: ConstantImages.home.cat_bg_3,
+        products: 56,
+        title: 'Sets',
+        subtitle: 'Sets for every day',
+    }
+]
+
 export function CategoriesBlockHomePage() {
 
+    const theme = useTheme()
+    const isMD = useMediaQuery(theme.breakpoints.down('md'));
+
     const [value, setValue] = React.useState(0);
+
+    const filters = []
+    const categories = []
+
+    filtersData.forEach((it) => {
+        const Icon = it.icon
+        filters.push((
+            <Tab label={(
+                <Stack
+                    direction={'row'}
+                    spacing={1}
+                    alignItems={'center'}
+                >
+                    <Icon sx={{width: 20, height: 20}}/>
+                    <Typography variant={'body1'}>{it.name}</Typography>
+                </Stack>
+            )}/>
+        ));
+    })
+
+    categoriesData.forEach((it) => {
+        categories.push((
+            <Grid item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
+                <Card variant="outlined" sx={{
+                    borderRadius: 4,
+                    p: 2,
+                    border: 'none',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&:after': {
+                        content: '""',
+                        position: 'absolute',
+                        backgroundImage: `url(${it.bg})`,
+                        width: 250,
+                        height: 250,
+                        bottom: 0,
+                        right: 0,
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat'
+                    }
+                }}>
+                    <CardHeader
+                        avatar={
+                            <Avatar
+                                src={it.icon}
+                                sx={{
+                                    bgcolor: '#EFF6FF',
+                                    width: isMD ? 60 : 80,
+                                    height: isMD ? 60 : 80,
+                                }}
+                                aria-label=""
+                            />
+                        }
+                        action={
+                            <Typography
+                                component={'div'}
+                                variant="caption"
+                                sx={{
+                                    paddingY: 4,
+                                    paddingRight: 1
+                                }}
+                            >
+                                {it.products} products
+                            </Typography>
+                        }
+                    />
+                    <CardContent>
+                        <Stack
+                            spacing={1}
+                            sx={{
+                                paddingTop: isMD ? 1 : 4,
+                                paddingBottom: isMD ? 3 : 6
+                            }}
+                        >
+                            <Typography
+                                variant={isMD ? 'body2' : 'h6'}
+                                sx={{
+                                    color: '#707F95',
+                                    fontWeight: 100
+                                }}
+                            >
+                                {it.title}
+                            </Typography>
+
+                            <Typography
+                                variant={isMD ? 'h5' : 'h4'}
+                            >
+                                {it.subtitle}
+                            </Typography>
+                        </Stack>
+
+                    </CardContent>
+                    <CardActions>
+                        <Button
+                            size={'small'}
+                            color={'black'}
+                            endIcon={<ArrowForwardOutlined/>}
+                            sx={{
+                                zIndex: 1,
+                                position: 'relative',
+                                textTransform: 'none',
+                                paddingX: '10px',
+                                marginLeft: '-1px'
+                            }}
+                        >
+                            See Collection
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
+        ));
+    })
 
     return (
         <Stack
             sx={{
                 backgroundColor: '#F6F7F9',
-                p: 10,
+                p: isMD ? 3 : 10,
                 position: 'relative',
                 borderRadius: 4,
             }}
         >
             <Stack
                 alignItems={'center'}
-                spacing={8}
+                spacing={isMD ? 3 : 8}
                 sx={{
-                    paddingBottom: 6
+                    paddingBottom: isMD ? 4 : 6
                 }}
             >
-                <Typography variant={'h3'}>
+                <Typography variant={isMD ? 'h4' : 'h3'}>
                     Start exploring
                 </Typography>
 
@@ -43,335 +217,12 @@ export function CategoriesBlockHomePage() {
                     }}
                     sx={{}}
                 >
-                    <Tab label={(
-                        <Stack
-                            direction={'row'}
-                            spacing={1}
-                            alignItems={'center'}
-                        >
-                            <BusinessOutlined sx={{width: 20, height: 20}}/>
-                            <Typography variant={'body1'}>School</Typography>
-                        </Stack>
-                    )}/>
-
-                    <Tab label={(
-                        <Stack
-                            direction={'row'}
-                            spacing={1}
-                            alignItems={'center'}
-                        >
-                            <Brightness5Outlined sx={{width: 20, height: 20}}/>
-                            <Typography variant={'body1'}>Walk</Typography>
-                        </Stack>
-                    )}/>
-
-                    <Tab label={(
-                        <Stack
-                            direction={'row'}
-                            spacing={1}
-                            alignItems={'center'}
-                        >
-                            <Diversity3Outlined sx={{width: 20, height: 20}}/>
-                            <Typography variant={'body1'}>Birthday</Typography>
-                        </Stack>
-                    )}/>
-
-                    <Tab label={(
-                        <Stack
-                            direction={'row'}
-                            spacing={1}
-                            alignItems={'center'}
-                        >
-                            <CelebrationOutlined sx={{width: 20, height: 20}}/>
-                            <Typography variant={'body1'}>Holiday</Typography>
-                        </Stack>
-                    )}/>
-
-                    <Tab label={(
-                        <Stack
-                            direction={'row'}
-                            spacing={1}
-                            alignItems={'center'}
-                        >
-                            <ForestOutlined sx={{width: 20, height: 20}}/>
-                            <Typography variant={'body1'}>New Year</Typography>
-                        </Stack>
-                    )}/>
-
+                    {filters}
                 </TabsBlackStyled>
             </Stack>
 
             <Grid container spacing={4}>
-                <Grid item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
-                    <Card variant="outlined" sx={{
-                        borderRadius: 4,
-                        p: 2,
-                        border: 'none',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        '&:after': {
-                            content: '""',
-                            position: 'absolute',
-                            backgroundImage: `url(${ConstantImages.home.cat_bg_1})`,
-                            width: 250,
-                            height: 250,
-                            bottom: 0,
-                            right: 0,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat'
-                        }
-                    }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar
-                                    src={ConstantImages.home.cat_1}
-                                    sx={{
-                                        bgcolor: '#EFF6FF',
-                                        width: 80,
-                                        height: 80,
-                                    }}
-                                    aria-label=""
-                                >
-                                    B
-                                </Avatar>
-                            }
-                            action={
-                                <Typography
-                                    component={'div'}
-                                    variant="caption"
-                                    sx={{
-                                        paddingY: 4,
-                                        paddingRight: 1
-                                    }}
-                                >
-                                    143 products
-                                </Typography>
-                            }
-                        />
-                        <CardContent>
-                            <Stack
-                                spacing={1}
-                                sx={{
-                                    paddingTop: 4,
-                                    paddingBottom: 6
-                                }}
-                            >
-                                <Typography
-                                    variant={'h6'}
-                                    sx={{
-                                        color: '#707F95',
-                                        fontWeight: 100
-                                    }}
-                                >
-                                    Bows
-                                </Typography>
-
-                                <Typography
-                                    variant="h4"
-                                >
-                                    For loved ones
-                                </Typography>
-                            </Stack>
-
-                        </CardContent>
-                        <CardActions>
-                            <Button
-                                size={'small'}
-                                color={'black'}
-                                endIcon={<ArrowForwardOutlined/>}
-                                sx={{
-                                    zIndex: 1,
-                                    position: 'relative',
-                                    textTransform: 'none',
-                                    paddingX: '10px',
-                                    marginLeft: '-1px'
-                                }}
-                            >
-                                See Collection
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
-                    <Card variant="outlined" sx={{
-                        borderRadius: 4,
-                        p: 2,
-                        border: 'none',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        '&:after': {
-                            content: '""',
-                            position: 'absolute',
-                            backgroundImage: `url(${ConstantImages.home.cat_bg_2})`,
-                            width: 290,
-                            height: 290,
-                            bottom: 0,
-                            right: 0,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat'
-                        }
-                    }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar
-                                    src={ConstantImages.home.cat_2}
-                                    sx={{
-                                        bgcolor: '#EFF6FF',
-                                        width: 80,
-                                        height: 80,
-                                    }}
-                                    aria-label=""
-                                >
-                                    B
-                                </Avatar>
-                            }
-                            action={
-                                <Typography
-                                    component={'div'}
-                                    variant="caption"
-                                    sx={{
-                                        paddingY: 4,
-                                        paddingRight: 1
-                                    }}
-                                >
-                                    312 products
-                                </Typography>
-                            }
-                        />
-                        <CardContent>
-                            <Stack
-                                spacing={1}
-                                sx={{
-                                    paddingTop: 4,
-                                    paddingBottom: 6
-                                }}
-                            >
-                                <Typography
-                                    variant={'h6'}
-                                    sx={{
-                                        color: '#707F95',
-                                        fontWeight: 100
-                                    }}
-                                >
-                                    Headbands
-                                </Typography>
-
-                                <Typography
-                                    variant="h4"
-                                >
-                                    Stylish beauty
-                                </Typography>
-                            </Stack>
-
-                        </CardContent>
-                        <CardActions>
-                            <Button
-                                size={'small'}
-                                color={'black'}
-                                endIcon={<ArrowForwardOutlined/>}
-                                sx={{
-                                    zIndex: 1,
-                                    position: 'relative',
-                                    textTransform: 'none',
-                                    paddingX: '10px',
-                                    marginLeft: '-1px'
-                                }}
-                            >
-                                See Collection
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
-                    <Card variant="outlined" sx={{
-                        borderRadius: 4,
-                        p: 2,
-                        border: 'none',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        '&:after': {
-                            content: '""',
-                            position: 'absolute',
-                            backgroundImage: `url(${ConstantImages.home.cat_bg_3})`,
-                            width: 250,
-                            height: 250,
-                            bottom: 0,
-                            right: 0,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat'
-                        }
-                    }}>
-                        <CardHeader
-                            avatar={
-                                <Avatar
-                                    src={ConstantImages.home.cat_3}
-                                    sx={{
-                                        bgcolor: '#EFF6FF',
-                                        width: 80,
-                                        height: 80,
-                                    }}
-                                    aria-label=""
-                                >
-                                    B
-                                </Avatar>
-                            }
-                            action={
-                                <Typography
-                                    component={'div'}
-                                    variant="caption"
-                                    sx={{
-                                        paddingY: 4,
-                                        paddingRight: 1
-                                    }}
-                                >
-                                    34 products
-                                </Typography>
-                            }
-                        />
-                        <CardContent>
-                            <Stack
-                                spacing={1}
-                                sx={{
-                                    paddingTop: 4,
-                                    paddingBottom: 6
-                                }}
-                            >
-                                <Typography
-                                    variant={'h6'}
-                                    sx={{
-                                        color: '#707F95',
-                                        fontWeight: 100
-                                    }}
-                                >
-                                    Sets
-                                </Typography>
-
-                                <Typography
-                                    variant="h4"
-                                >
-                                    Sets for every day
-                                </Typography>
-                            </Stack>
-
-                        </CardContent>
-                        <CardActions>
-                            <Button
-                                size={'small'}
-                                color={'black'}
-                                endIcon={<ArrowForwardOutlined/>}
-                                sx={{
-                                    zIndex: 1,
-                                    position: 'relative',
-                                    textTransform: 'none',
-                                    paddingX: '10px',
-                                    marginLeft: '-1px'
-                                }}
-                            >
-                                See Collection
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
+                {categories}
             </Grid>
         </Stack>
     );

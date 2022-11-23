@@ -1,30 +1,33 @@
 import * as React from 'react';
-import {Box, Container, Stack} from "@mui/material";
+import {Stack, useMediaQuery, useTheme} from "@mui/material";
 import {FirstBlockHomePage} from "./elements/FirstBlockHomePage";
 import {StepsBlockHomePage} from "./elements/StepsBlockHomePage";
+import {ContainerLG} from "../../components/containers/styled/Containers";
 import {CategoriesBlockHomePage} from "./elements/CategoriesBlockHomePage";
+import {MobileBlockHomePage} from "./elements/MobileBlockHomePage";
 
 export function HomePage() {
+
+    const theme = useTheme()
+    const isMD = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
-        <Box>
-            <Container maxWidth={"xl"} sx={{
-                paddingY: 10
-            }}>
-                <FirstBlockHomePage/>
-            </Container>
+        <Stack spacing={isMD ? 7 : 14}>
 
-            <Container maxWidth={"lg"} sx={{
-                paddingBottom: 10
-            }}>
+            <FirstBlockHomePage/>
+
+            <ContainerLG>
                 <StepsBlockHomePage/>
-            </Container>
+            </ContainerLG>
 
-            <Container maxWidth={"xl"} sx={{
-                paddingBottom: 10
+            <CategoriesBlockHomePage/>
+
+            <ContainerLG sx={{
+                paddingBottom: isMD ? 0 : 7
             }}>
-                <CategoriesBlockHomePage/>
-            </Container>
-        </Box>
+                <MobileBlockHomePage/>
+            </ContainerLG>
+        </Stack>
     );
 }
 

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from "prop-types";
-import {Box, Container, Stack} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import {AppToolbar} from "../toolbar/AppToolbar";
 import {AppFooter} from "../footer/AppFooter";
+import {ContainerLG, ContainerXL} from "../containers/styled/Containers";
 
 /**
  * Layout base for app
@@ -12,14 +13,22 @@ export function BaseLayout(props) {
         <Box className={'custom-scroll'} sx={{
             height: '100%'
         }}>
-            <Stack>
-                <Container maxWidth={"lg"}>
+            <Stack
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={7}
+            >
+                <ContainerLG>
                     <AppToolbar/>
-                </Container>
+                </ContainerLG>
 
-                {props.children}
+                <ContainerXL>
+                    {props.children}
+                </ContainerXL>
 
-                <AppFooter/>
+                <ContainerLG>
+                    <AppFooter/>
+                </ContainerLG>
             </Stack>
         </Box>
     )

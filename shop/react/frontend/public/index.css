@@ -80,3 +80,8 @@ html, body, #root {
 @keyframes spin {
     to {transform:rotate(360deg);}
 }
+
+.MuiContainer-root .MuiContainer-root {
+    padding-left: 0;
+    padding-right: 0;
+}
