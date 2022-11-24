@@ -23,6 +23,7 @@ import {
 import {CartToolbar} from "./elements/CartToolbar";
 import {CollectionsToolbar} from "./elements/CollectionsToolbar";
 import {ConstantImages, NavigateContext} from "../../base";
+import {ConstantProducts} from "../../base/constants/ConstantProducts";
 
 /**
  * Application toolbar
@@ -144,6 +145,7 @@ export function AppToolbar(props) {
                             spacing={isSM ? 1 : 2}
                         >
                             <IconButton
+                                disabled={route.isPage(routes.contact)}
                                 size={isSM ? 'small' : 'large'}
                                 edge="start"
                                 color="inherit"
@@ -156,7 +158,7 @@ export function AppToolbar(props) {
                             </IconButton>
 
                             <Badge
-                                badgeContent={10}
+                                badgeContent={ConstantProducts.length}
                                 color="primary"
                                 sx={{
                                     '.MuiBadge-badge': {
@@ -166,6 +168,7 @@ export function AppToolbar(props) {
                                 }}
                             >
                                 <IconButton
+                                    disabled={route.isPage(routes.cart)}
                                     size={isSM ? 'small' : 'large'}
                                     edge="start"
                                     color="inherit"

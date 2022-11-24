@@ -25,14 +25,14 @@ export const palette = () => {
             dark: '#92185e',
         },
         warning: {
-            light: '#ffc767',
-            main: '#d09c00',
-            dark: '#916e00',
+            light: '#ffdfda',
+            main: '#e3835f',
+            dark: '#c05c3d',
         },
         info: {
-            light: '#eba4fd',
-            main: '#d341ea',
-            dark: '#940fa8',
+            light: '#50b7e3',
+            main: '#1b98c5',
+            dark: '#0086bd',
         },
         success: {
             light: '#ccffca',

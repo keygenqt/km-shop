@@ -3,28 +3,8 @@ import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, ClickAwayListener, Divider, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
-import {ConstantImages, NavigateContext} from "../../../base";
-
-const productsData = [
-    {
-        image: ConstantImages.common.DSC_0004,
-        title: 'Headband beauty',
-        desc: 'Cool headband for cool little ones.',
-        price: '3200.20'
-    },
-    {
-        image: ConstantImages.common.DSC_0007,
-        title: 'Sweet Bow',
-        desc: 'Bows for the sweet tooth.',
-        price: '300.50'
-    },
-    {
-        image: ConstantImages.common.DSC_0009,
-        title: 'Mickey',
-        desc: 'Disney stylized bows.',
-        price: '900.50'
-    },
-]
+import {NavigateContext} from "../../../base";
+import {ConstantProducts} from "../../../base/constants/ConstantProducts";
 
 /**
  * Application cart toolbar
@@ -41,7 +21,7 @@ export function CartToolbar(props) {
 
     const products = []
 
-    productsData.forEach((it, index) => {
+    ConstantProducts.forEach((it, index) => {
         products.push((
             <React.Fragment
                 key={`cart-product-item-${index}`}
@@ -111,7 +91,7 @@ export function CartToolbar(props) {
 
                 </Stack>
 
-                {productsData.length - 1 !== index ? <Divider/> : null}
+                {ConstantProducts.length - 1 !== index ? <Divider/> : null}
             </React.Fragment>
         ));
     })
@@ -151,34 +131,63 @@ export function CartToolbar(props) {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper elevation={1} sx={{
                                 zIndex: 999,
-                                pt: 2,
-                                pl: 4,
-                                pr: 4,
                                 borderRadius: 4,
                                 maxWidth: 400,
                                 overflow: 'hidden'
                             }}>
-                                <Stack spacing={1.5}>
+                                <Stack>
 
                                     <Typography variant='h5' sx={{
-                                        paddingY: 1
+                                        paddingY: 3,
+                                        paddingX: 3,
+                                        paddingBottom: 1.5,
+                                        position: 'relative',
+                                        '&:after': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            height: 12,
+                                            backgroundColor: 'red',
+                                            bottom: -12,
+                                            left: 0,
+                                            right: 16,
+                                            zIndex: 1,
+                                            background: 'linear-gradient(0deg, transparent 0%, white 100%)'
+                                        },
                                     }}>
                                         Shopping cart
                                     </Typography>
 
-                                    {products}
+                                    <Stack spacing={1} className={'custom-scroll'} sx={{
+                                        maxHeight: 467,
+                                        paddingX: 3,
+                                        paddingTop: 1.5,
+                                        paddingBottom: 1.5,
+                                        position: 'relative',
+                                    }}>
+                                        {products}
+                                    </Stack>
 
                                     <Stack
                                         spacing={2}
                                         sx={{
                                             backgroundColor: '#F9FAFB',
-                                            width: 'calc(100% + 64px)',
+                                            width: '100%',
                                             position: 'relative',
-                                            left: -32,
-                                            marginBottom: -32,
-                                            paddingX: 4,
+                                            paddingX: 3,
                                             paddingY: 3,
-                                            boxSizing: 'border-box'
+                                            boxSizing: 'border-box',
+                                            overflow: 'inherit',
+                                            '&:after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                height: 12,
+                                                backgroundColor: 'red',
+                                                top: -12,
+                                                left: 0,
+                                                right: 16,
+                                                zIndex: 1,
+                                                background: 'linear-gradient(0deg, #F9FAFB 0%, transparent 100%)'
+                                            }
                                         }}
                                     >
                                         <Stack
@@ -186,7 +195,7 @@ export function CartToolbar(props) {
                                             justifyContent="space-between"
                                             alignItems="flex-start"
                                         >
-                                            <Stack spacing={1} >
+                                            <Stack spacing={1}>
                                                 <Typography variant='h5'>
                                                     Subtotal
                                                 </Typography>
