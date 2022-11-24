@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {Stack} from "@mui/material";
+import {ContainerLG} from "../../components/containers/styled/Containers";
 
 export function CartPage() {
     return (
-        <Stack>
+        <ContainerLG>
             CartPage
-        </Stack>
+        </ContainerLG>
     );
 }
 

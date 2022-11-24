@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Stack} from "@mui/material";
 
-export function CategoriesPage() {
+export function ExploringPage() {
     return (
         <Stack>
             CategoriesPage
@@ -9,4 +9,4 @@ export function CategoriesPage() {
     );
 }
 
-CategoriesPage.propTypes = {};
+ExploringPage.propTypes = {};

@@ -1,15 +1,28 @@
 import * as React from 'react';
-import {AppBar, Badge, Box, Button, Divider, IconButton, Stack, Toolbar, useMediaQuery, useTheme} from "@mui/material";
+import {useContext} from 'react';
+import {
+    AppBar,
+    Avatar,
+    Badge,
+    Box,
+    Button,
+    Divider,
+    IconButton,
+    Stack,
+    Toolbar,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import PropTypes from "prop-types";
 import {
-    ConnectWithoutContactOutlined, ContactSupportOutlined,
+    ContactSupportOutlined,
     KeyboardArrowUpOutlined,
     SearchOutlined,
     ShoppingCartOutlined
 } from "@mui/icons-material";
-import Typography from "@mui/material/Typography";
 import {CartToolbar} from "./elements/CartToolbar";
 import {CollectionsToolbar} from "./elements/CollectionsToolbar";
+import {ConstantImages, NavigateContext} from "../../base";
 
 /**
  * Application toolbar
@@ -18,6 +31,8 @@ export function AppToolbar(props) {
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const {route, routes} = useContext(NavigateContext)
+
     const [anchorCart, setAnchorCart] = React.useState(null);
     const [anchorCollections, setAnchorCollections] = React.useState(null);
 
@@ -50,31 +65,28 @@ export function AppToolbar(props) {
                         <Stack
                             direction={'row'}
                             alignItems={'center'}
-                            spacing={2}
+                            spacing={isSM ? 1 : 2}
                             sx={{
                                 flexGrow: 1,
                             }}
                         >
-
-                            <a href={'/'} style={{
-                                color: 'white',
-                                textDecoration: 'none'
-                            }}>
-                                <Typography
-                                    variant="h5"
-                                    component="div"
-                                    sx={{fontWeight: '500'}}
-                                >
-                                    Shop
-                                    <Box component={'span'} sx={{
-                                        color: 'secondary.dark',
-                                        ml: 1,
-                                        fontWeight: '600'
-                                    }}>
-                                        6 in 1
-                                    </Box>
-                                </Typography>
-                            </a>
+                            <Button
+                                sx={{
+                                    p: 0,
+                                    minWidth: 0,
+                                    borderRadius: 2
+                                }}
+                                onClick={() => {
+                                    route.toLocation(routes.home)
+                                }}
+                            >
+                                <Avatar
+                                    src={ConstantImages.common.logo}
+                                    sx={{
+                                        borderRadius: 2,
+                                    }}
+                                />
+                            </Button>
 
                             <Divider
                                 orientation="vertical"
@@ -89,52 +101,55 @@ export function AppToolbar(props) {
                                     color: 'white',
                                     fontWeight: 100,
                                 }}
-                                endIcon={<SearchOutlined/>}
+                                endIcon={isSM ? null : <SearchOutlined/>}
                                 onClick={() => {
-
+                                    route.toLocation(routes.exploring)
                                 }}
                             >
                                 Exploring
                             </Button>
 
-                            <Button
-                                sx={{
-                                    textTransform: 'none',
-                                    fontSize: 17,
-                                    color: 'white',
-                                    fontWeight: 100
-                                }}
-                                endIcon={<KeyboardArrowUpOutlined sx={{
-                                    transform: anchorCollections ? 'rotate(0deg)' : 'rotate(180deg)',
-                                    transitionProperty: 'transform',
-                                    transitionTimingFunction: 'ease-in-out',
-                                    transitionDuration: '300ms'
-                                }}/>}
-                                onClick={(event) => {
-                                    if (!anchorCollections) {
-                                        event.stopPropagation();
-                                        setAnchorCollections(event.currentTarget);
-                                        setAnchorCart(null)
-                                    } else {
-                                        setAnchorCollections(null)
-                                    }
-                                }}
-                            >
-                                Collections
-                            </Button>
+                            {!isSM ? (
+                                <Button
+                                    sx={{
+                                        textTransform: 'none',
+                                        fontSize: 17,
+                                        color: 'white',
+                                        fontWeight: 100
+                                    }}
+                                    endIcon={<KeyboardArrowUpOutlined sx={{
+                                        transform: anchorCollections ? 'rotate(0deg)' : 'rotate(180deg)',
+                                        transitionProperty: 'transform',
+                                        transitionTimingFunction: 'ease-in-out',
+                                        transitionDuration: '300ms'
+                                    }}/>}
+                                    onClick={(event) => {
+                                        if (!anchorCollections) {
+                                            event.stopPropagation();
+                                            setAnchorCollections(event.currentTarget);
+                                            setAnchorCart(null)
+                                        } else {
+                                            setAnchorCollections(null)
+                                        }
+                                    }}
+                                >
+                                    Collections
+                                </Button>
+                            ) : null}
+
                         </Stack>
 
                         <Stack
                             direction={'row'}
-                            spacing={2}
+                            spacing={isSM ? 1 : 2}
                         >
                             <IconButton
-                                size="large"
+                                size={isSM ? 'small' : 'large'}
                                 edge="start"
                                 color="inherit"
                                 aria-label="contact"
-                                onClick={(event) => {
-
+                                onClick={() => {
+                                    route.toLocation(routes.contact)
                                 }}
                             >
                                 <ContactSupportOutlined/>
@@ -151,13 +166,13 @@ export function AppToolbar(props) {
                                 }}
                             >
                                 <IconButton
-                                    size="large"
+                                    size={isSM ? 'small' : 'large'}
                                     edge="start"
                                     color="inherit"
                                     aria-label="cart"
                                     onClick={(event) => {
                                         if (isSM) {
-                                            console.log('open cart')
+                                            route.toLocation(routes.cart)
                                         } else {
                                             if (!anchorCart) {
                                                 event.stopPropagation();

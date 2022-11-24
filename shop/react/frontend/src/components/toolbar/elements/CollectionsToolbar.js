@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {useContext, useEffect} from 'react';
 import {Box, Button, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ConstantCollections} from "../../../base/constants/ConstantCollections";
+import {NavigateContext} from "../../../base";
 
 /**
  * Application Categories toolbar
@@ -15,6 +16,7 @@ export function CollectionsToolbar(props) {
         onClose,
     } = props
 
+    const {route, routes} = useContext(NavigateContext)
     const [anchorValue, setAnchorValue] = React.useState(anchor);
 
     const items = []
@@ -30,6 +32,10 @@ export function CollectionsToolbar(props) {
                     fullWidth
                     sx={{
                         borderRadius: 4
+                    }}
+                    onClick={() => {
+                        onClose()
+                        route.toLocation(routes.exploring)
                     }}
                 >
                     <Stack

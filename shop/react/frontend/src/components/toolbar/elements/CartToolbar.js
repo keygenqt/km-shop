@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, ClickAwayListener, Divider, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
-import {ConstantImages} from "../../../base";
+import {ConstantImages, NavigateContext} from "../../../base";
 
 const productsData = [
     {
@@ -36,6 +36,7 @@ export function CartToolbar(props) {
         onClose,
     } = props
 
+    const {route, routes} = useContext(NavigateContext)
     const [anchorCart, setAnchorCart] = React.useState(anchor);
 
     const products = []
@@ -212,6 +213,10 @@ export function CartToolbar(props) {
                                                     color: 'white',
                                                     borderRadius: 7,
                                                     textTransform: 'none'
+                                                }}
+                                                onClick={() => {
+                                                    onClose()
+                                                    route.toLocation(routes.cart)
                                                 }}
                                             >
                                                 View Cart

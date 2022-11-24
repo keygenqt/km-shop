@@ -18,12 +18,14 @@ import googlePlay from "../../assets/images/home/googleplay.png";
 import DSC_0004 from "../../assets/images/common/DSC_0004.png";
 import DSC_0007 from "../../assets/images/common/DSC_0007.png";
 import DSC_0009 from "../../assets/images/common/DSC_0009.png";
+import logo from "../../assets/images/common/logo.png";
 
 /**
  * Apps constants sundries
  */
 export const ConstantImages = {
     common: {
+        logo: logo,
         DSC_0004: DSC_0004,
         DSC_0007: DSC_0007,
         DSC_0009: DSC_0009,
