@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ScrollToTop} from "../../components";
+import {BaseLayout, ScrollToTop} from "../../components";
 import {Route, Routes} from "react-router-dom";
 import {ValueType} from "./ValueType";
 import {ErrorPage} from "../../pages";
@@ -323,7 +323,11 @@ export default class RouteCore {
                                 pageClassName={'Error-Page'}
                                 key={pageIndex}
                                 path={path}
-                                element={<ErrorPage/>}
+                                element={(
+                                    <BaseLayout size={'sm'} middle>
+                                        <ErrorPage/>
+                                    </BaseLayout>
+                                )}
                             />
                         )
                     } else {
@@ -342,9 +346,11 @@ export default class RouteCore {
                     {pages}
                     <Route
                         path="*"
-                        element={
-                            <ErrorPage/>
-                        }
+                        element={(
+                            <BaseLayout size={'sm'} middle>
+                                <ErrorPage/>
+                            </BaseLayout>
+                        )}
                     />
                 </Routes>
             </React.Fragment>
@@ -423,7 +429,9 @@ export default class RouteCore {
     logout(error = null) {
         if (error == null || error.code === 401) {
             // request logout
-            HttpClient.delete.logout().then(() => { }).catch(async () => { });
+            HttpClient.delete.logout().then(() => {
+            }).catch(async () => {
+            });
             // clear cache
             AppCache.clearAll()
             // reload page

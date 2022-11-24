@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {Button, Container, Stack} from "@mui/material";
+import {Stack} from "@mui/material";
 import Lottie from "lottie-react";
-import {Cached} from "@mui/icons-material";
 import {ConstantLottie, NavigateContext} from "../../base";
+import Typography from "@mui/material/Typography";
 
 export function ErrorPage() {
 
@@ -11,32 +11,26 @@ export function ErrorPage() {
 
     return (
         <Stack
-            className={"splash"}
-            justifyContent="center"
-            alignItems="center"
+            spacing={3}
+            alignItems={'center'}
             sx={{
-                width: '100%',
-                height: '100%',
+                position: 'relative',
+                top: -50,
+                textAlign: 'center'
             }}
         >
-            <Container maxWidth={"sm"} className={'content'}>
-                <Stack alignItems={"center"} spacing={1}>
-                    <Lottie animationData={ConstantLottie.error} style={{
-                        width: 300,
-                    }}/>
+            <Lottie animationData={ConstantLottie.error} style={{
+                width: 300,
+                marginBottom: -40
+            }}/>
 
-                    <Button size={'medium'} variant="outlined" startIcon={<Cached/>} sx={{
-                        '& .MuiButton-startIcon': {
-                            paddingBottom: '1px'
-                        }
-                    }} onClick={() => {
-                        route.openUrl("/")
-                    }}>
-                        Reload
-                    </Button>
+            <Typography variant="h4">
+                Page Not Found
+            </Typography>
 
-                </Stack>
-            </Container>
+            <Typography variant="body1">
+                We're sorry, the page you requested could not be found
+            </Typography>
         </Stack>
     );
 }

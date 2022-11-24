@@ -30,7 +30,7 @@ export function BaseLayout(props) {
                 </ContainerLG>
 
                 <Container maxWidth={size} sx={{
-                    flexGrow: middle ? null : 1
+                    flexGrow: middle ? null : 1,
                 }}>
                     {props.children}
                 </Container>
