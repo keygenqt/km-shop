@@ -158,7 +158,7 @@ export function CartToolbar(props) {
                                     </Typography>
 
                                     <Stack spacing={1} className={'custom-scroll'} sx={{
-                                        maxHeight: 467,
+                                        maxHeight: 376,
                                         paddingX: 3,
                                         paddingTop: 1.5,
                                         paddingBottom: 1.5,

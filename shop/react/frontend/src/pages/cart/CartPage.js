@@ -196,7 +196,7 @@ export function CartPage() {
                     </Grid>
                     <Grid item xl={4} lg={4} md={4} sm={12} xs={12} min={12} null={12}>
 
-                        <Stack spacing={4} sx={{
+                        <Stack spacing={3} sx={{
                             top: 32,
                             position: 'sticky'
                         }}>
@@ -207,6 +207,11 @@ export function CartPage() {
                             </Typography>
 
                             <Stack spacing={2}>
+
+                                <Alert severity="info">
+                                    Enter your contact details so that you can be contacted and clarified all the necessary data on the order
+                                </Alert>
+
                                 <TextField
                                     label="Email"
                                     variant="outlined"
@@ -216,7 +221,7 @@ export function CartPage() {
                                     variant="outlined"
                                 />
                                 <TextField
-                                    label="Note"
+                                    label="Additional Information"
                                     variant="outlined"
                                     multiline
                                     minRows={4}
@@ -224,15 +229,19 @@ export function CartPage() {
                                 />
                             </Stack>
 
-                            <Stack spacing={2}>
+                            <Stack
+                                spacing={2}
+                            >
                                 <Divider/>
                                 <Stack
                                     direction={'row'}
                                     justifyContent={'space-between'}
+                                    alignItems={'center'}
                                 >
                                     <Typography variant={'h5'} sx={{
                                         color: 'gray.main',
                                         fontWeight: '200',
+                                        fontSize: 14
                                     }}>
                                         Order total
                                     </Typography>
@@ -243,29 +252,28 @@ export function CartPage() {
                                 </Stack>
                             </Stack>
 
-                            <Button
-                                size={'large'}
-                                disableElevation
-                                variant={'contained'}
-                                color={'black'}
-                                sx={{
-                                    color: 'white',
-                                    borderRadius: 7,
-                                    textTransform: 'none'
-                                }}
-                                onClick={() => {
+                            <Box sx={{
+                                textAlign: 'right'
+                            }}>
+                                <Button
+                                    size={'large'}
+                                    disableElevation
+                                    variant={'contained'}
+                                    color={'black'}
+                                    sx={{
+                                        color: 'white',
+                                        borderRadius: 7,
+                                        textTransform: 'none'
+                                    }}
+                                    onClick={() => {
 
-                                }}
-                            >
-                                Submit Order
-                            </Button>
-
-                            <Alert severity="info">
-                                Enter your contact details so that you can be contacted and clarified all the necessary data on the order
-                            </Alert>
+                                    }}
+                                >
+                                    Submit Order
+                                </Button>
+                            </Box>
 
                         </Stack>
-
                     </Grid>
                 </Grid>
             </Box>
