@@ -3,8 +3,7 @@ import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
-import {NavigateContext} from "../../../base";
-import {ConstantProducts} from "../../../base/constants/ConstantProducts";
+import {AppCache, ConstantStorage, NavigateContext} from "../../../base";
 
 /**
  * Application cart toolbar
@@ -12,6 +11,7 @@ import {ConstantProducts} from "../../../base/constants/ConstantProducts";
 export function CartToolbar(props) {
 
     const {
+        rows,
         anchor,
         onClose,
     } = props
@@ -21,14 +21,10 @@ export function CartToolbar(props) {
 
     const products = []
 
-    ConstantProducts.forEach((it, index) => {
+    rows.forEach((product, index) => {
         products.push((
             <React.Fragment key={`cart-product-item-${index}`}>
-                <Box sx={{
-                    p: 1,
-                    borderRadius: 1,
-                    backgroundColor: '#F6F7F9'
-                }}>
+                <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F6F7F9'}}>
                     <Stack
                         direction="row"
                         justifyContent="space-between"
@@ -41,7 +37,6 @@ export function CartToolbar(props) {
                         }}
                     >
                         <Stack
-                            key={`cart-product-item-${index}`}
                             direction="row"
                             justifyContent="space-between"
                             alignItems="stretch"
@@ -50,7 +45,7 @@ export function CartToolbar(props) {
 
                             <Avatar
                                 variant={'rounded'}
-                                src={it.image}
+                                src={product.image}
                                 sx={{
                                     width: 70,
                                     height: 70
@@ -61,10 +56,10 @@ export function CartToolbar(props) {
                                 spacing={1}
                             >
                                 <Typography variant="h5">
-                                    {it.title}
+                                    {product.title}
                                 </Typography>
                                 <Typography variant="caption">
-                                    {it.desc}
+                                    {product.desc}
                                 </Typography>
                             </Stack>
                         </Stack>
@@ -75,7 +70,7 @@ export function CartToolbar(props) {
                         >
                             <Chip
                                 size={'small'}
-                                label={it.price}
+                                label={product.price}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
@@ -90,6 +85,9 @@ export function CartToolbar(props) {
                                 <Button
                                     size={'small'}
                                     sx={{textTransform: 'none'}}
+                                    onClick={() => {
+                                        AppCache.arraySet(ConstantStorage.cart, rows.filter((it) => it.id !== product.id))
+                                    }}
                                 >
                                     Remove
                                 </Button>
@@ -98,7 +96,6 @@ export function CartToolbar(props) {
                     </Stack>
 
                 </Box>
-
             </React.Fragment>
         ));
     })
@@ -107,8 +104,14 @@ export function CartToolbar(props) {
         if (anchor) setAnchorCart(anchor)
     }, [anchor, anchorCart])
 
+    useEffect(() => {
+        if (rows.length === 0) {
+            onClose()
+        }
+    }, [onClose, rows])
+
     return (
-        anchorCart ? (
+        anchorCart && rows.length ? (
             <ClickAwayListener onClickAway={() => {
                 onClose();
             }}>
@@ -120,9 +123,7 @@ export function CartToolbar(props) {
                     disablePortal
                     placement="bottom-end"
                     role={undefined}
-                    sx={{
-                        zIndex: 999
-                    }}
+                    sx={{zIndex: 999}}
                     popperOptions={{
                         modifiers: [
                             {
@@ -233,7 +234,7 @@ export function CartToolbar(props) {
                                                     route.toLocation(routes.cart)
                                                 }}
                                             >
-                                                Open Cart
+                                                View Cart
                                             </Button>
                                         </Box>
 
@@ -249,6 +250,7 @@ export function CartToolbar(props) {
 }
 
 CartToolbar.propTypes = {
+    rows: PropTypes.array.isRequired,
     anchor: PropTypes.object,
     onClose: PropTypes.func.isRequired,
 };

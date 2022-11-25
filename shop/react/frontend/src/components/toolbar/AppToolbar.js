@@ -22,8 +22,9 @@ import {
 } from "@mui/icons-material";
 import {CartToolbar} from "./elements/CartToolbar";
 import {CollectionsToolbar} from "./elements/CollectionsToolbar";
-import {ConstantImages, NavigateContext} from "../../base";
+import {ConstantImages, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ConstantProducts} from "../../base/constants/ConstantProducts";
+import {ValueType} from "../../base/route/ValueType";
 
 /**
  * Application toolbar
@@ -33,6 +34,7 @@ export function AppToolbar(props) {
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
     const {route, routes} = useContext(NavigateContext)
+    const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
 
     const [anchorCart, setAnchorCart] = React.useState(null);
     const [anchorCollections, setAnchorCollections] = React.useState(null);
@@ -40,6 +42,7 @@ export function AppToolbar(props) {
     return (
         <>
             <CartToolbar
+                rows={cartProducts}
                 anchor={anchorCart}
                 onClose={() => setAnchorCart(null)}
             />
@@ -158,7 +161,7 @@ export function AppToolbar(props) {
                             </IconButton>
 
                             <Badge
-                                badgeContent={ConstantProducts.length}
+                                badgeContent={cartProducts.length}
                                 color="primary"
                                 sx={{
                                     '.MuiBadge-badge': {
@@ -168,7 +171,7 @@ export function AppToolbar(props) {
                                 }}
                             >
                                 <IconButton
-                                    disabled={route.isPage(routes.cart)}
+                                    disabled={route.isPage(routes.cart) || cartProducts.length === 0}
                                     size={isSM ? 'small' : 'large'}
                                     edge="start"
                                     color="inherit"

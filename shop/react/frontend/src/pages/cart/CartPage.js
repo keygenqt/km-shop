@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import {
     Avatar,
     Box,
@@ -12,13 +13,18 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import {ConstantProducts} from "../../base/constants/ConstantProducts";
-import {AddCircleOutline, DoneOutlined, RemoveCircleOutline} from "@mui/icons-material";
+import {AddCircleOutline, DoneOutlined, MoodOutlined, RemoveCircleOutline, SearchOutlined} from "@mui/icons-material";
+import {AppCache, ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {ValueType} from "../../base/route/ValueType";
+import Lottie from "lottie-react";
 
 export function CartPage() {
 
+    const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
+
     const products = []
 
+    const {route, routes} = useContext(NavigateContext)
     const theme = useTheme()
     const isLG = useMediaQuery(theme.breakpoints.down('lg'));
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
@@ -27,11 +33,11 @@ export function CartPage() {
 
     const [counters, setCounters] = React.useState([]);
 
-    ConstantProducts.forEach((it, id) => {
+    cartProducts.forEach((product, id) => {
 
         const collections = []
 
-        it.collections.forEach((collection, index) => {
+        product.collections.forEach((collection, index) => {
             collections.push((
                 <Chip
                     key={`collections-item-${index}`}
@@ -67,7 +73,7 @@ export function CartPage() {
 
                         <Avatar
                             variant={'rounded'}
-                            src={it.image}
+                            src={product.image}
                             sx={{
                                 width: isSM ? '100%' : 100,
                                 height: isSM ? 200 : 100
@@ -80,10 +86,10 @@ export function CartPage() {
                         >
                             <Stack spacing={1}>
                                 <Typography variant="h5">
-                                    {it.title}
+                                    {product.title}
                                 </Typography>
                                 <Typography variant="body2">
-                                    {it.desc}
+                                    {product.desc}
                                 </Typography>
                             </Stack>
 
@@ -165,7 +171,7 @@ export function CartPage() {
                         >
                             <Chip
                                 size={'medium'}
-                                label={(it.price * (counters.find((it) => it.id === id)?.count ?? 1)).toFixed(2)}
+                                label={(product.price * (counters.find((it) => it.id === id)?.count ?? 1)).toFixed(2)}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
@@ -180,6 +186,12 @@ export function CartPage() {
                                 <Button
                                     size={'small'}
                                     sx={{textTransform: 'none'}}
+                                    onClick={() => {
+                                        AppCache.arraySet(
+                                            ConstantStorage.cart,
+                                            cartProducts.filter((it) => it.id !== product.id)
+                                        )
+                                    }}
                                 >
                                     Remove
                                 </Button>
@@ -193,6 +205,46 @@ export function CartPage() {
             </React.Fragment>
         ));
     })
+
+    if (cartProducts.length === 0) {
+        return (
+            <Stack spacing={isSM ? 4 : 6}>
+
+                <Stack spacing={2}>
+                    <Typography variant={isSM ? 'h4' : 'h3'}>
+                        Shopping Cart
+                    </Typography>
+                    <Typography variant={'h5'} sx={{
+                        fontWeight: 100,
+                        maxWidth: 500
+                    }}>
+                        Your shopping cart is empty, add the products you are interested in and return.
+                    </Typography>
+                </Stack>
+
+                <Lottie animationData={ConstantLottie.cartEmpty} style={{
+                    width: 100,
+                    marginBottom: -20,
+                    marginTop: 20
+                }}/>
+
+                <Box>
+                    <Button
+                        variant={'outlined'}
+                        color={'secondary'}
+                        size={'large'}
+                        endIcon={isSM ? null : <SearchOutlined/>}
+                        onClick={() => {
+                            route.toLocation(routes.exploring)
+                        }}
+                    >
+                        Exploring
+                    </Button>
+                </Box>
+
+            </Stack>
+        )
+    }
 
     return (
         <Stack spacing={isSM ? 4 : 6}>
@@ -218,7 +270,7 @@ export function CartPage() {
                     backgroundColor: 'primary.main',
                     borderRadius: '50%',
                     left: -10,
-                    bottom: 70,
+                    top: 172,
                     zIndex: 1
                 }}/>
 

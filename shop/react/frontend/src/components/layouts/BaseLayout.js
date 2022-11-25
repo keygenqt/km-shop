@@ -4,6 +4,7 @@ import {Box, Container, Stack} from "@mui/material";
 import {AppToolbar} from "../toolbar/AppToolbar";
 import {AppFooter} from "../footer/AppFooter";
 import {ContainerLG} from "../containers/styled/Containers";
+import {SnackbarAddToCart} from "../alerts/SnackbarAddToCart";
 
 /**
  * Layout base for app
@@ -16,30 +17,32 @@ export function BaseLayout(props) {
     } = props
 
     return (
-        <Box id={'page-scroll'} className={'custom-scroll'} sx={{
-            height: '100%'
-        }}>
-            <Stack
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={7}
-                sx={{minHeight: '100%'}}
-            >
-                <ContainerLG>
-                    <AppToolbar/>
-                </ContainerLG>
+        <>
+            <Box id={'page-scroll'} className={'custom-scroll'} sx={{
+                height: '100%'
+            }}>
+                <Stack
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={7}
+                    sx={{minHeight: '100%'}}
+                >
+                    <ContainerLG>
+                        <AppToolbar/>
+                    </ContainerLG>
 
-                <Container maxWidth={size} sx={{
-                    flexGrow: middle ? null : 1,
-                }}>
-                    {props.children}
-                </Container>
+                    <Container maxWidth={size} sx={{
+                        flexGrow: middle ? null : 1,
+                    }}>
+                        {props.children}
+                    </Container>
 
-                <ContainerLG>
-                    <AppFooter/>
-                </ContainerLG>
-            </Stack>
-        </Box>
+                    <ContainerLG>
+                        <AppFooter/>
+                    </ContainerLG>
+                </Stack>
+            </Box>
+        </>
     )
 }
 

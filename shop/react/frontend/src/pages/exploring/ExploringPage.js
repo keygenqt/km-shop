@@ -19,20 +19,25 @@ import {useParams} from "react-router";
 import {ConstantCollections} from "../../base/constants/ConstantCollections";
 import {ConstantProducts} from "../../base/constants/ConstantProducts";
 import {AddShoppingCartOutlined, Star} from "@mui/icons-material";
+import {AppCache, ConstantStorage, useLocalStorage} from "../../base";
+import {ValueType} from "../../base/route/ValueType";
+import {SnackbarAddToCart} from "../../components/alerts/SnackbarAddToCart";
 
 export function ExploringPage() {
 
     let {filter} = useParams();
 
     const theme = useTheme()
-    const isLG = useMediaQuery(theme.breakpoints.down('lg'));
-    const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
+
+    const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
 
     const products = []
 
     ConstantProducts.forEach((product, index) => {
+
+        const isCartAdded = Boolean(cartProducts.find((it) => it.id === product.id))
+
         products.push((
             <Grid key={`exploring-product-item-${index}`} item xl={3} lg={3} md={4} sm={6} xs={12} min={12} null={12}>
                 <Box sx={{
@@ -108,13 +113,35 @@ export function ExploringPage() {
 
                                 <Stack direction={'row'} justifyContent={'space-between'} sx={{width: '100%'}}>
                                     <IconButton
+                                        disabled={isCartAdded}
                                         size={'small'}
-                                        onClick={(event) => {
-
+                                        onClick={() => {
+                                            cartProducts.push(product)
+                                            AppCache.arraySet(ConstantStorage.cart, cartProducts)
+                                        }}
+                                        sx={{
+                                            borderColor: 'white',
+                                            borderStyle: 'solid',
+                                            borderWidth: 1,
+                                            borderRadius: '50%',
+                                            transitionProperty: 'border-color',
+                                            transitionTimingFunction: 'ease-in-out',
+                                            transitionDuration: '300ms',
+                                            '&.Mui-disabled': {
+                                                borderColor: 'primary.main',
+                                            },
+                                            '&.Mui-disabled .MuiSvgIcon-root': {
+                                                color: 'primary.main'
+                                            }
                                         }}
                                     >
-                                        <Box sx={{p: 0.5, fontSize: 0}}>
-                                            <AddShoppingCartOutlined color={'primary'}/>
+                                        <Box sx={{
+                                            p: 0.5,
+                                            fontSize: 0,
+                                        }}>
+                                            <AddShoppingCartOutlined color={'gray'} sx={{
+                                                transitionDuration: '300ms'
+                                            }}/>
                                         </Box>
                                     </IconButton>
 
@@ -132,34 +159,38 @@ export function ExploringPage() {
     })
 
     return (
-        <Stack spacing={isSM ? 4 : 6}>
+        <>
+            <SnackbarAddToCart/>
 
-            <Stack spacing={2}>
-                <Typography variant={isSM ? 'h4' : 'h3'}>
-                    {filter ? `${ConstantCollections.find((it) => it.key === filter)?.name ?? 'Best'} collection` : 'Exploring'}
-                </Typography>
+            <Stack spacing={isSM ? 4 : 6}>
 
-                <Typography variant={isSM ? 'h6' : 'h5'} sx={{
-                    fontWeight: 100
-                }}>
-                    Here you can find your style.
-                </Typography>
+                <Stack spacing={2}>
+                    <Typography variant={isSM ? 'h4' : 'h3'}>
+                        {filter ? `${ConstantCollections.find((it) => it.key === filter)?.name ?? 'Best'} collection` : 'Exploring'}
+                    </Typography>
+
+                    <Typography variant={isSM ? 'h6' : 'h5'} sx={{
+                        fontWeight: 100
+                    }}>
+                        Here you can find your style.
+                    </Typography>
+                </Stack>
+
+                <Box>
+                    <Grid container spacing={isSM ? 2 : 3}>
+                        {products}
+                    </Grid>
+                </Box>
+
+                <Pagination
+                    count={10}
+                    size={isSM ? 'small' : 'medium'}
+                    variant="outlined"
+                    color="secondary"
+                />
+
             </Stack>
-
-            <Box>
-                <Grid container spacing={isSM ? 2 : 3}>
-                    {products}
-                </Grid>
-            </Box>
-
-            <Pagination
-                count={10}
-                size={isSM ? 'small' : 'medium'}
-                variant="outlined"
-                color="secondary"
-            />
-
-        </Stack>
+        </>
     );
 }
 
