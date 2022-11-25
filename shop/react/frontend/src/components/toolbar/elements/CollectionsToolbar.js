@@ -35,7 +35,7 @@ export function CollectionsToolbar(props) {
                     }}
                     onClick={() => {
                         onClose()
-                        route.toLocation(routes.exploring)
+                        route.toLocation(routes.exploringCollection, it.key)
                     }}
                 >
                     <Stack

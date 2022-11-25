@@ -2,6 +2,7 @@ import {Route} from "react-router-dom";
 import * as React from "react";
 import {BaseLayout} from "../components";
 import {CartPage, ContactPage, ExploringPage, HomePage, ProductPage} from "../pages";
+import {ValueType as RouteType} from "../base/route/ValueType";
 
 export const RouteConf = {
     delay: 300,
@@ -23,6 +24,24 @@ export const RouteConf = {
         },
         exploring: {
             path: '/exploring',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <BaseLayout>
+                            <ExploringPage/>
+                        </BaseLayout>
+                    }
+                />
+            }
+        },
+        exploringCollection: {
+            path: '/exploring/:filter',
+            match: {
+                id: RouteType.string,
+            },
             render: function (key, path) {
                 return <Route
                     key={key}
