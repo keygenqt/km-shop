@@ -31,7 +31,7 @@ export function CollectionsToolbar(props) {
                     color={'inherit'}
                     fullWidth
                     sx={{
-                        borderRadius: 4
+                        borderRadius: 2
                     }}
                     onClick={() => {
                         onClose()
@@ -117,7 +117,7 @@ export function CollectionsToolbar(props) {
                                 pt: 2,
                                 pl: 2,
                                 pr: 2,
-                                borderRadius: 4,
+                                borderRadius: 2,
                                 maxWidth: 400,
                                 minWidth: 300,
                                 overflow: 'hidden'

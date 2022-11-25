@@ -4,7 +4,6 @@
  */
 export const palette = () => {
     return {
-        mode: 'light',
         background: {
             paper: '#fff',
             default: '#fff',
@@ -16,7 +15,7 @@ export const palette = () => {
         },
         secondary: {
             light: '#E3F2FD',
-            main: '#50b3ff',
+            main: 'rgba(27,143,234,0.8)',
             dark: '#0f63a2',
         },
         error: {

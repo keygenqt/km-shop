@@ -46,6 +46,7 @@ export function CategoriesBlockHomePage() {
 
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
 
     const [value, setValue] = React.useState(0);
 
@@ -78,8 +79,8 @@ export function CategoriesBlockHomePage() {
                 item
                 xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
                 <Card variant="outlined" sx={{
-                    borderRadius: 4,
-                    p: 2,
+                    borderRadius: 2,
+                    p: isXS ? 1 : 2,
                     border: 'none',
                     position: 'relative',
                     overflow: 'hidden',
@@ -171,19 +172,22 @@ export function CategoriesBlockHomePage() {
         <Stack
             sx={{
                 backgroundColor: '#F6F7F9',
-                p: isMD ? 3 : 10,
+                p: isMD ? isXS ? 2 : 3 : 10,
                 position: 'relative',
-                borderRadius: 4,
+                borderRadius: 2,
             }}
         >
             <Stack
                 alignItems={'center'}
-                spacing={isMD ? 3 : 8}
+                spacing={isMD ? isXS ? 2 : 3 : 8}
                 sx={{
                     paddingBottom: isMD ? 4 : 6
                 }}
             >
-                <Typography variant={isMD ? 'h4' : 'h3'}>
+                <Typography variant={isMD ? isXS ? 'h5' : 'h4' : 'h3'} sx={{
+                    pt: isXS ? 2 : 0,
+                    pb: isXS ? 1 : 0
+                }}>
                     Start exploring
                 </Typography>
 
@@ -198,7 +202,7 @@ export function CategoriesBlockHomePage() {
                 </TabsBlackStyled>
             </Stack>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={isMD ? isXS ? 2 : 3 : 4}>
                 {categories}
             </Grid>
         </Stack>

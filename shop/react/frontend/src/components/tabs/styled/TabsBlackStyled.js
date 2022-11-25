@@ -4,7 +4,7 @@ export const TabsBlackStyled = styled(Tabs)(({theme}) => ({
     padding: '5px',
     minHeight: 'inherit',
     backgroundColor: 'white',
-    borderRadius: '30px',
+    borderRadius: '8px',
     '& .Mui-selected': {
         color: 'white !important',
         transitionDuration: '500ms'
@@ -16,14 +16,14 @@ export const TabsBlackStyled = styled(Tabs)(({theme}) => ({
     '& .MuiButtonBase-root': {
         padding: '9px 24px',
         minHeight: 'inherit',
-        borderRadius: '30px',
+        borderRadius: '8px',
         transitionDuration: '500ms',
         textTransform: 'none',
     },
     '& .MuiTabs-indicator': {
         height: '100%',
         backgroundColor: theme.palette.black.main,
-        borderRadius: '30px',
+        borderRadius: '8px',
         transitionDuration: '500ms'
     },
     '& .Mui-selected .MuiTouchRipple-root': {

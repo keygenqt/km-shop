@@ -19,6 +19,9 @@ import DSC_0004 from "../../assets/images/common/DSC_0004.png";
 import DSC_0007 from "../../assets/images/common/DSC_0007.png";
 import DSC_0009 from "../../assets/images/common/DSC_0009.png";
 import logo from "../../assets/images/common/logo.png";
+import contactEmail from "../../assets/images/contact/email.png";
+import contactAddress from "../../assets/images/contact/home-address.png";
+import contactPhone from "../../assets/images/contact/phone.png";
 
 /**
  * Apps constants sundries
@@ -29,6 +32,11 @@ export const ConstantImages = {
         DSC_0004: DSC_0004,
         DSC_0007: DSC_0007,
         DSC_0009: DSC_0009,
+    },
+    contact: {
+        email: contactEmail,
+        address: contactAddress,
+        phone: contactPhone,
     },
     home: {
         iphone: iphone,

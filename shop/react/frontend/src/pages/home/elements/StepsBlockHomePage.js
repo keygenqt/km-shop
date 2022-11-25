@@ -90,7 +90,10 @@ export function StepsBlockHomePage() {
         >
 
             {isMD ? (
-                <Typography variant={'h4'}>
+                <Typography variant={'h5'} sx={{
+                    mb: -1,
+                    mt: -1
+                }}>
                     How it works
                 </Typography>
             ) : null}
@@ -115,7 +118,7 @@ export function StepsBlockHomePage() {
                         isMD ? {
                             '& .MuiStack-item': {
                                 border: '6px solid #F6F7F9',
-                                borderRadius: 4,
+                                borderRadius: 2,
                                 p: 2,
                             },
                             '&:after': {

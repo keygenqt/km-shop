@@ -1,11 +1,29 @@
 import * as React from 'react';
-import {Alert, Avatar, Box, Button, Chip, Divider, Grid, Stack, TextField, Typography} from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Button,
+    Chip,
+    Divider,
+    Grid,
+    Stack,
+    TextField,
+    Typography,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import {ConstantProducts} from "../../base/constants/ConstantProducts";
-import {AddCircleOutline, RemoveCircleOutline} from "@mui/icons-material";
+import {AddCircleOutline, DoneOutlined, RemoveCircleOutline} from "@mui/icons-material";
 
 export function CartPage() {
 
     const products = []
+
+    const theme = useTheme()
+    const isLG = useMediaQuery(theme.breakpoints.down('lg'));
+    const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const isSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
 
     const [counters, setCounters] = React.useState([]);
 
@@ -30,13 +48,18 @@ export function CartPage() {
                 key={`cart-product-item-${id}`}
             >
                 <Stack
-                    direction="row"
+                    direction={isSM ? 'column' : 'row'}
                     justifyContent="space-between"
                     alignItems="stretch"
                     spacing={2}
+                    sx={{
+                        backgroundColor: 'white',
+                        borderRadius: 2,
+                        p: 2,
+                    }}
                 >
                     <Stack
-                        direction="row"
+                        direction={isLG ? 'column' : 'row'}
                         justifyContent="space-between"
                         alignItems="stretch"
                         spacing={3}
@@ -46,9 +69,8 @@ export function CartPage() {
                             variant={'rounded'}
                             src={it.image}
                             sx={{
-                                width: 100,
-                                height: 100,
-                                borderRadius: 4
+                                width: isSM ? '100%' : 100,
+                                height: isSM ? 200 : 100
                             }}
                         />
 
@@ -83,7 +105,7 @@ export function CartPage() {
                     </Stack>
 
                     <Stack
-                        direction={'row'}
+                        direction={isXS ? 'column' : 'row'}
                         spacing={2}
                     >
 
@@ -91,7 +113,7 @@ export function CartPage() {
                             direction={'row'}
                             alignItems={'flex-start'}
                             sx={{
-                                pt: 1,
+                                pt: isSM ? 0 : 1,
                                 userSelect: 'none',
                                 '& .MuiButtonBase-root': {
                                     p: 0.5,
@@ -136,7 +158,10 @@ export function CartPage() {
 
                         <Stack
                             spacing={1}
-                            justifyContent="space-between"
+                            direction={isSM ? 'row' : 'column'}
+                            justifyContent={'space-between'}
+                            alignItems={isSM ? 'center' : 'flex-end'}
+                            sx={{width: '100%'}}
                         >
                             <Chip
                                 size={'medium'}
@@ -144,7 +169,7 @@ export function CartPage() {
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
-                                    marginTop: 1,
+                                    marginTop: isSM ? 0 : 1,
                                     minWidth: 100,
                                 }}
                             />
@@ -165,84 +190,66 @@ export function CartPage() {
 
                 </Stack>
 
-                {ConstantProducts.length - 1 !== id ? <Divider/> : null}
             </React.Fragment>
         ));
     })
 
     return (
-        <Stack spacing={6}>
+        <Stack spacing={isSM ? 4 : 6}>
 
-            <Typography variant={'h4'}>
-                Shopping Cart
-            </Typography>
+            <Stack spacing={2}>
+                <Typography variant={isSM ? 'h4' : 'h3'}>
+                    Shopping Cart
+                </Typography>
 
-            <Box>
-                <Grid container spacing={4}>
+                <Typography variant={isSM ? 'h6' : 'h5'} sx={{
+                    fontWeight: 100
+                }}>
+                    Here you can place an order.
+                </Typography>
+            </Stack>
+
+            <Box sx={{position: 'relative'}}>
+
+                <Box sx={{
+                    position: 'absolute',
+                    width: 20,
+                    height: 20,
+                    backgroundColor: 'primary.main',
+                    borderRadius: '50%',
+                    left: -10,
+                    bottom: 70,
+                    zIndex: 1
+                }}/>
+
+                <Box sx={{
+                    position: 'absolute',
+                    width: 80,
+                    height: 20,
+                    backgroundColor: 'success.main',
+                    borderRadius: '6px',
+                    top: -7,
+                    left: 30
+                }}/>
+
+                <Grid container spacing={isMD ? 6 : 3}>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
-                        <Stack spacing={3}>
-                            {products}
-                        </Stack>
-                    </Grid>
-                    <Grid item xl={1} lg={1} md={1} sm={12} xs={12} min={12} null={12} sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
-                        <Divider
-                            orientation="vertical"
-                            flexItem
-                        />
-                    </Grid>
-                    <Grid item xl={4} lg={4} md={4} sm={12} xs={12} min={12} null={12}>
-
-                        <Stack spacing={3} sx={{
-                            top: 32,
-                            position: 'sticky'
+                        <Stack spacing={isMD ? 2 : 3} sx={{
+                            backgroundColor: '#F6F7F9',
+                            borderRadius: 2,
+                            p: isMD ? 2 : 3,
+                            position: 'relative'
                         }}>
-                            <Typography variant={'h4'} sx={{
-                                fontSize: 24
-                            }}>
-                                Checkout
-                            </Typography>
+                            {products}
 
-                            <Stack spacing={2}>
-
-                                <Alert severity="info">
-                                    Enter your contact details so that you can be contacted and clarified all the necessary data on the order
-                                </Alert>
-
-                                <TextField
-                                    label="Email"
-                                    variant="outlined"
-                                />
-                                <TextField
-                                    label="Phone"
-                                    variant="outlined"
-                                />
-                                <TextField
-                                    label="Additional Information"
-                                    variant="outlined"
-                                    multiline
-                                    minRows={4}
-                                    maxRows={10}
-                                />
-                            </Stack>
-
-                            <Stack
-                                spacing={2}
-                            >
+                            <Stack spacing={3} sx={{pb: 1}}>
                                 <Divider/>
                                 <Stack
                                     direction={'row'}
                                     justifyContent={'space-between'}
                                     alignItems={'center'}
                                 >
-                                    <Typography variant={'h5'} sx={{
-                                        color: 'gray.main',
-                                        fontWeight: '200',
-                                        fontSize: 14
-                                    }}>
+                                    <Typography variant={'h5'} sx={{fontWeight: 100}}>
                                         Order total
                                     </Typography>
 
@@ -252,26 +259,91 @@ export function CartPage() {
                                 </Stack>
                             </Stack>
 
-                            <Box sx={{
-                                textAlign: 'right'
-                            }}>
-                                <Button
-                                    size={'large'}
-                                    disableElevation
-                                    variant={'contained'}
-                                    color={'black'}
-                                    sx={{
-                                        color: 'white',
-                                        borderRadius: 7,
-                                        textTransform: 'none'
-                                    }}
-                                    onClick={() => {
+                        </Stack>
+                    </Grid>
+                    <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
 
+                        <Stack spacing={isMD ? 2 : 3} sx={{
+                            top: 32,
+                            position: 'sticky',
+                            marginBottom: -2
+                        }}>
+
+                            <Box sx={{
+                                position: 'absolute',
+                                width: 50,
+                                height: 50,
+                                backgroundColor: '#F09372',
+                                borderRadius: '50%',
+                                top: -20,
+                                right: 40
+                            }}/>
+
+                            <Stack spacing={isMD ? 2 : 3} sx={{
+                                backgroundColor: '#F6F7F9',
+                                borderRadius: 2,
+                                p: isMD ? isSM ? 2 : 3 : 4,
+                                position: 'relative',
+                                top: -25
+                            }}>
+
+                                <Stack spacing={1}>
+                                    <Typography variant={'h5'}>
+                                        Checkout
+                                    </Typography>
+
+                                    <Typography variant={'caption'}>
+                                        Enter your contact details so that you can be contacted and clarified all the
+                                        necessary data on the order.
+                                    </Typography>
+                                </Stack>
+
+                                <TextField
+                                    label="Email"
+                                    variant="filled"
+                                    sx={{
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: 'white'
+                                        }
                                     }}
-                                >
-                                    Submit Order
-                                </Button>
-                            </Box>
+                                />
+                                <TextField
+                                    label="Phone"
+                                    variant="filled"
+                                    sx={{
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: 'white'
+                                        }
+                                    }}
+                                />
+                                <TextField
+                                    label="Additional Information"
+                                    variant="filled"
+                                    multiline
+                                    minRows={5}
+                                    maxRows={10}
+                                    sx={{
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: 'white'
+                                        }
+                                    }}
+                                />
+
+                                <Box>
+                                    <Button
+                                        size={'large'}
+                                        disableElevation
+                                        variant={'contained'}
+                                        color={'secondary'}
+                                        startIcon={<DoneOutlined sx={{height: 18}}/>}
+                                        onClick={() => {
+
+                                        }}
+                                    >
+                                        Send Order
+                                    </Button>
+                                </Box>
+                            </Stack>
 
                         </Stack>
                     </Grid>

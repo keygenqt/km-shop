@@ -127,8 +127,9 @@ export function MobileBlockHomePage() {
                         <Button
                             sx={{
                                 p: 0,
-                                borderRadius: 2,
-                                maxWidth: 160
+                                maxWidth: 160,
+                                borderRadius: 1,
+                                overflow: 'hidden'
                             }}
                         >
                             <img
@@ -143,8 +144,9 @@ export function MobileBlockHomePage() {
                         <Button
                             sx={{
                                 p: 0,
-                                borderRadius: 5,
-                                maxWidth: 160
+                                maxWidth: 160,
+                                borderRadius: 1,
+                                overflow: 'hidden'
                             }}
                         >
                             <img

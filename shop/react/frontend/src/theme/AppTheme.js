@@ -3,6 +3,9 @@ import {palette} from "./impl/palette.js";
 import {typography} from "./impl/typography.js";
 
 export const AppTheme = createTheme({
+    shape: {
+        borderRadius: 10
+    },
     breakpoints: {
         values: {
             null: 0,

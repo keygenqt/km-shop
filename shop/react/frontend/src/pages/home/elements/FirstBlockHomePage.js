@@ -16,7 +16,7 @@ export function FirstBlockHomePage() {
             alignItems="center"
             sx={{
                 backgroundColor: '#F7F0EA',
-                borderRadius: 4,
+                borderRadius: 2,
                 paddingX: isMD ? 4 : 10,
                 paddingY: isMD ? 7 : 12,
                 position: 'relative',
@@ -67,7 +67,6 @@ export function FirstBlockHomePage() {
                                     color={'black'}
                                     sx={{
                                         color: 'white',
-                                        borderRadius: 7,
                                         paddingY: 2,
                                         paddingX: 4
                                     }}

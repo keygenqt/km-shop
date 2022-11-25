@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Avatar, Box, Button, Chip, ClickAwayListener, Divider, Fade, Paper, Popper, Stack} from "@mui/material";
+import {Avatar, Box, Button, Chip, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {NavigateContext} from "../../../base";
@@ -23,75 +23,82 @@ export function CartToolbar(props) {
 
     ConstantProducts.forEach((it, index) => {
         products.push((
-            <React.Fragment
-                key={`cart-product-item-${index}`}
-            >
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="stretch"
-                    spacing={2}
-                >
+            <React.Fragment key={`cart-product-item-${index}`}>
+                <Box sx={{
+                    p: 1,
+                    borderRadius: 1,
+                    backgroundColor: '#F6F7F9'
+                }}>
                     <Stack
-                        key={`cart-product-item-${index}`}
                         direction="row"
                         justifyContent="space-between"
                         alignItems="stretch"
                         spacing={2}
+                        sx={{
+                            p: 1,
+                            backgroundColor: 'white',
+                            borderRadius: 1
+                        }}
                     >
+                        <Stack
+                            key={`cart-product-item-${index}`}
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="stretch"
+                            spacing={2}
+                        >
 
-                        <Avatar
-                            variant={'rounded'}
-                            src={it.image}
-                            sx={{
-                                width: 70,
-                                height: 70,
-                                borderRadius: 4
-                            }}
-                        />
+                            <Avatar
+                                variant={'rounded'}
+                                src={it.image}
+                                sx={{
+                                    width: 70,
+                                    height: 70
+                                }}
+                            />
+
+                            <Stack
+                                spacing={1}
+                            >
+                                <Typography variant="h5">
+                                    {it.title}
+                                </Typography>
+                                <Typography variant="caption">
+                                    {it.desc}
+                                </Typography>
+                            </Stack>
+                        </Stack>
 
                         <Stack
                             spacing={1}
+                            justifyContent="space-between"
                         >
-                            <Typography variant="h5">
-                                {it.title}
-                            </Typography>
-                            <Typography variant="caption">
-                                {it.desc}
-                            </Typography>
+                            <Chip
+                                size={'small'}
+                                label={it.price}
+                                variant={'outlined'}
+                                color={'success'}
+                                sx={{
+                                    marginTop: '1px',
+                                    minWidth: 80
+                                }}
+                            />
+
+                            <Box sx={{
+                                textAlign: 'right'
+                            }}>
+                                <Button
+                                    size={'small'}
+                                    sx={{textTransform: 'none'}}
+                                >
+                                    Remove
+                                </Button>
+                            </Box>
                         </Stack>
                     </Stack>
 
-                    <Stack
-                        spacing={1}
-                        justifyContent="space-between"
-                    >
-                        <Chip
-                            size={'small'}
-                            label={it.price}
-                            variant={'outlined'}
-                            color={'success'}
-                            sx={{
-                                marginTop: 1,
-                                minWidth: 80
-                            }}
-                        />
+                </Box>
 
-                        <Box sx={{
-                            textAlign: 'right'
-                        }}>
-                            <Button
-                                size={'small'}
-                                sx={{textTransform: 'none'}}
-                            >
-                                Remove
-                            </Button>
-                        </Box>
-                    </Stack>
-
-                </Stack>
-
-                {ConstantProducts.length - 1 !== index ? <Divider/> : null}
             </React.Fragment>
         ));
     })
@@ -131,13 +138,12 @@ export function CartToolbar(props) {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper elevation={1} sx={{
                                 zIndex: 999,
-                                borderRadius: 4,
-                                maxWidth: 400,
+                                borderRadius: 2,
+                                maxWidth: 450,
                                 overflow: 'hidden'
                             }}>
                                 <Stack>
-
-                                    <Typography variant='h5' sx={{
+                                    <Typography variant='h4' sx={{
                                         paddingY: 3,
                                         paddingX: 3,
                                         paddingBottom: 1.5,
@@ -159,7 +165,7 @@ export function CartToolbar(props) {
 
                                     <Stack spacing={1} className={'custom-scroll'} sx={{
                                         maxHeight: 376,
-                                        paddingX: 3,
+                                        paddingX: 1,
                                         paddingTop: 1.5,
                                         paddingBottom: 1.5,
                                         position: 'relative',
@@ -186,7 +192,7 @@ export function CartToolbar(props) {
                                                 left: 0,
                                                 right: 16,
                                                 zIndex: 1,
-                                                background: 'linear-gradient(0deg, #F9FAFB 0%, transparent 100%)'
+                                                background: 'linear-gradient(0deg, white 0%, transparent 100%)'
                                             }
                                         }}
                                     >
@@ -201,7 +207,7 @@ export function CartToolbar(props) {
                                                 </Typography>
 
                                                 <Typography variant='caption'>
-                                                    Shipping and taxes calculated at checkout.
+                                                    You can go to the shopping cart page to checkout.
                                                 </Typography>
                                             </Stack>
 
@@ -220,7 +226,6 @@ export function CartToolbar(props) {
                                                 color={'black'}
                                                 sx={{
                                                     color: 'white',
-                                                    borderRadius: 7,
                                                     textTransform: 'none'
                                                 }}
                                                 onClick={() => {
@@ -228,7 +233,7 @@ export function CartToolbar(props) {
                                                     route.toLocation(routes.cart)
                                                 }}
                                             >
-                                                View Cart
+                                                Open Cart
                                             </Button>
                                         </Box>
 
