@@ -245,7 +245,7 @@ export function ContactPage() {
                         </Typography>
 
                         <Button
-                            size={'large'}
+                            size={'medium'}
                             color={'secondary'}
                             variant={'contained'}
                             disableElevation
@@ -277,7 +277,7 @@ export function ContactPage() {
                         </Typography>
 
                         <Button
-                            size={'large'}
+                            size={'medium'}
                             color={'secondary'}
                             variant={'contained'}
                             disableElevation
