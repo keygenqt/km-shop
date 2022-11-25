@@ -45,7 +45,7 @@ export const ConstantProducts = [
     {
         image: 'https://shop-api.keygenqt.com/api/uploads/bc9437cf-ebda-4846-9a2c-d454c95a5df8.png',
         title: 'Wedding',
-        desc: 'Dress the little one more beautiful than the bride.',
+        desc: 'Dress the little one more beautiful than the bride. Dress the little one more beautiful than the bride.',
         price: '2800.70',
         collections: [
             ConstantCollections[3].name,
