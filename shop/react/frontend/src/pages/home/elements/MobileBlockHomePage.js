@@ -36,7 +36,7 @@ export function MobileBlockHomePage() {
                         position: 'absolute',
                         height: 150,
                         width: 80,
-                        borderRadius: 6,
+                        borderRadius: 2,
                         backgroundColor: 'secondary.light',
                         top: 170,
                         left: 30
@@ -46,7 +46,7 @@ export function MobileBlockHomePage() {
                         position: 'absolute',
                         height: 100,
                         width: 45,
-                        borderRadius: 3,
+                        borderRadius: 1,
                         backgroundColor: 'success.main',
                         bottom: 80,
                         right: 65
