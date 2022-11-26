@@ -146,7 +146,7 @@ export function CartToolbar(props) {
                             <Paper elevation={1} sx={{
                                 zIndex: 999,
                                 borderRadius: 2,
-                                maxWidth: 450,
+                                width: 430,
                                 overflow: 'hidden'
                             }}>
                                 <Stack>

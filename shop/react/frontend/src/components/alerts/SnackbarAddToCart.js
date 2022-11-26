@@ -49,7 +49,7 @@ export function SnackbarAddToCart() {
             anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
         >
             {Boolean(product) ? (
-                <Paper elevation={3} sx={{p: 2, minWidth: 400, maxWidth: 500}}>
+                <Paper elevation={3} sx={{p: 2, width: 400}}>
                     <Stack spacing={2}>
                         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                             <Typography variant={'h5'}>
