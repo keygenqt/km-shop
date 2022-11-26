@@ -216,10 +216,10 @@ export function ExploringPage() {
                     }}>
                         <Box
                             sx={{
-                                height: 20,
-                                width: 20,
-                                bottom: -10,
-                                left: 40,
+                                height: 16,
+                                width: 16,
+                                bottom: -8,
+                                left: 24,
                                 borderRadius: '50%',
                                 backgroundColor: 'success.main',
                                 position: 'absolute',
