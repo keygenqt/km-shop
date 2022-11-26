@@ -15,7 +15,7 @@ export const palette = () => {
         },
         secondary: {
             light: '#E3F2FD',
-            main: 'rgba(27,143,234,0.8)',
+            main: '#2b96f1',
             dark: '#0f63a2',
         },
         error: {

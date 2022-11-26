@@ -54,10 +54,10 @@ export function AppToolbar(props) {
 
             <Box sx={{flexGrow: 1}}>
                 <AppBar
-                    color={'secondary'}
                     position="static"
                     elevation={0}
                     sx={{
+                        backgroundColor: '#37a7ff',
                         color: 'white',
                         borderBottomRightRadius: 16,
                         borderBottomLeftRadius: 16,
