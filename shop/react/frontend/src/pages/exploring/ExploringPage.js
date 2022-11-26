@@ -1,8 +1,10 @@
 import * as React from 'react';
+import {useContext, useEffect} from 'react';
 import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
+    Avatar,
     Box,
     Button,
     Card,
@@ -29,6 +31,7 @@ import {ConstantCollections} from "../../base/constants/ConstantCollections";
 import {ConstantProducts} from "../../base/constants/ConstantProducts";
 import {
     AddShoppingCartOutlined,
+    BrokenImageOutlined,
     CategoryOutlined,
     ExpandMoreOutlined,
     PriceChangeOutlined,
@@ -36,7 +39,7 @@ import {
     Star,
     StyleOutlined
 } from "@mui/icons-material";
-import {AppCache, ConstantStorage, useLocalStorage} from "../../base";
+import {AppCache, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import {SnackbarAddToCart} from "../../components/alerts/SnackbarAddToCart";
 
@@ -49,20 +52,24 @@ export function ExploringPage() {
     let {filter} = useParams();
 
     const theme = useTheme()
-    const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-
+    const {route, routes} = useContext(NavigateContext)
     const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
 
     const [value, setValue] = React.useState([12, 87]);
+    const [page, setPage] = React.useState(1);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    useEffect(() => {
+        setPage(1)
+    }, [filter])
+
     const products = []
 
-    ConstantProducts.slice(0, 6).forEach((product, index) => {
+    ConstantProducts.slice(((page - 1) * 6), 6 * page).forEach((product, index) => {
         const isCartAdded = Boolean(cartProducts.find((it) => it.id === product.id))
         products.push((
             <Grid key={`exploring-product-item-${index}`} item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
@@ -75,13 +82,19 @@ export function ExploringPage() {
                         border: 'none',
                         position: 'relative',
                     }}>
-
-                        <CardMedia
-                            component="img"
-                            height="200"
-                            image={product.image}
-                            alt="green iguana"
-                        />
+                        <Avatar
+                            src={product.image}
+                            sx={{
+                                borderRadius: 0,
+                                height: 210,
+                                width: '100%'
+                            }}
+                        >
+                            <BrokenImageOutlined sx={{
+                                width: 90,
+                                height: 90
+                            }}/>
+                        </Avatar>
 
                         <CardContent>
                             <Stack spacing={1}>
@@ -130,7 +143,7 @@ export function ExploringPage() {
                         <CardActions disableSpacing>
                             <Stack spacing={1} sx={{width: '100%', mt: -1.5}}>
                                 <Box sx={{
-                                    height: 5,
+                                    height: 16,
                                     left: -10,
                                     width: 'calc(100% + 20px)',
                                     position: 'relative',
@@ -173,7 +186,14 @@ export function ExploringPage() {
                                     </IconButton>
 
                                     <Stack alignItems={'center'} justifyContent={'center'}>
-                                        <Button variant={'outlined'} color={'secondary'} size={'small'}>
+                                        <Button
+                                            variant={'outlined'}
+                                            color={'secondary'}
+                                            size={'small'}
+                                            onClick={() => {
+                                                route.toLocation(routes.product, product.id)
+                                            }}
+                                        >
                                             View
                                         </Button>
                                     </Stack>
@@ -392,38 +412,30 @@ export function ExploringPage() {
                                             />
                                         </Stack>
                                     </Stack>
-
                                 </Box>
-
-
                             </Stack>
                         </Stack>
                     </Box>
 
-                    <Box sx={{position: 'relative'}}>
-
-                        <Box
-                            sx={{
-                                height: 40,
-                                width: 110,
-                                top: -10,
-                                right: 30,
-                                borderRadius: 0.5,
-                                backgroundColor: '#F09372',
-                                position: 'absolute',
-                            }}
-                        />
-
+                    <Box sx={{position: 'relative', width: '100%'}}>
                         <Stack spacing={isSM ? 2 : 3} sx={{position: 'relative'}}>
+
                             <Grid container spacing={isSM ? 2 : 3}>
                                 {products}
                             </Grid>
 
                             <Pagination
-                                count={10}
+                                count={2}
+                                page={page}
                                 size={isSM ? 'small' : 'medium'}
                                 variant="outlined"
                                 color="secondary"
+                                onChange={(event, value) => {
+                                    route.scrollToTopSmooth()
+                                    setTimeout(() => {
+                                        setPage(value)
+                                    }, 350)
+                                }}
                             />
                         </Stack>
                     </Box>

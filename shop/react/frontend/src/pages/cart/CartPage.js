@@ -13,7 +13,14 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import {AddCircleOutline, DoneOutlined, MoodOutlined, RemoveCircleOutline, SearchOutlined} from "@mui/icons-material";
+import {
+    AddCircleOutline,
+    BrokenImageOutlined,
+    DoneOutlined,
+    MoodOutlined,
+    RemoveCircleOutline,
+    SearchOutlined
+} from "@mui/icons-material";
 import {AppCache, ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Lottie from "lottie-react";
@@ -78,7 +85,12 @@ export function CartPage() {
                                 width: isSM ? '100%' : 100,
                                 height: isSM ? 200 : 100
                             }}
-                        />
+                        >
+                            <BrokenImageOutlined sx={{
+                                width: 60,
+                                height: 60
+                            }}/>
+                        </Avatar>
 
                         <Stack
                             spacing={1}

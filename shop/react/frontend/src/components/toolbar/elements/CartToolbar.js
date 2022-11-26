@@ -4,6 +4,7 @@ import {Avatar, Box, Button, Chip, ClickAwayListener, Fade, Paper, Popper, Stack
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {AppCache, ConstantStorage, NavigateContext} from "../../../base";
+import {BrokenImageOutlined} from "@mui/icons-material";
 
 /**
  * Application cart toolbar
@@ -50,7 +51,12 @@ export function CartToolbar(props) {
                                     width: 70,
                                     height: 70
                                 }}
-                            />
+                            >
+                                <BrokenImageOutlined sx={{
+                                    width: 40,
+                                    height: 40
+                                }}/>
+                            </Avatar>
 
                             <Stack
                                 spacing={1}

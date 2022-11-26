@@ -7,6 +7,14 @@ import {ConstantCollections} from "./ConstantCollections";
 export const ConstantProducts = [
     {
         id: 1,
+        image: 'https://shop-api.keygenqt.com/api/uploads/cedcf6a9-4b59-411f-9785-7a00214b240a.png',
+        title: 'Expensive',
+        desc: 'Bow for the bourgeoisie. If you are rich, you can buy thieves for a unique style.',
+        price: '3100.20',
+        collections: []
+    },
+    {
+        id: 2,
         image: 'https://shop-api.keygenqt.com/api/uploads/6618ddd8-fc9a-4da4-834e-cd81e90bcec4.png',
         title: 'Bow Beauty',
         desc: 'Top bows for top girls.',
@@ -15,14 +23,6 @@ export const ConstantProducts = [
             ConstantCollections[0].name,
             ConstantCollections[1].name,
         ]
-    },
-    {
-        id: 2,
-        image: 'https://shop-api.keygenqt.com/api/uploads/cedcf6a9-4b59-411f-9785-7a00214b240a.png',
-        title: 'Expensive',
-        desc: 'Bow for the bourgeois.',
-        price: '3100.20',
-        collections: []
     },
     {
         id: 3,
@@ -50,7 +50,7 @@ export const ConstantProducts = [
         id: 5,
         image: 'https://shop-api.keygenqt.com/api/uploads/bc9437cf-ebda-4846-9a2c-d454c95a5df8.png',
         title: 'Wedding',
-        desc: 'Dress the little one more beautiful than the bride. Dress the little one more beautiful than the bride.',
+        desc: 'Dress the little one more beautiful than the bride.',
         price: '2800.70',
         collections: [
             ConstantCollections[3].name,

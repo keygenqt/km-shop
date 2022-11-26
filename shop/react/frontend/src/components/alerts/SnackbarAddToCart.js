@@ -4,7 +4,7 @@ import {Avatar, Box, Button, Chip, Divider, IconButton, Paper, Slide, Snackbar, 
 import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Typography from "@mui/material/Typography";
-import {CloseOutlined} from "@mui/icons-material";
+import {BrokenImageOutlined, CloseOutlined} from "@mui/icons-material";
 
 let timeoutID
 
@@ -95,7 +95,12 @@ export function SnackbarAddToCart() {
                                             width: 70,
                                             height: 70
                                         }}
-                                    />
+                                    >
+                                        <BrokenImageOutlined sx={{
+                                            width: 40,
+                                            height: 40
+                                        }}/>
+                                    </Avatar>
                                     <Stack spacing={1}>
                                         <Typography variant="h5">
                                             {product.title}

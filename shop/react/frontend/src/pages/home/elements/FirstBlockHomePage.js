@@ -1,13 +1,15 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import {Box, Button, Stack, useMediaQuery, useTheme} from "@mui/material";
 import Typography from "@mui/material/Typography";
-import {ConstantImages} from "../../../base";
+import {ConstantImages, NavigateContext} from "../../../base";
 import {ColorsCircle} from "./ColorsCircle";
 
 export function FirstBlockHomePage() {
 
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const {route, routes} = useContext(NavigateContext)
 
     return (
         <Stack
@@ -69,6 +71,9 @@ export function FirstBlockHomePage() {
                                         color: 'white',
                                         paddingY: 2,
                                         paddingX: 4
+                                    }}
+                                    onClick={() => {
+                                        route.toLocation(routes.exploring)
                                     }}
                                 >
                                     <Typography variant="h5">
