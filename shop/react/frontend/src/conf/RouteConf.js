@@ -86,16 +86,17 @@ export const RouteConf = {
             }
         },
         product: {
-            path: '/product',
+            path: '/product/:id',
+            match: {
+                id: RouteType.integer,
+            },
             render: function (key, path) {
                 return <Route
                     key={key}
                     exact
                     path={path}
                     element={
-                        <BaseLayout>
-                            <ProductPage/>
-                        </BaseLayout>
+                        <ProductPage/>
                     }
                 />
             }

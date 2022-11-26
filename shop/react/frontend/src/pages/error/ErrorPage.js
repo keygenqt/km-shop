@@ -1,14 +1,10 @@
 import * as React from 'react';
-import {useContext} from 'react';
 import {Stack} from "@mui/material";
 import Lottie from "lottie-react";
-import {ConstantLottie, NavigateContext} from "../../base";
+import {ConstantLottie} from "../../base";
 import Typography from "@mui/material/Typography";
 
 export function ErrorPage() {
-
-    const {route} = useContext(NavigateContext)
-
     return (
         <Stack
             spacing={3}

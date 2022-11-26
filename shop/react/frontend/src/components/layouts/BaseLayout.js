@@ -4,7 +4,6 @@ import {Box, Container, Stack} from "@mui/material";
 import {AppToolbar} from "../toolbar/AppToolbar";
 import {AppFooter} from "../footer/AppFooter";
 import {ContainerLG} from "../containers/styled/Containers";
-import {SnackbarAddToCart} from "../alerts/SnackbarAddToCart";
 
 /**
  * Layout base for app
