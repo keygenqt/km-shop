@@ -6,6 +6,10 @@ import PropTypes from "prop-types";
 
 export function AlertSuccess(props) {
 
+    const {
+        onClose
+    } = props
+
     const [collapse, setCollapse] = React.useState(true);
 
     return (
@@ -16,8 +20,7 @@ export function AlertSuccess(props) {
                 sx={{
                     color: 'success.dark',
                     backgroundColor: 'success.light',
-                    borderRadius: 2,
-                    marginBottom: 2,
+                    borderRadius: 1,
                     '& svg': {
                         color: 'success.dark',
                     }
@@ -29,6 +32,7 @@ export function AlertSuccess(props) {
                         size="small"
                         onClick={() => {
                             setCollapse(false);
+                            setTimeout(() => onClose(), 200)
                         }}
                     >
                         <Close fontSize="inherit"/>
@@ -45,5 +49,6 @@ export function AlertSuccess(props) {
 
 AlertSuccess.propTypes = {
     style: PropTypes.object,
+    onClose: PropTypes.func.isRequired,
     children: PropTypes.string.isRequired
 };

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {useEffect, useRef} from 'react';
-import {Avatar, Box, Button, Grid, Stack, TextField, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {DoneOutlined, EmailOutlined, PhoneOutlined, SendOutlined} from "@mui/icons-material";
+import {Avatar, Box, Button, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {EmailOutlined, PhoneOutlined} from "@mui/icons-material";
 import Lottie from "lottie-react";
 import {ConstantImages, ConstantLottie} from "../../base";
+import {ContactForm} from "./elements/ContactForm";
 
 let intervalID
 
@@ -12,6 +13,7 @@ export function ContactPage() {
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
+
     const lottieRef = useRef();
 
     useEffect(() => {
@@ -66,88 +68,7 @@ export function ContactPage() {
 
                 <Grid container spacing={3}>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
-                        <Stack
-                            spacing={isMD ? 2 : 3}
-                            sx={{
-                                backgroundColor: '#F6F7F9',
-                                borderRadius: 2,
-                                p: isMD ? isSM ? 2 : 3 : 4,
-                                position: 'relative'
-                            }}
-                        >
-                            <Stack spacing={isMD ? 2 : 3} direction={isSM ? 'column' : 'row'}>
-                                <TextField
-                                    fullWidth
-                                    label="First Name"
-                                    variant="filled"
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            backgroundColor: 'white'
-                                        }
-                                    }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    label="Last Name"
-                                    variant="filled"
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            backgroundColor: 'white'
-                                        }
-                                    }}
-                                />
-
-                            </Stack>
-
-                            <TextField
-                                fullWidth
-                                label="Email"
-                                variant="filled"
-                                sx={{
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'white'
-                                    }
-                                }}
-                            />
-
-                            <TextField
-                                fullWidth
-                                label="Phone (optional)"
-                                variant="filled"
-                                sx={{
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'white'
-                                    }
-                                }}
-                            />
-
-                            <TextField
-                                fullWidth
-                                label="Message"
-                                variant="filled"
-                                multiline
-                                minRows={5}
-                                maxRows={10}
-                                sx={{
-                                    '& .MuiInputBase-root': {
-                                        backgroundColor: 'white'
-                                    }
-                                }}
-                            />
-
-                            <Box>
-                                <Button
-                                    disableElevation
-                                    variant={'contained'}
-                                    size={'large'}
-                                    color={'secondary'}
-                                    startIcon={<DoneOutlined sx={{height: 18}}/>}
-                                >
-                                    Send Message
-                                </Button>
-                            </Box>
-
-                        </Stack>
+                        <ContactForm/>
                     </Grid>
                     <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
                         <Box sx={{
@@ -155,7 +76,7 @@ export function ContactPage() {
                             p: 1,
                             borderRadius: 2,
                             position: 'relative',
-                            height: '100%',
+                            height: 518,
                             boxSizing: 'border-box'
                         }}>
                             <iframe

@@ -23,6 +23,7 @@ import {
 import {AppCache, ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Lottie from "lottie-react";
+import {CartForm} from "./elements/CartForm";
 
 export function CartPage() {
 
@@ -344,71 +345,7 @@ export function CartPage() {
                                 right: 40
                             }}/>
 
-                            <Stack spacing={isMD ? 2 : 3} sx={{
-                                backgroundColor: '#F6F7F9',
-                                borderRadius: 2,
-                                p: isMD ? isSM ? 2 : 3 : 4,
-                                position: 'relative',
-                                top: -25
-                            }}>
-
-                                <Stack spacing={1}>
-                                    <Typography variant={'h5'}>
-                                        Checkout
-                                    </Typography>
-
-                                    <Typography variant={'caption'}>
-                                        Enter your contact details so that you can be contacted and clarified all the
-                                        necessary data on the order.
-                                    </Typography>
-                                </Stack>
-
-                                <TextField
-                                    label="Email"
-                                    variant="filled"
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            backgroundColor: 'white'
-                                        }
-                                    }}
-                                />
-                                <TextField
-                                    label="Phone"
-                                    variant="filled"
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            backgroundColor: 'white'
-                                        }
-                                    }}
-                                />
-                                <TextField
-                                    label="Additional Information"
-                                    variant="filled"
-                                    multiline
-                                    minRows={5}
-                                    maxRows={10}
-                                    sx={{
-                                        '& .MuiInputBase-root': {
-                                            backgroundColor: 'white'
-                                        }
-                                    }}
-                                />
-
-                                <Box>
-                                    <Button
-                                        size={'large'}
-                                        disableElevation
-                                        variant={'contained'}
-                                        color={'secondary'}
-                                        startIcon={<DoneOutlined sx={{height: 18}}/>}
-                                        onClick={() => {
-
-                                        }}
-                                    >
-                                        Send Order
-                                    </Button>
-                                </Box>
-                            </Stack>
+                            <CartForm/>
 
                         </Stack>
                     </Grid>
