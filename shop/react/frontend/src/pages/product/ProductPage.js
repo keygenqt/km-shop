@@ -105,7 +105,7 @@ export function ProductPage() {
                                 <Stack spacing={3}>
                                     <Box sx={{
                                         backgroundColor: '#F6F7F9',
-                                        p: isMD ? 2 : 3,
+                                        p: isMD ? 1 : 2,
                                         borderRadius: 2,
                                     }}>
                                         <Stack spacing={3} sx={{backgroundColor: 'white', borderRadius: 2, p: 2}}>
