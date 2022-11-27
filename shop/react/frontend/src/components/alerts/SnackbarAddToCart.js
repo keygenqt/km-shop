@@ -1,6 +1,19 @@
 import * as React from "react";
 import {useContext, useEffect} from "react";
-import {Avatar, Box, Button, Chip, Divider, IconButton, Paper, Slide, Snackbar, Stack} from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Button,
+    Chip,
+    Divider,
+    IconButton,
+    Paper,
+    Slide,
+    Snackbar,
+    Stack,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Typography from "@mui/material/Typography";
@@ -13,6 +26,9 @@ function TransitionLeft(props) {
 }
 
 export function SnackbarAddToCart() {
+
+    const theme = useTheme()
+    const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
     const {route, routes} = useContext(NavigateContext)
     const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
@@ -49,7 +65,7 @@ export function SnackbarAddToCart() {
             anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
         >
             {Boolean(product) ? (
-                <Paper elevation={3} sx={{p: 2, width: 400}}>
+                <Paper elevation={3} sx={{p: 2, width: isSM ? 250 : 400}}>
                     <Stack spacing={2}>
                         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                             <Typography variant={'h5'}>
@@ -68,82 +84,100 @@ export function SnackbarAddToCart() {
                             </IconButton>
                         </Stack>
 
-                        <Divider/>
-
-                        <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F6F7F9'}}>
-                            <Stack
-                                direction="row"
-                                justifyContent="space-between"
-                                alignItems="stretch"
-                                spacing={2}
-                                sx={{
-                                    p: 1,
-                                    backgroundColor: 'white',
-                                    borderRadius: 1
-                                }}
-                            >
-                                <Stack
-                                    direction="row"
-                                    justifyContent="space-between"
-                                    alignItems="stretch"
-                                    spacing={2}
+                        {isSM ? (
+                            <Box>
+                                <Button
+                                    size={'small'}
+                                    variant={'outlined'}
+                                    sx={{textTransform: 'none'}}
+                                    onClick={() => {
+                                        setIsShow(false)
+                                        route.toLocation(routes.cart)
+                                    }}
                                 >
-                                    <Avatar
-                                        variant={'rounded'}
-                                        src={product.image}
+                                    View Cart
+                                </Button>
+                            </Box>
+                        ) : (
+                            <>
+                                <Divider/>
+                                <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F7F0EA'}}>
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="space-between"
+                                        alignItems="stretch"
+                                        spacing={2}
                                         sx={{
-                                            width: 70,
-                                            height: 70
+                                            p: 1,
+                                            backgroundColor: 'white',
+                                            borderRadius: 1
                                         }}
                                     >
-                                        <BrokenImageOutlined sx={{
-                                            width: 40,
-                                            height: 40
-                                        }}/>
-                                    </Avatar>
-                                    <Stack spacing={1}>
-                                        <Typography variant="h5">
-                                            {product.title}
-                                        </Typography>
-                                        <Typography variant="caption">
-                                            {product.desc}
-                                        </Typography>
-                                    </Stack>
-                                </Stack>
-
-                                <Stack
-                                    spacing={1}
-                                    justifyContent="space-between"
-                                >
-                                    <Chip
-                                        size={'small'}
-                                        label={product.price}
-                                        variant={'outlined'}
-                                        color={'success'}
-                                        sx={{
-                                            marginTop: '1px',
-                                            minWidth: 80
-                                        }}
-                                    />
-
-                                    <Box sx={{
-                                        textAlign: 'right'
-                                    }}>
-                                        <Button
-                                            size={'small'}
-                                            sx={{textTransform: 'none'}}
-                                            onClick={() => {
-                                                setIsShow(false)
-                                                route.toLocation(routes.cart)
-                                            }}
+                                        <Stack
+                                            direction="row"
+                                            justifyContent="space-between"
+                                            alignItems="stretch"
+                                            spacing={2}
                                         >
-                                            View Cart
-                                        </Button>
-                                    </Box>
-                                </Stack>
-                            </Stack>
+                                            <Avatar
+                                                variant={'rounded'}
+                                                src={product.image}
+                                                sx={{
+                                                    width: 70,
+                                                    height: 70
+                                                }}
+                                            >
+                                                <BrokenImageOutlined sx={{
+                                                    width: 40,
+                                                    height: 40
+                                                }}/>
+                                            </Avatar>
+                                            <Stack spacing={1}>
+                                                <Typography variant="h5">
+                                                    {product.title}
+                                                </Typography>
+                                                <Typography variant="caption">
+                                                    {product.desc}
+                                                </Typography>
+                                            </Stack>
+                                        </Stack>
 
-                        </Box>
+                                        <Stack
+                                            spacing={1}
+                                            justifyContent="space-between"
+                                        >
+                                            <Chip
+                                                size={'small'}
+                                                label={product.price}
+                                                variant={'outlined'}
+                                                color={'success'}
+                                                sx={{
+                                                    marginTop: '1px',
+                                                    minWidth: 80
+                                                }}
+                                            />
+
+                                            <Box sx={{
+                                                textAlign: 'right'
+                                            }}>
+                                                <Button
+                                                    size={'small'}
+                                                    sx={{textTransform: 'none'}}
+                                                    onClick={() => {
+                                                        setIsShow(false)
+                                                        route.toLocation(routes.cart)
+                                                    }}
+                                                >
+                                                    View Cart
+                                                </Button>
+                                            </Box>
+                                        </Stack>
+                                    </Stack>
+
+                                </Box>
+                            </>
+                        )}
+
                     </Stack>
                 </Paper>
             ) : null}

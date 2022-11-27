@@ -151,7 +151,7 @@ export function ContactPage() {
                     </Grid>
                     <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
                         <Box sx={{
-                            backgroundColor: '#F6F7F9',
+                            backgroundColor: '#F7F0EA',
                             p: 1,
                             borderRadius: 2,
                             position: 'relative',
@@ -191,7 +191,7 @@ export function ContactPage() {
                         spacing={3}
                         alignItems={'center'}
                         justifyContent={'space-between'}
-                        sx={{p: 4, borderRadius: 2, backgroundColor: '#F6F7F9'}}
+                        sx={{p: 4, borderRadius: 2, backgroundColor: '#eaf7f2'}}
                     >
                         <Avatar
                             src={ConstantImages.contact.address}

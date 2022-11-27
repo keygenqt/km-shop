@@ -17,7 +17,6 @@ import {
     AddCircleOutline,
     BrokenImageOutlined,
     DoneOutlined,
-    MoodOutlined,
     RemoveCircleOutline,
     SearchOutlined
 } from "@mui/icons-material";
@@ -189,6 +188,8 @@ export function CartPage() {
                                 sx={{
                                     marginTop: isSM ? 0 : 1,
                                     minWidth: 100,
+                                    fontWeight: 600,
+                                    borderWidth: 2
                                 }}
                             />
 
@@ -299,15 +300,13 @@ export function CartPage() {
                 <Grid container spacing={isMD ? 6 : 3}>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
                         <Stack spacing={isMD ? 2 : 3} sx={{
-                            backgroundColor: '#F6F7F9',
+                            backgroundColor: '#eaf7f2',
                             borderRadius: 2,
                             p: isMD ? 2 : 3,
                             position: 'relative'
                         }}>
-                            {products}
 
-                            <Stack spacing={3} sx={{pb: 1}}>
-                                <Divider/>
+                            <Stack spacing={3}>
                                 <Stack
                                     direction={'row'}
                                     justifyContent={'space-between'}
@@ -321,8 +320,10 @@ export function CartPage() {
                                         276.00
                                     </Typography>
                                 </Stack>
+                                <Divider/>
                             </Stack>
 
+                            {products}
                         </Stack>
                     </Grid>
                     <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>

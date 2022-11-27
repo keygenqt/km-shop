@@ -25,7 +25,7 @@ export function CartToolbar(props) {
     rows.forEach((product, index) => {
         products.push((
             <React.Fragment key={`cart-product-item-${index}`}>
-                <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F6F7F9'}}>
+                <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F7F0EA'}}>
                     <Stack
                         direction="row"
                         justifyContent="space-between"
