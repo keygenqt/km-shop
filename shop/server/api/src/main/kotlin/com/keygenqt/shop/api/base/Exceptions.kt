@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.api.base
 
+import com.keygenqt.shop.exception.ValidateViolation
 import io.ktor.http.*
 import jakarta.validation.ConstraintViolation
 
@@ -47,6 +48,11 @@ sealed class Exceptions(
 
     data class UnprocessableEntity(
         val validate: Set<ConstraintViolation<*>>,
+        override val status: HttpStatusCode = HttpStatusCode.UnprocessableEntity,
+    ) : Exceptions(status)
+
+    data class UnprocessableCustomEntity(
+        val validate: List<ValidateViolation>,
         override val status: HttpStatusCode = HttpStatusCode.UnprocessableEntity,
     ) : Exceptions(status)
 

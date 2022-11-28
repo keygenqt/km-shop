@@ -10,6 +10,7 @@ import {
     PendingActionsOutlined,
     PeopleOutlined,
     ShoppingBagOutlined,
+    StyleOutlined,
     VerifiedOutlined,
 } from "@mui/icons-material";
 
@@ -42,6 +43,12 @@ export const MenuConf = [
                 title: 'Categories',
                 link: '/categories',
                 links: ['/categories', '/categories/:id']
+            },
+            {
+                icon: StyleOutlined,
+                title: 'Collections',
+                link: '/collections',
+                links: ['/collections', '/collections/:id']
             },
             {
                 icon: FolderOutlined,

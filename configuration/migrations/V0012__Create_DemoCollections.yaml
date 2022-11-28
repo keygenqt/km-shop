@@ -1,0 +1,39 @@
+### Configuration data migration
+### Orders data
+
+# key         | string
+# name        | string
+# desc        | string
+# icon        | string
+# isPublished | Bool
+
+collections:
+  - key: collection-school
+    name: School
+    desc: School collections 2023
+    icon: BusinessOutlined
+    isPublished: true
+
+  - key: collection-walk
+    name: Walk
+    desc: Walk collections 2023
+    icon: Brightness5Outlined
+    isPublished: true
+
+  - key: collection-birthday
+    name: Birthday
+    desc: Birthday collections 2023
+    icon: Diversity3Outlined
+    isPublished: true
+
+  - key: collection-holiday
+    name: Holiday
+    desc: Holiday collections 2023
+    icon: CelebrationOutlined
+    isPublished: true
+
+  - key: collection-new-year
+    name: New Year
+    desc: New Year 2023
+    icon: ForestOutlined
+    isPublished: true

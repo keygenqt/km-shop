@@ -118,7 +118,9 @@ object MigrationHelper {
         categories.forEach { item ->
             item as Map<*, *>
             // load variable
+            val key = item["key"] as String
             val name = item["name"] as String
+            val desc = item["desc"] as String
             val image = item["image"] as String
             val isPublished = item["isPublished"] as Boolean
 
@@ -127,7 +129,9 @@ object MigrationHelper {
 
             // create category
             CategoryEntity.new {
+                this.key = key
                 this.name = name
+                this.desc = desc
                 this.isPublished = isPublished
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()
@@ -171,6 +175,35 @@ object MigrationHelper {
                 this.updateAt = System.currentTimeMillis()
                 this.image = "$host/api/uploads/${uploadEntity?.fileName}"
                 this.uploads = SizedCollection(*listOfNotNull(uploadEntity).toTypedArray())
+            }
+        }
+    }
+
+    /**
+     * Insert collections by yml config
+     */
+    fun insertCollections(
+        collections: List<*>,
+    ) {
+        collections.forEach { item ->
+            item as Map<*, *>
+
+            // load variable
+            val key = item["key"] as String
+            val name = item["name"] as String
+            val desc = item["desc"] as String
+            val icon = item["icon"] as String
+            val isPublished = item["isPublished"] as Boolean
+
+            // create product
+            CollectionEntity.new {
+                this.key = key
+                this.name = name
+                this.desc = desc
+                this.icon = icon
+                this.isPublished = isPublished
+                this.createAt = System.currentTimeMillis()
+                this.updateAt = System.currentTimeMillis()
             }
         }
     }

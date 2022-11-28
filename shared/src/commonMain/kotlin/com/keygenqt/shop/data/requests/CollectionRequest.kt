@@ -24,13 +24,12 @@ import kotlin.js.JsExport
 @JsExport
 @Serializable
 @Suppress("ArrayInDataClass")
-data class CategoryRequest(
+data class CollectionRequest(
     val key: String,
-    val image: String,
+    val icon: String,
     val name: String,
     val desc: String,
     val isPublished: Boolean,
-    val uploads: Array<String>,
 )
 
 /**
@@ -38,6 +37,6 @@ data class CategoryRequest(
  */
 @JsExport
 @Serializable
-data class CategoryStateRequest(
+data class CollectionStateRequest(
     val isPublished: Boolean,
 )

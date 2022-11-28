@@ -69,6 +69,7 @@ fun Application.module() {
                     // db services
                     single { AdminsService(db) }
                     single { CategoriesService(db) }
+                    single { CollectionsService(db) }
                     single { MessagesService(db) }
                     single { OrdersService(db) }
                     single { ProductsService(db) }
@@ -135,6 +136,7 @@ fun Application.module() {
                     dashboard()
                     admins()
                     categories()
+                    collections()
                     login()
                     messages()
                     orders()

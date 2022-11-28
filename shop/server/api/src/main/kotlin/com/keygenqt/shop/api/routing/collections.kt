@@ -20,10 +20,8 @@ import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.api.extension.receiveValidate
-import com.keygenqt.shop.data.responses.AdminRole
-import com.keygenqt.shop.db.entities.CategoryEntity
+import com.keygenqt.shop.db.entities.CollectionEntity
 import com.keygenqt.shop.db.entities.toModel
-import com.keygenqt.shop.db.entities.toModelWithUploads
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.CategoriesService
 import com.keygenqt.shop.db.service.CollectionsService
@@ -37,17 +35,17 @@ import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
 
 /**
- * Request update [CategoryEntity]
+ * Request update [CollectionEntity]
  */
 @Serializable
-data class CategoryRequest(
+data class CollectionRequest(
     @field:NotNull
     @field:Size(max = 255, message = "Max size must less 255")
     val key: String,
 
     @field:NotNull
     @field:Size(max = 255, message = "Max size must less 255")
-    val image: String,
+    val icon: String,
 
     @field:NotNull
     @field:Size(min = 3, max = 255, message = "Size must be between 3 and 255")
@@ -59,33 +57,28 @@ data class CategoryRequest(
 
     @field:NotNull
     val isPublished: Boolean,
-
-    /**
-     * List urls uploads
-     */
-    val uploads: List<String> = listOf()
 )
 
 /**
- * Request update [CategoryEntity]
+ * Request update [CollectionEntity]
  */
 @Serializable
-data class CategoryStateRequest(
+data class CollectionStateRequest(
     @field:NotNull
     val isPublished: Boolean,
 )
 
-fun Route.categories() {
+fun Route.collections() {
 
     val categoriesService: CategoriesService by inject()
     val collectionsService: CollectionsService by inject()
 
-    route("/categories") {
+    route("/collections") {
         get {
             // check role
             call.checkRoleAuth()
             // act
-            val entities = categoriesService.transaction {
+            val entities = collectionsService.transaction {
                 getAll().toModels()
             }
             // response
@@ -95,7 +88,7 @@ fun Route.categories() {
             // check role
             call.checkRoleFull()
             // act
-            val entities = categoriesService.transaction {
+            val entities = collectionsService.transaction {
                 getAllPublished().toModels()
             }
             // response
@@ -103,15 +96,12 @@ fun Route.categories() {
         }
         get("/{id}") {
             // check role
-            val role = call.checkRoleAuth()
+            call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
             // act
-            val response = categoriesService.transaction {
-                when (role) {
-                    AdminRole.GUEST -> findById(id)?.toModel()
-                    else -> findById(id)?.toModelWithUploads()
-                } ?: throw Exceptions.NotFound()
+            val response = collectionsService.transaction {
+                findById(id)?.toModel() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)
@@ -121,7 +111,7 @@ fun Route.categories() {
             // check role
             call.checkRoleAuth()
             // get request
-            val request = call.receiveValidate<CategoryRequest>()
+            val request = call.receiveValidate<CollectionRequest>()
             // act
             val isHasKeyCategory = categoriesService.transaction {
                 checkHashKey(request.key)
@@ -139,15 +129,14 @@ fun Route.categories() {
                     )
                 )
             }
-            val response = categoriesService.transaction {
+            val response = collectionsService.transaction {
                 insert(
                     key = request.key,
                     name = request.name,
                     desc = request.desc,
-                    image = request.image,
-                    uploads = request.uploads,
+                    icon = request.icon,
                     isPublished = request.isPublished,
-                ).toModelWithUploads()
+                ).toModel()
             }
             // response
             call.respond(response)
@@ -157,13 +146,13 @@ fun Route.categories() {
             call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
-            val request = call.receiveValidate<CategoryRequest>()
+            val request = call.receiveValidate<CollectionRequest>()
             // act
             val isHasKeyCategory = categoriesService.transaction {
-                checkHashKey(request.key, id)
+                checkHashKey(request.key)
             }
             val isHasKeyCollection = collectionsService.transaction {
-                checkHashKey(request.key)
+                checkHashKey(request.key, id)
             }
             if (isHasKeyCategory || isHasKeyCollection) {
                 throw Exceptions.UnprocessableCustomEntity(
@@ -175,15 +164,14 @@ fun Route.categories() {
                     )
                 )
             }
-            val response = categoriesService.transaction {
+            val response = collectionsService.transaction {
                 findById(id)?.update(
                     key = request.key,
                     name = request.name,
                     desc = request.desc,
-                    image = request.image,
-                    uploads = request.uploads,
+                    icon = request.icon,
                     isPublished = request.isPublished,
-                )?.toModelWithUploads() ?: throw Exceptions.NotFound()
+                )?.toModel() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)
@@ -193,12 +181,12 @@ fun Route.categories() {
             call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
-            val request = call.receiveValidate<CategoryStateRequest>()
+            val request = call.receiveValidate<CollectionStateRequest>()
             // act
-            val response = categoriesService.transaction {
+            val response = collectionsService.transaction {
                 findById(id)?.updateState(
                     isPublished = request.isPublished,
-                )?.toModelWithUploads() ?: throw Exceptions.NotFound()
+                )?.toModel() ?: throw Exceptions.NotFound()
             }
             // response
             call.respond(response)

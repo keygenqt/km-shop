@@ -48,6 +48,30 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get collections
+     */
+    @Throws(Exception::class)
+    suspend fun collections(): List<CollectionResponse> {
+        return client.get("api/collections").body()
+    }
+
+    /**
+     * Get collections published
+     */
+    @Throws(Exception::class)
+    suspend fun collectionsPublished(): List<CollectionResponse> {
+        return client.get("api/collections/published").body()
+    }
+
+    /**
+     * Get collection by id
+     */
+    @Throws(Exception::class)
+    suspend fun collection(id: Int): CollectionResponse {
+        return client.get("api/collections/$id").body()
+    }
+
+    /**
      * Get messages
      */
     @Throws(Exception::class)

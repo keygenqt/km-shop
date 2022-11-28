@@ -58,6 +58,28 @@ class PutRequest(private val client: HttpClient) {
     }
 
     /**
+     * Update collection method
+     */
+    @Throws(Exception::class)
+    suspend fun collection(
+        id: Int,
+        request: CollectionRequest
+    ): CollectionResponse {
+        return client.put("api/collections/$id") { setBody(request) }.body()
+    }
+
+    /**
+     * Update collection state method
+     */
+    @Throws(Exception::class)
+    suspend fun collectionState(
+        id: Int,
+        request: CollectionStateRequest
+    ): CollectionResponse {
+        return client.put("api/collections/state/$id") { setBody(request) }.body()
+    }
+
+    /**
      * Update product method
      */
     @Throws(Exception::class)

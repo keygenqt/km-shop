@@ -33,6 +33,21 @@ class GetRequestPromise(private val client: ServiceRequest) {
     fun categoriesPublished() = wrapPromise { client.get.categoriesPublished() }
 
     /**
+     * Override [GetRequest.collection] for JS
+     */
+    fun collection(id: Int) = wrapPromise { client.get.collection(id) }
+
+    /**
+     * Override [GetRequest.collections] for JS
+     */
+    fun collections() = wrapPromise { client.get.collections() }
+
+    /**
+     * Override [GetRequest.collectionsPublished] for JS
+     */
+    fun collectionsPublished() = wrapPromise { client.get.collectionsPublished() }
+
+    /**
      * Override [GetRequest.category] for JS
      */
     fun category(id: Int) = wrapPromise { client.get.category(id) }

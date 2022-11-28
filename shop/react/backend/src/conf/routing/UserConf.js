@@ -2,7 +2,8 @@ import {Route} from "react-router-dom";
 import * as React from "react";
 import {
     CategoriesPage,
-    CategoryUpdatePage,
+    CategoryUpdatePage, CollectionsPage,
+    CollectionUpdatePage,
     DashboardPage,
     HelpPage,
     ManagersPage,
@@ -345,6 +346,54 @@ export const UserConf = {
                     element={
                         <AppLayout>
                             <ProductUpdatePage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        collections: {
+            path: '/collections',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <CollectionsPage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        collectionCreate: {
+            path: '/collections/add',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <CollectionUpdatePage/>
+                        </AppLayout>
+                    }
+                />
+            }
+        },
+        collectionEdit: {
+            path: '/collections/:id',
+            match: {
+                id: RouteType.integer,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <AppLayout>
+                            <CollectionUpdatePage/>
                         </AppLayout>
                     }
                 />

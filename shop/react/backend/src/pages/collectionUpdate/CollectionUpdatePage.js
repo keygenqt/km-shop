@@ -1,19 +1,17 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
+import {Alert, Box, Button, FormControlLabel, FormGroup, Stack, Switch, TextField} from "@mui/material";
 import {useParams} from "react-router";
-import {AlertError, AlertSuccess, AppCard, MultipleFiles, SnackbarError} from "../../components";
-import {CategoryOutlined} from "@mui/icons-material";
+import {AlertError, AlertSuccess, AppCard, SnackbarError} from "../../components";
+import {StyleOutlined} from "@mui/icons-material";
 import {AppHelper, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {NotFoundPage} from "../error/NotFoundPage";
 import {Formik} from "formik";
 import * as Yup from "yup";
-import {CategorySetValueFormic} from "./elements/CategorySetValueFormic";
-import {FileDialog} from "../../components/dialogs/FileDialog";
-import {ImageTextField} from "../../components/fields/ImageTextField";
-import {FileDeleteDialog} from "../../components/dialogs/FileDeleteDialog";
+import {CollectionSetValueFormic} from "./elements/CollectionSetValueFormic";
+import {IconTextField} from "../../components/fields/IconTextField";
 
-export function CategoryUpdatePage() {
+export function CollectionUpdatePage() {
 
     let {id} = useParams();
 
@@ -24,17 +22,13 @@ export function CategoryUpdatePage() {
     const [data, setData] = React.useState(null);
     const [refresh, setRefresh] = React.useState(false);
     const [error, setError] = React.useState(null);
-    const [errorFile, setErrorFile] = React.useState(null);
     const [errorCode, setErrorCode] = React.useState(200);
     const [loading, setLoading] = React.useState(id !== undefined);
-    const [showFile, setShowFile] = React.useState(null);
-    const [deleteFile, setDeleteFile] = React.useState(null);
-    const [deleteFilePositive, setDeleteFilePositive] = React.useState(null);
 
     // load
     useEffectTimout(() => {
         if (Boolean(modelId)) {
-            HttpClient.get.category(modelId).then(async (response) => {
+            HttpClient.get.collection(modelId).then(async (response) => {
                 setData(response)
                 setLoading(false)
             }).catch(async (error) => {
@@ -47,7 +41,6 @@ export function CategoryUpdatePage() {
     }, [modelId, refresh], () => {
         if (Boolean(modelId)) {
             setError(null)
-            setErrorFile(null)
             setLoading(true)
         }
     })
@@ -61,24 +54,6 @@ export function CategoryUpdatePage() {
                 }}
             />
 
-            <FileDialog
-                url={showFile}
-                onClose={() => {
-                    setShowFile(null)
-                }}
-            />
-
-            <FileDeleteDialog
-                open={Boolean(deleteFile)}
-                onNegative={() => {
-                    setDeleteFile(null)
-                }}
-                onPositive={() => {
-                    setDeleteFilePositive(deleteFile)
-                    setDeleteFile(null)
-                }}
-            />
-
             {errorCode !== 200 ? (
                 <NotFoundPage/>
             ) : (
@@ -89,11 +64,11 @@ export function CategoryUpdatePage() {
                         onRefresh={Boolean(modelId) || loading ? () => {
                             setRefresh(!refresh)
                         } : null}
-                        icon={CategoryOutlined}
+                        icon={StyleOutlined}
                         color={'secondary.dark'}
                         variant={'combine'}
-                        title={`${Boolean(modelId) ? 'Edit' : 'Create'} Category`}
-                        subheader={Boolean(modelId) ? 'Here you can edit the category' : 'Here you can create a new category'}
+                        title={`${Boolean(modelId) ? 'Edit' : 'Create'} Collection`}
+                        subheader={Boolean(modelId) ? 'Here you can edit the collection' : 'Here you can create a new collection'}
                     >
                         <Box sx={{
                             paddingTop: 1,
@@ -104,7 +79,7 @@ export function CategoryUpdatePage() {
                                     key: '',
                                     name: '',
                                     desc: '',
-                                    image: '',
+                                    icon: '',
                                     isPublished: false,
                                     uploads: [],
                                     submit: null
@@ -116,12 +91,11 @@ export function CategoryUpdatePage() {
                                         .min(3, 'Size must be between 3 and 255')
                                         .max(12, 'Size must be between 3 and 255'),
                                     desc: Yup.string().required('Description is required'),
-                                    image: Yup.string().required('Image is required'),
+                                    icon: Yup.string().required('Image is required'),
                                 })}
                                 onSubmit={async (values, {setErrors, setStatus}) => {
 
                                     setLoading(true)
-                                    setErrorFile(null)
                                     setStatus({success: null});
                                     setErrors({submit: null});
 
@@ -130,18 +104,18 @@ export function CategoryUpdatePage() {
                                     try {
 
                                         const response = Boolean(modelId) ? (
-                                            await HttpClient.put.category(modelId, new Requests.CategoryRequest(
+                                            await HttpClient.put.collection(modelId, new Requests.CollectionRequest(
                                                 values.key,
-                                                values.image,
+                                                values.icon,
                                                 values.name,
                                                 values.desc,
                                                 values.isPublished,
                                                 values.uploads,
                                             ))
                                         ) : (
-                                            await HttpClient.post.category(new Requests.CategoryRequest(
+                                            await HttpClient.post.collection(new Requests.CollectionRequest(
                                                 values.key,
-                                                values.image,
+                                                values.icon,
                                                 values.name,
                                                 values.desc,
                                                 values.isPublished,
@@ -151,7 +125,7 @@ export function CategoryUpdatePage() {
 
                                         if (!Boolean(modelId)) {
                                             setModelId(response.id)
-                                            route.toLocationPush(routes.categoryEdit, response.id)
+                                            route.toLocationPush(routes.collectionEdit, response.id)
                                         }
 
                                         setStatus({success: true});
@@ -163,7 +137,7 @@ export function CategoryUpdatePage() {
 
                                         const errors = {
                                             key: AppHelper.findError('key', error.validate),
-                                            image: AppHelper.findError('image', error.validate),
+                                            icon: AppHelper.findError('icon', error.validate),
                                             name: AppHelper.findError('name', error.validate),
                                             desc: AppHelper.findError('desc', error.validate),
                                         }
@@ -189,11 +163,21 @@ export function CategoryUpdatePage() {
                                   }) => (
                                     <form noValidate onSubmit={handleSubmit}>
 
-                                        <CategorySetValueFormic
+                                        <CollectionSetValueFormic
                                             data={data}
                                             refresh={refresh}
-                                            removeRelation={deleteFilePositive}
                                         />
+
+                                        <Alert severity={'info'} sx={{
+                                            marginBottom: 2
+                                        }}>
+                                            The list of Material Icons is available at the <a
+                                                rel="noreferrer"
+                                                href={'https://mui.com/material-ui/material-icons/'}
+                                                target={'_blank'}
+                                            >link</a>.
+
+                                        </Alert>
 
                                         {errors.submit && (
                                             <AlertError>
@@ -210,58 +194,18 @@ export function CategoryUpdatePage() {
                                         <FormGroup>
                                             <Stack spacing={2}>
 
-                                                <MultipleFiles
-                                                    error={errorFile}
-                                                    disabled={loading}
-                                                    values={values.uploads}
-                                                    onUpload={async (uploads) => {
-                                                        // clear state file upload
-                                                        setErrorFile(null)
-                                                        setLoading(true)
-                                                        // create requests
-                                                        const requests = await AppHelper.convertUploads(uploads)
-                                                        // request
-                                                        try {
-                                                            const response = await HttpClient
-                                                                .post
-                                                                .uploads(requests)
-
-                                                            setFieldValue('uploads', response
-                                                                .toArray()
-                                                                .reverse()
-                                                                .map((it) => AppHelper.getFileUrl(it.fileName))
-                                                                .concat(values.uploads)
-                                                            )
-
-                                                            setLoading(false)
-                                                        } catch (error) {
-                                                            setLoading(false)
-                                                            setErrorFile(error.message)
-                                                        }
-                                                    }}
-                                                    onClickChip={(url) => {
-                                                        setShowFile(url)
-                                                    }}
-                                                    onDeleteChip={(url) => {
-                                                        setDeleteFile((url))
-                                                    }}
-                                                />
-
-                                                <ImageTextField
+                                                <IconTextField
                                                     disabled={loading}
                                                     type={'url'}
-                                                    name={'image'}
-                                                    value={values.image}
-                                                    helperText={touched.image ? errors.image : ''}
-                                                    error={Boolean(touched.image && errors.image)}
+                                                    name={'icon'}
+                                                    value={values.icon}
+                                                    helperText={touched.icon ? errors.icon : ''}
+                                                    error={Boolean(touched.icon && errors.icon)}
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     fullWidth
-                                                    label="Image Url"
+                                                    label="Material Icons"
                                                     variant="filled"
-                                                    onClickImage={() => {
-                                                        setShowFile(values.image)
-                                                    }}
                                                 />
 
                                                 <TextField
@@ -318,7 +262,7 @@ export function CategoryUpdatePage() {
                                                         checked={values.isPublished}
                                                         onChange={(event, checked) => setFieldValue('isPublished', checked)}
                                                     />}
-                                                    label={"Category published" + (errors.isPublished ? ` (${errors.isPublished})` : '')}
+                                                    label={"Collection published" + (errors.isPublished ? ` (${errors.isPublished})` : '')}
                                                 />
 
                                                 <Stack
@@ -354,4 +298,4 @@ export function CategoryUpdatePage() {
     );
 }
 
-CategoryUpdatePage.propTypes = {};
+CollectionUpdatePage.propTypes = {};

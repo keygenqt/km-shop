@@ -2,20 +2,18 @@ import {useFormikContext} from "formik";
 import * as React from "react";
 import {useEffect} from "react";
 import PropTypes from "prop-types";
-import {AppHelper} from "../../../base";
 
 /**
  * Set value to Formic from response
  */
-export function CategorySetValueFormic(props) {
+export function CollectionSetValueFormic(props) {
 
     const {
         data,
-        refresh,
-        removeRelation
+        refresh
     } = props
 
-    const {values, setValues, setStatus, setErrors, setFieldValue} = useFormikContext();
+    const {values, setValues, setStatus, setErrors} = useFormikContext();
     const [dataFormic, setDataFormic] = React.useState(null);
 
     // block effect change setValues, values
@@ -33,20 +31,12 @@ export function CategorySetValueFormic(props) {
                 key: dataFormic.key,
                 name: dataFormic.name,
                 desc: dataFormic.desc,
-                image: dataFormic.image,
+                icon: dataFormic.icon,
                 isPublished: dataFormic.isPublished,
-                uploads: dataFormic.uploads.reverse().map((it) => AppHelper.getFileUrl(it.fileName))
             });
             setDataFormic(null)
         }
     }, [dataFormic, setValues, values])
-
-    // remove relation file
-    useEffect(() => {
-        if (removeRelation) {
-            setFieldValue('uploads', values.uploads.filter((it) => it !== removeRelation))
-        }
-    }, [removeRelation, setFieldValue, setValues, values])
 
     // clear states
     useEffect(() => {
@@ -55,7 +45,7 @@ export function CategorySetValueFormic(props) {
     }, [refresh, setErrors, setStatus])
 }
 
-CategorySetValueFormic.propTypes = {
+CollectionSetValueFormic.propTypes = {
     data: PropTypes.object,
     refresh: PropTypes.bool,
     removeRelation: PropTypes.string,

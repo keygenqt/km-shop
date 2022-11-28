@@ -53,6 +53,26 @@ class PutRequestPromise(private val client: ServiceRequest) {
     }
 
     /**
+     * Override [PutRequest.collection] for JS
+     */
+    fun collection(
+        id: Int,
+        request: CollectionRequest
+    ) = wrapPromise {
+        client.put.collection(id, request)
+    }
+
+    /**
+     * Override [PutRequest.collectionState] for JS
+     */
+    fun collectionState(
+        id: Int,
+        request: CollectionStateRequest
+    ) = wrapPromise {
+        client.put.collectionState(id, request)
+    }
+
+    /**
      * Override [PutRequest.product] for JS
      */
     fun product(

@@ -13,31 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.data.requests
+package com.keygenqt.shop.data.responses
 
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
- * Request Category
+ * Response categories products
  */
 @JsExport
 @Serializable
 @Suppress("ArrayInDataClass")
-data class CategoryRequest(
+data class CollectionResponse(
+    val id: Int,
     val key: String,
-    val image: String,
     val name: String,
     val desc: String,
+    val icon: String,
     val isPublished: Boolean,
-    val uploads: Array<String>,
-)
-
-/**
- * Request Category State
- */
-@JsExport
-@Serializable
-data class CategoryStateRequest(
-    val isPublished: Boolean,
+    val createAt: String,
+    val updateAt: String,
 )

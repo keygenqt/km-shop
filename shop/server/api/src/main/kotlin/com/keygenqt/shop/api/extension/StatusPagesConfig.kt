@@ -37,7 +37,14 @@ fun StatusPagesConfig.configure() {
         )
     }
     exception<Throwable> { call, cause ->
-        if (cause is Exceptions.UnprocessableEntity) {
+        if (cause is Exceptions.UnprocessableCustomEntity) {
+            with(cause.status) {
+                call.respond(
+                    status = this,
+                    message = ErrorResponse(value, description, cause.validate)
+                )
+            }
+        } else if (cause is Exceptions.UnprocessableEntity) {
             with(cause.status) {
                 call.respond(
                     status = this,

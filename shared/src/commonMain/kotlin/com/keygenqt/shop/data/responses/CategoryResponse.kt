@@ -26,7 +26,9 @@ import kotlin.js.JsExport
 @Suppress("ArrayInDataClass")
 data class CategoryResponse(
     val id: Int,
+    val key: String,
     val name: String,
+    val desc: String,
     val image: String,
     val isPublished: Boolean,
     val createAt: String,

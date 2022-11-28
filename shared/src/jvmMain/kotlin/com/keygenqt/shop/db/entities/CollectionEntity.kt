@@ -16,77 +16,58 @@
 package com.keygenqt.shop.db.entities
 
 import com.keygenqt.shop.data.responses.CategoryResponse
+import com.keygenqt.shop.data.responses.CollectionResponse
 import com.keygenqt.shop.extension.toUTC
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.Table
 
 /**
  * Table categories products
  */
-object Categories : IntIdTable() {
+object Collections : IntIdTable() {
     val key = varchar("key", 255)
     val name = varchar("name", 255)
     val desc = varchar("desc", 255)
-    val image = varchar("image", 255)
+    val icon = varchar("icon", 255)
     val isPublished = bool("isPublished").default(false)
     val createAt = long("createAt")
     val updateAt = long("updateAt")
 }
 
 /**
- * References table [Uploads]
- */
-object CategoryUploads : Table() {
-    val category = reference("category", Categories)
-    val upload = reference("upload", Uploads)
-    override val primaryKey = PrimaryKey(category, upload, name = "PK_categoryUploads_c_u")
-}
-
-/**
  * Exposed entity
  */
-class CategoryEntity(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<CategoryEntity>(Categories)
+class CollectionEntity(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<CollectionEntity>(Collections)
 
-    var key by Categories.key
-    var name by Categories.name
-    var desc by Categories.desc
-    var image by Categories.image
-    var isPublished by Categories.isPublished
-    var createAt by Categories.createAt
-    var updateAt by Categories.updateAt
-
-    var uploads by UploadEntity via CategoryUploads
+    var key by Collections.key
+    var name by Collections.name
+    var desc by Collections.desc
+    var icon by Collections.icon
+    var isPublished by Collections.isPublished
+    var createAt by Collections.createAt
+    var updateAt by Collections.updateAt
 }
 
 /**
  * Convert to [CategoryResponse]
  */
-fun CategoryEntity.toModel() = CategoryResponse(
+fun CollectionEntity.toModel() = CollectionResponse(
     id = id.value,
     key = key,
     name = name,
     desc = desc,
-    image = image,
+    icon = icon,
     isPublished = isPublished,
     createAt = createAt.toUTC(),
     updateAt = updateAt.toUTC(),
 )
 
-fun CategoryEntity.toModelWithUploads() = toModel().copy(
-    uploads = uploads.toModels().toTypedArray(),
-)
-
 /**
  * Convert to [List]
  */
-fun Iterable<CategoryEntity>.toModels(): List<CategoryResponse> {
+fun Iterable<CollectionEntity>.toModels(): List<CollectionResponse> {
     return map { it.toModel() }
-}
-
-fun Iterable<CategoryEntity>.toModelsWithUploads(): List<CategoryResponse> {
-    return map { it.toModelWithUploads() }
 }

@@ -8,6 +8,7 @@ export const ConstantStorage = {
     ManagersPage: "ManagersPage",
     HelpPage: "HelpPage",
     CategoriesPage: "CategoriesPage",
+    CollectionsPage: "CollectionsPage",
     ProductsPage: "ProductsPage",
     OrdersPage: "OrdersPage",
 };

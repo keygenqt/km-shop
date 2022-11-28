@@ -11,3 +11,5 @@ export * from './managerUpdate/ManagerUpdatePage';
 export * from './categoryUpdate/CategoryUpdatePage';
 export * from './productUpdate/ProductUpdatePage';
 export * from './orderView/OrderViewPage';
+export * from './collections/CollectionsPage';
+export * from './collectionUpdate/CollectionUpdatePage';

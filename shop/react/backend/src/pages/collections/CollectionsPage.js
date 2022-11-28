@@ -1,25 +1,20 @@
 import * as React from 'react';
 import {useContext, useEffect} from 'react';
-import {Avatar, Box, Button, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
+import {Box, Button, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {
-    AddOutlined,
-    BrokenImageOutlined,
-    CategoryOutlined,
-    EditOutlined,
-    VisibilityOutlined
-} from "@mui/icons-material";
+import {AddOutlined, EditOutlined, StyleOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
+import {GenericIcon} from "../../components/other/GenericIcon";
 
-export function CategoriesPage() {
+export function CollectionsPage() {
 
     // navigate app
     const {route, routes} = useContext(NavigateContext)
 
     // get cache page
-    const [cache] = React.useState(AppCache.objectGet(ConstantStorage.CategoriesPage, {
+    const [cache] = React.useState(AppCache.objectGet(ConstantStorage.CollectionsPage, {
         page: 0,
         data: null,
         published: true
@@ -37,7 +32,7 @@ export function CategoriesPage() {
 
     // update cache
     useEffect(() => {
-        AppCache.objectSet(ConstantStorage.CategoriesPage, {
+        AppCache.objectSet(ConstantStorage.CollectionsPage, {
             page: page,
             data: data,
             published: published,
@@ -46,11 +41,13 @@ export function CategoriesPage() {
 
     // request data
     useEffectTimout(() => {
-        HttpClient.get.categories().then(async (response) => {
+        HttpClient.get.collections().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
+                key: item.key,
                 name: item.name,
-                image: item.image,
+                desc: item.desc,
+                icon: item.icon,
                 isPublished: item.isPublished,
                 createAt: item.createAt,
                 updateAt: item.updateAt,
@@ -91,7 +88,7 @@ export function CategoriesPage() {
                         sx={{color: 'white', borderRadius: 2}}
                         startIcon={<AddOutlined/>}
                         onClick={() => {
-                            route.toLocation(routes.categoryCreate)
+                            route.toLocation(routes.collectionCreate)
                         }}
                     >
                         Add
@@ -109,11 +106,11 @@ export function CategoriesPage() {
                 </Stack>
 
                 <AppCard
-                    icon={CategoryOutlined}
+                    icon={StyleOutlined}
                     color={'secondary.dark'}
                     variant={'combine'}
-                    title={'Categories'}
-                    subheader={'List of product categories'}
+                    title={'Collections'}
+                    subheader={'List of product collections'}
                     disabled={loading}
                     onRefresh={() => {
                         setRefresh(!refresh)
@@ -130,18 +127,21 @@ export function CategoriesPage() {
                             rows={data}
                             columns={[
                                 {
-                                    field: 'image',
+                                    field: 'icon',
                                     headerName: 'Image',
                                     minWidth: 70,
                                     disableColumnMenu: true,
                                     sortable: false,
-                                    renderCell: (params) => <Avatar
-                                        alt={params.row.name}
-                                        src={params.row.image}
-                                        sx={{width: 24, height: 24, marginLeft: '5px'}}
-                                    >
-                                        <BrokenImageOutlined sx={{width: 18, height: 18}}/>
-                                    </Avatar>
+                                    renderCell: (params) => (
+                                        <Box sx={{
+                                            p: 1,
+                                            fontSize: 0,
+                                            borderRadius: '50%',
+                                            backgroundColor: 'secondary.light'
+                                        }}>
+                                            <GenericIcon sx={{width: 18, height: 18}} iconName={params.row.icon}/>
+                                        </Box>
+                                    )
                                 },
                                 {
                                     minWidth: 0,
@@ -161,7 +161,7 @@ export function CategoriesPage() {
                                                 setError(null)
                                                 setLoading(true)
                                                 params.row.isPublished = checked
-                                                HttpClient.put.categoryState(params.row.id, new Requests.CategoryStateRequest(
+                                                HttpClient.put.collectionState(params.row.id, new Requests.CollectionStateRequest(
                                                     params.row.isPublished,
                                                 )).then(async () => {
                                                     setRefresh(!refresh)
@@ -190,7 +190,7 @@ export function CategoriesPage() {
                                         ),
                                         (
                                             <GridActionsCellItem color="secondary" onClick={() => {
-                                                route.toLocation(routes.categoryEdit, params.row.id)
+                                                route.toLocation(routes.collectionEdit, params.row.id)
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Edit">
                                                     <EditOutlined/>
@@ -208,4 +208,4 @@ export function CategoriesPage() {
     );
 }
 
-CategoriesPage.propTypes = {};
+CollectionsPage.propTypes = {};

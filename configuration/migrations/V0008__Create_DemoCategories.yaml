@@ -1,18 +1,27 @@
 ### Configuration data migration
 ### Categories data
 
+# key         | string
 # name        | string
+# desc        | string
+# image       | string
 # isPublished | Bool
 
 categories:
-  - name: Bows
+  - key: bows
+    name: Bows
+    desc: For loved ones
     image: configuration/migrations/data/category/cat_1.png
     isPublished: true
 
-  - name: Headbands
+  - key: headbands
+    name: Headbands
+    desc: Stylish beauty
     image: configuration/migrations/data/category/cat_2.png
     isPublished: true
 
-  - name: Sets
+  - key: sets
+    name: Sets
+    desc: Sets for every day
     image: configuration/migrations/data/category/cat_3.png
     isPublished: true

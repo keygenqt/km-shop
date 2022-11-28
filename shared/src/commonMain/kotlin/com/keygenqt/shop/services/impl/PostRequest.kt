@@ -55,6 +55,16 @@ class PostRequest(private val client: HttpClient) {
     }
 
     /**
+     * Create collection method
+     */
+    @Throws(Exception::class)
+    suspend fun collection(
+        request: CollectionRequest
+    ): CollectionResponse {
+        return client.post("api/collections") { setBody(request) }.body()
+    }
+
+    /**
      * Create product method
      */
     @Throws(Exception::class)

@@ -16,39 +16,36 @@
 package com.keygenqt.shop.db.service
 
 import com.keygenqt.shop.db.base.DatabaseMysql
-import com.keygenqt.shop.db.entities.Categories
-import com.keygenqt.shop.db.entities.CategoryEntity
-import com.keygenqt.shop.db.entities.UploadEntity
-import com.keygenqt.shop.db.entities.Uploads
+import com.keygenqt.shop.db.entities.CollectionEntity
+import com.keygenqt.shop.db.entities.Collections
 import com.keygenqt.shop.interfaces.IService
-import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.and
 
-class CategoriesService(
+class CollectionsService(
     override val db: DatabaseMysql
-) : IService<CategoriesService> {
+) : IService<CollectionsService> {
 
     /**
      * Find entity by id
      */
     fun findById(
         id: Int
-    ) = CategoryEntity.findById(id)
+    ) = CollectionEntity.findById(id)
 
     /**
      * Get all entities
      */
-    fun getAll() = CategoryEntity
+    fun getAll() = CollectionEntity
         .all()
-        .orderBy(Pair(Categories.name, SortOrder.ASC))
+        .orderBy(Pair(Collections.name, SortOrder.ASC))
 
     /**
      * Get all entities for guest
      */
-    fun getAllPublished() = CategoryEntity
-        .find { (Categories.isPublished eq true) }
-        .orderBy(Pair(Categories.name, SortOrder.ASC))
+    fun getAllPublished() = CollectionEntity
+        .find { (Collections.isPublished eq true) }
+        .orderBy(Pair(Collections.name, SortOrder.ASC))
 
     /**
      * Get count by key
@@ -56,8 +53,8 @@ class CategoriesService(
     fun checkHashKey(
         key: String,
         id: Int = 0
-    ) = CategoryEntity
-        .find { if (id == 0) (Categories.key eq key) else (Categories.key eq key) and (Categories.id neq id) }
+    ) = CollectionEntity
+        .find { if (id == 0) (Collections.key eq key) else (Collections.key eq key) and (Collections.id neq id) }
         .count() > 0
 
     /**
@@ -67,49 +64,41 @@ class CategoriesService(
         key: String,
         name: String,
         desc: String,
-        image: String,
-        uploads: List<String>,
+        icon: String,
         isPublished: Boolean,
-    ) = CategoryEntity.new {
+    ) = CollectionEntity.new {
         this.key = key
         this.name = name
         this.desc = desc
-        this.image = image
+        this.icon = icon
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
-        this.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
     }
 
     /**
      * Update entity
      */
-    fun CategoryEntity.update(
+    fun CollectionEntity.update(
         key: String,
         name: String,
         desc: String,
-        image: String,
-        uploads: List<String>,
+        icon: String,
         isPublished: Boolean,
     ) = let { entity ->
         entity.key = key
         entity.name = name
         entity.desc = desc
-        entity.image = image
+        entity.icon = icon
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
-        entity.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
         entity
     }
 
     /**
      * Update state entity
      */
-    fun CategoryEntity.updateState(
+    fun CollectionEntity.updateState(
         isPublished: Boolean,
     ) = let { entity ->
         entity.isPublished = isPublished

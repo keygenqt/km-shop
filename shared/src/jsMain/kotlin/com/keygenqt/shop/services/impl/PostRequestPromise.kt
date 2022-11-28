@@ -48,6 +48,15 @@ class PostRequestPromise(private val client: ServiceRequest) {
     }
 
     /**
+     * Override [PostRequest.collection] for JS
+     */
+    fun collection(
+        request: CollectionRequest
+    ) = wrapPromise {
+        client.post.collection(request)
+    }
+
+    /**
      * Override [PostRequest.product] for JS
      */
     fun product(
