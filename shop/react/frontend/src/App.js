@@ -41,7 +41,7 @@ function App() {
         } catch (e) {
             setError(e.message)
         }
-    }, [location])
+    }, [])
 
     return (
         <ThemeProvider theme={AppTheme}>
