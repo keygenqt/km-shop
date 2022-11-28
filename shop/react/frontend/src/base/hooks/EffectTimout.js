@@ -8,7 +8,7 @@ let timeoutIDs = []
  */
 export function useEffectTimout(create, deps = [], before = () => {}, ms = 600) {
     useEffect(() => {
-        const key = MD5(create)
+        const key = MD5(create.toString())
         before()
         clearTimeout(timeoutIDs[key])
         timeoutIDs[key] = setTimeout(async () => {
