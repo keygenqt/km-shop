@@ -33,6 +33,7 @@ data class ProductRequest(
     val description: String,
     val price: Double,
     val isPublished: Boolean,
+    val collections: Array<Int>,
     val uploads: Array<String>,
 )
 

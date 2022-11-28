@@ -71,6 +71,11 @@ data class ProductRequest(
     val isPublished: Boolean,
 
     /**
+     * List ids collections uploads
+     */
+    val collections: List<Int> = listOf(),
+
+    /**
      * List urls uploads
      */
     val uploads: List<String> = listOf()
@@ -141,6 +146,7 @@ fun Route.products() {
                     description = request.description,
                     price = request.price,
                     isPublished = request.isPublished,
+                    collections = request.collections,
                     uploads = request.uploads,
                 ).toModel()
             }
@@ -164,6 +170,7 @@ fun Route.products() {
                     description = request.description,
                     price = request.price,
                     isPublished = request.isPublished,
+                    collections = request.collections,
                     uploads = request.uploads,
                 )?.toModel() ?: throw Exceptions.NotFound()
             }

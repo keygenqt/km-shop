@@ -67,6 +67,7 @@ class ProductsService(
         description: String,
         price: Double,
         isPublished: Boolean,
+        collections: List<Int>,
         uploads: List<String>,
     ) = ProductEntity.new {
         this.categoryID = EntityID(categoryID, Categories)
@@ -79,6 +80,9 @@ class ProductsService(
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
+        this.collections = SizedCollection(collections.mapNotNull {
+            CollectionEntity.findById(it)
+        })
         this.uploads = SizedCollection(uploads.mapNotNull {
             UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
         })
@@ -96,6 +100,7 @@ class ProductsService(
         description: String,
         price: Double,
         isPublished: Boolean,
+        collections: List<Int>,
         uploads: List<String>,
     ) = let { entity ->
         entity.categoryID = EntityID(categoryID, Categories)
@@ -107,6 +112,9 @@ class ProductsService(
         entity.price = price
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
+        entity.collections = SizedCollection(collections.mapNotNull {
+            CollectionEntity.findById(it)
+        })
         entity.uploads = SizedCollection(uploads.mapNotNull {
             UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
         })

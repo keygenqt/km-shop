@@ -49,6 +49,15 @@ object ProductUploads : Table() {
 }
 
 /**
+ * References table [Uploads]
+ */
+object ProductCollections : Table() {
+    val product = reference("product", Products)
+    val collection = reference("collection", Collections)
+    override val primaryKey = PrimaryKey(product, collection, name = "PK_productCollections_p_c")
+}
+
+/**
  * Exposed entity
  */
 class ProductEntity(id: EntityID<Int>) : IntEntity(id) {
@@ -67,6 +76,7 @@ class ProductEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var category by CategoryEntity referencedOn Products.categoryID
     var uploads by UploadEntity via ProductUploads
+    var collections by CollectionEntity via ProductCollections
 }
 
 /**
@@ -81,6 +91,7 @@ fun ProductEntity.toModel() = ProductResponse(
     name = name,
     description = description,
     price = price,
+    collections = collections.toModels().toTypedArray(),
     isPublished = isPublished,
     createAt = createAt.toUTC(),
     updateAt = updateAt.toUTC(),
@@ -95,8 +106,4 @@ fun ProductEntity.toModelWithUploads() = toModel().copy(
  */
 fun Iterable<ProductEntity>.toModels(): List<ProductResponse> {
     return map { it.toModel() }
-}
-
-fun Iterable<ProductEntity>.toModelsWithUploads(): List<ProductResponse> {
-    return map { it.toModelWithUploads() }
 }

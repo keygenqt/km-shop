@@ -37,5 +37,6 @@ data class ProductResponse(
     val isPublished: Boolean,
     val createAt: String,
     val updateAt: String,
+    val collections: Array<CollectionResponse>? = null,
     val uploads: Array<UploadResponse>? = null,
 )

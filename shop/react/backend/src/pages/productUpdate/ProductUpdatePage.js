@@ -4,7 +4,7 @@ import {Box, Button, FormControlLabel, FormGroup, MenuItem, Stack, Switch, TextF
 import {useParams} from "react-router";
 import {AlertError, AlertSuccess, AppCard, MultipleFiles, SnackbarError} from "../../components";
 import {FolderOutlined} from "@mui/icons-material";
-import {AdminRole, AppHelper, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
+import {AppHelper, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {FileDialog} from "../../components/dialogs/FileDialog";
 import {FileDeleteDialog} from "../../components/dialogs/FileDeleteDialog";
 import {NotFoundPage} from "../error/NotFoundPage";
@@ -12,6 +12,7 @@ import {Formik} from "formik";
 import * as Yup from "yup";
 import {ImageTextField} from "../../components/fields/ImageTextField";
 import {ProductSetValueFormic} from "./elements/ProductSetValueFormic";
+import {CollectionsTextField} from "./elements/CollectionsTextField";
 
 export function ProductUpdatePage() {
 
@@ -24,6 +25,7 @@ export function ProductUpdatePage() {
     const [modelId, setModelId] = React.useState(id ? parseInt(id) : null);
     const [data, setData] = React.useState(null);
     const [dataCategory, setDataCategory] = React.useState([]);
+    const [dataCollections, setDataCollections] = React.useState([]);
     const [refresh, setRefresh] = React.useState(false);
     const [error, setError] = React.useState(null);
     const [errorFile, setErrorFile] = React.useState(null);
@@ -37,11 +39,17 @@ export function ProductUpdatePage() {
     useEffectTimout(async () => {
         if (Boolean(modelId)) {
             try {
-                const categories = await HttpClient.get.categoriesPublished()
                 const product = await HttpClient.get.product(modelId)
+                const categories = await HttpClient.get.categoriesPublished()
+                const collections = await HttpClient.get.collections()
 
                 setData(product)
                 setDataCategory(categories.toArray())
+                setDataCollections(collections.toArray().map((it) => ({
+                    value: it.id,
+                    name: it.name,
+                    icon: it.icon,
+                })))
                 setLoading(false)
 
             } catch (error) {
@@ -128,6 +136,7 @@ export function ProductUpdatePage() {
                                     price: 0,
                                     isPublished: false,
                                     uploads: [],
+                                    collections: [],
                                     submit: null
                                 }}
                                 validationSchema={Yup.object().shape({
@@ -171,6 +180,7 @@ export function ProductUpdatePage() {
                                                 values.description,
                                                 values.price,
                                                 values.isPublished,
+                                                values.collections,
                                                 values.uploads,
                                             ))
                                         ) : (
@@ -183,6 +193,7 @@ export function ProductUpdatePage() {
                                                 values.description,
                                                 values.price,
                                                 values.isPublished,
+                                                values.collections,
                                                 values.uploads,
                                             ))
                                         )
@@ -355,6 +366,13 @@ export function ProductUpdatePage() {
                                                 >
                                                     {categoriesItems}
                                                 </TextField>
+
+                                                <CollectionsTextField
+                                                    disabled={loading}
+                                                    rows={dataCollections}
+                                                    selects={values.collections}
+                                                    onChange={(ids) => setFieldValue('collections', ids)}
+                                                />
 
                                                 <TextField
                                                     disabled={loading}

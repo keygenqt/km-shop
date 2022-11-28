@@ -38,6 +38,7 @@ export function ProductSetValueFormic(props) {
                 description: dataFormic.description,
                 price: dataFormic.price.toFixed(2),
                 isPublished: dataFormic.isPublished,
+                collections: dataFormic.collections.map((it) => it.id),
                 uploads: dataFormic.uploads.reverse().map((it) => AppHelper.getFileUrl(it.fileName))
             });
             setDataFormic(null)

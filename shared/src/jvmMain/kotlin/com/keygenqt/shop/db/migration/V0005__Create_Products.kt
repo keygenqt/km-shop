@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.db.migration
 
+import com.keygenqt.shop.db.entities.ProductCollections
 import com.keygenqt.shop.db.entities.ProductUploads
 import com.keygenqt.shop.db.entities.Products
 import org.flywaydb.core.api.migration.BaseJavaMigration
@@ -28,6 +29,7 @@ class V0005__Create_Products : BaseJavaMigration() {
         transaction {
             SchemaUtils.create(Products)
             SchemaUtils.create(ProductUploads)
+            SchemaUtils.create(ProductCollections)
         }
     }
 }
