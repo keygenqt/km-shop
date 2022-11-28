@@ -4,7 +4,9 @@ import {Box, Button, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/m
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ConstantCollections} from "../../../base/constants/ConstantCollections";
-import {NavigateContext} from "../../../base";
+import {ConstantStorage, NavigateContext, useLocalStorage} from "../../../base";
+import {ValueType} from "../../../base/route/ValueType";
+import {GenericIcon} from "../../other/GenericIcon";
 
 /**
  * Application Categories toolbar
@@ -19,13 +21,14 @@ export function CollectionsToolbar(props) {
     const {route, routes} = useContext(NavigateContext)
     const [anchorValue, setAnchorValue] = React.useState(anchor);
 
+    const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
+
     const items = []
 
-    ConstantCollections.forEach((it, index) => {
-        const Icon = it.icon
+    collectionsCache.forEach((collection) => {
         items.push((
             <React.Fragment
-                key={`group-menu-item-${index}`}
+                key={`group-menu-item-${collection.id}`}
             >
                 <Button
                     color={'inherit'}
@@ -35,7 +38,7 @@ export function CollectionsToolbar(props) {
                     }}
                     onClick={() => {
                         onClose()
-                        route.toLocation(routes.exploringCollection, it.key)
+                        route.toLocation(routes.exploringCollection, collection.key)
                     }}
                 >
                     <Stack
@@ -56,7 +59,7 @@ export function CollectionsToolbar(props) {
                                 color: 'secondary.main'
                             }
                         }}>
-                            <Icon src={it.icon}/>
+                            <GenericIcon iconName={collection.icon}/>
                         </Box>
 
                         <Stack
@@ -64,12 +67,12 @@ export function CollectionsToolbar(props) {
                             alignItems={'flex-start'}
                         >
                             <Typography variant={'h5'}>
-                                {it.name}
+                                {collection.name}
                             </Typography>
                             <Typography variant={'caption'} sx={{
                                 textTransform: 'none'
                             }}>
-                                {it.desc}
+                                {collection.desc}
                             </Typography>
                         </Stack>
 

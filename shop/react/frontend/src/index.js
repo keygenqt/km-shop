@@ -7,17 +7,15 @@ import NavigateContextProvider from "./base/contexts/NavigateContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-setTimeout(function () {
-    root.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <NavigateContextProvider>
-                    <App/>
-                </NavigateContextProvider>
-            </BrowserRouter>
-        </React.StrictMode>
-    );
-}, 500);
+root.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <NavigateContextProvider>
+                <App/>
+            </NavigateContextProvider>
+        </BrowserRouter>
+    </React.StrictMode>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

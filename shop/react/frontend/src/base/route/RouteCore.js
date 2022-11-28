@@ -62,6 +62,7 @@ export default class RouteCore {
      * @param arg
      */
     toLocation(route, ...arg) {
+        this.scrollToTop()
         const path = this.getPathFromObject(route)
         this.navigate(this.createLink(path, arg));
     }

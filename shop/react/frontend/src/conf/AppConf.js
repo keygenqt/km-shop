@@ -2,6 +2,6 @@
  * Base configuration
  */
 export const AppConf = {
-    publicPath: 'http://localhost:3002',
+    publicPath: 'http://localhost:3003',
     apiPath: 'http://localhost:8086'
 };

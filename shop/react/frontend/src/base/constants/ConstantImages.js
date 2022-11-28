@@ -9,7 +9,6 @@ import cat_3 from "../../assets/images/home/cat_3.png";
 import cat_bg_1 from "../../assets/images/home/cat_bg_1.svg";
 import cat_bg_2 from "../../assets/images/home/cat_bg_2.svg";
 import cat_bg_3 from "../../assets/images/home/cat_bg_3.svg";
-import cat_bg_4 from "../../assets/images/home/cat_bg_4.svg";
 import cat_bg_5 from "../../assets/images/home/cat_bg_5.svg";
 import cat_bg_6 from "../../assets/images/home/cat_bg_6.svg";
 import iphone from "../../assets/images/home/iphone.png";
@@ -19,6 +18,7 @@ import DSC_0004 from "../../assets/images/common/DSC_0004.png";
 import DSC_0007 from "../../assets/images/common/DSC_0007.png";
 import DSC_0009 from "../../assets/images/common/DSC_0009.png";
 import logo from "../../assets/images/common/logo.png";
+import logo192 from "../../assets/images/common/logo192.png";
 import contactEmail from "../../assets/images/contact/email.png";
 import contactAddress from "../../assets/images/contact/home-address.png";
 import contactPhone from "../../assets/images/contact/phone.png";
@@ -29,6 +29,7 @@ import contactPhone from "../../assets/images/contact/phone.png";
 export const ConstantImages = {
     common: {
         logo: logo,
+        logo192: logo192,
         DSC_0004: DSC_0004,
         DSC_0007: DSC_0007,
         DSC_0009: DSC_0009,
@@ -53,7 +54,6 @@ export const ConstantImages = {
         cat_bg_1: cat_bg_1,
         cat_bg_2: cat_bg_2,
         cat_bg_3: cat_bg_3,
-        cat_bg_4: cat_bg_4,
         cat_bg_5: cat_bg_5,
         cat_bg_6: cat_bg_6,
     }

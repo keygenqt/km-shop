@@ -2,5 +2,7 @@
  * Apps constants [localStorage] keys
  */
 export const ConstantStorage = {
-    cart: 'CartStorage'
+    cart: 'CartStorage',
+    categories: 'CategoriesStorage',
+    collections: 'CollectionsStorage',
 };

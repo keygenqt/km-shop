@@ -5,6 +5,8 @@ import {StepsBlockHomePage} from "./elements/StepsBlockHomePage";
 import {ContainerLG} from "../../components/containers/styled/Containers";
 import {CategoriesBlockHomePage} from "./elements/CategoriesBlockHomePage";
 import {MobileBlockHomePage} from "./elements/MobileBlockHomePage";
+import {ConstantStorage, useLocalStorage} from "../../base";
+import {ValueType} from "../../base/route/ValueType";
 
 export function HomePage() {
 
@@ -20,7 +22,7 @@ export function HomePage() {
                 <StepsBlockHomePage/>
             </ContainerLG>
 
-            <CategoriesBlockHomePage/>
+            <CategoriesBlockHomePage />
 
             <ContainerLG sx={{
                 paddingBottom: isMD ? 0 : 7

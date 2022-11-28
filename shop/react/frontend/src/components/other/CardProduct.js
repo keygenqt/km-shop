@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import {CartToolbar} from "../toolbar/elements/CartToolbar";
 import {Avatar, Box, Button, Card, CardActions, CardContent, Chip, IconButton, Stack, Typography} from "@mui/material";
 import {AddShoppingCartOutlined, BrokenImageOutlined, Star} from "@mui/icons-material";
 import {AppCache, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";

@@ -14,32 +14,18 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {ArrowForwardOutlined} from "@mui/icons-material";
-import {ConstantImages} from "../../../base";
+import {ConstantImages, ConstantStorage, NavigateContext, useLocalStorage} from "../../../base";
 import {TabsBlackStyled} from "../../../components/tabs/styled/TabsBlackStyled";
-import {ConstantCollections} from "../../../base/constants/ConstantCollections";
+import {ValueType} from "../../../base/route/ValueType";
+import {GenericIcon} from "../../../components";
+import {useContext} from "react";
 
-const categoriesData = [
-    {
-        icon: ConstantImages.home.cat_1,
-        bg: ConstantImages.home.cat_bg_1,
-        products: 143,
-        title: 'Bows',
-        subtitle: 'For loved ones',
-    },
-    {
-        icon: ConstantImages.home.cat_2,
-        bg: ConstantImages.home.cat_bg_2,
-        products: 987,
-        title: 'Headbands',
-        subtitle: 'Stylish beauty',
-    },
-    {
-        icon: ConstantImages.home.cat_3,
-        bg: ConstantImages.home.cat_bg_3,
-        products: 56,
-        title: 'Sets',
-        subtitle: 'Sets for every day',
-    }
+const bgs = [
+    ConstantImages.home.cat_bg_1,
+    ConstantImages.home.cat_bg_2,
+    ConstantImages.home.cat_bg_3,
+    ConstantImages.home.cat_bg_5,
+    ConstantImages.home.cat_bg_6,
 ]
 
 export function CategoriesBlockHomePage() {
@@ -47,35 +33,38 @@ export function CategoriesBlockHomePage() {
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isXS = useMediaQuery(theme.breakpoints.down('xs'));
+    const {route, routes} = useContext(NavigateContext)
+
+    const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
+    const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
     const [value, setValue] = React.useState(0);
 
     const filters = []
     const categories = []
 
-    ConstantCollections.forEach((it, index) => {
-        const Icon = it.icon
+    collectionsCache.forEach((collection) => {
         filters.push((
             <Tab
-                key={`filter-item-${index}`}
+                key={`filter-item-${collection.id}`}
                 label={(
                     <Stack
                         direction={'row'}
                         spacing={1}
                         alignItems={'center'}
                     >
-                        <Icon sx={{width: 20, height: 20}}/>
-                        <Typography variant={'body1'}>{it.name}</Typography>
+                        <GenericIcon iconName={collection.icon} sx={{width: 20, height: 20}}/>
+                        <Typography variant={'body1'}>{collection.name}</Typography>
                     </Stack>
                 )}
             />
         ));
     })
 
-    categoriesData.forEach((it, index) => {
+    categoriesCache.forEach((category) => {
         categories.push((
             <Grid
-                key={`category-item-${index}`}
+                key={`category-item-${category.id}`}
                 item
                 xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
                 <Card variant="outlined" sx={{
@@ -87,7 +76,7 @@ export function CategoriesBlockHomePage() {
                     '&:after': {
                         content: '""',
                         position: 'absolute',
-                        backgroundImage: `url(${it.bg})`,
+                        backgroundImage: `url(${bgs[category.id % 6]})`,
                         width: 250,
                         height: 250,
                         bottom: 0,
@@ -99,7 +88,7 @@ export function CategoriesBlockHomePage() {
                     <CardHeader
                         avatar={
                             <Avatar
-                                src={it.icon}
+                                src={category.image}
                                 sx={{
                                     bgcolor: '#EFF6FF',
                                     width: isMD ? 60 : 80,
@@ -117,7 +106,7 @@ export function CategoriesBlockHomePage() {
                                     paddingRight: 1
                                 }}
                             >
-                                {it.products} products
+                                {category.id} products
                             </Typography>
                         }
                     />
@@ -136,13 +125,22 @@ export function CategoriesBlockHomePage() {
                                     fontWeight: 100
                                 }}
                             >
-                                {it.title}
+                                {category.name}
                             </Typography>
 
                             <Typography
                                 variant={isMD ? 'h5' : 'h4'}
+                                sx={{
+                                    backgroundColor: '#ffffffa8',
+                                    position: 'relative',
+                                    zIndex: 1,
+                                    width: 'fit-content',
+                                    p: 1,
+                                    left: -8,
+                                    borderRadius: 1
+                                }}
                             >
-                                {it.subtitle}
+                                {category.desc}
                             </Typography>
                         </Stack>
 
@@ -158,6 +156,9 @@ export function CategoriesBlockHomePage() {
                                 textTransform: 'none',
                                 paddingX: '10px',
                                 marginLeft: '-1px'
+                            }}
+                            onClick={() => {
+                                route.toLocation(routes.exploringCollection, category.key)
                             }}
                         >
                             See Collection

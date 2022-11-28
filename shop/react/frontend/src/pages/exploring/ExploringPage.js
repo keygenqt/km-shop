@@ -30,9 +30,9 @@ import {
     StyleOutlined
 } from "@mui/icons-material";
 import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
-import {ValueType} from "../../base/route/ValueType";
 import {SnackbarAddToCart} from "../../components/alerts/SnackbarAddToCart";
 import {CardProduct} from "../../components/other/CardProduct";
+import {ValueType} from "../../base/route/ValueType";
 
 function valuetext(value) {
     return `${value}°C`;
@@ -40,12 +40,17 @@ function valuetext(value) {
 
 export function ExploringPage() {
 
+    const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
+    const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
+
     let {filter} = useParams();
+
+    const category = filter ? categoriesCache.find((it) => it.key === filter)?.name : null
+    const collection = filter ? collectionsCache.find((it) => it.key === filter)?.name : null
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-    const {route, routes} = useContext(NavigateContext)
-    const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
+    const {route} = useContext(NavigateContext)
 
     const [value, setValue] = React.useState([12, 87]);
     const [page, setPage] = React.useState(1);
@@ -76,7 +81,11 @@ export function ExploringPage() {
 
                 <Stack spacing={2}>
                     <Typography variant={isSM ? 'h4' : 'h3'}>
-                        {filter ? `${ConstantCollections.find((it) => it.key === filter)?.name ?? 'Best'} collection` : 'Exploring'}
+                        {filter ? (
+                            category ? `${category} category` : `${collection} category`
+                        ) : (
+                            'Exploring'
+                        )}
                     </Typography>
 
                     <Typography variant={isSM ? 'h6' : 'h5'} sx={{
