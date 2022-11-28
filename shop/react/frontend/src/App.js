@@ -16,8 +16,8 @@ function App() {
     // request data
     useEffectTimout(async () => {
         try {
-            const categories = await HttpClient.get.categories()
-            const collections = await HttpClient.get.collections()
+            const categories = await HttpClient.get.categoriesPublished()
+            const collections = await HttpClient.get.collectionsPublished()
 
             // save categories
             AppCache.arraySet(ConstantStorage.categories, categories.toArray().map((it) => ({
