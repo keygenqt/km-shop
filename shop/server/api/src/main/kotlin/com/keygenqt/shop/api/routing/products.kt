@@ -45,7 +45,15 @@ data class ProductRequest(
 
     @field:NotNull
     @field:Size(max = 255, message = "Max size must 255")
-    val image: String,
+    val image1: String,
+
+    @field:NotNull
+    @field:Size(max = 255, message = "Max size must 255")
+    val image2: String,
+
+    @field:NotNull
+    @field:Size(max = 255, message = "Max size must 255")
+    val image3: String,
 
     @field:NotNull
     @field:Size(min = 3, max = 255, message = "Size must be between 3 and 255")
@@ -126,7 +134,9 @@ fun Route.products() {
             val response = productsService.transaction {
                 insert(
                     categoryID = request.categoryID,
-                    image = request.image,
+                    image1 = request.image1,
+                    image2 = request.image2,
+                    image3 = request.image3,
                     name = request.name,
                     description = request.description,
                     price = request.price,
@@ -147,7 +157,9 @@ fun Route.products() {
             val response = productsService.transaction {
                 findById(id)?.update(
                     categoryID = request.categoryID,
-                    image = request.image,
+                    image1 = request.image1,
+                    image2 = request.image2,
+                    image3 = request.image3,
                     name = request.name,
                     description = request.description,
                     price = request.price,

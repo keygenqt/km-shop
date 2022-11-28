@@ -28,7 +28,9 @@ import org.jetbrains.exposed.sql.Table
  */
 object Products : IntIdTable() {
     val categoryID = reference("category", Categories)
-    val image = varchar("image", 255)
+    val image1 = varchar("image1", 255)
+    val image2 = varchar("image2", 255)
+    val image3 = varchar("image3", 255)
     val name = varchar("name", 255).uniqueIndex()
     val description = text("description")
     val price = double("price")
@@ -53,7 +55,9 @@ class ProductEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntSubQueryEntityClass<ProductEntity>(Products)
 
     var categoryID by Products.categoryID
-    var image by Products.image
+    var image1 by Products.image1
+    var image2 by Products.image2
+    var image3 by Products.image3
     var name by Products.name
     var description by Products.description
     var price by Products.price
@@ -71,7 +75,9 @@ class ProductEntity(id: EntityID<Int>) : IntEntity(id) {
 fun ProductEntity.toModel() = ProductResponse(
     id = id.value,
     category = category.toModel(),
-    image = image,
+    image1 = image1,
+    image2 = image2,
+    image3 = image3,
     name = name,
     description = description,
     price = price,

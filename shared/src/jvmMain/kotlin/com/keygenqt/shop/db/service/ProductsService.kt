@@ -60,7 +60,9 @@ class ProductsService(
      */
     fun insert(
         categoryID: Int,
-        image: String,
+        image1: String,
+        image2: String,
+        image3: String,
         name: String,
         description: String,
         price: Double,
@@ -68,7 +70,9 @@ class ProductsService(
         uploads: List<String>,
     ) = ProductEntity.new {
         this.categoryID = EntityID(categoryID, Categories)
-        this.image = image
+        this.image1 = image1
+        this.image2 = image2
+        this.image3 = image3
         this.name = name
         this.description = description
         this.price = price
@@ -85,7 +89,9 @@ class ProductsService(
      */
     fun ProductEntity.update(
         categoryID: Int,
-        image: String,
+        image1: String,
+        image2: String,
+        image3: String,
         name: String,
         description: String,
         price: Double,
@@ -93,7 +99,9 @@ class ProductsService(
         uploads: List<String>,
     ) = let { entity ->
         entity.categoryID = EntityID(categoryID, Categories)
-        entity.image = image
+        entity.image1 = image1
+        entity.image2 = image2
+        entity.image3 = image3
         entity.name = name
         entity.description = description
         entity.price = price

@@ -120,7 +120,9 @@ export function ProductUpdatePage() {
                             <Formik
                                 initialValues={{
                                     categoryID: '',
-                                    image: '',
+                                    image1: '',
+                                    image2: '',
+                                    image3: '',
                                     name: '',
                                     description: '',
                                     price: 0,
@@ -133,7 +135,9 @@ export function ProductUpdatePage() {
                                         .number()
                                         .required('Category is required')
                                         .positive('Category is required'),
-                                    image: Yup.string().required('Image is required'),
+                                    image1: Yup.string().required('Image is required'),
+                                    image2: Yup.string().required('Image is required'),
+                                    image3: Yup.string().required('Image is required'),
                                     name: Yup.string()
                                         .required('Name is required')
                                         .min(3, 'Size must be between 3 and 255')
@@ -160,7 +164,9 @@ export function ProductUpdatePage() {
                                         const response = Boolean(modelId) ? (
                                             await HttpClient.put.product(modelId, new Requests.ProductRequest(
                                                 values.categoryID,
-                                                values.image,
+                                                values.image1,
+                                                values.image2,
+                                                values.image3,
                                                 values.name,
                                                 values.description,
                                                 values.price,
@@ -170,7 +176,9 @@ export function ProductUpdatePage() {
                                         ) : (
                                             await HttpClient.post.product(new Requests.ProductRequest(
                                                 values.categoryID,
-                                                values.image,
+                                                values.image1,
+                                                values.image2,
+                                                values.image3,
                                                 values.name,
                                                 values.description,
                                                 values.price,
@@ -193,7 +201,9 @@ export function ProductUpdatePage() {
 
                                         const errors = {
                                             categoryID: AppHelper.findError('categoryID', error.validate),
-                                            image: AppHelper.findError('image', error.validate),
+                                            image1: AppHelper.findError('image1', error.validate),
+                                            image2: AppHelper.findError('image2', error.validate),
+                                            image3: AppHelper.findError('image3', error.validate),
                                             name: AppHelper.findError('name', error.validate),
                                             description: AppHelper.findError('description', error.validate),
                                             price: AppHelper.findError('price', error.validate),
@@ -278,6 +288,57 @@ export function ProductUpdatePage() {
                                                     }}
                                                 />
 
+                                                <ImageTextField
+                                                    disabled={loading}
+                                                    type={'url'}
+                                                    name={'image1'}
+                                                    value={values.image1}
+                                                    helperText={touched.image1 ? errors.image1 : ''}
+                                                    error={Boolean(touched.image1 && errors.image1)}
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    fullWidth
+                                                    label="Main Image Url"
+                                                    variant="filled"
+                                                    onClickImage={() => {
+                                                        setShowFile(values.image1)
+                                                    }}
+                                                />
+
+                                                <ImageTextField
+                                                    disabled={loading}
+                                                    type={'url'}
+                                                    name={'image2'}
+                                                    value={values.image2}
+                                                    helperText={touched.image2 ? errors.image2 : ''}
+                                                    error={Boolean(touched.image2 && errors.image2)}
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    fullWidth
+                                                    label="Second Image Url"
+                                                    variant="filled"
+                                                    onClickImage={() => {
+                                                        setShowFile(values.image2)
+                                                    }}
+                                                />
+
+                                                <ImageTextField
+                                                    disabled={loading}
+                                                    type={'url'}
+                                                    name={'image3'}
+                                                    value={values.image3}
+                                                    helperText={touched.image3 ? errors.image3 : ''}
+                                                    error={Boolean(touched.image3 && errors.image3)}
+                                                    onBlur={handleBlur}
+                                                    onChange={handleChange}
+                                                    fullWidth
+                                                    label="Third Image Url"
+                                                    variant="filled"
+                                                    onClickImage={() => {
+                                                        setShowFile(values.image3)
+                                                    }}
+                                                />
+
                                                 <TextField
                                                     disabled={loading}
                                                     type={'text'}
@@ -307,23 +368,6 @@ export function ProductUpdatePage() {
                                                     fullWidth
                                                     label="Name"
                                                     variant="filled"
-                                                />
-
-                                                <ImageTextField
-                                                    disabled={loading}
-                                                    type={'url'}
-                                                    name={'image'}
-                                                    value={values.image}
-                                                    helperText={touched.image ? errors.image : ''}
-                                                    error={Boolean(touched.image && errors.image)}
-                                                    onBlur={handleBlur}
-                                                    onChange={handleChange}
-                                                    fullWidth
-                                                    label="Image Url"
-                                                    variant="filled"
-                                                    onClickImage={() => {
-                                                        setShowFile(values.image)
-                                                    }}
                                                 />
 
                                                 <TextField

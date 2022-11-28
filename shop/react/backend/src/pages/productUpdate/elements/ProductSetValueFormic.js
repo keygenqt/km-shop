@@ -31,7 +31,9 @@ export function ProductSetValueFormic(props) {
             setValues({
                 ...values,
                 categoryID: dataFormic.category.id,
-                image: dataFormic.image,
+                image1: dataFormic.image1,
+                image2: dataFormic.image2,
+                image3: dataFormic.image3,
                 name: dataFormic.name,
                 description: dataFormic.description,
                 price: dataFormic.price.toFixed(2),

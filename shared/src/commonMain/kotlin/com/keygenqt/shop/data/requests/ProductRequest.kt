@@ -26,7 +26,9 @@ import kotlin.js.JsExport
 @Suppress("ArrayInDataClass")
 data class ProductRequest(
     val categoryID: Int,
-    val image: String,
+    val image1: String,
+    val image2: String,
+    val image3: String,
     val name: String,
     val description: String,
     val price: Double,

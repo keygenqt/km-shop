@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {AddOutlined, EditOutlined, FolderOutlined, VisibilityOutlined} from "@mui/icons-material";
+import {AddOutlined, BrokenImageOutlined, EditOutlined, FolderOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
@@ -44,7 +44,7 @@ export function ProductsPage() {
             setData(response.toArray().map((item) => ({
                 id: item.id,
                 categoryID: item.category.id,
-                image: item.image,
+                image1: item.image1,
                 name: item.name,
                 description: item.description,
                 price: item.price,
@@ -127,16 +127,18 @@ export function ProductsPage() {
                             rows={data}
                             columns={[
                                 {
-                                    field: 'image',
+                                    field: 'image1',
                                     headerName: 'Image',
                                     minWidth: 70,
                                     disableColumnMenu: true,
                                     sortable: false,
                                     renderCell: (params) => <Avatar
                                         alt={params.row.name}
-                                        src={params.row.image}
+                                        src={params.row.image1}
                                         sx={{width: 24, height: 24, marginLeft: '5px'}}
-                                    />
+                                    >
+                                        <BrokenImageOutlined sx={{width: 18, height: 18}}/>
+                                    </Avatar>
                                 },
                                 {
                                     minWidth: 0,
