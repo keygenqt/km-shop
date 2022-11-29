@@ -41,7 +41,7 @@ export function OrderViewDetailsProduct(props) {
                 <Avatar
                     variant="rounded"
                     alt={product.name}
-                    src={AppHelper.isImage(product.image) ? `${product.image}` : null}
+                    src={AppHelper.isImage(product.image1) ? `${product.image1}` : null}
                     sx={{width: 72, height: 72}}
                 >
                     <BrokenImageOutlined/>

@@ -39,7 +39,7 @@ export function ProductsPage() {
     }, [data, page, published])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('ProductsPage',() => {
         HttpClient.get.products().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,

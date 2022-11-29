@@ -19,7 +19,7 @@ export function DashboardPage() {
     const [dataChart, setDataChart] = React.useState(null);
 
     // load
-    useEffectTimout(async () => {
+    useEffectTimout('DashboardPage',async () => {
         try {
             // requests
             const dashboardMadeOrders = await HttpClient.get.dashboardMadeOrders()

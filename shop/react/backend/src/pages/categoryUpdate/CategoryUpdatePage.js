@@ -32,7 +32,7 @@ export function CategoryUpdatePage() {
     const [deleteFilePositive, setDeleteFilePositive] = React.useState(null);
 
     // load
-    useEffectTimout(() => {
+    useEffectTimout('CategoryUpdatePage',() => {
         if (Boolean(modelId)) {
             HttpClient.get.category(modelId).then(async (response) => {
                 setData(response)

@@ -40,7 +40,7 @@ export function CollectionsPage() {
     }, [data, page, published])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('CollectionsPage',() => {
         HttpClient.get.collections().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,

@@ -26,7 +26,7 @@ export function CollectionUpdatePage() {
     const [loading, setLoading] = React.useState(id !== undefined);
 
     // load
-    useEffectTimout(() => {
+    useEffectTimout('CollectionUpdatePage',() => {
         if (Boolean(modelId)) {
             HttpClient.get.collection(modelId).then(async (response) => {
                 setData(response)

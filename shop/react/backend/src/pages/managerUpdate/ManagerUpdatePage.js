@@ -27,7 +27,7 @@ export function ManagerUpdatePage() {
     const [loading, setLoading] = React.useState(id !== undefined);
 
     // load
-    useEffectTimout(() => {
+    useEffectTimout('ManagerUpdatePage',() => {
         if (Boolean(modelId)) {
             HttpClient.get.admin(modelId).then(async (response) => {
                 setData(response)

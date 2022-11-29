@@ -7,13 +7,11 @@ import {ValueType} from "../../base/route/ValueType";
 import {FiltersBlock} from "./elements/FiltersBlock";
 import {ProductsBlock} from "./elements/ProductsBlock";
 import {BaseLayout} from "../../components";
-import {SplashPage} from "../splash/SplashPage";
 import Lottie from "lottie-react";
 
 export function ExploringPage() {
 
     let {filter} = useParams();
-
 
     const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
     const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
@@ -28,7 +26,7 @@ export function ExploringPage() {
     const [loading, setLoading] = React.useState(true);
     const [products, setProducts] = React.useState(null);
 
-    useEffectTimout(async () => {
+    useEffectTimout('ExploringPage', async () => {
         try {
             await new Promise(r => setTimeout(r, 1000));
             const response = await HttpClient.get.productsPublished()

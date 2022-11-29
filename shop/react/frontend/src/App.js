@@ -14,7 +14,7 @@ function App() {
     const [error, setError] = useState(null);
 
     // request data
-    useEffectTimout(async () => {
+    useEffectTimout('App', async () => {
         try {
             const categories = await HttpClient.get.categoriesPublished()
             const collections = await HttpClient.get.collectionsPublished()
@@ -28,7 +28,8 @@ function App() {
 
             setError(e.message)
         }
-    }, [location], () => {}, 500, "App")
+    }, [location], () => {
+    }, 500, "App")
 
     return (
         <ThemeProvider theme={AppTheme}>

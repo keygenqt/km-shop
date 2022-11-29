@@ -30,7 +30,7 @@ export function OrderViewPage(props) {
     const [loading, setLoading] = React.useState(id !== undefined);
 
     // load
-    useEffectTimout(() => {
+    useEffectTimout('OrderViewPage',() => {
         if (Boolean(id)) {
             HttpClient.get.order(id).then(async (response) => {
                 setData(response)

@@ -36,7 +36,7 @@ export function ProductUpdatePage() {
     const [deleteFilePositive, setDeleteFilePositive] = React.useState(null);
 
     // load
-    useEffectTimout(async () => {
+    useEffectTimout('ProductUpdatePage',async () => {
         if (Boolean(modelId)) {
             try {
                 const product = await HttpClient.get.product(modelId)

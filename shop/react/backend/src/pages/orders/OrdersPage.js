@@ -57,7 +57,7 @@ export function OrdersPage(props) {
     }, [cacheKey, data, page])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('OrdersPage',() => {
         HttpClient.get.orders(filter).then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,

@@ -41,7 +41,7 @@ export function ManagersPage() {
     }, [data, page])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('ManagersPage',() => {
         HttpClient.get.admins().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,

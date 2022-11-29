@@ -45,7 +45,7 @@ export function CategoriesPage() {
     }, [data, page, published])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('CategoriesPage',() => {
         HttpClient.get.categories().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,

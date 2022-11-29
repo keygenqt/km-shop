@@ -21,7 +21,7 @@ export function ProductPage() {
     const [product, setProduct] = React.useState(null);
     const [purchased, setPurchased] = React.useState([]);
 
-    useEffectTimout(async () => {
+    useEffectTimout('ProductPage', async () => {
         try {
             await new Promise(r => setTimeout(r, 1000));
 

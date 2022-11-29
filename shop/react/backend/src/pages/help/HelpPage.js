@@ -41,7 +41,7 @@ export function HelpPage() {
     }, [data, page, notChecked])
 
     // request data
-    useEffectTimout(() => {
+    useEffectTimout('HelpPage',() => {
         HttpClient.get.messages().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
