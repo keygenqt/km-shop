@@ -11,9 +11,12 @@ export function useEffectTimout(create, deps = [], before = () => {
     useEffect(() => {
         const key = MD5(create.toString()).toString()
         before()
-        clearTimeout(timeoutIDs[key])
-        timeoutIDs[key] = setTimeout(async () => {
+        const fetchData = async () => {
             await create()
+        }
+        clearTimeout(timeoutIDs[key])
+        timeoutIDs[key] = setTimeout(() => {
+            fetchData().catch(console.error);
         }, ms)
     }, deps)
 }
