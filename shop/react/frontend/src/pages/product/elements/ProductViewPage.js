@@ -6,13 +6,18 @@ import {
     AddCircleOutline,
     AddShoppingCartOutlined,
     CurrencyExchangeOutlined,
+    CurrencyRubleOutlined,
     LanguageOutlined,
     LocalShippingOutlined,
     RemoveCircleOutline,
+    RemoveShoppingCartOutlined,
     Star,
     WifiProtectedSetupOutlined
 } from "@mui/icons-material";
 import {ImageSizeBox} from "./ImageSizeBox";
+import {GenericIcon} from "../../../components";
+import {AppCache, ConstantStorage, useLocalStorage} from "../../../base";
+import {ValueType} from "../../../base/route/ValueType";
 
 
 export function ProductViewPage(props) {
@@ -21,12 +26,15 @@ export function ProductViewPage(props) {
         product
     } = props
 
+    const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
+
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
     const [urlImage, setUrlImage] = useState(product.image1);
 
+    const isHashCart = Boolean(cartProducts.find((it) => it.id === product.id))
     const collections = []
 
     product.collections.forEach((collection, index) => {
@@ -34,11 +42,24 @@ export function ProductViewPage(props) {
             <Chip
                 key={`collections-item-${index}`}
                 size={'small'}
-                label={collection}
                 variant={'outlined'}
                 color={'secondary'}
+                label={collection.name}
+                icon={(
+                    <Box sx={{
+                        pt: 0.2,
+                        pl: 0.6,
+                        pr: 0.1
+                    }}>
+                        <GenericIcon iconName={collection.icon} sx={{
+                            width: 14,
+                            height: 14,
+                        }}/>
+                    </Box>
+                )}
             />
-        ));
+        ))
+        ;
     })
 
     return (
@@ -56,21 +77,25 @@ export function ProductViewPage(props) {
                                 }}
                             />
 
-                            <ImageButton
-                                image={product.image2}
-                                disabled={product.image2 === urlImage}
-                                onClick={() => {
-                                    setUrlImage(product.image2)
-                                }}
-                            />
+                            {product.image2 ? (
+                                <ImageButton
+                                    image={product.image2}
+                                    disabled={product.image2 === urlImage}
+                                    onClick={() => {
+                                        setUrlImage(product.image2)
+                                    }}
+                                />
+                            ) : null}
 
-                            <ImageButton
-                                image={product.image3}
-                                disabled={product.image3 === urlImage}
-                                onClick={() => {
-                                    setUrlImage(product.image3)
-                                }}
-                            />
+                            {product.image3 ? (
+                                <ImageButton
+                                    image={product.image3}
+                                    disabled={product.image3 === urlImage}
+                                    onClick={() => {
+                                        setUrlImage(product.image3)
+                                    }}
+                                />
+                            ) : null}
 
                         </Stack>
                     </Grid>
@@ -96,16 +121,27 @@ export function ProductViewPage(props) {
                             <Stack spacing={2} direction={'row'}>
                                 <Chip
                                     size={'medium'}
-                                    label={product.price}
+                                    label={product.price.toFixed(2)}
                                     variant={'outlined'}
                                     color={'success'}
                                     sx={{
                                         marginTop: '1px',
-                                        minWidth: 100,
                                         borderWidth: 2,
                                         fontWeight: 400,
                                         fontSize: 14
                                     }}
+                                    icon={(
+                                        <Box sx={{
+                                            pt: 0.4,
+                                            pl: 0.6,
+                                            pr: 0.1
+                                        }}>
+                                            <CurrencyRubleOutlined sx={{
+                                                width: 14,
+                                                height: 14,
+                                            }}/>
+                                        </Box>
+                                    )}
                                 />
 
                                 <Divider
@@ -122,6 +158,7 @@ export function ProductViewPage(props) {
                             </Stack>
 
                             <Stack direction={isMD ? 'column' : 'row'} spacing={2}>
+
                                 <Stack
                                     spacing={0}
                                     direction={'row'}
@@ -141,9 +178,16 @@ export function ProductViewPage(props) {
                                     }}
                                 >
                                     <Button
+                                        disabled={(cartProducts.find((it) => it.id === product.id)?.count ?? 1) <= 1}
                                         color={'warning'}
                                         onClick={() => {
-
+                                            AppCache.arraySet(
+                                                ConstantStorage.cart,
+                                                cartProducts?.map((it) => {
+                                                    if (it.id === product.id) it.count -= 1;
+                                                    return it
+                                                })
+                                            )
                                         }}
                                     >
                                         <RemoveCircleOutline sx={{width: 32, height: 32}}/>
@@ -154,13 +198,24 @@ export function ProductViewPage(props) {
                                         paddingY: 0.5,
                                         paddingX: 1
                                     }}>
-                                        12
+                                        {cartProducts.find((it) => it.id === product.id)?.count ?? 0}
                                     </Typography>
 
                                     <Button
                                         color={'warning'}
                                         onClick={() => {
-
+                                            if (isHashCart) {
+                                                AppCache.arraySet(
+                                                    ConstantStorage.cart,
+                                                    cartProducts?.map((it) => {
+                                                        if (it.id === product.id) it.count += 1;
+                                                        return it
+                                                    })
+                                                )
+                                            } else {
+                                                cartProducts.push({...product, count: 1})
+                                                AppCache.arraySet(ConstantStorage.cart, cartProducts)
+                                            }
                                         }}
                                     >
                                         <AddCircleOutline sx={{width: 32, height: 32}}/>
@@ -168,25 +223,52 @@ export function ProductViewPage(props) {
                                 </Stack>
 
                                 <Box sx={{width: '100%'}}>
-                                    <Button
-                                        fullWidth
-                                        disableElevation
-                                        variant={'contained'}
-                                        color={'black'}
-                                        startIcon={<AddShoppingCartOutlined/>}
-                                        sx={{
-                                            color: 'white',
-                                            paddingY: 2,
-                                            paddingX: 4,
-                                        }}
-                                        onClick={() => {
-                                            console.log('Add to cart')
-                                        }}
-                                    >
-                                        <Typography variant="h5">
-                                            Add to cart
-                                        </Typography>
-                                    </Button>
+
+                                    {isHashCart ? (
+                                        <Button
+                                            fullWidth
+                                            disableElevation
+                                            variant={'contained'}
+                                            color={'black'}
+                                            startIcon={<RemoveShoppingCartOutlined/>}
+                                            sx={{
+                                                color: 'white',
+                                                paddingY: 2,
+                                                paddingX: 4,
+                                            }}
+                                            onClick={() => {
+                                                AppCache.arraySet(
+                                                    ConstantStorage.cart,
+                                                    cartProducts.filter((it) => it.id !== product.id)
+                                                )
+                                            }}
+                                        >
+                                            <Typography variant="h5">
+                                                Remove from cart
+                                            </Typography>
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            fullWidth
+                                            disableElevation
+                                            variant={'contained'}
+                                            color={'black'}
+                                            startIcon={<AddShoppingCartOutlined/>}
+                                            sx={{
+                                                color: 'white',
+                                                paddingY: 2,
+                                                paddingX: 4,
+                                            }}
+                                            onClick={() => {
+                                                cartProducts.push({...product, count: 1})
+                                                AppCache.arraySet(ConstantStorage.cart, cartProducts)
+                                            }}
+                                        >
+                                            <Typography variant="h5">
+                                                Add to cart
+                                            </Typography>
+                                        </Button>
+                                    )}
                                 </Box>
                             </Stack>
 

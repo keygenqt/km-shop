@@ -52,6 +52,7 @@ class ProductsService(
      */
     fun getAllPublished() = ProductEntity
         .find { (Products.isPublished eq true) }
+        .limit(9)
         .orderBy(Pair(Products.createAt, SortOrder.DESC))
         .filter { it.category.isPublished }
 
@@ -72,8 +73,8 @@ class ProductsService(
     ) = ProductEntity.new {
         this.categoryID = EntityID(categoryID, Categories)
         this.image1 = image1
-        this.image2 = image2
-        this.image3 = image3
+        this.image2 = image2.ifBlank { null }
+        this.image3 = image3.ifBlank { null }
         this.name = name
         this.description = description
         this.price = price
@@ -105,8 +106,8 @@ class ProductsService(
     ) = let { entity ->
         entity.categoryID = EntityID(categoryID, Categories)
         entity.image1 = image1
-        entity.image2 = image2
-        entity.image3 = image3
+        entity.image2 = image2.ifBlank { null }
+        entity.image3 = image3.ifBlank { null }
         entity.name = name
         entity.description = description
         entity.price = price

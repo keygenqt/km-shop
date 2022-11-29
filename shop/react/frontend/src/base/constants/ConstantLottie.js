@@ -3,6 +3,7 @@ import cat from "../../assets/lottie/123760-cat-sneaking.json";
 import cartEmpty from "../../assets/lottie/lf30_editor_0afq7n1f.json";
 import error500 from "../../assets/lottie/119787-webpage-error.json";
 import catPlaying from "../../assets/lottie/117326-cat-playing-animation.json";
+import listEmpty from "../../assets/lottie/lf30_editor_bguhbwhl.json";
 
 /**
  * Apps constants sundries
@@ -12,5 +13,6 @@ export const ConstantLottie = {
     error500: error500,
     cat: cat,
     cartEmpty: cartEmpty,
+    listEmpty: listEmpty,
     catPlaying: catPlaying,
 };

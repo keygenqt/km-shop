@@ -30,9 +30,7 @@ export const RouteConf = {
                     exact
                     path={path}
                     element={
-                        <BaseLayout>
-                            <ExploringPage/>
-                        </BaseLayout>
+                        <ExploringPage/>
                     }
                 />
             }
@@ -48,9 +46,7 @@ export const RouteConf = {
                     exact
                     path={path}
                     element={
-                        <BaseLayout>
-                            <ExploringPage/>
-                        </BaseLayout>
+                        <ExploringPage/>
                     }
                 />
             }

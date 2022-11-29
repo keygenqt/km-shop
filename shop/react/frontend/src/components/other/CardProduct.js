@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import {Avatar, Box, Button, Card, CardActions, CardContent, Chip, IconButton, Stack, Typography} from "@mui/material";
-import {AddShoppingCartOutlined, BrokenImageOutlined, Star} from "@mui/icons-material";
+import {AddShoppingCartOutlined, BrokenImageOutlined, CurrencyRubleOutlined, Star} from "@mui/icons-material";
 import {AppCache, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import * as React from "react";
 import {useContext} from "react";
@@ -27,7 +27,7 @@ export function CardProduct(props) {
                 position: 'relative',
             }}>
                 <Avatar
-                    src={product.image}
+                    src={product.image1}
                     sx={{
                         borderRadius: 0,
                         height: 210,
@@ -45,14 +45,14 @@ export function CardProduct(props) {
 
                         <Stack>
                             <Typography gutterBottom variant="h5" component="div">
-                                {product.title}
+                                {product.name}
                             </Typography>
 
                             <Stack justifyContent={'center'} sx={{
                                 height: 40
                             }}>
                                 <Typography className={'TextMax2'} variant="body2" color="text.secondary">
-                                    {product.desc}
+                                    {product.description}
                                 </Typography>
                             </Stack>
 
@@ -61,16 +61,26 @@ export function CardProduct(props) {
                         <Stack spacing={1} direction={'row'} justifyContent={'space-between'}>
                             <Chip
                                 size={'medium'}
-                                label={product.price}
+                                label={product.price.toFixed(2)}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
                                     marginTop: '1px',
-                                    minWidth: 100,
                                     borderWidth: 2,
                                     fontWeight: 400,
                                     fontSize: 14
                                 }}
+                                icon={(
+                                    <Box sx={{
+                                        pt: 0.4,
+                                        pl: 0.6,
+                                    }}>
+                                        <CurrencyRubleOutlined sx={{
+                                            width: 14,
+                                            height: 14,
+                                        }}/>
+                                    </Box>
+                                )}
                             />
 
                             <Stack direction={'row'} spacing={0.7} alignItems={'center'}>
@@ -99,7 +109,7 @@ export function CardProduct(props) {
                                 disabled={isCartAdded}
                                 size={'small'}
                                 onClick={() => {
-                                    cartProducts.push(product)
+                                    cartProducts.push({...product, count: 1})
                                     AppCache.arraySet(ConstantStorage.cart, cartProducts)
                                 }}
                                 sx={{

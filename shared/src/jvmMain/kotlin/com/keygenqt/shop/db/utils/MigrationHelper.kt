@@ -174,8 +174,6 @@ object MigrationHelper {
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()
                 this.image1 = "$host/api/uploads/${uploadEntity?.fileName}"
-                this.image2 = "$host/api/uploads/${uploadEntity?.fileName}"
-                this.image3 = "$host/api/uploads/${uploadEntity?.fileName}"
                 this.uploads = SizedCollection(*listOfNotNull(uploadEntity).toTypedArray())
             }
         }

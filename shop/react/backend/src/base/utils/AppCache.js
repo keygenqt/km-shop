@@ -103,8 +103,7 @@ export const AppCache = {
 
         // update root
         const el = document.querySelector('#root');
-        const cont = AppCache._allStorage().toString()
-        const hash = cont.slice(-10) + cont.slice(0, 10) + MD5(cont.length + Object.keys(localStorage))
+        const hash = MD5(AppCache._allStorage().toString())
         if (el.dataset.cache !== hash) {
             el.dataset.cache = hash
         }
@@ -116,7 +115,7 @@ export const AppCache = {
             i = keys.length;
 
         while (i--) {
-            values.push(localStorage.getItem(keys[i]));
+            values.push(LZString.decompress(localStorage.getItem(keys[i])));
         }
 
         return values;

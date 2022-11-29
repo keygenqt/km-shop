@@ -8,11 +8,6 @@ import {ProductViewPage} from "./elements/ProductViewPage";
 import {ProductsPurchasedPage} from "./elements/ProductsPurchasedPage";
 import Lottie from "lottie-react";
 import {ConstantLottie, HttpClient, useEffectTimout} from "../../base";
-import {ConstantProducts} from "../../base/constants/ConstantProducts";
-
-function purchasedData() {
-    return ConstantProducts.slice(0, 4)
-}
 
 export function ProductPage() {
 
@@ -29,9 +24,22 @@ export function ProductPage() {
     useEffectTimout(async () => {
         try {
             await new Promise(r => setTimeout(r, 1000));
-            const response = await HttpClient.get.product(id)
-            setPurchased(purchasedData())
-            setProduct(response)
+
+            const responseProduct = await HttpClient.get
+                .product(id)
+
+            const responseProducts = await HttpClient.get
+                .productsPublished()
+
+            setProduct(responseProduct.mapToProduct())
+
+            setPurchased(responseProducts.toArray()
+                .filter((it) => it.id !== parseInt(id))
+                .mapToProducts()
+                .reverse()
+                .slice(0, 4)
+            )
+
             setLoading(false)
         } catch (e) {
             setError(e.message)

@@ -57,7 +57,7 @@ export function ImageSizeBox(props) {
 
     return (
         <Box ref={refBox}>
-            <Box ref={refZoom} onClick={() => setEnableZoom(true)} sx={{
+            <Box ref={refZoom} onClick={() => setEnableZoom(!enableZoom)} sx={{
                 borderRadius: 2,
                 overflow: 'hidden',
                 backgroundImage: `url(${url})`,
@@ -67,7 +67,7 @@ export function ImageSizeBox(props) {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 '&:hover': {
-                    cursor: 'zoom-in'
+                    cursor: enableZoom ? 'zoom-out' : 'zoom-in'
                 }
             }}/>
         </Box>

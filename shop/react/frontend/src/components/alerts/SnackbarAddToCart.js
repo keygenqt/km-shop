@@ -17,7 +17,7 @@ import {
 import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Typography from "@mui/material/Typography";
-import {BrokenImageOutlined, CloseOutlined} from "@mui/icons-material";
+import {BrokenImageOutlined, CloseOutlined, CurrencyRubleOutlined} from "@mui/icons-material";
 
 let timeoutID
 
@@ -119,25 +119,31 @@ export function SnackbarAddToCart() {
                                             alignItems="stretch"
                                             spacing={2}
                                         >
-                                            <Avatar
-                                                variant={'rounded'}
-                                                src={product.image}
-                                                sx={{
-                                                    width: 70,
-                                                    height: 70
-                                                }}
-                                            >
-                                                <BrokenImageOutlined sx={{
-                                                    width: 40,
-                                                    height: 40
-                                                }}/>
-                                            </Avatar>
+                                            <Button sx={{p: 0}} onClick={() => {
+                                                setIsShow(false)
+                                                route.toLocation(routes.product, product.id)
+                                            }}>
+                                                <Avatar
+                                                    variant={'rounded'}
+                                                    src={product.image1}
+                                                    sx={{
+                                                        width: 70,
+                                                        height: 70
+                                                    }}
+                                                >
+                                                    <BrokenImageOutlined sx={{
+                                                        width: 40,
+                                                        height: 40
+                                                    }}/>
+                                                </Avatar>
+                                            </Button>
+
                                             <Stack spacing={1}>
                                                 <Typography variant="h5">
-                                                    {product.title}
+                                                    {product.name}
                                                 </Typography>
                                                 <Typography variant="caption">
-                                                    {product.desc}
+                                                    {product.description}
                                                 </Typography>
                                             </Stack>
                                         </Stack>
@@ -148,13 +154,22 @@ export function SnackbarAddToCart() {
                                         >
                                             <Chip
                                                 size={'small'}
-                                                label={product.price}
+                                                label={product.price.toFixed(2)}
                                                 variant={'outlined'}
                                                 color={'success'}
                                                 sx={{
-                                                    marginTop: '1px',
                                                     minWidth: 80
                                                 }}
+                                                icon={(
+                                                    <Box sx={{
+                                                        pl: 0.6,
+                                                    }}>
+                                                        <CurrencyRubleOutlined sx={{
+                                                            width: 13,
+                                                            height: 13,
+                                                        }}/>
+                                                    </Box>
+                                                )}
                                             />
 
                                             <Box sx={{

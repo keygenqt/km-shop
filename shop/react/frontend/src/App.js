@@ -19,29 +19,16 @@ function App() {
             const categories = await HttpClient.get.categoriesPublished()
             const collections = await HttpClient.get.collectionsPublished()
 
-            // save categories
-            AppCache.arraySet(ConstantStorage.categories, categories.toArray().map((it) => ({
-                id: it.id,
-                key: it.key,
-                image: it.image,
-                name: it.name,
-                desc: it.desc
-            })))
-
-            // save collections
-            AppCache.arraySet(ConstantStorage.collections, collections.toArray().map((it) => ({
-                id: it.id,
-                key: it.key,
-                icon: it.icon,
-                name: it.name,
-                desc: it.desc
-            })))
+            AppCache.arraySet(ConstantStorage.categories, categories.toArray().mapToCategories())
+            AppCache.arraySet(ConstantStorage.collections, collections.toArray().mapToCollections())
 
             setLoading(false)
         } catch (e) {
+            console.log(e)
+
             setError(e.message)
         }
-    }, [])
+    }, [location])
 
     return (
         <ThemeProvider theme={AppTheme}>

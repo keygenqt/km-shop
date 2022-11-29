@@ -1,22 +1,10 @@
 import * as React from 'react';
 import {useContext} from 'react';
-import {
-    Avatar,
-    Box,
-    Button,
-    Chip,
-    Divider,
-    Grid,
-    Stack,
-    TextField,
-    Typography,
-    useMediaQuery,
-    useTheme
-} from "@mui/material";
+import {Avatar, Box, Button, Chip, Divider, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {
     AddCircleOutline,
     BrokenImageOutlined,
-    DoneOutlined,
+    CurrencyRubleOutlined,
     RemoveCircleOutline,
     SearchOutlined
 } from "@mui/icons-material";
@@ -24,6 +12,7 @@ import {AppCache, ConstantLottie, ConstantStorage, NavigateContext, useLocalStor
 import {ValueType} from "../../base/route/ValueType";
 import Lottie from "lottie-react";
 import {CartForm} from "./elements/CartForm";
+import {GenericIcon} from "../../components";
 
 export function CartPage() {
 
@@ -38,9 +27,7 @@ export function CartPage() {
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
     const isXS = useMediaQuery(theme.breakpoints.down('xs'));
 
-    const [counters, setCounters] = React.useState([]);
-
-    cartProducts.forEach((product, id) => {
+    cartProducts.forEach((product) => {
 
         const collections = []
 
@@ -49,17 +36,26 @@ export function CartPage() {
                 <Chip
                     key={`collections-item-${index}`}
                     size={'small'}
-                    label={collection}
                     variant={'outlined'}
                     color={'secondary'}
+                    label={collection.name}
+                    icon={(
+                        <Box sx={{
+                            pl: 0.6,
+                            pr: 0.1
+                        }}>
+                            <GenericIcon iconName={collection.icon} sx={{
+                                width: 14,
+                                height: 14,
+                            }}/>
+                        </Box>
+                    )}
                 />
             ));
         })
 
         products.push((
-            <React.Fragment
-                key={`cart-product-item-${id}`}
-            >
+            <React.Fragment key={`cart-product-item-${product.id}`}>
                 <Stack
                     direction={isSM ? 'column' : 'row'}
                     justifyContent="space-between"
@@ -78,19 +74,23 @@ export function CartPage() {
                         spacing={3}
                     >
 
-                        <Avatar
-                            variant={'rounded'}
-                            src={product.image}
-                            sx={{
-                                width: isSM ? '100%' : 100,
-                                height: isSM ? 200 : 100
-                            }}
-                        >
-                            <BrokenImageOutlined sx={{
-                                width: 60,
-                                height: 60
-                            }}/>
-                        </Avatar>
+                        <Button sx={{p: 0}} onClick={() => {
+                            route.toLocation(routes.product, product.id)
+                        }}>
+                            <Avatar
+                                variant={'rounded'}
+                                src={product.image1}
+                                sx={{
+                                    width: isSM ? '100%' : 100,
+                                    height: isSM ? 200 : 100
+                                }}
+                            >
+                                <BrokenImageOutlined sx={{
+                                    width: 60,
+                                    height: 60
+                                }}/>
+                            </Avatar>
+                        </Button>
 
                         <Stack
                             spacing={1}
@@ -98,10 +98,10 @@ export function CartPage() {
                         >
                             <Stack spacing={1}>
                                 <Typography variant="h5">
-                                    {product.title}
+                                    {product.name}
                                 </Typography>
                                 <Typography variant="body2">
-                                    {product.desc}
+                                    {product.description}
                                 </Typography>
                             </Stack>
 
@@ -141,13 +141,13 @@ export function CartPage() {
                             }}
                         >
                             <Button
-                                disabled={(counters.find((it) => it.id === id)?.count ?? 1) <= 1}
+                                disabled={(cartProducts.find((it) => it.id === product.id)?.count ?? 1) <= 1}
                                 color={'warning'}
                                 onClick={() => {
-                                    setCounters(counters.filter((it) => it.id !== id).concat([{
-                                        id: id,
-                                        count: (counters.find((it) => it.id === id)?.count ?? 1) - 1
-                                    }]))
+                                    AppCache.arraySet(
+                                        ConstantStorage.cart,
+                                        cartProducts?.map((it) => {if (it.id === product.id) it.count -= 1; return it })
+                                    )
                                 }}
                             >
                                 <RemoveCircleOutline/>
@@ -158,16 +158,16 @@ export function CartPage() {
                                 paddingY: 0.5,
                                 paddingX: 1
                             }}>
-                                {counters.find((it) => it.id === id)?.count ?? 1}
+                                {cartProducts.find((it) => it.id === product.id)?.count ?? 1}
                             </Typography>
 
                             <Button
                                 color={'warning'}
                                 onClick={() => {
-                                    setCounters(counters.filter((it) => it.id !== id).concat([{
-                                        id: id,
-                                        count: (counters.find((it) => it.id === id)?.count ?? 1) + 1
-                                    }]))
+                                    AppCache.arraySet(
+                                        ConstantStorage.cart,
+                                        cartProducts?.map((it) => {if (it.id === product.id) it.count += 1; return it })
+                                    )
                                 }}
                             >
                                 <AddCircleOutline/>
@@ -183,15 +183,28 @@ export function CartPage() {
                         >
                             <Chip
                                 size={'medium'}
-                                label={(product.price * (counters.find((it) => it.id === id)?.count ?? 1)).toFixed(2)}
+                                label={(product.price * (cartProducts.find((it) => it.id === product.id)?.count ?? 1)).toFixed(2)}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
                                     marginTop: isSM ? 0 : 1,
                                     minWidth: 100,
-                                    fontWeight: 600,
-                                    borderWidth: 2
+                                    borderWidth: 2,
+                                    '& .MuiChip-label': {
+                                        fontSize: 14
+                                    }
                                 }}
+                                icon={(
+                                    <Box sx={{
+                                        pt: 0.4,
+                                        pl: 0.6,
+                                    }}>
+                                        <CurrencyRubleOutlined sx={{
+                                            width: 16,
+                                            height: 16,
+                                        }}/>
+                                    </Box>
+                                )}
                             />
 
                             <Box sx={{

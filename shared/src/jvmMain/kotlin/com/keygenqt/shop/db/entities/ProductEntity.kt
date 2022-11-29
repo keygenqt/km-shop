@@ -29,8 +29,8 @@ import org.jetbrains.exposed.sql.Table
 object Products : IntIdTable() {
     val categoryID = reference("category", Categories)
     val image1 = varchar("image1", 255)
-    val image2 = varchar("image2", 255)
-    val image3 = varchar("image3", 255)
+    val image2 = varchar("image2", 255).nullable()
+    val image3 = varchar("image3", 255).nullable()
     val name = varchar("name", 255).uniqueIndex()
     val description = text("description")
     val price = double("price")

@@ -4,7 +4,8 @@ import {Avatar, Box, Button, Chip, ClickAwayListener, Fade, Paper, Popper, Stack
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {AppCache, ConstantStorage, NavigateContext} from "../../../base";
-import {BrokenImageOutlined} from "@mui/icons-material";
+import {BrokenImageOutlined, CurrencyRubleOutlined} from "@mui/icons-material";
+import {GenericIcon} from "../../other/GenericIcon";
 
 /**
  * Application cart toolbar
@@ -22,9 +23,9 @@ export function CartToolbar(props) {
 
     const products = []
 
-    rows.forEach((product, index) => {
+    rows.forEach((product) => {
         products.push((
-            <React.Fragment key={`cart-product-item-${index}`}>
+            <React.Fragment key={`cart-product-item-${product.id}`}>
                 <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F7F0EA'}}>
                     <Stack
                         direction="row"
@@ -44,28 +45,33 @@ export function CartToolbar(props) {
                             spacing={2}
                         >
 
-                            <Avatar
-                                variant={'rounded'}
-                                src={product.image}
-                                sx={{
-                                    width: 70,
-                                    height: 70
-                                }}
-                            >
-                                <BrokenImageOutlined sx={{
-                                    width: 40,
-                                    height: 40
-                                }}/>
-                            </Avatar>
+                            <Button sx={{p: 0}} onClick={() => {
+                                onClose()
+                                route.toLocation(routes.product, product.id)
+                            }}>
+                                <Avatar
+                                    variant={'rounded'}
+                                    src={product.image1}
+                                    sx={{
+                                        width: 70,
+                                        height: 70
+                                    }}
+                                >
+                                    <BrokenImageOutlined sx={{
+                                        width: 40,
+                                        height: 40
+                                    }}/>
+                                </Avatar>
+                            </Button>
 
                             <Stack
                                 spacing={1}
                             >
                                 <Typography variant="h5">
-                                    {product.title}
+                                    {product.name}
                                 </Typography>
                                 <Typography variant="caption">
-                                    {product.desc}
+                                    {product.description}
                                 </Typography>
                             </Stack>
                         </Stack>
@@ -76,13 +82,22 @@ export function CartToolbar(props) {
                         >
                             <Chip
                                 size={'small'}
-                                label={product.price}
+                                label={product.price.toFixed(2)}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
-                                    marginTop: '1px',
                                     minWidth: 80
                                 }}
+                                icon={(
+                                    <Box sx={{
+                                        pl: 0.6,
+                                    }}>
+                                        <CurrencyRubleOutlined sx={{
+                                            width: 13,
+                                            height: 13,
+                                        }}/>
+                                    </Box>
+                                )}
                             />
 
                             <Box sx={{
