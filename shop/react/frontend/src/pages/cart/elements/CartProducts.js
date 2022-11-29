@@ -90,23 +90,25 @@ export function CartProducts(props) {
                         spacing={3}
                     >
 
-                        <Button sx={{p: 0}} onClick={() => {
-                            route.toLocation(routes.product, product.id)
-                        }}>
-                            <Avatar
-                                variant={'rounded'}
-                                src={product.image1}
-                                sx={{
-                                    width: isSM ? '100%' : 100,
-                                    height: isSM ? 200 : 100
-                                }}
-                            >
-                                <BrokenImageOutlined sx={{
-                                    width: 60,
-                                    height: 60
-                                }}/>
-                            </Avatar>
-                        </Button>
+                        <Box>
+                            <Button sx={{p: 0}} onClick={() => {
+                                route.toLocation(routes.product, product.id)
+                            }}>
+                                <Avatar
+                                    variant={'rounded'}
+                                    src={product.image1}
+                                    sx={{
+                                        width: isSM ? '100%' : 100,
+                                        height: isSM ? 200 : 100
+                                    }}
+                                >
+                                    <BrokenImageOutlined sx={{
+                                        width: 60,
+                                        height: 60
+                                    }}/>
+                                </Avatar>
+                            </Button>
+                        </Box>
 
                         <Stack
                             spacing={1}

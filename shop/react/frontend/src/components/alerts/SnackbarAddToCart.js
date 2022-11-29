@@ -119,24 +119,26 @@ export function SnackbarAddToCart() {
                                             alignItems="stretch"
                                             spacing={2}
                                         >
-                                            <Button sx={{p: 0}} onClick={() => {
-                                                setIsShow(false)
-                                                route.toLocation(routes.product, product.id)
-                                            }}>
-                                                <Avatar
-                                                    variant={'rounded'}
-                                                    src={product.image1}
-                                                    sx={{
-                                                        width: 70,
-                                                        height: 70
-                                                    }}
-                                                >
-                                                    <BrokenImageOutlined sx={{
-                                                        width: 40,
-                                                        height: 40
-                                                    }}/>
-                                                </Avatar>
-                                            </Button>
+                                            <Box>
+                                                <Button sx={{p: 0}} onClick={() => {
+                                                    setIsShow(false)
+                                                    route.toLocation(routes.product, product.id)
+                                                }}>
+                                                    <Avatar
+                                                        variant={'rounded'}
+                                                        src={product.image1}
+                                                        sx={{
+                                                            width: 70,
+                                                            height: 70
+                                                        }}
+                                                    >
+                                                        <BrokenImageOutlined sx={{
+                                                            width: 40,
+                                                            height: 40
+                                                        }}/>
+                                                    </Avatar>
+                                                </Button>
+                                            </Box>
 
                                             <Stack spacing={1}>
                                                 <Typography variant="h5">
