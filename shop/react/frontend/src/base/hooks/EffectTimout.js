@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {MD5} from "crypto-js";
 
-let timeoutIDs = {}
+let timeoutIDs = []
 
 /**
  * Timeout cansel multiple query
@@ -9,14 +9,15 @@ let timeoutIDs = {}
 export function useEffectTimout(create, deps = [], before = () => {
 }, ms = 600) {
     useEffect(() => {
-        const key = MD5(create.toString()).toString()
         before()
-        const fetchData = async () => {
-            await create()
-        }
-        // clearTimeout(timeoutIDs[key])
-        timeoutIDs[key] = setTimeout(() => {
-            fetchData().catch(console.error);
-        }, ms)
+        const key = MD5(create.toString()).toString()
+        clearTimeout(timeoutIDs.find((it) => it.key === key)?.val)
+        timeoutIDs = timeoutIDs.filter((it) => it.key !== key)
+        timeoutIDs.push({
+            key: key,
+            val: setTimeout(async () => {
+                await create()
+            }, ms)
+        })
     }, deps)
 }
