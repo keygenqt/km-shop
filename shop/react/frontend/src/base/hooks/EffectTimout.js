@@ -14,7 +14,7 @@ export function useEffectTimout(create, deps = [], before = () => {
         const fetchData = async () => {
             await create()
         }
-        clearTimeout(timeoutIDs[key])
+        // clearTimeout(timeoutIDs[key])
         timeoutIDs[key] = setTimeout(() => {
             fetchData().catch(console.error);
         }, ms)
