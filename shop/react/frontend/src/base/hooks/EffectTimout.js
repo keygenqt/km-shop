@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {MD5} from "crypto-js";
 
-let timeoutIDs = []
+let timeoutIDs = {}
 
 /**
  * Timeout cansel multiple query

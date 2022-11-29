@@ -1,8 +1,11 @@
 /**
  * Apps constants [localStorage] keys
  */
+
+const version = '0.0.1'
+
 export const ConstantStorage = {
-    cart: 'CartStorage',
-    categories: 'CategoriesStorage',
-    collections: 'CollectionsStorage',
+    cart: `CartStorage-${version}`,
+    categories: `CategoriesStorage-${version}`,
+    collections: `CollectionsStorage-${version}`,
 };
