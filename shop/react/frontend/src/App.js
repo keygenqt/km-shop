@@ -28,7 +28,7 @@ function App() {
 
             setError(e.message)
         }
-    }, [location])
+    }, [location], () => {}, 500, "App")
 
     return (
         <ThemeProvider theme={AppTheme}>
