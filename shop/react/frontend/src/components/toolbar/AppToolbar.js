@@ -23,18 +23,19 @@ import {
 import {CartToolbar} from "./elements/CartToolbar";
 import {CollectionsToolbar} from "./elements/CollectionsToolbar";
 import {ConstantImages, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
-import {ConstantProducts} from "../../base/constants/ConstantProducts";
 import {ValueType} from "../../base/route/ValueType";
 
 /**
  * Application toolbar
  */
-export function AppToolbar(props) {
+export function AppToolbar() {
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
     const {route, routes} = useContext(NavigateContext)
+
     const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
+    const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
     const [anchorCart, setAnchorCart] = React.useState(null);
     const [anchorCollections, setAnchorCollections] = React.useState(null);
@@ -113,7 +114,7 @@ export function AppToolbar(props) {
                                 Exploring
                             </Button>
 
-                            {!isSM ? (
+                            {!isSM && collectionsCache.length > 0 ? (
                                 <Button
                                     sx={{
                                         textTransform: 'none',

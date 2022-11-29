@@ -15,8 +15,15 @@ import {Formik} from "formik";
 import * as Yup from "yup";
 import {AppHelper} from "../../../base";
 import {AlertError} from "../../../components";
+import PropTypes from "prop-types";
+import {CartSetValueFormic} from "./CartSetValueFormic";
 
-export function CartForm() {
+export function CartForm(props) {
+
+    const {
+        loading,
+        onSubmit
+    } = props
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -35,6 +42,7 @@ export function CartForm() {
             })}
             onSubmit={async (values, {setErrors, setStatus, setValues}) => {
 
+                onSubmit(true)
                 setStatus({success: null});
                 setErrors({submit: null});
 
@@ -69,6 +77,8 @@ export function CartForm() {
 
                     setStatus({success: false});
                 }
+
+                onSubmit(false)
             }}
         >
             {({
@@ -82,6 +92,10 @@ export function CartForm() {
                   values
               }) => (
                 <form noValidate onSubmit={handleSubmit}>
+
+                    <CartSetValueFormic
+                        clear={loading}
+                    />
 
                     <FormGroup>
                         <Box>
@@ -113,7 +127,7 @@ export function CartForm() {
                                 )}
 
                                 <TextField
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || loading}
                                     type={'text'}
                                     name={'email'}
                                     value={values.email}
@@ -132,7 +146,7 @@ export function CartForm() {
                                 />
 
                                 <TextField
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || loading}
                                     type={'phone'}
                                     name={'phone'}
                                     value={values.phone}
@@ -151,7 +165,7 @@ export function CartForm() {
                                 />
 
                                 <TextField
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || loading}
                                     type={'text'}
                                     name={'information'}
                                     value={values.information}
@@ -179,7 +193,7 @@ export function CartForm() {
                                         variant={'contained'}
                                         size={'large'}
                                         color={'secondary'}
-                                        disabled={isSubmitting}
+                                        disabled={isSubmitting || loading}
                                         startIcon={isSubmitting ? (
                                             <CircularProgress sx={{
                                                 mr: 0.5,
@@ -204,4 +218,7 @@ export function CartForm() {
     )
 }
 
-CartForm.propTypes = {};
+CartForm.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+};

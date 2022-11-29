@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import {Avatar, Box, Button, Card, CardActions, CardContent, Chip, IconButton, Stack, Typography} from "@mui/material";
 import {AddShoppingCartOutlined, BrokenImageOutlined, CurrencyRubleOutlined, Star} from "@mui/icons-material";
-import {AppCache, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {AppCache, AppHelper, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import * as React from "react";
 import {useContext} from "react";
 import {ValueType} from "../../base/route/ValueType";
@@ -61,7 +61,7 @@ export function CardProduct(props) {
                         <Stack spacing={1} direction={'row'} justifyContent={'space-between'}>
                             <Chip
                                 size={'medium'}
-                                label={product.price.toFixed(2)}
+                                label={AppHelper.priceFormat(product.price)}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{

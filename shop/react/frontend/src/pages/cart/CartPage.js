@@ -1,237 +1,33 @@
 import * as React from 'react';
-import {useContext} from 'react';
-import {Avatar, Box, Button, Chip, Divider, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {
-    AddCircleOutline,
-    BrokenImageOutlined,
-    CurrencyRubleOutlined,
-    RemoveCircleOutline,
-    SearchOutlined
-} from "@mui/icons-material";
-import {AppCache, ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {useContext, useEffect, useState} from 'react';
+import {Box, Button, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {SearchOutlined} from "@mui/icons-material";
+import {ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Lottie from "lottie-react";
 import {CartForm} from "./elements/CartForm";
-import {GenericIcon} from "../../components";
+import {CartProducts} from "./elements/CartProducts";
 
 export function CartPage() {
 
     const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
-
-    const products = []
-
     const {route, routes} = useContext(NavigateContext)
+
     const theme = useTheme()
-    const isLG = useMediaQuery(theme.breakpoints.down('lg'));
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-    const isXS = useMediaQuery(theme.breakpoints.down('xs'));
 
-    cartProducts.forEach((product) => {
+    const [submit, setSubmit] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [refresh, setRefresh] = useState(false);
+    const [error, setError] = useState(null);
 
-        const collections = []
-
-        product.collections.forEach((collection, index) => {
-            collections.push((
-                <Chip
-                    key={`collections-item-${index}`}
-                    size={'small'}
-                    variant={'outlined'}
-                    color={'secondary'}
-                    label={collection.name}
-                    icon={(
-                        <Box sx={{
-                            pl: 0.6,
-                            pr: 0.1
-                        }}>
-                            <GenericIcon iconName={collection.icon} sx={{
-                                width: 14,
-                                height: 14,
-                            }}/>
-                        </Box>
-                    )}
-                />
-            ));
-        })
-
-        products.push((
-            <React.Fragment key={`cart-product-item-${product.id}`}>
-                <Stack
-                    direction={isSM ? 'column' : 'row'}
-                    justifyContent="space-between"
-                    alignItems="stretch"
-                    spacing={2}
-                    sx={{
-                        backgroundColor: 'white',
-                        borderRadius: 2,
-                        p: 2,
-                    }}
-                >
-                    <Stack
-                        direction={isLG ? 'column' : 'row'}
-                        justifyContent="space-between"
-                        alignItems="stretch"
-                        spacing={3}
-                    >
-
-                        <Button sx={{p: 0}} onClick={() => {
-                            route.toLocation(routes.product, product.id)
-                        }}>
-                            <Avatar
-                                variant={'rounded'}
-                                src={product.image1}
-                                sx={{
-                                    width: isSM ? '100%' : 100,
-                                    height: isSM ? 200 : 100
-                                }}
-                            >
-                                <BrokenImageOutlined sx={{
-                                    width: 60,
-                                    height: 60
-                                }}/>
-                            </Avatar>
-                        </Button>
-
-                        <Stack
-                            spacing={1}
-                            justifyContent="space-between"
-                        >
-                            <Stack spacing={1}>
-                                <Typography variant="h5">
-                                    {product.name}
-                                </Typography>
-                                <Typography variant="body2">
-                                    {product.description}
-                                </Typography>
-                            </Stack>
-
-                            {collections.length ? (
-                                <Box sx={{
-                                    position: 'relative',
-                                    left: -8,
-                                    '& .MuiChip-root': {
-                                        marginLeft: 1,
-                                        mt: 0.3,
-                                        mb: 0.3,
-                                    },
-                                }}>
-                                    {collections}
-                                </Box>
-                            ) : null}
-
-                        </Stack>
-                    </Stack>
-
-                    <Stack
-                        direction={isXS ? 'column' : 'row'}
-                        spacing={2}
-                    >
-
-                        <Stack
-                            direction={'row'}
-                            alignItems={'flex-start'}
-                            sx={{
-                                pt: isSM ? 0 : 1,
-                                userSelect: 'none',
-                                '& .MuiButtonBase-root': {
-                                    p: 0.5,
-                                    minWidth: 0,
-                                    borderRadius: '50%'
-                                }
-                            }}
-                        >
-                            <Button
-                                disabled={(cartProducts.find((it) => it.id === product.id)?.count ?? 1) <= 1}
-                                color={'warning'}
-                                onClick={() => {
-                                    AppCache.arraySet(
-                                        ConstantStorage.cart,
-                                        cartProducts?.map((it) => {if (it.id === product.id) it.count -= 1; return it })
-                                    )
-                                }}
-                            >
-                                <RemoveCircleOutline/>
-                            </Button>
-
-                            <Typography variant={'h6'} sx={{
-                                fontSize: 15,
-                                paddingY: 0.5,
-                                paddingX: 1
-                            }}>
-                                {cartProducts.find((it) => it.id === product.id)?.count ?? 1}
-                            </Typography>
-
-                            <Button
-                                color={'warning'}
-                                onClick={() => {
-                                    AppCache.arraySet(
-                                        ConstantStorage.cart,
-                                        cartProducts?.map((it) => {if (it.id === product.id) it.count += 1; return it })
-                                    )
-                                }}
-                            >
-                                <AddCircleOutline/>
-                            </Button>
-                        </Stack>
-
-                        <Stack
-                            spacing={1}
-                            direction={isSM ? 'row' : 'column'}
-                            justifyContent={'space-between'}
-                            alignItems={isSM ? 'center' : 'flex-end'}
-                            sx={{width: '100%'}}
-                        >
-                            <Chip
-                                size={'medium'}
-                                label={(product.price * (cartProducts.find((it) => it.id === product.id)?.count ?? 1)).toFixed(2)}
-                                variant={'outlined'}
-                                color={'success'}
-                                sx={{
-                                    marginTop: isSM ? 0 : 1,
-                                    minWidth: 100,
-                                    borderWidth: 2,
-                                    '& .MuiChip-label': {
-                                        fontSize: 14
-                                    }
-                                }}
-                                icon={(
-                                    <Box sx={{
-                                        pt: 0.4,
-                                        pl: 0.6,
-                                    }}>
-                                        <CurrencyRubleOutlined sx={{
-                                            width: 16,
-                                            height: 16,
-                                        }}/>
-                                    </Box>
-                                )}
-                            />
-
-                            <Box sx={{
-                                textAlign: 'right'
-                            }}>
-                                <Button
-                                    size={'small'}
-                                    sx={{textTransform: 'none'}}
-                                    onClick={() => {
-                                        AppCache.arraySet(
-                                            ConstantStorage.cart,
-                                            cartProducts.filter((it) => it.id !== product.id)
-                                        )
-                                    }}
-                                >
-                                    Remove
-                                </Button>
-                            </Box>
-                        </Stack>
-
-                    </Stack>
-
-                </Stack>
-
-            </React.Fragment>
-        ));
-    })
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000)
+    }, [refresh])
 
     if (cartProducts.length === 0) {
         return (
@@ -268,7 +64,6 @@ export function CartPage() {
                         Exploring
                     </Button>
                 </Box>
-
             </Stack>
         )
     }
@@ -313,41 +108,19 @@ export function CartPage() {
 
                 <Grid container spacing={isMD ? 6 : 3}>
                     <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
-                        <Stack spacing={isMD ? 2 : 3} sx={{
-                            backgroundColor: '#eaf7f2',
-                            borderRadius: 2,
-                            p: isMD ? 2 : 3,
-                            position: 'relative'
-                        }}>
-
-                            <Stack spacing={3}>
-                                <Stack
-                                    direction={'row'}
-                                    justifyContent={'space-between'}
-                                    alignItems={'center'}
-                                >
-                                    <Typography variant={'h5'} sx={{fontWeight: 100}}>
-                                        Order total
-                                    </Typography>
-
-                                    <Typography variant={'h5'}>
-                                        276.00
-                                    </Typography>
-                                </Stack>
-                                <Divider/>
-                            </Stack>
-
-                            {products}
-                        </Stack>
+                        <CartProducts
+                            disabled={submit}
+                            loading={loading}
+                            rows={cartProducts}
+                            onRefresh={() => setRefresh(!refresh)}
+                        />
                     </Grid>
                     <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
-
                         <Stack spacing={isMD ? 2 : 3} sx={{
                             top: 32,
                             position: 'sticky',
                             marginBottom: -2
                         }}>
-
                             <Box sx={{
                                 position: 'absolute',
                                 width: 50,
@@ -358,7 +131,10 @@ export function CartPage() {
                                 right: 40
                             }}/>
 
-                            <CartForm/>
+                            <CartForm
+                                loading={loading}
+                                onSubmit={(state) => setSubmit(state)}
+                            />
 
                         </Stack>
                     </Grid>

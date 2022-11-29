@@ -43,7 +43,7 @@ export function CategoriesBlockHomePage() {
     const filters = []
     const categories = []
 
-    collectionsCache.forEach((collection) => {
+    collectionsCache.slice(0, 6).forEach((collection) => {
         filters.push((
             <Tab
                 key={`filter-item-${collection.id}`}
@@ -192,15 +192,17 @@ export function CategoriesBlockHomePage() {
                     Start exploring
                 </Typography>
 
-                <TabsBlackStyled
-                    value={value}
-                    onChange={(event, value) => {
-                        setValue(value)
-                    }}
-                    sx={{}}
-                >
-                    {filters}
-                </TabsBlackStyled>
+                {filters.length > 0 ? (
+                    <TabsBlackStyled
+                        value={value}
+                        onChange={(event, value) => {
+                            setValue(value)
+                        }}
+                        sx={{}}
+                    >
+                        {filters}
+                    </TabsBlackStyled>
+                ) : null}
             </Stack>
 
             <Grid container spacing={isMD ? isXS ? 2 : 3 : 4}>

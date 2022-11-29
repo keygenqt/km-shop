@@ -3,7 +3,6 @@ import {useContext, useEffect} from 'react';
 import {Box, Button, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
-import {ConstantCollections} from "../../../base/constants/ConstantCollections";
 import {ConstantStorage, NavigateContext, useLocalStorage} from "../../../base";
 import {ValueType} from "../../../base/route/ValueType";
 import {GenericIcon} from "../../other/GenericIcon";
@@ -117,32 +116,59 @@ export function CollectionsToolbar(props) {
                         <Fade {...TransitionProps} timeout={350}>
                             <Paper elevation={1} sx={{
                                 zIndex: 999,
-                                pt: 2,
-                                pl: 2,
-                                pr: 2,
+                                pt: 1,
                                 borderRadius: 2,
                                 maxWidth: 400,
                                 minWidth: 300,
                                 overflow: 'hidden'
                             }}>
                                 <Stack
-                                    spacing={1.2}
                                     alignItems={'flex-start'}
+                                    sx={{position: 'relative'}}
                                 >
+                                    <Box sx={{
+                                        position: 'absolute',
+                                        height: 8,
+                                        top: 8,
+                                        left: 0,
+                                        right: 16,
+                                        zIndex: 1,
+                                        background: 'linear-gradient(0deg, transparent 0%, white 100%)'
+                                    }}/>
 
-                                    {items}
+                                    <Stack spacing={1} className={'custom-scroll'} sx={{
+                                        width: '100%',
+                                        maxHeight: 500,
+                                        paddingX: 2,
+                                        marginTop: 1,
+                                        pt: 1,
+                                        pb: 2.5,
+                                        position: 'relative',
+                                        boxSizing: 'border-box',
+                                    }}>
+                                        {items}
+                                    </Stack>
 
                                     <Stack
                                         spacing={2}
                                         sx={{
                                             backgroundColor: '#F9FAFB',
-                                            width: 'calc(100% + 32px)',
+                                            width: '100%',
                                             position: 'relative',
-                                            left: -16,
-                                            marginBottom: -16,
                                             paddingX: 4,
                                             paddingY: 3,
-                                            boxSizing: 'border-box'
+                                            boxSizing: 'border-box',
+                                            '&:after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                height: 12,
+                                                backgroundColor: 'red',
+                                                top: -12,
+                                                left: 0,
+                                                right: 16,
+                                                zIndex: 1,
+                                                background: 'linear-gradient(0deg, white 0%, transparent 100%)'
+                                            }
                                         }}
                                     >
                                         <Stack spacing={1}>

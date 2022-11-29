@@ -49,4 +49,14 @@ export const AppHelper = {
     getFileUrl: (fileName) => {
         return `${AppConf.apiPath}/api/uploads/${fileName}`
     },
+
+    /**
+     * Create file link
+     */
+    priceFormat: (price) => {
+        return new Intl
+            .NumberFormat('en-US', {style: 'currency', currency: 'RUB'})
+            .format(price)
+            .replace("RUB", "")
+    },
 };

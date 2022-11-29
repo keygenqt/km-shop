@@ -3,9 +3,8 @@ import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, ClickAwayListener, Fade, Paper, Popper, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
-import {AppCache, ConstantStorage, NavigateContext} from "../../../base";
+import {AppCache, AppHelper, ConstantStorage, NavigateContext} from "../../../base";
 import {BrokenImageOutlined, CurrencyRubleOutlined} from "@mui/icons-material";
-import {GenericIcon} from "../../other/GenericIcon";
 
 /**
  * Application cart toolbar
@@ -22,6 +21,7 @@ export function CartToolbar(props) {
     const [anchorCart, setAnchorCart] = React.useState(anchor);
 
     const products = []
+    const subtotal = AppHelper.priceFormat(rows.reduce((a, it) => a + (it.price * it.count), 0))
 
     rows.forEach((product) => {
         products.push((
@@ -82,7 +82,7 @@ export function CartToolbar(props) {
                         >
                             <Chip
                                 size={'small'}
-                                label={product.price.toFixed(2)}
+                                label={`${AppHelper.priceFormat(product.price)} x ${product.count}`}
                                 variant={'outlined'}
                                 color={'success'}
                                 sx={{
@@ -234,7 +234,7 @@ export function CartToolbar(props) {
                                             </Stack>
 
                                             <Typography variant='h5'>
-                                                299.00
+                                                {subtotal}
                                             </Typography>
                                         </Stack>
 

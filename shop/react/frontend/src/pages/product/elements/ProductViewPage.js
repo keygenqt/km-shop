@@ -16,7 +16,7 @@ import {
 } from "@mui/icons-material";
 import {ImageSizeBox} from "./ImageSizeBox";
 import {GenericIcon} from "../../../components";
-import {AppCache, ConstantStorage, useLocalStorage} from "../../../base";
+import {AppCache, AppHelper, ConstantStorage, useLocalStorage} from "../../../base";
 import {ValueType} from "../../../base/route/ValueType";
 
 
@@ -121,7 +121,7 @@ export function ProductViewPage(props) {
                             <Stack spacing={2} direction={'row'}>
                                 <Chip
                                     size={'medium'}
-                                    label={product.price.toFixed(2)}
+                                    label={AppHelper.priceFormat(product.price)}
                                     variant={'outlined'}
                                     color={'success'}
                                     sx={{

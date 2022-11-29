@@ -14,7 +14,7 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import {ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {AppHelper, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Typography from "@mui/material/Typography";
 import {BrokenImageOutlined, CloseOutlined, CurrencyRubleOutlined} from "@mui/icons-material";
@@ -154,7 +154,7 @@ export function SnackbarAddToCart() {
                                         >
                                             <Chip
                                                 size={'small'}
-                                                label={product.price.toFixed(2)}
+                                                label={AppHelper.priceFormat(product.price)}
                                                 variant={'outlined'}
                                                 color={'success'}
                                                 sx={{
