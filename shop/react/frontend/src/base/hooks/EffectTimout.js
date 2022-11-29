@@ -7,7 +7,7 @@ let timeoutIDs = []
  * Timeout cansel multiple query
  */
 export function useEffectTimout(create, deps = [], before = () => {
-}, ms = 600) {
+}, ms = 1600) {
     useEffect(() => {
         before()
         const key = MD5(create.toString()).toString()
