@@ -4,7 +4,7 @@ import {Box, Chip, Stack, Tooltip} from "@mui/material";
 import PropTypes from "prop-types";
 import {AppCard, SnackbarError} from "../../components";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, OrderState, useEffectTimout} from "../../base";
-import {EmailOutlined, FeedOutlined, PhoneOutlined} from "@mui/icons-material";
+import {ContentCopyOutlined, EmailOutlined, FeedOutlined, PhoneOutlined} from "@mui/icons-material";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
@@ -61,6 +61,7 @@ export function OrdersPage(props) {
         HttpClient.get.orders(filter).then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
+                number: item.number,
                 email: item.email,
                 phone: item.phone,
                 address: item.address,
@@ -121,6 +122,11 @@ export function OrdersPage(props) {
                                     headerName: 'Contact'
                                 },
                                 {
+                                    minWidth: 250,
+                                    field: 'number',
+                                    headerName: 'Number'
+                                },
+                                {
                                     minWidth: 0,
                                     field: 'note',
                                     headerName: 'Note',
@@ -151,10 +157,19 @@ export function OrdersPage(props) {
                                         label={params.row.sum} variant="outlined"/>
                                 },
                                 {
-                                    minWidth: 90,
+                                    minWidth: 130,
                                     field: 'actions',
                                     type: 'actions',
                                     getActions: (params) => [
+                                        (
+                                            <GridActionsCellItem color="secondary" onClick={() => {
+                                                navigator.clipboard.writeText(params.row.number)
+                                            }} icon={(
+                                                <Tooltip placement="top" arrow title="Copy Number">
+                                                    <ContentCopyOutlined/>
+                                                </Tooltip>
+                                            )} label="Send"/>
+                                        ),
                                         (
                                             <GridActionsCellItem color="primary" onClick={() => {
                                                 if (params.row.email) {

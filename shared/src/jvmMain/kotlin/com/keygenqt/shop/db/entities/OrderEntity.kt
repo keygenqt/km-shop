@@ -28,6 +28,7 @@ import org.jetbrains.exposed.sql.Table
  * Table user orders
  */
 object Orders : IntIdTable() {
+    val number = varchar("number", 255)
     val email = varchar("email", 255)
     val phone = varchar("phone", 255)
     val address = text("address")
@@ -52,6 +53,7 @@ object OrderInfo : Table() {
 class OrderEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<OrderEntity>(Orders)
 
+    var number by Orders.number
     var email by Orders.email
     var phone by Orders.phone
     var address by Orders.address
@@ -68,6 +70,7 @@ class OrderEntity(id: EntityID<Int>) : IntEntity(id) {
  */
 fun OrderEntity.toModel() = OrderResponse(
     id = id.value,
+    number = number,
     email = email,
     phone = phone,
     address = address,

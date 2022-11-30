@@ -18,6 +18,7 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.getNumberParam
+import com.keygenqt.shop.api.extension.getStringParam
 import com.keygenqt.shop.api.extension.receiveValidate
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.entities.OrderEntity
@@ -72,6 +73,18 @@ fun Route.orders() {
     val ordersService: OrdersService by inject()
 
     route("/orders") {
+        get("/number/{number}") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val number = call.getStringParam("number")
+            // act
+            val entity = ordersService.transaction {
+                findByNumber(number)?.toModel() ?: throw Exceptions.NotFound()
+            }
+            // response
+            call.respond(entity)
+        }
         get("/{id}") {
             // check role
             call.checkRoleAuth()

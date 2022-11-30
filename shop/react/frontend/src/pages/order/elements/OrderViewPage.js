@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {Box, Chip, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {Box} from "@mui/material";
 import PropTypes from "prop-types";
 import {BaseLayout} from "../../../components";
 import Lottie from "lottie-react";
-import {ConstantLottie, useEffectTimout} from "../../../base";
+import {ConstantLottie, HttpClient, useEffectTimout} from "../../../base";
 import {NotFoundOrderPage} from "./NotFoundOrderPage";
+import {OrderViewProductsPage} from "./OrderViewProductsPage";
 
 export function OrderViewPage(props) {
 
@@ -12,17 +13,15 @@ export function OrderViewPage(props) {
         number
     } = props
 
-    const theme = useTheme()
-    const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [order, setOrder] = React.useState(null);
 
     useEffectTimout('OrderViewPage', async () => {
         try {
-            await new Promise(r => setTimeout(r, 2000));
-            throw Error('Error found')
+            await new Promise(r => setTimeout(r, 1000));
+            const response = await HttpClient.get.orderByNumber(number)
+            setOrder(response)
             setLoading(false)
         } catch (e) {
             setError(e.message)
@@ -63,23 +62,7 @@ export function OrderViewPage(props) {
             </BaseLayout>
         ) : (
             <BaseLayout>
-                <Stack spacing={isSM ? 4 : 6}>
-                    <Stack spacing={2}>
-                        <Typography variant={isSM ? 'h4' : 'h3'}>
-                            Order state
-                        </Typography>
-                        <Typography variant={isSM ? 'h6' : 'h5'} sx={{
-                            fontWeight: 100
-                        }}>
-                            <Chip
-                                size={'medium'}
-                                label={number}
-                                variant={'outlined'}
-                                color={'secondary'}
-                            />
-                        </Typography>
-                    </Stack>
-                </Stack>
+                <OrderViewProductsPage data={order}/>
             </BaseLayout>
         )
     )

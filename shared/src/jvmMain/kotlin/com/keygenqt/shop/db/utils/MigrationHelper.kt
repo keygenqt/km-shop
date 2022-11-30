@@ -56,6 +56,7 @@ object MigrationHelper {
 
             // create user
             OrderEntity.new {
+                this.number = Password.random(20)
                 this.email = email ?: ""
                 this.phone = phone ?: ""
                 this.address = ""

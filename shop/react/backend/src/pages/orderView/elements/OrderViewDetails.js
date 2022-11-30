@@ -36,21 +36,19 @@ export function OrderViewDetails(props) {
             color={'secondary.dark'}
             variant={'combine'}
             title={'Order Details'}
-            subheader={'October 20, 2022 12:45 PM'}
+            subheader={data.number}
         >
             <Box sx={{
                 paddingTop: 1,
                 paddingBottom: 3
             }}>
                 <Stack spacing={2}>
-
                     <Stack
                         direction={isXS ? 'column' : 'row'}
                         justifyContent="space-between"
                         alignItems={isXS ? 'flex-start' : 'center'}
                         spacing={2}
                     >
-
                         <Stack>
                             <Typography variant="h5">
                                 State

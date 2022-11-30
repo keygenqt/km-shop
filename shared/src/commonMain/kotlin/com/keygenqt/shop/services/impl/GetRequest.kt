@@ -139,6 +139,16 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get order by number
+     */
+    @Throws(Exception::class)
+    suspend fun orderByNumber(
+        number: String
+    ): OrderResponse {
+        return client.get("api/orders/number/$number").body()
+    }
+
+    /**
      * Get order by id
      */
     @Throws(Exception::class)

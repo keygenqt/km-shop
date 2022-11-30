@@ -1,9 +1,9 @@
 import * as React from 'react';
+import {useContext} from 'react';
 import {Box, Button, ButtonGroup, Container, Stack, useMediaQuery, useTheme} from "@mui/material";
 import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ArrowUpwardOutlined, EmailOutlined, Telegram} from "@mui/icons-material";
-import {useContext} from "react";
 import {NavigateContext} from "../../base";
 
 /**
@@ -21,6 +21,7 @@ export function AppFooter(props) {
             backgroundColor: 'secondary.light',
             borderTopLeftRadius: 16,
             borderTopRightRadius: 16,
+            position: 'relative'
         }}>
             <Stack
                 direction={isSM ? 'column' : 'row'}

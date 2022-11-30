@@ -4,7 +4,7 @@ import {Box, Button, Stack, Typography, useMediaQuery, useTheme} from "@mui/mate
 import Lottie from "lottie-react";
 import PropTypes from "prop-types";
 import {NumbersOutlined} from "@mui/icons-material";
-import {ConstantLottie, NavigateContext} from "../../base";
+import {ConstantLottie, NavigateContext} from "../../../base";
 
 export function SuccessCart(props) {
 

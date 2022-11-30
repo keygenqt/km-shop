@@ -90,6 +90,13 @@ class GetRequestPromise(private val client: ServiceRequest) {
     fun orders(filter: OrderState) = wrapPromise { client.get.orders(filter) }
 
     /**
+     * Get order by number
+     */
+    fun orderByNumber(
+        number: String
+    ) = wrapPromise { client.get.orderByNumber(number) }
+
+    /**
      * Override [GetRequest.order] for JS
      */
     fun order(id: Int) = wrapPromise { client.get.order(id) }

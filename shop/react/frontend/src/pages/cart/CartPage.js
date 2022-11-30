@@ -5,9 +5,10 @@ import {AppCache, ConstantStorage, HttpClient, useEffectTimout, useLocalStorage}
 import {ValueType} from "../../base/route/ValueType";
 import {CartForm} from "./elements/CartForm";
 import {CartProducts} from "./elements/CartProducts";
-import {BaseLayout, SuccessCart} from "../../components";
+import {BaseLayout} from "../../components";
 import {ErrorCart} from "./elements/ErrorCart";
 import {EmptyCart} from "./elements/EmptyCart";
+import {SuccessCart} from "./elements/SuccessCart";
 
 export function CartPage() {
 

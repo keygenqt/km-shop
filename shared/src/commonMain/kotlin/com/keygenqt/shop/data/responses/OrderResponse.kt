@@ -46,6 +46,7 @@ data class OrderProductResponse(
 @Suppress("ArrayInDataClass")
 data class OrderResponse(
     val id: Int,
+    val number: String,
     val email: String,
     val phone: String,
     val address: String,

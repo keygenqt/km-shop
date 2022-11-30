@@ -36,6 +36,13 @@ class OrdersService(
     fun findById(id: Int) = OrderEntity.findById(id)
 
     /**
+     * Get entity by number
+     */
+    fun findByNumber(number: String) = OrderEntity
+        .find { (Orders.number eq number) }
+        .firstOrNull()
+
+    /**
      * Get orders count by month & year entities
      */
     fun getMonthCount(
@@ -57,7 +64,6 @@ class OrdersService(
                     month = month
                 ))
             }
-
         }
         .count()
         .toInt()

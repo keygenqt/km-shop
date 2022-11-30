@@ -12,7 +12,7 @@ export function OrderPage() {
         number ? (
             <OrderViewPage number={number}/>
         ) : (
-            <BaseLayout>
+            <BaseLayout cat >
                 <OrderSearchPage/>
             </BaseLayout>
         )
