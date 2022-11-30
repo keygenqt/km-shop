@@ -21,9 +21,12 @@ export function OrderViewPage(props) {
         try {
             await new Promise(r => setTimeout(r, 1000));
             const response = await HttpClient.get.orderByNumber(number)
-            setOrder(response)
+            setOrder(response.mapToOrder())
             setLoading(false)
         } catch (e) {
+
+            console.log(e)
+
             setError(e.message)
             setLoading(false)
         }

@@ -17,3 +17,5 @@ export * from './utils/AppCache';
 export * from './mappers/CollectionMapper';
 export * from './mappers/CategoryMapper';
 export * from './mappers/ProductMapper';
+export * from './mappers/OrderMapper';
+export * from './mappers/OrderProductMapper';
