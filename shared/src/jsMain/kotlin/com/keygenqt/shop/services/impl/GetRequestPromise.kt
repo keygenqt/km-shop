@@ -73,6 +73,13 @@ class GetRequestPromise(private val client: ServiceRequest) {
     fun productsPublished() = wrapPromise { client.get.productsPublished() }
 
     /**
+     * Override [GetRequest.productsPublishedByIDs] for JS
+     */
+    fun productsPublishedByIDs(
+        ids: Array<Int>
+    ) = wrapPromise { client.get.productsPublishedByIDs(ids) }
+
+    /**
      * Override [GetRequest.product] for JS
      */
     fun product(id: Int) = wrapPromise { client.get.product(id) }

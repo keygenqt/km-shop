@@ -9,3 +9,4 @@ export * from './layouts/BaseLayout';
 // other
 export * from './other/ScrollToTop';
 export * from './other/GenericIcon';
+export * from './other/SuccessCart';

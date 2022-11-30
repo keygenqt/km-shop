@@ -104,6 +104,20 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get products published by IDs
+     */
+    @Throws(Exception::class)
+    suspend fun productsPublishedByIDs(
+        ids: Array<Int>
+    ): List<ProductResponse> {
+        return client.get("api/products/published/by-ids") {
+            url {
+                parameters.appendAll("ids", ids.map { it.toString() })
+            }
+        }.body()
+    }
+
+    /**
      * Get product by id
      */
     @Throws(Exception::class)

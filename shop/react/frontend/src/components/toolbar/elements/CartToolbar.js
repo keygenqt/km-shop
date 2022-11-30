@@ -23,7 +23,7 @@ export function CartToolbar(props) {
     const products = []
     const subtotal = AppHelper.priceFormat(rows.reduce((a, it) => a + (it.price * it.count), 0))
 
-    rows.forEach((product) => {
+    rows.slice().reverse().forEach((product) => {
         products.push((
             <React.Fragment key={`cart-product-item-${product.id}`}>
                 <Box sx={{p: 1, borderRadius: 1, backgroundColor: '#F7F0EA'}}>

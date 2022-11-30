@@ -227,31 +227,23 @@ export default class RouteCore {
     isPage(...route) {
 
         const regexPath = /:\w+/ig;
-        const regexLoc = /(\d+)|(\w+:\w+)/ig;
+        const regexLoc = /(\d+)|(\w+)/ig;
 
         for (let i = 0; i < route.length; i++) {
             const path = this.getPathFromObject(route[i])
-            if (this.pathname.replaceAll(regexLoc, "__id__") === path.replaceAll(regexPath, "__id__")) {
-                return true
-            }
-        }
-        return false
-    }
+            const root = path.includes('/:') ? path.substring(0, path.indexOf('/:') + 1) : path
 
-    /**
-     * Check location by path
-     *
-     * @param route
-     * @return {boolean}
-     */
-    isBack(...route) {
-        const regexPath = /:\w+/ig;
-        const regexLoc = /(\d+)|(\w+:\w+)/ig;
-
-        for (let i = 0; i < route.length; i++) {
-            const path = this.getPathFromObject(route[i])
-            if (this.backPathname.replaceAll(regexLoc, "__id__") === path.replaceAll(regexPath, "__id__")) {
-                return true
+            if (this.pathname.includes(root) && this.pathname.length === path.length) {
+                return this.pathname === path
+            } else if (this.pathname.includes(root)) {
+                if (path.includes(':')) {
+                    return this
+                        .pathname
+                        .replace(root, '')
+                        .replaceAll(regexLoc, "__id__") === path
+                        .replace(root, '')
+                        .replaceAll(regexPath, "__id__")
+                }
             }
         }
         return false

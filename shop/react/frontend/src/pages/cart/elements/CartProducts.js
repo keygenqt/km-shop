@@ -42,7 +42,7 @@ export function CartProducts(props) {
 
     const products = []
 
-    rows.forEach((product) => {
+    rows.slice().reverse().forEach((product) => {
 
         const collections = []
 

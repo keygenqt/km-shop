@@ -16,10 +16,7 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.checkRoleAuth
-import com.keygenqt.shop.api.extension.checkRoleFull
-import com.keygenqt.shop.api.extension.getNumberParam
-import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.data.responses.AdminRole
 import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.toModel
@@ -111,6 +108,18 @@ fun Route.products() {
             // act
             val entities = productsService.transaction {
                 getAllPublished().toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/published/by-ids") {
+            // check role
+            call.checkRoleFull()
+            // get request
+            val ids = call.getNumbersQueryParam()
+            // act
+            val entities = productsService.transaction {
+                getByIdPublished(ids).toModels()
             }
             // response
             call.respond(entities)

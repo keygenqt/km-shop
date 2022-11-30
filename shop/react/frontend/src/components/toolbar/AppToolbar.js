@@ -17,6 +17,7 @@ import PropTypes from "prop-types";
 import {
     ContactSupportOutlined,
     KeyboardArrowUpOutlined,
+    LocalMallOutlined,
     SearchOutlined,
     ShoppingCartOutlined
 } from "@mui/icons-material";
@@ -146,54 +147,74 @@ export function AppToolbar() {
 
                         <Stack
                             direction={'row'}
-                            spacing={isSM ? 1 : 2}
+                            spacing={isSM ? 0 : 1.5}
                         >
-                            <IconButton
-                                disabled={route.isPage(routes.contact)}
-                                size={isSM ? 'small' : 'large'}
-                                edge="start"
-                                color="inherit"
-                                aria-label="contact"
-                                onClick={() => {
-                                    route.toLocation(routes.contact)
-                                }}
-                            >
-                                <ContactSupportOutlined/>
-                            </IconButton>
-
-                            <Badge
-                                badgeContent={cartProducts.length}
-                                color="primary"
-                                sx={{
-                                    '.MuiBadge-badge': {
-                                        top: 3,
-                                        right: 3
-                                    }
-                                }}
-                            >
+                            <Box>
                                 <IconButton
-                                    disabled={route.isPage(routes.cart) || cartProducts.length === 0}
+                                    disabled={route.isPage(routes.contact)}
                                     size={isSM ? 'small' : 'large'}
                                     edge="start"
                                     color="inherit"
-                                    aria-label="cart"
-                                    onClick={(event) => {
-                                        if (isSM) {
-                                            route.toLocation(routes.cart)
-                                        } else {
-                                            if (!anchorCart) {
-                                                event.stopPropagation();
-                                                setAnchorCart(event.currentTarget);
-                                                setAnchorCollections(null)
-                                            } else {
-                                                setAnchorCart(null)
-                                            }
+                                    aria-label="contact"
+                                    onClick={() => {
+                                        route.toLocation(routes.contact)
+                                    }}
+                                >
+                                    <ContactSupportOutlined/>
+                                </IconButton>
+                            </Box>
+
+                            <Box>
+                                <IconButton
+                                    disabled={route.isPage(routes.orderSearch)}
+                                    size={isSM ? 'small' : 'large'}
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="contact"
+                                    onClick={() => {
+                                        route.toLocation(routes.orderSearch)
+                                    }}
+                                >
+                                    <LocalMallOutlined/>
+                                </IconButton>
+                            </Box>
+
+                            <Box>
+                                <Badge
+                                    badgeContent={cartProducts.length}
+                                    color="primary"
+                                    sx={{
+                                        '.MuiBadge-badge': {
+                                            top: 3,
+                                            right: 3
                                         }
                                     }}
                                 >
-                                    <ShoppingCartOutlined/>
-                                </IconButton>
-                            </Badge>
+                                    <IconButton
+                                        disabled={route.isPage(routes.cart) || cartProducts.length === 0}
+                                        size={isSM ? 'small' : 'large'}
+                                        edge="start"
+                                        color="inherit"
+                                        aria-label="cart"
+                                        onClick={(event) => {
+                                            if (isSM) {
+                                                route.toLocation(routes.cart)
+                                            } else {
+                                                if (!anchorCart) {
+                                                    event.stopPropagation();
+                                                    setAnchorCart(event.currentTarget);
+                                                    setAnchorCollections(null)
+                                                } else {
+                                                    setAnchorCart(null)
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        <ShoppingCartOutlined/>
+                                    </IconButton>
+                                </Badge>
+                            </Box>
+
                         </Stack>
 
                     </Toolbar>

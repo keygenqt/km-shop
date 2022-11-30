@@ -1,0 +1,90 @@
+import * as React from 'react';
+import {Box, Chip, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import PropTypes from "prop-types";
+import {BaseLayout} from "../../../components";
+import Lottie from "lottie-react";
+import {ConstantLottie, useEffectTimout} from "../../../base";
+import {NotFoundOrderPage} from "./NotFoundOrderPage";
+
+export function OrderViewPage(props) {
+
+    const {
+        number
+    } = props
+
+    const theme = useTheme()
+    const isSM = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const [error, setError] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+    const [order, setOrder] = React.useState(null);
+
+    useEffectTimout('OrderViewPage', async () => {
+        try {
+            await new Promise(r => setTimeout(r, 2000));
+            throw Error('Error found')
+            setLoading(false)
+        } catch (e) {
+            setError(e.message)
+            setLoading(false)
+        }
+    }, [number], () => {
+        setError(null)
+        setLoading(true)
+    })
+
+    return (
+        loading || error ? (
+            <BaseLayout middle>
+                {error ? (
+                    <NotFoundOrderPage/>
+                ) : (
+                    <Box sx={{
+                        width: 'fit-content',
+                        backgroundColor: '#F6F7F9',
+                        borderRadius: '50%',
+                        p: 1.5,
+                        margin: 'auto'
+                    }}>
+                        <Box sx={{
+                            width: 260,
+                            height: 260,
+                            borderRadius: '50%',
+                            backgroundColor: 'white',
+                        }}>
+                            <Lottie animationData={ConstantLottie.catPlaying} style={{
+                                width: '290px',
+                                position: 'relative',
+                                top: 70
+                            }}/>
+                        </Box>
+                    </Box>
+                )}
+            </BaseLayout>
+        ) : (
+            <BaseLayout>
+                <Stack spacing={isSM ? 4 : 6}>
+                    <Stack spacing={2}>
+                        <Typography variant={isSM ? 'h4' : 'h3'}>
+                            Order state
+                        </Typography>
+                        <Typography variant={isSM ? 'h6' : 'h5'} sx={{
+                            fontWeight: 100
+                        }}>
+                            <Chip
+                                size={'medium'}
+                                label={number}
+                                variant={'outlined'}
+                                color={'secondary'}
+                            />
+                        </Typography>
+                    </Stack>
+                </Stack>
+            </BaseLayout>
+        )
+    )
+}
+
+OrderViewPage.propTypes = {
+    number: PropTypes.string.isRequired,
+};

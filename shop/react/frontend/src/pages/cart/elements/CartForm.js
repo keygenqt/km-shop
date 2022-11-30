@@ -22,7 +22,8 @@ export function CartForm(props) {
 
     const {
         loading,
-        onSubmit
+        onSubmit,
+        onSuccess,
     } = props
 
     const theme = useTheme()
@@ -60,6 +61,7 @@ export function CartForm(props) {
                     if (Math.random() < 0.7) {
                         throw new Error('The form is in demo mode.');
                     } else {
+                        onSuccess('OstHDrRK1rfZO4qgrRS8')
                         setStatus({success: true});
                     }
 
@@ -221,4 +223,5 @@ export function CartForm(props) {
 CartForm.propTypes = {
     loading: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    onSuccess: PropTypes.func.isRequired,
 };

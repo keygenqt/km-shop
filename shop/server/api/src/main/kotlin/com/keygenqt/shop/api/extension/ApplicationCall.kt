@@ -55,6 +55,13 @@ fun ApplicationCall.getStringParam(key: String = "name"): String = parameters[ke
     ?: throw throw Exceptions.NotFound()
 
 /**
+ * Get value from params with validate
+ */
+fun ApplicationCall.getNumbersQueryParam(key: String = "ids") =
+    request.queryParameters.entries().find { it.key == key }?.value?.mapNotNull { it.toIntOrNull() }
+        ?: throw throw Exceptions.NotFound()
+
+/**
  * Check role
  */
 fun ApplicationCall.checkRole(vararg roles: AdminRole): AdminRole {

@@ -3,6 +3,7 @@ import * as React from "react";
 import {BaseLayout} from "../components";
 import {CartPage, ContactPage, ExploringPage, HomePage, ProductPage} from "../pages";
 import {ValueType as RouteType} from "../base/route/ValueType";
+import {OrderPage} from "../pages/order/OrderPage";
 
 export const RouteConf = {
     delay: 300,
@@ -15,9 +16,7 @@ export const RouteConf = {
                     exact
                     path={path}
                     element={
-                        <BaseLayout>
-                            <CartPage/>
-                        </BaseLayout>
+                        <CartPage/>
                     }
                 />
             }
@@ -38,7 +37,7 @@ export const RouteConf = {
         exploringCollection: {
             path: '/exploring/:filter',
             match: {
-                id: RouteType.string,
+                filter: RouteType.string,
             },
             render: function (key, path) {
                 return <Route
@@ -93,6 +92,35 @@ export const RouteConf = {
                     path={path}
                     element={
                         <ProductPage/>
+                    }
+                />
+            }
+        },
+        order: {
+            path: '/order/:number',
+            match: {
+                number: RouteType.string,
+            },
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <OrderPage/>
+                    }
+                />
+            }
+        },
+        orderSearch: {
+            path: '/order',
+            render: function (key, path) {
+                return <Route
+                    key={key}
+                    exact
+                    path={path}
+                    element={
+                        <OrderPage/>
                     }
                 />
             }

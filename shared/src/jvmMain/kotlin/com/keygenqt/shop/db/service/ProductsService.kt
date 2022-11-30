@@ -21,6 +21,7 @@ import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.and
 
 class ProductsService(
     override val db: DatabaseMysql
@@ -55,6 +56,17 @@ class ProductsService(
         .limit(9)
         .orderBy(Pair(Products.createAt, SortOrder.DESC))
         .filter { it.category.isPublished }
+
+    /**
+     * Get inList
+     */
+    fun getByIdPublished(
+        ids: List<Int>
+    ) = ProductEntity
+        .find { (Products.id inList ids) and (Products.isPublished eq true) }
+        // order by ids
+        .associateBy { it.id.value }
+        .let { entities -> ids.mapNotNull { entities[it] } }
 
     /**
      * Create entity

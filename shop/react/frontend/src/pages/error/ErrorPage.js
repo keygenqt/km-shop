@@ -4,7 +4,7 @@ import Lottie from "lottie-react";
 import {ConstantLottie} from "../../base";
 import Typography from "@mui/material/Typography";
 
-export function ErrorPage() {
+export function ErrorPage(props) {
     return (
         <Stack
             spacing={3}
@@ -24,7 +24,7 @@ export function ErrorPage() {
                 Page Not Found
             </Typography>
 
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{textAlign: 'center'}}>
                 We're sorry, the page you requested could not be found
             </Typography>
         </Stack>

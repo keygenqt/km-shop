@@ -1,146 +1,138 @@
 import * as React from 'react';
-import {useContext, useEffect, useState} from 'react';
-import {Box, Button, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
-import {SearchOutlined} from "@mui/icons-material";
-import {ConstantLottie, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
+import {useState} from 'react';
+import {Box, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
+import {AppCache, ConstantStorage, HttpClient, useEffectTimout, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
-import Lottie from "lottie-react";
 import {CartForm} from "./elements/CartForm";
 import {CartProducts} from "./elements/CartProducts";
+import {BaseLayout, SuccessCart} from "../../components";
+import {ErrorCart} from "./elements/ErrorCart";
+import {EmptyCart} from "./elements/EmptyCart";
 
 export function CartPage() {
 
     const cartProducts = useLocalStorage(ConstantStorage.cart, ValueType.array, []);
-    const {route, routes} = useContext(NavigateContext)
 
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const [orderNumber, setOrderNumber] = useState(null);
     const [submit, setSubmit] = useState(false);
     const [loading, setLoading] = useState(true);
     const [refresh, setRefresh] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
+    useEffectTimout('CartPage', async () => {
+        try {
+            const response = await HttpClient.get.productsPublishedByIDs(
+                cartProducts.map((it) => it.id)
+            )
+            AppCache.arraySet(ConstantStorage.cart, response.toArray().mapToProducts().map((it) => {
+                return {
+                    ...it,
+                    count: cartProducts.find((cp) => cp.id === it.id).count
+                }
+            }))
             setLoading(false)
-        }, 3000)
-    }, [refresh])
+        } catch (e) {
+            setError(e.message)
+            setLoading(false)
+        }
+    }, [refresh], () => {
+        setError(null)
+        setLoading(true)
+    })
 
-    if (cartProducts.length === 0) {
-        return (
+    // pages state
+    if (orderNumber) return (
+        <BaseLayout middle>
+            <SuccessCart number={orderNumber}/>
+        </BaseLayout>
+    )
+    if (error) return <ErrorCart/>
+    if (cartProducts.length === 0) return <EmptyCart/>
+
+    return (
+        <BaseLayout>
+
             <Stack spacing={isSM ? 4 : 6}>
 
                 <Stack spacing={2}>
                     <Typography variant={isSM ? 'h4' : 'h3'}>
                         Shopping Cart
                     </Typography>
-                    <Typography variant={'h5'} sx={{
-                        fontWeight: 100,
-                        maxWidth: 500
+
+                    <Typography variant={isSM ? 'h6' : 'h5'} sx={{
+                        fontWeight: 100
                     }}>
-                        Your shopping cart is empty, add the products you are interested in and return.
+                        Here you can place an order.
                     </Typography>
                 </Stack>
 
-                <Lottie animationData={ConstantLottie.cartEmpty} style={{
-                    width: 100,
-                    marginBottom: -20,
-                    marginTop: 20
-                }}/>
+                <Box sx={{position: 'relative'}}>
 
-                <Box>
-                    <Button
-                        variant={'outlined'}
-                        color={'secondary'}
-                        size={'large'}
-                        endIcon={isSM ? null : <SearchOutlined/>}
-                        onClick={() => {
-                            route.toLocation(routes.exploring)
-                        }}
-                    >
-                        Exploring
-                    </Button>
+                    <Box sx={{
+                        position: 'absolute',
+                        width: 20,
+                        height: 20,
+                        backgroundColor: 'primary.main',
+                        borderRadius: '50%',
+                        left: -10,
+                        top: 172,
+                        zIndex: 1
+                    }}/>
+
+                    <Box sx={{
+                        position: 'absolute',
+                        width: 80,
+                        height: 20,
+                        backgroundColor: 'success.main',
+                        borderRadius: '6px',
+                        top: -7,
+                        left: 30
+                    }}/>
+
+                    <Grid container spacing={isMD ? 6 : 3}>
+                        <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
+                            <CartProducts
+                                disabled={submit}
+                                loading={loading}
+                                rows={cartProducts}
+                                onRefresh={() => setRefresh(!refresh)}
+                            />
+                        </Grid>
+                        <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
+                            <Stack spacing={isMD ? 2 : 3} sx={{
+                                top: 32,
+                                position: 'sticky',
+                                marginBottom: -2
+                            }}>
+                                <Box sx={{
+                                    position: 'absolute',
+                                    width: 50,
+                                    height: 50,
+                                    backgroundColor: '#F09372',
+                                    borderRadius: '50%',
+                                    top: -20,
+                                    right: 40
+                                }}/>
+
+                                <CartForm
+                                    loading={loading}
+                                    onSubmit={(state) => setSubmit(state)}
+                                    onSuccess={(number) => {
+                                        setOrderNumber(number)
+                                        AppCache.clearByKey(ConstantStorage.cart)
+                                    }}
+                                />
+
+                            </Stack>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Stack>
-        )
-    }
-
-    return (
-        <Stack spacing={isSM ? 4 : 6}>
-
-            <Stack spacing={2}>
-                <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Shopping Cart
-                </Typography>
-
-                <Typography variant={isSM ? 'h6' : 'h5'} sx={{
-                    fontWeight: 100
-                }}>
-                    Here you can place an order.
-                </Typography>
-            </Stack>
-
-            <Box sx={{position: 'relative'}}>
-
-                <Box sx={{
-                    position: 'absolute',
-                    width: 20,
-                    height: 20,
-                    backgroundColor: 'primary.main',
-                    borderRadius: '50%',
-                    left: -10,
-                    top: 172,
-                    zIndex: 1
-                }}/>
-
-                <Box sx={{
-                    position: 'absolute',
-                    width: 80,
-                    height: 20,
-                    backgroundColor: 'success.main',
-                    borderRadius: '6px',
-                    top: -7,
-                    left: 30
-                }}/>
-
-                <Grid container spacing={isMD ? 6 : 3}>
-                    <Grid item xl={7} lg={7} md={7} sm={12} xs={12} min={12} null={12}>
-                        <CartProducts
-                            disabled={submit}
-                            loading={loading}
-                            rows={cartProducts}
-                            onRefresh={() => setRefresh(!refresh)}
-                        />
-                    </Grid>
-                    <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
-                        <Stack spacing={isMD ? 2 : 3} sx={{
-                            top: 32,
-                            position: 'sticky',
-                            marginBottom: -2
-                        }}>
-                            <Box sx={{
-                                position: 'absolute',
-                                width: 50,
-                                height: 50,
-                                backgroundColor: '#F09372',
-                                borderRadius: '50%',
-                                top: -20,
-                                right: 40
-                            }}/>
-
-                            <CartForm
-                                loading={loading}
-                                onSubmit={(state) => setSubmit(state)}
-                            />
-
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </Box>
-        </Stack>
+        </BaseLayout>
     );
 }
 
