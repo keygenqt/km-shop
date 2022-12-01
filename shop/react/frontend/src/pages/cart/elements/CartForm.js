@@ -14,9 +14,10 @@ import {DoneOutlined} from "@mui/icons-material";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {AppHelper, HttpClient, Requests} from "../../../base";
-import {AlertError} from "../../../components";
+import {AlertError, TextMaskPhone} from "../../../components";
 import PropTypes from "prop-types";
 import {CartSetValueFormic} from "./CartSetValueFormic";
+
 
 export function CartForm(props) {
 
@@ -34,13 +35,14 @@ export function CartForm(props) {
     return (
         <Formik
             initialValues={{
-                email: '',
                 phone: '',
+                email: '',
                 address: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().required('Email is required').email('Email must be a valid email'),
+                phone: Yup.string().required('Phone is required'),
+                email: Yup.string().email('Email must be a valid email'),
             })}
             onSubmit={async (values, {setErrors, setStatus, setValues}) => {
 
@@ -136,16 +138,17 @@ export function CartForm(props) {
                                 )}
 
                                 <TextField
+                                    InputProps={{inputComponent: TextMaskPhone}}
                                     disabled={isSubmitting || loading}
-                                    type={'text'}
-                                    name={'email'}
-                                    value={values.email}
-                                    helperText={touched.email ? errors.email : ''}
-                                    error={Boolean(touched.email && errors.email)}
+                                    type={'phone'}
+                                    name={'phone'}
+                                    value={values.phone}
+                                    helperText={touched.phone ? errors.phone : ''}
+                                    error={Boolean(touched.phone && errors.phone)}
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
-                                    label="Email"
+                                    label="Phone"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -156,15 +159,15 @@ export function CartForm(props) {
 
                                 <TextField
                                     disabled={isSubmitting || loading}
-                                    type={'phone'}
-                                    name={'phone'}
-                                    value={values.phone}
-                                    helperText={touched.phone ? errors.phone : ''}
-                                    error={Boolean(touched.phone && errors.phone)}
+                                    type={'text'}
+                                    name={'email'}
+                                    value={values.email}
+                                    helperText={touched.email ? errors.email : ''}
+                                    error={Boolean(touched.email && errors.email)}
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
-                                    label="Phone (optional)"
+                                    label="Email (optional)"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {

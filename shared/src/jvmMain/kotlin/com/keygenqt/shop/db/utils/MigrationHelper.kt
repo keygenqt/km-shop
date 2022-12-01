@@ -33,8 +33,8 @@ object MigrationHelper {
         orders.forEach { item ->
             item as Map<*, *>
             // load variable
-            val email = item["email"] as String
-            val phone = item["phone"]?.let { it as String }
+            val phone = item["phone"] as String
+            val email = item["email"]?.let { it as String }
             val state = item["state"] as String
             val products = (item["products"] as List<*>).map { it as Map<*, *> }
 
@@ -58,8 +58,8 @@ object MigrationHelper {
             // create user
             OrderEntity.new {
                 this.number = UUID.randomUUID().toString()
-                this.email = email
-                this.phone = phone ?: ""
+                this.phone = phone
+                this.email = email ?: ""
                 this.address = ""
                 this.note = ""
                 this.state = OrderState.valueOf(state)

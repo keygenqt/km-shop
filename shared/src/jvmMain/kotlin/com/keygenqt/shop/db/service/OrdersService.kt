@@ -166,14 +166,14 @@ class OrdersService(
      * Create entity
      */
     fun insert(
-        email: String,
         phone: String,
+        email: String,
         address: String,
         products: List<OrderProductEntity>
     ) = OrderEntity.new {
         this.number = UUID.randomUUID().toString()
-        this.email = email
         this.phone = phone
+        this.email = email
         this.address = address
         this.note = ""
         this.state = OrderState.NEW

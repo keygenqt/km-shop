@@ -317,18 +317,6 @@ export function OrderViewProductsPage(props) {
                                     borderRadius: 1,
                                     p: 2
                                 }}>
-                                    {data.email ? (
-                                        <Stack direction={'row'} spacing={2}>
-                                            <EmailOutlined color={'primary'} sx={{
-                                                position: 'relative',
-                                                top: 2
-                                            }}/>
-                                            <Typography variant={'body1'}>
-                                                {data.email}
-                                            </Typography>
-                                        </Stack>
-                                    ) : null}
-
                                     {data.phone ? (
                                         <Stack direction={'row'} spacing={2}>
                                             <PhoneOutlined color={'primary'} sx={{
@@ -337,6 +325,18 @@ export function OrderViewProductsPage(props) {
                                             }}/>
                                             <Typography variant={'body1'}>
                                                 {data.phone}
+                                            </Typography>
+                                        </Stack>
+                                    ) : null}
+
+                                    {data.email ? (
+                                        <Stack direction={'row'} spacing={2}>
+                                            <EmailOutlined color={'primary'} sx={{
+                                                position: 'relative',
+                                                top: 2
+                                            }}/>
+                                            <Typography variant={'body1'}>
+                                                {data.email}
                                             </Typography>
                                         </Stack>
                                     ) : null}

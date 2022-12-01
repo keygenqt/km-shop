@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {AlertError, AlertSuccess, AppCard} from "../../../components";
+import {useContext, useEffect} from 'react';
+import {AlertError, AlertSuccess, AppCard, TextMaskPhone} from "../../../components";
 import {Box, Button, FormGroup, Stack, TextField} from "@mui/material";
 import {PersonOutline} from "@mui/icons-material";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import {AppHelper, HttpClient, NavigateContext, Requests} from "../../../base";
-import {useContext, useEffect} from "react";
 
 export function OrderViewCustomer(props) {
 
@@ -44,9 +44,8 @@ export function OrderViewCustomer(props) {
                     }}
                     validationSchema={Yup.object().shape({
                         email: Yup.string()
-                            .email('Email must be a valid email')
-                            .required('Email is required'),
-                        phone: Yup.string(),
+                            .email('Email must be a valid email'),
+                        phone: Yup.string().required('Email is required'),
                         address: Yup.string(),
                     })}
                     onSubmit={async (values, {setErrors, setStatus}) => {
@@ -114,20 +113,7 @@ export function OrderViewCustomer(props) {
                                 <Stack spacing={2}>
 
                                     <TextField
-                                        disabled={loading}
-                                        type={'text'}
-                                        name={'email'}
-                                        value={values.email}
-                                        helperText={touched.email ? errors.email : ''}
-                                        error={Boolean(touched.email && errors.email)}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        fullWidth
-                                        label="Email"
-                                        variant="filled"
-                                    />
-
-                                    <TextField
+                                        InputProps={{inputComponent: TextMaskPhone}}
                                         disabled={loading}
                                         type={'text'}
                                         name={'phone'}
@@ -138,6 +124,20 @@ export function OrderViewCustomer(props) {
                                         onChange={handleChange}
                                         fullWidth
                                         label="Phone"
+                                        variant="filled"
+                                    />
+
+                                    <TextField
+                                        disabled={loading}
+                                        type={'text'}
+                                        name={'email'}
+                                        value={values.email}
+                                        helperText={touched.email ? errors.email : ''}
+                                        error={Boolean(touched.email && errors.email)}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        fullWidth
+                                        label="Email"
                                         variant="filled"
                                     />
 

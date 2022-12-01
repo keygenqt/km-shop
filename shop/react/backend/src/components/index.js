@@ -19,3 +19,6 @@ export * from './dropzone/MultipleFiles';
 
 // cards
 export * from './cards/AppCard';
+
+// masks
+export * from './masks/TextMaskPhone';

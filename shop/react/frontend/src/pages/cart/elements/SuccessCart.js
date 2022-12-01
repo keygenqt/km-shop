@@ -58,7 +58,7 @@ export function SuccessCart(props) {
                     }}
                 >
                     <Typography variant={isSM ? 'h6' : 'h5'} sx={{color: 'secondary.main'}}>
-                        Detailed information
+                        Order Details
                     </Typography>
                 </Button>
             </Box>

@@ -40,10 +40,10 @@ import org.koin.ktor.ext.inject
 data class OrderCreateRequest(
 
     @field:NotNullNotBlank
+    val phone: String,
+
     @field:Email(message = "Must be a valid Email")
     val email: String,
-
-    val phone: String,
 
     @field:NotNull
     @field:Size(max = 1000, message = "Max size must less 1000")
@@ -72,10 +72,10 @@ data class OrderProductRequest(
 data class OrderCustomerRequest(
 
     @field:NotNullNotBlank
+    val phone: String,
+
     @field:Email(message = "Must be a valid Email")
     val email: String,
-
-    val phone: String,
 
     @field:NotNull
     @field:Size(max = 1000, message = "Max size must less 1000")
@@ -129,8 +129,8 @@ fun Route.orders() {
             }
             val response = ordersService.transaction {
                 insert(
-                    email = request.email,
                     phone = request.phone,
+                    email = request.email,
                     address = request.address,
                     products = products,
                 ).toModel()

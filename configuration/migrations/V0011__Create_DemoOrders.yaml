@@ -8,7 +8,7 @@
 #   count       | int
 
 orders:
-  - email: order1@gmail.com
+  - phone: "+7 (967) 300 50 70"
     state: NEW
     products:
       - id: 1
@@ -16,7 +16,7 @@ orders:
       - id: 2
         count: 1
 
-  - email: order2@gmail.com
+  - phone: "+7 (967) 300 50 71"
     state: NEW
     products:
       - id: 1
@@ -24,8 +24,8 @@ orders:
       - id: 2
         count: 2
 
-  - email: order3@gmail.com
-    phone: "+16505130513"
+  - phone: "+7 (967) 300 50 72"
+    email: order3@gmail.com
     state: NEW
     products:
       - id: 5
@@ -33,8 +33,8 @@ orders:
       - id: 3
         count: 1
 
-  - email: order4@gmail.com
-    phone: "+16505130514"
+  - phone: "+7 (967) 300 50 73"
+    email: order4@gmail.com
     state: PENDING
     products:
       - id: 4
@@ -42,7 +42,7 @@ orders:
       - id: 6
         count: 2
 
-  - email: order5@gmail.com
+  - phone: "+7 (967) 300 50 74"
     state: CANCELED
     products:
       - id: 9
@@ -50,7 +50,7 @@ orders:
       - id: 7
         count: 2
 
-  - email: order6@gmail.com
+  - phone: "+7 (967) 300 50 75"
     state: PENDING
     products:
       - id: 9
@@ -60,7 +60,7 @@ orders:
       - id: 8
         count: 5
 
-  - email: order7@gmail.com
+  - phone: "+7 (967) 300 50 76"
     state: COMPLETED
     products:
       - id: 5
@@ -68,8 +68,8 @@ orders:
       - id: 2
         count: 1
 
-  - email: order8@gmail.com
-    phone: "+16505130517"
+  - phone: "+7 (967) 300 50 77"
+    email: order8@gmail.com
     state: COMPLETED
     products:
       - id: 8
