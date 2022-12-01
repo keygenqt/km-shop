@@ -48,7 +48,7 @@ export const AppHelper = {
      * Create file link
      */
     getFileUrl: (fileName) => {
-        return `${ConstantConf.apiPath}/api/uploads/${fileName}`
+        return `${ConstantConf.domainAPI}/api/uploads/${fileName}`
     },
 
     /**

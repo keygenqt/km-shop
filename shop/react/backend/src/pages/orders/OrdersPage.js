@@ -4,10 +4,11 @@ import {Box, Chip, Stack, Tooltip} from "@mui/material";
 import PropTypes from "prop-types";
 import {AppCard, SnackbarError} from "../../components";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, OrderState, useEffectTimout} from "../../base";
-import {ContentCopyOutlined, EmailOutlined, FeedOutlined, PhoneOutlined} from "@mui/icons-material";
+import {EmailOutlined, FeedOutlined, OpenInNewOutlined, PhoneOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
+import {ConstantConf} from "../../conf/app/ConstantConf";
 
 export function OrdersPage(props) {
 
@@ -57,7 +58,7 @@ export function OrdersPage(props) {
     }, [cacheKey, data, page])
 
     // request data
-    useEffectTimout('OrdersPage',() => {
+    useEffectTimout('OrdersPage', () => {
         HttpClient.get.orders(filter).then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
@@ -122,11 +123,6 @@ export function OrdersPage(props) {
                                     headerName: 'Contact'
                                 },
                                 {
-                                    minWidth: 250,
-                                    field: 'number',
-                                    headerName: 'Number'
-                                },
-                                {
                                     minWidth: 0,
                                     field: 'note',
                                     headerName: 'Note',
@@ -162,13 +158,13 @@ export function OrdersPage(props) {
                                     type: 'actions',
                                     getActions: (params) => [
                                         (
-                                            <GridActionsCellItem color="secondary" onClick={() => {
-                                                navigator.clipboard.writeText(params.row.number)
+                                            <GridActionsCellItem color="info" onClick={() => {
+                                                route.openUrlNewTab(`${ConstantConf.domainFrontend}/order/${params.row.number}`)
                                             }} icon={(
-                                                <Tooltip placement="top" arrow title="Copy Number">
-                                                    <ContentCopyOutlined/>
+                                                <Tooltip placement="top" arrow title="Look">
+                                                    <OpenInNewOutlined/>
                                                 </Tooltip>
-                                            )} label="Send"/>
+                                            )} label="Look"/>
                                         ),
                                         (
                                             <GridActionsCellItem color="primary" onClick={() => {

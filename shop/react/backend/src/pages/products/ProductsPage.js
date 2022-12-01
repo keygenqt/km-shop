@@ -2,10 +2,11 @@ import * as React from 'react';
 import {useContext, useEffect} from 'react';
 import {Avatar, Box, Button, Chip, FormControlLabel, Stack, Switch, Tooltip} from "@mui/material";
 import {AppCard, SnackbarError} from "../../components";
-import {AddOutlined, BrokenImageOutlined, EditOutlined, FolderOutlined, VisibilityOutlined} from "@mui/icons-material";
+import {AddOutlined, BrokenImageOutlined, EditOutlined, FolderOutlined, OpenInNewOutlined} from "@mui/icons-material";
 import {AppCache, ConstantStorage, HttpClient, NavigateContext, Requests, useEffectTimout} from "../../base";
 import {AppDataGrid} from "../../components/dataGrid/AppDataGrid";
 import {GridActionsCellItem} from "@mui/x-data-grid";
+import {ConstantConf} from "../../conf/app/ConstantConf";
 
 export function ProductsPage() {
 
@@ -39,7 +40,7 @@ export function ProductsPage() {
     }, [data, page, published])
 
     // request data
-    useEffectTimout('ProductsPage',() => {
+    useEffectTimout('ProductsPage', () => {
         HttpClient.get.products().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
@@ -188,11 +189,11 @@ export function ProductsPage() {
                                     type: 'actions',
                                     getActions: (params) => [
                                         (
-                                            <GridActionsCellItem color="success" onClick={() => {
-                                                route.openUrlNewTab(`http://localhost:8086/${params.row.id}`)
+                                            <GridActionsCellItem color="info" onClick={() => {
+                                                route.openUrlNewTab(`${ConstantConf.domainFrontend}/product/${params.row.id}`)
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Look">
-                                                    <VisibilityOutlined/>
+                                                    <OpenInNewOutlined/>
                                                 </Tooltip>
                                             )} label="Look"/>
                                         ),

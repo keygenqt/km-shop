@@ -16,7 +16,7 @@ export const OrderState = shared.com.keygenqt.shop.data.responses.OrderState
 /**
  * Ktor client
  */
-export const HttpClient = new shared.com.keygenqt.shop.services.ServiceRequestJS(ConstantConf.publicPath)
+export const HttpClient = new shared.com.keygenqt.shop.services.ServiceRequestJS(ConstantConf.domain)
 
 /**
  * Ktor requests

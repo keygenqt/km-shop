@@ -2,6 +2,7 @@
  * Base configuration
  */
 export const ConstantConf = {
-    publicPath: 'http://localhost:3002',
-    apiPath: 'http://localhost:8086'
+    domain: 'http://localhost:3002',
+    domainAPI: 'http://localhost:8086',
+    domainFrontend: 'http://localhost:3003',
 };
