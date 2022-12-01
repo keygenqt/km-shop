@@ -16,10 +16,7 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.checkRoleAuth
-import com.keygenqt.shop.api.extension.getNumberParam
-import com.keygenqt.shop.api.extension.getStringParam
-import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.entities.OrderEntity
@@ -110,7 +107,7 @@ fun Route.orders() {
     route("/orders") {
         post("/create") {
             // check role
-            call.checkRoleAuth()
+            call.checkRoleFull()
             // get request
             val request = call.receiveValidate<OrderCreateRequest>()
             // act
