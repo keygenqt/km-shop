@@ -69,8 +69,8 @@ export const MenuConf = [
             {
                 icon: NewReleasesOutlined,
                 title: 'New',
-                link: '/orders',
-                links: ['/orders', '/orders/:id']
+                link: '/orders/new',
+                links: ['/orders/new', '/orders/new/:id']
             },
             {
                 icon: PendingActionsOutlined,

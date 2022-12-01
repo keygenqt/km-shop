@@ -231,7 +231,6 @@ export default class RouteCore {
         for (let i = 0; i < route.length; i++) {
             const path = this.getPathFromObject(route[i])
             const root = path.includes('/:') ? path.substring(0, path.indexOf('/:') + 1) : path
-
             if (this.pathname.includes(root) && this.pathname.length === path.length) {
                 return this.pathname === path
             } else if (this.pathname.includes(root)) {

@@ -148,7 +148,7 @@ export const UserConf = {
             }
         },
         ordersNew: {
-            path: '/orders',
+            path: '/orders/new',
             render: function (key, path) {
                 return <Route
                     key={key}
@@ -220,7 +220,7 @@ export const UserConf = {
             }
         },
         orderNewView: {
-            path: '/orders/:id',
+            path: '/orders/new/:id',
             match: {
                 id: RouteType.integer,
             },
