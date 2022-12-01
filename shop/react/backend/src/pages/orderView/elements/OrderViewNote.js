@@ -29,7 +29,7 @@ export function OrderViewNote(props) {
             color={'info.dark'}
             variant={'lines'}
             title={'Note'}
-            subheader={'Here you can leave a note on the order'}
+            subheader={'Public order information'}
         >
             <Box sx={{
                 paddingTop: 1,

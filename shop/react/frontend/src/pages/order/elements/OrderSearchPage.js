@@ -36,13 +36,13 @@ export function OrderSearchPage() {
                     fullWidth
                     label="Number"
                     variant="outlined"
-                    sx={{maxWidth: isSM ? 'auto' : 350}}
+                    sx={{maxWidth: isSM ? 'auto' : 370}}
                     value={number}
                     onChange={(event) => setNumber(event.target.value)}
                 />
 
                 <Button
-                    disabled={!Boolean(number) || number.length !== 20}
+                    disabled={!Boolean(number) || number.length !== 36}
                     disableElevation
                     variant={'contained'}
                     size={'large'}

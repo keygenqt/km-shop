@@ -22,6 +22,7 @@ import com.keygenqt.shop.extension.createFileUpload
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.insert
+import java.util.*
 
 object MigrationHelper {
 
@@ -56,7 +57,7 @@ object MigrationHelper {
 
             // create user
             OrderEntity.new {
-                this.number = Password.random(20)
+                this.number = UUID.randomUUID().toString()
                 this.email = email ?: ""
                 this.phone = phone ?: ""
                 this.address = ""

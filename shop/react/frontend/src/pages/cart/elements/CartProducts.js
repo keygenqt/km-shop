@@ -91,7 +91,7 @@ export function CartProducts(props) {
                     >
 
                         <Box>
-                            <Button sx={{p: 0}} onClick={() => {
+                            <Button sx={{p: 0, width: isSM ? '100%' : 100}} onClick={() => {
                                 route.toLocation(routes.product, product.id)
                             }}>
                                 <Avatar

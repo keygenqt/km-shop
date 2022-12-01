@@ -19,7 +19,7 @@ OrderResponse.prototype.mapToOrder = function () {
         phone: this.phone,
         address: this.address,
         note: this.note,
-        state: this.state,
+        state: this.state.name,
         sum: this.sum,
         createAt: this.createAt,
         updateAt: this.updateAt,

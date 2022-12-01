@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {Box, Button, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import Lottie from "lottie-react";
 import PropTypes from "prop-types";
-import {NumbersOutlined} from "@mui/icons-material";
+import {InfoOutlined, NumbersOutlined} from "@mui/icons-material";
 import {ConstantLottie, NavigateContext} from "../../../base";
 
 export function SuccessCart(props) {
@@ -49,15 +49,16 @@ export function SuccessCart(props) {
 
             <Box>
                 <Button
+                    size={'large'}
                     color={'secondary'}
                     variant={'outlined'}
-                    startIcon={<NumbersOutlined/>}
+                    startIcon={<InfoOutlined/>}
                     onClick={() => {
                         route.toLocation(routes.order, number)
                     }}
                 >
                     <Typography variant={isSM ? 'h6' : 'h5'} sx={{color: 'secondary.main'}}>
-                        {number}
+                        Detailed information
                     </Typography>
                 </Button>
             </Box>

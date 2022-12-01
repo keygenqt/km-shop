@@ -35,7 +35,7 @@ export function CartForm(props) {
             initialValues={{
                 email: '',
                 phone: '',
-                information: '',
+                address: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
@@ -70,7 +70,7 @@ export function CartForm(props) {
                     const errors = {
                         email: AppHelper.findError('email', error.validate),
                         phone: AppHelper.findError('phone', error.validate),
-                        information: AppHelper.findError('information', error.validate),
+                        address: AppHelper.findError('address', error.validate),
                     }
 
                     setErrors(AppHelper.isNotEmpty(errors) ? errors : {
@@ -169,17 +169,17 @@ export function CartForm(props) {
                                 <TextField
                                     disabled={isSubmitting || loading}
                                     type={'text'}
-                                    name={'information'}
-                                    value={values.information}
-                                    helperText={touched.information ? errors.information : ''}
-                                    error={Boolean(touched.information && errors.information)}
+                                    name={'address'}
+                                    value={values.address}
+                                    helperText={touched.address ? errors.address : ''}
+                                    error={Boolean(touched.address && errors.address)}
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
                                     multiline
                                     minRows={5}
                                     maxRows={10}
-                                    label="Additional Information"
+                                    label="Address (optional)"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
