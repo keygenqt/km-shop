@@ -47,3 +47,27 @@ data class OrderCustomerRequest(
 data class OrderStateRequest(
     val state: OrderState,
 )
+
+/**
+ * Request create order
+ */
+@JsExport
+@Serializable
+@Suppress("ArrayInDataClass")
+data class OrderCreateRequest(
+    val email: String,
+    val phone: String,
+    val address: String,
+    val products: Array<OrderProductRequest>,
+)
+
+/**
+ * Request order products
+ */
+@JsExport
+@Serializable
+data class OrderProductRequest(
+    val productID: Int,
+    val count: Int,
+    val price: Double,
+)

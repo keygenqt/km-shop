@@ -103,4 +103,14 @@ class PostRequest(private val client: HttpClient) {
             }
         ).body()
     }
+
+    /**
+     * Create order method
+     */
+    @Throws(Exception::class)
+    suspend fun orderCreate(
+        request: OrderCreateRequest
+    ): OrderResponse {
+        return client.post("api/orders/create") { setBody(request) }.body()
+    }
 }

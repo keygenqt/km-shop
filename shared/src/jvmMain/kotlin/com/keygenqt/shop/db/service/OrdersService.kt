@@ -18,13 +18,18 @@ package com.keygenqt.shop.db.service
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.OrderEntity
+import com.keygenqt.shop.db.entities.OrderProductEntity
 import com.keygenqt.shop.db.entities.Orders
+import com.keygenqt.shop.db.entities.Products
 import com.keygenqt.shop.extension.getTimestampDayFirstDayOfMonth
 import com.keygenqt.shop.extension.getTimestampDayLastDayOfMonth
 import com.keygenqt.shop.interfaces.IService
+import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.and
 import java.time.Month
+import java.util.*
 
 class OrdersService(
     override val db: DatabaseMysql
@@ -142,6 +147,39 @@ class OrdersService(
         entity.state = state
         entity.updateAt = System.currentTimeMillis()
         entity
+    }
+
+    /**
+     * Create entity
+     */
+    fun insertOrderProduct(
+        productID: Int,
+        count: Int,
+        price: Double,
+    ) = OrderProductEntity.new {
+        this.productID = EntityID(productID, Products)
+        this.count = count
+        this.price = price
+    }
+
+    /**
+     * Create entity
+     */
+    fun insert(
+        email: String,
+        phone: String,
+        address: String,
+        products: List<OrderProductEntity>
+    ) = OrderEntity.new {
+        this.number = UUID.randomUUID().toString()
+        this.email = email
+        this.phone = phone
+        this.address = address
+        this.note = ""
+        this.state = OrderState.NEW
+        this.createAt = System.currentTimeMillis()
+        this.updateAt = System.currentTimeMillis()
+        this.products = SizedCollection(*products.toList().toTypedArray())
     }
 }
 

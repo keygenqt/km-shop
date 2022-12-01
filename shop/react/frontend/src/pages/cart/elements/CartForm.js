@@ -13,7 +13,7 @@ import {
 import {DoneOutlined} from "@mui/icons-material";
 import {Formik} from "formik";
 import * as Yup from "yup";
-import {AppHelper} from "../../../base";
+import {AppHelper, HttpClient, Requests} from "../../../base";
 import {AlertError} from "../../../components";
 import PropTypes from "prop-types";
 import {CartSetValueFormic} from "./CartSetValueFormic";
@@ -24,6 +24,7 @@ export function CartForm(props) {
         loading,
         onSubmit,
         onSuccess,
+        products,
     } = props
 
     const theme = useTheme()
@@ -51,19 +52,25 @@ export function CartForm(props) {
 
                 try {
 
-                    // const response = await HttpClient.put.category(new Requests.CategoryRequest(
-                    //     values.image,
-                    //     values.name,
-                    //     values.isPublished,
-                    //     values.uploads,
-                    // ))
+                    const productsRequest = []
 
-                    if (Math.random() < 0.7) {
-                        throw new Error('The form is in demo mode.');
-                    } else {
-                        onSuccess('OstHDrRK1rfZO4qgrRS8')
-                        setStatus({success: true});
-                    }
+                    products.slice().reverse().forEach((it) => {
+                        productsRequest.push(new Requests.OrderProductRequest(
+                            it.id,
+                            it.count,
+                            it.price
+                        ))
+                    })
+
+                    const response = await HttpClient.post.orderCreate(new Requests.OrderCreateRequest(
+                        values.email,
+                        values.phone,
+                        values.address,
+                        productsRequest,
+                    ))
+
+                    onSuccess(response.number)
+                    setStatus({success: true});
 
                 } catch (error) {
 
@@ -221,6 +228,7 @@ export function CartForm(props) {
 }
 
 CartForm.propTypes = {
+    products: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onSuccess: PropTypes.func.isRequired,

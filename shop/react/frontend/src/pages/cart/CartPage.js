@@ -120,6 +120,7 @@ export function CartPage() {
                                 }}/>
 
                                 <CartForm
+                                    products={cartProducts}
                                     loading={loading}
                                     onSubmit={(state) => setSubmit(state)}
                                     onSuccess={(number) => {

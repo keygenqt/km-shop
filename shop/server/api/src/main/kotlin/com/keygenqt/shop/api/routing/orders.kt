@@ -20,8 +20,10 @@ import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.getNumberParam
 import com.keygenqt.shop.api.extension.getStringParam
 import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.entities.OrderEntity
+import com.keygenqt.shop.db.entities.OrderProductEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.OrdersService
@@ -38,12 +40,45 @@ import org.koin.ktor.ext.inject
  * Request update [OrderEntity]
  */
 @Serializable
-data class OrderCustomerRequest(
+data class OrderCreateRequest(
+
+    @field:NotNullNotBlank
+    @field:Email(message = "Must be a valid Email")
+    val email: String,
 
     val phone: String,
 
+    @field:NotNull
+    @field:Size(max = 1000, message = "Max size must less 1000")
+    val address: String,
+
+    val products: List<OrderProductRequest> = listOf()
+)
+
+/**
+ * Request update [OrderEntity]
+ */
+@Serializable
+data class OrderProductRequest(
+    @field:NotNullNotBlank
+    val productID: Int,
+    @field:NotNullNotBlank
+    val count: Int,
+    @field:NotNullNotBlank
+    val price: Double,
+)
+
+/**
+ * Request update [OrderEntity]
+ */
+@Serializable
+data class OrderCustomerRequest(
+
+    @field:NotNullNotBlank
     @field:Email(message = "Must be a valid Email")
     val email: String,
+
+    val phone: String,
 
     @field:NotNull
     @field:Size(max = 1000, message = "Max size must less 1000")
@@ -73,6 +108,39 @@ fun Route.orders() {
     val ordersService: OrdersService by inject()
 
     route("/orders") {
+        post("/create") {
+            // check role
+            call.checkRoleAuth()
+            // get request
+            val request = call.receiveValidate<OrderCreateRequest>()
+            // act
+            if (request.products.isEmpty()) {
+                throw Exceptions.BadRequest()
+            }
+            val products = ordersService.transaction {
+                mutableListOf<OrderProductEntity>().apply {
+                    request.products.forEach {
+                        add(
+                            insertOrderProduct(
+                                productID = it.productID,
+                                count = it.count,
+                                price = it.price,
+                            )
+                        )
+                    }
+                }
+            }
+            val response = ordersService.transaction {
+                insert(
+                    email = request.email,
+                    phone = request.phone,
+                    address = request.address,
+                    products = products,
+                ).toModel()
+            }
+            // response
+            call.respond(response)
+        }
         get("/number/{number}") {
             // check role
             call.checkRoleAuth()

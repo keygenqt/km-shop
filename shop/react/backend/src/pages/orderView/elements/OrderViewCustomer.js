@@ -43,7 +43,9 @@ export function OrderViewCustomer(props) {
                         submit: null
                     }}
                     validationSchema={Yup.object().shape({
-                        email: Yup.string().email('Email must be a valid email'),
+                        email: Yup.string()
+                            .email('Email must be a valid email')
+                            .required('Email is required'),
                         phone: Yup.string(),
                         address: Yup.string(),
                     })}

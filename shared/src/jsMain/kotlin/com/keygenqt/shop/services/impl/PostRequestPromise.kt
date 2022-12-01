@@ -82,4 +82,13 @@ class PostRequestPromise(private val client: ServiceRequest) {
     ) = wrapPromise {
         client.post.uploads(files)
     }
+
+    /**
+     * Override [PostRequest.orderCreate] for JS
+     */
+    fun orderCreate(
+        request: OrderCreateRequest
+    ) = wrapPromise {
+        client.post.orderCreate(request)
+    }
 }
