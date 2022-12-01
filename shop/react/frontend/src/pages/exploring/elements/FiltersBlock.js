@@ -3,11 +3,20 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    Box, Checkbox, Chip,
+    Alert,
+    Box,
+    Checkbox,
+    Chip,
+    CircularProgress,
     FormControlLabel,
-    FormGroup, Radio, RadioGroup, Slider,
+    FormGroup,
+    Radio,
+    RadioGroup,
+    Slider,
     Stack,
-    Typography, useMediaQuery, useTheme
+    Typography,
+    useMediaQuery,
+    useTheme
 } from "@mui/material";
 import {
     CategoryOutlined,
@@ -16,6 +25,8 @@ import {
     SortOutlined,
     StyleOutlined
 } from "@mui/icons-material";
+import {AppHelper, ConstantStorage, HttpClient, useEffectTimout, useLocalStorage} from "../../../base";
+import {ValueType} from "../../../base/route/ValueType";
 
 function valuetext(value) {
     return `${value}°C`;
@@ -23,10 +34,31 @@ function valuetext(value) {
 
 export function FiltersBlock() {
 
+    const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
+    const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
+
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [value, setValue] = React.useState([12, 87]);
+    const [error, setError] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+    const [data, setData] = React.useState([0, 0]);
+    const [value, setValue] = React.useState([0, 0]);
+
+    useEffectTimout('FiltersBlock', async () => {
+        try {
+            const prices = await HttpClient.get.prices()
+            setData([prices.min, prices.max])
+            setValue([prices.min, prices.max])
+            setLoading(false)
+        } catch (e) {
+            setError(e.message)
+            setLoading(false)
+        }
+    }, [], () => {
+        setError(null)
+        setLoading(true)
+    })
 
     return (
         <Box sx={{
@@ -96,9 +128,9 @@ export function FiltersBlock() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Bows"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Headbands"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Sets"/>
+                                {categoriesCache.map((it) => (
+                                    <FormControlLabel control={<Checkbox defaultChecked/>} label={it.name}/>
+                                ))}
                             </FormGroup>
                         </AccordionDetails>
                     </Accordion>
@@ -115,11 +147,9 @@ export function FiltersBlock() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="School"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Walk"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Birthday"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="Holiday"/>
-                                <FormControlLabel control={<Checkbox defaultChecked/>} label="New Year"/>
+                                {collectionsCache.map((it) => (
+                                    <FormControlLabel control={<Checkbox defaultChecked/>} label={it.name}/>
+                                ))}
                             </FormGroup>
                         </AccordionDetails>
                     </Accordion>
@@ -135,20 +165,16 @@ export function FiltersBlock() {
                             </Stack>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="female"
-                                name="radio-buttons-group"
-                            >
-                                <FormControlLabel value="female" control={<Radio/>} label="Most Popular"/>
-                                <FormControlLabel value="male" control={<Radio/>} label="Best Rating"/>
-                                <FormControlLabel value="other" control={<Radio/>} label="Newest"/>
-                                <FormControlLabel value="other1" control={<Radio/>} label="Price Low"/>
-                                <FormControlLabel value="other2" control={<Radio/>} label="Price Hight"/>
+                            <RadioGroup defaultValue="newest">
+                                <FormControlLabel value="newest" control={<Radio/>} label="Newest"/>
+                                <FormControlLabel value="rating" control={<Radio/>} label="Best Rating"/>
+                                <FormControlLabel value="low" control={<Radio/>} label="Price Low"/>
+                                <FormControlLabel value="height" control={<Radio/>} label="Price Height"/>
                             </RadioGroup>
                         </AccordionDetails>
                     </Accordion>
                 </Box>
+
                 <Stack spacing={2}>
                     <Stack direction={'row'} spacing={1.4} alignItems={'center'} sx={{pt: 1}}>
                         <PriceChangeOutlined sx={{width: 24, height: 24, color: '#d26900'}}/>
@@ -157,65 +183,84 @@ export function FiltersBlock() {
                         </Typography>
                     </Stack>
 
-                    <Box sx={{
-                        backgroundColor: 'white',
-                        borderRadius: 1,
-                        paddingY: 3,
-                        paddingX: 3
-                    }}>
-                        <Typography variant={'caption'}>
-                            The sliders allow you to select from a range of prices.
-                        </Typography>
-
-                        <Box sx={{
-                            paddingX: 0.5,
-                            paddingTop: 1.2,
-                            paddingBottom: 1
-                        }}>
-                            <Slider
-                                color={'secondary'}
-                                getAriaLabel={() => 'Temperature range'}
-                                value={value}
-                                onChange={(event, newValue) => {
-                                    setValue(newValue);
+                    {loading || error ? (
+                        loading ? (
+                            <Stack
+                                justifyContent={'center'}
+                                alignItems={'center'}
+                                sx={{
+                                    bgcolor: 'white',
+                                    p: 1.5,
+                                    borderRadius: 1,
+                                    minWidth: 222,
+                                    minHeight: 167
                                 }}
-                                valueLabelDisplay="auto"
-                                getAriaValueText={valuetext}
-                            />
+                            >
+                                <CircularProgress size={36}/>
+                            </Stack>
+                        ) : (
+                            <Alert severity="error" sx={{minWidth: 222, '& .MuiAlert-icon': {color: '#664e5a'}}}>
+                                {error}
+                            </Alert>
+                        )
+                    ) : (
+                        <Box sx={{bgcolor: 'white', borderRadius: 1, paddingY: 3, paddingX: 3}}>
+                            <Typography variant={'caption'}>
+                                The sliders allow you to select from a range of prices.
+                            </Typography>
+
+                            <Box sx={{
+                                paddingX: 0.5,
+                                paddingTop: 1.2,
+                                paddingBottom: 1
+                            }}>
+                                <Slider
+                                    min={data[0]} max={data[1]}
+                                    color={'secondary'}
+                                    getAriaLabel={() => 'Temperature range'}
+                                    value={value}
+                                    onChange={(event, newValue) => {
+                                        setValue(newValue);
+                                    }}
+                                    valueLabelDisplay="auto"
+                                    getAriaValueText={valuetext}
+                                />
+                            </Box>
+
+                            <Stack direction={'row'} justifyContent={'space-between'}>
+
+                                <Stack spacing={1} alignItems={'center'}>
+                                    <Typography variant={'caption'} sx={{fontWeight: 600}}>
+                                        Min price
+                                    </Typography>
+
+                                    <Chip
+                                        size={'small'}
+                                        label={AppHelper.priceFormat(value[0])}
+                                        variant={'outlined'}
+                                        color={'primary'}
+                                        sx={{minWidth: 80, borderWidth: 2}}
+                                    />
+                                </Stack>
+
+                                <Stack spacing={1} alignItems={'center'}>
+                                    <Typography variant={'caption'} sx={{fontWeight: 600}}>
+                                        Max price
+                                    </Typography>
+
+                                    <Chip
+                                        size={'small'}
+                                        label={AppHelper.priceFormat(value[1])}
+                                        variant={'outlined'}
+                                        color={'primary'}
+                                        sx={{minWidth: 80, borderWidth: 2}}
+                                    />
+                                </Stack>
+                            </Stack>
                         </Box>
-
-                        <Stack direction={'row'} justifyContent={'space-between'}>
-
-                            <Stack spacing={1} alignItems={'center'}>
-                                <Typography variant={'caption'} sx={{fontWeight: 600}}>
-                                    Min price
-                                </Typography>
-
-                                <Chip
-                                    size={'small'}
-                                    label={value[0]}
-                                    variant={'outlined'}
-                                    color={'primary'}
-                                    sx={{minWidth: 80, borderWidth: 2}}
-                                />
-                            </Stack>
-
-                            <Stack spacing={1} alignItems={'center'}>
-                                <Typography variant={'caption'} sx={{fontWeight: 600}}>
-                                    Max price
-                                </Typography>
-
-                                <Chip
-                                    size={'small'}
-                                    label={value[1]}
-                                    variant={'outlined'}
-                                    color={'primary'}
-                                    sx={{minWidth: 80, borderWidth: 2}}
-                                />
-                            </Stack>
-                        </Stack>
-                    </Box>
+                    )}
                 </Stack>
+
             </Stack>
         </Box>
     );

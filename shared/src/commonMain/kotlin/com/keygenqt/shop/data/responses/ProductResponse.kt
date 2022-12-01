@@ -40,3 +40,13 @@ data class ProductResponse(
     val collections: Array<CollectionResponse>? = null,
     val uploads: Array<UploadResponse>? = null,
 )
+
+/**
+ * Response max/min prices public products
+ */
+@JsExport
+@Serializable
+data class ProductPricesResponse(
+    val min: Double,
+    val max: Double,
+)

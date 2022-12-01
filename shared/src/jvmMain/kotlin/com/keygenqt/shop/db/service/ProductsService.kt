@@ -58,6 +58,24 @@ class ProductsService(
         .filter { it.category.isPublished }
 
     /**
+     * Get max price
+     */
+    fun getMaxPrice() = ProductEntity
+        .find { (Products.isPublished eq true) }
+        .limit(1)
+        .orderBy(Pair(Products.price, SortOrder.DESC))
+        .firstOrNull()?.price ?: 0.0
+
+    /**
+     * Get max price
+     */
+    fun getMinPrice() = ProductEntity
+        .find { (Products.isPublished eq true) }
+        .limit(1)
+        .orderBy(Pair(Products.price, SortOrder.ASC))
+        .firstOrNull()?.price ?: 0.0
+
+    /**
      * Get inList
      */
     fun getByIdPublished(

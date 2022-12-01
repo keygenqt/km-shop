@@ -181,7 +181,7 @@ export function AppToolbar() {
 
                             <Box>
                                 <Badge
-                                    badgeContent={cartProducts.length}
+                                    badgeContent={cartProducts.reduce((a, it) => a + it.count, 0)}
                                     color="primary"
                                     sx={{
                                         '.MuiBadge-badge': {

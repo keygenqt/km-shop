@@ -85,6 +85,11 @@ class GetRequestPromise(private val client: ServiceRequest) {
     fun product(id: Int) = wrapPromise { client.get.product(id) }
 
     /**
+     * Override [GetRequest.prices] for JS
+     */
+    fun prices() = wrapPromise { client.get.prices() }
+
+    /**
      * Override [GetRequest.orders] for JS
      */
     fun orders(filter: OrderState) = wrapPromise { client.get.orders(filter) }

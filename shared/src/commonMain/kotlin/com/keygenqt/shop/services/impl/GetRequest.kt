@@ -126,6 +126,14 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get prices min/max
+     */
+    @Throws(Exception::class)
+    suspend fun prices(): ProductPricesResponse {
+        return client.get("api/products/prices").body()
+    }
+
+    /**
      * Get orders type [OrderState.NEW]
      */
     @Throws(Exception::class)

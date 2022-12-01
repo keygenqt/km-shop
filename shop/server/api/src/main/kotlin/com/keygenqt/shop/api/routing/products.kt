@@ -18,6 +18,7 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.ProductPricesResponse
 import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModelWithUploads
@@ -92,6 +93,22 @@ fun Route.products() {
     val productsService: ProductsService by inject()
 
     route("/products") {
+        get("/prices") {
+            // check role
+            call.checkRoleFull()
+            // act
+            val minPriceProduct = productsService.transaction {
+                getMinPrice()
+            }
+            val maxPriceProduct = productsService.transaction {
+                getMaxPrice()
+            }
+            // response
+            call.respond(ProductPricesResponse(
+                min = minPriceProduct,
+                max = maxPriceProduct
+            ))
+        }
         get {
             // check role
             call.checkRoleAuth()
