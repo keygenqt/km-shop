@@ -140,7 +140,7 @@ fun Route.orders() {
         }
         get("/number/{number}") {
             // check role
-            call.checkRoleAuth()
+            call.checkRoleFull()
             // get request
             val number = call.getStringParam("number")
             // act
