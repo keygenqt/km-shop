@@ -99,8 +99,22 @@ class GetRequest(private val client: HttpClient) {
      * Get products published
      */
     @Throws(Exception::class)
-    suspend fun productsPublished(): List<ProductResponse> {
-        return client.get("api/products/published").body()
+    suspend fun productsPublished(
+        page: Int,
+        order: String,
+        range: Array<Int>,
+        categories: Array<Int>,
+        collections: Array<Int>,
+    ): ProductPageResponse {
+        return client.get("api/products/published") {
+            url {
+                parameters.append("page", page.toString())
+                parameters.append("order", order)
+                parameters.appendAll("range", range.map { it.toString() })
+                parameters.appendAll("categories", categories.map { it.toString() })
+                parameters.appendAll("collections", collections.map { it.toString() })
+            }
+        }.body()
     }
 
     /**

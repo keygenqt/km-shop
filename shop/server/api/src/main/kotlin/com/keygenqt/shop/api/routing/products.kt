@@ -17,7 +17,9 @@ package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.*
+import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.ProductPageResponse
 import com.keygenqt.shop.data.responses.ProductPricesResponse
 import com.keygenqt.shop.db.entities.ProductEntity
 import com.keygenqt.shop.db.entities.toModel
@@ -32,6 +34,7 @@ import jakarta.validation.constraints.Positive
 import jakarta.validation.constraints.Size
 import kotlinx.serialization.Serializable
 import org.koin.ktor.ext.inject
+import kotlin.math.ceil
 
 /**
  * Request update [ProductEntity]
@@ -91,8 +94,46 @@ data class ProductStateRequest(
 fun Route.products() {
 
     val productsService: ProductsService by inject()
+    val pageSize = 9
 
     route("/products") {
+        get("/published") {
+            // check role
+            call.checkRoleFull()
+            // get request
+            val order = OrderProduct.valueOf(call.getQueryParam("order"))
+            val range = call.getDoublesQueryParam("range")
+            val categories = call.getNumbersQueryParam("categories")
+            val collections = call.getNumbersQueryParam("collections")
+            val page: Int = call.getQueryParam("page").toInt().takeIf { it > 0 }
+                ?: throw Exceptions.BadRequest()
+            // act
+            val entities = productsService.transaction {
+                getPagePublished(
+                    page = page,
+                    order = order,
+                    range = Pair(range[0], range[1]),
+                    categories = categories,
+                    collections = collections,
+                    pageSize = pageSize,
+                ).toModels()
+            }
+            val pages = productsService.transaction {
+                getCountPublished(
+                    order = order,
+                    range = Pair(range[0], range[1]),
+                    categories = categories,
+                    collections = collections,
+                )
+            }
+            // response
+            call.respond(
+                ProductPageResponse(
+                    pages = ceil(pages.toDouble() / pageSize).toInt(),
+                    products = entities.toTypedArray()
+                )
+            )
+        }
         get("/prices") {
             // check role
             call.checkRoleFull()
@@ -104,10 +145,12 @@ fun Route.products() {
                 getMaxPrice()
             }
             // response
-            call.respond(ProductPricesResponse(
-                min = minPriceProduct,
-                max = maxPriceProduct
-            ))
+            call.respond(
+                ProductPricesResponse(
+                    min = minPriceProduct,
+                    max = maxPriceProduct
+                )
+            )
         }
         get {
             // check role
@@ -115,16 +158,6 @@ fun Route.products() {
             // act
             val entities = productsService.transaction {
                 getAll().toModels()
-            }
-            // response
-            call.respond(entities)
-        }
-        get("/published") {
-            // check role
-            call.checkRoleFull()
-            // act
-            val entities = productsService.transaction {
-                getAllPublished().toModels()
             }
             // response
             call.respond(entities)

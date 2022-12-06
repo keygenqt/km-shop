@@ -24,6 +24,17 @@ import kotlin.js.JsExport
 @JsExport
 @Serializable
 @Suppress("ArrayInDataClass")
+data class ProductPageResponse(
+    val pages: Int,
+    val products: Array<ProductResponse>,
+)
+
+/**
+ * Response shop products
+ */
+@JsExport
+@Serializable
+@Suppress("ArrayInDataClass")
 data class ProductResponse(
     val id: Int,
     val category: CategoryResponse,

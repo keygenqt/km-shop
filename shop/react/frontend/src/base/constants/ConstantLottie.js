@@ -6,6 +6,7 @@ import catPlaying from "../../assets/lottie/117326-cat-playing-animation.json";
 import listEmpty from "../../assets/lottie/lf30_editor_bguhbwhl.json";
 import orderSuccess from "../../assets/lottie/lf30_editor_4j9c9xtw.json";
 import orderSearchEmpty from "../../assets/lottie/113070-empty-box-blue.json";
+import loader from "../../assets/lottie/loader.json";
 
 /**
  * Apps constants sundries
@@ -19,4 +20,5 @@ export const ConstantLottie = {
     orderSearchEmpty: orderSearchEmpty,
     listEmpty: listEmpty,
     catPlaying: catPlaying,
+    loader: loader,
 };

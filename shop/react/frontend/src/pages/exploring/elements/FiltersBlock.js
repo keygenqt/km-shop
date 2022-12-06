@@ -25,31 +25,40 @@ import {
     SortOutlined,
     StyleOutlined
 } from "@mui/icons-material";
-import {AppHelper, ConstantStorage, HttpClient, useEffectTimout, useLocalStorage} from "../../../base";
+import {AppHelper, ConstantStorage, HttpClient, Requests, useEffectTimout, useLocalStorage} from "../../../base";
 import {ValueType} from "../../../base/route/ValueType";
+import PropTypes from "prop-types";
+import {useEffect, useLayoutEffect, useRef} from "react";
 
-function valuetext(value) {
-    return `${value}°C`;
-}
+export function FiltersBlock(props) {
 
-export function FiltersBlock() {
+    const {
+        sort,
+        onChangeSort,
+        range,
+        onChangeRangeCommitted,
+        onChangeRange,
+        categories,
+        onChangeCategories,
+        collections,
+        onChangeCollections,
+    } = props
 
     const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
     const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
+    const sliderRef = useRef()
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
     const [error, setError] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [data, setData] = React.useState([0, 0]);
-    const [value, setValue] = React.useState([0, 0]);
 
     useEffectTimout('FiltersBlock', async () => {
         try {
             const prices = await HttpClient.get.prices()
             setData([prices.min, prices.max])
-            setValue([prices.min, prices.max])
             setLoading(false)
         } catch (e) {
             setError(e.message)
@@ -129,7 +138,21 @@ export function FiltersBlock() {
                         <AccordionDetails>
                             <FormGroup>
                                 {categoriesCache.map((it) => (
-                                    <FormControlLabel control={<Checkbox defaultChecked/>} label={it.name}/>
+                                    <FormControlLabel
+                                        checked={categories.includes(it.id)}
+                                        key={`category-${it.id}`}
+                                        name={`category-${it.id}`}
+                                        control={<Checkbox/>}
+                                        label={it.name}
+                                        onChange={(event) => {
+                                            const id = parseInt(event.target.name.split('-')[1])
+                                            if (event.target.checked) {
+                                                onChangeCategories(categories.concat([id]))
+                                            } else {
+                                                onChangeCategories(categories.filter((it) => it !== id))
+                                            }
+                                        }}
+                                    />
                                 ))}
                             </FormGroup>
                         </AccordionDetails>
@@ -148,7 +171,21 @@ export function FiltersBlock() {
                         <AccordionDetails>
                             <FormGroup>
                                 {collectionsCache.map((it) => (
-                                    <FormControlLabel control={<Checkbox defaultChecked/>} label={it.name}/>
+                                    <FormControlLabel
+                                        key={`collection-${it.id}`}
+                                        name={`collection-${it.id}`}
+                                        checked={collections.includes(it.id)}
+                                        control={<Checkbox/>}
+                                        label={it.name}
+                                        onChange={(event) => {
+                                            const id = parseInt(event.target.name.split('-')[1])
+                                            if (event.target.checked) {
+                                                onChangeCollections(collections.concat([id]))
+                                            } else {
+                                                onChangeCollections(collections.filter((it) => it !== id))
+                                            }
+                                        }}
+                                    />
                                 ))}
                             </FormGroup>
                         </AccordionDetails>
@@ -165,11 +202,26 @@ export function FiltersBlock() {
                             </Stack>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <RadioGroup defaultValue="newest">
-                                <FormControlLabel value="newest" control={<Radio/>} label="Newest"/>
-                                <FormControlLabel value="rating" control={<Radio/>} label="Best Rating"/>
-                                <FormControlLabel value="low" control={<Radio/>} label="Price Low"/>
-                                <FormControlLabel value="height" control={<Radio/>} label="Price Height"/>
+                            <RadioGroup value={sort} onChange={(event) => {
+                                switch (event.target.value) {
+                                    case Requests.OrderProduct.NEWEST.name:
+                                        onChangeSort(Requests.OrderProduct.NEWEST)
+                                        break;
+                                    case Requests.OrderProduct.RATING.name:
+                                        onChangeSort(Requests.OrderProduct.RATING)
+                                        break;
+                                    case Requests.OrderProduct.LOW.name:
+                                        onChangeSort(Requests.OrderProduct.LOW)
+                                        break;
+                                    default:
+                                        onChangeSort(Requests.OrderProduct.HEIGHT)
+                                        break;
+                                }
+                            }}>
+                                <FormControlLabel value={Requests.OrderProduct.NEWEST} control={<Radio/>} label="Newest"/>
+                                <FormControlLabel value={Requests.OrderProduct.RATING} control={<Radio/>} label="Best Rating"/>
+                                <FormControlLabel value={Requests.OrderProduct.LOW} control={<Radio/>} label="Price Low"/>
+                                <FormControlLabel value={Requests.OrderProduct.HEIGHT} control={<Radio/>} label="Price Height"/>
                             </RadioGroup>
                         </AccordionDetails>
                     </Accordion>
@@ -215,15 +267,14 @@ export function FiltersBlock() {
                                 paddingBottom: 1
                             }}>
                                 <Slider
-                                    min={data[0]} max={data[1]}
+                                    ref={sliderRef}
+                                    min={data[0]}
+                                    max={data[1]}
                                     color={'secondary'}
-                                    getAriaLabel={() => 'Temperature range'}
-                                    value={value}
-                                    onChange={(event, newValue) => {
-                                        setValue(newValue);
-                                    }}
+                                    value={range}
+                                    onChange={(event, newValue) => onChangeRange(newValue)}
+                                    onChangeCommitted={(event, newValue) => onChangeRangeCommitted()}
                                     valueLabelDisplay="auto"
-                                    getAriaValueText={valuetext}
                                 />
                             </Box>
 
@@ -236,7 +287,7 @@ export function FiltersBlock() {
 
                                     <Chip
                                         size={'small'}
-                                        label={AppHelper.priceFormat(value[0])}
+                                        label={AppHelper.priceFormat(data[0])}
                                         variant={'outlined'}
                                         color={'primary'}
                                         sx={{minWidth: 80, borderWidth: 2}}
@@ -250,7 +301,7 @@ export function FiltersBlock() {
 
                                     <Chip
                                         size={'small'}
-                                        label={AppHelper.priceFormat(value[1])}
+                                        label={AppHelper.priceFormat(data[1])}
                                         variant={'outlined'}
                                         color={'primary'}
                                         sx={{minWidth: 80, borderWidth: 2}}
@@ -266,4 +317,14 @@ export function FiltersBlock() {
     );
 }
 
-FiltersBlock.propTypes = {};
+FiltersBlock.propTypes = {
+    sort: PropTypes.object.isRequired,
+    onChangeSort: PropTypes.func.isRequired,
+    range: PropTypes.array.isRequired,
+    onChangeRangeCommitted: PropTypes.func.isRequired,
+    onChangeRange: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
+    onChangeCategories: PropTypes.func.isRequired,
+    collections: PropTypes.array.isRequired,
+    onChangeCollections: PropTypes.func.isRequired,
+};

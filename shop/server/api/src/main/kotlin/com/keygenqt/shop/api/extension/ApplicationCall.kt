@@ -57,8 +57,21 @@ fun ApplicationCall.getStringParam(key: String = "name"): String = parameters[ke
 /**
  * Get value from params with validate
  */
+infix fun ApplicationCall.getQueryParam(key: String) =
+    request.queryParameters[key] ?: throw throw Exceptions.NotFound()
+
+/**
+ * Get value from params with validate
+ */
 fun ApplicationCall.getNumbersQueryParam(key: String = "ids") =
     request.queryParameters.entries().find { it.key == key }?.value?.mapNotNull { it.toIntOrNull() }
+        ?: throw throw Exceptions.NotFound()
+
+/**
+ * Get value from params with validate
+ */
+fun ApplicationCall.getDoublesQueryParam(key: String = "ids") =
+    request.queryParameters.entries().find { it.key == key }?.value?.mapNotNull { it.toDoubleOrNull() }
         ?: throw throw Exceptions.NotFound()
 
 /**

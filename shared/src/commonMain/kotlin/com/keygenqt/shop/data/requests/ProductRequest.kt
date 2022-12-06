@@ -19,6 +19,14 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
+ * Role uer in app
+ */
+@JsExport
+enum class OrderProduct {
+    NEWEST, RATING, LOW, HEIGHT
+}
+
+/**
  * Request Product
  */
 @JsExport

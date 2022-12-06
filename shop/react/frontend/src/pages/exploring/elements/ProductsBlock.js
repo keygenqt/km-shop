@@ -1,23 +1,22 @@
 import * as React from "react";
-import {useContext} from "react";
 import {Box, Grid, Pagination, Stack, useMediaQuery, useTheme} from "@mui/material";
 import {CardProduct} from "../../../components/other/CardProduct";
 import PropTypes from "prop-types";
-import {ConstantLottie, NavigateContext} from "../../../base";
+import {ConstantLottie} from "../../../base";
 import Lottie from "lottie-react";
 
 export function ProductsBlock(props) {
 
     const {
+        rows,
+        page,
+        pages,
         loading,
-        rows
+        onChangePage,
     } = props
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
-    const {route} = useContext(NavigateContext)
-
-    const [page, setPage] = React.useState(1);
 
     return (
         loading ? (
@@ -48,7 +47,7 @@ export function ProductsBlock(props) {
         ) : (
             <Box sx={{position: 'relative', width: '100%'}}>
                 {rows.length ? (
-                    <Stack spacing={isSM ? 2 : 3} sx={{position: 'relative'}}>
+                    <Stack id={'product-scroll'} spacing={isSM ? 2 : 3} sx={{position: 'relative'}}>
 
                         <Grid container spacing={isSM ? 2 : 3}>
                             {rows.map((product) => (
@@ -59,19 +58,16 @@ export function ProductsBlock(props) {
                             ))}
                         </Grid>
 
-                        <Pagination
-                            count={2}
-                            page={page}
-                            size={isSM ? 'small' : 'medium'}
-                            variant="outlined"
-                            color="secondary"
-                            onChange={(event, value) => {
-                                route.scrollToTopSmooth()
-                                setTimeout(() => {
-                                    setPage(value)
-                                }, 350)
-                            }}
-                        />
+                        {pages > 1 ? (
+                            <Pagination
+                                count={pages}
+                                page={page}
+                                size={isSM ? 'small' : 'medium'}
+                                variant="outlined"
+                                color="secondary"
+                                onChange={(event, value) => onChangePage(value)}
+                            />
+                        ) : null}
                     </Stack>
                 ) : (
                     <Stack alignItems={'center'} height={'100%'}>
@@ -95,6 +91,8 @@ export function ProductsBlock(props) {
 }
 
 ProductsBlock.propTypes = {
-    loading: PropTypes.bool.isRequired,
     rows: PropTypes.array,
+    page: PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired,
+    onChangePage: PropTypes.func.isRequired,
 };

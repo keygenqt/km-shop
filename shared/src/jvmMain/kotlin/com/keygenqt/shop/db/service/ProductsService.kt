@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.db.service
 
+import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
@@ -51,11 +52,58 @@ class ProductsService(
     /**
      * Get all entities for guest
      */
-    fun getAllPublished() = ProductEntity
-        .find { (Products.isPublished eq true) }
-        .limit(9)
-        .orderBy(Pair(Products.createAt, SortOrder.DESC))
-        .filter { it.category.isPublished }
+    fun getAllPublished(
+        order: OrderProduct,
+        range: Pair<Double, Double>,
+        categories: List<Int>,
+        collections: List<Int>,
+    ) = ProductEntity
+        .find {
+            (Products.isPublished eq true) and
+                    (Products.price greaterEq range.first) and
+                    (Products.price lessEq range.second) and
+                    (Products.categoryID inList categories)
+        }
+        .apply {
+            when (order) {
+                OrderProduct.NEWEST -> orderBy(Pair(Products.createAt, SortOrder.DESC))
+                OrderProduct.RATING -> orderBy(Pair(Products.createAt, SortOrder.ASC))
+                OrderProduct.LOW -> orderBy(Pair(Products.price, SortOrder.ASC))
+                OrderProduct.HEIGHT -> orderBy(Pair(Products.price, SortOrder.DESC))
+            }
+        }
+
+    /**
+     * Get page entities for guest
+     */
+    fun getPagePublished(
+        page: Int,
+        order: OrderProduct,
+        range: Pair<Double, Double>,
+        categories: List<Int>,
+        collections: List<Int>,
+        pageSize: Int
+    ) = getAllPublished(
+        order = order,
+        range = range,
+        categories = categories,
+        collections = collections,
+    ).limit(pageSize, pageSize.toLong() * (page - 1))
+
+    /**
+     * Get count entities for guest
+     */
+    fun getCountPublished(
+        order: OrderProduct,
+        range: Pair<Double, Double>,
+        categories: List<Int>,
+        collections: List<Int>,
+    ) = getAllPublished(
+        order = order,
+        range = range,
+        categories = categories,
+        collections = collections,
+    ).count()
 
     /**
      * Get max price

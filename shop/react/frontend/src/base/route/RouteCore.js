@@ -389,17 +389,19 @@ export default class RouteCore {
     /**
      * Scroll to top page
      */
-    scrollToTop() {
-        const el = document.getElementById("page-scroll")
-        el.scrollTo(0, 0);
+    scrollToTop(to = null, added = 0) {
+        const el = document.getElementById('page-scroll')
+        const top = to ? el.scrollTop + added + document.getElementById(to).getBoundingClientRect().top : 0
+        el.scrollTo(0, top);
     }
 
     /**
      * Scroll to top page with smooth
      */
-    scrollToTopSmooth() {
-        const el = document.getElementById("page-scroll")
-        el.scrollTo({top: 0, behavior: 'smooth'});
+    scrollToTopSmooth(to = null, added = 0) {
+        const el = document.getElementById('page-scroll')
+        const top = to ? el.scrollTop + added + document.getElementById(to).getBoundingClientRect().top : 0
+        el.scrollTo({top: top, behavior: 'smooth'});
     }
 
     /**
