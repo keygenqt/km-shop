@@ -20,9 +20,7 @@ import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.dao.id.EntityID
-import org.jetbrains.exposed.sql.SizedCollection
-import org.jetbrains.exposed.sql.SortOrder
-import org.jetbrains.exposed.sql.and
+import org.jetbrains.exposed.sql.*
 
 class ProductsService(
     override val db: DatabaseMysql
@@ -52,13 +50,13 @@ class ProductsService(
     /**
      * Get all entities for guest
      */
-    fun getAllPublished(
+    private fun getAllPublished(
         order: OrderProduct,
         range: Pair<Double, Double>,
         categories: List<Int>,
         collections: List<Int>,
-    ) = ProductEntity
-        .find {
+    ) = Products
+        .select {
             (Products.isPublished eq true) and
                     (Products.price greaterEq range.first) and
                     (Products.price lessEq range.second) and
@@ -70,6 +68,17 @@ class ProductsService(
                 OrderProduct.RATING -> orderBy(Pair(Products.createAt, SortOrder.ASC))
                 OrderProduct.LOW -> orderBy(Pair(Products.price, SortOrder.ASC))
                 OrderProduct.HEIGHT -> orderBy(Pair(Products.price, SortOrder.DESC))
+            }
+        }
+        .andHaving {
+            if (collections.isEmpty()) {
+                Op.TRUE
+            } else {
+                Op.build {
+                    exists(ProductCollections.select {
+                        (ProductCollections.collection inList collections) and (ProductCollections.product eq Products.id)
+                    })
+                }
             }
         }
 
@@ -88,7 +97,9 @@ class ProductsService(
         range = range,
         categories = categories,
         collections = collections,
-    ).limit(pageSize, pageSize.toLong() * (page - 1))
+    )
+        .limit(pageSize, pageSize.toLong() * (page - 1))
+        .map { ProductEntity.wrapRow(it) }
 
     /**
      * Get count entities for guest
@@ -103,7 +114,18 @@ class ProductsService(
         range = range,
         categories = categories,
         collections = collections,
-    ).count()
+    )
+        .adjustSlice {
+            slice(
+                Products.id,
+                Products.price,
+                Products.isPublished,
+                Products.createAt,
+                Products.categoryID
+            )
+        }
+        .toList()
+        .count()
 
     /**
      * Get max price

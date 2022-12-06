@@ -40,7 +40,7 @@ export function ExploringPage() {
     const [filterSort, setFilterSort] = React.useState(Requests.OrderProduct.NEWEST);
     const [filterRange, setFilterRange] = React.useState([0, 999999999]);
     const [filterCategories, setFilterCategories] = React.useState(categoriesCache.map((it) => it.id));
-    const [filterCollections, setFilterCollections] = React.useState(collectionsCache.map((it) => it.id));
+    const [filterCollections, setFilterCollections] = React.useState([]);
 
     const [pages, setPages] = React.useState(0);
     const [rangeCommitted, setRangeCommitted] = React.useState(false);
