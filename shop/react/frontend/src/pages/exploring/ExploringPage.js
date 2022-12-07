@@ -3,6 +3,7 @@ import {useContext, useEffect} from 'react';
 import {Box, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {useParams} from "react-router";
 import {
+    AppCache,
     ConstantLottie,
     ConstantStorage,
     HttpClient,
@@ -68,9 +69,10 @@ export function ExploringPage() {
 
     useEffect(() => {
         setFilterPage(1)
-        setFilterCategories(category ? [category.id] : categoriesCache.map((it) => it.id))
+        setFilterCategories(category ? [category.id] :
+            AppCache.arrayGet(ConstantStorage.categories, []).map((it) => it.id))
         setFilterCollections(collection ? [collection.id] : [])
-    }, [categoriesCache, category, collection, filter])
+    }, [category, collection, filter])
 
     useEffectTimout('ExploringPage', async () => {
         if (!rangeCommitted) {
