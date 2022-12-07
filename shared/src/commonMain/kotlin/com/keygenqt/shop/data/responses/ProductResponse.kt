@@ -19,6 +19,15 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 /**
+ * Response count products
+ */
+@JsExport
+@Serializable
+data class ProductCountResponse(
+    val count: Int,
+)
+
+/**
  * Response shop products
  */
 @JsExport

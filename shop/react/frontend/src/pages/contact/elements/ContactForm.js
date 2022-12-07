@@ -3,8 +3,9 @@ import {Box, Button, CircularProgress, FormGroup, Stack, TextField, useMediaQuer
 import {DoneOutlined} from "@mui/icons-material";
 import {Formik} from "formik";
 import * as Yup from "yup";
-import {AppHelper} from "../../../base";
-import {AlertError, AlertSuccess} from "../../../components";
+import {AppHelper, HttpClient, Requests} from "../../../base";
+import {AlertError, AlertSuccess, TextMaskPhone} from "../../../components";
+import {ContactSetValueFormic} from "./ContactSetValueFormic";
 
 export function ContactForm() {
 
@@ -36,34 +37,21 @@ export function ContactForm() {
                 await new Promise(r => setTimeout(r, 1000));
 
                 try {
-
-                    // const response = await HttpClient.put.category(new Requests.CategoryRequest(
-                    //     values.image,
-                    //     values.name,
-                    //     values.isPublished,
-                    //     values.uploads,
-                    // ))
-
-                    if (Math.random() < 0.7) {
-                        throw new Error('The form is in demo mode.');
-                    } else {
-                        setValues({
-                            fname: '',
-                            lname: '',
-                            email: '',
-                            phone: '',
-                            message: '',
-                        }, false);
-
-                        setStatus({success: true});
-                    }
-
+                    await HttpClient.post.message(new Requests.MessageRequest(
+                        values.fname,
+                        values.lname,
+                        values.email,
+                        values.phone,
+                        values.message,
+                    ))
+                    setStatus({success: true});
                 } catch (error) {
 
                     const errors = {
                         fname: AppHelper.findError('fname', error.validate),
                         lname: AppHelper.findError('lname', error.validate),
                         email: AppHelper.findError('email', error.validate),
+                        phone: AppHelper.findError('phone', error.validate),
                         message: AppHelper.findError('message', error.validate),
                     }
 
@@ -89,6 +77,10 @@ export function ContactForm() {
               }) => (
                 <form noValidate onSubmit={handleSubmit}>
 
+                    <ContactSetValueFormic
+                        clear={Boolean(status && status.success)}
+                    />
+
                     <FormGroup>
                         <Box>
                             <Stack
@@ -105,9 +97,10 @@ export function ContactForm() {
                                         {errors.submit}
                                     </AlertError>
                                 )}
+
                                 {status && status.success && (
                                     <AlertSuccess onClose={() => setStatus({success: false})}>
-                                        Success submit form!
+                                        Success submit message
                                     </AlertSuccess>
                                 )}
 
@@ -172,6 +165,7 @@ export function ContactForm() {
                                 />
 
                                 <TextField
+                                    InputProps={{inputComponent: TextMaskPhone}}
                                     disabled={isSubmitting}
                                     type={'phone'}
                                     name={'phone'}

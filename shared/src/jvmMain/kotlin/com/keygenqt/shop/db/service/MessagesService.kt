@@ -43,13 +43,18 @@ class MessagesService(
      * Create entity
      */
     fun insert(
+        fname: String,
+        lname: String,
         email: String,
+        phone: String,
         message: String,
-        isChecked: Boolean,
     ) = MessageEntity.new {
+        this.fname = fname
+        this.lname = lname
         this.email = email
+        this.phone = phone
         this.message = message
-        this.isChecked = isChecked
+        this.isChecked = false
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
     }
@@ -58,12 +63,8 @@ class MessagesService(
      * Update entity
      */
     fun MessageEntity.update(
-        email: String,
-        message: String,
         isChecked: Boolean,
     ) = let { entity ->
-        entity.email = email
-        entity.message = message
         entity.isChecked = isChecked
         entity.updateAt = System.currentTimeMillis()
         entity

@@ -24,7 +24,18 @@ import kotlin.js.JsExport
 @JsExport
 @Serializable
 data class MessageRequest(
+    val fname: String,
+    val lname: String,
     val email: String,
+    val phone: String,
     val message: String,
+)
+
+/**
+ * Request Message
+ */
+@JsExport
+@Serializable
+data class MessageStateRequest(
     val isChecked: Boolean,
 )

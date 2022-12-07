@@ -82,13 +82,6 @@ export function CardProduct(props) {
                                     </Box>
                                 )}
                             />
-
-                            <Stack direction={'row'} spacing={0.7} alignItems={'center'}>
-                                <Star sx={{width: 18, height: 18, color: '#FBBF23'}}/>
-                                <Typography variant="body2" color="text.secondary">
-                                    4.0
-                                </Typography>
-                            </Stack>
                         </Stack>
                     </Stack>
 

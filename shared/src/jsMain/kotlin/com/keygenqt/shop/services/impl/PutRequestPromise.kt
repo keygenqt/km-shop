@@ -23,13 +23,13 @@ import com.keygenqt.shop.services.ServiceRequest
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
 class PutRequestPromise(private val client: ServiceRequest) {
     /**
-     * Override [PutRequest.message] for JS
+     * Override [PutRequest.messageState] for JS
      */
-    fun message(
+    fun messageState(
         id: Int,
-        request: MessageRequest
+        request: MessageStateRequest
     ) = wrapPromise {
-        client.put.message(id, request)
+        client.put.messageState(id, request)
     }
 
     /**

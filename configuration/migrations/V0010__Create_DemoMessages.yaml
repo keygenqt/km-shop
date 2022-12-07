@@ -1,29 +1,47 @@
 ### Configuration data migration
 ### Messages to help desk
 
+# fname   | String
+# lname   | String
 # email   | String
+# phone   | String?
 # message | String
 
 messages:
-  - email: client1@gmail.com
+  - fname: Name
+    lname: Surname
+    email: client@gmail.com
+    phone: "+7 (967) 300 50 75"
     message: Hello! Can you deliver to Mumba-Yumba?
 
-  - email: client2@gmail.com
+  - fname: Name2
+    lname: Surname2
+    email: client2@gmail.com
+    phone: "+7 (967) 100 10 55"
     message: Hello. And you can get a 100% discount. There are simply no babos,
       but I really want to be the coolest of all.
 
-  - email: client3@gmail.com
+  - fname: Name3
+    lname: Surname3
+    email: client3@gmail.com
+    phone: "+7 (555) 345 11 45"
     message: Hello. I am writing from America. Can we arrange deliveries to this country?
 
-  - email: client4@gmail.com
+  - fname: Name4
+    lname: Surname4
+    email: client4@gmail.com
     message: Hello. I am 20 years old can I still wear bows now?
       Mom says no, what do you think?
 
-  - email: client5@gmail.com
+  - fname: Name5
+    lname: Surname5
+    email: client5@gmail.com
     message: Hello. I write just like that. How are you?
       I'm bored and I write letters to everyone.
       There will be a lot of text for the test that you go try to come up with.
 
-  - email: client6@gmail.com
+  - fname: Name6
+    lname: Surname6
+    email: client6@gmail.com
     message: Hello. Can you make a bow meter by meter?
       I need a giant for my son.

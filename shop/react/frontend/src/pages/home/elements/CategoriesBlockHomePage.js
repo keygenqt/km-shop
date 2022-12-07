@@ -14,11 +14,11 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {ArrowForwardOutlined} from "@mui/icons-material";
-import {ConstantImages, ConstantStorage, NavigateContext, useLocalStorage} from "../../../base";
+import {ConstantImages, ConstantStorage, HttpClient, NavigateContext, useLocalStorage} from "../../../base";
 import {TabsBlackStyled} from "../../../components/tabs/styled/TabsBlackStyled";
 import {ValueType} from "../../../base/route/ValueType";
 import {GenericIcon} from "../../../components";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 const bgs = [
     ConstantImages.home.cat_bg_1,
@@ -38,15 +38,38 @@ export function CategoriesBlockHomePage() {
     const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
     const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(collectionsCache ? collectionsCache[0].id : 0);
+    const [counts, setCounts] = React.useState([]);
 
     const filters = []
     const categories = []
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const responses = []
+            for (let i = 0; i < categoriesCache.length; i++) {
+                const response = await HttpClient.get.productsCountPublished(
+                    [categoriesCache[i].id],
+                    [value]
+                )
+                responses.push({
+                    id: categoriesCache[i].id,
+                    count: response.count
+                })
+            }
+            setCounts(responses)
+        };
+
+        fetchData().catch(console.error);
+
+    }, [categoriesCache, value])
 
     collectionsCache.slice(0, 6).forEach((collection) => {
         filters.push((
             <Tab
                 key={`filter-item-${collection.id}`}
+                value={collection.id}
                 label={(
                     <Stack
                         direction={'row'}
@@ -106,7 +129,7 @@ export function CategoriesBlockHomePage() {
                                     paddingRight: 1
                                 }}
                             >
-                                {category.id} products
+                                {counts.find((it) => it.id === category.id)?.count ?? '∞'} products
                             </Typography>
                         }
                     />
@@ -158,7 +181,7 @@ export function CategoriesBlockHomePage() {
                                 marginLeft: '-1px'
                             }}
                             onClick={() => {
-                                route.toLocation(routes.exploringCollection, category.key)
+                                route.toLocation(routes.exploringCollection, `${category.key}:${collectionsCache.find((it) => it.id === value).key}`)
                             }}
                         >
                             See Collection

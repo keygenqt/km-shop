@@ -25,12 +25,12 @@ import io.ktor.http.*
 
 class PutRequest(private val client: HttpClient) {
     /**
-     * Update message method
+     * Update message state method
      */
     @Throws(Exception::class)
-    suspend fun message(
+    suspend fun messageState(
         id: Int,
-        request: MessageRequest
+        request: MessageStateRequest
     ): MessageResponse {
         return client.put("api/messages/$id") { setBody(request) }.body()
     }

@@ -45,7 +45,10 @@ export function HelpPage() {
         HttpClient.get.messages().then(async (response) => {
             setData(response.toArray().map((item) => ({
                 id: item.id,
+                fname: item.fname,
+                lname: item.lname,
                 email: item.email,
+                phone: item.phone,
                 message: item.message,
                 isChecked: item.isChecked,
                 createAt: item.createAt,
@@ -140,9 +143,7 @@ export function HelpPage() {
                                                 setError(null)
                                                 setLoading(true)
                                                 params.row.isChecked = checked
-                                                HttpClient.put.message(params.row.id, new Requests.MessageRequest(
-                                                    params.row.email,
-                                                    params.row.message,
+                                                HttpClient.put.messageState(params.row.id, new Requests.MessageStateRequest(
                                                     params.row.isChecked,
                                                 )).then(async () => {
                                                     setRefresh(!refresh)

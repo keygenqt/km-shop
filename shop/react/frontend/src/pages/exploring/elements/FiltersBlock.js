@@ -207,9 +207,6 @@ export function FiltersBlock(props) {
                                     case Requests.OrderProduct.NEWEST.name:
                                         onChangeSort(Requests.OrderProduct.NEWEST)
                                         break;
-                                    case Requests.OrderProduct.RATING.name:
-                                        onChangeSort(Requests.OrderProduct.RATING)
-                                        break;
                                     case Requests.OrderProduct.LOW.name:
                                         onChangeSort(Requests.OrderProduct.LOW)
                                         break;
@@ -219,7 +216,6 @@ export function FiltersBlock(props) {
                                 }
                             }}>
                                 <FormControlLabel value={Requests.OrderProduct.NEWEST} control={<Radio/>} label="Newest"/>
-                                <FormControlLabel value={Requests.OrderProduct.RATING} control={<Radio/>} label="Best Rating"/>
                                 <FormControlLabel value={Requests.OrderProduct.LOW} control={<Radio/>} label="Price Low"/>
                                 <FormControlLabel value={Requests.OrderProduct.HEIGHT} control={<Radio/>} label="Price Height"/>
                             </RadioGroup>

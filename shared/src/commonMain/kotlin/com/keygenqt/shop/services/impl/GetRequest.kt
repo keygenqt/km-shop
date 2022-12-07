@@ -118,6 +118,32 @@ class GetRequest(private val client: HttpClient) {
     }
 
     /**
+     * Get products published
+     */
+    @Throws(Exception::class)
+    suspend fun productsCountPublished(
+        categories: Array<Int>,
+        collections: Array<Int>,
+    ): ProductCountResponse {
+        return client.get("api/products/published/count") {
+            url {
+                parameters.appendAll("categories", categories.map { it.toString() })
+                parameters.appendAll("collections", collections.map { it.toString() })
+            }
+        }.body()
+    }
+
+    /**
+     * Get products published
+     */
+    @Throws(Exception::class)
+    suspend fun productsPurchased(
+        excludeID: Int,
+    ): List<ProductResponse> {
+        return client.get("api/products/purchased/$excludeID").body()
+    }
+
+    /**
      * Get products published by IDs
      */
     @Throws(Exception::class)

@@ -29,7 +29,7 @@ export function ProductPage() {
                 .product(id)
 
             const responseProducts = await HttpClient.get
-                .productsPublished()
+                .productsPurchased(parseInt(id))
 
             setProduct(responseProduct.mapToProduct())
 
@@ -42,6 +42,7 @@ export function ProductPage() {
 
             setLoading(false)
         } catch (e) {
+            console.error(e)
             setError(e.message)
             setLoading(false)
         }

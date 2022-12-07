@@ -21,6 +21,7 @@ import com.keygenqt.shop.db.entities.*
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.*
+import kotlin.collections.count as countCollections
 
 class ProductsService(
     override val db: DatabaseMysql
@@ -48,10 +49,21 @@ class ProductsService(
         .orderBy(Pair(Products.createAt, SortOrder.DESC))
 
     /**
+     * Get purchased products
+     */
+    fun getPurchased(
+        excludeID: Int,
+    ) = Products
+        .select { (Products.isPublished eq true) and (Products.id neq excludeID) }
+        .orderBy(Random())
+        .limit(4)
+        .map { ProductEntity.wrapRow(it) }
+
+    /**
      * Get all entities for guest
      */
     private fun getAllPublished(
-        order: OrderProduct,
+        order: OrderProduct?,
         range: Pair<Double, Double>,
         categories: List<Int>,
         collections: List<Int>,
@@ -63,21 +75,22 @@ class ProductsService(
                     (Products.categoryID inList categories)
         }
         .apply {
-            when (order) {
-                OrderProduct.NEWEST -> orderBy(Pair(Products.createAt, SortOrder.DESC))
-                OrderProduct.RATING -> orderBy(Pair(Products.createAt, SortOrder.ASC))
-                OrderProduct.LOW -> orderBy(Pair(Products.price, SortOrder.ASC))
-                OrderProduct.HEIGHT -> orderBy(Pair(Products.price, SortOrder.DESC))
+            if (order !== null) {
+                when (order) {
+                    OrderProduct.NEWEST -> orderBy(Pair(Products.createAt, SortOrder.DESC))
+                    OrderProduct.LOW -> orderBy(Pair(Products.price, SortOrder.ASC))
+                    OrderProduct.HEIGHT -> orderBy(Pair(Products.price, SortOrder.DESC))
+                }
             }
         }
-        .andHaving {
-            if (collections.isEmpty()) {
-                Op.TRUE
-            } else {
-                Op.build {
-                    exists(ProductCollections.select {
-                        (ProductCollections.collection inList collections) and (ProductCollections.product eq Products.id)
-                    })
+        .apply {
+            if (collections.isNotEmpty()) {
+                andHaving {
+                    Op.build {
+                        exists(ProductCollections.select {
+                            (ProductCollections.collection inList collections) and (ProductCollections.product eq Products.id)
+                        })
+                    }
                 }
             }
         }
@@ -105,27 +118,29 @@ class ProductsService(
      * Get count entities for guest
      */
     fun getCountPublished(
-        order: OrderProduct,
         range: Pair<Double, Double>,
         categories: List<Int>,
         collections: List<Int>,
     ) = getAllPublished(
-        order = order,
+        order = null,
         range = range,
         categories = categories,
         collections = collections,
-    )
-        .adjustSlice {
-            slice(
-                Products.id,
-                Products.price,
-                Products.isPublished,
-                Products.createAt,
-                Products.categoryID
-            )
+    ).let {
+        if (collections.isNotEmpty()) {
+            it.adjustSlice {
+                slice(
+                    Products.id,
+                    Products.price,
+                    Products.isPublished,
+                    Products.createAt,
+                    Products.categoryID
+                )
+            }.countCollections()
+        } else {
+            it.count().toInt()
         }
-        .toList()
-        .count()
+    }
 
     /**
      * Get max price

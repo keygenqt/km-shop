@@ -26,7 +26,10 @@ import org.jetbrains.exposed.dao.id.IntIdTable
  * Table for help desk
  */
 object Messages : IntIdTable() {
+    val fname = varchar("fname", 255)
+    val lname = varchar("lname", 255)
     val email = varchar("email", 255)
+    val phone = varchar("phone", 255)
     val message = text("message")
     val isChecked = bool("isChecked").default(false)
     val createAt = long("createAt")
@@ -39,7 +42,10 @@ object Messages : IntIdTable() {
 class MessageEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<MessageEntity>(Messages)
 
+    var lname by Messages.lname
+    var fname by Messages.fname
     var email by Messages.email
+    var phone by Messages.phone
     var message by Messages.message
     var isChecked by Messages.isChecked
     var createAt by Messages.createAt
@@ -51,7 +57,10 @@ class MessageEntity(id: EntityID<Int>) : IntEntity(id) {
  */
 fun MessageEntity.toModel() = MessageResponse(
     id = id.value,
+    lname = lname,
+    fname = fname,
     email = email,
+    phone = phone,
     message = message,
     isChecked = isChecked,
     createAt = createAt.toUTC(),

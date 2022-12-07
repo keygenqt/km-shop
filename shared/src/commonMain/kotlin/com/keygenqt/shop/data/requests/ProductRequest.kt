@@ -23,7 +23,7 @@ import kotlin.js.JsExport
  */
 @JsExport
 enum class OrderProduct {
-    NEWEST, RATING, LOW, HEIGHT
+    NEWEST, LOW, HEIGHT
 }
 
 /**

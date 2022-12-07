@@ -77,12 +77,18 @@ object MigrationHelper {
         messages.forEach { item ->
             item as Map<*, *>
             // load variable
+            val fname = item["fname"] as String
+            val lname = item["lname"] as String
             val email = item["email"] as String
+            val phone = item["phone"] as String?
             val message = item["message"] as String
 
             // create user
             Messages.insert {
+                it[Messages.fname] = fname
+                it[Messages.lname] = lname
                 it[Messages.email] = email
+                it[Messages.phone] = phone ?: ""
                 it[Messages.message] = message
                 it[createAt] = System.currentTimeMillis()
                 it[updateAt] = System.currentTimeMillis()

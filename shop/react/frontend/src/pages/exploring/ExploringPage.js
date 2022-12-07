@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {Box, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {useParams} from "react-router";
 import {
@@ -25,8 +25,19 @@ export function ExploringPage() {
     const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
     const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
-    const category = filter ? categoriesCache.find((it) => it.key === filter)?.name : null
-    const collection = filter ? collectionsCache.find((it) => it.key === filter)?.name : null
+    const filterCat = filter && filter.includes(':') ? filter.split(':')[0] : null
+    const filterCollect = filter && filter.includes(':') ? filter.split(':')[1] : null
+
+    let category = filterCat ? categoriesCache.find((it) => it.key === filterCat) : null
+    let collection = filterCollect ? collectionsCache.find((it) => it.key === filterCollect) : null
+
+    if (!category) {
+        category = filter ? categoriesCache.find((it) => it.key === filter) : null
+    }
+
+    if (!collection) {
+        collection = filter ? collectionsCache.find((it) => it.key === filter) : null
+    }
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -39,8 +50,12 @@ export function ExploringPage() {
     const [filterPage, setFilterPage] = React.useState(1);
     const [filterSort, setFilterSort] = React.useState(Requests.OrderProduct.NEWEST);
     const [filterRange, setFilterRange] = React.useState([0, 999999999]);
-    const [filterCategories, setFilterCategories] = React.useState(categoriesCache.map((it) => it.id));
-    const [filterCollections, setFilterCollections] = React.useState([]);
+    const [filterCategories, setFilterCategories] = React.useState(
+        category ? [category.id] : categoriesCache.map((it) => it.id)
+    );
+    const [filterCollections, setFilterCollections] = React.useState(
+        collection ? [collection.id] : []
+    );
 
     const [pages, setPages] = React.useState(0);
     const [rangeCommitted, setRangeCommitted] = React.useState(false);
@@ -50,6 +65,12 @@ export function ExploringPage() {
         fun()
         route.scrollToTop()
     }
+
+    useEffect(() => {
+        setFilterPage(1)
+        setFilterCategories(category ? [category.id] : categoriesCache.map((it) => it.id))
+        setFilterCollections(collection ? [collection.id] : [])
+    }, [categoriesCache, category, collection, filter])
 
     useEffectTimout('ExploringPage', async () => {
         if (!rangeCommitted) {
@@ -102,7 +123,7 @@ export function ExploringPage() {
                         <Stack spacing={2}>
                             <Typography variant={isSM ? 'h4' : 'h3'}>
                                 {filter ? (
-                                    category ? `${category} category` : `${collection} category`
+                                    category ? `${category.name} category` : `${collection.name} collection`
                                 ) : (
                                     'Exploring'
                                 )}

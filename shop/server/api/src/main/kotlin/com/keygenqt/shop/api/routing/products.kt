@@ -19,6 +19,7 @@ import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.ProductCountResponse
 import com.keygenqt.shop.data.responses.ProductPageResponse
 import com.keygenqt.shop.data.responses.ProductPricesResponse
 import com.keygenqt.shop.db.entities.ProductEntity
@@ -97,6 +98,39 @@ fun Route.products() {
     val pageSize = 9
 
     route("/products") {
+        get("/purchased/{id}") {
+            // check role
+            call.checkRoleFull()
+            // get request
+            val id = call.getNumberParam()
+            // act
+            val entities = productsService.transaction {
+                getPurchased(id).toModels()
+            }
+            // response
+            call.respond(entities)
+        }
+        get("/published/count") {
+            // check role
+            call.checkRoleFull()
+            // get request
+            val categories = call.getNumbersQueryParam("categories")
+            val collections = call.getNumbersQueryParam("collections")
+            // act
+            val count = productsService.transaction {
+                getCountPublished(
+                    range = Pair(0.0, 999999999999999.0),
+                    categories = categories,
+                    collections = collections,
+                )
+            }
+            // response
+            call.respond(
+                ProductCountResponse(
+                    count = count,
+                )
+            )
+        }
         get("/published") {
             // check role
             call.checkRoleFull()
@@ -120,7 +154,6 @@ fun Route.products() {
             }
             val pages = productsService.transaction {
                 getCountPublished(
-                    order = order,
                     range = Pair(range[0], range[1]),
                     categories = categories,
                     collections = collections,

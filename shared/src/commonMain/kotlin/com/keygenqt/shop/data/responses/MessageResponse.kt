@@ -25,7 +25,10 @@ import kotlin.js.JsExport
 @Serializable
 data class MessageResponse(
     val id: Int,
+    val lname: String,
+    val fname: String,
     val email: String,
+    val phone: String,
     val message: String,
     val isChecked: Boolean,
     val createAt: String,

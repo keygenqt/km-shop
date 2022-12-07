@@ -16,10 +16,7 @@
 package com.keygenqt.shop.api.routing
 
 import com.keygenqt.shop.api.base.Exceptions
-import com.keygenqt.shop.api.extension.checkRoleAuth
-import com.keygenqt.shop.api.extension.checkRoleGuest
-import com.keygenqt.shop.api.extension.getNumberParam
-import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.db.entities.MessageEntity
 import com.keygenqt.shop.db.entities.toModel
@@ -40,13 +37,30 @@ import org.koin.ktor.ext.inject
 @Serializable
 data class MessageRequest(
     @field:NotNullNotBlank
+    @field:Size(min = 3, max = 250, message = "First name must be between 3 and 250")
+    val fname: String,
+
+    @field:NotNullNotBlank
+    @field:Size(min = 3, max = 250, message = "Last name must be between 3 and 250")
+    val lname: String,
+
+    @field:NotNullNotBlank
     @field:Email(message = "Must be a valid Email")
     val email: String,
 
-    @field:NotNullNotBlank
-    @field:Size(min = 3, max = 1000, message = "Size must be between 3 and 1000")
-    val message: String,
+    @field:Size(min = 0, max = 250, message = "Phone max size 250")
+    val phone: String,
 
+    @field:NotNullNotBlank
+    @field:Size(min = 3, max = 1000, message = "Message must be between 3 and 1000")
+    val message: String,
+)
+
+/**
+ * Request update [MessageEntity]
+ */
+@Serializable
+data class MessageStateRequest(
     @field:NotNull
     val isChecked: Boolean
 )
@@ -80,15 +94,17 @@ fun Route.messages() {
         }
         post {
             // check role
-            call.checkRoleGuest()
+            call.checkRoleFull()
             // get request
             val request = call.receiveValidate<MessageRequest>()
             // act
             val response = messagesService.transaction {
                 insert(
+                    fname = request.fname,
+                    lname = request.lname,
                     email = request.email,
+                    phone = request.phone,
                     message = request.message,
-                    isChecked = request.isChecked,
                 ).toModel()
             }
             // response
@@ -99,12 +115,10 @@ fun Route.messages() {
             call.checkRoleAuth()
             // get request
             val id = call.getNumberParam()
-            val request = call.receiveValidate<MessageRequest>()
+            val request = call.receiveValidate<MessageStateRequest>()
             // act
             val response = messagesService.transaction {
                 findById(id)?.update(
-                    email = request.email,
-                    message = request.message,
                     isChecked = request.isChecked,
                 )?.toModel() ?: throw Exceptions.NotFound()
             }
