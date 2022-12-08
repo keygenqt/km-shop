@@ -17,7 +17,7 @@ import {
 import {AppHelper, ConstantStorage, NavigateContext, useLocalStorage} from "../../base";
 import {ValueType} from "../../base/route/ValueType";
 import Typography from "@mui/material/Typography";
-import {BrokenImageOutlined, CloseOutlined, CurrencyRubleOutlined} from "@mui/icons-material";
+import {BrokenImageOutlined, CloseOutlined, CurrencyRubleOutlined, ShoppingCartOutlined} from "@mui/icons-material";
 
 let timeoutID
 
@@ -69,7 +69,7 @@ export function SnackbarAddToCart() {
                     <Stack spacing={2}>
                         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                             <Typography variant={'h5'}>
-                                Added to cart!
+                                Добавлено в корзину!
                             </Typography>
                             <IconButton
                                 size={'small'}
@@ -95,7 +95,7 @@ export function SnackbarAddToCart() {
                                         route.toLocation(routes.cart)
                                     }}
                                 >
-                                    View Cart
+                                    Открыть корзину
                                 </Button>
                             </Box>
                         ) : (
@@ -178,14 +178,16 @@ export function SnackbarAddToCart() {
                                                 textAlign: 'right'
                                             }}>
                                                 <Button
+                                                    variant={'outlined'}
+                                                    color={'secondary'}
                                                     size={'small'}
-                                                    sx={{textTransform: 'none'}}
+                                                    sx={{textTransform: 'none', minWidth: 'auto'}}
                                                     onClick={() => {
                                                         setIsShow(false)
                                                         route.toLocation(routes.cart)
                                                     }}
                                                 >
-                                                    View Cart
+                                                    <ShoppingCartOutlined sx={{width: 16}}/>
                                                 </Button>
                                             </Box>
                                         </Stack>

@@ -146,7 +146,7 @@ export function CardProduct(props) {
                                         }
                                     }}
                                 >
-                                    View
+                                    Открыть
                                 </Button>
                             </Stack>
 

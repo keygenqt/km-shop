@@ -61,13 +61,13 @@ export function CartPage() {
 
                 <Stack spacing={2}>
                     <Typography variant={isSM ? 'h4' : 'h3'}>
-                        Shopping Cart
+                        Корзина покупателя
                     </Typography>
 
                     <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                         fontWeight: 100
                     }}>
-                        Here you can place an order.
+                        Здесь вы можете сделать заказ.
                     </Typography>
                 </Stack>
 

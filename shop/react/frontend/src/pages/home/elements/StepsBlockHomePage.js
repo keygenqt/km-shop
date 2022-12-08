@@ -1,32 +1,33 @@
 import * as React from 'react';
-import {Avatar, Box, Chip, Stack, useMediaQuery, useTheme} from "@mui/material";
+import {Avatar, Box, Chip, Grid, Stack, useMediaQuery, useTheme} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {ConstantImages} from "../../../base";
+import {ContactForm} from "../../contact/elements/ContactForm";
 
 const steps = [
     {
         image: ConstantImages.home.magnifyingGlass,
         color: 'primary',
-        title: 'Filter & Discover',
-        subtitle: 'Smart filtering and suggestions make it easy to find',
+        title: 'Фильтруй',
+        subtitle: 'Интеллектуальная фильтрация и предложения облегчают поиск',
     },
     {
         image: ConstantImages.home.shoppingCart,
         color: 'secondary',
-        title: 'Add to bag',
-        subtitle: 'Easily select the correct items and add them to the cart',
+        title: 'Добавь в корзину',
+        subtitle: 'Легко выбрать нужные товары и добавить их в корзину',
     },
     {
         image: ConstantImages.home.deliveryTruck,
         color: 'error',
-        title: 'Fast shipping',
-        subtitle: 'The carrier will confirm and ship quickly to you',
+        title: 'Быстрая доставка',
+        subtitle: 'Перевозчик подтвердит и быстро отправит вам',
     },
     {
         image: ConstantImages.home.bestSeller,
         color: 'success',
-        title: 'Enjoy the product',
-        subtitle: 'Have fun and enjoy your 5-star quality products',
+        title: 'Наслаждайтесь',
+        subtitle: 'Получайте удовольствие и наслаждайтесь качественными продуктами',
     }
 ]
 
@@ -39,47 +40,51 @@ export function StepsBlockHomePage() {
 
     steps.forEach((item, index) => {
         items.push((
-            <Stack
-                key={`steps-${index}`}
-                className={'MuiStack-item'}
-                spacing={2}
-                sx={{
-                    textAlign: 'center',
-                    ...(isMD ? {
-                        width: '100%',
-                        boxSizing: 'border-box'
-                    } : {})
-                }}
-            >
-                <Avatar
-                    alt={item.title}
-                    src={item.image}
+            <Grid key={`steps-${index}`} item xl={3} lg={3} md={3} sm={12} xs={12} min={12} null={12}>
+                <Stack
+                    className={'MuiStack-item'}
+                    spacing={2}
                     sx={{
-                        borderRadius: 0,
-                        width: 110,
-                        height: 110,
-                        margin: '0 auto 16px',
+                        pl: 1,
+                        pr: 1,
+                        marginBottom: isMD && steps.length-1 !== index ? 2 : 0,
+                        textAlign: 'center',
+                        ...(isMD ? {
+                            width: '100%',
+                            boxSizing: 'border-box'
+                        } : {})
                     }}
-                />
-                <Box>
-                    <Chip
-                        color={item.color}
-                        label="Step 1"
-                        variant="outlined"
+                >
+                    <Avatar
+                        alt={item.title}
+                        src={item.image}
                         sx={{
-                            backgroundColor: 'white',
-                            position: 'relative',
-                            zIndex: 1
+                            borderRadius: 0,
+                            width: 110,
+                            height: 110,
+                            margin: '0 auto 16px',
                         }}
                     />
-                </Box>
-                <Typography variant="h5">
-                    {item.title}
-                </Typography>
-                <Typography variant="body2">
-                    {item.subtitle}
-                </Typography>
-            </Stack>
+                    <Box>
+                        <Chip
+                            color={item.color}
+                            label="Step 1"
+                            variant="outlined"
+                            sx={{
+                                backgroundColor: 'white',
+                                position: 'relative',
+                                zIndex: 1
+                            }}
+                        />
+                    </Box>
+                    <Typography variant="h5">
+                        {item.title}
+                    </Typography>
+                    <Typography variant="body2">
+                        {item.subtitle}
+                    </Typography>
+                </Stack>
+            </Grid>
         ))
     })
 
@@ -98,11 +103,7 @@ export function StepsBlockHomePage() {
                 </Typography>
             ) : null}
 
-            <Stack
-                direction={isMD ? 'column' : 'row'}
-                justifyContent="space-between"
-                alignItems={isMD ? null : 'self-start'}
-                spacing={isMD ? 3 : 8}
+            <Grid container
                 sx={{
                     width: '100%',
                     position: 'relative',
@@ -110,8 +111,8 @@ export function StepsBlockHomePage() {
                         content: '""',
                         borderBottom: '1px dashed #c4c4c4',
                         position: 'absolute',
-                        left: 95,
-                        right: 95,
+                        left: 115,
+                        right: 115,
                         top: 157
                     },
                     ...(
@@ -129,7 +130,7 @@ export function StepsBlockHomePage() {
                 }}
             >
                 {items}
-            </Stack>
+            </Grid>
         </Stack>
     );
 }

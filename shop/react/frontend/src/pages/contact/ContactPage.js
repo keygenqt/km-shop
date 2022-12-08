@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {useEffect, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import {Avatar, Box, Button, Grid, Stack, Typography, useMediaQuery, useTheme} from "@mui/material";
 import {EmailOutlined, PhoneOutlined} from "@mui/icons-material";
 import Lottie from "lottie-react";
-import {ConstantImages, ConstantLottie} from "../../base";
+import {ConstantImages, ConstantLottie, NavigateContext} from "../../base";
 import {ContactForm} from "./elements/ContactForm";
+import {ContactConf} from "../../conf/ContactConf";
 
 let intervalID
 
@@ -13,6 +14,7 @@ export function ContactPage() {
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const {route} = useContext(NavigateContext)
 
     const lottieRef = useRef();
 
@@ -31,13 +33,13 @@ export function ContactPage() {
 
             <Stack spacing={2}>
                 <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Leave Us a Message
+                    Оставьте нам сообщение
                 </Typography>
 
                 <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                     fontWeight: 100
                 }}>
-                    We'd love to hear from you.
+                    Мы обязательно прочтем и ответим, если будет необходимость.
                 </Typography>
             </Stack>
 
@@ -97,12 +99,12 @@ export function ContactPage() {
 
             <Stack spacing={2} sx={{pt: isSM ? 2 : 4}}>
                 <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Our contacts
+                    Наши контакты
                 </Typography>
                 <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                     fontWeight: 100
                 }}>
-                    Stay in touch with us.
+                    Будь на связи.
                 </Typography>
             </Stack>
 
@@ -137,7 +139,7 @@ export function ContactPage() {
                                 }
                             }}
                         >
-                            Delivery is carried out throughout Russia. We are located in the city of Volgodonsk.
+                            Доставка осуществляется по всей России, а мы находимся в городе Волгодонск.
                         </Typography>
                     </Stack>
                     <Stack
@@ -162,7 +164,7 @@ export function ContactPage() {
                         />
 
                         <Typography variant={'caption'} sx={{textAlign: 'center'}}>
-                            My personal mail
+                            Моя личная почта
                         </Typography>
 
                         <Button
@@ -172,8 +174,11 @@ export function ContactPage() {
                             disableElevation
                             startIcon={<EmailOutlined/>}
                             sx={{textTransform: 'none'}}
+                            onClick={() => {
+                                route.openEmail(ContactConf.email)
+                            }}
                         >
-                            keygenqt@gmail.com
+                            {ContactConf.email}
                         </Button>
                     </Stack>
                     <Stack
@@ -194,7 +199,7 @@ export function ContactPage() {
                         />
 
                         <Typography variant={'caption'} sx={{textAlign: 'center'}}>
-                            Join to Telegram
+                            Добавляйтесь в Telegram
                         </Typography>
 
                         <Button
@@ -204,8 +209,11 @@ export function ContactPage() {
                             disableElevation
                             startIcon={<PhoneOutlined/>}
                             sx={{textTransform: 'none'}}
+                            onClick={() => {
+                                route.openUrlNewTab(ContactConf.telegram)
+                            }}
                         >
-                            +7 (894) 443 111 11
+                            {ContactConf.phone}
                         </Button>
                     </Stack>
                 </Stack>

@@ -6,9 +6,16 @@ import {
     BlockOutlined,
     BrokenImageOutlined,
     CurrencyRubleOutlined,
-    EmailOutlined, InfoOutlined,
-    MapOutlined, NewReleasesOutlined, NoteOutlined,
-    NumbersOutlined, PendingActionsOutlined, PersonOutline, PhoneOutlined, VerifiedOutlined
+    EmailOutlined,
+    InfoOutlined,
+    MapOutlined,
+    NewReleasesOutlined,
+    NoteOutlined,
+    NumbersOutlined,
+    PendingActionsOutlined,
+    PersonOutline,
+    PhoneOutlined,
+    VerifiedOutlined
 } from "@mui/icons-material";
 import {AppHelper, NavigateContext} from "../../../base";
 import {GenericIcon} from "../../../components";
@@ -20,7 +27,6 @@ export function OrderViewProductsPage(props) {
     } = props
 
     const theme = useTheme()
-    const isMD = useMediaQuery(theme.breakpoints.down('md'));
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
 
     const {route, routes} = useContext(NavigateContext)
@@ -170,13 +176,14 @@ export function OrderViewProductsPage(props) {
         <Stack spacing={isSM ? 4 : 6}>
             <Stack spacing={2}>
                 <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Order Details
+                    Информация по заказу
                 </Typography>
                 <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                     fontWeight: 100,
                     maxWidth: 800
                 }}>
-                    Here you can view the status of your order and information about it. Write down the number or save the link so that you can find it, the information will be updated.
+                    Здесь вы можете просмотреть статус вашего заказа и информацию о нем. Запишите номер или сохраните
+                    ссылку, чтобы можно было найти, информация будет обновляться.
                 </Typography>
             </Stack>
 
@@ -188,7 +195,8 @@ export function OrderViewProductsPage(props) {
                             p: 2,
                             borderRadius: 2
                         }}>
-                            <Stack spacing={1} direction={isSM ? 'column' : 'row'} justifyContent={'space-between'} alignItems={'center'}>
+                            <Stack spacing={1} direction={isSM ? 'column' : 'row'} justifyContent={'space-between'}
+                                   alignItems={'center'}>
                                 <Box>
                                     <Chip
                                         icon={isSM ? null : <NumbersOutlined/>}
@@ -202,7 +210,7 @@ export function OrderViewProductsPage(props) {
                                 <Box>
                                     <Stack direction={'row'} spacing={1}>
                                         <Typography variant={'h5'} sx={{fontWeight: 100}}>
-                                            Sum:
+                                            Общая сумма:
                                         </Typography>
                                         <Typography variant={'h5'}>
                                             {AppHelper.priceFormat(data.sum)}
@@ -216,12 +224,12 @@ export function OrderViewProductsPage(props) {
                     </Grid>
                     <Grid item xl={5} lg={5} md={5} sm={12} xs={12} min={12} null={12}>
                         <Stack spacing={3}>
-                            <Stack spacing={2} sx={{ p: 2, borderRadius: 2, bgcolor: '#F6F7F9', position: 'relative'}}>
+                            <Stack spacing={2} sx={{p: 2, borderRadius: 2, bgcolor: '#F6F7F9', position: 'relative'}}>
 
                                 <Stack direction={'row'} spacing={1}>
                                     <InfoOutlined/>
                                     <Typography variant={'h5'}>
-                                        Order Information
+                                        Статус заказа
 
                                         <Box sx={{
                                             position: 'absolute',
@@ -249,7 +257,7 @@ export function OrderViewProductsPage(props) {
                                                 top: 2
                                             }}/>
                                             <Typography variant={'body1'}>
-                                                New
+                                                Новый
                                             </Typography>
                                         </Stack>
                                     ) : null}
@@ -261,7 +269,7 @@ export function OrderViewProductsPage(props) {
                                                 top: 2
                                             }}/>
                                             <Typography variant={'body1'}>
-                                                Pending
+                                                В ожидании
                                             </Typography>
                                         </Stack>
                                     ) : null}
@@ -273,7 +281,7 @@ export function OrderViewProductsPage(props) {
                                                 top: 2
                                             }}/>
                                             <Typography variant={'body1'}>
-                                                Completed
+                                                Завершенный
                                             </Typography>
                                         </Stack>
                                     ) : null}
@@ -285,7 +293,7 @@ export function OrderViewProductsPage(props) {
                                                 top: 2
                                             }}/>
                                             <Typography variant={'body1'}>
-                                                Canceled
+                                                Отменено
                                             </Typography>
                                         </Stack>
                                     ) : null}
@@ -304,11 +312,11 @@ export function OrderViewProductsPage(props) {
 
                                 </Stack>
                             </Stack>
-                            <Stack spacing={2} sx={{ p: 2, borderRadius: 2, bgcolor: '#F6F7F9'}}>
+                            <Stack spacing={2} sx={{p: 2, borderRadius: 2, bgcolor: '#F6F7F9'}}>
                                 <Stack direction={'row'} spacing={1}>
                                     <PersonOutline/>
                                     <Typography variant={'h5'}>
-                                        Customer Details
+                                        Сведения о клиенте
                                     </Typography>
                                 </Stack>
 

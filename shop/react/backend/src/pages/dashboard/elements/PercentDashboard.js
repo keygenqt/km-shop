@@ -20,7 +20,7 @@ export function PercentDashboard(props) {
             spacing={2}
             sx={{paddingY: 2}}
         >
-            {count ? (
+            {count !== null ? (
                 <Typography variant="h4" color={color} sx={{
                     fontSize: '32px'
                 }}>

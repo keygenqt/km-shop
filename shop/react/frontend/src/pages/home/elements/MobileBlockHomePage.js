@@ -1,13 +1,16 @@
 import * as React from 'react';
 import {Avatar, Box, Button, Grid, Stack, useMediaQuery, useTheme} from "@mui/material";
-import {ConstantImages} from "../../../base";
+import {ConstantImages, NavigateContext} from "../../../base";
 import {ColorsCircle} from "./ColorsCircle";
 import Typography from "@mui/material/Typography";
+import {useContext} from "react";
+import {ContactConf} from "../../../conf/ContactConf";
 
 export function MobileBlockHomePage() {
 
     const theme = useTheme()
     const isMD = useMediaQuery(theme.breakpoints.down('md'));
+    const {route} = useContext(NavigateContext)
 
     return (
         <Grid container spacing={4}>
@@ -90,7 +93,7 @@ export function MobileBlockHomePage() {
                     <Typography variant={'h6'} sx={{
                         marginBottom: -2
                     }}>
-                        DOWNLOAD & ENJOY
+                        СКАЧАТЬ И БАЛДЕТЬ
                     </Typography>
 
                     <Typography variant={isMD ? 'h4' : 'h3'} sx={{
@@ -100,9 +103,9 @@ export function MobileBlockHomePage() {
                             }
                         }
                     }}>
-                        Get the Shop app
+                        Получить приложение
                         <br/>
-                        for shopping
+                        <span> для покупок</span>
                     </Typography>
 
                     <Typography
@@ -111,8 +114,7 @@ export function MobileBlockHomePage() {
                             maxWidth: isMD ? 'auto' : 300
                         }}
                     >
-                        Explore and find products for your unique everyday style for yourself and your beloved daughters
-                        or granddaughters.
+                        Исследуйте и находите товары для своего уникального стиля или для своих любимых.
                     </Typography>
 
                     <Stack
@@ -131,6 +133,9 @@ export function MobileBlockHomePage() {
                                 borderRadius: 1,
                                 overflow: 'hidden'
                             }}
+                            onClick={() => {
+                                route.openUrlNewTab(ContactConf.googlePlay)
+                            }}
                         >
                             <img
                                 src={ConstantImages.home.googlePlay}
@@ -147,6 +152,9 @@ export function MobileBlockHomePage() {
                                 maxWidth: 160,
                                 borderRadius: 1,
                                 overflow: 'hidden'
+                            }}
+                            onClick={() => {
+                                route.openUrlNewTab(ContactConf.appStore)
                             }}
                         >
                             <img

@@ -41,8 +41,8 @@ export function CartForm(props) {
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                phone: Yup.string().required('Phone is required'),
-                email: Yup.string().email('Email must be a valid email'),
+                phone: Yup.string().required('Требуется телефон'),
+                email: Yup.string().email('Электронная почта должна быть действительной'),
             })}
             onSubmit={async (values, {setErrors, setStatus, setValues}) => {
 
@@ -122,12 +122,12 @@ export function CartForm(props) {
                             >
                                 <Stack spacing={1}>
                                     <Typography variant={'h5'}>
-                                        Checkout
+                                        Контактная информация
                                     </Typography>
 
                                     <Typography variant={'caption'}>
-                                        Enter your contact details so that you can be contacted and clarified all the
-                                        necessary data on the order.
+                                        Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все
+                                        необходимые данные по заказу.
                                     </Typography>
                                 </Stack>
 
@@ -148,7 +148,7 @@ export function CartForm(props) {
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
-                                    label="Phone"
+                                    label="Телефон"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -167,7 +167,7 @@ export function CartForm(props) {
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
-                                    label="Email (optional)"
+                                    label="Email (по желанию)"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -189,7 +189,7 @@ export function CartForm(props) {
                                     multiline
                                     minRows={5}
                                     maxRows={10}
-                                    label="Address (optional)"
+                                    label="Адрес (по желанию)"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -218,7 +218,7 @@ export function CartForm(props) {
                                             }}/>
                                         )}
                                     >
-                                        Send Order
+                                        Сделать заказ
                                     </Button>
                                 </Box>
                             </Stack>

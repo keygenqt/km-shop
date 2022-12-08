@@ -22,7 +22,7 @@ export function SuccessCart(props) {
 
             <Stack spacing={2}>
                 <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Successfully!
+                    Заказ оформлен!
                 </Typography>
 
                 <Typography variant={'h5'} sx={{
@@ -31,7 +31,7 @@ export function SuccessCart(props) {
                     marginLeft: 'auto !important',
                     marginRight: 'auto !important'
                 }}>
-                    Thanks for your order. You will be contacted to clarify the details of the order. See you later!
+                    Спасибо за ваш заказ. С вами свяжутся для уточнения деталей заказа. До скорого!
                 </Typography>
             </Stack>
 
@@ -58,7 +58,7 @@ export function SuccessCart(props) {
                     }}
                 >
                     <Typography variant={isSM ? 'h6' : 'h5'} sx={{color: 'secondary.main'}}>
-                        Order Details
+                        Информация по заказу
                     </Typography>
                 </Button>
             </Box>

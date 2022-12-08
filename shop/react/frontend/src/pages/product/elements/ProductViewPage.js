@@ -232,7 +232,7 @@ export function ProductViewPage(props) {
                                             }}
                                         >
                                             <Typography variant="h5">
-                                                Remove from cart
+                                                Удалить с корзины
                                             </Typography>
                                         </Button>
                                     ) : (
@@ -253,7 +253,7 @@ export function ProductViewPage(props) {
                                             }}
                                         >
                                             <Typography variant="h5">
-                                                Add to cart
+                                                Добавить в корзину
                                             </Typography>
                                         </Button>
                                     )}
@@ -283,7 +283,7 @@ export function ProductViewPage(props) {
                                 <Divider flexItem/>
 
                                 <Typography variant={isSM ? 'h6' : 'h5'}>
-                                    Description
+                                    Описание
                                 </Typography>
 
                                 <Typography variant={isSM ? 'h6' : 'h5'} sx={{
@@ -309,10 +309,10 @@ export function ProductViewPage(props) {
 
                                         <Stack spacing={0.5}>
                                             <Typography variant={'h6'}>
-                                                Free shipping
+                                                Бесплатная доставка
                                             </Typography>
                                             <Typography variant={'caption'}>
-                                                On orders over $50.00
+                                                При заказе свыше ₽ 5000.00
                                             </Typography>
                                         </Stack>
                                     </Stack>
@@ -329,10 +329,10 @@ export function ProductViewPage(props) {
 
                                         <Stack spacing={0.5}>
                                             <Typography variant={'h6'}>
-                                                Very easy to return
+                                                Очень легко вернуть
                                             </Typography>
                                             <Typography variant={'caption'}>
-                                                Just phone number.
+                                                Просто свяжитесь с нами
                                             </Typography>
                                         </Stack>
                                     </Stack>
@@ -349,10 +349,10 @@ export function ProductViewPage(props) {
 
                                         <Stack spacing={0.5}>
                                             <Typography variant={'h6'}>
-                                                Nationwide Delivery
+                                                Доставка
                                             </Typography>
                                             <Typography variant={'caption'}>
-                                                Fast delivery nationwide.
+                                                Быстрая доставка по всей стране любым перевозчиком
                                             </Typography>
                                         </Stack>
                                     </Stack>
@@ -370,10 +370,10 @@ export function ProductViewPage(props) {
 
                                         <Stack spacing={0.5}>
                                             <Typography variant={'h6'}>
-                                                Refunds policy
+                                                Политика возврата
                                             </Typography>
                                             <Typography variant={'caption'}>
-                                                60 days return for any reason
+                                                60 дней возврата по любой причине
                                             </Typography>
                                         </Stack>
                                     </Stack>

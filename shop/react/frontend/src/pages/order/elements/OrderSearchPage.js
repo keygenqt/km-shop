@@ -16,13 +16,13 @@ export function OrderSearchPage() {
         <Stack spacing={isSM ? 4 : 6}>
             <Stack spacing={2}>
                 <Typography variant={isSM ? 'h4' : 'h3'}>
-                    Search Order
+                    Поиск заказа
                 </Typography>
 
                 <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                     fontWeight: 100,
                 }}>
-                    Here you can find your order by the number received after successful ordering.
+                    Здесь вы можете найти свой заказ по номеру, полученному после успешного оформления заказа.
                 </Typography>
             </Stack>
 
@@ -34,7 +34,7 @@ export function OrderSearchPage() {
                 <TextField
                     autoComplete='off'
                     fullWidth
-                    label="Number"
+                    label="Номер заказа"
                     variant="outlined"
                     sx={{maxWidth: isSM ? 'auto' : 370}}
                     value={number}

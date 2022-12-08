@@ -63,7 +63,9 @@ export function CollectionsToolbar(props) {
 
                         <Stack
                             spacing={0.5}
+                            justifyContent={'center'}
                             alignItems={'flex-start'}
+                            sx={{minHeight: 56}}
                         >
                             <Typography variant={'h5'}>
                                 {collection.name}
@@ -173,10 +175,10 @@ export function CollectionsToolbar(props) {
                                     >
                                         <Stack spacing={1}>
                                             <Typography variant='h5'>
-                                                Go to our shop
+                                                Перейти с фильтром
                                             </Typography>
                                             <Typography variant='caption'>
-                                                Look for what you need and love.
+                                                Ищите то, что вам нужно и понравится.
                                             </Typography>
                                         </Stack>
                                     </Stack>

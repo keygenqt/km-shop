@@ -5,11 +5,12 @@ import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ArrowUpwardOutlined, EmailOutlined, Telegram} from "@mui/icons-material";
 import {NavigateContext} from "../../base";
+import {ContactConf} from "../../conf/ContactConf";
 
 /**
  * Application footer
  */
-export function AppFooter(props) {
+export function AppFooter() {
 
     const theme = useTheme()
     const isSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -30,30 +31,31 @@ export function AppFooter(props) {
                 spacing={3}
             >
 
-                <Container maxWidth={"sm"} sx={{margin: 0, p: '0 !important'}}>
-                    <Stack
-                        spacing={2}
-                    >
+                <Box sx={{margin: 0, p: '0 !important', maxWidth: '630px !important'}}>
+                    <Stack spacing={2}>
                         <Typography variant="h5">
                             Shop
-                            <Box component={'span'} sx={{
-                                color: 'secondary.main', ml: 1, fontWeight: '100'
-                            }}>
+                            <Box component={'span'} sx={{color: 'secondary.main', ml: 1, fontWeight: '100'}}>
                                 6 in 1
                             </Box>
                         </Typography>
 
-                        <Typography variant="body2">
-                            Store includes 6 applications written using Kotlin Multiplatform. All applications
-                            use a common module and native UI for their platforms. All platforms use the latest
-                            stack.
-                        </Typography>
+                        <Stack spacing={1}>
+                            <Typography variant="body2">
+                                Добро пожаловать!
+                            </Typography>
+                            <Typography variant="body2">
+                                Магазин включает в себя 6 приложений, написанных с использованием Kotlin Multiplatform. Все
+                                приложения использовать общий модуль и собственный пользовательский интерфейс для своих
+                                платформ. Все платформы используют последние стек.
+                            </Typography>
+                        </Stack>
 
                         <Typography variant="caption">
                             © 2022 KeyGenQt
                         </Typography>
                     </Stack>
-                </Container>
+                </Box>
 
                 <ButtonGroup
                     color="gray"
@@ -62,12 +64,12 @@ export function AppFooter(props) {
                     aria-label="button group"
                 >
                     <Button onClick={() => {
-
+                        route.openUrlNewTab(ContactConf.telegram)
                     }}>
                         <Telegram/>
                     </Button>
                     <Button onClick={() => {
-
+                        route.openEmail(ContactConf.email)
                     }}>
                         <EmailOutlined/>
                     </Button>

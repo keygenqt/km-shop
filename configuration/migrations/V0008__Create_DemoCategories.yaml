@@ -9,19 +9,19 @@
 
 categories:
   - key: bows
-    name: Bows
-    desc: For loved ones
+    name: Бантики
+    desc: Стильные бантики ручной работы
     image: configuration/migrations/data/category/cat_1.png
     isPublished: true
 
   - key: headbands
-    name: Headbands
-    desc: Stylish beauty
+    name: Ободки
+    desc: Держите свои волосы красиво
     image: configuration/migrations/data/category/cat_2.png
     isPublished: true
 
   - key: sets
-    name: Sets
-    desc: Sets for every day
+    name: Наборы
+    desc: Наборы бантиков на каждый день
     image: configuration/migrations/data/category/cat_3.png
     isPublished: true

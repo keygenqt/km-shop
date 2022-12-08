@@ -9,31 +9,31 @@
 
 collections:
   - key: collection-school
-    name: School
-    desc: School collections 2023
+    name: Школа
+    desc: Коллекции для школы
     icon: BusinessOutlined
     isPublished: true
 
   - key: collection-walk
-    name: Walk
-    desc: Walk collections 2023
+    name: Прогулка
+    desc: Коллекции для прогулок и путешествий
     icon: Brightness5Outlined
     isPublished: true
 
   - key: collection-birthday
-    name: Birthday
-    desc: Birthday collections 2023
+    name: День рождения
+    desc: Будь самой красивой на днюхе
     icon: Diversity3Outlined
     isPublished: true
 
   - key: collection-holiday
-    name: Holiday
-    desc: Holiday collections 2023
+    name: Выходной
+    desc: Тусим стильно
     icon: CelebrationOutlined
     isPublished: true
 
   - key: collection-new-year
-    name: New Year
-    desc: New Year 2023
+    name: Новый год
+    desc: Стильные новогодние наборы
     icon: ForestOutlined
     isPublished: true

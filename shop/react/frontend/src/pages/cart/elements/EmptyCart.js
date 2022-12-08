@@ -54,7 +54,7 @@ export function EmptyCart() {
                             route.toLocation(routes.exploring)
                         }}
                     >
-                        Exploring
+                        Исследовать
                     </Button>
                 </Box>
 

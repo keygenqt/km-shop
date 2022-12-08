@@ -49,15 +49,15 @@ export function FirstBlockHomePage() {
                             spacing={isMD ? 2 : 3}
                         >
                             <Typography variant={isMD ? 'h6' : 'h5'}>
-                                In this season, find the best 🔥
+                                В этом сезоне найди лучшее 🔥
                             </Typography>
 
                             <Typography variant={isMD ? 'h4' : 'h2'}>
-                                Collections for
+                                Коллекции для
                                 {!isMD ? (
                                     <br/>
                                 ) : null}
-                                your style
+                                вашего стиля
                             </Typography>
 
                             <Box sx={{
@@ -77,7 +77,7 @@ export function FirstBlockHomePage() {
                                     }}
                                 >
                                     <Typography variant="h5">
-                                        Start your search
+                                        Начните поиск
                                     </Typography>
                                 </Button>
                             </Box>

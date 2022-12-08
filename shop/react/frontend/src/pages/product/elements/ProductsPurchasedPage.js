@@ -15,7 +15,7 @@ export function ProductsPurchasedPage(props) {
     return (
         <Stack spacing={3}>
             <Typography variant={isMD ? 'h5' : 'h4'}>
-                Customers also purchased
+                Клиенты также приобрели
             </Typography>
             <Box>
                 <Grid container spacing={3}>

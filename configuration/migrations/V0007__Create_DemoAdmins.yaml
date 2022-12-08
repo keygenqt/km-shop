@@ -10,26 +10,9 @@ admins:
     email: admin@keygenqt.com
     password: "12345678"
 
-  - role: ADMIN
-    email: admin2@keygenqt.com
-    password: "12345678"
-
   - role: MANAGER
     email: manager@keygenqt.com
     password: "12345678"
-
-  - role: MANAGER
-    email: manager2@keygenqt.com
-    password: "12345678"
-
-  - role: MANAGER
-    email: manager3@keygenqt.com
-    password: "12345678"
-
-  - role: MANAGER
-    email: manager4@keygenqt.com
-    password: "12345678"
-
 
 
 

@@ -98,7 +98,7 @@ export function ExploringPage() {
             setError(null)
             setLoading(true)
         }
-    }, 1000)
+    })
 
     return (
         (error ? (
@@ -127,14 +127,14 @@ export function ExploringPage() {
                                 {filter ? (
                                     category ? `${category.name} category` : `${collection.name} collection`
                                 ) : (
-                                    'Exploring'
+                                    'Исследовать'
                                 )}
                             </Typography>
 
                             <Typography variant={isSM ? 'h6' : 'h5'} sx={{
                                 fontWeight: 100
                             }}>
-                                Here you can choose your style for every day.
+                                Здесь вы можете выбрать свой стиль на каждый день.
                             </Typography>
                         </Stack>
 

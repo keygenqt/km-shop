@@ -112,7 +112,7 @@ export function CartToolbar(props) {
                                         AppCache.arraySet(ConstantStorage.cart, rows.filter((it) => it.id !== product.id))
                                     }}
                                 >
-                                    Remove
+                                    Удалить
                                 </Button>
                             </Box>
                         </Stack>
@@ -184,7 +184,7 @@ export function CartToolbar(props) {
                                             background: 'linear-gradient(0deg, transparent 0%, white 100%)'
                                         },
                                     }}>
-                                        Shopping cart
+                                        Корзина
                                     </Typography>
 
                                     <Stack spacing={1} className={'custom-scroll'} sx={{
@@ -227,11 +227,11 @@ export function CartToolbar(props) {
                                         >
                                             <Stack spacing={1}>
                                                 <Typography variant='h5'>
-                                                    Subtotal
+                                                    Сумма
                                                 </Typography>
 
                                                 <Typography variant='caption'>
-                                                    You can go to the shopping cart page to checkout.
+                                                    Вы можете перейти на страницу корзины для оформления заказа.
                                                 </Typography>
                                             </Stack>
 
@@ -257,7 +257,7 @@ export function CartToolbar(props) {
                                                     route.toLocation(routes.cart)
                                                 }}
                                             >
-                                                View Cart
+                                                Перейти в корзину
                                             </Button>
                                         </Box>
 

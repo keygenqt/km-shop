@@ -28,11 +28,11 @@ export function NotFoundOrderPage() {
                 </Box>
 
                 <Typography variant="h4">
-                    Order Not Found
+                    Заказ не найден
                 </Typography>
 
                 <Typography variant="body1" sx={{textAlign: 'center'}}>
-                    We're sorry, the page you requested could not be found
+                    К сожалению, запрошенная вами страница не найдена
                 </Typography>
             </Stack>
 

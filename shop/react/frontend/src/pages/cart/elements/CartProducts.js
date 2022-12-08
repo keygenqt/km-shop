@@ -245,7 +245,7 @@ export function CartProducts(props) {
                                         )
                                     }}
                                 >
-                                    Remove
+                                    Удалить
                                 </Button>
                             </Box>
                         </Stack>
@@ -284,7 +284,7 @@ export function CartProducts(props) {
 
                     <Stack direction={'row'} spacing={1} sx={{opacity: (loading || disabled) ? 0.4 : 1}}>
                         <Typography variant={'h5'} sx={{fontWeight: 100}}>
-                            Order total:
+                            Общая сумма:
                         </Typography>
                         <Typography variant={'h5'}>
                             {AppHelper.priceFormat(rows.reduce((a, it) => a + (it.price * it.count), 0))}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Avatar,
+    Avatar, Box,
     Button,
     Card,
     CardActions,
@@ -13,7 +13,7 @@ import {
     useTheme
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import {ArrowForwardOutlined} from "@mui/icons-material";
+import {ArrowForwardOutlined, SearchOutlined} from "@mui/icons-material";
 import {ConstantImages, ConstantStorage, HttpClient, NavigateContext, useLocalStorage} from "../../../base";
 import {TabsBlackStyled} from "../../../components/tabs/styled/TabsBlackStyled";
 import {ValueType} from "../../../base/route/ValueType";
@@ -38,7 +38,7 @@ export function CategoriesBlockHomePage() {
     const categoriesCache = useLocalStorage(ConstantStorage.categories, ValueType.array, []);
     const collectionsCache = useLocalStorage(ConstantStorage.collections, ValueType.array, []);
 
-    const [value, setValue] = React.useState(collectionsCache ? collectionsCache[0].id : 0);
+    const [value, setValue] = React.useState(collectionsCache.length ? collectionsCache[0].id : 0);
     const [counts, setCounts] = React.useState([]);
 
     const filters = []
@@ -129,7 +129,7 @@ export function CategoriesBlockHomePage() {
                                     paddingRight: 1
                                 }}
                             >
-                                {counts.find((it) => it.id === category.id)?.count ?? '∞'} products
+                                Найдено - {counts.find((it) => it.id === category.id)?.count ?? '∞'}
                             </Typography>
                         }
                     />
@@ -184,7 +184,7 @@ export function CategoriesBlockHomePage() {
                                 route.toLocation(routes.exploringCollection, `${category.key}:${collectionsCache.find((it) => it.id === value).key}`)
                             }}
                         >
-                            See Collection
+                            Посмотреть
                         </Button>
                     </CardActions>
                 </Card>
@@ -212,7 +212,7 @@ export function CategoriesBlockHomePage() {
                     pt: isXS ? 2 : 0,
                     pb: isXS ? 1 : 0
                 }}>
-                    Start exploring
+                    Начать поиск
                 </Typography>
 
                 {filters.length > 0 ? (
@@ -228,9 +228,27 @@ export function CategoriesBlockHomePage() {
                 ) : null}
             </Stack>
 
-            <Grid container spacing={isMD ? isXS ? 2 : 3 : 4}>
-                {categories}
-            </Grid>
+            {categories.length ? (
+                <Grid container spacing={isMD ? isXS ? 2 : 3 : 4}>
+                    {categories}
+                </Grid>
+            ) : (
+                <Box sx={{textAlign: 'center'}}>
+                    <Button
+                        variant={'outlined'}
+                        color={'secondary'}
+                        size={'large'}
+                        endIcon={<SearchOutlined/>}
+                        onClick={() => {
+                            route.toLocation(routes.exploring)
+                        }}
+                    >
+                        Исследовать
+                    </Button>
+                </Box>
+            )}
+
+
         </Stack>
     );
 }

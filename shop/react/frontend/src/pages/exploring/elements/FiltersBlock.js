@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useRef} from "react";
 import {
     Accordion,
     AccordionDetails,
@@ -28,7 +29,6 @@ import {
 import {AppHelper, ConstantStorage, HttpClient, Requests, useEffectTimout, useLocalStorage} from "../../../base";
 import {ValueType} from "../../../base/route/ValueType";
 import PropTypes from "prop-types";
-import {useEffect, useLayoutEffect, useRef} from "react";
 
 export function FiltersBlock(props) {
 
@@ -103,12 +103,12 @@ export function FiltersBlock(props) {
                 p: isSM ? 2 : 3,
                 borderRadius: 2,
                 backgroundColor: '#F7F0EA',
-                minWidth: 230,
+                minWidth: 246,
             }}>
                 <Stack direction={'row'} spacing={1.4} alignItems={'center'}>
                     <CategoryOutlined sx={{width: 24, height: 24, color: '#d26900'}}/>
                     <Typography variant={'h5'}>
-                        Filters
+                        Фильтр
                     </Typography>
                 </Stack>
                 <Box sx={{
@@ -132,7 +132,7 @@ export function FiltersBlock(props) {
                         >
                             <Stack direction={'row'} spacing={1.4} alignItems={'center'}>
                                 <CategoryOutlined sx={{width: 18, height: 18}}/>
-                                <Typography>Categories</Typography>
+                                <Typography>Категории</Typography>
                             </Stack>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -165,7 +165,7 @@ export function FiltersBlock(props) {
                         >
                             <Stack direction={'row'} spacing={1.4} alignItems={'center'}>
                                 <StyleOutlined sx={{width: 18, height: 18}}/>
-                                <Typography>Collections</Typography>
+                                <Typography>Коллекции</Typography>
                             </Stack>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -198,7 +198,7 @@ export function FiltersBlock(props) {
                         >
                             <Stack direction={'row'} spacing={1.4} alignItems={'center'}>
                                 <SortOutlined sx={{width: 18, height: 18}}/>
-                                <Typography>Sort order</Typography>
+                                <Typography>Сортировка</Typography>
                             </Stack>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -215,9 +215,21 @@ export function FiltersBlock(props) {
                                         break;
                                 }
                             }}>
-                                <FormControlLabel value={Requests.OrderProduct.NEWEST} control={<Radio/>} label="Newest"/>
-                                <FormControlLabel value={Requests.OrderProduct.LOW} control={<Radio/>} label="Price Low"/>
-                                <FormControlLabel value={Requests.OrderProduct.HEIGHT} control={<Radio/>} label="Price Height"/>
+                                <FormControlLabel
+                                    value={Requests.OrderProduct.NEWEST}
+                                    control={<Radio/>}
+                                    label="Новейшие"
+                                />
+                                <FormControlLabel
+                                    value={Requests.OrderProduct.LOW}
+                                    control={<Radio/>}
+                                    label="Низкая цена"
+                                />
+                                <FormControlLabel
+                                    value={Requests.OrderProduct.HEIGHT}
+                                    control={<Radio/>}
+                                    label="Высокая цена"
+                                />
                             </RadioGroup>
                         </AccordionDetails>
                     </Accordion>
@@ -227,7 +239,7 @@ export function FiltersBlock(props) {
                     <Stack direction={'row'} spacing={1.4} alignItems={'center'} sx={{pt: 1}}>
                         <PriceChangeOutlined sx={{width: 24, height: 24, color: '#d26900'}}/>
                         <Typography variant={'h5'}>
-                            Price range
+                            Диапазон цен
                         </Typography>
                     </Stack>
 
@@ -254,7 +266,7 @@ export function FiltersBlock(props) {
                     ) : (
                         <Box sx={{bgcolor: 'white', borderRadius: 1, paddingY: 3, paddingX: 3}}>
                             <Typography variant={'caption'}>
-                                The sliders allow you to select from a range of prices.
+                                Фильтр товаров по ценовому диапозону
                             </Typography>
 
                             <Box sx={{
@@ -278,7 +290,7 @@ export function FiltersBlock(props) {
 
                                 <Stack spacing={1} alignItems={'center'}>
                                     <Typography variant={'caption'} sx={{fontWeight: 600}}>
-                                        Min price
+                                        Минимум
                                     </Typography>
 
                                     <Chip
@@ -292,7 +304,7 @@ export function FiltersBlock(props) {
 
                                 <Stack spacing={1} alignItems={'center'}>
                                     <Typography variant={'caption'} sx={{fontWeight: 600}}>
-                                        Max price
+                                        Максимум
                                     </Typography>
 
                                     <Chip

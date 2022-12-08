@@ -112,7 +112,7 @@ export function AppToolbar() {
                                     route.toLocation(routes.exploring)
                                 }}
                             >
-                                Exploring
+                                Исследовать
                             </Button>
 
                             {!isSM && collectionsCache.length > 0 ? (
@@ -139,7 +139,7 @@ export function AppToolbar() {
                                         }
                                     }}
                                 >
-                                    Collections
+                                    Коллекции
                                 </Button>
                             ) : null}
 

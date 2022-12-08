@@ -4,6 +4,7 @@ import {FeedOutlined} from "@mui/icons-material";
 import PropTypes from "prop-types";
 import {useContext} from "react";
 import {NavigateContext} from "../../../base";
+import Typography from "@mui/material/Typography";
 
 export function BestSellerDashboard(props) {
 
@@ -59,22 +60,31 @@ export function BestSellerDashboard(props) {
             marginTop: -1,
             marginBottom: 1
         }}>
-            <List>
-                {data}
-            </List>
-            <Box sx={{
-                marginTop: '5px'
-            }}>
-                <Button
-                    variant="outlined"
-                    color={'secondary'}
-                    onClick={() => {
-                        route.toLocation(routes.ordersCompleted)
-                    }}
-                >
-                    View All
-                </Button>
-            </Box>
+            {rows.length ? (
+                <>
+                    <List>
+                        {data}
+                    </List>
+                    <Box sx={{
+                        marginTop: '5px'
+                    }}>
+                        <Button
+                            variant="outlined"
+                            color={'secondary'}
+                            onClick={() => {
+                                route.toLocation(routes.ordersCompleted)
+                            }}
+                        >
+                            View All
+                        </Button>
+                    </Box>
+                </>
+            ) : (
+                <Typography variant={'h5'} sx={{pt: 1}}>
+                    Empty
+                </Typography>
+            )}
+
         </Stack>
     );
 }

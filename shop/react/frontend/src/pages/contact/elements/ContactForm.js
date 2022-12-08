@@ -24,12 +24,12 @@ export function ContactForm() {
                 submit: null
             }}
             validationSchema={Yup.object().shape({
-                fname: Yup.string().required('First Name is required'),
-                lname: Yup.string().required('Last Name is required'),
-                email: Yup.string().required('Email is required').email('Email must be a valid email'),
-                message: Yup.string().required('Message is required'),
+                fname: Yup.string().required('Требуется имя'),
+                lname: Yup.string().required('Требуется отчество'),
+                email: Yup.string().required('Электронная почта обязательна').email('Электронная почта должна быть действительной'),
+                message: Yup.string().required('Требуется сообщение'),
             })}
-            onSubmit={async (values, {setErrors, setStatus, setValues}) => {
+            onSubmit={async (values, {setErrors, setStatus}) => {
 
                 setStatus({success: null});
                 setErrors({submit: null});
@@ -116,7 +116,7 @@ export function ContactForm() {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         fullWidth
-                                        label="First Name"
+                                        label="Имя"
                                         variant="filled"
                                         sx={{
                                             '& .MuiInputBase-root': {
@@ -135,7 +135,7 @@ export function ContactForm() {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         fullWidth
-                                        label="Last Name"
+                                        label="Отчество"
                                         variant="filled"
                                         sx={{
                                             '& .MuiInputBase-root': {
@@ -175,7 +175,7 @@ export function ContactForm() {
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     fullWidth
-                                    label="Phone (optional)"
+                                    label="Телефон (по желанию)"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -197,7 +197,7 @@ export function ContactForm() {
                                     multiline
                                     minRows={5}
                                     maxRows={10}
-                                    label="Message"
+                                    label="Сообщение"
                                     variant="filled"
                                     sx={{
                                         '& .MuiInputBase-root': {
@@ -226,7 +226,7 @@ export function ContactForm() {
                                             }}/>
                                         )}
                                     >
-                                        Send Message
+                                        Отправить
                                     </Button>
                                 </Box>
                             </Stack>
