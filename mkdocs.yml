@@ -18,11 +18,6 @@ nav:
       - 'Orders': backend/orders.md
       - 'Managers': backend/managers.md
       - 'Help Desk': backend/help.md
-  - 'iOS':
-      - 'About': ios/index.md
-  - 'Android':
-      - 'About': android/index.md
-      - 'Dokka': dokka/shop/mobile/android/index.html
   - 'API':
       - 'About': api/index.md
       - 'Methods':
@@ -90,6 +85,11 @@ nav:
   - 'Server CLI':
       - 'About': cli/index.md
       - 'Dokka': dokka/shop/server/cli/index.html
+  - 'Android':
+      - 'About': android/index.md
+      - 'Dokka': dokka/shop/mobile/android/index.html
+  - 'iOS':
+      - 'About': ios/index.md
   - 'Package Shared':
       - 'About': shared/index.md
       - 'Dokka': dokka/shared/index.html
