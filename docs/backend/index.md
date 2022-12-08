@@ -5,9 +5,7 @@ Store admin panel. The main place to manage content and user interactions.
 
 ### Access
 
-Demo mode is working now, you can see. But be smart ;)
-
-**Panel**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
+**Link**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
 
 ### Features
 

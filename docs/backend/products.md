@@ -5,5 +5,6 @@ Products for sale. You can control the scope of products both individually and f
 
 #### Preview
 
-![picture](/km-shop/data/backend/Screenshot_2022-11-21_at_07.17.58.png)
-![picture](/km-shop/data/backend/Screenshot_2022-11-21_at_07.18.09.png)
+![picture](/km-shop/data/backend/Screenshot_2022-12-08_at_23.39.43.png)
+![picture](/km-shop/data/backend/Screenshot_2022-12-08_at_23.40.21.png)
+![picture](/km-shop/data/backend/Screenshot_2022-12-08_at_23.40.31.png)
