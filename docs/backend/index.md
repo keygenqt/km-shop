@@ -9,10 +9,6 @@ Demo mode is working now, you can see. But be smart ;)
 
 **Panel**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
 
-**Login**: admin@keygenqt.com
-
-**Pass**: 12345678
-
 ### Features
 
 * [Dashboard](/km-shop/backend/dashboard/)

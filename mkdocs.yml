@@ -13,6 +13,7 @@ nav:
       - 'About': backend/index.md
       - 'Dashboard': backend/dashboard.md
       - 'Categories': backend/categories.md
+      - 'Collections': backend/collections.md
       - 'Products': backend/products.md
       - 'Orders': backend/orders.md
       - 'Managers': backend/managers.md
