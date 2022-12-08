@@ -26,12 +26,66 @@ nav:
   - 'API':
       - 'About': api/index.md
       - 'Methods':
+          - 'Auth':
+              - 'Login': api/login/login.md
+              - 'Logout': api/logout/logout.md
+          - 'Dashboard':
+              - 'Made Orders': api/dashboard/made_orders.md
+              - 'Orders Completed': api/dashboard/orders_completed.md
+              - 'Total Earnings': api/dashboard/total_earnings.md
+              - 'Best Seller': api/dashboard/seller.md
+              - 'Chart Order': api/dashboard/chart.md
           - 'Admins':
               - 'List': api/admins/list.md
               - 'Item': api/admins/item.md
               - 'Create': api/admins/create.md
               - 'Update': api/admins/update.md
               - 'Delete': api/admins/delete.md
+          - 'Categories':
+              - 'List': api/categories/list.md
+              - 'List Published': api/categories/list_published.md
+              - 'Item': api/categories/item.md
+              - 'Create': api/categories/create.md
+              - 'Update': api/categories/update.md
+              - 'Update State': api/categories/update_state.md
+          - 'Collections':
+              - 'List': api/collections/list.md
+              - 'List Published': api/collections/list_published.md
+              - 'Item': api/collections/item.md
+              - 'Create': api/collections/create.md
+              - 'Update': api/collections/update.md
+              - 'Update State': api/collections/update_state.md
+          - 'Products':
+              - 'List': api/products/list.md
+              - 'List by IDs': api/products/list_by_ids.md
+              - 'List Published': api/products/list_published.md
+              - 'List Purchased': api/products/list_purchased.md
+              - 'Item': api/products/item.md
+              - 'Create': api/products/create.md
+              - 'Update': api/products/update.md
+              - 'Update State': api/products/update_state.md
+              - 'Get Count': api/products/count.md
+              - 'Get Prices': api/products/prices.md
+          - 'Orders':
+              - 'List NEW': api/orders/list_new.md
+              - 'List PENDING': api/orders/list_pending.md
+              - 'List COMPLETED': api/orders/list_completed.md
+              - 'List CANCELED': api/orders/list_canceled.md
+              - 'Item by ID': api/orders/item.md
+              - 'Item by Number': api/orders/find_by_number.md
+              - 'Create': api/orders/create.md
+              - 'Update Customer': api/orders/update_customer.md
+              - 'Update Note': api/orders/update_note.md
+              - 'Update State': api/orders/update_state.md
+          - 'Messages':
+              - 'List': api/messages/list.md
+              - 'Item': api/messages/item.md
+              - 'Create': api/messages/create.md
+              - 'Update': api/messages/update.md
+          - 'Uploads':
+              - 'Get File': api/uploads/file_get.md
+              - 'Upload File': api/uploads/file_upload.md
+              - 'Delete File': api/uploads/file_delete.md
       - 'Dokka': dokka/shop/server/api/index.html
   - 'Server CLI':
       - 'About': cli/index.md

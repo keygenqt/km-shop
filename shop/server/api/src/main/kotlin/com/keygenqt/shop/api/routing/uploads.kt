@@ -50,7 +50,6 @@ fun Route.uploads() {
             call.respondFile(file)
         }
         post {
-
             // check role
             call.checkRoleAuth()
             // get request

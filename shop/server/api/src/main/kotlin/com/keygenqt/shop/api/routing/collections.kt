@@ -106,7 +106,6 @@ fun Route.collections() {
             // response
             call.respond(response)
         }
-
         post {
             // check role
             call.checkRoleAuth()
