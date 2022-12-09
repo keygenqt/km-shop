@@ -100,7 +100,7 @@ export function ContactForm() {
 
                                 {status && status.success && (
                                     <AlertSuccess onClose={() => setStatus({success: false})}>
-                                        Success submit message
+                                        Сообщение отправлено. Спасибо!
                                     </AlertSuccess>
                                 )}
 

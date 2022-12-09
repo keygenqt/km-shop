@@ -68,7 +68,7 @@ export function StepsBlockHomePage() {
                     <Box>
                         <Chip
                             color={item.color}
-                            label="Step 1"
+                            label={`Step ${index + 1}`}
                             variant="outlined"
                             sx={{
                                 backgroundColor: 'white',
