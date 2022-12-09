@@ -30,12 +30,6 @@ nav:
               - 'Total Earnings': api/dashboard/total_earnings.md
               - 'Best Seller': api/dashboard/seller.md
               - 'Chart Order': api/dashboard/chart.md
-          - 'Admins':
-              - 'List': api/admins/list.md
-              - 'Item': api/admins/item.md
-              - 'Create': api/admins/create.md
-              - 'Update': api/admins/update.md
-              - 'Delete': api/admins/delete.md
           - 'Categories':
               - 'List': api/categories/list.md
               - 'List Published': api/categories/list_published.md
@@ -72,6 +66,12 @@ nav:
               - 'Update Customer': api/orders/update_customer.md
               - 'Update Note': api/orders/update_note.md
               - 'Update State': api/orders/update_state.md
+          - 'Admins':
+                - 'List': api/admins/list.md
+                - 'Item': api/admins/item.md
+                - 'Create': api/admins/create.md
+                - 'Update': api/admins/update.md
+                - 'Delete': api/admins/delete.md
           - 'Messages':
               - 'List': api/messages/list.md
               - 'Item': api/messages/item.md
