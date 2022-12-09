@@ -24,7 +24,6 @@ private data class Request(
 )
 ```
 
-
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
 <b>HTTP response status codes</b>
 
@@ -41,7 +40,7 @@ private data class Request(
 ```
 {
     "id": 1,
-    "email": "guest@keygenqt.com",
-    "role": "GUEST"
+    "email": "admin@keygenqt.com",
+    "role": "ADMIN"
 }
 ```
