@@ -8,8 +8,9 @@ Method: <code>POST</code>
 /api/login
 ```
 
+
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f518.png"/> &nbsp;
-<b>Parameters</b>
+<b>Request</b>
 
 ```
 private data class Request(
@@ -23,7 +24,8 @@ private data class Request(
 )
 ```
 
-<img style=height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
+
+<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f518.png"/> &nbsp;
 <b>HTTP response status codes</b>
 
 | Status code | Description    |
