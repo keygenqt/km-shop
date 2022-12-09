@@ -1,6 +1,8 @@
 Login
 ===================
 
+User authorization method for admin panel
+
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
 Method: <code>POST</code>
 
