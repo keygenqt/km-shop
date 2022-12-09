@@ -45,11 +45,3 @@ private data class Request(
     "role": "GUEST"
 }
 ```
-
-<!---
-<style>
-  .md-content__button {
-    display: none;
-  }
-</style>
--->
