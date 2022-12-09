@@ -10,7 +10,6 @@ Method: <code>POST</code>
 /api/login
 ```
 
-
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f518.png"/> &nbsp;
 <b>Request</b>
 

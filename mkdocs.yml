@@ -33,14 +33,14 @@ nav:
           - 'Categories':
               - 'List': api/categories/list.md
               - 'List Published': api/categories/list_published.md
-              - 'Item': api/categories/item.md
+              - 'Get by ID': api/categories/item.md
               - 'Create': api/categories/create.md
               - 'Update': api/categories/update.md
               - 'Update State': api/categories/update_state.md
           - 'Collections':
               - 'List': api/collections/list.md
               - 'List Published': api/collections/list_published.md
-              - 'Item': api/collections/item.md
+              - 'Get by ID': api/collections/item.md
               - 'Create': api/collections/create.md
               - 'Update': api/collections/update.md
               - 'Update State': api/collections/update_state.md
@@ -49,7 +49,7 @@ nav:
               - 'List by IDs': api/products/list_by_ids.md
               - 'List Published': api/products/list_published.md
               - 'List Purchased': api/products/list_purchased.md
-              - 'Item': api/products/item.md
+              - 'Get by ID': api/products/item.md
               - 'Create': api/products/create.md
               - 'Update': api/products/update.md
               - 'Update State': api/products/update_state.md
@@ -67,14 +67,14 @@ nav:
               - 'Update Note': api/orders/update_note.md
               - 'Update State': api/orders/update_state.md
           - 'Admins':
-                - 'List': api/admins/list.md
-                - 'Item': api/admins/item.md
-                - 'Create': api/admins/create.md
-                - 'Update': api/admins/update.md
-                - 'Delete': api/admins/delete.md
+              - 'List': api/admins/list.md
+              - 'Get by ID': api/admins/item.md
+              - 'Create': api/admins/create.md
+              - 'Update': api/admins/update.md
+              - 'Delete': api/admins/delete.md
           - 'Messages':
               - 'List': api/messages/list.md
-              - 'Item': api/messages/item.md
+              - 'Get by ID': api/messages/item.md
               - 'Create': api/messages/create.md
               - 'Update': api/messages/update.md
           - 'Uploads':
