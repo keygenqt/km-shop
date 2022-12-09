@@ -81,6 +81,8 @@ nav:
               - 'Get File': api/uploads/file_get.md
               - 'Upload File': api/uploads/file_upload.md
               - 'Delete File': api/uploads/file_delete.md
+          - 'Common':
+              - 'Errors': api/common/errors.md
       - 'Dokka': dokka/shop/server/api/index.html
   - 'Server CLI':
       - 'About': cli/index.md
