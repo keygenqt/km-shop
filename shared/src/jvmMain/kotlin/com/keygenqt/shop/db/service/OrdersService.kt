@@ -57,17 +57,25 @@ class OrdersService(
     ) = OrderEntity
         .find {
             state?.let {
-                (Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
-                    month = month
-                )) and (Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
-                    month = month
-                )) and (Orders.state eq state)
+                (
+                    Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
+                        month = month
+                    )
+                    ) and (
+                    Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
+                        month = month
+                    )
+                    ) and (Orders.state eq state)
             } ?: run {
-                (Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
-                    month = month
-                )) and (Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
-                    month = month
-                ))
+                (
+                    Orders.createAt greater year.getTimestampDayFirstDayOfMonth(
+                        month = month
+                    )
+                    ) and (
+                    Orders.createAt lessEq year.getTimestampDayLastDayOfMonth(
+                        month = month
+                    )
+                    )
             }
         }
         .count()
@@ -182,5 +190,3 @@ class OrdersService(
         this.products = SizedCollection(*products.toList().toTypedArray())
     }
 }
-
-

@@ -18,7 +18,6 @@ package com.keygenqt.shop.cli.args
 import kotlinx.cli.ExperimentalCli
 import kotlinx.cli.Subcommand
 
-
 @OptIn(ExperimentalCli::class)
 class SubcommandCleaner :
     Subcommand("cleaner", "Cleaner files without relations in db") {

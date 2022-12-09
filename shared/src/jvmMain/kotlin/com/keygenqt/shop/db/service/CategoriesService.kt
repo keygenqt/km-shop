@@ -78,9 +78,11 @@ class CategoriesService(
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
-        this.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
+        this.uploads = SizedCollection(
+            uploads.mapNotNull {
+                UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+            }
+        )
     }
 
     /**
@@ -100,9 +102,11 @@ class CategoriesService(
         entity.image = image
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
-        entity.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
+        entity.uploads = SizedCollection(
+            uploads.mapNotNull {
+                UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+            }
+        )
         entity
     }
 

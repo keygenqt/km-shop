@@ -57,7 +57,6 @@ class BackupFeature : KoinComponent {
 
                 // return file
                 File(dumpName)
-
             } catch (ex: Exception) {
                 if (ex.message?.contains("mysqldump: command not found") == true) {
                     throw RuntimeException(
@@ -66,7 +65,7 @@ class BackupFeature : KoinComponent {
                         
                         app.properties:
                         mysqldump = /usr/local/mysql-8.0.30-macos12-arm64/bin/mysqldump
-                    """.trimIndent()
+                        """.trimIndent()
                     )
                 } else {
                     throw ex

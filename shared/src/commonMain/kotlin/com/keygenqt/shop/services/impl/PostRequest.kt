@@ -95,10 +95,13 @@ class PostRequest(private val client: HttpClient) {
             url = "api/uploads",
             formData = formData {
                 files.forEach {
-                    append("file", it.file, Headers.build {
-                        append(HttpHeaders.ContentType, it.contentType)
-                        append(HttpHeaders.ContentDisposition, "filename=\"${it.name}\"")
-                    })
+                    append(
+                        "file", it.file,
+                        Headers.build {
+                            append(HttpHeaders.ContentType, it.contentType)
+                            append(HttpHeaders.ContentDisposition, "filename=\"${it.name}\"")
+                        }
+                    )
                 }
             }
         ).body()

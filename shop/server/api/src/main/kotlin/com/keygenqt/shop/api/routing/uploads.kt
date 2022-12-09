@@ -69,15 +69,16 @@ fun Route.uploads() {
                         }
                     }
 
-                    uploads.add(uploadsService.transaction {
-                        insert(
-                            fileName = name,
-                            contentType = part.contentType ?: throw Exceptions.BadRequest(),
-                            originalFileName = part.originalFileName
-                                ?: throw Exceptions.BadRequest()
-                        )
-                    })
-
+                    uploads.add(
+                        uploadsService.transaction {
+                            insert(
+                                fileName = name,
+                                contentType = part.contentType ?: throw Exceptions.BadRequest(),
+                                originalFileName = part.originalFileName
+                                    ?: throw Exceptions.BadRequest()
+                            )
+                        }
+                    )
                 }
                 part.dispose()
             }

@@ -70,9 +70,9 @@ class ProductsService(
     ) = Products
         .select {
             (Products.isPublished eq true) and
-                    (Products.price greaterEq range.first) and
-                    (Products.price lessEq range.second) and
-                    (Products.categoryID inList categories)
+                (Products.price greaterEq range.first) and
+                (Products.price lessEq range.second) and
+                (Products.categoryID inList categories)
         }
         .apply {
             if (order !== null) {
@@ -87,9 +87,11 @@ class ProductsService(
             if (collections.isNotEmpty()) {
                 andHaving {
                     Op.build {
-                        exists(ProductCollections.select {
-                            (ProductCollections.collection inList collections) and (ProductCollections.product eq Products.id)
-                        })
+                        exists(
+                            ProductCollections.select {
+                                (ProductCollections.collection inList collections) and (ProductCollections.product eq Products.id)
+                            }
+                        )
                     }
                 }
             }
@@ -196,12 +198,16 @@ class ProductsService(
         this.isPublished = isPublished
         this.createAt = System.currentTimeMillis()
         this.updateAt = System.currentTimeMillis()
-        this.collections = SizedCollection(collections.mapNotNull {
-            CollectionEntity.findById(it)
-        })
-        this.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
+        this.collections = SizedCollection(
+            collections.mapNotNull {
+                CollectionEntity.findById(it)
+            }
+        )
+        this.uploads = SizedCollection(
+            uploads.mapNotNull {
+                UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+            }
+        )
     }
 
     /**
@@ -228,12 +234,16 @@ class ProductsService(
         entity.price = price
         entity.isPublished = isPublished
         entity.updateAt = System.currentTimeMillis()
-        entity.collections = SizedCollection(collections.mapNotNull {
-            CollectionEntity.findById(it)
-        })
-        entity.uploads = SizedCollection(uploads.mapNotNull {
-            UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
-        })
+        entity.collections = SizedCollection(
+            collections.mapNotNull {
+                CollectionEntity.findById(it)
+            }
+        )
+        entity.uploads = SizedCollection(
+            uploads.mapNotNull {
+                UploadEntity.find { (Uploads.fileName eq it.substringAfterLast("/")) }.firstOrNull()
+            }
+        )
         entity
     }
 
