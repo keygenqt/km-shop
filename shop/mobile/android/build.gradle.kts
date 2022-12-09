@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.application")
+    kotlin("kapt")
     kotlin("android")
+    id("com.android.application")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -55,6 +57,6 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    // Jetpack Compose
-    implementation(androidApp.bundles.compose)
+    implementation(androidApp.bundles.android)
+    kapt(androidApp.bundles.androidKapt)
 }

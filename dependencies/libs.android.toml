@@ -7,10 +7,24 @@
 composeVersion = "1.3.0"
 # https://developer.android.com/jetpack/androidx/releases/activity
 activityComposeVersion = "1.6.1"
+# https://developer.android.com/training/dependency-injection/hilt-android
+hiltVersion = "2.44"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Hilt
+# Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
+[libraries.hilt-android]
+module = "com.google.dagger:hilt-android"
+[libraries.hilt-android.version]
+ref = "hiltVersion"
+
+[libraries.hilt-android-compiler]
+module = "com.google.dagger:hilt-android-compiler"
+[libraries.hilt-android-compiler.version]
+ref = "hiltVersion"
 
 # Jetpack Compose
 # Define your UI programmatically with composable functions that describe its shape and data dependencies.
@@ -49,11 +63,15 @@ ref = "activityComposeVersion"
 ##########################
 
 [bundles]
-compose = [
+android = [
     "ui",
     "ui-tooling",
     "ui-tooling-preview",
     "foundation",
     "material",
     "activity-compose",
+    "hilt-android",
+]
+androidKapt = [
+    "hilt-android-compiler",
 ]

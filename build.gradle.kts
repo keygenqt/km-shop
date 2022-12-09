@@ -12,8 +12,11 @@ plugins {
     val npmPublishVersion="3.0.3"
     // https://developer.android.com/studio/releases/gradle-plugin#updating-plugin
     val androidVersion="7.3.1"
+    // https://developer.android.com/training/dependency-injection/hilt-android
+    val hiltVersion="2.44"
 
     // android
+    id("com.google.dagger.hilt.android") version hiltVersion apply false
     id("com.android.application").version(androidVersion).apply(false)
     id("com.android.library").version(androidVersion).apply(false)
     kotlin("android").version(kotlinVersion).apply(false)

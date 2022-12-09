@@ -16,8 +16,11 @@
 package com.keygenqt.shop.android
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewTreeObserver
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.keygenqt.shop.Greeting
+import com.keygenqt.shop.android.base.AppViewModel
 
 @Composable
 fun MyApplicationTheme(
@@ -73,6 +77,12 @@ fun MyApplicationTheme(
 }
 
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Main ViewModel which is available throughout the application as staticCompositionLocalOf
+     */
+    private val viewModel: AppViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -84,6 +94,21 @@ class MainActivity : ComponentActivity() {
                     Greeting(Greeting().greeting())
                 }
             }
+        }
+
+        // Splash delay
+        window.decorView.findViewById<View>(android.R.id.content)?.let { content ->
+            content.viewTreeObserver.addOnPreDrawListener(object :
+                ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    return if (!viewModel.isSplash.value) {
+                        // remove BG splash
+                        this@MainActivity.window.decorView.setBackgroundColor(android.graphics.Color.WHITE)
+                        // done splash remove listener
+                        content.viewTreeObserver.removeOnPreDrawListener(this); true
+                    } else false
+                }
+            })
         }
     }
 }
