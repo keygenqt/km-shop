@@ -29,6 +29,7 @@ All platforms use the latest stack.
 
 ## 2. Admin Panel
 
+* Youtube: [Link](https://youtu.be/8jI0T45MMoQ)
 * Url: [Link](https://shop-admin.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
 * Platform: **Web**
@@ -61,6 +62,7 @@ Options:
 
 ## 4. Website
 
+* Youtube: [Link](https://youtu.be/sHN1-LRDH64)
 * Url: [Link](https://shop.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
 * Platform: **Web**
