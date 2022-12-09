@@ -9,6 +9,11 @@ nav:
   - 'Overview': index.md
   - 'Website':
       - 'About': frontend/index.md
+      - 'Home': frontend/home.md
+      - 'Exploring': frontend/exploring.md
+      - 'Contact': frontend/contact.md
+      - 'Order': frontend/order.md
+      - 'Cart': frontend/cart.md
   - 'Admin Panel':
       - 'About': backend/index.md
       - 'Dashboard': backend/dashboard.md

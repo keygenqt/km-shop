@@ -3,8 +3,6 @@ Part Admin-Panel
 
 Store admin panel. The main place to manage content and user interactions.
 
-### Access
-
 **Link**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
 
 ### Features
