@@ -31,8 +31,8 @@ private data class Request(
 | Status code | Description    |
 |-------------|----------------|
 | 200         | OK             |
-| 400         | Bad Request    |
 | 422         | Form validate  |
+| 400         | Bad Request    |
 | 500         | Internal Error |
 
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f197.png"/> &nbsp;
@@ -43,24 +43,6 @@ private data class Request(
     "id": 1,
     "email": "guest@keygenqt.com",
     "role": "GUEST"
-}
-```
-
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 422</b>
-
-```
-{
-    "code": 422,
-    "message": "Unprocessable Entity",
-    "validate": [
-        {
-            "filed": "password",
-            "errors": [
-                "Size must be between 8 and 12"
-            ]
-        }
-    ]
 }
 ```
 
