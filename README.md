@@ -68,7 +68,7 @@ Options:
 
 #### Preview
 
-![picture](data/frontend/Screenshot_2022-11-26_at_13.22.43.png)
+![picture](data/frontend/screencapture-shop-keygenqt-2022-12-09-16_17_48.png)
 
 ## 5. Android App
 
