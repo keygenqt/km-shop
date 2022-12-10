@@ -13,13 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android
+package com.keygenqt.shop.android.features.home.viewModels
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import com.keygenqt.shop.android.RoutePage
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-/**
- * This main class application
- */
-@HiltAndroidApp
-class App : Application()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
+    val argument0: Int = savedStateHandle[RoutePage.argument0.name]!!
+    val argument8: String? = savedStateHandle[RoutePage.argument8.name]
+}

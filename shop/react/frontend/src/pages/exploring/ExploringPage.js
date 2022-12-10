@@ -125,7 +125,7 @@ export function ExploringPage() {
                         <Stack spacing={2}>
                             <Typography variant={isSM ? 'h4' : 'h3'}>
                                 {filter ? (
-                                    category ? `${category.name} category` : `${collection.name} collection`
+                                    category ? `Категория '${category.name}' ` : `Коллекция '${collection.name}'`
                                 ) : (
                                     'Исследовать'
                                 )}

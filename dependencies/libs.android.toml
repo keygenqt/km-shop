@@ -3,28 +3,46 @@
 ##########################
 
 [versions]
+# https://kotlinlang.org/docs/releases.html#release-details
+kotlinVersion = "1.7.20"
 # https://developer.android.com/jetpack/androidx/releases/compose
 composeVersion = "1.3.0"
 # https://developer.android.com/jetpack/androidx/releases/activity
 activityComposeVersion = "1.6.1"
+# https://developer.android.com/jetpack/compose/navigation
+navigationComposeVersion = "2.5.3"
+# https://developer.android.com/jetpack/compose/libraries#hilt-navigation
+hiltNavigationComposeVersion = "1.0.0"
 # https://developer.android.com/training/dependency-injection/hilt-android
-hiltVersion = "2.44"
+hiltAndroidVersion = "2.44"
 
 ##########################
 ## LIBRARIES
 ##########################
 
-# Hilt
-# Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
+# Reflection
+# Reflection is a set of language and library features that allows you to introspect the structure of your program at runtime.
+[libraries.kotlin-reflect]
+module = "org.jetbrains.kotlin:kotlin-reflect"
+[libraries.kotlin-reflect.version]
+ref = "kotlinVersion"
+
+# Hilt Android
 [libraries.hilt-android]
 module = "com.google.dagger:hilt-android"
 [libraries.hilt-android.version]
-ref = "hiltVersion"
+ref = "hiltAndroidVersion"
 
 [libraries.hilt-android-compiler]
 module = "com.google.dagger:hilt-android-compiler"
 [libraries.hilt-android-compiler.version]
-ref = "hiltVersion"
+ref = "hiltAndroidVersion"
+
+# Hilt Compose
+[libraries.hilt-navigation-compose]
+module = "androidx.hilt:hilt-navigation-compose"
+[libraries.hilt-navigation-compose.version]
+ref = "hiltNavigationComposeVersion"
 
 # Jetpack Compose
 # Define your UI programmatically with composable functions that describe its shape and data dependencies.
@@ -58,6 +76,11 @@ module = "androidx.activity:activity-compose"
 [libraries.activity-compose.version]
 ref = "activityComposeVersion"
 
+[libraries.navigation-compose]
+module = "androidx.navigation:navigation-compose"
+[libraries.navigation-compose.version]
+ref = "navigationComposeVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -70,8 +93,11 @@ android = [
     "foundation",
     "material",
     "activity-compose",
+    "navigation-compose",
+    "kotlin-reflect",
     "hilt-android",
+    "hilt-navigation-compose",
 ]
 androidKapt = [
-    "hilt-android-compiler",
+    "hilt-android-compiler"
 ]

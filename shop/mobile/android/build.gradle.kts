@@ -56,7 +56,15 @@ android {
 }
 
 dependencies {
+    // kmm
     implementation(project(":shared"))
+    // versionCatalogs
     implementation(androidApp.bundles.android)
     kapt(androidApp.bundles.androidKapt)
+    // libs
+//    if (findProperty("internalLibrariesEnable").toString().toBoolean()) {
+//        implementation(project(":compose-routing"))
+//    } else {
+//        implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
+//    }
 }
