@@ -17,7 +17,7 @@ package com.keygenqt.shop.android.features.home.viewModels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.keygenqt.shop.android.RoutePage
+import com.keygenqt.shop.android.routes.RouteHome
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -25,6 +25,13 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    val argument0: Int = savedStateHandle[RoutePage.argument0.name]!!
-    val argument8: String? = savedStateHandle[RoutePage.argument8.name]
+    /**
+     * Demo arguments with custom [RouteHome.SearchParameters]
+     */
+    val argument0: Int = savedStateHandle[RouteHome.argument0.name]!!
+    val argument1: Long? = savedStateHandle[RouteHome.argument1.name]
+    val argument2: Float? = savedStateHandle[RouteHome.argument2.name]
+    val argument3: Boolean? = savedStateHandle[RouteHome.argument3.name]
+    val argument4: String? = savedStateHandle[RouteHome.argument4.name]
+    val argument5: RouteHome.SearchParameters? = savedStateHandle[RouteHome.argument5.name]
 }

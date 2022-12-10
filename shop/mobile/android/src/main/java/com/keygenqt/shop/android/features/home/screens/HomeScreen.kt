@@ -27,12 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.MyApplicationTheme
-import com.keygenqt.shop.android.RoutePage
 import com.keygenqt.shop.android.features.home.viewModels.HomeViewModel
+import com.keygenqt.shop.android.routes.RouteHome
+import com.keygenqt.shop.android.theme.MyApplicationTheme
 
 /**
- * Onboarding page fun for initialization
+ * Home page, main for app
  *
  * @param viewModel page view model
  */
@@ -46,14 +46,24 @@ fun HomeScreen(
         color = MaterialTheme.colors.background
     ) {
         Column {
-            Greeting(viewModel.argument0.toString())
-            Greeting(viewModel.argument8.toString())
+            Greeting("argument0: ${viewModel.argument0}")
+            Greeting("argument1: ${viewModel.argument1}")
+            Greeting("argument2: ${viewModel.argument2}")
+            Greeting("argument3: ${viewModel.argument3}")
+            Greeting("argument4: ${viewModel.argument4}")
+            Greeting("argument5: ${viewModel.argument5}")
             Button(
                 onClick = {
-                    navController.navigate(RoutePage.link(
-                        argument0 = 10,
-                        argument8 = "argument8",
-                    ))
+                    navController.navigate(
+                        RouteHome.link(
+                            argument0 = 1,
+                            argument1 = 10,
+                            argument2 = 1.0f,
+                            argument3 = false,
+                            argument4 = "String",
+                            argument5 = RouteHome.SearchParameters("Text", listOf("1", "2")),
+                        )
+                    )
                 },
                 modifier = Modifier.fillMaxWidth(),
             ) {

@@ -15,6 +15,8 @@ navigationComposeVersion = "2.5.3"
 hiltNavigationComposeVersion = "1.0.0"
 # https://developer.android.com/training/dependency-injection/hilt-android
 hiltAndroidVersion = "2.44"
+# https://github.com/Kotlin/kotlinx.serialization/blob/master/formats/README.md#json
+jsonSerializationVersion="1.4.1"
 
 ##########################
 ## LIBRARIES
@@ -81,6 +83,13 @@ module = "androidx.navigation:navigation-compose"
 [libraries.navigation-compose.version]
 ref = "navigationComposeVersion"
 
+# Serialization
+# JSON serialization library dependency
+[libraries.kotlinx-serialization-json]
+module = "org.jetbrains.kotlinx:kotlinx-serialization-json"
+[libraries.kotlinx-serialization-json.version]
+ref = "jsonSerializationVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -97,6 +106,7 @@ android = [
     "kotlin-reflect",
     "hilt-android",
     "hilt-navigation-compose",
+    "kotlinx-serialization-json"
 ]
 androidKapt = [
     "hilt-android-compiler"

@@ -1,19 +1,19 @@
 plugins {
 
     // https://kotlinlang.org/docs/releases.html#release-details
-    val kotlinVersion="1.7.20"
+    val kotlinVersion = "1.7.20"
     // https://github.com/diffplug/spotless/tags
-    val spotlessVersion="6.11.0"
+    val spotlessVersion = "6.11.0"
     // https://github.com/Kotlin/dokka/tags
-    val dokkaVersions="1.5.30"
+    val dokkaVersions = "1.5.30"
     // https://kotlinlang.org/docs/multiplatform.html
-    val multiplatformVersion="1.7.10"
+    val multiplatformVersion = "1.7.10"
     // https://github.com/mpetuska/npm-publish
-    val npmPublishVersion="3.0.3"
+    val npmPublishVersion = "3.0.3"
     // https://developer.android.com/studio/releases/gradle-plugin#updating-plugin
-    val androidVersion="7.3.1"
+    val androidVersion = "7.3.1"
     // https://developer.android.com/training/dependency-injection/hilt-android
-    val hiltVersion="2.44"
+    val hiltVersion = "2.44"
 
     // android
     id("com.google.dagger.hilt.android") version hiltVersion apply false
@@ -34,7 +34,7 @@ plugins {
 buildscript {
 
     // https://github.com/yshrsmz/BuildKonfig
-    val buildkonfigVersion="0.13.3"
+    val buildkonfigVersion = "0.13.3"
 
     repositories {
         google()
