@@ -18,14 +18,18 @@ fun MyApplicationTheme(
 ) {
     val colors = if (darkTheme) {
         darkColors(
-            primary = Color(0xFF2b96f1),
-            primaryVariant = Color(0xFFE3F2FD),
+            background = Color(0xFF292929),
+            primary = Color(0xFF066EC7),
+            onPrimary = Color(0xFFFFFFFF),
+            primaryVariant = Color(0xFFADDCFF),
             secondary = Color(0xFFB259CA),
             onSecondary = Color(0xFFFFFFFF)
         )
     } else {
         lightColors(
+            background = Color(0xFFFFFFFF),
             primary = Color(0xFF2b96f1),
+            onPrimary = Color(0xFFFFFFFF),
             primaryVariant = Color(0xFFE3F2FD),
             secondary = Color(0xFFB259CA),
             onSecondary = Color(0xFFFFFFFF)
@@ -38,10 +42,11 @@ fun MyApplicationTheme(
             fontSize = 16.sp
         )
     )
+
     val shapes = Shapes(
         small = RoundedCornerShape(4.dp),
-        medium = RoundedCornerShape(4.dp),
-        large = RoundedCornerShape(0.dp)
+        medium = RoundedCornerShape(8.dp),
+        large = RoundedCornerShape(16.dp)
     )
 
     MaterialTheme(

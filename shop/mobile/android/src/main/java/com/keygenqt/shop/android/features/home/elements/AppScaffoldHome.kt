@@ -71,7 +71,7 @@ fun AppScaffoldHome(
         },
         bottomBar = {
             BottomNavigation(
-                backgroundColor = Color(0xFFE3F2FD),
+                backgroundColor = MaterialTheme.colors.primaryVariant,
                 contentColor = Color(0xFF4E4E4E),
             ) {
                 BottomNavigationItem(

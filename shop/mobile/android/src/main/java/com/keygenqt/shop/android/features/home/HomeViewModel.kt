@@ -15,23 +15,75 @@
  */
 package com.keygenqt.shop.android.features.home
 
-import androidx.lifecycle.SavedStateHandle
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.keygenqt.shop.android.routes.RouteHome
+import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.data.models.mapToModels
+import com.keygenqt.shop.android.extensions.withTransaction
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.CategoryModelDataService
+import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
+    private val client: ServiceRequest,
+    private val dataService: AppDataService
 ) : ViewModel() {
+
     /**
-     * Demo arguments with custom [RouteHome.SearchParameters]
+     * Error response
      */
-    val argument0: Int = savedStateHandle[RouteHome.argument0.name]!!
-    val argument1: Long? = savedStateHandle[RouteHome.argument1.name]
-    val argument2: Float? = savedStateHandle[RouteHome.argument2.name]
-    val argument3: Boolean? = savedStateHandle[RouteHome.argument3.name]
-    val argument4: String? = savedStateHandle[RouteHome.argument4.name]
-    val argument5: RouteHome.SearchParameters? = savedStateHandle[RouteHome.argument5.name]
+    private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
+
+    /**
+     * [StateFlow] for [_error]
+     */
+    val error: StateFlow<String?> get() = _error.asStateFlow()
+
+    /**
+     * Loading query
+     */
+    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    /**
+     * [StateFlow] for [_loading]
+     */
+    val loading: StateFlow<Boolean> get() = _loading.asStateFlow()
+
+    /**
+     * Listen categories
+     */
+    val categories = dataService.getCategoryModels().distinctUntilChanged()
+
+    init {
+        updateCategories()
+    }
+
+    /**
+     * Query update repo
+     */
+    private fun updateCategories() {
+        viewModelScope.launch {
+            _error.value = null
+            _loading.value = true
+            try {
+                client.get.categoriesPublished().let { models ->
+                    dataService.withTransaction<CategoryModelDataService> {
+                        clearCategoryModels()
+                        insertCategoryModels(*models.mapToModels().toTypedArray())
+                    }
+                }
+            } catch (ex: Exception) {
+                _error.value = ex.localizedMessage ?: ""
+            }
+            _loading.value = false
+        }
+    }
 }

@@ -15,15 +15,24 @@
  */
 package com.keygenqt.shop.android.features.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.routes.RouteHome
+import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.android.data.models.CategoryModel
 
 /**
  * Home page, main for app
@@ -35,39 +44,80 @@ fun HomeScreen(
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
+    val scrollState = rememberScrollState()
+
+    val categories by viewModel.categories.collectAsState(false)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(scrollState),
+    ) {
+        InfoBlock()
 
+        Spacer(modifier = Modifier.height(10.dp))
+
+        if (categories != false) {
+            (categories as List<CategoryModel>).forEach { model ->
+                AppText(text = model.name)
+            }
+        }
+    }
+}
+
+@Composable
+fun InfoBlock() {
+    Card(
+        backgroundColor = Color(0xFFF7F0EA),
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp)
         ) {
+            Image(
+                modifier = Modifier
+                    .size(120.dp)
+                    .align(Alignment.BottomEnd),
+                contentDescription = null,
+                painter = painterResource(id = R.drawable.girl),
+            )
 
-        Text(text = "argument0: ${viewModel.argument0}")
-        Text(text = "argument1: ${viewModel.argument1}")
-        Text(text = "argument2: ${viewModel.argument2}")
-        Text(text = "argument3: ${viewModel.argument3}")
-        Text(text = "argument4: ${viewModel.argument4}")
-        Text(text = "argument5: ${viewModel.argument5}")
-
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        Button(
-            onClick = {
-                navController.navigate(
-                    RouteHome.link(
-                        argument0 = 1,
-                        argument1 = 10,
-                        argument2 = 1.0f,
-                        argument3 = false,
-                        argument4 = "String",
-                        argument5 = RouteHome.SearchParameters("Text", listOf("1", "2")),
-                    )
+            Column(
+                modifier = Modifier.fillMaxHeight()
+            ) {
+                AppText(
+                    text = "В этом сезоне найди лучшее \uD83D\uDD25",
+                    style = MaterialTheme.typography.subtitle2
                 )
-            },
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(text = "Update route")
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                AppText(
+                    text = "Коллекции для\nвашего стиля",
+                    style = MaterialTheme.typography.h5,
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(0xFF333438),
+                        contentColor = Color.White,
+                    ),
+                    onClick = {
+
+                    },
+                ) {
+                    Text(text = "Начните поиск")
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }

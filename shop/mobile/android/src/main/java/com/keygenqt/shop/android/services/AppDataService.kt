@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.utils.constants.impl
+package com.keygenqt.shop.android.services
 
-import kotlin.js.JsExport
+import com.keygenqt.shop.android.data.AppDatabase
+import com.keygenqt.shop.android.services.impl.CategoryModelDataService
 
-@JsExport
-object LinksConstants {
+/**
+ * Base service module for work with db room
+ *
+ * @author Vitaliy Zarubin
+ */
+class AppDataService(
+    override val db: AppDatabase,
+) : CategoryModelDataService {
+
     /**
-     * Api url
+     * Performed when the user logs out
      */
-    const val API_DEBUG_URL = "http://localhost:8086/"
-
-    /**
-     * Api url
-     */
-    const val API_DEBUG_ANDROID_URL = "http://10.0.2.2:8086/"
+    override suspend fun clearCacheAfterLogout() {
+        super<CategoryModelDataService>.clearCacheAfterLogout()
+    }
 }

@@ -18,11 +18,10 @@ package com.keygenqt.shop.android.components.base
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 /**
@@ -44,6 +43,8 @@ fun AppScaffold(
                 elevation = 10.dp,
                 actions = actions,
                 navigationIcon = navigationIcon,
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = Color.White,
             )
         },
     ) {

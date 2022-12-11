@@ -19,6 +19,8 @@ accompanistVersion = "0.28.0"
 hiltAndroidVersion = "2.44"
 # https://github.com/Kotlin/kotlinx.serialization/blob/master/formats/README.md#json
 jsonSerializationVersion="1.4.1"
+# https://developer.android.com/jetpack/androidx/releases/room
+roomVersion = "2.4.3"
 
 ##########################
 ## LIBRARIES
@@ -109,6 +111,28 @@ module = "org.jetbrains.kotlinx:kotlinx-serialization-json"
 [libraries.kotlinx-serialization-json.version]
 ref = "jsonSerializationVersion"
 
+# Room
+# The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
+[libraries.room-runtime]
+module = "androidx.room:room-runtime"
+[libraries.room-runtime.version]
+ref = "roomVersion"
+
+[libraries.room-ktx]
+module = "androidx.room:room-ktx"
+[libraries.room-ktx.version]
+ref = "roomVersion"
+
+[libraries.room-paging]
+module = "androidx.room:room-paging"
+[libraries.room-paging.version]
+ref = "roomVersion"
+
+[libraries.room-compiler]
+module = "androidx.room:room-compiler"
+[libraries.room-compiler.version]
+ref = "roomVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -129,7 +153,11 @@ android = [
     "kotlinx-serialization-json",
     "accompanist-pager",
     "accompanist-swiperefresh",
+    "room-runtime",
+    "room-ktx",
+    "room-paging",
 ]
 androidKapt = [
-    "hilt-android-compiler"
+    "hilt-android-compiler",
+    "room-compiler"
 ]

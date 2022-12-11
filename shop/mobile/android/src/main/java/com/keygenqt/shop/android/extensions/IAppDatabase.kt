@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.utils.constants.impl
+package com.keygenqt.shop.android.extensions
 
-import kotlin.js.JsExport
+import androidx.room.withTransaction
+import com.keygenqt.shop.android.interfaces.IAppDatabase
 
-@JsExport
-object LinksConstants {
-    /**
-     * Api url
-     */
-    const val API_DEBUG_URL = "http://localhost:8086/"
-
-    /**
-     * Api url
-     */
-    const val API_DEBUG_ANDROID_URL = "http://10.0.2.2:8086/"
+/**
+ * Extensions for easy transaction
+ */
+@Suppress("UNCHECKED_CAST")
+suspend fun <T> IAppDatabase.withTransaction(body: suspend T.() -> Unit) {
+    db.withTransaction {
+        body.invoke(this as T)
+    }
 }

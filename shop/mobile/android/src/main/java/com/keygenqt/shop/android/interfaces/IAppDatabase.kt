@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.utils.constants.impl
+package com.keygenqt.shop.android.interfaces
 
-import kotlin.js.JsExport
+import androidx.room.RoomDatabase
 
-@JsExport
-object LinksConstants {
-    /**
-     * Api url
-     */
-    const val API_DEBUG_URL = "http://localhost:8086/"
-
-    /**
-     * Api url
-     */
-    const val API_DEBUG_ANDROID_URL = "http://10.0.2.2:8086/"
+/**
+ * Interface for services db root
+ */
+interface IAppDatabase {
+    val db: RoomDatabase
+    suspend fun clearCacheAfterLogout()
 }

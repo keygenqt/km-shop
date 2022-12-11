@@ -80,7 +80,7 @@ class ServiceRequest(
             apiUrl?.let {
                 url(it)
             } ?: run {
-                url(AppConstants.link.API_URL)
+                url(AppConstants.link.API_DEBUG_URL)
             }
             contentType(ContentType.Application.Json)
         }

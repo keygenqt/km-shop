@@ -13,19 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.utils.constants.impl
+package com.keygenqt.shop.android.data
 
-import kotlin.js.JsExport
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import com.keygenqt.shop.android.data.dao.CategoryModelDao
+import com.keygenqt.shop.android.data.models.CategoryModel
 
-@JsExport
-object LinksConstants {
+/**
+ * Database configuration [RoomDatabase]
+ */
+@Database(
+    entities = [
+        CategoryModel::class,
+    ],
+    version = 1,
+    exportSchema = false
+)
+abstract class AppDatabase : RoomDatabase() {
     /**
-     * Api url
+     * Dao for model [CategoryModel]
      */
-    const val API_DEBUG_URL = "http://localhost:8086/"
-
-    /**
-     * Api url
-     */
-    const val API_DEBUG_ANDROID_URL = "http://10.0.2.2:8086/"
+    abstract fun daoCategoryModel(): CategoryModelDao
 }
