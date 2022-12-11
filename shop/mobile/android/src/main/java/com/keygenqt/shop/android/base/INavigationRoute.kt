@@ -12,9 +12,9 @@ interface INavigationRoute {
     /**
      * Builder with path
      */
-    fun routeBuild(params: Uri.Builder.() -> Unit) = Uri.Builder().apply {
+    fun routeBuild(params: (Uri.Builder.() -> Unit)? = null) = Uri.Builder().apply {
         appendPath(path())
-        params(this)
+        params?.invoke(this)
     }.build().toString()
 
     /**

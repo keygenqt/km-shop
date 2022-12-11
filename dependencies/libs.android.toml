@@ -13,6 +13,8 @@ activityComposeVersion = "1.6.1"
 navigationComposeVersion = "2.5.3"
 # https://developer.android.com/jetpack/compose/libraries#hilt-navigation
 hiltNavigationComposeVersion = "1.0.0"
+# https://github.com/google/accompanist/releases
+accompanistVersion = "0.28.0"
 # https://developer.android.com/training/dependency-injection/hilt-android
 hiltAndroidVersion = "2.44"
 # https://github.com/Kotlin/kotlinx.serialization/blob/master/formats/README.md#json
@@ -21,6 +23,18 @@ jsonSerializationVersion="1.4.1"
 ##########################
 ## LIBRARIES
 ##########################
+
+# Accompanist
+# Accompanist is a group of libraries that aim to supplement Jetpack Compose with features that are commonly required by developers but not yet available.
+[libraries.accompanist-pager]
+module = "com.google.accompanist:accompanist-pager"
+[libraries.accompanist-pager.version]
+ref = "accompanistVersion"
+
+[libraries.accompanist-swiperefresh]
+module = "com.google.accompanist:accompanist-swiperefresh"
+[libraries.accompanist-swiperefresh.version]
+ref = "accompanistVersion"
 
 # Reflection
 # Reflection is a set of language and library features that allows you to introspect the structure of your program at runtime.
@@ -73,6 +87,11 @@ module = "androidx.compose.material:material"
 [libraries.material.version]
 ref = "composeVersion"
 
+[libraries.material-icons-extended]
+module = "androidx.compose.material:material-icons-extended"
+[libraries.material-icons-extended.version]
+ref = "composeVersion"
+
 [libraries.activity-compose]
 module = "androidx.activity:activity-compose"
 [libraries.activity-compose.version]
@@ -101,12 +120,15 @@ android = [
     "ui-tooling-preview",
     "foundation",
     "material",
+    "material-icons-extended",
     "activity-compose",
     "navigation-compose",
     "kotlin-reflect",
     "hilt-android",
     "hilt-navigation-compose",
-    "kotlinx-serialization-json"
+    "kotlinx-serialization-json",
+    "accompanist-pager",
+    "accompanist-swiperefresh",
 ]
 androidKapt = [
     "hilt-android-compiler"

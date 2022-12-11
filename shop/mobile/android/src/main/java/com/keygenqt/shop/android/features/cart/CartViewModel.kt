@@ -13,25 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.home.viewModels
+package com.keygenqt.shop.android.features.cart
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.keygenqt.shop.android.routes.RouteHome
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class CartViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
-) : ViewModel() {
-    /**
-     * Demo arguments with custom [RouteHome.SearchParameters]
-     */
-    val argument0: Int = savedStateHandle[RouteHome.argument0.name]!!
-    val argument1: Long? = savedStateHandle[RouteHome.argument1.name]
-    val argument2: Float? = savedStateHandle[RouteHome.argument2.name]
-    val argument3: Boolean? = savedStateHandle[RouteHome.argument3.name]
-    val argument4: String? = savedStateHandle[RouteHome.argument4.name]
-    val argument5: RouteHome.SearchParameters? = savedStateHandle[RouteHome.argument5.name]
-}
+) : ViewModel()
