@@ -17,6 +17,7 @@ package com.keygenqt.shop.android.services
 
 import com.keygenqt.shop.android.data.AppDatabase
 import com.keygenqt.shop.android.services.impl.CategoryModelDataService
+import com.keygenqt.shop.android.services.impl.CollectionModelDataService
 
 /**
  * Base service module for work with db room
@@ -25,12 +26,14 @@ import com.keygenqt.shop.android.services.impl.CategoryModelDataService
  */
 class AppDataService(
     override val db: AppDatabase,
-) : CategoryModelDataService {
+) : CategoryModelDataService,
+    CollectionModelDataService {
 
     /**
      * Performed when the user logs out
      */
     override suspend fun clearCacheAfterLogout() {
         super<CategoryModelDataService>.clearCacheAfterLogout()
+        super<CollectionModelDataService>.clearCacheAfterLogout()
     }
 }

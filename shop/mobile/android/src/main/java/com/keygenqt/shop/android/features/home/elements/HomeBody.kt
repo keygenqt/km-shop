@@ -4,10 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.pullrefresh.PullRefreshIndicator
-import androidx.compose.material.pullrefresh.pullRefresh
-import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.runtime.Composable
+import androidx.compose.material.pullrefresh.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,14 +18,14 @@ import com.keygenqt.shop.android.data.models.CategoryModel
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeBody(
-    refreshing: Boolean,
+    loading: Boolean,
     onRefresh: () -> Unit,
     categories: List<CategoryModel>?
 ) {
 
     val scrollState = rememberScrollState()
     val refreshState = rememberPullRefreshState(
-        refreshing = refreshing,
+        refreshing = loading,
         onRefresh = onRefresh
     )
 
@@ -104,7 +102,7 @@ fun HomeBody(
 
         PullRefreshIndicator(
             modifier = Modifier.align(Alignment.TopCenter),
-            refreshing = refreshing,
+            refreshing = true,
             state = refreshState,
             backgroundColor = MaterialTheme.colors.onPrimary,
             contentColor = MaterialTheme.colors.primary

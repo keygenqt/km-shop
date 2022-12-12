@@ -32,11 +32,11 @@ fun HomeScreen(
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val loading by viewModel.loading.collectAsState(true)
+    val loading by viewModel.loading.collectAsState()
     val categories by viewModel.categories.collectAsState(null)
 
     HomeBody(
-        refreshing = loading,
+        loading = loading,
         categories = categories,
         onRefresh = {
             viewModel.updateCategories()

@@ -52,7 +52,7 @@ fun InfoBlock() {
 
                 Button(
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(0xFF333438),
+                        backgroundColor = Color.Black,
                         contentColor = Color.White,
                     ),
                     onClick = {

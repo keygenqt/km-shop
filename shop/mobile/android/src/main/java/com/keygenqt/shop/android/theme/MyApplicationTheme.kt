@@ -22,10 +22,10 @@ fun MyApplicationTheme(
             primary = Color(0xFF2b96f1),
             onPrimary = Color(0xFFFFFFFF),
             primaryVariant = Color(0xFFADDCFF),
-            secondary = Color(0xFFB259CA),
-            secondaryVariant = Color(0xFFC58B59),
+            secondary = Color(0xFFA63FC2),
+            secondaryVariant = Color(0xFFD69697),
             onSecondary = Color(0xFFFFFFFF),
-            surface = Color(0xFF7C7C7C),
+            surface = Color(0xFF4E4E4E),
             onSurface = Color(0xFFBADEFD)
         )
     } else {
@@ -34,7 +34,7 @@ fun MyApplicationTheme(
             primary = Color(0xFF2b96f1),
             onPrimary = Color(0xFFFFFFFF),
             primaryVariant = Color(0xFFE3F2FD),
-            secondary = Color(0xFFB259CA),
+            secondary = Color(0xFFA63FC2),
             secondaryVariant = Color(0xFFF7F0EA),
             onSecondary = Color(0xFFFFFFFF),
             surface = Color(0xFFF6F7F9),

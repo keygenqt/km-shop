@@ -33,7 +33,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val client: ServiceRequest,
+    private val serviceRequest: ServiceRequest,
     private val dataService: AppDataService
 ) : ViewModel() {
 
@@ -74,8 +74,8 @@ class HomeViewModel @Inject constructor(
             _error.value = null
             _loading.value = true
             try {
-                delay(1000)
-                client.get.categoriesPublished().let { models ->
+                delay(500)
+                serviceRequest.get.categoriesPublished().let { models ->
                     dataService.withTransaction<CategoryModelDataService> {
                         clearCategoryModels()
                         insertCategoryModels(*models.mapToModels().toTypedArray())

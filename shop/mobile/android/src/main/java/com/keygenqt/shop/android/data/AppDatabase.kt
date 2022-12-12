@@ -18,7 +18,9 @@ package com.keygenqt.shop.android.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.keygenqt.shop.android.data.dao.CategoryModelDao
+import com.keygenqt.shop.android.data.dao.CollectionModelDao
 import com.keygenqt.shop.android.data.models.CategoryModel
+import com.keygenqt.shop.android.data.models.CollectionModel
 
 /**
  * Database configuration [RoomDatabase]
@@ -26,6 +28,7 @@ import com.keygenqt.shop.android.data.models.CategoryModel
 @Database(
     entities = [
         CategoryModel::class,
+        CollectionModel::class,
     ],
     version = 1,
     exportSchema = false
@@ -35,4 +38,9 @@ abstract class AppDatabase : RoomDatabase() {
      * Dao for model [CategoryModel]
      */
     abstract fun daoCategoryModel(): CategoryModelDao
+
+    /**
+     * Dao for model [CollectionModel]
+     */
+    abstract fun daoCollectionModel(): CollectionModelDao
 }

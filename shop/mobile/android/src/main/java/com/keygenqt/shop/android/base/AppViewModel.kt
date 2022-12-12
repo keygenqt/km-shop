@@ -15,21 +15,35 @@
  */
 package com.keygenqt.shop.android.base
 
+import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.data.models.mapToModels
+import com.keygenqt.shop.android.extensions.withTransaction
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.CategoryModelDataService
+import com.keygenqt.shop.android.services.impl.CollectionModelDataService
+import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
  * Main [ViewModel] for app
  */
 @HiltViewModel
-class AppViewModel @Inject constructor() : ViewModel() {
+class AppViewModel @Inject constructor(
+    private val application: Application,
+    private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
+) : ViewModel() {
 
     /**
      * [MutableStateFlow] for start app and end splash
@@ -43,8 +57,45 @@ class AppViewModel @Inject constructor() : ViewModel() {
 
     init {
         viewModelScope.launch {
-            delay(3000)
-            _isSplash.value = false
+            try {
+                getMainDataBeforeInit()
+                _isSplash.value = false
+            } catch (ex: Exception) {
+                Toast
+                    .makeText(
+                        application.applicationContext,
+                        ex.localizedMessage ?: "Error api query",
+                        Toast.LENGTH_LONG
+                    )
+                    .show()
+            }
+        }
+    }
+
+    /**
+     * Main query
+     */
+    private suspend fun getMainDataBeforeInit() {
+        // get categories
+        val categories =
+            withContext(Dispatchers.Default) { serviceRequest.get.categoriesPublished() }
+                .mapToModels()
+                .toTypedArray()
+
+        dataService.withTransaction<CategoryModelDataService> {
+            clearCategoryModels()
+            insertCategoryModels(*categories)
+        }
+
+        // get collections
+        val collections =
+            withContext(Dispatchers.Default) { serviceRequest.get.collectionsPublished() }
+                .mapToModels()
+                .toTypedArray()
+
+        dataService.withTransaction<CollectionModelDataService> {
+            clearCollectionModels()
+            insertCollectionModels(*collections)
         }
     }
 }

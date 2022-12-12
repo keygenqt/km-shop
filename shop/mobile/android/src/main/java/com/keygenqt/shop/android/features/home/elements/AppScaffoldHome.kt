@@ -3,6 +3,7 @@ package com.keygenqt.shop.android.features.home.elements
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -29,6 +30,8 @@ fun AppScaffoldHome(
     onChangeTab: (Int) -> Unit,
     content: @Composable () -> Unit
 ) {
+    val cartSize = 2
+
     AppScaffold(
         title = "My Shop",
         navigationIcon = {
@@ -71,10 +74,12 @@ fun AppScaffoldHome(
         },
         bottomBar = {
             BottomNavigation(
+                modifier = Modifier.height(70.dp),
                 backgroundColor = MaterialTheme.colors.primaryVariant,
-                contentColor = Color(0xFF4E4E4E),
+                contentColor = Color(0xFF424242),
             ) {
                 BottomNavigationItem(
+                    modifier = Modifier.padding(bottom = 6.dp),
                     selected = activeTab == 0,
                     icon = {
                         Icon(
@@ -88,6 +93,7 @@ fun AppScaffoldHome(
                     }
                 )
                 BottomNavigationItem(
+                    modifier = Modifier.padding(bottom = 6.dp),
                     selected = activeTab == 1,
                     icon = {
                         Icon(
@@ -101,12 +107,15 @@ fun AppScaffoldHome(
                     }
                 )
                 BottomNavigationItem(
+                    modifier = Modifier.padding(bottom = 5.dp),
                     selected = activeTab == 2,
                     icon = {
-                        Icon(
-                            imageVector = Icons.Outlined.ShoppingCart,
-                            contentDescription = "Cart"
-                        )
+                        BadgedBox(badge = { if (cartSize > 0) Badge(backgroundColor = MaterialTheme.colors.secondary) { Text(cartSize.toString()) } }) {
+                            Icon(
+                                imageVector = Icons.Outlined.ShoppingCart,
+                                contentDescription = "Cart"
+                            )
+                        }
                     },
                     label = { Text("Cart") },
                     onClick = {
