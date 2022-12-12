@@ -1,4 +1,4 @@
-package com.keygenqt.shop.android.features.contact.elements
+package com.keygenqt.shop.android.features.contactForm.elements
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -11,12 +11,12 @@ import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
 
 @Composable
-fun AppScaffoldContact(
+fun AppScaffoldContactFrom(
     navController: NavHostController,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
-        title = stringResource(id = R.string.contact_title),
+        title = stringResource(id = R.string.contact_form_title),
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()

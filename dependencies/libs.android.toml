@@ -21,10 +21,19 @@ hiltAndroidVersion = "2.44"
 jsonSerializationVersion="1.4.1"
 # https://developer.android.com/jetpack/androidx/releases/room
 roomVersion = "2.4.3"
+# https://github.com/airbnb/lottie/blob/master/android-compose.md
+lottieVersion = "5.2.0"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Lottie
+# This repo is the home of the unified Lottie docs hosted at http://airbnb.io/lottie.
+[libraries.lottie-compose]
+module = "com.airbnb.android:lottie-compose"
+[libraries.lottie-compose.version]
+ref = "lottieVersion"
 
 # Accompanist
 # Accompanist is a group of libraries that aim to supplement Jetpack Compose with features that are commonly required by developers but not yet available.
@@ -156,6 +165,7 @@ android = [
     "room-runtime",
     "room-ktx",
     "room-paging",
+    "lottie-compose",
 ]
 androidKapt = [
     "hilt-android-compiler",

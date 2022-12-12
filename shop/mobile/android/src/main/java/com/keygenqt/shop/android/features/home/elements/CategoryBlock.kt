@@ -96,7 +96,7 @@ fun CategoryBlock(
                         Icon(
                             modifier = Modifier.height(14.dp),
                             imageVector = Icons.Outlined.ArrowForward,
-                            contentDescription = "Category",
+                            contentDescription = null,
                             tint = if (dark) MaterialTheme.colors.onSurface else MaterialTheme.colors.primary
                         )
                     }

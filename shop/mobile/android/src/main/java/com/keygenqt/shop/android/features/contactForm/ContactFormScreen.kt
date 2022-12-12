@@ -13,32 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.contact
+package com.keygenqt.shop.android.features.contactForm
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.features.contact.elements.AppScaffoldContact
-import com.keygenqt.shop.android.features.contact.elements.ContactBody
-import com.keygenqt.shop.android.routes.RouteContactForm
+import com.keygenqt.shop.android.features.contactForm.elements.AppScaffoldContactFrom
+import com.keygenqt.shop.android.features.contactForm.elements.ContactFormBody
 
 /**
- * Contact page
+ * Contact page with form message
  *
  * @param viewModel page view model
  */
 @Composable
-fun ContactScreen(
+fun ContactFormScreen(
     navController: NavHostController,
-    viewModel: ContactViewModel = hiltViewModel(),
+    viewModel: ContactFormViewModel = hiltViewModel(),
 ) {
-    AppScaffoldContact(
+    AppScaffoldContactFrom(
         navController = navController
     ) {
-        ContactBody(
-            onSendMessage = {
-                navController.navigate(RouteContactForm.link())
-            }
-        )
+        ContactFormBody()
     }
 }

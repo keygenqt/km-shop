@@ -12,13 +12,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.keygenqt.shop.android.features.contact.ContactScreen
+import com.keygenqt.shop.android.features.contactForm.ContactFormScreen
 import com.keygenqt.shop.android.features.home.HomeTabs
 import com.keygenqt.shop.android.features.order.OrderScreen
 import com.keygenqt.shop.android.features.product.ProductScreen
-import com.keygenqt.shop.android.routes.RouteContact
-import com.keygenqt.shop.android.routes.RouteHome
-import com.keygenqt.shop.android.routes.RouteOrder
-import com.keygenqt.shop.android.routes.RouteProduct
+import com.keygenqt.shop.android.routes.*
 
 @Composable
 fun AppNavHost(
@@ -42,6 +40,12 @@ fun AppNavHost(
                 arguments = RouteContact.arguments()
             ) {
                 ContactScreen(navController)
+            }
+            composable(
+                route = RouteContactForm.route(),
+                arguments = RouteContactForm.arguments()
+            ) {
+                ContactFormScreen(navController)
             }
             composable(
                 route = RouteHome.route(),
