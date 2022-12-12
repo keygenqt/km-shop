@@ -22,7 +22,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
-import com.keygenqt.shop.android.base.AppNavHost
 import com.keygenqt.shop.android.base.AppViewModel
 import com.keygenqt.shop.android.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +35,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
-                AppNavHost(rememberNavController())
+                NavHost(rememberNavController())
             }
         }
 

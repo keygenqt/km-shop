@@ -1,0 +1,5 @@
+<resources>
+    <string name="order_search_title">Поиск заказа</string>
+    <string name="order_search_subtitle">Здесь вы можете найти свой заказ по номеру, полученному после успешного оформления заказа.</string>
+    <string name="order_search_number_order">Номер заказа</string>
+</resources>

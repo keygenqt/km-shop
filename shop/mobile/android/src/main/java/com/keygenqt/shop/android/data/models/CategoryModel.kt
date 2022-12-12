@@ -21,7 +21,7 @@ import androidx.room.PrimaryKey
 import com.keygenqt.shop.data.responses.CategoryResponse
 
 /**
- * Follower model
+ * Category product model
  */
 @Entity
 @Immutable

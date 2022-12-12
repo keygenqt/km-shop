@@ -16,37 +16,29 @@
 package com.keygenqt.shop.android.data.models
 
 import androidx.compose.runtime.Immutable
-import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.keygenqt.shop.data.responses.CollectionResponse
+import com.keygenqt.shop.data.responses.UploadResponse
 
 /**
- * Collection product model
+ * Category product model
  */
-@Entity
 @Immutable
-data class CollectionModel(
+data class UploadModel(
     @PrimaryKey val id: Int,
-    val key: String,
-    val name: String,
-    val desc: String,
-    val icon: String,
-    val isPublished: Boolean,
+    val fileName: String,
+    val fileMime: String,
+    val originalFileName: String,
     val createAt: String,
-    val updateAt: String,
 )
 
-fun CollectionResponse.mapToModel() =
-    CollectionModel(
+fun UploadResponse.mapToModel() =
+    UploadModel(
         id = id,
-        key = key,
-        name = name,
-        desc = desc,
-        icon = icon,
-        isPublished = isPublished,
+        fileName = fileName,
+        fileMime = fileMime,
+        originalFileName = originalFileName,
         createAt = createAt,
-        updateAt = updateAt,
     )
 
-fun List<CollectionResponse>.mapToModels() =
+fun List<UploadResponse>.mapToModels() =
     map { it.mapToModel() }

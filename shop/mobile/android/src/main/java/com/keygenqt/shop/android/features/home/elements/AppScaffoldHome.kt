@@ -15,13 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
 import com.keygenqt.shop.android.routes.RouteContact
-import com.keygenqt.shop.android.routes.RouteOrder
+import com.keygenqt.shop.android.routes.RouteOrderSearch
 
 @Composable
 fun AppScaffoldHome(
@@ -33,7 +33,7 @@ fun AppScaffoldHome(
     val cartSize = 2
 
     AppScaffold(
-        title = "My Shop",
+        title = stringResource(id = R.string.app_name),
         navigationIcon = {
             Box(
                 modifier = Modifier.padding(start = 12.dp)
@@ -41,7 +41,7 @@ fun AppScaffoldHome(
                 Box(
                     modifier = Modifier
                         .clip(CircleShape)
-                        .background(Color("#333438".toColorInt()))
+                        .background(Color(0xFF333438))
                         .padding(4.dp)
                 ) {
                     Image(
@@ -58,16 +58,16 @@ fun AppScaffoldHome(
             }) {
                 Icon(
                     imageVector = Icons.Outlined.ContactSupport,
-                    contentDescription = "Settings",
+                    contentDescription = null,
                     tint = MaterialTheme.colors.onPrimary
                 )
             }
             IconButton(onClick = {
-                navController.navigate(RouteOrder.link())
+                navController.navigate(RouteOrderSearch.link())
             }) {
                 Icon(
                     imageVector = Icons.Outlined.LocalMall,
-                    contentDescription = "Settings",
+                    contentDescription = null,
                     tint = MaterialTheme.colors.onPrimary
                 )
             }
@@ -84,10 +84,10 @@ fun AppScaffoldHome(
                     icon = {
                         Icon(
                             imageVector = Icons.Outlined.ShoppingBasket,
-                            contentDescription = "Home"
+                            contentDescription = null
                         )
                     },
-                    label = { Text("Home") },
+                    label = { Text(stringResource(id = R.string.tab_home)) },
                     onClick = {
                         onChangeTab(0)
                     }
@@ -98,10 +98,10 @@ fun AppScaffoldHome(
                     icon = {
                         Icon(
                             imageVector = Icons.Outlined.Search,
-                            contentDescription = "Exploring"
+                            contentDescription = null
                         )
                     },
-                    label = { Text("Exploring") },
+                    label = { Text(stringResource(id = R.string.tab_exploring)) },
                     onClick = {
                         onChangeTab(1)
                     }
@@ -110,14 +110,20 @@ fun AppScaffoldHome(
                     modifier = Modifier.padding(bottom = 5.dp),
                     selected = activeTab == 2,
                     icon = {
-                        BadgedBox(badge = { if (cartSize > 0) Badge(backgroundColor = MaterialTheme.colors.secondary) { Text(cartSize.toString()) } }) {
+                        BadgedBox(badge = {
+                            if (cartSize > 0) Badge(backgroundColor = MaterialTheme.colors.secondary) {
+                                Text(
+                                    cartSize.toString()
+                                )
+                            }
+                        }) {
                             Icon(
                                 imageVector = Icons.Outlined.ShoppingCart,
-                                contentDescription = "Cart"
+                                contentDescription = null
                             )
                         }
                     },
-                    label = { Text("Cart") },
+                    label = { Text(stringResource(id = R.string.tab_cart)) },
                     onClick = {
                         onChangeTab(2)
                     }

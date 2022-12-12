@@ -15,17 +15,15 @@
  */
 package com.keygenqt.shop.android.features.order
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.features.order.elements.AppScaffoldOrder
+import com.keygenqt.shop.android.features.order.elements.OrderBody
+import com.keygenqt.shop.android.features.order.elements.OrderErrorBody
+import com.keygenqt.shop.android.features.order.elements.OrderLoadingBody
 
 /**
  * Home page, main for app
@@ -37,14 +35,18 @@ fun OrderScreen(
     navController: NavHostController,
     viewModel: OrderViewModel = hiltViewModel(),
 ) {
+
+    val model by viewModel.order.collectAsState()
+    val error by viewModel.error.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+
     AppScaffoldOrder(navController = navController) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .padding(16.dp),
-        ) {
-            Text("OrderScreen")
+        if (model != null) {
+            OrderBody(model!!)
+        } else if (loading) {
+            OrderLoadingBody()
+        } else {
+            OrderErrorBody(error)
         }
     }
 }

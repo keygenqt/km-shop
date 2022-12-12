@@ -16,37 +16,47 @@
 package com.keygenqt.shop.android.data.models
 
 import androidx.compose.runtime.Immutable
-import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.keygenqt.shop.data.responses.CollectionResponse
+import com.keygenqt.shop.data.responses.ProductResponse
 
 /**
- * Collection product model
+ * Order model without db
  */
-@Entity
 @Immutable
-data class CollectionModel(
+data class ProductModel(
     @PrimaryKey val id: Int,
-    val key: String,
+    val category: CategoryModel,
+    val categories: List<CategoryModel>? = null,
+    val image1: String,
+    val image2: String?,
+    val image3: String?,
     val name: String,
-    val desc: String,
-    val icon: String,
+    val description: String,
+    val price: Double,
     val isPublished: Boolean,
     val createAt: String,
     val updateAt: String,
+    val collections: List<CollectionModel>? = null,
+    val uploads: List<UploadModel>? = null,
 )
 
-fun CollectionResponse.mapToModel() =
-    CollectionModel(
+fun ProductResponse.mapToModel() =
+    ProductModel(
         id = id,
-        key = key,
+        category = category.mapToModel(),
+        categories = categories?.toList()?.mapToModels(),
+        image1 = image1,
+        image2 = image2,
+        image3 = image3,
         name = name,
-        desc = desc,
-        icon = icon,
+        description = description,
+        price = price,
         isPublished = isPublished,
         createAt = createAt,
         updateAt = updateAt,
+        collections = collections?.toList()?.mapToModels(),
+        uploads = uploads?.toList()?.mapToModels(),
     )
 
-fun List<CollectionResponse>.mapToModels() =
+fun List<ProductResponse>.mapToModels() =
     map { it.mapToModel() }

@@ -17,10 +17,81 @@ package com.keygenqt.shop.android.features.order
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.data.models.OrderModel
+import com.keygenqt.shop.android.data.models.mapToModel
+import com.keygenqt.shop.android.routes.RouteOrder
+import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
-) : ViewModel()
+    savedStateHandle: SavedStateHandle,
+    private val serviceRequest: ServiceRequest,
+) : ViewModel() {
+
+    /**
+     * Search by key
+     */
+    private val orderKey: String = savedStateHandle[RouteOrder.orderKey.name]!!
+
+    /**
+     * Error response
+     */
+    private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
+
+    /**
+     * [StateFlow] for [_error]
+     */
+    val error: StateFlow<String?> get() = _error.asStateFlow()
+
+    /**
+     * Loading query
+     */
+    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(true)
+
+    /**
+     * [StateFlow] for [_loading]
+     */
+    val loading: StateFlow<Boolean> get() = _loading.asStateFlow()
+
+    /**
+     * Loading query
+     */
+    private val _order: MutableStateFlow<OrderModel?> = MutableStateFlow(null)
+
+    /**
+     * [StateFlow] for [_loading]
+     */
+    val order: StateFlow<OrderModel?> get() = _order.asStateFlow()
+
+    init {
+        searchOrder()
+    }
+
+    /**
+     * Query search order by number
+     */
+    private fun searchOrder() {
+        viewModelScope.launch {
+            _error.value = null
+            _loading.value = true
+            try {
+                delay(500)
+                serviceRequest.get.orderByNumber(orderKey).let { order ->
+                    _order.value = order.mapToModel()
+                    _loading.value = false
+                }
+            } catch (ex: Exception) {
+                _error.value = ex.localizedMessage ?: ""
+                _loading.value = false
+            }
+        }
+    }
+}
