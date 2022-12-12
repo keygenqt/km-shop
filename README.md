@@ -81,7 +81,10 @@ Options:
 
 #### Preview
 
-*Coming soon*
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1670843153.png" width="33%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1670843172.png" width="33%"/>
+</p>
 
 ## 6. iOS App
 

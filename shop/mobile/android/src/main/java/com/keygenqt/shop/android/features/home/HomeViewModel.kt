@@ -15,7 +15,6 @@
  */
 package com.keygenqt.shop.android.features.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.keygenqt.shop.android.data.models.mapToModels
@@ -24,6 +23,7 @@ import com.keygenqt.shop.android.services.AppDataService
 import com.keygenqt.shop.android.services.impl.CategoryModelDataService
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -67,23 +67,25 @@ class HomeViewModel @Inject constructor(
     }
 
     /**
-     * Query update repo
+     * Query get categories
      */
-    private fun updateCategories() {
+    fun updateCategories() {
         viewModelScope.launch {
             _error.value = null
             _loading.value = true
             try {
+                delay(1000)
                 client.get.categoriesPublished().let { models ->
                     dataService.withTransaction<CategoryModelDataService> {
                         clearCategoryModels()
                         insertCategoryModels(*models.mapToModels().toTypedArray())
+                        _loading.value = false
                     }
                 }
             } catch (ex: Exception) {
                 _error.value = ex.localizedMessage ?: ""
+                _loading.value = false
             }
-            _loading.value = false
         }
     }
 }
