@@ -7,7 +7,7 @@ import com.keygenqt.shop.android.base.INavigationRoute
 
 object RouteOrder : INavigationRoute {
 
-    val orderKey: NamedNavArgument = navArgument(::orderKey.name) {
+    val number: NamedNavArgument = navArgument(::number.name) {
         type = NavType.StringType
     }
 
@@ -15,8 +15,8 @@ object RouteOrder : INavigationRoute {
      * Generate route with params value
      */
     fun link(
-        orderKey: String,
+        number: String,
     ) = routeBuild {
-        appendQueryParameter(::orderKey.name, orderKey)
+        appendQueryParameter(::number.name, number)
     }
 }

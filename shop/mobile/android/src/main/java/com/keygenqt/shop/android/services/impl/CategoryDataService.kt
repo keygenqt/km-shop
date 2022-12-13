@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Service part for work with model [CategoryModel]
  */
-interface CategoryModelDataService : IAppDatabase {
+interface CategoryDataService : IAppDatabase {
 
     /**
      * Base room db

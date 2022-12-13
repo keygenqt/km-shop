@@ -1,4 +1,4 @@
-package com.keygenqt.shop.android.features.orderSearch.elements
+package com.keygenqt.shop.android.features.orderHistory.elements
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -11,15 +11,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
-import com.keygenqt.shop.android.routes.RouteOrderHistory
+import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 
 @Composable
-fun AppScaffoldOrderSearch(
+fun AppScaffoldOrderHistory(
+    loading: Boolean,
     navController: NavHostController,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
-        title = stringResource(id = R.string.order_search_title),
+        title = stringResource(id = R.string.order_history_title),
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()
@@ -31,14 +32,8 @@ fun AppScaffoldOrderSearch(
             }
         },
         actions = {
-            IconButton(onClick = {
-                navController.navigate(RouteOrderHistory.link())
-            }) {
-                Icon(
-                    imageVector = Icons.Outlined.History,
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.onPrimary
-                )
+            if (loading) {
+                LoadingAnimation()
             }
         }
     ) {

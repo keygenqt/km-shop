@@ -13,11 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.orderSearch
+package com.keygenqt.shop.android.data.models
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.compose.runtime.Immutable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@HiltViewModel
-class OrderSearchViewModel @Inject constructor() : ViewModel()
+/**
+ * Order search history
+ */
+@Entity
+@Immutable
+data class OrderHistoryModel(
+    @PrimaryKey val id: Int,
+    val number: String,
+    val email: String,
+    val phone: String,
+    val address: String,
+    val note: String,
+    val sum: Double,
+    val createAt: String,
+    val updateAt: String,
+    val images: List<String>,
+    val productCount: Int,
+)

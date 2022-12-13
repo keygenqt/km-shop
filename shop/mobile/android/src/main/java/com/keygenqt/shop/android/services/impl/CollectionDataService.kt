@@ -16,7 +16,6 @@
 package com.keygenqt.shop.android.services.impl
 
 import com.keygenqt.shop.android.data.AppDatabase
-import com.keygenqt.shop.android.data.dao.CategoryModelDao
 import com.keygenqt.shop.android.data.dao.CollectionModelDao
 import com.keygenqt.shop.android.data.models.CategoryModel
 import com.keygenqt.shop.android.data.models.CollectionModel
@@ -26,7 +25,7 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Service part for work with model [CategoryModel]
  */
-interface CollectionModelDataService : IAppDatabase {
+interface CollectionDataService : IAppDatabase {
 
     /**
      * Base room db

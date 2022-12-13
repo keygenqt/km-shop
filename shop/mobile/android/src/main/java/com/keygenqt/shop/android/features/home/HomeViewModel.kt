@@ -20,7 +20,7 @@ import androidx.lifecycle.viewModelScope
 import com.keygenqt.shop.android.data.models.mapToModels
 import com.keygenqt.shop.android.extensions.withTransaction
 import com.keygenqt.shop.android.services.AppDataService
-import com.keygenqt.shop.android.services.impl.CategoryModelDataService
+import com.keygenqt.shop.android.services.impl.CategoryDataService
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -76,7 +76,7 @@ class HomeViewModel @Inject constructor(
             try {
                 delay(500)
                 serviceRequest.get.categoriesPublished().let { models ->
-                    dataService.withTransaction<CategoryModelDataService> {
+                    dataService.withTransaction<CategoryDataService> {
                         clearCategoryModels()
                         insertCategoryModels(*models.mapToModels().toTypedArray())
                         _loading.value = false

@@ -22,12 +22,11 @@ import androidx.lifecycle.viewModelScope
 import com.keygenqt.shop.android.data.models.mapToModels
 import com.keygenqt.shop.android.extensions.withTransaction
 import com.keygenqt.shop.android.services.AppDataService
-import com.keygenqt.shop.android.services.impl.CategoryModelDataService
-import com.keygenqt.shop.android.services.impl.CollectionModelDataService
+import com.keygenqt.shop.android.services.impl.CategoryDataService
+import com.keygenqt.shop.android.services.impl.CollectionDataService
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -82,7 +81,7 @@ class AppViewModel @Inject constructor(
                 .mapToModels()
                 .toTypedArray()
 
-        dataService.withTransaction<CategoryModelDataService> {
+        dataService.withTransaction<CategoryDataService> {
             clearCategoryModels()
             insertCategoryModels(*categories)
         }
@@ -93,7 +92,7 @@ class AppViewModel @Inject constructor(
                 .mapToModels()
                 .toTypedArray()
 
-        dataService.withTransaction<CollectionModelDataService> {
+        dataService.withTransaction<CollectionDataService> {
             clearCollectionModels()
             insertCollectionModels(*collections)
         }

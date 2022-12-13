@@ -13,11 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.orderSearch
+package com.keygenqt.shop.android.data.converters
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.room.TypeConverter
 
-@HiltViewModel
-class OrderSearchViewModel @Inject constructor() : ViewModel()
+/**
+ * Converter for list value
+ */
+class ListConverter {
+    @TypeConverter
+    fun fromList(value: List<String>): String {
+        return value.joinToString(",")
+    }
+
+    @TypeConverter
+    fun toList(value: String): List<String> {
+        return value.split(",")
+    }
+}

@@ -18,9 +18,14 @@ package com.keygenqt.shop.android.features.order
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.BuildConfig
+import com.keygenqt.shop.android.data.models.OrderHistoryModel
 import com.keygenqt.shop.android.data.models.OrderModel
 import com.keygenqt.shop.android.data.models.mapToModel
+import com.keygenqt.shop.android.extensions.withTransaction
 import com.keygenqt.shop.android.routes.RouteOrder
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.OrderHistoryDataService
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -34,12 +39,13 @@ import javax.inject.Inject
 class OrderViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
 ) : ViewModel() {
 
     /**
      * Search by key
      */
-    private val orderKey: String = savedStateHandle[RouteOrder.orderKey.name]!!
+    private val number: String = savedStateHandle[RouteOrder.number.name]!!
 
     /**
      * Error response
@@ -84,7 +90,40 @@ class OrderViewModel @Inject constructor(
             _loading.value = true
             try {
                 delay(500)
-                serviceRequest.get.orderByNumber(orderKey).let { order ->
+                serviceRequest.get.orderByNumber(number).let { order ->
+                    dataService.withTransaction<OrderHistoryDataService> {
+                        getOrderHistory(order.id)?.let {
+                            updateOrderHistoryModels(it.copy(
+                                email = order.email,
+                                phone = order.phone,
+                                address = order.address,
+                                note = order.note,
+                                updateAt = order.updateAt,
+                            ))
+                        } ?: run {
+                            insertOrderHistoryModels(
+                                OrderHistoryModel(
+                                    id = order.id,
+                                    number = order.number,
+                                    email = order.email,
+                                    phone = order.phone,
+                                    address = order.address,
+                                    note = order.note,
+                                    sum = order.sum,
+                                    createAt = order.createAt,
+                                    updateAt = order.updateAt,
+                                    images = order.products.take(4).map { it.product.image1.let { url ->
+                                        if (BuildConfig.DEBUG) {
+                                            url.replace("localhost", "10.0.2.2")
+                                        } else {
+                                            url
+                                        }
+                                    } },
+                                    productCount = order.products.sumOf { it.count },
+                                )
+                            )
+                        }
+                    }
                     _order.value = order.mapToModel()
                     _loading.value = false
                 }

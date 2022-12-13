@@ -17,10 +17,14 @@ package com.keygenqt.shop.android.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.keygenqt.shop.android.data.converters.ListConverter
 import com.keygenqt.shop.android.data.dao.CategoryModelDao
 import com.keygenqt.shop.android.data.dao.CollectionModelDao
+import com.keygenqt.shop.android.data.dao.OrderHistoryModelDao
 import com.keygenqt.shop.android.data.models.CategoryModel
 import com.keygenqt.shop.android.data.models.CollectionModel
+import com.keygenqt.shop.android.data.models.OrderHistoryModel
 
 /**
  * Database configuration [RoomDatabase]
@@ -29,9 +33,15 @@ import com.keygenqt.shop.android.data.models.CollectionModel
     entities = [
         CategoryModel::class,
         CollectionModel::class,
+        OrderHistoryModel::class,
     ],
     version = 1,
     exportSchema = false
+)
+@TypeConverters(
+    value = [
+        ListConverter::class,
+    ]
 )
 abstract class AppDatabase : RoomDatabase() {
     /**
@@ -43,4 +53,9 @@ abstract class AppDatabase : RoomDatabase() {
      * Dao for model [CollectionModel]
      */
     abstract fun daoCollectionModel(): CollectionModelDao
+
+    /**
+     * Dao for model [OrderHistoryModel]
+     */
+    abstract fun daoOrderHistoryModel(): OrderHistoryModelDao
 }

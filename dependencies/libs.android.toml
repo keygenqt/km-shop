@@ -23,10 +23,19 @@ jsonSerializationVersion="1.4.1"
 roomVersion = "2.4.3"
 # https://github.com/airbnb/lottie/blob/master/android-compose.md
 lottieVersion = "5.2.0"
+# https://coil-kt.github.io/coil/compose/
+coilVersion = "2.2.2"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Coil
+# An image loading library for Android backed by Kotlin Coroutines.
+[libraries.coil-compose]
+module = "io.coil-kt:coil-compose"
+[libraries.coil-compose.version]
+ref = "coilVersion"
 
 # Lottie
 # This repo is the home of the unified Lottie docs hosted at http://airbnb.io/lottie.
@@ -166,6 +175,7 @@ android = [
     "room-ktx",
     "room-paging",
     "lottie-compose",
+    "coil-compose",
 ]
 androidKapt = [
     "hilt-android-compiler",
