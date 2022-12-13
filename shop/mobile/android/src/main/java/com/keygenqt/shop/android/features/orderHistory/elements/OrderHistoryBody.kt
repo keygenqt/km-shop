@@ -1,7 +1,5 @@
 package com.keygenqt.shop.android.features.orderHistory.elements
 
-import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,16 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Size
-import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.components.base.CombineImage
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.OrderHistoryModel
 import com.keygenqt.shop.android.extensions.priceFormat
@@ -54,23 +44,6 @@ fun OrderHistoryBody(
 }
 
 @Composable
-fun CombineImage(
-    modifier: Modifier = Modifier,
-    images: List<String>
-) {
-    Box(modifier = modifier) {
-        images.take(4).forEach { url ->
-            val painter = rememberAsyncImagePainter(url)
-            Image(
-                modifier = Modifier.size(50.dp).clip(CircleShape),
-                contentDescription = null,
-                painter = painter,
-            )
-        }
-    }
-}
-
-@Composable
 fun OrderHistoryItem(
     model: OrderHistoryModel,
     onClickItem: (key: String) -> Unit
@@ -92,13 +65,15 @@ fun OrderHistoryItem(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 CombineImage(
-                    modifier = Modifier.clip(CircleShape).size(50.dp),
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(50.dp),
                     images = model.images
                 )
 
                 Spacer(modifier = Modifier.size(10.dp))
 
-                Column{
+                Column {
                     AppText(
                         maxLines = 1,
                         text = "# ${model.number}",
