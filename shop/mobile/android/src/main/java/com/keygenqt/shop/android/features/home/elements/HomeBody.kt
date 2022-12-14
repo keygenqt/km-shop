@@ -37,8 +37,7 @@ fun HomeBody(
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(scrollState)
-                .padding(16.dp)
-                .pullRefresh(refreshState),
+                .padding(16.dp),
         ) {
             InfoBlock()
 

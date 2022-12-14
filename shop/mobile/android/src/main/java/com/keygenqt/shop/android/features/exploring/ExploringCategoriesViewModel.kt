@@ -15,14 +15,74 @@
  */
 package com.keygenqt.shop.android.features.exploring
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.data.models.mapToModels
+import com.keygenqt.shop.android.extensions.withTransaction
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.CategoryDataService
+import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ExploringCategoriesViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
+    private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
 ) : ViewModel() {
 
+    /**
+     * Error response
+     */
+    private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
+
+    /**
+     * [StateFlow] for [_error]
+     */
+    val error: StateFlow<String?> get() = _error.asStateFlow()
+
+    /**
+     * Loading query
+     */
+    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    /**
+     * [StateFlow] for [_loading]
+     */
+    val loading: StateFlow<Boolean> get() = _loading.asStateFlow()
+
+    /**
+     * Listen categories
+     */
+    val categories = dataService.getCategoryModels().distinctUntilChanged()
+
+    init {
+        updateCategories()
+    }
+
+    fun updateCategories() {
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+                delay(500)
+                serviceRequest.get.categoriesPublished().let { models ->
+                    dataService.withTransaction<CategoryDataService> {
+                        clearCategoryModels()
+                        insertCategoryModels(*models.mapToModels().toTypedArray())
+                        _loading.value = false
+                        _error.value = null
+                    }
+                }
+            } catch (ex: Exception) {
+                _error.value = ex.localizedMessage ?: ""
+                _loading.value = false
+            }
+        }
+    }
 }

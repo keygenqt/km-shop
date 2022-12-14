@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppTabRow(
+    modifier: Modifier = Modifier,
     tabs: List<String>,
     onChangeTab: (Int) -> Unit
 ) {
@@ -18,6 +19,7 @@ fun AppTabRow(
     var pagerActive by remember { mutableStateOf(0) }
 
     TabRow(
+        modifier = modifier,
         selectedTabIndex = pagerActive,
         indicator = @Composable { tabPositions ->
             TabRowDefaults.Indicator(

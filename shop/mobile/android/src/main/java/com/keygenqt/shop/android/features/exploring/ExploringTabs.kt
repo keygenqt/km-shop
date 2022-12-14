@@ -22,6 +22,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -47,8 +48,8 @@ fun ExploringTabs(
             .fillMaxWidth()
             .fillMaxHeight(),
     ) {
-
         AppTabRow(
+            modifier = Modifier.zIndex(2f),
             tabs = listOf(
                 stringResource(id = R.string.exploring_categories_tab),
                 stringResource(id = R.string.exploring_collections_tab)
@@ -59,7 +60,6 @@ fun ExploringTabs(
                 }
             }
         )
-
         HorizontalPager(
             count = 2,
             state = pagerState,
