@@ -21,6 +21,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ExploringViewModel @Inject constructor(
+class ExploringCollectionsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
-) : ViewModel()
+) : ViewModel() {
+
+}

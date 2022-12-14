@@ -40,7 +40,7 @@ fun AppScaffold(
         topBar = {
             TopAppBar(
                 title = { Text(text = title) },
-                elevation = 10.dp,
+                elevation = 0.dp,
                 actions = actions,
                 navigationIcon = navigationIcon,
                 backgroundColor = MaterialTheme.colors.primary,

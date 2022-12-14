@@ -27,14 +27,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 
 /**
- * Home page, main for app
+ * List collections page
  *
  * @param viewModel page view model
  */
 @Composable
-fun ExploringScreen(
+fun ExploringCollectionsScreen(
     navController: NavHostController,
-    viewModel: ExploringViewModel = hiltViewModel(),
+    viewModel: ExploringCollectionsViewModel = hiltViewModel(),
 ) {
     Column(
         modifier = Modifier
@@ -42,6 +42,6 @@ fun ExploringScreen(
             .fillMaxHeight()
             .padding(16.dp),
     ) {
-        Text("ExploringScreen")
+        Text("ExploringCollectionsScreen")
     }
 }

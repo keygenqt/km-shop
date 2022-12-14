@@ -22,7 +22,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.keygenqt.shop.android.features.cart.CartScreen
-import com.keygenqt.shop.android.features.exploring.ExploringScreen
+import com.keygenqt.shop.android.features.exploring.ExploringTabs
 import com.keygenqt.shop.android.features.home.elements.AppScaffoldHome
 import kotlinx.coroutines.launch
 
@@ -53,7 +53,7 @@ fun HomeTabs(
         ) { page ->
             when (page) {
                 0 -> HomeScreen(navController)
-                1 -> ExploringScreen(navController)
+                1 -> ExploringTabs(navController)
                 2 -> CartScreen(navController)
             }
         }
