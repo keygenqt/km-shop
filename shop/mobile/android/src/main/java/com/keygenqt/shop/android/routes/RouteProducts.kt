@@ -7,24 +7,24 @@ import com.keygenqt.shop.android.base.INavigationRoute
 
 object RouteProducts : INavigationRoute {
 
-    val categoryKey: NamedNavArgument = navArgument(::categoryKey.name) {
-        type = NavType.StringType
-        nullable = true
+    val categoryID: NamedNavArgument = navArgument(::categoryID.name) {
+        type = NavType.IntType
+        defaultValue = 0
     }
 
-    val collectionKey: NamedNavArgument = navArgument(::collectionKey.name) {
-        type = NavType.StringType
-        nullable = true
+    val collectionID: NamedNavArgument = navArgument(::collectionID.name) {
+        type = NavType.IntType
+        defaultValue = 0
     }
 
     /**
      * Generate route with params value
      */
     fun link(
-        categoryKey: String? = null,
-        collectionKey: String? = null,
+        categoryID: Int? = null,
+        collectionID: Int? = null,
     ) = routeBuild {
-        categoryKey?.let { appendQueryParameter(::categoryKey.name, categoryKey) }
-        collectionKey?.let { appendQueryParameter(::collectionKey.name, collectionKey) }
+        categoryID?.let { appendQueryParameter(::categoryID.name, it.toString()) }
+        collectionID?.let { appendQueryParameter(::collectionID.name, it.toString()) }
     }
 }

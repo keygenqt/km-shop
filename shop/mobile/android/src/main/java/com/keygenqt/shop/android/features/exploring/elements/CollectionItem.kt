@@ -13,13 +13,13 @@ import com.keygenqt.shop.android.data.models.CollectionModel
 @Composable
 fun CollectionItem(
     model: CollectionModel,
-    onClickCollection: (String) -> Unit
+    onClickCollection: (Int) -> Unit
 ) {
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClickCollection(model.key) }
+            .clickable { onClickCollection(model.id) }
     ) {
         Column(
             modifier = Modifier

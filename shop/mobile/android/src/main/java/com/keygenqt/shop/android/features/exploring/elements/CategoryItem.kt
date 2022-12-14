@@ -13,13 +13,13 @@ import com.keygenqt.shop.android.data.models.CategoryModel
 @Composable
 fun CategoryItem(
     model: CategoryModel,
-    onClickCategory: (String) -> Unit
+    onClickCategory: (Int) -> Unit
 ) {
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onClickCategory(model.key) }
+            .clickable { onClickCategory(model.id) }
     ) {
         Column(
             modifier = Modifier

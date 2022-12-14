@@ -76,7 +76,7 @@ fun ExploringCollectionsScreen(
                         CollectionItem(
                             model = collectionModel,
                             onClickCollection = {
-                                navController.navigate(RouteProducts.link(collectionKey = it))
+                                navController.navigate(RouteProducts.link(collectionID = it))
                             }
                         )
                     }
