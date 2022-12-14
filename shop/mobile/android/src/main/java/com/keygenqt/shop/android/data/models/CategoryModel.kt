@@ -18,6 +18,7 @@ package com.keygenqt.shop.android.data.models
 import androidx.compose.runtime.Immutable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.keygenqt.shop.android.BuildConfig
 import com.keygenqt.shop.data.responses.CategoryResponse
 
 /**
@@ -42,7 +43,9 @@ fun CategoryResponse.mapToModel() =
         key = key,
         name = name,
         desc = desc,
-        image = image,
+        image = image.let {
+            if (BuildConfig.DEBUG) it.replace("localhost", "10.0.2.2") else it
+        },
         isPublished = isPublished,
         createAt = createAt,
         updateAt = updateAt,
