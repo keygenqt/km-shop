@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ExploringTabs(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
 
     val scope = rememberCoroutineScope()
@@ -66,12 +66,8 @@ fun ExploringTabs(
             userScrollEnabled = false
         ) { page ->
             when (page) {
-                0 -> ExploringCategoriesScreen(
-                    navController = navController,
-                )
-                1 -> ExploringCollectionsScreen(
-                    navController = navController,
-                )
+                0 -> ExploringCategoriesScreen(navController)
+                1 -> ExploringCollectionsScreen(navController)
             }
         }
     }

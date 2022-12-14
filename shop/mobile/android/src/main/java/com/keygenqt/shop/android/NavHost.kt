@@ -18,6 +18,7 @@ import com.keygenqt.shop.android.features.order.OrderScreen
 import com.keygenqt.shop.android.features.orderHistory.OrderHistoryScreen
 import com.keygenqt.shop.android.features.orderSearch.OrderSearchScreen
 import com.keygenqt.shop.android.features.product.ProductScreen
+import com.keygenqt.shop.android.features.products.ProductsScreen
 import com.keygenqt.shop.android.routes.*
 
 @Composable
@@ -78,6 +79,12 @@ fun NavHost(
                 arguments = RouteProduct.arguments()
             ) {
                 ProductScreen(navController)
+            }
+            composable(
+                route = RouteProducts.route(),
+                arguments = RouteProducts.arguments()
+            ) {
+                ProductsScreen(navController)
             }
         }
     }

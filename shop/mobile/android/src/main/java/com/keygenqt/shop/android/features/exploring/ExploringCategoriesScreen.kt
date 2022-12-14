@@ -15,13 +15,10 @@
  */
 package com.keygenqt.shop.android.features.exploring
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
@@ -33,8 +30,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
 import com.keygenqt.shop.android.components.state.ErrorBody
-import com.keygenqt.shop.android.components.texts.AppText
-import com.keygenqt.shop.android.data.models.CategoryModel
+import com.keygenqt.shop.android.features.exploring.elements.CategoryItem
+import com.keygenqt.shop.android.routes.RouteProducts
 
 /**
  * List categories page
@@ -67,50 +64,29 @@ fun ExploringCategoriesScreen(
         if (error != null) {
             ErrorBody()
         } else {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(state = scrollState)
-                    .padding(16.dp),
-            ) {
-                categories?.forEachIndexed { index, categoryModel ->
-                    if (index != 0) {
-                        Spacer(modifier = Modifier.size(16.dp))
-                    }
-                    CategoryItem(
-                        model = categoryModel,
-                        onClickCategory = {
-
+            if (!categories.isNullOrEmpty()) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(state = scrollState)
+                        .padding(16.dp),
+                ) {
+                    categories?.forEachIndexed { index, categoryModel ->
+                        if (index != 0) {
+                            Spacer(modifier = Modifier.size(16.dp))
                         }
-                    )
+                        CategoryItem(
+                            model = categoryModel,
+                            onClickCategory = {
+                                navController.navigate(RouteProducts.link(categoryKey = it))
+                            }
+                        )
+                    }
                 }
             }
         }
         AppPullRefreshIndicator(
             state = refreshState,
         )
-    }
-}
-
-@Composable
-fun CategoryItem(
-    model: CategoryModel,
-    onClickCategory: (String) -> Unit
-) {
-    Card(
-        backgroundColor = MaterialTheme.colors.surface,
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClickCategory(model.key) }
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-        ) {
-            AppText(text = model.name)
-            Spacer(modifier = Modifier.size(4.dp))
-            AppText(text = model.desc)
-        }
     }
 }

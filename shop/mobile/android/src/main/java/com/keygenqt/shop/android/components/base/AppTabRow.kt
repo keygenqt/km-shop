@@ -5,6 +5,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -16,7 +17,7 @@ fun AppTabRow(
     onChangeTab: (Int) -> Unit
 ) {
 
-    var pagerActive by remember { mutableStateOf(0) }
+    var pagerActive by rememberSaveable { mutableStateOf(0) }
 
     TabRow(
         modifier = modifier,
