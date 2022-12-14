@@ -1,4 +1,4 @@
-package com.keygenqt.shop.android.features.orderHistory.elements
+package com.keygenqt.shop.android.components.state
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -6,15 +6,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.lottie.EmptyBoxAnimation
 import com.keygenqt.shop.android.components.texts.AppText
 
 @Composable
-fun OrderHistoryEmpty() {
+fun EmptyBody(
+    title: String,
+    subtitle: String
+) {
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -31,7 +32,7 @@ fun OrderHistoryEmpty() {
             AppText(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = stringResource(id = R.string.order_history_empty),
+                text = title,
                 textAlign = TextAlign.Center
             )
 
@@ -41,7 +42,7 @@ fun OrderHistoryEmpty() {
                 color = Color(0XFF707f95),
                 modifier = Modifier.fillMaxWidth(0.7f),
                 style = MaterialTheme.typography.caption,
-                text = stringResource(id = R.string.order_history_empty_subtitle),
+                text = subtitle,
                 textAlign = TextAlign.Center
             )
         }

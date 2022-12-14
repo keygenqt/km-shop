@@ -48,16 +48,6 @@ class OrderViewModel @Inject constructor(
     private val number: String = savedStateHandle[RouteOrder.number.name]!!
 
     /**
-     * Error response
-     */
-    private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
-
-    /**
-     * [StateFlow] for [_error]
-     */
-    val error: StateFlow<String?> get() = _error.asStateFlow()
-
-    /**
      * Loading query
      */
     private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(true)
@@ -86,10 +76,10 @@ class OrderViewModel @Inject constructor(
      */
     private fun searchOrder() {
         viewModelScope.launch {
-            _error.value = null
+            _order.value = null
             _loading.value = true
             try {
-                delay(500)
+                delay(1000)
                 serviceRequest.get.orderByNumber(number).let { order ->
                     dataService.withTransaction<OrderHistoryDataService> {
                         getOrderHistory(order.id)?.let {
@@ -128,7 +118,6 @@ class OrderViewModel @Inject constructor(
                     _loading.value = false
                 }
             } catch (ex: Exception) {
-                _error.value = ex.localizedMessage ?: ""
                 _loading.value = false
             }
         }

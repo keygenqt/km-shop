@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.order.elements
+package com.keygenqt.shop.android.components.state
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.keygenqt.shop.android.components.lottie.CatPlayingAnimation
 
 @Composable
 fun OrderLoadingBody() {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .padding(16.dp),
     ) {
-        Text("Loading...")
+        CatPlayingAnimation(
+            modifier = Modifier.align(Alignment.Center)
+        )
     }
 }

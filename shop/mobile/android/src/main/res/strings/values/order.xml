@@ -1,3 +1,5 @@
 <resources>
     <string name="order_title">Заказ</string>
+    <string name="order_error_title">Заказ не найден</string>
+    <string name="order_error_text">К сожалению, запрошенная вами страница не найдена</string>
 </resources>

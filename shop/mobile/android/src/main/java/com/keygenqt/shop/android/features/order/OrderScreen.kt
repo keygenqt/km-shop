@@ -18,12 +18,14 @@ package com.keygenqt.shop.android.features.order
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.components.state.EmptyBody
+import com.keygenqt.shop.android.components.state.OrderLoadingBody
 import com.keygenqt.shop.android.features.order.elements.AppScaffoldOrder
 import com.keygenqt.shop.android.features.order.elements.OrderBody
-import com.keygenqt.shop.android.features.order.elements.OrderErrorBody
-import com.keygenqt.shop.android.features.order.elements.OrderLoadingBody
 
 /**
  * Home page, main for app
@@ -37,7 +39,6 @@ fun OrderScreen(
 ) {
 
     val model by viewModel.order.collectAsState()
-    val error by viewModel.error.collectAsState()
     val loading by viewModel.loading.collectAsState()
 
     AppScaffoldOrder(navController = navController) {
@@ -46,7 +47,10 @@ fun OrderScreen(
         } else if (loading) {
             OrderLoadingBody()
         } else {
-            OrderErrorBody(error)
+            EmptyBody(
+                title = stringResource(id = R.string.order_error_title),
+                subtitle = stringResource(id = R.string.order_error_text)
+            )
         }
     }
 }

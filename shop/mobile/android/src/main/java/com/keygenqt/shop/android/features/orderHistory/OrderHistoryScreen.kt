@@ -18,11 +18,13 @@ package com.keygenqt.shop.android.features.orderHistory
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.components.state.EmptyBody
 import com.keygenqt.shop.android.features.orderHistory.elements.AppScaffoldOrderHistory
 import com.keygenqt.shop.android.features.orderHistory.elements.OrderHistoryBody
-import com.keygenqt.shop.android.features.orderHistory.elements.OrderHistoryEmpty
 import com.keygenqt.shop.android.routes.RouteOrder
 
 /**
@@ -51,7 +53,10 @@ fun OrderHistoryScreen(
                     }
                 )
             } else {
-                OrderHistoryEmpty()
+                EmptyBody(
+                    title = stringResource(id = R.string.order_history_empty),
+                    subtitle = stringResource(id = R.string.order_history_empty_subtitle)
+                )
             }
         }
     }
