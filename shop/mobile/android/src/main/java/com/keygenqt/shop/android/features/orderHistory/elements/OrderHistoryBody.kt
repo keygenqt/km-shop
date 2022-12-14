@@ -48,7 +48,6 @@ fun OrderHistoryItem(
     model: OrderHistoryModel,
     onClickItem: (key: String) -> Unit
 ) {
-
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier.fillMaxWidth()

@@ -18,6 +18,8 @@ package com.keygenqt.shop.android.features.product
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.android.features.product.elements.AppScaffoldProduct
 
 /**
  * Home page, main for app
@@ -29,5 +31,9 @@ fun ProductScreen(
     navController: NavHostController,
     viewModel: ProductViewModel = hiltViewModel(),
 ) {
-
+    AppScaffoldProduct(
+        navController = navController
+    ) {
+        AppText(text = viewModel.id.toString())
+    }
 }

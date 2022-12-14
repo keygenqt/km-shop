@@ -18,7 +18,6 @@ package com.keygenqt.shop.android.features.order
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.keygenqt.shop.android.BuildConfig
 import com.keygenqt.shop.android.data.models.OrderHistoryModel
 import com.keygenqt.shop.android.data.models.OrderModel
 import com.keygenqt.shop.android.data.models.mapToModel
@@ -74,47 +73,43 @@ class OrderViewModel @Inject constructor(
     /**
      * Query search order by number
      */
-    private fun searchOrder() {
+    fun searchOrder() {
         viewModelScope.launch {
-            _order.value = null
             _loading.value = true
             try {
                 delay(1000)
                 serviceRequest.get.orderByNumber(number).let { order ->
+                    val orderMap = order.mapToModel()
                     dataService.withTransaction<OrderHistoryDataService> {
                         getOrderHistory(order.id)?.let {
-                            updateOrderHistoryModels(it.copy(
-                                email = order.email,
-                                phone = order.phone,
-                                address = order.address,
-                                note = order.note,
-                                updateAt = order.updateAt,
-                            ))
+                            updateOrderHistoryModels(
+                                it.copy(
+                                    email = orderMap.email,
+                                    phone = orderMap.phone,
+                                    address = orderMap.address,
+                                    note = orderMap.note,
+                                    updateAt = orderMap.updateAt,
+                                )
+                            )
                         } ?: run {
                             insertOrderHistoryModels(
                                 OrderHistoryModel(
-                                    id = order.id,
-                                    number = order.number,
-                                    email = order.email,
-                                    phone = order.phone,
-                                    address = order.address,
-                                    note = order.note,
-                                    sum = order.sum,
-                                    createAt = order.createAt,
-                                    updateAt = order.updateAt,
-                                    images = order.products.take(4).map { it.product.image1.let { url ->
-                                        if (BuildConfig.DEBUG) {
-                                            url.replace("localhost", "10.0.2.2")
-                                        } else {
-                                            url
-                                        }
-                                    } },
-                                    productCount = order.products.sumOf { it.count },
+                                    id = orderMap.id,
+                                    number = orderMap.number,
+                                    email = orderMap.email,
+                                    phone = orderMap.phone,
+                                    address = orderMap.address,
+                                    note = orderMap.note,
+                                    sum = orderMap.sum,
+                                    createAt = orderMap.createAt,
+                                    updateAt = orderMap.updateAt,
+                                    images = orderMap.products.take(4).map { it.product.image1 },
+                                    productCount = orderMap.products.sumOf { it.count },
                                 )
                             )
                         }
                     }
-                    _order.value = order.mapToModel()
+                    _order.value = orderMap
                     _loading.value = false
                 }
             } catch (ex: Exception) {

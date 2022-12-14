@@ -17,6 +17,7 @@ package com.keygenqt.shop.android.data.models
 
 import androidx.compose.runtime.Immutable
 import androidx.room.PrimaryKey
+import com.keygenqt.shop.android.BuildConfig
 import com.keygenqt.shop.data.responses.ProductResponse
 
 /**
@@ -45,9 +46,15 @@ fun ProductResponse.mapToModel() =
         id = id,
         category = category.mapToModel(),
         categories = categories?.toList()?.mapToModels(),
-        image1 = image1,
-        image2 = image2,
-        image3 = image3,
+        image1 = image1.let {
+            if (BuildConfig.DEBUG) it.replace("localhost", "10.0.2.2") else it
+        },
+        image2 = image2.let {
+            if (BuildConfig.DEBUG) it?.replace("localhost", "10.0.2.2") else it
+        },
+        image3 = image3.let {
+            if (BuildConfig.DEBUG) it?.replace("localhost", "10.0.2.2") else it
+        },
         name = name,
         description = description,
         price = price,

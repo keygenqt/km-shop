@@ -26,6 +26,7 @@ import com.keygenqt.shop.android.components.state.EmptyBody
 import com.keygenqt.shop.android.components.state.OrderLoadingBody
 import com.keygenqt.shop.android.features.order.elements.AppScaffoldOrder
 import com.keygenqt.shop.android.features.order.elements.OrderBody
+import com.keygenqt.shop.android.routes.RouteProduct
 
 /**
  * Home page, main for app
@@ -43,7 +44,16 @@ fun OrderScreen(
 
     AppScaffoldOrder(navController = navController) {
         if (model != null) {
-            OrderBody(model!!)
+            OrderBody(
+                loading = loading,
+                model = model!!,
+                onRefresh = {
+                    viewModel.searchOrder()
+                },
+                onClickProduct = {
+                    navController.navigate(RouteProduct.link(it))
+                }
+            )
         } else if (loading) {
             OrderLoadingBody()
         } else {

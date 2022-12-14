@@ -21,6 +21,7 @@ import android.view.ViewTreeObserver
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
 import com.keygenqt.shop.android.base.AppViewModel
 import com.keygenqt.shop.android.theme.MyApplicationTheme
@@ -45,8 +46,9 @@ class MainActivity : ComponentActivity() {
                 ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     return if (!viewModel.isSplash.value) {
+                        val color = ContextCompat.getColor(this@MainActivity, R.color.page_bg)
                         // remove BG splash
-                        this@MainActivity.window.decorView.setBackgroundColor(android.graphics.Color.WHITE)
+                        this@MainActivity.window.decorView.setBackgroundColor(color)
                         // done splash remove listener
                         content.viewTreeObserver.removeOnPreDrawListener(this); true
                     } else false
