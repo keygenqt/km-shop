@@ -2034,7 +2034,7 @@ fun iconsByString(name: String): ImageVector {
         "ZoomInOutlined" -> Icons.Outlined.ZoomIn
         "ZoomOutMapOutlined" -> Icons.Outlined.ZoomOutMap
         "ZoomOutOutlined" -> Icons.Outlined.ZoomOut
-        // not found in android by in mui has
+        // not found in android by in mui has @todo fix admin-panel exclude this icons
 //        "TwelveMpOutlined" -> Icons.Outlined.TwelveMp
 //        "TwentyFourMpOutlined" -> Icons.Outlined.TwentyFourMp
 //        "TwentyOneMpOutlined" -> Icons.Outlined.TwentyOneMp
