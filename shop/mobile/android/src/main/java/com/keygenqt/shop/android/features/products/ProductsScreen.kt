@@ -41,7 +41,16 @@ fun ProductsScreen(
     val products by viewModel.products.collectAsState()
     val loading by viewModel.loading.collectAsState()
 
-    AppScaffoldProducts(navController = navController) {
+    AppScaffoldProducts(
+        enabled = !products.isNullOrEmpty(),
+        navController = navController,
+        onShowFilter = {
+
+        },
+        onShowSearch = {
+
+        }
+    ) {
         if (!products.isNullOrEmpty()) {
             ProductsBody(
                 loading = loading,

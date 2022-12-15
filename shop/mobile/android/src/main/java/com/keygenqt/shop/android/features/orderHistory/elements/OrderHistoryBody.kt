@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.keygenqt.shop.android.components.base.BoxColorBg
 import com.keygenqt.shop.android.components.base.CombineImage
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.OrderHistoryModel
@@ -25,20 +26,22 @@ fun OrderHistoryBody(
 ) {
     val scrollState = rememberScrollState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(state = scrollState)
-            .padding(16.dp),
-    ) {
-        models.forEachIndexed { index, orderHistoryModel ->
-            if (index != 0) {
-                Spacer(modifier = Modifier.size(16.dp))
+    BoxColorBg {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(state = scrollState)
+                .padding(16.dp),
+        ) {
+            models.forEachIndexed { index, orderHistoryModel ->
+                if (index != 0) {
+                    Spacer(modifier = Modifier.size(16.dp))
+                }
+                OrderHistoryItem(
+                    model = orderHistoryModel,
+                    onClickItem = onClickItem
+                )
             }
-            OrderHistoryItem(
-                model = orderHistoryModel,
-                onClickItem = onClickItem
-            )
         }
     }
 }

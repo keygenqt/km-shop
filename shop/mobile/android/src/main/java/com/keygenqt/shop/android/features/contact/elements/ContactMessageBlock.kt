@@ -18,16 +18,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 
 @Composable
 fun ContactMessageBlock(
     onSendMessage: () -> Unit
 ) {
-    val dark = isSystemInDarkTheme()
-
     Card(
-        backgroundColor = if (dark) Color(0xFF2B8B67) else Color(0xFFDAF7EC),
+        backgroundColor = LocalAndroidColors.current.bgVariant4,
         modifier = Modifier
             .fillMaxWidth()
     ) {

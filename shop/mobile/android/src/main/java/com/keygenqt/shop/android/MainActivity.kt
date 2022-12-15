@@ -21,9 +21,12 @@ import android.view.ViewTreeObserver
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
+import com.keygenqt.shop.android.base.AndroidColors
 import com.keygenqt.shop.android.base.AppViewModel
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.theme.MyApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +38,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-                NavHost(rememberNavController())
+            CompositionLocalProvider(
+                LocalAndroidColors provides AndroidColors(this@MainActivity)
+            ) {
+                MyApplicationTheme {
+                    NavHost(rememberNavController())
+                }
             }
         }
 
@@ -46,7 +53,7 @@ class MainActivity : ComponentActivity() {
                 ViewTreeObserver.OnPreDrawListener {
                 override fun onPreDraw(): Boolean {
                     return if (!viewModel.isSplash.value) {
-                        val color = ContextCompat.getColor(this@MainActivity, R.color.page_bg)
+                        val color = ContextCompat.getColor(this@MainActivity, R.color.bg_page)
                         // remove BG splash
                         this@MainActivity.window.decorView.setBackgroundColor(color)
                         // done splash remove listener

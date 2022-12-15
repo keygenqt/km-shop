@@ -11,17 +11,17 @@ categories:
   - key: bows
     name: Бантики
     desc: Стильные бантики ручной работы
-    image: configuration/migrations/data/category/cat_1.png
+    image: configuration/migrations/data/category/cat_2.jpg
     isPublished: true
 
   - key: headbands
     name: Ободки
     desc: Держите свои волосы красиво
-    image: configuration/migrations/data/category/cat_2.png
+    image: configuration/migrations/data/category/cat_1.jpg
     isPublished: true
 
   - key: sets
     name: Наборы
     desc: Наборы бантиков на каждый день
-    image: configuration/migrations/data/category/cat_3.png
+    image: configuration/migrations/data/category/cat_3.jpg
     isPublished: true

@@ -7,7 +7,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.runtime.Composable
@@ -18,12 +17,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 
 @Composable
 fun ContactEmailBlock() {
     Card(
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = LocalAndroidColors.current.bgVariant1,
         modifier = Modifier
             .fillMaxWidth()
     ) {

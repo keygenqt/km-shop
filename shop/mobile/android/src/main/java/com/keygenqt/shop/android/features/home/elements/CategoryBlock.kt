@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
 
@@ -57,8 +58,8 @@ fun CategoryBlock(
                     .padding(8.dp)
             ) {
                 AppText(
-                    color = Color(0XFF707f95),
                     text = category.name,
+                    color = if (dark) MaterialTheme.colors.surface else LocalAndroidColors.current.textCaption,
                     style = MaterialTheme.typography.caption
                 )
 

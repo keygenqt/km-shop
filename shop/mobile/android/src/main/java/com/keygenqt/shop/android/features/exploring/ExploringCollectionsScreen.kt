@@ -67,11 +67,11 @@ fun ExploringCollectionsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .verticalScroll(state = scrollState)
-                        .padding(16.dp),
+                        .padding(vertical = 24.dp, horizontal = 16.dp),
                 ) {
                     collections?.forEachIndexed { index, collectionModel ->
                         if (index != 0) {
-                            Spacer(modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.size(20.dp))
                         }
                         CollectionItem(
                             model = collectionModel,

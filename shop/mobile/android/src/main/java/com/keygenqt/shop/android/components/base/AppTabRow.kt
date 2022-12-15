@@ -20,6 +20,7 @@ fun AppTabRow(
     var pagerActive by rememberSaveable { mutableStateOf(0) }
 
     TabRow(
+        backgroundColor = MaterialTheme.colors.primary,
         modifier = modifier,
         selectedTabIndex = pagerActive,
         indicator = @Composable { tabPositions ->

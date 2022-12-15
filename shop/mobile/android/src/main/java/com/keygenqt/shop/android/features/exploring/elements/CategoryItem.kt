@@ -2,12 +2,13 @@ package com.keygenqt.shop.android.features.exploring.elements
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
-import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
 
@@ -23,68 +25,58 @@ fun CategoryItem(
     model: CategoryModel,
     onClickCategory: (Int) -> Unit
 ) {
-    Card(
-        backgroundColor = MaterialTheme.colors.surface,
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Column(
-            modifier = Modifier
-                .clickable { onClickCategory(model.id) }
-                .fillMaxWidth()
+    Box {
+        Box(
+            modifier = Modifier.padding(start = 30.dp)
         ) {
-
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(model.image)
-                    .crossfade(true)
-                    .build(),
-                placeholder = painterResource(R.drawable.no_image),
-                error = painterResource(R.drawable.no_image),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp)
-            )
-
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 16.dp)
+            Card(
+                elevation = 0.dp,
+                backgroundColor = LocalAndroidColors.current.bgVariant1,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Column {
-
-                    Spacer(modifier = Modifier.size(10.dp))
-
-                    AppText(
-                        color = Color(0XFF707f95),
-                        modifier = Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.caption,
-                        text = model.name
-                    )
-
-                    Spacer(modifier = Modifier.size(4.dp))
-
-                    AppText(
-                        style = MaterialTheme.typography.h6,
-                        text = model.desc
-                    )
-                }
-
-                Spacer(modifier = Modifier.size(10.dp))
-                Divider()
-                Spacer(modifier = Modifier.size(10.dp))
-
-                Box(
-                    modifier = Modifier.fillMaxWidth()
+                Column(
+                    modifier = Modifier
+                        .clickable { onClickCategory(model.id) }
+                        .fillMaxWidth()
+                        .padding(start = 43.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 ) {
-                    AppText(
-                        style = MaterialTheme.typography.caption,
-                        text = "Найдено: 11"
-                    )
+                    Column {
+                        AppText(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .offset(0.dp, (-3).dp),
+                            style = MaterialTheme.typography.h6,
+                            text = model.name
+                        )
+
+                        Spacer(modifier = Modifier.size(4.dp))
+
+                        AppText(
+                            color = LocalAndroidColors.current.textCaption,
+                            style = MaterialTheme.typography.caption,
+                            text = model.desc
+                        )
+                    }
                 }
             }
         }
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(model.image)
+                .crossfade(true)
+                .build(),
+            placeholder = painterResource(R.drawable.no_image),
+            error = painterResource(R.drawable.no_image),
+            contentDescription = "",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(60.dp)
+                .align(Alignment.CenterStart)
+                .shadow(
+                    elevation = 8.dp,
+                    shape = CircleShape,
+                    clip = true
+                )
+        )
     }
 }

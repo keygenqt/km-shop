@@ -74,12 +74,11 @@ fun AppScaffoldHome(
         },
         bottomBar = {
             BottomNavigation(
-                modifier = Modifier.height(70.dp),
-                backgroundColor = MaterialTheme.colors.primaryVariant,
-                contentColor = Color(0xFF424242),
+                modifier = Modifier.height(60.dp),
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = MaterialTheme.colors.onPrimary,
             ) {
                 BottomNavigationItem(
-                    modifier = Modifier.padding(bottom = 6.dp),
                     selected = activeTab == 0,
                     icon = {
                         Icon(
@@ -93,7 +92,6 @@ fun AppScaffoldHome(
                     }
                 )
                 BottomNavigationItem(
-                    modifier = Modifier.padding(bottom = 6.dp),
                     selected = activeTab == 1,
                     icon = {
                         Icon(
@@ -107,7 +105,6 @@ fun AppScaffoldHome(
                     }
                 )
                 BottomNavigationItem(
-                    modifier = Modifier.padding(bottom = 5.dp),
                     selected = activeTab == 2,
                     icon = {
                         BadgedBox(badge = {

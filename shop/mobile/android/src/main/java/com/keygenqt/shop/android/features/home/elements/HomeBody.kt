@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
@@ -44,7 +45,7 @@ fun HomeBody(
             Spacer(modifier = Modifier.height(16.dp))
 
             Card(
-                backgroundColor = MaterialTheme.colors.surface,
+                backgroundColor = LocalAndroidColors.current.bgVariant1,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {

@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.base.ComposeWebView
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,7 +48,7 @@ fun ContactMapBlock(
             if (!finished) {
                 Box(
                     modifier = Modifier
-                        .background(MaterialTheme.colors.surface)
+                        .background(LocalAndroidColors.current.bgVariant1)
                         .clickable(
                             interactionSource = interactionSource,
                             indication = null

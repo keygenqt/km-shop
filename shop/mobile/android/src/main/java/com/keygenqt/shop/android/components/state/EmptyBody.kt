@@ -7,9 +7,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.lottie.EmptyBoxAnimation
 import com.keygenqt.shop.android.components.texts.AppText
 
@@ -42,8 +42,8 @@ fun EmptyBody(
                 Spacer(modifier = Modifier.size(16.dp))
 
                 AppText(
-                    color = Color(0XFF707f95),
                     modifier = Modifier.fillMaxWidth(0.7f),
+                    color = LocalAndroidColors.current.textCaption,
                     style = MaterialTheme.typography.caption,
                     text = subtitle,
                     textAlign = TextAlign.Center

@@ -69,11 +69,11 @@ fun ExploringCategoriesScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .verticalScroll(state = scrollState)
-                        .padding(16.dp),
+                        .padding(vertical = 24.dp, horizontal = 16.dp),
                 ) {
                     categories?.forEachIndexed { index, categoryModel ->
                         if (index != 0) {
-                            Spacer(modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.size(20.dp))
                         }
                         CategoryItem(
                             model = categoryModel,

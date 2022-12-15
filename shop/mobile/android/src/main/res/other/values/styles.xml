@@ -2,7 +2,7 @@
 <resources>
     <style name="AppTheme.NoActionBar" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
-        <item name="android:navigationBarColor">@color/splash</item>
-        <item name="android:statusBarColor">@color/splash</item>
+        <item name="android:navigationBarColor">@color/bg_splash</item>
+        <item name="android:statusBarColor">@color/bg_splash</item>
     </style>
 </resources>

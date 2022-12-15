@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="splash">#2b96f1</color>
-    <color name="page_bg">#292929</color>
+    <color name="bg_splash">#2b96f1</color>
+    <color name="bg_page">#292929</color>
+    <color name="bg_variant_1">#3E6C91</color>
+    <color name="bg_variant_2">#BD7D98</color>
+    <color name="bg_variant_3">#7B7BBA</color>
+    <color name="bg_variant_4">#339E7E</color>
+    <color name="text_caption">#D0E3FB</color>
 </resources>

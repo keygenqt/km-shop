@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
+import com.keygenqt.shop.android.components.base.BoxColorBg
 import com.keygenqt.shop.android.data.models.OrderModel
 
 /**
@@ -45,25 +46,27 @@ fun OrderBody(
         onRefresh = onRefresh
     )
 
-    Box(Modifier.pullRefresh(refreshState)) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(state = scrollState)
-                .padding(16.dp),
-        ) {
-            OrderProducts(
-                model = model,
-                onClickProduct = onClickProduct
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            OrderClientDetails(model)
-            Spacer(modifier = Modifier.size(16.dp))
-            OrderState(model)
-        }
+    BoxColorBg {
+        Box(Modifier.pullRefresh(refreshState)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(state = scrollState)
+                    .padding(16.dp),
+            ) {
+                OrderProducts(
+                    model = model,
+                    onClickProduct = onClickProduct
+                )
+                Spacer(modifier = Modifier.size(16.dp))
+                OrderClientDetails(model)
+                Spacer(modifier = Modifier.size(16.dp))
+                OrderState(model)
+            }
 
-        AppPullRefreshIndicator(
-            state = refreshState,
-        )
+            AppPullRefreshIndicator(
+                state = refreshState,
+            )
+        }
     }
 }

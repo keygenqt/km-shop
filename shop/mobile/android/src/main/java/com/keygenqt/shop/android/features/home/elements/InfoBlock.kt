@@ -11,12 +11,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 
 @Composable
 fun InfoBlock() {
     Card(
-        backgroundColor = MaterialTheme.colors.secondaryVariant,
+        backgroundColor = LocalAndroidColors.current.bgVariant2,
         modifier = Modifier
             .fillMaxWidth()
     ) {

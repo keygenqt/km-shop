@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.ProductModel
 import com.keygenqt.shop.android.extensions.priceFormat
@@ -35,17 +37,19 @@ fun ProductItem(
     onClickProduct: (Int) -> Unit
 ) {
     if (index != 0) {
-        Spacer(modifier = Modifier.size(10.dp))
+        Spacer(modifier = Modifier.size(16.dp))
     }
 
     Column(
         modifier = Modifier
-            .clip(MaterialTheme.shapes.medium)
+            .shadow(
+                elevation = 1.dp,
+                shape = MaterialTheme.shapes.medium,
+                clip = true
+            )
             .background(MaterialTheme.colors.surface)
             .fillMaxWidth()
-            .clickable {
-                onClickProduct.invoke(model.id)
-            }
+            .clickable { onClickProduct.invoke(model.id) }
             .padding(10.dp)
     ) {
         Column {
@@ -84,8 +88,8 @@ fun ProductItem(
                     Spacer(modifier = Modifier.size(6.dp))
 
                     AppText(
-                        color = Color(0XFF707f95),
                         text = model.description,
+                        color = LocalAndroidColors.current.textCaption,
                         style = MaterialTheme.typography.caption
                     )
                 }

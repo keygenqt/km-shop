@@ -82,8 +82,8 @@ Options:
 #### Preview
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1670856084.png" width="33%"/>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1670856068.png" width="33%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1671122039.png" width="33%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1671122048.png" width="33%"/>
 </p>
 
 ## 6. iOS App

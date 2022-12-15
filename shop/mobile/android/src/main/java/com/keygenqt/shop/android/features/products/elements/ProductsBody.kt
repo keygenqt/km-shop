@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
+import com.keygenqt.shop.android.components.base.BoxColorBg
 import com.keygenqt.shop.android.data.models.ProductModel
 
 /**
@@ -45,23 +46,25 @@ fun ProductsBody(
         onRefresh = onRefresh
     )
 
-    Box(Modifier.pullRefresh(refreshState)) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(state = scrollState)
-                .padding(16.dp),
-        ) {
-            models.forEachIndexed { index, productModel ->
-                ProductItem(
-                    index = index,
-                    model = productModel,
-                    onClickProduct = onClickProduct
-                )
+    BoxColorBg {
+        Box(Modifier.pullRefresh(refreshState)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(state = scrollState)
+                    .padding(16.dp),
+            ) {
+                models.forEachIndexed { index, productModel ->
+                    ProductItem(
+                        index = index,
+                        model = productModel,
+                        onClickProduct = onClickProduct
+                    )
+                }
             }
+            AppPullRefreshIndicator(
+                state = refreshState,
+            )
         }
-        AppPullRefreshIndicator(
-            state = refreshState,
-        )
     }
 }
