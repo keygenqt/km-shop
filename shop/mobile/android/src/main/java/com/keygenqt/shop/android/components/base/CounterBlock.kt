@@ -36,6 +36,8 @@ import com.keygenqt.shop.android.components.texts.AppText
 fun CounterBlock(
     countCart: Int,
     modifier: Modifier = Modifier,
+    onClickPlus: () -> Unit,
+    onClickMinus: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -55,7 +57,7 @@ fun CounterBlock(
         TextButton(
             enabled = countCart > 0,
             shape = CircleShape,
-            onClick = { /*TODO*/ },
+            onClick = onClickMinus,
             modifier = Modifier.size(30.dp),
             contentPadding = PaddingValues(
                 start = 0.dp,
@@ -83,7 +85,7 @@ fun CounterBlock(
 
         TextButton(
             shape = CircleShape,
-            onClick = { /*TODO*/ },
+            onClick = onClickPlus,
             modifier = Modifier.size(30.dp),
             contentPadding = PaddingValues(
                 start = 0.dp,

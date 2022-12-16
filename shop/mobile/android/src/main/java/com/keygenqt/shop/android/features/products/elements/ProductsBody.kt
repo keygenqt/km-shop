@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
 import com.keygenqt.shop.android.components.base.BoxColorBg
+import com.keygenqt.shop.android.data.models.CartModel
 import com.keygenqt.shop.android.data.models.ProductModel
 
 /**
@@ -36,11 +37,13 @@ import com.keygenqt.shop.android.data.models.ProductModel
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProductsBody(
+    cartProductIds: List<CartModel>?,
     models: List<ProductModel>,
     loading: Boolean,
     paddingBottomList: Dp,
     onRefresh: () -> Unit,
-    onClickProduct: (id: Int) -> Unit
+    onClickProduct: (id: Int) -> Unit,
+    onClickCart: (Int) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val refreshState = rememberPullRefreshState(
@@ -69,9 +72,11 @@ fun ProductsBody(
             ) {
                 models.forEachIndexed { index, productModel ->
                     ProductItem(
+                        isHasCart = cartProductIds?.any { it.id == productModel.id },
                         index = index,
                         model = productModel,
-                        onClickProduct = onClickProduct
+                        onClickProduct = onClickProduct,
+                        onClickCart = onClickCart,
                     )
                 }
             }

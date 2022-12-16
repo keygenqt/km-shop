@@ -15,26 +15,37 @@
  */
 package com.keygenqt.shop.android.features.products
 
+import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.data.models.CartModel
 import com.keygenqt.shop.android.data.models.ProductModel
 import com.keygenqt.shop.android.data.models.mapToModels
+import com.keygenqt.shop.android.extensions.withTransaction
 import com.keygenqt.shop.android.routes.RouteProducts
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.CartDataService
 import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
+    private val application: Application,
     private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
 ) : ViewModel() {
     /**
      * Key category for filtering list
@@ -96,6 +107,11 @@ class ProductsViewModel @Inject constructor(
      */
     var pricesFilter: ClosedFloatingPointRange<Float>? = null
 
+    /**
+     * Listen data
+     */
+    val cartProductIds = dataService.getCartModels().distinctUntilChanged()
+
     init {
         viewModelScope.launch {
             try {
@@ -154,6 +170,43 @@ class ProductsViewModel @Inject constructor(
         ).let { products ->
             _products.value = products.products.toList().mapToModels()
             _loading.value = false
+        }
+    }
+
+    fun changeCartProducts(
+        productId: Int
+    ) {
+        viewModelScope.launch {
+            dataService.withTransaction<CartDataService> {
+                getCartModel(productId)?.let {
+                    deleteCartModels(productId)
+                    launch(Dispatchers.Main) {
+                        Toast
+                            .makeText(
+                                application.applicationContext,
+                                application.applicationContext.getString(R.string.products_delete_from_cart),
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                } ?: run {
+                    insertCartModels(
+                        CartModel(
+                            id = productId,
+                            count = 1
+                        )
+                    )
+                    launch(Dispatchers.Main) {
+                        Toast
+                            .makeText(
+                                application.applicationContext,
+                                application.applicationContext.getString(R.string.products_add_to_cart),
+                                Toast.LENGTH_SHORT
+                            )
+                            .show()
+                    }
+                }
+            }
         }
     }
 }

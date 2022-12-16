@@ -13,4 +13,6 @@
     <string name="product_description">Описание</string>
     <string name="product_btn_add">Добавить в корзину</string>
     <string name="product_btn_remove">Удалить с корзины</string>
+    <string name="product_delete_from_cart">Продукт удален из корзины</string>
+    <string name="product_add_to_cart">Продукт добвлен в корзину</string>
 </resources>

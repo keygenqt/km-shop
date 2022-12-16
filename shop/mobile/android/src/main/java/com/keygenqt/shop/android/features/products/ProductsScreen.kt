@@ -57,6 +57,7 @@ fun ProductsScreen(
     val prices by viewModel.prices.collectAsState()
     val loading by viewModel.loading.collectAsState()
     val sort by viewModel.sort.collectAsState()
+    val cartProductIds by viewModel.cartProductIds.collectAsState(null)
 
     var paddingBottomList by remember { mutableStateOf(60.dp) }
 
@@ -108,6 +109,7 @@ fun ProductsScreen(
                 },
             ) {
                 ProductsBody(
+                    cartProductIds = cartProductIds,
                     loading = loading,
                     models = products!!,
                     paddingBottomList = paddingBottomList,
@@ -124,6 +126,9 @@ fun ProductsScreen(
                             )
                             navController.navigate(RouteProduct.link(it))
                         }
+                    },
+                    onClickCart = { id ->
+                        viewModel.changeCartProducts(id)
                     }
                 )
             }

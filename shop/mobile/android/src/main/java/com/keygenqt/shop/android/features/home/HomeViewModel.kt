@@ -62,6 +62,11 @@ class HomeViewModel @Inject constructor(
      */
     val categories = dataService.getCategoryModels().distinctUntilChanged()
 
+    /**
+     * Listen data
+     */
+    val cartProductIds = dataService.getCartModels().distinctUntilChanged()
+
     init {
         updateCategories()
     }

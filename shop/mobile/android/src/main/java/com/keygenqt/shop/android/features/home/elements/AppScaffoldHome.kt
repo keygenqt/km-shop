@@ -40,13 +40,12 @@ import com.keygenqt.shop.android.routes.RouteOrderSearch
 
 @Composable
 fun AppScaffoldHome(
+    cartCount: Int,
     navController: NavHostController,
     activeTab: Int = 0,
     onChangeTab: (Int) -> Unit,
     content: @Composable () -> Unit
 ) {
-    val cartSize = 2
-
     AppScaffold(
         title = stringResource(id = R.string.app_name),
         navigationIcon = {
@@ -123,10 +122,8 @@ fun AppScaffoldHome(
                     selected = activeTab == 2,
                     icon = {
                         BadgedBox(badge = {
-                            if (cartSize > 0) Badge(backgroundColor = MaterialTheme.colors.secondary) {
-                                Text(
-                                    cartSize.toString()
-                                )
+                            if (cartCount > 0) Badge(backgroundColor = MaterialTheme.colors.secondary) {
+                                Text(cartCount.toString())
                             }
                         }) {
                             Icon(

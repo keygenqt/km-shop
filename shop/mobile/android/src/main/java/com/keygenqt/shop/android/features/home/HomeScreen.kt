@@ -18,8 +18,6 @@ package com.keygenqt.shop.android.features.home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.features.home.elements.HomeBody
 
 /**
@@ -29,8 +27,7 @@ import com.keygenqt.shop.android.features.home.elements.HomeBody
  */
 @Composable
 fun HomeScreen(
-    navController: NavHostController,
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel,
 ) {
     val loading by viewModel.loading.collectAsState()
     val categories by viewModel.categories.collectAsState(null)

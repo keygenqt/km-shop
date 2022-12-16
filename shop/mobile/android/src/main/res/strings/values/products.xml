@@ -2,4 +2,6 @@
     <string name="products_empty_title">Товары не найдены</string>
     <string name="products_empty_subtitle_categories">В этой категории товаров пока нет. Попробуйте зайти позже</string>
     <string name="products_empty_subtitle_collections">В этой коллекции товаров пока нет. Попробуйте зайти позже</string>
+    <string name="products_delete_from_cart">Продукт удален из корзины</string>
+    <string name="products_add_to_cart">Продукт добвлен в корзину</string>
 </resources>

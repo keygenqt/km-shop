@@ -38,6 +38,7 @@ fun ProductScreen(
 
     val model by viewModel.product.collectAsState()
     val loading by viewModel.loading.collectAsState()
+    val cartProductIds by viewModel.cartProductIds.collectAsState(null)
 
     AppScaffoldProduct(
         title = model?.name,
@@ -45,10 +46,13 @@ fun ProductScreen(
     ) {
         if (model != null) {
             ProductBody(
-                countCart = 0,
+                countCart = cartProductIds?.find { it.id == model!!.id }?.count ?: 0,
                 loading = loading,
                 model = model!!,
-                onRefresh = { viewModel.getProduct() }
+                onRefresh = { viewModel.getProduct() },
+                onChangeCart = { id, count ->
+                    viewModel.changeCartProducts(id, count)
+                }
             )
         } else if (loading) {
             OrderLoadingBody()

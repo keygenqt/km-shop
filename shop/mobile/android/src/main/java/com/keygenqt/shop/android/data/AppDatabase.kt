@@ -19,9 +19,11 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.keygenqt.shop.android.data.converters.ListConverter
+import com.keygenqt.shop.android.data.dao.CartModelDao
 import com.keygenqt.shop.android.data.dao.CategoryModelDao
 import com.keygenqt.shop.android.data.dao.CollectionModelDao
 import com.keygenqt.shop.android.data.dao.OrderHistoryModelDao
+import com.keygenqt.shop.android.data.models.CartModel
 import com.keygenqt.shop.android.data.models.CategoryModel
 import com.keygenqt.shop.android.data.models.CollectionModel
 import com.keygenqt.shop.android.data.models.OrderHistoryModel
@@ -31,6 +33,7 @@ import com.keygenqt.shop.android.data.models.OrderHistoryModel
  */
 @Database(
     entities = [
+        CartModel::class,
         CategoryModel::class,
         CollectionModel::class,
         OrderHistoryModel::class,
@@ -58,4 +61,9 @@ abstract class AppDatabase : RoomDatabase() {
      * Dao for model [OrderHistoryModel]
      */
     abstract fun daoOrderHistoryModel(): OrderHistoryModelDao
+
+    /**
+     * Dao for model [CartModel]
+     */
+    abstract fun daoCartModel(): CartModelDao
 }

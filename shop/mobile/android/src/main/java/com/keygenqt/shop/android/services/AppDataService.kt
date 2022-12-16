@@ -16,6 +16,7 @@
 package com.keygenqt.shop.android.services
 
 import com.keygenqt.shop.android.data.AppDatabase
+import com.keygenqt.shop.android.services.impl.CartDataService
 import com.keygenqt.shop.android.services.impl.CategoryDataService
 import com.keygenqt.shop.android.services.impl.CollectionDataService
 import com.keygenqt.shop.android.services.impl.OrderHistoryDataService
@@ -27,7 +28,8 @@ import com.keygenqt.shop.android.services.impl.OrderHistoryDataService
  */
 class AppDataService(
     override val db: AppDatabase,
-) : CategoryDataService,
+) : CartDataService,
+    CategoryDataService,
     CollectionDataService,
     OrderHistoryDataService {
 
@@ -35,6 +37,7 @@ class AppDataService(
      * Performed when the user logs out
      */
     override suspend fun clearCacheAfterLogout() {
+        super<CartDataService>.clearCacheAfterLogout()
         super<CategoryDataService>.clearCacheAfterLogout()
         super<CollectionDataService>.clearCacheAfterLogout()
         super<OrderHistoryDataService>.clearCacheAfterLogout()

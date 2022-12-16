@@ -16,21 +16,19 @@
 package com.keygenqt.shop.android.features.products.elements
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.IconToggleButton
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AddShoppingCart
+import androidx.compose.material.icons.outlined.RemoveShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -46,8 +44,10 @@ import com.keygenqt.shop.android.data.models.ProductModel
 @Composable
 fun ProductItem(
     index: Int,
+    isHasCart: Boolean?,
     model: ProductModel,
-    onClickProduct: (Int) -> Unit
+    onClickProduct: (Int) -> Unit,
+    onClickCart: (Int) -> Unit
 ) {
     if (index != 0) {
         Spacer(modifier = Modifier.size(16.dp))
@@ -112,33 +112,55 @@ fun ProductItem(
             Divider()
             Spacer(modifier = Modifier.size(10.dp))
 
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
                 PriceBlock(
                     price = model.price
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                IconToggleButton(
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colors.secondary,
-                            shape = CircleShape
-                        )
-                        .size(28.dp),
-                    checked = true,
-                    onCheckedChange = {
-                    }
-                ) {
-                    Icon(
-                        contentDescription = null,
-                        modifier = Modifier.size(14.dp),
-                        imageVector = Icons.Outlined.AddShoppingCart,
-                        tint = MaterialTheme.colors.secondary
+                if (isHasCart != null) {
+                    CardButton(
+                        checked = isHasCart,
+                        onClick = {
+                            onClickCart.invoke(model.id)
+                        }
                     )
                 }
             }
         }
+    }
+}
+
+@Composable
+fun CardButton(
+    checked: Boolean,
+    onClick: () -> Unit,
+) {
+    TextButton(
+        modifier = Modifier.size(36.dp),
+        shape = CircleShape,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Transparent,
+            contentColor = Color.Transparent,
+        ),
+        contentPadding = PaddingValues(
+            start = 0.dp,
+            top = 0.dp,
+            end = 0.dp,
+            bottom = 0.dp
+        ),
+        onClick = {
+            onClick.invoke()
+        }
+    ) {
+        Icon(
+            contentDescription = null,
+            modifier = Modifier.size(16.dp),
+            imageVector = if (checked) Icons.Outlined.RemoveShoppingCart else Icons.Outlined.AddShoppingCart,
+            tint = if (checked) MaterialTheme.colors.primary else LocalAndroidColors.current.textCaption
+        )
     }
 }

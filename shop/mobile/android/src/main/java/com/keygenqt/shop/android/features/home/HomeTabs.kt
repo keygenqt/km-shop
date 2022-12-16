@@ -16,7 +16,10 @@
 package com.keygenqt.shop.android.features.home
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -33,11 +36,15 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeTabs(
     navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState()
 
+    val cartProductIds by viewModel.cartProductIds.collectAsState(null)
+
     AppScaffoldHome(
+        cartCount = cartProductIds?.sumOf { it.count } ?: 0,
         navController = navController,
         activeTab = pagerState.currentPage,
         onChangeTab = {
@@ -52,7 +59,7 @@ fun HomeTabs(
             userScrollEnabled = false
         ) { page ->
             when (page) {
-                0 -> HomeScreen(navController)
+                0 -> HomeScreen(viewModel)
                 1 -> ExploringTabs(navController)
                 2 -> CartScreen(navController)
             }
