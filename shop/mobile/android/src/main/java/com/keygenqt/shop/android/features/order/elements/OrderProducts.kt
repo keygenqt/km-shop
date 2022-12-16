@@ -2,6 +2,7 @@ package com.keygenqt.shop.android.features.order.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.OrderModel
 import com.keygenqt.shop.android.extensions.priceFormat
@@ -30,6 +32,8 @@ fun OrderProducts(
     model: OrderModel,
     onClickProduct: (id: Int) -> Unit
 ) {
+    val dark = isSystemInDarkTheme()
+
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier.fillMaxWidth()
@@ -58,7 +62,7 @@ fun OrderProducts(
                 Column(
                     modifier = Modifier
                         .clip(MaterialTheme.shapes.medium)
-                        .background(MaterialTheme.colors.background)
+                        .background(if (dark) MaterialTheme.colors.background else LocalAndroidColors.current.bgVariant1)
                         .fillMaxWidth()
                         .clickable {
                             onClickProduct.invoke(orderProductModel.product.id)

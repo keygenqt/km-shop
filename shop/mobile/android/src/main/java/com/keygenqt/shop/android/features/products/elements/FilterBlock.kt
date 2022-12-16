@@ -1,15 +1,17 @@
 package com.keygenqt.shop.android.features.products.elements
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.PriceChange
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.extensions.positionedBottomSheet
 import com.keygenqt.shop.android.extensions.priceFormat
@@ -44,7 +46,14 @@ fun FilterBlock(
             }
             .padding(top = 6.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            AppText(
+                color = Color.White,
+                text = "Диапазон цен",
+                style = MaterialTheme.typography.h6,
+            )
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = {
                 scope.launch {
@@ -80,24 +89,21 @@ private fun PriceRange(
     value: ClosedFloatingPointRange<Float>,
     onChangePriceFilter: (ClosedFloatingPointRange<Float>) -> Unit
 ) {
+    val dark = isSystemInDarkTheme()
     var sliderPosition by remember { mutableStateOf(value) }
 
     Column {
-        AppText(
-            text = "Диапазон цен",
-            style = MaterialTheme.typography.h6,
-        )
         Spacer(modifier = Modifier.size(6.dp))
         AppText(
+            color = Color.White.copy(0.8f),
             text = "Фильтр товаров по ценовому диапозону",
-            color = LocalAndroidColors.current.textCaption,
             style = MaterialTheme.typography.caption
         )
-        Spacer(modifier = Modifier.size(10.dp))
+        Spacer(modifier = Modifier.size(6.dp))
         RangeSlider(
             colors = SliderDefaults.colors(
-                thumbColor = MaterialTheme.colors.primary,
-                activeTrackColor = MaterialTheme.colors.primary,
+                thumbColor = if (dark) MaterialTheme.colors.primary else Color.White,
+                activeTrackColor = if (dark) MaterialTheme.colors.primary else Color.White,
             ),
             modifier = Modifier,
             value = sliderPosition,
@@ -107,12 +113,18 @@ private fun PriceRange(
                 onChangePriceFilter.invoke(sliderPosition)
             }
         )
-        Spacer(modifier = Modifier.size(10.dp))
+        Spacer(modifier = Modifier.size(6.dp))
         Row {
-            AppText(text = sliderPosition.start.toDouble().priceFormat())
+            AppText(
+                color = Color.White,
+                text = sliderPosition.start.toDouble().priceFormat()
+            )
             Spacer(modifier = Modifier.weight(1f))
-            AppText(text = sliderPosition.endInclusive.toDouble().priceFormat())
+            AppText(
+                color = Color.White,
+                text = sliderPosition.endInclusive.toDouble().priceFormat()
+            )
         }
-        Spacer(modifier = Modifier.size(20.dp))
+        Spacer(modifier = Modifier.size(16.dp))
     }
 }

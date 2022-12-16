@@ -46,19 +46,19 @@ fun ProductsScreen(
     navController: NavHostController,
     viewModel: ProductsViewModel = hiltViewModel(),
 ) {
-    val products by viewModel.products.collectAsState()
-    val prices by viewModel.prices.collectAsState()
-    val loading by viewModel.loading.collectAsState()
-    val sort by viewModel.sort.collectAsState()
-
-    var paddingBottomList by remember { mutableStateOf(60.dp) }
-
     val scope = rememberCoroutineScope()
     val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(
             initialValue = BottomSheetValue.Collapsed
         )
     )
+
+    val products by viewModel.products.collectAsState()
+    val prices by viewModel.prices.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+    val sort by viewModel.sort.collectAsState()
+
+    var paddingBottomList by remember { mutableStateOf(60.dp) }
 
     AppScaffoldProducts(
         navController = navController,
@@ -81,7 +81,7 @@ fun ProductsScreen(
                     bottomStart = 0.dp
                 ),
                 drawerGesturesEnabled = false,
-                sheetBackgroundColor = LocalAndroidColors.current.bgVariant1,
+                sheetBackgroundColor = LocalAndroidColors.current.bgVariant5,
                 sheetContent = {
                     prices?.let { prices ->
                         FilterBlock(

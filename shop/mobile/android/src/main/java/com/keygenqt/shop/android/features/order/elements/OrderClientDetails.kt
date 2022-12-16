@@ -1,6 +1,7 @@
 package com.keygenqt.shop.android.features.order.elements
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.OrderModel
 
@@ -19,6 +21,8 @@ import com.keygenqt.shop.android.data.models.OrderModel
 fun OrderClientDetails(
     model: OrderModel
 ) {
+    val dark = isSystemInDarkTheme()
+
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier.fillMaxWidth()
@@ -41,7 +45,7 @@ fun OrderClientDetails(
             Column(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.medium)
-                    .background(MaterialTheme.colors.background)
+                    .background(if (dark) MaterialTheme.colors.background else LocalAndroidColors.current.bgVariant1)
                     .fillMaxWidth()
                     .padding(10.dp)
 

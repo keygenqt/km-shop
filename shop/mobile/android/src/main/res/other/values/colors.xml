@@ -6,5 +6,6 @@
     <color name="bg_variant_2">#FBE1EC</color>
     <color name="bg_variant_3">#EBEBFF</color>
     <color name="bg_variant_4">#C6FFF1</color>
+    <color name="bg_variant_5">#1D81D6</color>
     <color name="text_caption">#486080</color>
 </resources>
