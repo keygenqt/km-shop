@@ -19,7 +19,7 @@ export function EmptyCart() {
 
                 <Stack spacing={2}>
                     <Typography variant={isSM ? 'h4' : 'h3'}>
-                        Empty
+                        Пусто
                     </Typography>
 
                     <Typography variant={'h5'} sx={{
@@ -28,7 +28,7 @@ export function EmptyCart() {
                         marginLeft: 'auto !important',
                         marginRight: 'auto !important'
                     }}>
-                        Your shopping cart is empty, add the products you are interested in and return.
+                        Ваша корзина пуста, добавьте интересующие вас товары и вернитесь.
                     </Typography>
                 </Stack>
 

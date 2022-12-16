@@ -13,27 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.cart
+package com.keygenqt.shop.android.components.lottie
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.keygenqt.shop.android.R
-import com.keygenqt.shop.android.components.state.EmptyCartBody
 
 /**
- * Home page, main for app
- *
- * @param viewModel page view model
+ * Page animation
  */
 @Composable
-fun CartScreen(
-    navController: NavHostController,
-    viewModel: CartViewModel = hiltViewModel(),
+fun EmptyCartAnimation(
+    modifier: Modifier = Modifier,
 ) {
-    EmptyCartBody(
-        title = stringResource(id = R.string.cart_empty_title),
-        subtitle = stringResource(id = R.string.cart_empty_text)
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.cart_empty))
+
+    LottieAnimation(
+        speed = 0.7f,
+        iterations = Int.MAX_VALUE,
+        composition = composition,
+        modifier = modifier
     )
 }
