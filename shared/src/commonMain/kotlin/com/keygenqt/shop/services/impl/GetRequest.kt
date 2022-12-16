@@ -102,7 +102,7 @@ class GetRequest(private val client: HttpClient) {
     suspend fun productsPublished(
         page: Int,
         order: String,
-        range: Array<Int>,
+        range: Array<Double>,
         categories: Array<Int>,
         collections: Array<Int>,
     ): ProductPageResponse {
@@ -169,8 +169,16 @@ class GetRequest(private val client: HttpClient) {
      * Get prices min/max
      */
     @Throws(Exception::class)
-    suspend fun prices(): ProductPricesResponse {
-        return client.get("api/products/prices").body()
+    suspend fun prices(
+        categories: Array<Int>,
+        collections: Array<Int>,
+    ): ProductPricesResponse {
+        return client.get("api/products/prices") {
+            url {
+                parameters.appendAll("categories", categories.map { it.toString() })
+                parameters.appendAll("collections", collections.map { it.toString() })
+            }
+        }.body()
     }
 
     /**

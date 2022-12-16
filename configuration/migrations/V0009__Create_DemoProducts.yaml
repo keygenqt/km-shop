@@ -45,7 +45,7 @@ products:
     price: 1300.00
     isPublished: true
 
-  - categoryID: 2
+  - categoryID: 3
     name: Kit
     description: Kit for girls who love bows.
     image: configuration/migrations/data/product/DSC_0026.png
@@ -80,7 +80,7 @@ products:
     price: 900.50
     isPublished: true
 
-  - categoryID: 3
+  - categoryID: 2
     name: Headband beauty
     description: Cool headband for cool little ones.
     image: configuration/migrations/data/product/DSC_0093.png

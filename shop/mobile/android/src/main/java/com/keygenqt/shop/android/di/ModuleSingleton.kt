@@ -17,6 +17,7 @@ package com.keygenqt.shop.android.di
 
 import android.app.Application
 import androidx.room.Room
+import com.keygenqt.shop.android.base.AndroidHttpLogger
 import com.keygenqt.shop.android.data.AppDatabase
 import com.keygenqt.shop.android.services.AppDataService
 import com.keygenqt.shop.services.ServiceRequest
@@ -38,7 +39,8 @@ object ModuleSingleton {
      */
     @Provides
     @Singleton
-    fun provideServiceRequest() = ServiceRequest(LinksConstants.API_DEBUG_ANDROID_URL)
+    fun provideServiceRequest() =
+        ServiceRequest(LinksConstants.API_DEBUG_ANDROID_URL, AndroidHttpLogger)
 
     /**
      * A database that doesn't need migrations and encryption

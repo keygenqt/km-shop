@@ -34,7 +34,9 @@ import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
 import jakarta.validation.constraints.Size
 import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.sql.SortOrder
 import org.koin.ktor.ext.inject
+import java.math.RoundingMode
 import kotlin.math.ceil
 
 /**
@@ -142,11 +144,17 @@ fun Route.products() {
             val page: Int = call.getQueryParam("page").toInt().takeIf { it > 0 }
                 ?: throw Exceptions.BadRequest()
             // act
+
+            val rangeFormat = Pair(
+                range[0].toBigDecimal().setScale(1, RoundingMode.UP).toDouble(),
+                range[1].toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
+            )
+
             val entities = productsService.transaction {
                 getPagePublished(
                     page = page,
                     order = order,
-                    range = Pair(range[0], range[1]),
+                    range = rangeFormat,
                     categories = categories,
                     collections = collections,
                     pageSize = pageSize,
@@ -154,7 +162,7 @@ fun Route.products() {
             }
             val pages = productsService.transaction {
                 getCountPublished(
-                    range = Pair(range[0], range[1]),
+                    range = rangeFormat,
                     categories = categories,
                     collections = collections,
                 )
@@ -170,12 +178,23 @@ fun Route.products() {
         get("/prices") {
             // check role
             call.checkRoleFull()
+            // get request
+            val categories = call.getNumbersQueryParam("categories")
+            val collections = call.getNumbersQueryParam("collections")
             // act
             val minPriceProduct = productsService.transaction {
-                getMinPrice()
+                getPrice(
+                    categories = categories,
+                    collections = collections,
+                    order = SortOrder.ASC
+                )
             }
             val maxPriceProduct = productsService.transaction {
-                getMaxPrice()
+                getPrice(
+                    categories = categories,
+                    collections = collections,
+                    order = SortOrder.DESC
+                )
             }
             // response
             call.respond(

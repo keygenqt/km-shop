@@ -24,6 +24,7 @@ import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
 import com.keygenqt.shop.android.components.base.BoxColorBg
@@ -37,6 +38,7 @@ import com.keygenqt.shop.android.data.models.ProductModel
 fun ProductsBody(
     models: List<ProductModel>,
     loading: Boolean,
+    paddingBottomList: Dp,
     onRefresh: () -> Unit,
     onClickProduct: (id: Int) -> Unit
 ) {
@@ -47,12 +49,23 @@ fun ProductsBody(
     )
 
     BoxColorBg {
-        Box(Modifier.pullRefresh(refreshState)) {
+        Box(
+            Modifier
+                .pullRefresh(refreshState)
+                .padding(
+                    bottom = if (paddingBottomList > 8.dp) paddingBottomList - 8.dp else 8.dp
+                )
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .verticalScroll(state = scrollState)
-                    .padding(16.dp),
+                    .padding(
+                        top = 16.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = 24.dp
+                    ),
             ) {
                 models.forEachIndexed { index, productModel ->
                     ProductItem(

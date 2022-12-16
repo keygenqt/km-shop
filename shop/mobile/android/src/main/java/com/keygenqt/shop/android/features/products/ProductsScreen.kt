@@ -15,53 +15,117 @@
  */
 package com.keygenqt.shop.android.features.products
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.state.EmptyBody
 import com.keygenqt.shop.android.components.state.OrderLoadingBody
 import com.keygenqt.shop.android.features.products.elements.AppScaffoldProducts
+import com.keygenqt.shop.android.features.products.elements.FilterBlock
 import com.keygenqt.shop.android.features.products.elements.ProductsBody
 import com.keygenqt.shop.android.routes.RouteProduct
+import kotlinx.coroutines.launch
 
 /**
  * Home page, main for app
  *
  * @param viewModel page view model
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProductsScreen(
     navController: NavHostController,
     viewModel: ProductsViewModel = hiltViewModel(),
 ) {
     val products by viewModel.products.collectAsState()
+    val prices by viewModel.prices.collectAsState()
     val loading by viewModel.loading.collectAsState()
+    val sort by viewModel.sort.collectAsState()
+
+    var paddingBottomList by remember { mutableStateOf(60.dp) }
+
+    val scope = rememberCoroutineScope()
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = rememberBottomSheetState(
+            initialValue = BottomSheetValue.Collapsed
+        )
+    )
 
     AppScaffoldProducts(
-        enabled = !products.isNullOrEmpty(),
         navController = navController,
-        onShowFilter = {
-
-        },
-        onShowSearch = {
-
+        enabled = !products.isNullOrEmpty() && products?.size != 1,
+        sort = sort,
+        onToggleSort = {
+            viewModel.toggleSort()
         }
     ) {
         if (!products.isNullOrEmpty()) {
-            ProductsBody(
-                loading = loading,
-                models = products!!,
-                onRefresh = {
-                    viewModel.updateList()
+            BottomSheetScaffold(
+                modifier = Modifier,
+                scaffoldState = bottomSheetScaffoldState,
+                sheetPeekHeight = if (prices?.start == prices?.endInclusive) 0.dp else 60.dp,
+                sheetElevation = 0.dp,
+                sheetShape = RoundedCornerShape(
+                    topStart = 16.dp,
+                    topEnd = 16.dp,
+                    bottomEnd = 0.dp,
+                    bottomStart = 0.dp
+                ),
+                drawerGesturesEnabled = false,
+                sheetBackgroundColor = LocalAndroidColors.current.bgVariant1,
+                sheetContent = {
+                    prices?.let { prices ->
+                        FilterBlock(
+                            min = prices.start,
+                            max = prices.endInclusive,
+                            value = viewModel.pricesFilter ?: prices,
+                            isExpanded = bottomSheetScaffoldState.bottomSheetState.isExpanded,
+                            onChangePosition = { paddingBottomList = it },
+                            onClickIcon = {
+                                scope.launch {
+                                    if (bottomSheetScaffoldState.bottomSheetState.isExpanded) {
+                                        bottomSheetScaffoldState.bottomSheetState.collapse()
+                                    } else {
+                                        bottomSheetScaffoldState.bottomSheetState.expand()
+                                    }
+                                }
+                            },
+                            onChangePriceFilter = {
+                                viewModel.setPriceRange(it)
+                            }
+                        )
+                    }
                 },
-                onClickProduct = {
-                    navController.navigate(RouteProduct.link(it))
-                }
-            )
+            ) {
+                ProductsBody(
+                    loading = loading,
+                    models = products!!,
+                    paddingBottomList = paddingBottomList,
+                    onRefresh = {
+                        scope.launch {
+                            viewModel.updateList()
+                        }
+                    },
+                    onClickProduct = {
+                        scope.launch {
+                            bottomSheetScaffoldState.bottomSheetState.animateTo(
+                                targetValue = BottomSheetValue.Collapsed,
+                                anim = tween(100)
+                            )
+                            navController.navigate(RouteProduct.link(it))
+                        }
+                    }
+                )
+            }
         } else if (loading) {
             OrderLoadingBody()
         } else {

@@ -49,6 +49,16 @@ class ProductsViewModel @Inject constructor(
     /**
      * Loading query
      */
+    private val _sort: MutableStateFlow<OrderProduct> = MutableStateFlow(OrderProduct.NEWEST)
+
+    /**
+     * [StateFlow] for [_sort]
+     */
+    val sort: StateFlow<OrderProduct> get() = _sort.asStateFlow()
+
+    /**
+     * Loading query
+     */
     private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
     /**
@@ -66,28 +76,80 @@ class ProductsViewModel @Inject constructor(
      */
     val products: StateFlow<List<ProductModel>?> get() = _products.asStateFlow()
 
-    init {
-        updateList()
-    }
+    /**
+     * Loading query
+     */
+    private val _prices: MutableStateFlow<ClosedFloatingPointRange<Float>?> = MutableStateFlow(null)
 
-    fun updateList() {
+    /**
+     * [StateFlow] for [_prices]
+     */
+    val prices: StateFlow<ClosedFloatingPointRange<Float>?> get() = _prices.asStateFlow()
+
+    /**
+     * Filter prices
+     */
+    var pricesFilter: ClosedFloatingPointRange<Float>? = null
+
+    init {
         viewModelScope.launch {
-            _loading.value = true
             try {
-                delay(1000)
-                serviceRequest.get.productsPublished(
-                    page = 1,
-                    order = OrderProduct.NEWEST.name,
-                    range = arrayOf(0, 999999999),
-                    categories = arrayOf(categoryID).filter { it != 0 }.toTypedArray(),
-                    collections = arrayOf(collectionID).filter { it != 0 }.toTypedArray(),
-                ).let { products ->
-                    _products.value = products.products.toList().mapToModels()
-                    _loading.value = false
-                }
+                getPrices()
+                updateList()
             } catch (ex: Exception) {
                 _loading.value = false
             }
+
+        }
+    }
+
+    fun toggleSort() {
+        when (_sort.value) {
+            OrderProduct.NEWEST -> _sort.value = OrderProduct.LOW
+            OrderProduct.LOW -> _sort.value = OrderProduct.HEIGHT
+            OrderProduct.HEIGHT -> _sort.value = OrderProduct.NEWEST
+        }
+        viewModelScope.launch {
+            updateList()
+        }
+    }
+
+    fun setPriceRange(pricesFilter: ClosedFloatingPointRange<Float>) {
+        this.pricesFilter = pricesFilter
+        viewModelScope.launch {
+            updateList()
+        }
+    }
+
+    private suspend fun getPrices() {
+        serviceRequest.get.prices(
+            categories = arrayOf(categoryID).filter { it != 0 }.toTypedArray(),
+            collections = arrayOf(collectionID).filter { it != 0 }.toTypedArray(),
+        ).let {
+            _prices.value = it.min.toFloat()..it.max.toFloat()
+            if (pricesFilter == null) {
+                pricesFilter = _prices.value
+            }
+        }
+    }
+
+    suspend fun updateList() {
+        _loading.value = true
+        delay(1000)
+        serviceRequest.get.productsPublished(
+            page = 1,
+            order = sort.value.name,
+            range = pricesFilter?.let {
+                arrayOf(
+                    it.start.toDouble(),
+                    it.endInclusive.toDouble()
+                )
+            } ?: arrayOf(0.0, 999999999.0),
+            categories = arrayOf(categoryID).filter { it != 0 }.toTypedArray(),
+            collections = arrayOf(collectionID).filter { it != 0 }.toTypedArray(),
+        ).let { products ->
+            _products.value = products.products.toList().mapToModels()
+            _loading.value = false
         }
     }
 }

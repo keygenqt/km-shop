@@ -70,9 +70,11 @@ class ProductsService(
     ) = Products
         .select {
             (Products.isPublished eq true) and
-                (Products.price greaterEq range.first) and
-                (Products.price lessEq range.second) and
-                (Products.categoryID inList categories)
+                    (Products.price greaterEq range.first) and
+                    (Products.price lessEq range.second) and
+                    (if (categories.isNotEmpty()) {
+                        Products.categoryID inList categories
+                    } else Op.TRUE)
         }
         .apply {
             if (order !== null) {
@@ -147,19 +149,34 @@ class ProductsService(
     /**
      * Get max price
      */
-    fun getMaxPrice() = ProductEntity
-        .find { (Products.isPublished eq true) }
+    fun getPrice(
+        categories: List<Int>,
+        collections: List<Int>,
+        order: SortOrder
+    ) = Products
+        .select {
+            (Products.isPublished eq true) and
+                    (if (categories.isNotEmpty()) {
+                        Products.categoryID inList categories
+                    } else Op.TRUE)
+        }
         .limit(1)
-        .orderBy(Pair(Products.price, SortOrder.DESC))
-        .firstOrNull()?.price ?: 0.0
-
-    /**
-     * Get max price
-     */
-    fun getMinPrice() = ProductEntity
-        .find { (Products.isPublished eq true) }
-        .limit(1)
-        .orderBy(Pair(Products.price, SortOrder.ASC))
+        .orderBy(Pair(Products.price, order))
+        .apply {
+            if (collections.isNotEmpty()) {
+                andHaving {
+                    Op.build {
+                        exists(
+                            ProductCollections.select {
+                                (ProductCollections.collection inList collections) and
+                                        (ProductCollections.product eq Products.id)
+                            }
+                        )
+                    }
+                }
+            }
+        }
+        .map { ProductEntity.wrapRow(it) }
         .firstOrNull()?.price ?: 0.0
 
     /**
