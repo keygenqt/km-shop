@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 Vitaliy Zarubin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.keygenqt.shop.android.components.base
 
 import androidx.compose.foundation.Image
@@ -49,35 +64,38 @@ fun CombineImage(
                     modifier = Modifier.then(
                         when (imagesTake.size) {
                             1 -> Modifier.fillMaxSize()
-                            2 -> Modifier
-                                .fillMaxHeight()
-                                .fillMaxWidth(0.47f)
-                                .align(
-                                    when (index) {
-                                        0 -> Alignment.TopStart
-                                        else -> Alignment.BottomEnd
-                                    }
-                                )
-                            3 -> Modifier
-                                .fillMaxHeight(if (index == 2) 1f else 0.47f)
-                                .fillMaxWidth(0.47f)
-                                .align(
-                                    when (index) {
-                                        0 -> Alignment.TopStart
-                                        1 -> Alignment.BottomStart
-                                        else -> Alignment.TopEnd
-                                    }
-                                )
-                            else -> Modifier
-                                .fillMaxSize(0.47f)
-                                .align(
-                                    when (index) {
-                                        0 -> Alignment.TopStart
-                                        1 -> Alignment.BottomStart
-                                        2 -> Alignment.TopEnd
-                                        else -> Alignment.BottomEnd
-                                    }
-                                )
+                            2 ->
+                                Modifier
+                                    .fillMaxHeight()
+                                    .fillMaxWidth(0.47f)
+                                    .align(
+                                        when (index) {
+                                            0 -> Alignment.TopStart
+                                            else -> Alignment.BottomEnd
+                                        }
+                                    )
+                            3 ->
+                                Modifier
+                                    .fillMaxHeight(if (index == 2) 1f else 0.47f)
+                                    .fillMaxWidth(0.47f)
+                                    .align(
+                                        when (index) {
+                                            0 -> Alignment.TopStart
+                                            1 -> Alignment.BottomStart
+                                            else -> Alignment.TopEnd
+                                        }
+                                    )
+                            else ->
+                                Modifier
+                                    .fillMaxSize(0.47f)
+                                    .align(
+                                        when (index) {
+                                            0 -> Alignment.TopStart
+                                            1 -> Alignment.BottomStart
+                                            2 -> Alignment.TopEnd
+                                            else -> Alignment.BottomEnd
+                                        }
+                                    )
                         }
                     )
                 )
@@ -88,21 +106,21 @@ fun CombineImage(
             1 -> if (painter1.state !is AsyncImagePainter.State.Success) {
                 placeholderImage.invoke()
             }
-            2 -> if (painter1.state !is AsyncImagePainter.State.Success
-                || painter2.state !is AsyncImagePainter.State.Success
+            2 -> if (painter1.state !is AsyncImagePainter.State.Success ||
+                painter2.state !is AsyncImagePainter.State.Success
             ) {
                 placeholderImage.invoke()
             }
-            3 -> if (painter1.state !is AsyncImagePainter.State.Success
-                || painter2.state !is AsyncImagePainter.State.Success
-                || painter3.state !is AsyncImagePainter.State.Success
+            3 -> if (painter1.state !is AsyncImagePainter.State.Success ||
+                painter2.state !is AsyncImagePainter.State.Success ||
+                painter3.state !is AsyncImagePainter.State.Success
             ) {
                 placeholderImage.invoke()
             }
-            4 -> if (painter1.state !is AsyncImagePainter.State.Success
-                || painter2.state !is AsyncImagePainter.State.Success
-                || painter3.state !is AsyncImagePainter.State.Success
-                || painter4.state !is AsyncImagePainter.State.Success
+            4 -> if (painter1.state !is AsyncImagePainter.State.Success ||
+                painter2.state !is AsyncImagePainter.State.Success ||
+                painter3.state !is AsyncImagePainter.State.Success ||
+                painter4.state !is AsyncImagePainter.State.Success
             ) {
                 placeholderImage.invoke()
             }

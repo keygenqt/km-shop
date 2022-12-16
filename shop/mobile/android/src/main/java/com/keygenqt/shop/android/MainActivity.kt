@@ -50,17 +50,17 @@ class MainActivity : ComponentActivity() {
         // Splash delay
         window.decorView.findViewById<View>(android.R.id.content)?.let { content ->
             content.viewTreeObserver.addOnPreDrawListener(object :
-                ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    return if (!viewModel.isSplash.value) {
-                        val color = ContextCompat.getColor(this@MainActivity, R.color.bg_page)
-                        // remove BG splash
-                        this@MainActivity.window.decorView.setBackgroundColor(color)
-                        // done splash remove listener
-                        content.viewTreeObserver.removeOnPreDrawListener(this); true
-                    } else false
-                }
-            })
+                    ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        return if (!viewModel.isSplash.value) {
+                            val color = ContextCompat.getColor(this@MainActivity, R.color.bg_page)
+                            // remove BG splash
+                            this@MainActivity.window.decorView.setBackgroundColor(color)
+                            // done splash remove listener
+                            content.viewTreeObserver.removeOnPreDrawListener(this); true
+                        } else false
+                    }
+                })
         }
     }
 }

@@ -207,7 +207,6 @@ fun ProductBody(
                             bottom = 10.dp
                         ),
                         onClick = {
-
                         },
                     ) {
                         Row {

@@ -104,7 +104,6 @@ class ProductsViewModel @Inject constructor(
             } catch (ex: Exception) {
                 _loading.value = false
             }
-
         }
     }
 
