@@ -1,3 +1,16 @@
 <resources>
-    <string name="product_title">Продукт…</string>
+    <string name="product_title">Загрузка…</string>
+    <string name="product_empty_title">Продукт не найден</string>
+    <string name="product_empty_subtitle">Что-то пошло не так. Попробуйте перезайти позже</string>
+    <string name="product_block_1_title">Бесплатная доставка</string>
+    <string name="product_block_1_text">При заказе свыше ₽ 5000.00</string>
+    <string name="product_block_2_title">Очень легко вернуть</string>
+    <string name="product_block_2_text">Просто свяжитесь с нами</string>
+    <string name="product_block_3_title">Доставка</string>
+    <string name="product_block_3_text">Быстрая доставка по всей стране</string>
+    <string name="product_block_4_title">Политика возврата</string>
+    <string name="product_block_4_text">60 дней возврата по любой причине</string>
+    <string name="product_description">Описание</string>
+    <string name="product_btn_add">Добавить в корзину</string>
+    <string name="product_btn_remove">Удалить с корзины</string>
 </resources>

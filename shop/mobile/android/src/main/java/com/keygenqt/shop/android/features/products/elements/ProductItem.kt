@@ -16,19 +16,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
+import com.keygenqt.shop.android.components.base.PriceBlock
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.ProductModel
-import com.keygenqt.shop.android.extensions.priceFormat
 
 @Composable
 fun ProductItem(
@@ -100,19 +98,9 @@ fun ProductItem(
             Spacer(modifier = Modifier.size(10.dp))
 
             Row {
-                Box(
-                    modifier = Modifier
-                        .border(width = 1.dp, color = Color(0XFF22C55E), shape = CircleShape)
-                        .padding(vertical = 5.dp, horizontal = 10.dp)
-                ) {
-                    AppText(
-                        color = Color(0XFF22C55E),
-                        style = MaterialTheme.typography.caption,
-                        text = model.price.priceFormat(),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                PriceBlock(
+                    price = model.price
+                )
 
                 Spacer(modifier = Modifier.weight(1f))
 

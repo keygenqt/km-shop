@@ -12,11 +12,12 @@ import com.keygenqt.shop.android.components.base.AppScaffold
 
 @Composable
 fun AppScaffoldProduct(
+    title: String?,
     navController: NavHostController,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
-        title = stringResource(id = R.string.product_title),
+        title = title ?: stringResource(id = R.string.product_title),
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()

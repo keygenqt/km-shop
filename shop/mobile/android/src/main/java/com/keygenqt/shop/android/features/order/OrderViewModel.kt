@@ -62,7 +62,7 @@ class OrderViewModel @Inject constructor(
     private val _order: MutableStateFlow<OrderModel?> = MutableStateFlow(null)
 
     /**
-     * [StateFlow] for [_loading]
+     * [StateFlow] for [_order]
      */
     val order: StateFlow<OrderModel?> get() = _order.asStateFlow()
 

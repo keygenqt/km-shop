@@ -9,14 +9,13 @@ import androidx.compose.material.icons.outlined.Sort
 import androidx.compose.material.icons.outlined.TrendingDown
 import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
 import com.keygenqt.shop.data.requests.OrderProduct
 
 @Composable
 fun AppScaffoldProducts(
+    title: String,
     enabled: Boolean,
     sort: OrderProduct,
     navController: NavHostController,
@@ -24,7 +23,7 @@ fun AppScaffoldProducts(
     content: @Composable () -> Unit,
 ) {
     AppScaffold(
-        title = stringResource(id = R.string.products_title),
+        title = title,
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()

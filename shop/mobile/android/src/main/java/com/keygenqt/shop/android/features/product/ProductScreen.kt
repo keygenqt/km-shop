@@ -16,24 +16,47 @@
 package com.keygenqt.shop.android.features.product
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.android.R
+import com.keygenqt.shop.android.components.state.EmptyBody
+import com.keygenqt.shop.android.components.state.OrderLoadingBody
 import com.keygenqt.shop.android.features.product.elements.AppScaffoldProduct
+import com.keygenqt.shop.android.features.product.elements.ProductBody
 
 /**
- * Home page, main for app
- *
- * @param viewModel page view model
+ * Product public page
  */
 @Composable
 fun ProductScreen(
     navController: NavHostController,
     viewModel: ProductViewModel = hiltViewModel(),
 ) {
+
+    val model by viewModel.product.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+
     AppScaffoldProduct(
+        title = model?.name,
         navController = navController
     ) {
-        AppText(text = viewModel.id.toString())
+        if (model != null) {
+            ProductBody(
+                countCart = 0,
+                loading = loading,
+                model = model!!,
+                onRefresh = { viewModel.getProduct() }
+            )
+        } else if (loading) {
+            OrderLoadingBody()
+        } else {
+            EmptyBody(
+                title = stringResource(id = R.string.product_empty_title),
+                subtitle = stringResource(id = R.string.product_empty_subtitle)
+            )
+        }
     }
 }

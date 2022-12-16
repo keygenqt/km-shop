@@ -21,7 +21,7 @@ import com.keygenqt.shop.android.extensions.iconsByString
 @Composable
 fun CollectionItem(
     model: CollectionModel,
-    onClickCollection: (Int) -> Unit
+    onClickCollection: (String, Int) -> Unit
 ) {
     Box {
         Box(
@@ -34,7 +34,7 @@ fun CollectionItem(
             ) {
                 Column(
                     modifier = Modifier
-                        .clickable { onClickCollection(model.id) }
+                        .clickable { onClickCollection(model.name, model.id) }
                         .fillMaxWidth()
                         .padding(start = 43.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 ) {

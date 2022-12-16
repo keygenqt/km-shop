@@ -40,12 +40,12 @@ fun LoadingAnimation(
     Box(modifier = modifier) {
         Box(
             modifier = Modifier
-                .size(50.dp)
+                .size(65.dp)
                 .align(Alignment.Center)
         ) {
             Box(
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(65.dp)
                     .clip(CircleShape)
                     .background(Color.White.copy(alpha = 0.8f))
                     .align(Alignment.Center)
@@ -56,8 +56,8 @@ fun LoadingAnimation(
                     composition = composition,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .requiredHeight(46.dp)
-                        .requiredWidth(46.dp)
+                        .requiredHeight(80.dp)
+                        .requiredWidth(80.dp)
                 )
             }
         }

@@ -42,6 +42,11 @@ class ProductsViewModel @Inject constructor(
     val categoryID: Int = savedStateHandle[RouteProducts.categoryID.name]!!
 
     /**
+     * Title action bar
+     */
+    val title: String = savedStateHandle[RouteProducts.title.name]!!
+
+    /**
      * Key collection for filtering list
      */
     private val collectionID: Int = savedStateHandle[RouteProducts.collectionID.name]!!

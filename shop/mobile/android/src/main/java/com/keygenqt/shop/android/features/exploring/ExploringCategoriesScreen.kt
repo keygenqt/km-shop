@@ -77,8 +77,11 @@ fun ExploringCategoriesScreen(
                         }
                         CategoryItem(
                             model = categoryModel,
-                            onClickCategory = {
-                                navController.navigate(RouteProducts.link(categoryID = it))
+                            onClickCategory = { title, id ->
+                                navController.navigate(RouteProducts.link(
+                                    title = title,
+                                    categoryID = id
+                                ))
                             }
                         )
                     }

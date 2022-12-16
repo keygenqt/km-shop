@@ -23,7 +23,7 @@ import com.keygenqt.shop.android.data.models.CategoryModel
 @Composable
 fun CategoryItem(
     model: CategoryModel,
-    onClickCategory: (Int) -> Unit
+    onClickCategory: (String, Int) -> Unit
 ) {
     Box {
         Box(
@@ -36,7 +36,7 @@ fun CategoryItem(
             ) {
                 Column(
                     modifier = Modifier
-                        .clickable { onClickCategory(model.id) }
+                        .clickable { onClickCategory(model.name, model.id) }
                         .fillMaxWidth()
                         .padding(start = 43.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 ) {

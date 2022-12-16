@@ -70,11 +70,13 @@ class ProductsService(
     ) = Products
         .select {
             (Products.isPublished eq true) and
-                    (Products.price greaterEq range.first) and
-                    (Products.price lessEq range.second) and
-                    (if (categories.isNotEmpty()) {
+                (Products.price greaterEq range.first) and
+                (Products.price lessEq range.second) and
+                (
+                    if (categories.isNotEmpty()) {
                         Products.categoryID inList categories
-                    } else Op.TRUE)
+                    } else Op.TRUE
+                    )
         }
         .apply {
             if (order !== null) {
@@ -156,9 +158,11 @@ class ProductsService(
     ) = Products
         .select {
             (Products.isPublished eq true) and
-                    (if (categories.isNotEmpty()) {
+                (
+                    if (categories.isNotEmpty()) {
                         Products.categoryID inList categories
-                    } else Op.TRUE)
+                    } else Op.TRUE
+                    )
         }
         .limit(1)
         .orderBy(Pair(Products.price, order))
@@ -169,7 +173,7 @@ class ProductsService(
                         exists(
                             ProductCollections.select {
                                 (ProductCollections.collection inList collections) and
-                                        (ProductCollections.product eq Products.id)
+                                    (ProductCollections.product eq Products.id)
                             }
                         )
                     }

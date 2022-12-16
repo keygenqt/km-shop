@@ -63,6 +63,7 @@ fun ProductsScreen(
     AppScaffoldProducts(
         navController = navController,
         enabled = !products.isNullOrEmpty() && products?.size != 1,
+        title = viewModel.title,
         sort = sort,
         onToggleSort = {
             viewModel.toggleSort()

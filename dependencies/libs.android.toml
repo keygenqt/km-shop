@@ -66,6 +66,11 @@ module = "com.google.accompanist:accompanist-swiperefresh"
 [libraries.accompanist-swiperefresh.version]
 ref = "accompanistVersion"
 
+[libraries.accompanist-flowlayout]
+module = "com.google.accompanist:accompanist-flowlayout"
+[libraries.accompanist-flowlayout.version]
+ref = "accompanistVersion"
+
 # Reflection
 # Reflection is a set of language and library features that allows you to introspect the structure of your program at runtime.
 [libraries.kotlin-reflect]
@@ -181,6 +186,7 @@ android = [
     "kotlinx-serialization-json",
     "accompanist-pager",
     "accompanist-swiperefresh",
+    "accompanist-flowlayout",
     "room-runtime",
     "room-ktx",
     "room-paging",
