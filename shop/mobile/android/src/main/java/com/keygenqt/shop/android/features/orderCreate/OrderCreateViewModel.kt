@@ -13,25 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.components.state
+package com.keygenqt.shop.android.features.orderCreate
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.keygenqt.shop.android.components.lottie.CatPlayingAnimation
+import androidx.lifecycle.ViewModel
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.services.ServiceRequest
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-@Composable
-fun LoadingBody() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(16.dp),
-    ) {
-        CatPlayingAnimation(
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
-}
+@HiltViewModel
+class OrderCreateViewModel @Inject constructor(
+    private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
+) : ViewModel()

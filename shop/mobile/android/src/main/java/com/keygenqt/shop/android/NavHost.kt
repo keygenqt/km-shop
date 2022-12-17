@@ -30,6 +30,7 @@ import com.keygenqt.shop.android.features.contact.ContactScreen
 import com.keygenqt.shop.android.features.contactForm.ContactFormScreen
 import com.keygenqt.shop.android.features.home.HomeTabs
 import com.keygenqt.shop.android.features.order.OrderScreen
+import com.keygenqt.shop.android.features.orderCreate.OrderCreateScreen
 import com.keygenqt.shop.android.features.orderHistory.OrderHistoryScreen
 import com.keygenqt.shop.android.features.orderSearch.OrderSearchScreen
 import com.keygenqt.shop.android.features.product.ProductScreen
@@ -76,6 +77,12 @@ fun NavHost(
                 arguments = RouteOrder.arguments()
             ) {
                 OrderScreen(navController)
+            }
+            composable(
+                route = RouteOrderCreate.route(),
+                arguments = RouteOrderCreate.arguments()
+            ) {
+                OrderCreateScreen(navController)
             }
             composable(
                 route = RouteOrderHistory.route(),

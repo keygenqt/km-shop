@@ -62,7 +62,14 @@ interface CartDataService : IAppDatabase {
     /**
      * Get list models
      */
-    fun getCartModels(): Flow<List<CartModel>> {
+    fun getCartModelsFlow(): Flow<List<CartModel>> {
+        return dao.getModelsFlow()
+    }
+
+    /**
+     * Get list models
+     */
+    fun getCartModels(): List<CartModel> {
         return dao.getModels()
     }
 

@@ -35,15 +35,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
+import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.routes.RouteContact
 import com.keygenqt.shop.android.routes.RouteOrderSearch
 
 @Composable
 fun AppScaffoldHome(
     cartCount: Int,
+    checkoutSate: Boolean,
     navController: NavHostController,
     activeTab: Int = 0,
     onChangeTab: (Int) -> Unit,
+    toCreateOrder: () -> Unit,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
@@ -67,23 +70,42 @@ fun AppScaffoldHome(
             }
         },
         actions = {
-            IconButton(onClick = {
-                navController.navigate(RouteContact.link())
-            }) {
-                Icon(
-                    imageVector = Icons.Outlined.ContactSupport,
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.onPrimary
-                )
-            }
-            IconButton(onClick = {
-                navController.navigate(RouteOrderSearch.link())
-            }) {
-                Icon(
-                    imageVector = Icons.Outlined.LocalMall,
-                    contentDescription = null,
-                    tint = MaterialTheme.colors.onPrimary
-                )
+            when (activeTab) {
+                0, 1 -> {
+                    IconButton(onClick = {
+                        navController.navigate(RouteContact.link())
+                    }) {
+                        Icon(
+                            imageVector = Icons.Outlined.ContactSupport,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.onPrimary
+                        )
+                    }
+                    IconButton(onClick = {
+                        navController.navigate(RouteOrderSearch.link())
+                    }) {
+                        Icon(
+                            imageVector = Icons.Outlined.LocalMall,
+                            contentDescription = null,
+                            tint = MaterialTheme.colors.onPrimary
+                        )
+                    }
+                }
+                2 -> {
+                    if (checkoutSate) {
+                        TextButton(
+                            colors = ButtonDefaults.textButtonColors(
+                                contentColor = Color.White
+                            ),
+                            onClick = toCreateOrder
+                        ) {
+                            AppText(
+                                color = MaterialTheme.colors.onPrimary,
+                                text = stringResource(id = R.string.home_btn_order)
+                            )
+                        }
+                    }
+                }
             }
         },
         bottomBar = {

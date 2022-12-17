@@ -26,7 +26,10 @@ import kotlinx.coroutines.flow.Flow
 interface CartModelDao {
 
     @Query("SELECT * FROM CartModel")
-    fun getModels(): Flow<List<CartModel>>
+    fun getModelsFlow(): Flow<List<CartModel>>
+
+    @Query("SELECT * FROM CartModel")
+    fun getModels(): List<CartModel>
 
     @Query("SELECT * FROM CartModel WHERE id=:id")
     fun getModel(id: Int): CartModel?

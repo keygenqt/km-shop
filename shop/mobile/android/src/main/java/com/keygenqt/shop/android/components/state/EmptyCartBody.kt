@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.base.LocalAndroidColors
-import com.keygenqt.shop.android.components.lottie.EmptyBoxAnimation
 import com.keygenqt.shop.android.components.lottie.EmptyCartAnimation
 import com.keygenqt.shop.android.components.texts.AppText
 

@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.components.state
+package com.keygenqt.shop.android.features.orderCreate
 
-import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.keygenqt.shop.android.components.lottie.CatPlayingAnimation
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.keygenqt.shop.android.features.orderCreate.elements.AppScaffoldOrderCreate
+import com.keygenqt.shop.android.features.orderCreate.elements.OrderCreateBody
 
+/**
+ * Checkout Page
+ *
+ * @param viewModel page view model
+ */
 @Composable
-fun LoadingBody() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(16.dp),
-    ) {
-        CatPlayingAnimation(
-            modifier = Modifier.align(Alignment.Center)
-        )
+fun OrderCreateScreen(
+    navController: NavHostController,
+    viewModel: OrderCreateViewModel = hiltViewModel(),
+) {
+    AppScaffoldOrderCreate(navController = navController) {
+        OrderCreateBody()
     }
 }

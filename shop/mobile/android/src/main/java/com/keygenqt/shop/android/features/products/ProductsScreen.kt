@@ -28,7 +28,7 @@ import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.state.EmptyBody
-import com.keygenqt.shop.android.components.state.OrderLoadingBody
+import com.keygenqt.shop.android.components.state.LoadingBody
 import com.keygenqt.shop.android.features.products.elements.AppScaffoldProducts
 import com.keygenqt.shop.android.features.products.elements.FilterBlock
 import com.keygenqt.shop.android.features.products.elements.ProductsBody
@@ -133,7 +133,7 @@ fun ProductsScreen(
                 )
             }
         } else if (loading) {
-            OrderLoadingBody()
+            LoadingBody()
         } else {
             EmptyBody(
                 title = stringResource(id = R.string.products_empty_title),

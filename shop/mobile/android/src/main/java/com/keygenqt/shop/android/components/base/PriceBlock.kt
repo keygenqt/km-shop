@@ -29,7 +29,8 @@ import com.keygenqt.shop.android.extensions.priceFormat
 
 @Composable
 fun PriceBlock(
-    price: Double
+    price: Double,
+    count: Int = 0,
 ) {
     Box(
         modifier = Modifier
@@ -39,7 +40,7 @@ fun PriceBlock(
         AppText(
             color = Color(0XFF22C55E),
             style = MaterialTheme.typography.caption,
-            text = price.priceFormat(),
+            text = price.priceFormat() + if (count > 0) " x $count" else "",
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -48,7 +49,8 @@ fun PriceBlock(
 
 @Composable
 fun PriceBlockLarge(
-    price: Double
+    price: Double,
+    count: Int = 0,
 ) {
     Box(
         modifier = Modifier
@@ -58,7 +60,7 @@ fun PriceBlockLarge(
         AppText(
             color = Color(0XFF22C55E),
             style = MaterialTheme.typography.body1,
-            text = price.priceFormat(),
+            text = price.priceFormat() + if (count > 0) " x $count" else "",
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )

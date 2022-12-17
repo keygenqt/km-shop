@@ -23,7 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.state.EmptyBody
-import com.keygenqt.shop.android.components.state.OrderLoadingBody
+import com.keygenqt.shop.android.components.state.LoadingBody
 import com.keygenqt.shop.android.features.order.elements.AppScaffoldOrder
 import com.keygenqt.shop.android.features.order.elements.OrderBody
 import com.keygenqt.shop.android.routes.RouteProduct
@@ -55,7 +55,7 @@ fun OrderScreen(
                 }
             )
         } else if (loading) {
-            OrderLoadingBody()
+            LoadingBody()
         } else {
             EmptyBody(
                 title = stringResource(id = R.string.order_error_title),

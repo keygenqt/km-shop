@@ -23,7 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.state.EmptyBody
-import com.keygenqt.shop.android.components.state.OrderLoadingBody
+import com.keygenqt.shop.android.components.state.LoadingBody
 import com.keygenqt.shop.android.features.product.elements.AppScaffoldProduct
 import com.keygenqt.shop.android.features.product.elements.ProductBody
 
@@ -55,7 +55,7 @@ fun ProductScreen(
                 }
             )
         } else if (loading) {
-            OrderLoadingBody()
+            LoadingBody()
         } else {
             EmptyBody(
                 title = stringResource(id = R.string.product_empty_title),

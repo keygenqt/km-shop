@@ -28,6 +28,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
@@ -38,27 +40,51 @@ fun CounterBlock(
     modifier: Modifier = Modifier,
     onClickPlus: () -> Unit,
     onClickMinus: () -> Unit,
+) = CounterBlockLarge(
+    countCart = countCart,
+    modifier = modifier,
+    onClickPlus = onClickPlus,
+    onClickMinus = onClickMinus,
+    paddingRow = PaddingValues(
+        start = 6.dp,
+        top = 4.dp,
+        end = 6.dp,
+        bottom = 4.dp
+    ),
+    sizeIcon = 16.dp,
+    sizeButton = 20.dp,
+    textStyle = MaterialTheme.typography.caption
+)
+
+@Composable
+fun CounterBlockLarge(
+    countCart: Int,
+    modifier: Modifier = Modifier,
+    onClickPlus: () -> Unit,
+    onClickMinus: () -> Unit,
+    paddingRow: PaddingValues = PaddingValues(
+        start = 6.dp,
+        top = 3.dp,
+        end = 6.dp,
+        bottom = 3.dp
+    ),
+    sizeIcon: Dp = 22.dp,
+    sizeButton: Dp = 30.dp,
+    textStyle: TextStyle = MaterialTheme.typography.body1
 ) {
     Row(
         modifier = modifier
             .clip(MaterialTheme.shapes.large)
             .background(LocalAndroidColors.current.bgVariant1)
-            .padding(
-                PaddingValues(
-                    start = 8.dp,
-                    top = 4.dp,
-                    end = 8.dp,
-                    bottom = 4.dp
-                )
-            ),
+            .padding(paddingRow),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         TextButton(
-            enabled = countCart > 0,
+            enabled = countCart > 1,
             shape = CircleShape,
             onClick = onClickMinus,
-            modifier = Modifier.size(30.dp),
+            modifier = Modifier.size(sizeButton),
             contentPadding = PaddingValues(
                 start = 0.dp,
                 top = 0.dp,
@@ -67,7 +93,7 @@ fun CounterBlock(
             ),
         ) {
             Icon(
-                modifier = Modifier.size(22.dp),
+                modifier = Modifier.size(sizeIcon),
                 imageVector = Icons.Outlined.RemoveCircle,
                 contentDescription = null
             )
@@ -76,7 +102,7 @@ fun CounterBlock(
         Spacer(modifier = Modifier.size(6.dp))
 
         AppText(
-            style = MaterialTheme.typography.body1,
+            style = textStyle,
             modifier = Modifier.offset(0.dp, (-0.5).dp),
             text = countCart.toString()
         )
@@ -86,7 +112,7 @@ fun CounterBlock(
         TextButton(
             shape = CircleShape,
             onClick = onClickPlus,
-            modifier = Modifier.size(30.dp),
+            modifier = Modifier.size(sizeButton),
             contentPadding = PaddingValues(
                 start = 0.dp,
                 top = 0.dp,
@@ -95,7 +121,7 @@ fun CounterBlock(
             ),
         ) {
             Icon(
-                modifier = Modifier.size(22.dp),
+                modifier = Modifier.size(sizeIcon),
                 imageVector = Icons.Outlined.AddCircle,
                 contentDescription = null
             )

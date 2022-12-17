@@ -41,7 +41,7 @@ import com.google.accompanist.flowlayout.FlowRow
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
-import com.keygenqt.shop.android.components.base.CounterBlock
+import com.keygenqt.shop.android.components.base.CounterBlockLarge
 import com.keygenqt.shop.android.components.base.PriceBlockLarge
 import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 import com.keygenqt.shop.android.components.texts.AppText
@@ -188,7 +188,7 @@ fun ProductBody(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    CounterBlock(
+                    CounterBlockLarge(
                         countCart = countCart,
                         onClickPlus = {
                             onChangeCart.invoke(model.id, countCart + 1)

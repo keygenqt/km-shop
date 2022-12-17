@@ -15,10 +15,8 @@
  */
 package com.keygenqt.shop.android.features.home
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -27,6 +25,7 @@ import com.google.accompanist.pager.rememberPagerState
 import com.keygenqt.shop.android.features.cart.CartScreen
 import com.keygenqt.shop.android.features.exploring.ExploringTabs
 import com.keygenqt.shop.android.features.home.elements.AppScaffoldHome
+import com.keygenqt.shop.android.routes.RouteOrderCreate
 import kotlinx.coroutines.launch
 
 /**
@@ -43,14 +42,20 @@ fun HomeTabs(
 
     val cartProductIds by viewModel.cartProductIds.collectAsState(null)
 
+    var checkoutSate by rememberSaveable { mutableStateOf(false) }
+
     AppScaffoldHome(
         cartCount = cartProductIds?.sumOf { it.count } ?: 0,
+        checkoutSate = checkoutSate,
         navController = navController,
         activeTab = pagerState.currentPage,
         onChangeTab = {
             scope.launch {
                 pagerState.animateScrollToPage(it)
             }
+        },
+        toCreateOrder = {
+            navController.navigate(RouteOrderCreate.link())
         }
     ) {
         HorizontalPager(
@@ -61,7 +66,10 @@ fun HomeTabs(
             when (page) {
                 0 -> HomeScreen(viewModel)
                 1 -> ExploringTabs(navController)
-                2 -> CartScreen(navController)
+                2 -> CartScreen(
+                    navController = navController,
+                    onStateCheckout = { checkoutSate = it }
+                )
             }
         }
     }

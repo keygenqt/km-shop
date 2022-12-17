@@ -15,12 +15,127 @@
  */
 package com.keygenqt.shop.android.features.cart
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.keygenqt.shop.android.data.models.ProductModel
+import com.keygenqt.shop.android.data.models.mapToModels
+import com.keygenqt.shop.android.extensions.withTransaction
+import com.keygenqt.shop.android.services.AppDataService
+import com.keygenqt.shop.android.services.impl.CartDataService
+import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle
-) : ViewModel()
+    private val serviceRequest: ServiceRequest,
+    private val dataService: AppDataService
+) : ViewModel() {
+
+    /**
+     * Listen data
+     */
+    val cartProductIds = dataService.getCartModelsFlow().distinctUntilChanged()
+
+    /**
+     * Loading query
+     */
+    private val _loading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    /**
+     * [StateFlow] for [_loading]
+     */
+    val loading: StateFlow<Boolean> get() = _loading.asStateFlow()
+
+    /**
+     * Loading query
+     */
+    private val _products: MutableStateFlow<List<ProductModel>?> = MutableStateFlow(null)
+
+    /**
+     * [StateFlow] for [_products]
+     */
+    val products: StateFlow<List<ProductModel>?> get() = _products.asStateFlow()
+
+    var countUniqueCartProduct: Int? = null
+
+    init {
+        viewModelScope.launch {
+            cartProductIds.onEach {
+                if (it.isEmpty()) {
+                    _products.value = null
+                    countUniqueCartProduct = null
+                } else {
+                    if (countUniqueCartProduct == null || countUniqueCartProduct != it.size) {
+                        countUniqueCartProduct = it.size
+                        getProducts()
+                    }
+                }
+            }.collect()
+        }
+    }
+
+    fun getProducts() {
+        viewModelScope.launch {
+            _loading.value = true
+            try {
+                delay(500)
+                dataService.withTransaction<CartDataService> {
+                    serviceRequest.get.productsPublishedByIDs(
+                        getCartModels().map { it.id }
+                            .toTypedArray()
+                    )
+                        .let { models ->
+                            _products.value = models.mapToModels()
+                            _loading.value = false
+                        }
+                }
+            } catch (ex: Exception) {
+                _loading.value = false
+            }
+        }
+    }
+
+    fun removeCartProduct(
+        productId: Int
+    ) {
+        viewModelScope.launch {
+            dataService.withTransaction<CartDataService> {
+                getCartModel(productId)?.let {
+                    deleteCartModels(productId)
+                }
+            }
+        }
+    }
+
+    fun plusCartCount(
+        productId: Int
+    ) {
+        viewModelScope.launch {
+            dataService.withTransaction<CartDataService> {
+                getCartModel(productId)?.let { model ->
+                    updateCartModel(
+                        model.copy(count = model.count + 1)
+                    )
+                }
+            }
+        }
+    }
+
+    fun minusCartCount(
+        productId: Int
+    ) {
+        viewModelScope.launch {
+            dataService.withTransaction<CartDataService> {
+                getCartModel(productId)?.let { model ->
+                    updateCartModel(
+                        model.copy(count = model.count - 1)
+                    )
+                }
+            }
+        }
+    }
+}

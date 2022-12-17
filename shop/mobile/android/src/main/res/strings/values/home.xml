@@ -2,8 +2,8 @@
     <string name="info_block_title">В этом сезоне найди лучшее 🔥</string>
     <string name="info_block_subtitle">Коллекции для\nвашего стиля</string>
     <string name="info_block_btn">Начните поиск</string>
-
     <string name="category_block_title">Топ категорий</string>
     <string name="category_block_title_btn">Все</string>
     <string name="category_block_btn">Смотреть</string>
+    <string name="home_btn_order">Оформить</string>
 </resources>

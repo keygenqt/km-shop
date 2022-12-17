@@ -110,7 +110,7 @@ class ProductsViewModel @Inject constructor(
     /**
      * Listen data
      */
-    val cartProductIds = dataService.getCartModels().distinctUntilChanged()
+    val cartProductIds = dataService.getCartModelsFlow().distinctUntilChanged()
 
     init {
         viewModelScope.launch {
