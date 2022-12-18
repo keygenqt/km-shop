@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ExploringTabs(
     index: Int = 0,
+    onChangeTab: (Int) -> Unit,
     navController: NavHostController,
 ) {
 
@@ -64,6 +65,7 @@ fun ExploringTabs(
             ),
             onChangeTab = { index ->
                 scope.launch {
+                    onChangeTab.invoke(index)
                     pagerState.animateScrollToPage(index)
                 }
             }

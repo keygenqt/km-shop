@@ -91,7 +91,10 @@ fun HomeTabs(
                 )
                 1 -> ExploringTabs(
                     index = exploringIndex,
-                    navController = navController
+                    navController = navController,
+                    onChangeTab = {
+                        exploringIndex = it
+                    }
                 )
                 2 -> CartScreen(
                     navController = navController,
