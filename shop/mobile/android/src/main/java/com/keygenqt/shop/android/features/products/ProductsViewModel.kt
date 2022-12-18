@@ -174,7 +174,8 @@ class ProductsViewModel @Inject constructor(
     }
 
     fun changeCartProducts(
-        productId: Int
+        productId: Int,
+        price: Double
     ) {
         viewModelScope.launch {
             dataService.withTransaction<CartDataService> {
@@ -193,7 +194,8 @@ class ProductsViewModel @Inject constructor(
                     insertCartModels(
                         CartModel(
                             id = productId,
-                            count = 1
+                            count = 1,
+                            price = price,
                         )
                     )
                     launch(Dispatchers.Main) {

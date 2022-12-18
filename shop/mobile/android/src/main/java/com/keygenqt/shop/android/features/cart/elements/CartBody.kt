@@ -38,8 +38,8 @@ fun CartBody(
     onRefresh: () -> Unit,
     onClickProduct: (id: Int) -> Unit,
     onClickRemoveCart: (id: Int) -> Unit,
-    onClickPlus: (Int) -> Unit,
-    onClickMinus: (Int) -> Unit,
+    onClickPlus: (Int, Double) -> Unit,
+    onClickMinus: (Int, Double) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     val refreshState = rememberPullRefreshState(

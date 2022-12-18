@@ -1,4 +1,7 @@
 <resources>
+    <string name="contact_form_title">Сообщение</string>
+    <string name="contact_form_title2">Напишите нам сообщение</string>
+    <string name="contact_form_info">Мы обязательно прочтем и ответим, если будет необходимость</string>
     <string name="contact_form_field_fname">Имя</string>
     <string name="contact_form_field_lname">Фамилия (по желанию)</string>
     <string name="contact_form_field_email">Email</string>

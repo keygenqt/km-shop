@@ -59,11 +59,11 @@ fun CartScreen(
             onClickRemoveCart = {
                 viewModel.removeCartProduct(it)
             },
-            onClickPlus = {
-                viewModel.plusCartCount(it)
+            onClickPlus = { id, price ->
+                viewModel.plusCartCount(id, price)
             },
-            onClickMinus = {
-                viewModel.minusCartCount(it)
+            onClickMinus = { id, price ->
+                viewModel.minusCartCount(id, price)
             },
         )
         LaunchedEffect(Unit) {

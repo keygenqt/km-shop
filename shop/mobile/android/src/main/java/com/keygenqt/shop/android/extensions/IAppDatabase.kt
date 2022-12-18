@@ -27,3 +27,13 @@ suspend fun <T> IAppDatabase.withTransaction(body: suspend T.() -> Unit) {
         body.invoke(this as T)
     }
 }
+
+/**
+ * Extensions for easy transaction
+ */
+@Suppress("UNCHECKED_CAST")
+suspend fun <T, R> IAppDatabase.withTransactionResponse(body: suspend T.() -> R): R {
+    return db.withTransaction {
+        return@withTransaction body.invoke(this as T)
+    }
+}

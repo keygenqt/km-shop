@@ -79,14 +79,14 @@ fun ContactFormBody(
 
         AppText(
             style = MaterialTheme.typography.h6,
-            text = "Напишите нам сообщение"
+            text = stringResource(id = R.string.contact_form_title2)
         )
 
         Spacer(modifier = Modifier.size(3.dp))
 
         AppText(
             style = MaterialTheme.typography.caption,
-            text = "Мы обязательно прочтем и ответим, если будет необходимость"
+            text = stringResource(id = R.string.contact_form_info)
         )
 
         Spacer(modifier = Modifier.size(16.dp))

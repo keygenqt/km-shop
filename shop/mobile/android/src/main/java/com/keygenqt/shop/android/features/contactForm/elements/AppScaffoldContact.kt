@@ -20,7 +20,9 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
 import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 
@@ -31,7 +33,7 @@ fun AppScaffoldContactFrom(
     content: @Composable () -> Unit
 ) {
     AppScaffold(
-        title = "",
+        title = stringResource(id = R.string.contact_form_title),
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()

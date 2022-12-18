@@ -21,25 +21,29 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
+import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 
 @Composable
 fun AppScaffoldOrderCreate(
-    navController: NavHostController,
+    loading: Boolean,
+    onClickBack: () -> Unit,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
         title = stringResource(id = R.string.order_create_title),
         navigationIcon = {
-            IconButton(onClick = {
-                navController.popBackStack()
-            }) {
+            IconButton(onClick = onClickBack) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = null,
                 )
+            }
+        },
+        actions = {
+            if (loading) {
+                LoadingAnimation()
             }
         }
     ) {

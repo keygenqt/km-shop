@@ -47,8 +47,8 @@ fun ProductCartItem(
     model: ProductModel,
     onClickProduct: (Int) -> Unit,
     onClickRemoveCart: (Int) -> Unit,
-    onClickPlus: (Int) -> Unit,
-    onClickMinus: (Int) -> Unit,
+    onClickPlus: (Int, Double) -> Unit,
+    onClickMinus: (Int, Double) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -115,10 +115,10 @@ fun ProductCartItem(
                 CounterBlock(
                     countCart = count,
                     onClickPlus = {
-                        onClickPlus.invoke(model.id)
+                        onClickPlus.invoke(model.id, model.price)
                     },
                     onClickMinus = {
-                        onClickMinus.invoke(model.id)
+                        onClickMinus.invoke(model.id, model.price)
                     },
                 )
 

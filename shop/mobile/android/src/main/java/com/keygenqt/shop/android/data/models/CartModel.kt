@@ -27,4 +27,5 @@ import androidx.room.PrimaryKey
 data class CartModel(
     @PrimaryKey val id: Int,
     val count: Int,
+    val price: Double,
 )

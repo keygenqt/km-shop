@@ -47,7 +47,7 @@ fun ProductItem(
     isHasCart: Boolean?,
     model: ProductModel,
     onClickProduct: (Int) -> Unit,
-    onClickCart: (Int) -> Unit
+    onClickCart: (Int, Double) -> Unit
 ) {
     if (index != 0) {
         Spacer(modifier = Modifier.size(16.dp))
@@ -125,7 +125,7 @@ fun ProductItem(
                     CardButton(
                         checked = isHasCart,
                         onClick = {
-                            onClickCart.invoke(model.id)
+                            onClickCart.invoke(model.id, model.price)
                         }
                     )
                 }

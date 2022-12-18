@@ -39,14 +39,14 @@ import org.koin.ktor.ext.inject
 @Serializable
 data class OrderCreateRequest(
 
-    @field:NotNullNotBlank
+    @field:NotNullNotBlank(message = "Телефон не должно быть пустым")
     val phone: String,
 
-    @field:Email(message = "Must be a valid Email")
+    @field:Email(message = "Должен быть действительный адрес электронной почты")
     val email: String,
 
     @field:NotNull
-    @field:Size(max = 1000, message = "Max size must less 1000")
+    @field:Size(max = 1000, message = "Максимальный размер адреса должен быть меньше 1000")
     val address: String,
 
     val products: List<OrderProductRequest> = listOf()

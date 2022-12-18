@@ -1,3 +1,13 @@
 <resources>
     <string name="order_create_title">Оформление заказа</string>
+    <string name="order_create_title2">Контактная информация</string>
+    <string name="order_create_info">Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу</string>
+    <string name="order_create_field_phone">Телефон</string>
+    <string name="order_create_field_email">Email (по желанию)</string>
+    <string name="order_create_field_address">Адрес (по желанию)</string>
+    <string name="order_create_btn_submit">Отправить</string>
+    <string name="order_create_success_title">Заказ оформлен!</string>
+    <string name="order_create_success_text">Спасибо за ваш заказ. С вами свяжутся для уточнения деталей заказа. До скорого!</string>
+    <string name="order_create_success_btn">Информация по заказу</string>
+    <string name="order_create_success_toast">Вы можете отслеживать статус вашего заказа, он был добавлен в историю.</string>
 </resources>

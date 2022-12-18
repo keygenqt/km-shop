@@ -50,8 +50,8 @@ fun ProductScreen(
                 loading = loading,
                 model = model!!,
                 onRefresh = { viewModel.getProduct() },
-                onChangeCart = { id, count ->
-                    viewModel.changeCartProducts(id, count)
+                onChangeCart = { id, count, price ->
+                    viewModel.changeCartProducts(id, count, price)
                 }
             )
         } else if (loading) {

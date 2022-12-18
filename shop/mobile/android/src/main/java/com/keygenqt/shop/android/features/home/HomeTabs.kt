@@ -95,7 +95,7 @@ fun HomeTabs(
                 )
                 2 -> CartScreen(
                     navController = navController,
-                    onStateCheckout = { checkoutSate = it }
+                    onStateCheckout = { checkoutSate = it },
                 )
             }
         }

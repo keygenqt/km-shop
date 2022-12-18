@@ -127,8 +127,8 @@ fun ProductsScreen(
                             navController.navigate(RouteProduct.link(it))
                         }
                     },
-                    onClickCart = { id ->
-                        viewModel.changeCartProducts(id)
+                    onClickCart = { id, price ->
+                        viewModel.changeCartProducts(id, price)
                     }
                 )
             }

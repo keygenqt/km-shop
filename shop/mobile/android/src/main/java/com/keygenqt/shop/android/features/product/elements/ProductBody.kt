@@ -57,7 +57,7 @@ fun ProductBody(
     countCart: Int,
     model: ProductModel,
     onRefresh: () -> Unit,
-    onChangeCart: (Int, Int) -> Unit,
+    onChangeCart: (Int, Int, Double) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
@@ -191,10 +191,10 @@ fun ProductBody(
                     CounterBlockLarge(
                         countCart = countCart,
                         onClickPlus = {
-                            onChangeCart.invoke(model.id, countCart + 1)
+                            onChangeCart.invoke(model.id, countCart + 1, model.price)
                         },
                         onClickMinus = {
-                            onChangeCart.invoke(model.id, countCart - 1)
+                            onChangeCart.invoke(model.id, countCart - 1, model.price)
                         }
                     )
 
@@ -215,9 +215,9 @@ fun ProductBody(
                         ),
                         onClick = {
                             if (countCart > 0) {
-                                onChangeCart.invoke(model.id, 0)
+                                onChangeCart.invoke(model.id, 0, model.price)
                             } else {
-                                onChangeCart.invoke(model.id, 1)
+                                onChangeCart.invoke(model.id, 1, model.price)
                             }
                         },
                     ) {

@@ -43,7 +43,7 @@ fun ProductsBody(
     paddingBottomList: Dp,
     onRefresh: () -> Unit,
     onClickProduct: (id: Int) -> Unit,
-    onClickCart: (Int) -> Unit
+    onClickCart: (Int, Double) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val refreshState = rememberPullRefreshState(
