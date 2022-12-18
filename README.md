@@ -74,6 +74,7 @@ Options:
 
 ## 5. Android App
 
+* Youtube: [Link](https://youtu.be/0zEC6xX8T-c)
 * Url: *Coming soon*
 * Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * Platform: **Android**

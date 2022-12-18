@@ -22,5 +22,20 @@ object OtherConstants {
     /**
      * Limit page size
      */
-    const val PAGE_LIMIT = 10
+    const val PAGE_LIMIT = 9
+
+    /**
+     * Contact email for apps
+     */
+    const val CONTACT_EMAIL = "keygenqt@gmail.com"
+
+    /**
+     * Contact phone for apps
+     */
+    const val CONTACT_PHONE = "+7 (999) 888 66 55"
+
+    /**
+     * Contact link telegram
+     */
+    const val CONTACT_TG = "https://t.me/keygenqt"
 }

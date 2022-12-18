@@ -30,13 +30,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.utils.constants.AppConstants
 
 @Composable
 fun ContactEmailBlock() {
+
+    val uriHandler = LocalUriHandler.current
+
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier
@@ -82,6 +87,7 @@ fun ContactEmailBlock() {
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
+                            uriHandler.openUri("mailto:${AppConstants.other.CONTACT_EMAIL}")
                         },
                     ) {
                         Row(
@@ -104,7 +110,7 @@ fun ContactEmailBlock() {
                             ) {
                                 AppText(
                                     color = Color.White,
-                                    text = "keygenqt@gmail.com"
+                                    text = AppConstants.other.CONTACT_EMAIL
                                 )
                             }
                         }

@@ -30,13 +30,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.utils.constants.AppConstants
+import com.keygenqt.shop.utils.constants.impl.OtherConstants
 
 @Composable
 fun ContactPhoneBlock() {
+
+    val uriHandler = LocalUriHandler.current
+
     Card(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier
@@ -82,6 +88,7 @@ fun ContactPhoneBlock() {
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
+                            uriHandler.openUri(AppConstants.other.CONTACT_TG)
                         },
                     ) {
                         Row(
@@ -104,7 +111,7 @@ fun ContactPhoneBlock() {
                             ) {
                                 AppText(
                                     color = Color.White,
-                                    text = "+7 (894) 443 111 11"
+                                    text = OtherConstants.CONTACT_PHONE
                                 )
                             }
                         }

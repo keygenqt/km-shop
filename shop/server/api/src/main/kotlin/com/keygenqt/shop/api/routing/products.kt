@@ -27,6 +27,7 @@ import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModelWithUploads
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.ProductsService
+import com.keygenqt.shop.utils.constants.AppConstants
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -97,7 +98,7 @@ data class ProductStateRequest(
 fun Route.products() {
 
     val productsService: ProductsService by inject()
-    val pageSize = 9
+    val pageSize = AppConstants.other.PAGE_LIMIT
 
     route("/products") {
         get("/purchased/{id}") {
