@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
-import com.keygenqt.shop.android.components.lottie.LoadingAnimation
+import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
 
 @Composable
 fun AppScaffoldOrderHistory(
@@ -46,7 +46,7 @@ fun AppScaffoldOrderHistory(
         },
         actions = {
             if (loading) {
-                LoadingAnimation()
+                LoadingAnimationLarge()
             }
         }
     ) {

@@ -20,18 +20,18 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.base.AppScaffold
+import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 
 @Composable
 fun AppScaffoldContactFrom(
+    loading: Boolean,
     navController: NavHostController,
     content: @Composable () -> Unit
 ) {
     AppScaffold(
-        title = stringResource(id = R.string.contact_form_title),
+        title = "",
         navigationIcon = {
             IconButton(onClick = {
                 navController.popBackStack()
@@ -42,6 +42,11 @@ fun AppScaffoldContactFrom(
                 )
             }
         },
+        actions = {
+            if (loading) {
+                LoadingAnimation()
+            }
+        }
     ) {
         content.invoke()
     }

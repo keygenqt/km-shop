@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
-import com.keygenqt.shop.android.components.lottie.LoadingAnimation
+import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
 
@@ -80,7 +80,7 @@ fun HomeBody(
                                 .height(130.dp)
                                 .clip(MaterialTheme.shapes.medium),
                         ) {
-                            LoadingAnimation(
+                            LoadingAnimationLarge(
                                 modifier = Modifier
                                     .align(Alignment.Center)
                             )

@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.base.ComposeWebView
-import com.keygenqt.shop.android.components.lottie.LoadingAnimation
+import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -70,7 +70,7 @@ fun ContactMapBlock(
                         .fillMaxWidth()
                         .height(200.dp),
                 ) {
-                    LoadingAnimation(
+                    LoadingAnimationLarge(
                         modifier = Modifier
                             .align(Alignment.Center)
                     )

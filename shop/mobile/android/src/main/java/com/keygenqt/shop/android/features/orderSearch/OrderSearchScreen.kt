@@ -16,23 +16,19 @@
 package com.keygenqt.shop.android.features.orderSearch
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.features.orderSearch.elements.AppScaffoldOrderSearch
 import com.keygenqt.shop.android.features.orderSearch.elements.OrderSearchBody
 import com.keygenqt.shop.android.routes.RouteOrder
 
 /**
- * Home page, main for app
- *
- * @param viewModel page view model
+ * Search order by number
  */
 @Composable
 fun OrderSearchScreen(
     navController: NavHostController,
-    viewModel: OrderSearchViewModel = hiltViewModel(),
 ) {
-    AppScaffoldOrderSearch(navController = navController) {
+    AppScaffoldOrderSearch(navController) {
         OrderSearchBody(
             onPressSearch = { number ->
                 navController.navigate(

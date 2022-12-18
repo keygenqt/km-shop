@@ -25,7 +25,6 @@ export function ContactForm() {
             }}
             validationSchema={Yup.object().shape({
                 fname: Yup.string().required('Требуется имя'),
-                lname: Yup.string().required('Требуется отчество'),
                 email: Yup.string().required('Электронная почта обязательна').email('Электронная почта должна быть действительной'),
                 message: Yup.string().required('Требуется сообщение'),
             })}
@@ -135,7 +134,7 @@ export function ContactForm() {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         fullWidth
-                                        label="Отчество"
+                                        label="Фамилия (по желанию)"
                                         variant="filled"
                                         sx={{
                                             '& .MuiInputBase-root': {

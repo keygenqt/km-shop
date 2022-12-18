@@ -29,6 +29,7 @@ class AndroidColors(context: Context) {
     val bgVariant3 by lazy { Color(context.getColor(R.color.bg_variant_3)) }
     val bgVariant4 by lazy { Color(context.getColor(R.color.bg_variant_4)) }
     val bgVariant5 by lazy { Color(context.getColor(R.color.bg_variant_5)) }
+    val bgVariant6 by lazy { Color(context.getColor(R.color.bg_variant_6)) }
     // text
     val textCaption by lazy { Color(context.getColor(R.color.text_caption)) }
 }

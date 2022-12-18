@@ -13,11 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.android.features.orderSearch
+package com.keygenqt.shop.android.components.texts
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.Composable
+import com.keygenqt.shop.exception.ValidateViolation
 
-@HiltViewModel
-class OrderSearchViewModel @Inject constructor() : ViewModel()
+/**
+ * Base test for app
+ */
+@Composable
+fun AppTextHelper(
+    filed: String,
+    validate: Array<ValidateViolation>? = null
+) {
+    validate?.find { it.filed == filed }?.let {
+        AppText(
+            style = MaterialTheme.typography.caption,
+            color = MaterialTheme.colors.error,
+            text = it.errors.joinToString(". ") + "."
+        )
+    }
+}

@@ -16,6 +16,8 @@
 package com.keygenqt.shop.android.features.contactForm
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.features.contactForm.elements.AppScaffoldContactFrom
@@ -31,9 +33,27 @@ fun ContactFormScreen(
     navController: NavHostController,
     viewModel: ContactFormViewModel = hiltViewModel(),
 ) {
+    val success by viewModel.success.collectAsState()
+    val loading by viewModel.loading.collectAsState()
+    val error by viewModel.error.collectAsState()
+
     AppScaffoldContactFrom(
+        loading = loading,
         navController = navController
     ) {
-        ContactFormBody()
+        ContactFormBody(
+            success = success,
+            loading = loading,
+            error = error,
+            onSubmit = { email, fname, lname, phone, message ->
+                viewModel.sendMessage(
+                    email = email,
+                    fname = fname,
+                    lname = lname,
+                    phone = phone,
+                    message = message,
+                )
+            }
+        )
     }
 }

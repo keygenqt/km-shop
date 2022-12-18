@@ -24,9 +24,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.airbnb.lottie.compose.*
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.keygenqt.shop.android.R
+
 
 /**
  * Page animation
@@ -34,18 +38,29 @@ import com.keygenqt.shop.android.R
 @Composable
 fun LoadingAnimation(
     modifier: Modifier = Modifier,
+) = LoadingAnimationLarge(
+    modifier = modifier.padding(vertical = 11.dp, horizontal = 13.dp),
+    boxSize = 30.dp,
+    iconSize = 45.dp,
+)
+
+@Composable
+fun LoadingAnimationLarge(
+    modifier: Modifier = Modifier,
+    boxSize: Dp = 65.dp,
+    iconSize: Dp = 80.dp,
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.block_loader))
 
     Box(modifier = modifier) {
         Box(
             modifier = Modifier
-                .size(65.dp)
+                .size(boxSize)
                 .align(Alignment.Center)
         ) {
             Box(
                 modifier = Modifier
-                    .size(65.dp)
+                    .size(boxSize)
                     .clip(CircleShape)
                     .background(Color.White.copy(alpha = 0.8f))
                     .align(Alignment.Center)
@@ -56,8 +71,8 @@ fun LoadingAnimation(
                     composition = composition,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .requiredHeight(80.dp)
-                        .requiredWidth(80.dp)
+                        .requiredHeight(iconSize)
+                        .requiredWidth(iconSize)
                 )
             }
         }

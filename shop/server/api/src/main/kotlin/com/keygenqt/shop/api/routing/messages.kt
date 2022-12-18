@@ -36,23 +36,22 @@ import org.koin.ktor.ext.inject
  */
 @Serializable
 data class MessageRequest(
-    @field:NotNullNotBlank
-    @field:Size(min = 3, max = 250, message = "First name must be between 3 and 250")
+    @field:NotNullNotBlank(message = "Имя не должно быть пустым")
+    @field:Size(min = 3, max = 250, message = "Имя должно быть от 3 до 250")
     val fname: String,
 
-    @field:NotNullNotBlank
-    @field:Size(min = 3, max = 250, message = "Last name must be between 3 and 250")
+    @field:Size(max = 250, message = "Фамилия должна быть не больше 250")
     val lname: String,
 
-    @field:NotNullNotBlank
-    @field:Email(message = "Must be a valid Email")
+    @field:NotNullNotBlank(message = "Почта не должна быть пустой")
+    @field:Email(message = "Должен быть действительный адрес электронной почты")
     val email: String,
 
-    @field:Size(min = 0, max = 250, message = "Phone max size 250")
+    @field:Size(min = 0, max = 250, message = "Максимальный размер телефона 250")
     val phone: String,
 
-    @field:NotNullNotBlank
-    @field:Size(min = 3, max = 1000, message = "Message must be between 3 and 1000")
+    @field:NotNullNotBlank(message = "Сообщение не должно быть пустым")
+    @field:Size(min = 3, max = 1000, message = "Сообщение должно быть от 3 до 1000")
     val message: String,
 )
 

@@ -43,7 +43,7 @@ import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
 import com.keygenqt.shop.android.components.base.CounterBlockLarge
 import com.keygenqt.shop.android.components.base.PriceBlockLarge
-import com.keygenqt.shop.android.components.lottie.LoadingAnimation
+import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.ProductModel
 import com.keygenqt.shop.android.extensions.iconsByString
@@ -122,7 +122,7 @@ fun ProductBody(
                                 .fillMaxSize()
                                 .background(LocalAndroidColors.current.bgVariant1)
                         ) {
-                            LoadingAnimation(
+                            LoadingAnimationLarge(
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
