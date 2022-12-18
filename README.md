@@ -13,8 +13,8 @@ All platforms use the latest stack.
 2. Write admin panel ✅
 3. CLI application for the server ✅
 4. Write a website for clients ✅
-5. Write an Android application 👈
-5. Write an iOS application ⌛
+5. Write an Android application ✅
+5. Write an iOS application 👈
 
 ## 1. API
 
@@ -84,7 +84,7 @@ Options:
 <p>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1671122039.png" width="32%"/>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screenshot_1671122048.png" width="32%"/>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screen_Recording_2022-12-16_at_19.01.39.gif" width="32%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screen_Recording_2022-12-18_at_19.07.52.gif" width="32%"/>
 </p>
 
 ## 6. iOS App
