@@ -32,6 +32,7 @@ import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.services.ServiceRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,6 +48,12 @@ class ProductsViewModel @Inject constructor(
     private val serviceRequest: ServiceRequest,
     private val dataService: AppDataService
 ) : ViewModel() {
+
+    /**
+     * Query job
+     */
+    private var job: Job? = null
+
     /**
      * Key category for filtering list
      */
@@ -61,6 +68,21 @@ class ProductsViewModel @Inject constructor(
      * Key collection for filtering list
      */
     private val collectionID: Int = savedStateHandle[RouteProducts.collectionID.name]!!
+
+    /**
+     * Pages list is end
+     */
+    private val _isEnd: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    /**
+     * [StateFlow] for [_isEnd]
+     */
+    val isEnd: StateFlow<Boolean> get() = _isEnd.asStateFlow()
+
+    /**
+     * Page list
+     */
+    private var _page: Int = 1
 
     /**
      * Loading query
@@ -129,15 +151,60 @@ class ProductsViewModel @Inject constructor(
             OrderProduct.LOW -> _sort.value = OrderProduct.HEIGHT
             OrderProduct.HEIGHT -> _sort.value = OrderProduct.NEWEST
         }
-        viewModelScope.launch {
-            updateList()
-        }
+        this.refreshList()
     }
 
     fun setPriceRange(pricesFilter: ClosedFloatingPointRange<Float>) {
         this.pricesFilter = pricesFilter
-        viewModelScope.launch {
+        this.refreshList()
+    }
+
+    fun refreshList() {
+        _page = 1
+        _isEnd.value = false
+        job?.cancel()
+        job = viewModelScope.launch {
             updateList()
+        }
+    }
+
+    fun nextPage() {
+        _page += 1
+        job?.cancel()
+        job = viewModelScope.launch {
+            updateList(false)
+        }
+    }
+
+    private suspend fun updateList(
+        loading: Boolean = true
+    ) {
+        _loading.value = loading
+        delay(1000)
+        serviceRequest.get.productsPublished(
+            page = _page,
+            order = sort.value.name,
+            range = pricesFilter?.let {
+                arrayOf(
+                    it.start.toDouble(),
+                    it.endInclusive.toDouble()
+                )
+            } ?: arrayOf(0.0, 999999999.0),
+            categories = arrayOf(categoryID).filter { it != 0 }.toTypedArray(),
+            collections = arrayOf(collectionID).filter { it != 0 }.toTypedArray(),
+        ).let { products ->
+            if (products.pages == _page) {
+                _isEnd.value = true
+            }
+            if (products.products.isNotEmpty()) {
+                if (_page == 1) {
+                    _products.value = products.products.toList().mapToModels()
+                } else {
+                    _products.value = (_products.value ?: listOf())
+                        .plus(products.products.toList().mapToModels())
+                }
+            }
+            _loading.value = false
         }
     }
 
@@ -150,26 +217,6 @@ class ProductsViewModel @Inject constructor(
             if (pricesFilter == null) {
                 pricesFilter = _prices.value
             }
-        }
-    }
-
-    suspend fun updateList() {
-        _loading.value = true
-        delay(1000)
-        serviceRequest.get.productsPublished(
-            page = 1,
-            order = sort.value.name,
-            range = pricesFilter?.let {
-                arrayOf(
-                    it.start.toDouble(),
-                    it.endInclusive.toDouble()
-                )
-            } ?: arrayOf(0.0, 999999999.0),
-            categories = arrayOf(categoryID).filter { it != 0 }.toTypedArray(),
-            collections = arrayOf(collectionID).filter { it != 0 }.toTypedArray(),
-        ).let { products ->
-            _products.value = products.products.toList().mapToModels()
-            _loading.value = false
         }
     }
 

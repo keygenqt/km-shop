@@ -53,6 +53,7 @@ fun ProductsScreen(
         )
     )
 
+    val isEnd by viewModel.isEnd.collectAsState()
     val products by viewModel.products.collectAsState()
     val prices by viewModel.prices.collectAsState()
     val loading by viewModel.loading.collectAsState()
@@ -70,7 +71,7 @@ fun ProductsScreen(
             viewModel.toggleSort()
         }
     ) {
-        if (!products.isNullOrEmpty()) {
+        if (products != null) {
             BottomSheetScaffold(
                 modifier = Modifier,
                 scaffoldState = bottomSheetScaffoldState,
@@ -109,15 +110,12 @@ fun ProductsScreen(
                 },
             ) {
                 ProductsBody(
+                    isEnd = isEnd,
                     cartProductIds = cartProductIds,
                     loading = loading,
                     models = products!!,
                     paddingBottomList = paddingBottomList,
-                    onRefresh = {
-                        scope.launch {
-                            viewModel.updateList()
-                        }
-                    },
+                    onRefresh = viewModel::refreshList,
                     onClickProduct = {
                         scope.launch {
                             bottomSheetScaffoldState.bottomSheetState.animateTo(
@@ -129,6 +127,9 @@ fun ProductsScreen(
                     },
                     onClickCart = { id, price ->
                         viewModel.changeCartProducts(id, price)
+                    },
+                    onChangeStateLoadingList = {
+                        if (it) viewModel.nextPage()
                     }
                 )
             }
