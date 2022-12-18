@@ -16,21 +16,17 @@
 package com.keygenqt.shop.android.features.contact
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.keygenqt.shop.android.features.contact.elements.AppScaffoldContact
 import com.keygenqt.shop.android.features.contact.elements.ContactBody
 import com.keygenqt.shop.android.routes.RouteContactForm
 
 /**
- * Contact page
- *
- * @param viewModel page view model
+ * Contact view page
  */
 @Composable
 fun ContactScreen(
     navController: NavHostController,
-    viewModel: ContactViewModel = hiltViewModel(),
 ) {
     AppScaffoldContact(
         navController = navController

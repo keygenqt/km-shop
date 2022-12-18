@@ -27,12 +27,17 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppTabRow(
+    index: Int,
     modifier: Modifier = Modifier,
     tabs: List<String>,
     onChangeTab: (Int) -> Unit
 ) {
 
-    var pagerActive by rememberSaveable { mutableStateOf(0) }
+    var pagerActive by rememberSaveable { mutableStateOf(index) }
+
+    LaunchedEffect(index) {
+        pagerActive = index
+    }
 
     TabRow(
         backgroundColor = MaterialTheme.colors.primary,

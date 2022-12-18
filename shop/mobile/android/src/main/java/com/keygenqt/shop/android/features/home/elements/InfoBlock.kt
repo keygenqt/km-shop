@@ -30,7 +30,9 @@ import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 
 @Composable
-fun InfoBlock() {
+fun InfoBlock(
+    onClickCollections: () -> Unit
+) {
     Card(
         backgroundColor = LocalAndroidColors.current.bgVariant2,
         modifier = Modifier
@@ -71,8 +73,7 @@ fun InfoBlock() {
                         backgroundColor = Color.Black,
                         contentColor = Color.White,
                     ),
-                    onClick = {
-                    },
+                    onClick = onClickCollections,
                 ) {
                     Text(text = stringResource(id = R.string.info_block_btn))
                 }

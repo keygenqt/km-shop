@@ -23,12 +23,14 @@ import androidx.compose.material.pullrefresh.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.base.AppPullRefreshIndicator
+import com.keygenqt.shop.android.components.lottie.LoadingAnimation
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
 
@@ -37,7 +39,10 @@ import com.keygenqt.shop.android.data.models.CategoryModel
 fun HomeBody(
     loading: Boolean,
     onRefresh: () -> Unit,
-    categories: List<CategoryModel>?
+    categories: List<CategoryModel>?,
+    onClickCategory: (String, Int) -> Unit,
+    onClickCategories: () -> Unit,
+    onClickCollections: () -> Unit
 ) {
 
     val scrollState = rememberScrollState()
@@ -55,7 +60,7 @@ fun HomeBody(
                 .verticalScroll(scrollState)
                 .padding(16.dp),
         ) {
-            InfoBlock()
+            InfoBlock(onClickCollections)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -68,47 +73,61 @@ fun HomeBody(
                     modifier = Modifier.padding(8.dp)
                 ) {
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
+                    if (categories.isNullOrEmpty()) {
                         Box(
-                            modifier = Modifier.padding(start = 10.dp)
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(130.dp)
+                                .clip(MaterialTheme.shapes.medium),
                         ) {
-                            AppText(
-                                text = stringResource(id = R.string.category_block_title),
-                                style = MaterialTheme.typography.h6,
+                            LoadingAnimation(
+                                modifier = Modifier
+                                    .align(Alignment.Center)
                             )
                         }
-
-                        TextButton(onClick = {
-                        }) {
-                            Text(
-                                color = MaterialTheme.colors.onSurface,
-                                text = stringResource(id = R.string.category_block_title_btn)
-                            )
-                        }
-                    }
-
-                    Column(
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        categories?.take(3)?.forEachIndexed { index, model ->
-                            if (index != 0) {
-                                Spacer(modifier = Modifier.height(16.dp))
-                            }
-                            CategoryBlock(
-                                category = model,
-                                bg = painterResource(
-                                    id = when (index) {
-                                        0 -> R.drawable.cat_bg_1
-                                        1 -> R.drawable.cat_bg_3
-                                        2 -> R.drawable.cat_bg_5
-                                        else -> R.drawable.cat_bg_2
-                                    }
+                    } else {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Box(
+                                modifier = Modifier.padding(start = 10.dp)
+                            ) {
+                                AppText(
+                                    text = stringResource(id = R.string.category_block_title),
+                                    style = MaterialTheme.typography.h6,
                                 )
-                            )
+                            }
+
+                            TextButton(onClick = onClickCategories) {
+                                Text(
+                                    color = MaterialTheme.colors.onSurface,
+                                    text = stringResource(id = R.string.category_block_title_btn)
+                                )
+                            }
+                        }
+
+                        Column(
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            categories.take(3).forEachIndexed { index, model ->
+                                if (index != 0) {
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                }
+                                CategoryItem(
+                                    model = model,
+                                    bg = painterResource(
+                                        id = when (index) {
+                                            0 -> R.drawable.cat_bg_1
+                                            1 -> R.drawable.cat_bg_3
+                                            2 -> R.drawable.cat_bg_5
+                                            else -> R.drawable.cat_bg_2
+                                        }
+                                    ),
+                                    onClickCategory = onClickCategory
+                                )
+                            }
                         }
                     }
                 }

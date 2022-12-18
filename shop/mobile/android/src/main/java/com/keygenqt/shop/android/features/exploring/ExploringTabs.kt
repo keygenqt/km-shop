@@ -37,11 +37,18 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ExploringTabs(
+    index: Int = 0,
     navController: NavHostController,
 ) {
 
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(index)
+
+    LaunchedEffect(index) {
+        scope.launch {
+            pagerState.animateScrollToPage(index)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -49,6 +56,7 @@ fun ExploringTabs(
             .fillMaxHeight(),
     ) {
         AppTabRow(
+            index = index,
             modifier = Modifier.zIndex(2f),
             tabs = listOf(
                 stringResource(id = R.string.exploring_categories_tab),

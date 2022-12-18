@@ -40,8 +40,9 @@ import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CategoryModel
 
 @Composable
-fun CategoryBlock(
-    category: CategoryModel,
+fun CategoryItem(
+    model: CategoryModel,
+    onClickCategory: (String, Int) -> Unit,
     bg: Painter
 ) {
     val dark = isSystemInDarkTheme()
@@ -73,7 +74,7 @@ fun CategoryBlock(
                     .padding(8.dp)
             ) {
                 AppText(
-                    text = category.name,
+                    text = model.name,
                     color = if (dark) MaterialTheme.colors.surface else LocalAndroidColors.current.textCaption,
                     style = MaterialTheme.typography.caption
                 )
@@ -82,7 +83,7 @@ fun CategoryBlock(
 
                 AppText(
                     color = Color.Black,
-                    text = category.desc,
+                    text = model.desc,
                     style = MaterialTheme.typography.body1,
                 )
             }
@@ -95,6 +96,7 @@ fun CategoryBlock(
                         backgroundColor = MaterialTheme.colors.surface
                     ) else ButtonDefaults.textButtonColors(),
                     onClick = {
+                        onClickCategory.invoke(model.name, model.id)
                     }
                 ) {
                     Row(

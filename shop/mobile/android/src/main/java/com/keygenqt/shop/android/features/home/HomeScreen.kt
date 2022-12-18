@@ -28,6 +28,9 @@ import com.keygenqt.shop.android.features.home.elements.HomeBody
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel,
+    onClickCategory: (String, Int) -> Unit,
+    onClickCategories: () -> Unit,
+    onClickCollections: () -> Unit
 ) {
     val loading by viewModel.loading.collectAsState()
     val categories by viewModel.categories.collectAsState(null)
@@ -37,6 +40,9 @@ fun HomeScreen(
         categories = categories,
         onRefresh = {
             viewModel.updateCategories()
-        }
+        },
+        onClickCategory = onClickCategory,
+        onClickCategories = onClickCategories,
+        onClickCollections = onClickCollections
     )
 }

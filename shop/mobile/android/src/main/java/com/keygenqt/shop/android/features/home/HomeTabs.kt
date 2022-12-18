@@ -26,6 +26,7 @@ import com.keygenqt.shop.android.features.cart.CartScreen
 import com.keygenqt.shop.android.features.exploring.ExploringTabs
 import com.keygenqt.shop.android.features.home.elements.AppScaffoldHome
 import com.keygenqt.shop.android.routes.RouteOrderCreate
+import com.keygenqt.shop.android.routes.RouteProducts
 import kotlinx.coroutines.launch
 
 /**
@@ -42,6 +43,7 @@ fun HomeTabs(
 
     val cartProductIds by viewModel.cartProductIds.collectAsState(null)
 
+    var exploringIndex by rememberSaveable { mutableStateOf(0) }
     var checkoutSate by rememberSaveable { mutableStateOf(false) }
 
     AppScaffoldHome(
@@ -64,8 +66,33 @@ fun HomeTabs(
             userScrollEnabled = false
         ) { page ->
             when (page) {
-                0 -> HomeScreen(viewModel)
-                1 -> ExploringTabs(navController)
+                0 -> HomeScreen(
+                    viewModel = viewModel,
+                    onClickCategory = { name, id ->
+                        navController.navigate(
+                            RouteProducts.link(
+                                title = name,
+                                categoryID = id
+                            )
+                        )
+                    },
+                    onClickCategories = {
+                        scope.launch {
+                            exploringIndex = 0
+                            pagerState.animateScrollToPage(1)
+                        }
+                    },
+                    onClickCollections = {
+                        scope.launch {
+                            exploringIndex = 1
+                            pagerState.animateScrollToPage(1)
+                        }
+                    }
+                )
+                1 -> ExploringTabs(
+                    index = exploringIndex,
+                    navController = navController
+                )
                 2 -> CartScreen(
                     navController = navController,
                     onStateCheckout = { checkoutSate = it }
