@@ -6,4 +6,7 @@
   
 */
 
-"app_name" = "My Shop";
+"app_name" = "You Shop";
+"tab_1" = "Главная";
+"tab_2" = "Каталог";
+"tab_3" = "Корзина";

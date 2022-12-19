@@ -17,3 +17,10 @@ strings:
       params:
         enumName: L10nApp
         publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Exploring.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/ExploringStrings.swift
+      params:
+        enumName: L10nExploring
+        publicAccess: false

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MyShopApp: App {
+struct YouShopApp: App {
     
     init() {
         Thread.sleep(forTimeInterval: 2.0)
@@ -9,7 +9,7 @@ struct MyShopApp: App {
     
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+            HomeTabs()
 		}
 	}
 }
