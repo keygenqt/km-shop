@@ -195,7 +195,6 @@ fun ContactFormBody(
 
         Spacer(modifier = Modifier.size(16.dp))
 
-
         TextField(
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = KeyboardType.Text

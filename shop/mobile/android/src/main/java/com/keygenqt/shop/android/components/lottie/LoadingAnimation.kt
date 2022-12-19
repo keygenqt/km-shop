@@ -31,7 +31,6 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.keygenqt.shop.android.R
 
-
 /**
  * Page animation
  */

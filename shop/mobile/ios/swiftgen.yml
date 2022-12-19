@@ -1,0 +1,19 @@
+xcassets:
+  - inputs:
+      - Resources/Colors/Colors.xcassets
+      - Resources/Images/Assets.xcassets
+    outputs:
+      - templateName: swift5
+        output: Generated/Resources/GeneratedResources.swift
+        params:
+          enumName: Resources
+          publicAccess: false
+
+strings:
+  - inputs: Resources/Strings/ru.lproj/App.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/AppStrings.swift
+      params:
+        enumName: L10nApp
+        publicAccess: false

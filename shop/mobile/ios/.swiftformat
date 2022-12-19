@@ -1,0 +1,8 @@
+--swiftversion 5
+
+# file options
+--exclude Pods,Generated
+--exclude */Generated/*
+
+# rules
+--disable linebreaks
