@@ -15,6 +15,28 @@ internal enum L10nApp {
   /// 
   ///   Created by Виталий Зарубин on 05.10.2021.
   internal static let appName = L10nApp.tr("App", "app_name", fallback: "You Shop")
+  /// Корзина
+  internal static let screenCart = L10nApp.tr("App", "screen_cart", fallback: "Корзина")
+  /// Контакты
+  internal static let screenContact = L10nApp.tr("App", "screen_contact", fallback: "Контакты")
+  /// Связь
+  internal static let screenContactForm = L10nApp.tr("App", "screen_contactForm", fallback: "Связь")
+  /// Каталог
+  internal static let screenExploring = L10nApp.tr("App", "screen_exploring", fallback: "Каталог")
+  /// You Shop
+  internal static let screenHome = L10nApp.tr("App", "screen_home", fallback: "You Shop")
+  /// Заказ
+  internal static let screenOrder = L10nApp.tr("App", "screen_order", fallback: "Заказ")
+  /// Оформить заказ
+  internal static let screenOrderCreate = L10nApp.tr("App", "screen_orderCreate", fallback: "Оформить заказ")
+  /// История
+  internal static let screenOrderHistory = L10nApp.tr("App", "screen_orderHistory", fallback: "История")
+  /// Поиск заказа
+  internal static let screenOrderSearch = L10nApp.tr("App", "screen_orderSearch", fallback: "Поиск заказа")
+  /// Поиск...
+  internal static let screenProduct = L10nApp.tr("App", "screen_product", fallback: "Поиск...")
+  /// Продукты
+  internal static let screenProducts = L10nApp.tr("App", "screen_products", fallback: "Продукты")
   /// Главная
   internal static let tab1 = L10nApp.tr("App", "tab_1", fallback: "Главная")
   /// Каталог

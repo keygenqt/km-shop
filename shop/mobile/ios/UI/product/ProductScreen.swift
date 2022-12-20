@@ -13,7 +13,6 @@ struct ProductScreen: View {
         VStack {
             Text("ProductScreen")
         }
-        .navigationBarTitle("ProductScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(L10nApp.screenProduct, true)
     }
 }

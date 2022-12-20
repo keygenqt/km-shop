@@ -13,7 +13,6 @@ struct ContactFormScreen: View {
         VStack {
             Text("ContactFormScreen")
         }
-        .navigationBarTitle("ContactFormScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(L10nApp.screenContactForm, true)
     }
 }

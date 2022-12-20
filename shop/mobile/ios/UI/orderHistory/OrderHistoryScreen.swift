@@ -13,7 +13,6 @@ struct OrderHistoryScreen: View {
         VStack {
             Text("OrderHistoryScreen")
         }
-        .navigationBarTitle("OrderHistoryScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(L10nApp.screenOrderHistory, true)
     }
 }

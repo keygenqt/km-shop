@@ -9,11 +9,22 @@
 import SwiftUI
 
 struct OrderCreateScreen: View {
+    
+    @EnvironmentObject var navPath: NavObservable
+    
+    var onChangeTab: (() -> Void)
+    
     var body: some View {
         VStack {
-            Text("OrderCreateScreen")
+            Button("To order") {
+                navPath.insert([
+                    NavScreen.orderSearch,
+                    NavScreen.orderHistory,
+                    NavScreen.order("fda81678-70b2-409e-950d-36918f1c62b7"),
+                ])
+                onChangeTab()
+            }.background(Color.primary)
         }
-        .navigationBarTitle("OrderCreateScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(L10nApp.screenOrderCreate, true)
     }
 }

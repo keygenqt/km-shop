@@ -9,11 +9,18 @@
 import SwiftUI
 
 struct OrderSearchScreen: View {
+    
     var body: some View {
         VStack {
             Text("OrderSearchScreen")
         }
-        .navigationBarTitle("OrderSearchScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarItems(trailing: HStack(spacing: 0) {
+            NavigationLink {
+                OrderHistoryScreen()
+            } label: {
+                Image(systemName: "clock").imageScale(.large)
+            }
+        })
+        .toolbarColorize(L10nApp.screenOrderSearch, true)
     }
 }

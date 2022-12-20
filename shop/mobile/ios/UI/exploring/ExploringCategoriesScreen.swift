@@ -9,9 +9,14 @@
 import SwiftUI
 
 struct ExploringCategoriesScreen: View {
+    
+    @EnvironmentObject var navPath: NavObservable
+    
     var body: some View {
         VStack {
-            Text("ExploringCategoriesScreen")
+            Button("To products") {
+                navPath.add(NavScreen.products("Бантики"))
+            }.background(Color.primary)
         }
     }
 }

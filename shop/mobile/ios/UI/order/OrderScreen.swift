@@ -9,11 +9,20 @@
 import SwiftUI
 
 struct OrderScreen: View {
+    
+    @EnvironmentObject var navPath: NavObservable
+    
+    let number: String
+    
+    init(number: String) {
+        self.number = number
+    }
+    
     var body: some View {
         VStack {
             Text("OrderScreen")
+            Text(number)
         }
-        .navigationBarTitle("OrderScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(L10nApp.screenOrder, true)
     }
 }

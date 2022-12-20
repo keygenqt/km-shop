@@ -45,6 +45,9 @@
 		2F77035C2950DB0F00E3F5EA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F77035B2950DB0F00E3F5EA /* Color.swift */; };
 		2F77035F2950EFCF00E3F5EA /* Exploring.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F77035D2950EFCF00E3F5EA /* Exploring.strings */; };
 		2F7703612950F17400E3F5EA /* ExploringStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703602950F17400E3F5EA /* ExploringStrings.swift */; };
+		2F7703632951132800E3F5EA /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703622951132800E3F5EA /* View.swift */; };
+		2F7703652951186100E3F5EA /* NavigationBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703642951186100E3F5EA /* NavigationBackButton.swift */; };
+		2F77036729514A6B00E3F5EA /* HiddenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F77036629514A6B00E3F5EA /* HiddenModifier.swift */; };
 		6259EE66A9315D301ED1D960 /* Pods_MyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B049A4FBFFF13B11DA58AA /* Pods_MyShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,9 @@
 		2F77035B2950DB0F00E3F5EA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2F77035E2950EFCF00E3F5EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Exploring.strings; sourceTree = "<group>"; };
 		2F7703602950F17400E3F5EA /* ExploringStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploringStrings.swift; sourceTree = "<group>"; };
+		2F7703622951132800E3F5EA /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		2F7703642951186100E3F5EA /* NavigationBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackButton.swift; sourceTree = "<group>"; };
+		2F77036629514A6B00E3F5EA /* HiddenModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenModifier.swift; sourceTree = "<group>"; };
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +162,8 @@
 		2F4D7B5129508112002F507B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2F7703642951186100E3F5EA /* NavigationBackButton.swift */,
+				2F77036629514A6B00E3F5EA /* HiddenModifier.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -372,6 +380,7 @@
 			children = (
 				2F7703592950D69F00E3F5EA /* UIColor.swift */,
 				2F77035B2950DB0F00E3F5EA /* Color.swift */,
+				2F7703622951132800E3F5EA /* View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -599,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F7703652951186100E3F5EA /* NavigationBackButton.swift in Sources */,
 				2F77034B2950C37A00E3F5EA /* OrderScreen.swift in Sources */,
 				2F77034F2950C39500E3F5EA /* OrderHistoryScreen.swift in Sources */,
 				2F77032C29509B8500E3F5EA /* GeneratedResources.swift in Sources */,
@@ -608,6 +618,7 @@
 				2F7703552950C3C200E3F5EA /* ProductsScreen.swift in Sources */,
 				2F7703432950C32B00E3F5EA /* ExploringCategoriesScreen.swift in Sources */,
 				2F77033B2950C2C900E3F5EA /* CartScreen.swift in Sources */,
+				2F77036729514A6B00E3F5EA /* HiddenModifier.swift in Sources */,
 				2F77035A2950D69F00E3F5EA /* UIColor.swift in Sources */,
 				2F7703492950C36200E3F5EA /* HomeScreen.swift in Sources */,
 				2F7703412950C31300E3F5EA /* ExploringTabs.swift in Sources */,
@@ -619,6 +630,7 @@
 				2F77032A29509B6900E3F5EA /* AppStrings.swift in Sources */,
 				2F4D7B4D29508085002F507B /* ConstantsKMM.swift in Sources */,
 				2F7703452950C33C00E3F5EA /* ExploringCollectionsScreen.swift in Sources */,
+				2F7703632951132800E3F5EA /* View.swift in Sources */,
 				2F7703512950C3A400E3F5EA /* OrderSearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

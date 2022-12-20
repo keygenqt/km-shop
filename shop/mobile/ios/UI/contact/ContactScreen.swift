@@ -9,11 +9,16 @@
 import SwiftUI
 
 struct ContactScreen: View {
+    
+    @EnvironmentObject var navPath: NavObservable
+    
     var body: some View {
         VStack {
-            Text("ContactScreen")
+            Button("To send message") {
+                navPath.add(NavScreen.contactForm)
+            }.background(Color.primary)
         }
-        .navigationBarTitle("ContactScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .background(.red)
+        .toolbarColorize(L10nApp.screenContact, true)
     }
 }

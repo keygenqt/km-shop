@@ -9,11 +9,17 @@
 import SwiftUI
 
 struct ProductsScreen: View {
+    
+    let title: String
+    
+    init(title: String) {
+        self.title = title
+    }
+    
     var body: some View {
         VStack {
             Text("ProductsScreen")
         }
-        .navigationBarTitle("ProductsScreen")
-        .navigationBarTitleDisplayMode(.large)
+        .toolbarColorize(title, true)
     }
 }

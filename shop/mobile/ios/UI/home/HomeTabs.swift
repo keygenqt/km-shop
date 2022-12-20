@@ -11,17 +11,31 @@ import SwiftUI
 struct HomeTabs: View {
     
     // page values
-    @State private var selection = 0
+    @Binding var selection: Int
     
-    init() {
+    @EnvironmentObject var navPath: NavObservable
+    
+    init(selection: Binding<Int>) {
+        _selection = selection
         UITabBar.appearance().backgroundColor = UIColor(Color.primary)
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.onPrimary.opacity(0.5))
     }
     
+    @State private var opacityTab1 = -1.0
+    @State private var opacityTab2 = 0.5
+    @State private var opacityTab3 = 0.5
+    
     var body: some View {
         TabView(selection: $selection) {
-            NavigationView {
+            VStack {
                 HomeScreen()
+                    .opacity(opacityTab1)
+                    .onAppear {
+                        opacityTab1 = 0.7
+                        withAnimation(.linear(duration: 0.15)) {
+                            opacityTab1 += 0.3
+                        }
+                    }
             }
             .tabItem {
                 VStack {
@@ -30,9 +44,16 @@ struct HomeTabs: View {
                 }
             }
             .tag(0)
-            
-            NavigationView {
+
+            VStack {
                 ExploringTabs()
+                    .opacity(opacityTab2)
+                    .onAppear {
+                        opacityTab2 = 0.7
+                        withAnimation(.linear(duration: 0.15)) {
+                            opacityTab2 += 0.3
+                        }
+                    }
             }
             .tabItem {
                 VStack {
@@ -42,9 +63,16 @@ struct HomeTabs: View {
                 }
             }
             .tag(1)
-            
-            NavigationView {
+
+            VStack {
                 CartScreen()
+                    .opacity(opacityTab3)
+                    .onAppear {
+                        opacityTab3 = 0.7
+                        withAnimation(.linear(duration: 0.15)) {
+                            opacityTab3 += 0.3
+                        }
+                    }
             }
             .tabItem {
                 VStack {
@@ -56,6 +84,29 @@ struct HomeTabs: View {
             .badge(5)
             .tag(2)
         }
-        .accentColor(Color.onPrimary)
+        .navigationBarItems(trailing: HStack(spacing: 0) {
+            
+            if selection == 2 {
+                Button("Оформить") {
+                    navPath.add(NavScreen.orderCreate)
+                }
+            }
+
+            if selection == 0 {
+                Button {
+                    navPath.add(NavScreen.contact)
+                } label: {
+                    Image(systemName: "paperplane.circle").imageScale(.large)
+                }
+                
+                Button {
+                    navPath.add(NavScreen.orderSearch)
+                } label: {
+                    Image(systemName: "folder.circle").imageScale(.large)
+                }
+            }
+        })
+        .toolbarColorize(L10nApp.appName)
+        .toolbarLauncher()
     }
 }

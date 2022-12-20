@@ -13,11 +13,6 @@ struct CartScreen: View {
         VStack {
             Text("CartScreen")
         }
-        .navigationBarTitle(L10nApp.appName)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(leading: HStack(spacing: 0) {
-            Image("launcher").resizable().frame(width: 24, height: 24).aspectRatio(contentMode: .fit).clipShape(Circle())
-        })
-        .accentColor(Color.primary)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }
