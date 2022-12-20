@@ -20,8 +20,6 @@ import com.keygenqt.shop.db.utils.MigrationHelper
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.yaml.snakeyaml.Yaml
-import java.io.File
 
 @Suppress("unused", "ClassName")
 class V0008__Create_DemoCategories : BaseJavaMigration() {
@@ -32,9 +30,8 @@ class V0008__Create_DemoCategories : BaseJavaMigration() {
                 .loadProperties("configuration/app.properties")
                 .getPropOrNull<String>("hostAPI")
 
-            val configuration = Yaml().load<Map<String, Any>>(
-                File("configuration/migrations/V0008__Create_DemoCategories.yaml").readText()
-            )
+            val configuration = MigrationHelper.parseMigration(
+               "configuration/migrations/V0008__Create_DemoCategories.yaml")
 
             MigrationHelper.insertCategories(
                 host = host!!,

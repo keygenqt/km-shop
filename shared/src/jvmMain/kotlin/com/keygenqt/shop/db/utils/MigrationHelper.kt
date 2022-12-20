@@ -22,6 +22,9 @@ import com.keygenqt.shop.extension.createFileUpload
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SizedCollection
 import org.jetbrains.exposed.sql.insert
+import org.snakeyaml.engine.v2.api.Load
+import org.snakeyaml.engine.v2.api.LoadSettings
+import java.io.File
 import java.util.*
 
 object MigrationHelper {
@@ -214,5 +217,17 @@ object MigrationHelper {
                 this.updateAt = System.currentTimeMillis()
             }
         }
+    }
+
+    /**
+     * Parse migration data from YAML as Map<String, Any>
+     */
+    fun parseMigration(fileName: String): Map<String, *> {
+        val load = Load(LoadSettings.builder()
+            .setAllowDuplicateKeys(false)
+            .setAllowRecursiveKeys(false)
+            .setCodePointLimit(10000)
+            .build())
+        return load.loadFromString(File(fileName).readText()) as Map<String, *>
     }
 }

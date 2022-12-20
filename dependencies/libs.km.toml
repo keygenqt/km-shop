@@ -17,8 +17,8 @@ hikariCpVersion="5.0.1"
 exposedVersion="0.39.2"
 # https://github.com/jeremyh/jBCrypt
 jbcryptVersion = "0.4"
-# https://mvnrepository.com/artifact/org.yaml/snakeyaml
-snakeyamlVersion = "1.33"
+# https://mvnrepository.com/artifact/org.snakeyaml/snakeyaml-engine
+snakeyamlVersion = "2.5"
 
 ##########################
 ## LIBRARIES
@@ -27,7 +27,7 @@ snakeyamlVersion = "1.33"
 # SnakeYAML
 # YAML 1.1 parser and emitter for Java
 [libraries.snakeyaml]
-module = "org.yaml:snakeyaml"
+module = "org.snakeyaml:snakeyaml-engine"
 [libraries.snakeyaml.version]
 ref = "snakeyamlVersion"
 

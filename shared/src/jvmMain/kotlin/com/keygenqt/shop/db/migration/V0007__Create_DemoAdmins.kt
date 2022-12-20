@@ -19,17 +19,14 @@ import com.keygenqt.shop.db.utils.MigrationHelper
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.yaml.snakeyaml.Yaml
-import java.io.File
 
 @Suppress("unused", "ClassName")
 class V0007__Create_DemoAdmins : BaseJavaMigration() {
 
     override fun migrate(context: Context?) {
         transaction {
-            val configuration = Yaml().load<Map<String, Any>>(
-                File("configuration/migrations/V0007__Create_DemoAdmins.yaml").readText()
-            )
+            val configuration = MigrationHelper.parseMigration(
+               "configuration/migrations/V0007__Create_DemoAdmins.yaml")
             MigrationHelper.insertAdmins(
                 admins = configuration["admins"] as List<*>
             )

@@ -21,8 +21,6 @@ import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.yaml.snakeyaml.Yaml
-import java.io.File
 
 @Suppress("unused", "ClassName")
 class V0012__Create_CollectionsOrders : BaseJavaMigration() {
@@ -31,9 +29,8 @@ class V0012__Create_CollectionsOrders : BaseJavaMigration() {
             SchemaUtils.create(Collections)
         }
         transaction {
-            val configuration = Yaml().load<Map<String, Any>>(
-                File("configuration/migrations/V0012__Create_DemoCollections.yaml").readText()
-            )
+            val configuration = MigrationHelper.parseMigration(
+                "configuration/migrations/V0012__Create_DemoCollections.yaml")
             MigrationHelper.insertCollections(
                 collections = configuration["collections"] as List<*>,
             )
