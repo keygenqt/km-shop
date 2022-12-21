@@ -13,7 +13,7 @@ struct ContactAddressBlock: View {
         VStack {
             VStack(alignment: .center, spacing: 0) {
                 ZStack {
-                    Circle().fill(.white.opacity(0.9)).frame(width: 70, height: 70)
+                    Circle().fill(Color.onSurface.opacity(0.9)).frame(width: 70, height: 70)
                     Image("contact_address")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -27,6 +27,5 @@ struct ContactAddressBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.surface)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

@@ -29,10 +29,8 @@ struct ExploringTabs: View {
                     ExploringCollectionsScreen()
                 }
             }.padding(.top)
-            
             Spacer()
-
         }
-        .padding()
+        .paddingPage()
     }
 }

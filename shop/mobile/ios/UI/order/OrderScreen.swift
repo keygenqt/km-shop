@@ -23,6 +23,7 @@ struct OrderScreen: View {
             Text("OrderScreen")
             Text(number)
         }
-        .toolbarColorize(L10nApp.screenOrder, true)
+        .paddingPage()
+        .colorize(L10nApp.screenOrder, true)
     }
 }

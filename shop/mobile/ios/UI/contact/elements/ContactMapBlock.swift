@@ -35,6 +35,5 @@ struct ContactMapBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.surface)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

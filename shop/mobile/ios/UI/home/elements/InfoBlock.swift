@@ -43,6 +43,5 @@ struct InfoBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.bgVariant2)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

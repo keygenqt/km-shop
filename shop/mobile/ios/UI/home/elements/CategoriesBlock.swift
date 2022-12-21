@@ -39,6 +39,5 @@ struct CategoriesBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.bgVariant1)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

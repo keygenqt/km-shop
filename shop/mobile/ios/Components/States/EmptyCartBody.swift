@@ -22,7 +22,5 @@ struct EmptyCartBody: View {
             AppText(text: subtitle, alignment: .center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding()
-        .background(Color.background)
     }
 }

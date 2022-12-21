@@ -21,6 +21,7 @@ struct OrderSearchScreen: View {
                 Image(systemName: "clock").imageScale(.large)
             }
         })
-        .toolbarColorize(L10nApp.screenOrderSearch, true)
+        .paddingPage()
+        .colorize(L10nApp.screenOrderSearch, true)
     }
 }

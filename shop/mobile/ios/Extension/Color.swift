@@ -33,4 +33,6 @@ extension Color {
     static let btnBlackPress = Color("btnBlackPress")
     static let btnGray = Color("btnGray")
     static let btnGrayPress = Color("btnGrayPress")
+    static let error = Color("error")
+    static let onError = Color("onError")
 }

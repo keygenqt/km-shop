@@ -16,6 +16,7 @@ struct OrderHistoryScreen: View {
                 subtitle: L10nOrderHistory.orderHistoryEmptySubtitle
             )
         }
-        .toolbarColorize(L10nApp.screenOrderHistory, true)
+        .paddingPage()
+        .colorize(L10nApp.screenOrderHistory, true)
     }
 }

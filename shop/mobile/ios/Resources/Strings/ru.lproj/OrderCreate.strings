@@ -9,9 +9,6 @@
 "order_create_title" = "Оформление заказа";
 "order_create_title2" = "Контактная информация";
 "order_create_info" = "Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу";
-"order_create_field_phone" = "Телефон";
-"order_create_field_email" = "Email (по желанию)";
-"order_create_field_address" = "Адрес (по желанию)";
 "order_create_btn_submit" = "Отправить";
 "order_create_success_title" = "Заказ оформлен!";
 "order_create_success_text" = "Спасибо за ваш заказ. С вами свяжутся для уточнения деталей заказа. До скорого!";

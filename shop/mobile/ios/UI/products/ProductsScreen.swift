@@ -20,6 +20,7 @@ struct ProductsScreen: View {
         VStack {
             Text("ProductsScreen")
         }
-        .toolbarColorize(title, true)
+        .paddingPage()
+        .colorize(title, true)
     }
 }

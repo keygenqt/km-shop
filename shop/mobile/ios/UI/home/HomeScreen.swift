@@ -12,13 +12,10 @@ struct HomeScreen: View {
     var body: some View {
         ScrollView {
             VStack {
-                Spacer().frame(height: 16)
-                InfoBlock()
-                Spacer().frame(height: 16)
+                InfoBlock().paddingItemBottom()
                 CategoriesBlock()
-                Spacer().frame(height: 16)
                 Spacer()
-            }
+            }.paddingPage()
         }
     }
 }

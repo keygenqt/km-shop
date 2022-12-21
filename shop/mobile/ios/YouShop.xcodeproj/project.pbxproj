@@ -98,6 +98,20 @@
 		2F7703E12952FE3B00E3F5EA /* ContactAddressBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E02952FE3B00E3F5EA /* ContactAddressBlock.swift */; };
 		2F7703E32952FE4600E3F5EA /* ContactMapBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E22952FE4600E3F5EA /* ContactMapBlock.swift */; };
 		2F7703E529532F9100E3F5EA /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E429532F9100E3F5EA /* WebView.swift */; };
+		2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B6295363EA002B1087 /* AppForm.swift */; };
+		2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B8295363FA002B1087 /* AppFieldText.swift */; };
+		2FE8A6BB2953640C002B1087 /* AppFieldSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */; };
+		2FE8A6C029536456002B1087 /* FnameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BF29536456002B1087 /* FnameField.swift */; };
+		2FE8A6C3295365AC002B1087 /* FormFields.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C1295365AC002B1087 /* FormFields.strings */; };
+		2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */; };
+		2FE8A6C7295366C5002B1087 /* FormFieldsStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C6295366C4002B1087 /* FormFieldsStrings.swift */; };
+		2FE8A6C929536AEE002B1087 /* LnameOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C829536AEE002B1087 /* LnameOptionalField.swift */; };
+		2FE8A6CB29536AFD002B1087 /* PhoneField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6CA29536AFD002B1087 /* PhoneField.swift */; };
+		2FE8A6CD29536B1A002B1087 /* EmailField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6CC29536B1A002B1087 /* EmailField.swift */; };
+		2FE8A6CF29536B2D002B1087 /* MessageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6CE29536B2D002B1087 /* MessageField.swift */; };
+		2FE8A6D129536B5A002B1087 /* PhoneOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */; };
+		2FE8A6D329536B6E002B1087 /* EmailOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */; };
+		2FE8A6D529537866002B1087 /* AddressOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D429537866002B1087 /* AddressOptionalField.swift */; };
 		D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +207,20 @@
 		2F7703E02952FE3B00E3F5EA /* ContactAddressBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAddressBlock.swift; sourceTree = "<group>"; };
 		2F7703E22952FE4600E3F5EA /* ContactMapBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMapBlock.swift; sourceTree = "<group>"; };
 		2F7703E429532F9100E3F5EA /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		2FE8A6B6295363EA002B1087 /* AppForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForm.swift; sourceTree = "<group>"; };
+		2FE8A6B8295363FA002B1087 /* AppFieldText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldText.swift; sourceTree = "<group>"; };
+		2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldSwitch.swift; sourceTree = "<group>"; };
+		2FE8A6BF29536456002B1087 /* FnameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FnameField.swift; sourceTree = "<group>"; };
+		2FE8A6C2295365AC002B1087 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = FormFields.strings; sourceTree = "<group>"; };
+		2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsProtocol.swift; sourceTree = "<group>"; };
+		2FE8A6C6295366C4002B1087 /* FormFieldsStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldsStrings.swift; sourceTree = "<group>"; };
+		2FE8A6C829536AEE002B1087 /* LnameOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LnameOptionalField.swift; sourceTree = "<group>"; };
+		2FE8A6CA29536AFD002B1087 /* PhoneField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneField.swift; sourceTree = "<group>"; };
+		2FE8A6CC29536B1A002B1087 /* EmailField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailField.swift; sourceTree = "<group>"; };
+		2FE8A6CE29536B2D002B1087 /* MessageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageField.swift; sourceTree = "<group>"; };
+		2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOptionalField.swift; sourceTree = "<group>"; };
+		2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailOptionalField.swift; sourceTree = "<group>"; };
+		2FE8A6D429537866002B1087 /* AddressOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressOptionalField.swift; sourceTree = "<group>"; };
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +283,7 @@
 		2F4D7B50295080D3002F507B /* Strings */ = {
 			isa = PBXGroup;
 			children = (
+				2FE8A6C6295366C4002B1087 /* FormFieldsStrings.swift */,
 				2F7703B52952851700E3F5EA /* CartStrings.swift */,
 				2F7703B02952851700E3F5EA /* ContactFormStrings.swift */,
 				2F7703AD2952851700E3F5EA /* ContactStrings.swift */,
@@ -274,6 +303,7 @@
 		2F4D7B5129508112002F507B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2FE8A6B5295363DA002B1087 /* Forms */,
 				2F77038929527BAB00E3F5EA /* Styles */,
 				2F77038429526C8400E3F5EA /* Texts */,
 				2F77037929526B3C00E3F5EA /* States */,
@@ -411,6 +441,7 @@
 				2F7703A32952837600E3F5EA /* OrderSearch.strings */,
 				2F7703A62952838A00E3F5EA /* Product.strings */,
 				2F7703A92952839C00E3F5EA /* Products.strings */,
+				2FE8A6C1295365AC002B1087 /* FormFields.strings */,
 			);
 			path = ru.lproj;
 			sourceTree = "<group>";
@@ -665,6 +696,33 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		2FE8A6B5295363DA002B1087 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				2FE8A6BC2953641E002B1087 /* fields */,
+				2FE8A6B6295363EA002B1087 /* AppForm.swift */,
+				2FE8A6B8295363FA002B1087 /* AppFieldText.swift */,
+				2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */,
+				2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */,
+			);
+			path = Forms;
+			sourceTree = "<group>";
+		};
+		2FE8A6BC2953641E002B1087 /* fields */ = {
+			isa = PBXGroup;
+			children = (
+				2FE8A6BF29536456002B1087 /* FnameField.swift */,
+				2FE8A6C829536AEE002B1087 /* LnameOptionalField.swift */,
+				2FE8A6CA29536AFD002B1087 /* PhoneField.swift */,
+				2FE8A6CC29536B1A002B1087 /* EmailField.swift */,
+				2FE8A6CE29536B2D002B1087 /* MessageField.swift */,
+				2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */,
+				2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */,
+				2FE8A6D429537866002B1087 /* AddressOptionalField.swift */,
+			);
+			path = fields;
+			sourceTree = "<group>";
+		};
 		46B3C6AA0734E5279FD2D913 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +868,7 @@
 				2F4D7B6629508892002F507B /* cart_empty.json in Resources */,
 				2F7703A52952837600E3F5EA /* OrderSearch.strings in Resources */,
 				2F77039C2952833500E3F5EA /* Order.strings in Resources */,
+				2FE8A6C3295365AC002B1087 /* FormFields.strings in Resources */,
 				2F770393295282F000E3F5EA /* Contact.strings in Resources */,
 				2F7703992952832000E3F5EA /* Home.strings in Resources */,
 			);
@@ -907,12 +966,14 @@
 				2F7703692951C5F400E3F5EA /* LottieView.swift in Sources */,
 				2F7703D029529B9A00E3F5EA /* InfoBlock.swift in Sources */,
 				2F77034F2950C39500E3F5EA /* OrderHistoryScreen.swift in Sources */,
+				2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */,
 				2F7703B62952851700E3F5EA /* OrderCreateStrings.swift in Sources */,
 				2F77032C29509B8500E3F5EA /* GeneratedResources.swift in Sources */,
 				2F7703B82952851700E3F5EA /* HomeStrings.swift in Sources */,
 				2F7703612950F17400E3F5EA /* ExploringStrings.swift in Sources */,
 				2152FB042600AC8F00CF470E /* YouShopApp.swift in Sources */,
 				2F77033F2950C2FC00E3F5EA /* ContactFormScreen.swift in Sources */,
+				2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */,
 				2F77038129526B7500E3F5EA /* LoadingBody.swift in Sources */,
 				2F7703552950C3C200E3F5EA /* ProductsScreen.swift in Sources */,
 				2F7703BD2952851700E3F5EA /* ProductsStrings.swift in Sources */,
@@ -923,7 +984,9 @@
 				2F77036729514A6B00E3F5EA /* HiddenModifier.swift in Sources */,
 				2F7703BE2952851700E3F5EA /* ProductStrings.swift in Sources */,
 				2F77035A2950D69F00E3F5EA /* UIColor.swift in Sources */,
+				2FE8A6D329536B6E002B1087 /* EmailOptionalField.swift in Sources */,
 				2F77037629525CD800E3F5EA /* LoadingAnimation.swift in Sources */,
+				2FE8A6D529537866002B1087 /* AddressOptionalField.swift in Sources */,
 				2F7703BB2952851700E3F5EA /* OrderSearchStrings.swift in Sources */,
 				2F7703492950C36200E3F5EA /* HomeScreen.swift in Sources */,
 				2F77037229525CBC00E3F5EA /* EmptyCartAnimation.swift in Sources */,
@@ -931,12 +994,15 @@
 				2F77036C29525C9300E3F5EA /* CatPlayingAnimation.swift in Sources */,
 				2F7703412950C31300E3F5EA /* ExploringTabs.swift in Sources */,
 				2F77033D2950C2D900E3F5EA /* ContactScreen.swift in Sources */,
+				2FE8A6CB29536AFD002B1087 /* PhoneField.swift in Sources */,
+				2FE8A6BB2953640C002B1087 /* AppFieldSwitch.swift in Sources */,
 				2F77038D29527BD700E3F5EA /* ButtonOutlineStyle.swift in Sources */,
 				2F7703472950C34E00E3F5EA /* HomeTabs.swift in Sources */,
 				2F7703E529532F9100E3F5EA /* WebView.swift in Sources */,
 				2F77035C2950DB0F00E3F5EA /* Color.swift in Sources */,
 				2F77037B29526B5000E3F5EA /* EmptyBody.swift in Sources */,
 				2F7703E12952FE3B00E3F5EA /* ContactAddressBlock.swift in Sources */,
+				2FE8A6CD29536B1A002B1087 /* EmailField.swift in Sources */,
 				2F7703BA2952851700E3F5EA /* ContactFormStrings.swift in Sources */,
 				2F77038629526CAC00E3F5EA /* AppText.swift in Sources */,
 				2F77036E29525CA100E3F5EA /* CatSneakingAnimation.swift in Sources */,
@@ -944,9 +1010,11 @@
 				2F7703D72952A90000E3F5EA /* CategoriesBlock.swift in Sources */,
 				2F77034D2950C38700E3F5EA /* OrderCreateScreen.swift in Sources */,
 				2F7703532950C3B400E3F5EA /* ProductScreen.swift in Sources */,
+				2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */,
 				2F7703BC2952851700E3F5EA /* OrderStrings.swift in Sources */,
 				2F77038329526B8200E3F5EA /* SuccessCartBody.swift in Sources */,
 				2F7703C32952993600E3F5EA /* NavScreen.swift in Sources */,
+				2FE8A6C029536456002B1087 /* FnameField.swift in Sources */,
 				2F77037D29526B5D00E3F5EA /* EmptyCartBody.swift in Sources */,
 				2F77037F29526B6900E3F5EA /* ErrorBody.swift in Sources */,
 				2F77037829525CE400E3F5EA /* SuccessCartAnimation.swift in Sources */,
@@ -958,9 +1026,13 @@
 				2F7703D52952A22900E3F5EA /* ButtonStyleSize.swift in Sources */,
 				2F7703452950C33C00E3F5EA /* ExploringCollectionsScreen.swift in Sources */,
 				2F7703632951132800E3F5EA /* View.swift in Sources */,
+				2FE8A6C929536AEE002B1087 /* LnameOptionalField.swift in Sources */,
+				2FE8A6C7295366C5002B1087 /* FormFieldsStrings.swift in Sources */,
 				2F7703BF2952851700E3F5EA /* CartStrings.swift in Sources */,
+				2FE8A6D129536B5A002B1087 /* PhoneOptionalField.swift in Sources */,
 				2F7703DF2952FE2E00E3F5EA /* ContactMessageBlock.swift in Sources */,
 				2F77037029525CAF00E3F5EA /* EmptyBoxAnimation.swift in Sources */,
+				2FE8A6CF29536B2D002B1087 /* MessageField.swift in Sources */,
 				2F7703D329529ED500E3F5EA /* Shapes.swift in Sources */,
 				2F7703B92952851700E3F5EA /* OrderHistoryStrings.swift in Sources */,
 				2F7703512950C3A400E3F5EA /* OrderSearchScreen.swift in Sources */,
@@ -1064,6 +1136,14 @@
 				2F7703AA2952839C00E3F5EA /* ru */,
 			);
 			name = Products.strings;
+			sourceTree = "<group>";
+		};
+		2FE8A6C1295365AC002B1087 /* FormFields.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FE8A6C2295365AC002B1087 /* ru */,
+			);
+			name = FormFields.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

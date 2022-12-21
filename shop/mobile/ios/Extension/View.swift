@@ -9,7 +9,16 @@
 import SwiftUI
 
 extension View {
-    public func toolbarColorize(_ title: String, _ isBack: Bool = false) -> some View {
+    public func paddingPage() -> some View {
+        return padding(.top, 25)
+            .padding(.bottom, 20)
+            .padding([.leading, .trailing], 20)
+    }
+    public func paddingItemBottom() -> some View {
+        return padding(.bottom, 15)
+    }
+    
+    public func colorize(_ title: String, _ isBack: Bool = false) -> some View {
         return toolbarBackground(Color.primary, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
@@ -26,6 +35,8 @@ extension View {
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.onPrimary)
             .navigationBackButton(text: "Back", show: isBack)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .background(Color.background)
     }
     
     public func toolbarLauncher() -> some View {

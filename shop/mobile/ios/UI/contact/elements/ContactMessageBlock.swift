@@ -17,7 +17,7 @@ struct ContactMessageBlock: View {
             VStack {
                 HStack(spacing: 0) {
                     ZStack {
-                        Circle().fill(.white.opacity(0.9)).frame(width: 70, height: 70)
+                        Circle().fill(Color.onSurface.opacity(0.9)).frame(width: 70, height: 70)
                         Image("contact_comment")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -32,7 +32,7 @@ struct ContactMessageBlock: View {
                             HStack {
                                 Image(systemName: "paperplane.fill").imageScale(.small)
                                 Spacer()
-                                AppText(text: L10nContact.contactMessageBtn, color: Color.white)
+                                AppText(text: L10nContact.contactMessageBtn, maxLines: 1, color: Color.white)
                                 Spacer()
                             }
                         }.buttonStyle(BottonStyle(
@@ -46,6 +46,5 @@ struct ContactMessageBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.bgVariant4)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

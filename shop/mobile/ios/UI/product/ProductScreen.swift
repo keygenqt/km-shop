@@ -13,6 +13,7 @@ struct ProductScreen: View {
         VStack {
             Text("ProductScreen")
         }
-        .toolbarColorize(L10nApp.screenProduct, true)
+        .paddingPage()
+        .colorize(L10nApp.screenProduct, true)
     }
 }

@@ -1,0 +1,15 @@
+/* 
+  FormFields.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"form_field_fname" = "Имя";
+"form_field_lname" = "Фамилия";
+"form_field_email" = "Email";
+"form_field_phone" = "Телефон";
+"form_field_message" = "Сообщение";
+"form_field_phone" = "Телефон";
+"form_field_address" = "Адрес";

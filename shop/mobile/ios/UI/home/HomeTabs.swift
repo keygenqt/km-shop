@@ -34,10 +34,12 @@ struct HomeTabs: View {
                     .opacity(opacityTab1)
                     .onAppear {
                         opacityTab1 = 0.7
-                        withAnimation(.linear(duration: 0.15)) {
+                        withAnimation(.linear(duration: 0.2)) {
                             opacityTab1 += 0.3
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .background(Color.background)
             }
             .tabItem {
                 VStack {
@@ -52,10 +54,12 @@ struct HomeTabs: View {
                     .opacity(opacityTab2)
                     .onAppear {
                         opacityTab2 = 0.7
-                        withAnimation(.linear(duration: 0.15)) {
+                        withAnimation(.linear(duration: 0.2)) {
                             opacityTab2 += 0.3
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .background(Color.background)
             }
             .tabItem {
                 VStack {
@@ -71,10 +75,12 @@ struct HomeTabs: View {
                     .opacity(opacityTab3)
                     .onAppear {
                         opacityTab3 = 0.7
-                        withAnimation(.linear(duration: 0.15)) {
+                        withAnimation(.linear(duration: 0.2)) {
                             opacityTab3 += 0.3
                         }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .background(Color.background)
             }
             .tabItem {
                 VStack {
@@ -108,7 +114,7 @@ struct HomeTabs: View {
                 }
             }
         })
-        .toolbarColorize(L10nApp.appName)
+        .colorize(L10nApp.appName)
         .toolbarLauncher()
     }
 }

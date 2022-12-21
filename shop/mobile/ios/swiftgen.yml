@@ -94,3 +94,10 @@ strings:
       params:
         enumName: L10nProducts
         publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/FormFields.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/FormFieldsStrings.swift
+      params:
+        enumName: L10nFormFields
+        publicAccess: false

@@ -9,28 +9,30 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10nContactForm {
-  /// Отправить
-  internal static let contactFormBtnSubmit = L10nContactForm.tr("ContactForm", "contact_form_btn_submit", fallback: "Отправить")
-  /// Мы обязательно прочтем и ответим, если в ответе будет необходимость
-  internal static let contactFormInfo = L10nContactForm.tr("ContactForm", "contact_form_info", fallback: "Мы обязательно прочтем и ответим, если в ответе будет необходимость")
-  /// Ваше сообщение отправлено. Спасибо!
-  internal static let contactFormSuccess = L10nContactForm.tr("ContactForm", "contact_form_success", fallback: "Ваше сообщение отправлено. Спасибо!")
-  /// ContactForm.strings
+internal enum L10nFormFields {
+  /// Адрес
+  internal static let formFieldAddress = L10nFormFields.tr("FormFields", "form_field_address", fallback: "Адрес")
+  /// Email
+  internal static let formFieldEmail = L10nFormFields.tr("FormFields", "form_field_email", fallback: "Email")
+  /// FormFields.strings
   ///   YouShop
   /// 
   ///   Created by Виталий Зарубин on 21.12.2022.
   ///   Copyright © 2022 orgName. All rights reserved.
-  internal static let contactFormTitle = L10nContactForm.tr("ContactForm", "contact_form_title", fallback: "Сообщение")
-  /// Ваше сообщение
-  internal static let contactFormTitle2 = L10nContactForm.tr("ContactForm", "contact_form_title2", fallback: "Ваше сообщение")
+  internal static let formFieldFname = L10nFormFields.tr("FormFields", "form_field_fname", fallback: "Имя")
+  /// Фамилия
+  internal static let formFieldLname = L10nFormFields.tr("FormFields", "form_field_lname", fallback: "Фамилия")
+  /// Сообщение
+  internal static let formFieldMessage = L10nFormFields.tr("FormFields", "form_field_message", fallback: "Сообщение")
+  /// Телефон
+  internal static let formFieldPhone = L10nFormFields.tr("FormFields", "form_field_phone", fallback: "Телефон")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
 
 // MARK: - Implementation Details
 
-extension L10nContactForm {
+extension L10nFormFields {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
     return String(format: format, locale: Locale.current, arguments: args)

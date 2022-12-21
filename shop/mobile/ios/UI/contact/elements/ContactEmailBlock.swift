@@ -17,7 +17,7 @@ struct ContactEmailBlock: View {
             VStack {
                 HStack(spacing: 0) {
                     ZStack {
-                        Circle().fill(.white.opacity(0.9)).frame(width: 70, height: 70)
+                        Circle().fill(Color.onSurface.opacity(0.9)).frame(width: 70, height: 70)
                         Image("contact_email")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -32,7 +32,7 @@ struct ContactEmailBlock: View {
                             HStack {
                                 Image(systemName: "mail").imageScale(.small)
                                 Spacer()
-                                AppText(text: ConstantsKMM.CONST.other.CONTACT_EMAIL, color: Color.white)
+                                AppText(text: ConstantsKMM.CONST.other.CONTACT_EMAIL, maxLines: 1, color: Color.white)
                                 Spacer()
                             }
                         }.buttonStyle(BottonStyle(
@@ -46,6 +46,5 @@ struct ContactEmailBlock: View {
         .frame(maxWidth: .infinity)
         .background(Color.surface)
         .clipShape(Shapes.medium)
-        .padding(.horizontal)
     }
 }

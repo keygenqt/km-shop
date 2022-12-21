@@ -7,12 +7,7 @@
 */
 
 "contact_form_title" = "Сообщение";
-"contact_form_title2" = "Напишите нам сообщение";
-"contact_form_info" = "Мы обязательно прочтем и ответим, если будет необходимость";
-"contact_form_field_fname" = "Имя";
-"contact_form_field_lname" = "Фамилия (по желанию)";
-"contact_form_field_email" = "Email";
-"contact_form_field_phone" = "Телефон (по желанию)";
-"contact_form_field_message" = "Сообщение";
+"contact_form_title2" = "Ваше сообщение";
+"contact_form_info" = "Мы обязательно прочтем и ответим, если в ответе будет необходимость";
 "contact_form_btn_submit" = "Отправить";
 "contact_form_success" = "Ваше сообщение отправлено. Спасибо!";

@@ -12,12 +12,6 @@ import Foundation
 internal enum L10nOrderCreate {
   /// Отправить
   internal static let orderCreateBtnSubmit = L10nOrderCreate.tr("OrderCreate", "order_create_btn_submit", fallback: "Отправить")
-  /// Адрес (по желанию)
-  internal static let orderCreateFieldAddress = L10nOrderCreate.tr("OrderCreate", "order_create_field_address", fallback: "Адрес (по желанию)")
-  /// Email (по желанию)
-  internal static let orderCreateFieldEmail = L10nOrderCreate.tr("OrderCreate", "order_create_field_email", fallback: "Email (по желанию)")
-  /// Телефон
-  internal static let orderCreateFieldPhone = L10nOrderCreate.tr("OrderCreate", "order_create_field_phone", fallback: "Телефон")
   /// Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу
   internal static let orderCreateInfo = L10nOrderCreate.tr("OrderCreate", "order_create_info", fallback: "Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу")
   /// Информация по заказу

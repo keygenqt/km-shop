@@ -16,31 +16,29 @@ struct ContactScreen: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                Spacer().frame(height: 16)
+            VStack {
                 VStack {
                     ContactMessageBlock(action: {
                         navPath.add(NavScreen.contactForm)
-                    })
-                    Spacer().frame(height: 16)
+                    }).paddingItemBottom()
+                    
                     ContactEmailBlock(action: {
                         openURL(URL(string: "mailto:" + ConstantsKMM.CONST.other.CONTACT_EMAIL)!)
-                    })
-                    Spacer().frame(height: 16)
+                    }).paddingItemBottom()
+                    
                     ContactPhoneBlock(action: {
                         openURL(URL(string: ConstantsKMM.CONST.other.CONTACT_TG)!)
-                    })
+                    }).paddingItemBottom()
                 }
                 VStack {
-                    Spacer().frame(height: 16)
                     ContactAddressBlock()
-                    Spacer().frame(height: 16)
+                        .paddingItemBottom()
+                    
                     ContactMapBlock()
                 }
-                Spacer().frame(height: 16)
                 Spacer()
-            }
-        }.toolbarColorize(L10nApp.screenContact, true)
-
+            }.paddingPage()
+        }
+        .colorize(L10nApp.screenContact, true)
     }
 }

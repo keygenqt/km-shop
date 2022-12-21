@@ -14,8 +14,8 @@ internal enum L10nContact {
   internal static let contactAddressTitle = L10nContact.tr("Contact", "contact_address_title", fallback: "Доставка осуществляется по всей России, а мы находимся в городе Волгодонск")
   /// Моя личная почта
   internal static let contactEmailTitle = L10nContact.tr("Contact", "contact_email_title", fallback: "Моя личная почта")
-  /// Отправить сообщение
-  internal static let contactMessageBtn = L10nContact.tr("Contact", "contact_message_btn", fallback: "Отправить сообщение")
+  /// Написать сообщение
+  internal static let contactMessageBtn = L10nContact.tr("Contact", "contact_message_btn", fallback: "Написать сообщение")
   /// Contact.strings
   ///   YouShop
   /// 
