@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
     public func paddingPage() -> some View {
-        return padding(.top, 25)
+        return padding(.top, 27)
             .padding(.bottom, 20)
             .padding([.leading, .trailing], 20)
     }

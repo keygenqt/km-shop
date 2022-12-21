@@ -73,9 +73,9 @@ struct OrderCreateScreen: View {
                         EmptyView()
                     }
                     .padding(.leading, -20)
-                    .padding(.top, 0)
+                    .padding(.top, -7)
                     
-                }.offset(y: -10)
+                }.padding(.top, -10)
             }
         }
         .colorize(L10nApp.screenOrderCreate, true)
