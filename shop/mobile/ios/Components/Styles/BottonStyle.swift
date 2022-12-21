@@ -36,9 +36,9 @@ struct BottonStyle: ButtonStyle {
 
     @inlinable public func normal(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.vertical, 11)
-            .padding(.horizontal, 20)
-            .font(Font.system(size: 20))
+            .padding(.vertical, 8)
+            .padding(.horizontal, 18)
+            .font(Font.system(size: 18))
     }
 
     @inlinable public func small(configuration: Configuration) -> some View {

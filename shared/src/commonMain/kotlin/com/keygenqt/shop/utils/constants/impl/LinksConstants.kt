@@ -28,4 +28,9 @@ object LinksConstants {
      * Api url
      */
     const val API_DEBUG_ANDROID_URL = "http://10.0.2.2:8086/"
+
+    /**
+     * Api url
+     */
+    const val URL_MAP = "https://yandex.com/map-widget/v1/?um=constructor%3A76ab87516c046b5d4f54647f1b9fe382edcaa24c935e6be8898244ec111ab1f4&amp;source=constructor"
 }

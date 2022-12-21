@@ -4,7 +4,7 @@ import {ConstantImages, NavigateContext} from "../../../base";
 import {ColorsCircle} from "./ColorsCircle";
 import Typography from "@mui/material/Typography";
 import {useContext} from "react";
-import {ContactConf} from "../../../conf/ContactConf";
+import {ConstantsConf} from "../../../conf/ConstantsConf";
 
 export function MobileBlockHomePage() {
 
@@ -134,7 +134,7 @@ export function MobileBlockHomePage() {
                                 overflow: 'hidden'
                             }}
                             onClick={() => {
-                                route.openUrlNewTab(ContactConf.googlePlay)
+                                route.openUrlNewTab(ConstantsConf.googlePlay)
                             }}
                         >
                             <img
@@ -154,7 +154,7 @@ export function MobileBlockHomePage() {
                                 overflow: 'hidden'
                             }}
                             onClick={() => {
-                                route.openUrlNewTab(ContactConf.appStore)
+                                route.openUrlNewTab(ConstantsConf.appStore)
                             }}
                         >
                             <img

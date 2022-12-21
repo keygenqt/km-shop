@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import {ArrowUpwardOutlined, EmailOutlined, Telegram} from "@mui/icons-material";
 import {NavigateContext} from "../../base";
-import {ContactConf} from "../../conf/ContactConf";
+import {ConstantsConf} from "../../conf/ConstantsConf";
 
 /**
  * Application footer
@@ -64,12 +64,12 @@ export function AppFooter() {
                     aria-label="button group"
                 >
                     <Button onClick={() => {
-                        route.openUrlNewTab(ContactConf.telegram)
+                        route.openUrlNewTab(ConstantsConf.telegram)
                     }}>
                         <Telegram/>
                     </Button>
                     <Button onClick={() => {
-                        route.openEmail(ContactConf.email)
+                        route.openEmail(ConstantsConf.email)
                     }}>
                         <EmailOutlined/>
                     </Button>

@@ -5,7 +5,7 @@ import {EmailOutlined, PhoneOutlined} from "@mui/icons-material";
 import Lottie from "lottie-react";
 import {ConstantImages, ConstantLottie, NavigateContext} from "../../base";
 import {ContactForm} from "./elements/ContactForm";
-import {ContactConf} from "../../conf/ContactConf";
+import {ConstantsConf} from "../../conf/ConstantsConf";
 
 let intervalID
 
@@ -90,7 +90,7 @@ export function ContactPage() {
                                     minHeight: 250
                                 }}
                                 title="Location"
-                                src="https://yandex.com/map-widget/v1/?um=constructor%3A76ab87516c046b5d4f54647f1b9fe382edcaa24c935e6be8898244ec111ab1f4&amp;source=constructor"
+                                src={ConstantsConf.urlMap}
                             />
                         </Box>
                     </Grid>
@@ -175,10 +175,10 @@ export function ContactPage() {
                             startIcon={<EmailOutlined/>}
                             sx={{textTransform: 'none'}}
                             onClick={() => {
-                                route.openEmail(ContactConf.email)
+                                route.openEmail(ConstantsConf.email)
                             }}
                         >
-                            {ContactConf.email}
+                            {ConstantsConf.email}
                         </Button>
                     </Stack>
                     <Stack
@@ -210,10 +210,10 @@ export function ContactPage() {
                             startIcon={<PhoneOutlined/>}
                             sx={{textTransform: 'none'}}
                             onClick={() => {
-                                route.openUrlNewTab(ContactConf.telegram)
+                                route.openUrlNewTab(ConstantsConf.telegram)
                             }}
                         >
-                            {ContactConf.phone}
+                            {ConstantsConf.phone}
                         </Button>
                     </Stack>
                 </Stack>

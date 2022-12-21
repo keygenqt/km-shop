@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.base.ComposeWebView
 import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
+import com.keygenqt.shop.utils.constants.AppConstants
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -46,7 +47,7 @@ fun ContactMapBlock(
     ) {
         Box {
             ComposeWebView(
-                url = "https://yandex.com/map-widget/v1/?um=constructor%3A76ab87516c046b5d4f54647f1b9fe382edcaa24c935e6be8898244ec111ab1f4&amp;source=constructor",
+                url = AppConstants.links.URL_MAP,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),

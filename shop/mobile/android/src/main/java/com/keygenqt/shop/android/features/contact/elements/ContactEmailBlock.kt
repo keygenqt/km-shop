@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.texts.AppText
@@ -80,7 +81,7 @@ fun ContactEmailBlock() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
 
-                    AppText(text = "Моя личная почта")
+                    AppText(text = stringResource(id = R.string.contact_email_title))
 
                     Spacer(modifier = Modifier.size(4.dp))
 

@@ -23,6 +23,6 @@ import kotlin.js.JsExport
 @JsExport
 object AppConstants {
     val format = FormatConstants
-    val link = LinksConstants
+    val links = LinksConstants
     val other = OtherConstants
 }

@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
@@ -64,7 +65,7 @@ fun ContactAddressBlock() {
 
             AppText(
                 textAlign = TextAlign.Center,
-                text = "Доставка осуществляется по всей России, а мы находимся в городе Волгодонск."
+                text = stringResource(id = R.string.contact_address_title)
             )
         }
     }

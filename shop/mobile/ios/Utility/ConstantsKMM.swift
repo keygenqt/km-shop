@@ -7,9 +7,8 @@
 //
 
 import Foundation
-
 import shared
 
 struct ConstantsKMM {
-
+    static let CONST: AppConstants = AppConstants()
 }

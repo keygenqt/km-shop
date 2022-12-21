@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.components.texts.AppText
@@ -81,7 +82,7 @@ fun ContactPhoneBlock() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
 
-                    AppText(text = "Добавляйтесь в Telegram")
+                    AppText(text = stringResource(id = R.string.contact_phone_title))
 
                     Spacer(modifier = Modifier.size(4.dp))
 

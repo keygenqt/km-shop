@@ -20,6 +20,5 @@ struct HomeScreen: View {
                 Spacer()
             }
         }
-
     }
 }

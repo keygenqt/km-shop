@@ -5,3 +5,9 @@
   Created by Виталий Зарубин on 21.12.2022.
   Copyright © 2022 orgName. All rights reserved.
 */
+
+"contact_message_title" = "Напишите нам!";
+"contact_message_btn" = "Отправить сообщение";
+"contact_email_title" = "Моя личная почта";
+"contact_phone_title" = "Добавляйтесь в Telegram";
+"contact_address_title" = "Доставка осуществляется по всей России, а мы находимся в городе Волгодонск";

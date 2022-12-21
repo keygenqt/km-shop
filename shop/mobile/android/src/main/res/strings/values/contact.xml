@@ -1,3 +1,8 @@
 <resources>
     <string name="contact_title">Контакты</string>
+    <string name="contact_message_title">Напишите нам!</string>
+    <string name="contact_message_btn">Отправить сообщение</string>
+    <string name="contact_email_title">Моя личная почта</string>
+    <string name="contact_phone_title">Добавляйтесь в Telegram</string>
+    <string name="contact_address_title">Доставка осуществляется по всей России, а мы находимся в городе Волгодонск</string>
 </resources>
