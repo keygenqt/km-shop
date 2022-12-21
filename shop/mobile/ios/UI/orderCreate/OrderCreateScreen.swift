@@ -60,8 +60,10 @@ struct OrderCreateScreen: View {
                     }
                     
                     Section(header: VStack(alignment: .center, spacing: 0) {
-                        Button(L10nContactForm.contactFormBtnSubmit) {
+                        Button {
                             isSuccess = true
+                        } label: {
+                            AppText(text: L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
                         }
                         .buttonStyle(BottonStyle())
                         .disabled(!fieldPhone.isValid

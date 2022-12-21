@@ -47,8 +47,10 @@ struct ContactFormScreen: View {
                 }
                 
                 Section(header: VStack(alignment: .center, spacing: 0) {
-                    Button(L10nContactForm.contactFormBtnSubmit) {
+                    Button {
 
+                    } label: {
+                        AppText(text: L10nContactForm.contactFormBtnSubmit, color: .white).textCase(nil)
                     }
                     .buttonStyle(BottonStyle())
                     .disabled(!fieldLname.isValid
