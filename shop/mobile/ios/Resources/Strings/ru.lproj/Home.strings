@@ -1,0 +1,15 @@
+/* 
+  Home.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"info_block_title" = "В этом сезоне найди лучшее 🔥";
+"info_block_subtitle" = "Коллекции для\nвашего стиля";
+"info_block_btn" = "Начните поиск";
+"category_block_title" = "Топ категорий";
+"category_block_title_btn" = "Все";
+"category_block_btn" = "Смотреть";
+"home_btn_order" = "Оформить";

@@ -11,7 +11,10 @@ import SwiftUI
 struct ExploringCollectionsScreen: View {
     var body: some View {
         VStack {
-            Text("ExploringCollectionsScreen")
+            EmptyBody(
+                title: L10nExploring.emptyTab2Title,
+                subtitle: L10nExploring.emptyTab2Text
+            )
         }
     }
 }

@@ -11,7 +11,10 @@ import SwiftUI
 struct OrderHistoryScreen: View {
     var body: some View {
         VStack {
-            Text("OrderHistoryScreen")
+            EmptyBody(
+                title: L10nOrderHistory.orderHistoryEmpty,
+                subtitle: L10nOrderHistory.orderHistoryEmptySubtitle
+            )
         }
         .toolbarColorize(L10nApp.screenOrderHistory, true)
     }

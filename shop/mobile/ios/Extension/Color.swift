@@ -14,6 +14,19 @@ import SwiftUI
  */
 extension Color {
     // Theme
-    static let primary = Color("primary")
+    static let background = Color("background")
+    static let bgVariant1 = Color("bgVariant1")
+    static let bgVariant2 = Color("bgVariant2")
+    static let bgVariant3 = Color("bgVariant3")
+    static let bgVariant4 = Color("bgVariant4")
+    static let bgVariant5 = Color("bgVariant5")
+    static let bgVariant6 = Color("bgVariant6")
+    static let onBackground = Color("onBackground")
     static let onPrimary = Color("onPrimary")
+    static let onSecondary = Color("onSecondary")
+    static let onSurface = Color("onSurface")
+    static let primary = Color("primary")
+    static let secondary = Color("secondary")
+    static let surface = Color("surface")
+    static let textCaption = Color("textCaption")
 }

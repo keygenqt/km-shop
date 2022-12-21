@@ -1,0 +1,12 @@
+/* 
+  OrderHistory.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"order_history_title" = "История";
+"order_history_empty" = "Пока нет истории заказов";
+"order_history_empty_subtitle" = "Здесь будет отображаться история открытых заказов в приложении";
+"order_history_img_desc" = "Продукты";

@@ -9,30 +9,26 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10nExploring {
-  /// Категорий пока нет. Попробуйте зайти позже
-  internal static let emptyTab1Text = L10nExploring.tr("Exploring", "empty_tab_1_text", fallback: "Категорий пока нет. Попробуйте зайти позже")
-  /// Пусто
-  internal static let emptyTab1Title = L10nExploring.tr("Exploring", "empty_tab_1_title", fallback: "Пусто")
-  /// Коллекций пока нет. Попробуйте зайти позже
-  internal static let emptyTab2Text = L10nExploring.tr("Exploring", "empty_tab_2_text", fallback: "Коллекций пока нет. Попробуйте зайти позже")
-  /// Пусто
-  internal static let emptyTab2Title = L10nExploring.tr("Exploring", "empty_tab_2_title", fallback: "Пусто")
-  /// Exploring.strings
+internal enum L10nOrderHistory {
+  /// Пока нет истории заказов
+  internal static let orderHistoryEmpty = L10nOrderHistory.tr("OrderHistory", "order_history_empty", fallback: "Пока нет истории заказов")
+  /// Здесь будет отображаться история открытых заказов в приложении
+  internal static let orderHistoryEmptySubtitle = L10nOrderHistory.tr("OrderHistory", "order_history_empty_subtitle", fallback: "Здесь будет отображаться история открытых заказов в приложении")
+  /// Продукты
+  internal static let orderHistoryImgDesc = L10nOrderHistory.tr("OrderHistory", "order_history_img_desc", fallback: "Продукты")
+  /// OrderHistory.strings
   ///   YouShop
   /// 
-  ///   Created by Виталий Зарубин on 19.12.2022.
+  ///   Created by Виталий Зарубин on 21.12.2022.
   ///   Copyright © 2022 orgName. All rights reserved.
-  internal static let tab1 = L10nExploring.tr("Exploring", "tab_1", fallback: "Категории")
-  /// Коллекции
-  internal static let tab2 = L10nExploring.tr("Exploring", "tab_2", fallback: "Коллекции")
+  internal static let orderHistoryTitle = L10nOrderHistory.tr("OrderHistory", "order_history_title", fallback: "История")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
 
 // MARK: - Implementation Details
 
-extension L10nExploring {
+extension L10nOrderHistory {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
     return String(format: format, locale: Locale.current, arguments: args)

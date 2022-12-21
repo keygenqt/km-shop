@@ -14,9 +14,10 @@ struct ExploringCategoriesScreen: View {
     
     var body: some View {
         VStack {
-            Button("To products") {
-                navPath.add(NavScreen.products("Бантики"))
-            }.background(Color.primary)
+            EmptyBody(
+                title: L10nExploring.emptyTab1Title,
+                subtitle: L10nExploring.emptyTab1Text
+            )
         }
     }
 }

@@ -1,0 +1,11 @@
+/* 
+  Order.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"order_title" = "Заказ";
+"order_error_title" = "Заказ не найден";
+"order_error_text" = "К сожалению, запрошенная вами страница не найдена";

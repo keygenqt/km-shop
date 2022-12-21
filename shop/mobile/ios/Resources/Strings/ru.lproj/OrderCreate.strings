@@ -1,0 +1,19 @@
+/* 
+  OrderCreate.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"order_create_title" = "Оформление заказа";
+"order_create_title2" = "Контактная информация";
+"order_create_info" = "Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу";
+"order_create_field_phone" = "Телефон";
+"order_create_field_email" = "Email (по желанию)";
+"order_create_field_address" = "Адрес (по желанию)";
+"order_create_btn_submit" = "Отправить";
+"order_create_success_title" = "Заказ оформлен!";
+"order_create_success_text" = "Спасибо за ваш заказ. С вами свяжутся для уточнения деталей заказа. До скорого!";
+"order_create_success_btn" = "Информация по заказу";
+"order_create_success_toast" = "Вы можете отслеживать статус вашего заказа, он был добавлен в историю.";

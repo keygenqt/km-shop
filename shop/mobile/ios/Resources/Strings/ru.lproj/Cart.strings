@@ -1,0 +1,10 @@
+/* 
+  Cart.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"cart_empty_title" = "Пусто";
+"cart_empty_text" = "Ваша корзина пуста, добавьте интересующие вас товары и вернитесь";

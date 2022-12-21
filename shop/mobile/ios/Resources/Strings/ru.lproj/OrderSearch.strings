@@ -1,0 +1,11 @@
+/* 
+  OrderSearch.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"order_search_title" = "Поиск заказа";
+"order_search_subtitle" = "Здесь вы можете найти свой заказ по номеру, полученному после успешного оформления заказа.";
+"order_search_number_order" = "Номер заказа";

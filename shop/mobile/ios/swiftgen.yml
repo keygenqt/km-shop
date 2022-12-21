@@ -24,3 +24,73 @@ strings:
       params:
         enumName: L10nExploring
         publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Cart.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/CartStrings.swift
+      params:
+        enumName: L10nCart
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Contact.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/ContactStrings.swift
+      params:
+        enumName: L10nContact
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/ContactForm.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/ContactFormStrings.swift
+      params:
+        enumName: L10nContactForm
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Home.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/HomeStrings.swift
+      params:
+        enumName: L10nHome
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Order.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/OrderStrings.swift
+      params:
+        enumName: L10nOrder
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/OrderCreate.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/OrderCreateStrings.swift
+      params:
+        enumName: L10nOrderCreate
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/OrderHistory.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/OrderHistoryStrings.swift
+      params:
+        enumName: L10nOrderHistory
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/OrderSearch.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/OrderSearchStrings.swift
+      params:
+        enumName: L10nOrderSearch
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Product.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/ProductStrings.swift
+      params:
+        enumName: L10nProduct
+        publicAccess: false
+  - inputs: Resources/Strings/ru.lproj/Products.strings
+    outputs:
+      templateName: structured-swift5
+      output: Generated/Strings/ProductsStrings.swift
+      params:
+        enumName: L10nProducts
+        publicAccess: false

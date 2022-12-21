@@ -9,30 +9,22 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum L10nExploring {
-  /// Категорий пока нет. Попробуйте зайти позже
-  internal static let emptyTab1Text = L10nExploring.tr("Exploring", "empty_tab_1_text", fallback: "Категорий пока нет. Попробуйте зайти позже")
-  /// Пусто
-  internal static let emptyTab1Title = L10nExploring.tr("Exploring", "empty_tab_1_title", fallback: "Пусто")
-  /// Коллекций пока нет. Попробуйте зайти позже
-  internal static let emptyTab2Text = L10nExploring.tr("Exploring", "empty_tab_2_text", fallback: "Коллекций пока нет. Попробуйте зайти позже")
-  /// Пусто
-  internal static let emptyTab2Title = L10nExploring.tr("Exploring", "empty_tab_2_title", fallback: "Пусто")
-  /// Exploring.strings
+internal enum L10nCart {
+  /// Ваша корзина пуста, добавьте интересующие вас товары и вернитесь
+  internal static let cartEmptyText = L10nCart.tr("Cart", "cart_empty_text", fallback: "Ваша корзина пуста, добавьте интересующие вас товары и вернитесь")
+  /// Cart.strings
   ///   YouShop
   /// 
-  ///   Created by Виталий Зарубин on 19.12.2022.
+  ///   Created by Виталий Зарубин on 21.12.2022.
   ///   Copyright © 2022 orgName. All rights reserved.
-  internal static let tab1 = L10nExploring.tr("Exploring", "tab_1", fallback: "Категории")
-  /// Коллекции
-  internal static let tab2 = L10nExploring.tr("Exploring", "tab_2", fallback: "Коллекции")
+  internal static let cartEmptyTitle = L10nCart.tr("Cart", "cart_empty_title", fallback: "Пусто")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
 
 // MARK: - Implementation Details
 
-extension L10nExploring {
+extension L10nCart {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
     return String(format: format, locale: Locale.current, arguments: args)

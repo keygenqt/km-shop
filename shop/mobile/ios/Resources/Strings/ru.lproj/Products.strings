@@ -1,0 +1,13 @@
+/* 
+  Products.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"products_empty_title" = "Товары не найдены";
+"products_empty_subtitle_categories" = "В этой категории товаров пока нет. Попробуйте зайти позже";
+"products_empty_subtitle_collections" = "В этой коллекции товаров пока нет. Попробуйте зайти позже";
+"products_delete_from_cart" = "Продукт удален из корзины";
+"products_add_to_cart" = "Продукт добвлен в корзину";

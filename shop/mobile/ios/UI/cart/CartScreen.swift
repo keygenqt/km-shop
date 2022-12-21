@@ -11,7 +11,10 @@ import SwiftUI
 struct CartScreen: View {
     var body: some View {
         VStack {
-            Text("CartScreen")
+            EmptyCartBody(
+                title: "Пусто",
+                subtitle: "Ваша корзина пуста, добавьте интересующие вас товары и вернитесь"
+            )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }

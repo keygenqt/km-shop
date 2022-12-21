@@ -34,8 +34,21 @@ internal enum Resources {
     internal static let launcher = ImageAsset(name: "launcher")
   }
   internal enum Colors {
+    internal static let background = ColorAsset(name: "background")
+    internal static let bgVariant1 = ColorAsset(name: "bgVariant1")
+    internal static let bgVariant2 = ColorAsset(name: "bgVariant2")
+    internal static let bgVariant3 = ColorAsset(name: "bgVariant3")
+    internal static let bgVariant4 = ColorAsset(name: "bgVariant4")
+    internal static let bgVariant5 = ColorAsset(name: "bgVariant5")
+    internal static let bgVariant6 = ColorAsset(name: "bgVariant6")
+    internal static let onBackground = ColorAsset(name: "onBackground")
     internal static let onPrimary = ColorAsset(name: "onPrimary")
+    internal static let onSecondary = ColorAsset(name: "onSecondary")
+    internal static let onSurface = ColorAsset(name: "onSurface")
     internal static let primary = ColorAsset(name: "primary")
+    internal static let secondary = ColorAsset(name: "secondary")
+    internal static let surface = ColorAsset(name: "surface")
+    internal static let textCaption = ColorAsset(name: "textCaption")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

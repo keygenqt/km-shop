@@ -1,0 +1,24 @@
+/* 
+  Product.strings
+  YouShop
+
+  Created by Виталий Зарубин on 21.12.2022.
+  Copyright © 2022 orgName. All rights reserved.
+*/
+
+"product_title" = "Загрузка…";
+"product_empty_title" = "Продукт не найден";
+"product_empty_subtitle" = "Что-то пошло не так. Попробуйте перезайти позже";
+"product_block_1_title" = "Бесплатная доставка";
+"product_block_1_text" = "При заказе свыше ₽ 5000.00";
+"product_block_2_title" = "Очень легко вернуть";
+"product_block_2_text" = "Просто свяжитесь с нами";
+"product_block_3_title" = "Доставка";
+"product_block_3_text" = "Быстрая доставка по всей стране";
+"product_block_4_title" = "Политика возврата";
+"product_block_4_text" = "60 дней возврата по любой причине";
+"product_description" = "Описание";
+"product_btn_add" = "Добавить в корзину";
+"product_btn_remove" = "Удалить с корзины";
+"product_delete_from_cart" = "Продукт удален из корзины";
+"product_add_to_cart" = "Продукт добвлен в корзину";
