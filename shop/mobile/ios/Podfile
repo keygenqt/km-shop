@@ -1,4 +1,4 @@
-target 'MyShop' do
+target 'YouShop' do
   use_frameworks!
   platform :ios, '16'
   

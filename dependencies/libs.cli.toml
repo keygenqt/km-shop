@@ -3,14 +3,14 @@
 ##########################
 
 [versions]
+# https://github.com/ktorio/ktor/releases
+ktorVersion = "2.1.3"
 # https://insert-koin.io/docs/setup/koin#core
 koinVersion="3.2.2"
 # https://github.com/Kotlin/kotlinx-cli
 kotlinxCLIVersion = "0.3.5"
 # https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md
 coroutinesVersion = "1.6.4"
-# https://mvnrepository.com/artifact/org.slf4j
-slf4jVersion = "2.0.3"
 # https://github.com/lightbend/config
 configVersion = "1.4.2"
 # https://github.com/JetBrains/Exposed/releases
@@ -78,6 +78,14 @@ module = "ch.qos.logback:logback-classic"
 [libraries.logback-classic.version]
 ref = "logbackVersion"
 
+# Ktor
+# Ktor is an asynchronous framework for creating microservices, web applications and more.
+# Written in Kotlin from the ground up.
+[libraries.ktor-client-logging]
+module = "io.ktor:ktor-client-logging"
+[libraries.ktor-client-logging.version]
+ref = "ktorVersion"
+
 ##########################
 ## BUNDLES
 ##########################
@@ -92,4 +100,5 @@ cli = [
     "kotlinx-cli",
     "kotlinx-coroutines-core",
     "logback-classic",
+    "ktor-client-logging",
 ]

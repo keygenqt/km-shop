@@ -4,7 +4,6 @@ plugins {
     id("io.ktor.plugin") version "2.1.3"
 }
 
-
 group = "com.keygenqt.shop.cli"
 version = "0.0.1"
 

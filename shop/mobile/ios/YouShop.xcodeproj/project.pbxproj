@@ -98,7 +98,7 @@
 		2F7703E12952FE3B00E3F5EA /* ContactAddressBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E02952FE3B00E3F5EA /* ContactAddressBlock.swift */; };
 		2F7703E32952FE4600E3F5EA /* ContactMapBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E22952FE4600E3F5EA /* ContactMapBlock.swift */; };
 		2F7703E529532F9100E3F5EA /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E429532F9100E3F5EA /* WebView.swift */; };
-		6259EE66A9315D301ED1D960 /* Pods_MyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B049A4FBFFF13B11DA58AA /* Pods_MyShop.framework */; };
+		D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,9 +196,11 @@
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouShop.release.xcconfig"; path = "Target Support Files/Pods-YouShop/Pods-YouShop.release.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* YouShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1B049A4FBFFF13B11DA58AA /* Pods_MyShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouShop.debug.xcconfig"; path = "Target Support Files/Pods-YouShop/Pods-YouShop.debug.xcconfig"; sourceTree = "<group>"; };
+		93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YouShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCC6CA78BA914ED0495507A /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6259EE66A9315D301ED1D960 /* Pods_MyShop.framework in Frameworks */,
+				D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +672,8 @@
 				40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */,
 				46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */,
 				43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */,
+				8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */,
+				65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -713,7 +717,7 @@
 		9D5DD003A878779134AC0BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E1B049A4FBFFF13B11DA58AA /* Pods_MyShop.framework */,
+				93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -856,15 +860,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyShop/Pods-MyShop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyShop/Pods-MyShop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyShop/Pods-MyShop-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77086F4CB079E947A7FC7816 /* [CP] Check Pods Manifest.lock */ = {
@@ -882,7 +886,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyShop-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YouShop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1183,7 +1187,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */;
+			baseConfigurationReference = 8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1207,7 +1211,7 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */;
+			baseConfigurationReference = 65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
