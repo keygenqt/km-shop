@@ -10,9 +10,16 @@ import SwiftUI
 
 struct HomeScreen: View {
     var body: some View {
-        VStack {
-            AppText("HomeScreen", typography: .h6)
+        ScrollView {
+            VStack {
+                Spacer().frame(height: 16)
+                InfoBlock()
+                Spacer().frame(height: 16)
+                CategoriesBlock()
+                Spacer().frame(height: 16)
+                Spacer()
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+
     }
 }

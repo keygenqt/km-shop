@@ -1,36 +1,5 @@
 import SwiftUI
 
-enum NavScreen: Hashable {
-    case cart
-    case contact
-    case contactForm
-    case exploring
-    case order(String)
-    case orderCreate
-    case orderHistory
-    case orderSearch
-    case product(Int)
-    case products(String)
-}
-
-class NavObservable: ObservableObject {
-    @Published var route = [NavScreen]()
-    
-    // add screen
-    func add(_ screen: NavScreen) {
-        route.append(screen)
-    }
-    
-    // update routing
-    func insert(_ screens: [NavScreen]) {
-        UIView.setAnimationsEnabled(false)
-        route = screens
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            UIView.setAnimationsEnabled(true)
-        }
-    }
-}
-
 @main
 struct MyShopApp: App {
     

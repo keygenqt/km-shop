@@ -29,4 +29,8 @@ extension Color {
     static let secondary = Color("secondary")
     static let surface = Color("surface")
     static let textCaption = Color("textCaption")
+    static let btnBlack = Color("btnBlack")
+    static let btnBlackPress = Color("btnBlackPress")
+    static let btnGray = Color("btnGray")
+    static let btnGrayPress = Color("btnGrayPress")
 }

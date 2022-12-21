@@ -17,6 +17,8 @@ struct HomeTabs: View {
     
     init(selection: Binding<Int>) {
         _selection = selection
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor = UIColor(Color.primary)
         UITabBar.appearance().backgroundColor = UIColor(Color.primary)
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.onPrimary.opacity(0.5))
     }
@@ -96,13 +98,13 @@ struct HomeTabs: View {
                 Button {
                     navPath.add(NavScreen.contact)
                 } label: {
-                    Image(systemName: "paperplane.circle").imageScale(.large)
+                    Image(systemName: "envelope.circle").imageScale(.large)
                 }
                 
                 Button {
                     navPath.add(NavScreen.orderSearch)
                 } label: {
-                    Image(systemName: "folder.circle").imageScale(.large)
+                    Image(systemName: "briefcase.circle").imageScale(.large)
                 }
             }
         })

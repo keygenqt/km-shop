@@ -32,6 +32,11 @@ internal enum Resources {
     internal static let contactPhone = ImageAsset(name: "contact_phone")
     internal static let girl = ImageAsset(name: "girl")
     internal static let launcher = ImageAsset(name: "launcher")
+    internal static let catBg1 = ImageAsset(name: "cat_bg_1")
+    internal static let catBg2 = ImageAsset(name: "cat_bg_2")
+    internal static let catBg3 = ImageAsset(name: "cat_bg_3")
+    internal static let catBg5 = ImageAsset(name: "cat_bg_5")
+    internal static let catBg6 = ImageAsset(name: "cat_bg_6")
   }
   internal enum Colors {
     internal static let background = ColorAsset(name: "background")
@@ -41,6 +46,10 @@ internal enum Resources {
     internal static let bgVariant4 = ColorAsset(name: "bgVariant4")
     internal static let bgVariant5 = ColorAsset(name: "bgVariant5")
     internal static let bgVariant6 = ColorAsset(name: "bgVariant6")
+    internal static let btnBlack = ColorAsset(name: "btnBlack")
+    internal static let btnBlackPress = ColorAsset(name: "btnBlackPress")
+    internal static let btnGray = ColorAsset(name: "btnGray")
+    internal static let btnGrayPress = ColorAsset(name: "btnGrayPress")
     internal static let onBackground = ColorAsset(name: "onBackground")
     internal static let onPrimary = ColorAsset(name: "onPrimary")
     internal static let onSecondary = ColorAsset(name: "onSecondary")

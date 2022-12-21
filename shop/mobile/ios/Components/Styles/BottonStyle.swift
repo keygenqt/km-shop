@@ -1,5 +1,5 @@
 //
-//  ButtonOutlineStyle.swift
+//  BottomPrimaryStyle.swift
 //  YouShop
 //
 //  Created by Виталий Зарубин on 21.12.2022.
@@ -8,12 +8,25 @@
 
 import SwiftUI
 
-struct ButtonOutlineStyle: ButtonStyle {
+struct BottonStyle: ButtonStyle {
+    
+    var color: Color = Color.primary
+    var colorPress: Color = Color.bgVariant5
     var fullWith: Bool = false
     var size: ButtonStyleSize = .normal
-    
     @Environment(\.isEnabled) var isEnabled
-
+    
+    @inlinable public func getShape() -> RoundedRectangle {
+        switch size {
+        case .large:
+            return Shapes.medium
+        case .normal:
+            return Shapes.medium
+        default:
+            return Shapes.small
+        }
+    }
+    
     @inlinable public func large(configuration: Configuration) -> some View {
         configuration.label
             .padding(.vertical, 11)
@@ -34,7 +47,7 @@ struct ButtonOutlineStyle: ButtonStyle {
             .padding(.horizontal, 12)
             .font(Font.system(size: 16))
     }
-
+    
     @inlinable public func getLabel(configuration: Configuration) -> some View {
         switch size {
         case .large:
@@ -46,29 +59,13 @@ struct ButtonOutlineStyle: ButtonStyle {
         }
     }
 
-    @inlinable public func getRadius() -> CGFloat {
-        switch size {
-        case .large:
-            return 8
-        case .normal:
-            return 8
-        default:
-            return 4
-        }
-    }
-
     func makeBody(configuration: Configuration) -> some View {
         getLabel(configuration: configuration)
             .frame(maxWidth: fullWith ? .infinity : nil)
-            .foregroundColor(isEnabled ? Color.white.opacity(configuration.isPressed ? 0.7 : 1) : Color.gray)
-            .background(Color.clear)
-            .clipShape(Shapes.medium)
+            .foregroundColor(Color.onPrimary)
+            .background(isEnabled ? (configuration.isPressed ? colorPress : color) : Color.gray)
+            .clipShape(getShape())
             .scaleEffect(configuration.isPressed ? 0.99 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-            .overlay(
-                RoundedRectangle(cornerRadius: getRadius())
-                    .stroke(isEnabled ? Color.white.opacity(configuration.isPressed ? 0.7 : 1) : Color.gray, lineWidth: 1)
-                    .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-            )
     }
 }

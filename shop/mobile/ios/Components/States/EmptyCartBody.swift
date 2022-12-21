@@ -17,13 +17,12 @@ struct EmptyCartBody: View {
         VStack {
             EmptyCartAnimation()
             Spacer().frame(height: 24)
-            AppText(title, typography: .h6)
+            AppText(text: title, typography: .h6)
             Spacer().frame(height: 10)
-            AppText(subtitle, alignment: .center)
+            AppText(text: subtitle, alignment: .center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding()
         .background(Color.background)
     }
 }
-

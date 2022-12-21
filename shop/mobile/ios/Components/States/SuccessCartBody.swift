@@ -19,14 +19,13 @@ struct SuccessCartBody: View {
         VStack {
             SuccessCartAnimation()
             Spacer().frame(height: 24)
-            AppText(title, typography: .h6)
+            AppText(text: title, typography: .h6)
             Spacer().frame(height: 10)
-            AppText(subtitle, alignment: .center)
+            AppText(text: subtitle, alignment: .center)
             Spacer().frame(height: 24)
-            
             Button(btnTitle) {
                 action?()
-            }.buttonStyle(BottomPrimaryStyle())
+            }.buttonStyle(BottonStyle())
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding()
