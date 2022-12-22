@@ -15,7 +15,7 @@ private func checkIsBlank(label: String, text: String) -> String? {
 }
 
 private func checkIsLong(label: String, text: String) -> String? {
-    return text.count != 32 ? "Длинна номера заказа - 32 символа" : nil
+    return text.count != 36 ? "Длинна номера заказа - 32 символа" : nil
 }
 
 private func checkLineFirst(label: String, text: String) -> String? {

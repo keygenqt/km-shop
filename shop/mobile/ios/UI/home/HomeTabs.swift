@@ -17,6 +17,7 @@ struct HomeTabs: View {
     
     init(selection: Binding<Int>) {
         _selection = selection
+        UITabBarItem.appearance().badgeColor = UIColor(Color.secondary)
         UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = UIColor(Color.primary)
         UITabBar.appearance().backgroundColor = UIColor(Color.primary)
