@@ -10,5 +10,9 @@ import Foundation
 import shared
 
 struct ConstantsKMM {
+    // Constants
     static let CONST: AppConstants = AppConstants()
+    
+    // Network service
+    static let REQUEST: ServiceRequest = ServiceRequest(apiUrl: nil, logger: nil)
 }

@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import shared
 
 class OrderViewModel: ObservableObject, Identifiable {
     
-    @Published var loadingPage: Bool = true
+    var requests = OrderRequests()
     
-    func updateStateUI() {
+    @Published var response: OrderResponse?
+    
+    func updateStateUI(
+        response: OrderResponse
+    ) {
         DispatchQueue.main.async {
-            self.loadingPage = false
+            self.response = response
         }
     }
     
@@ -28,8 +33,11 @@ class OrderViewModel: ObservableObject, Identifiable {
         number: String
     ) async {
         do {
-            try await Task.sleep(nanoseconds: 3_000_000_000)
-            self.updateStateUI()
+            try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
+            let response = try await requests.orderByNumber(number)
+            self.updateStateUI(
+                response: response
+            )
         } catch {
            print("Unexpected error: \(error).")
         }

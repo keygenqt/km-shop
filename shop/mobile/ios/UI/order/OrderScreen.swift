@@ -24,17 +24,19 @@ struct OrderScreen: View {
     
     var body: some View {
         VStack {
-            if viewModel.loadingPage {
-                LoadingBody()
-            } else {
+            if let response = viewModel.response {
                 AppScrollView {
-                    Text("OrderScreen")
-                    Text(number)
+                    VStack {
+                        AppText(text: response.number)
+                        AppText(text: response.state.name)
+                    }
                 }.refreshable {
                     await viewModel.loadAsync(
                         number: number
                     )
                 }
+            } else {
+                LoadingBody()
             }
         }.colorize(L10nApp.screenOrder, true)
     }

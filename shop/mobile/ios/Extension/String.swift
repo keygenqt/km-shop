@@ -6,8 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import SwiftUI
-import shared
+import Foundation
 
 extension String {
     func matches(_ regex: String) -> Bool {

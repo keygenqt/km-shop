@@ -10,11 +10,11 @@ import SwiftUI
 
 struct AppSection<Content: View>: View {
     
-    var color: Color = Color.surface
+    var color: Color
     var header: String?
     var content: () -> Content
 
-    init(color: Color = .white, header: String? = nil, @ViewBuilder content: @escaping () -> Content) {
+    init(color: Color = Color.surface, header: String? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.color = color
         self.header = header
         self.content = content
