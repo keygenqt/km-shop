@@ -13,3 +13,4 @@
 "form_field_message" = "Сообщение";
 "form_field_phone" = "Телефон";
 "form_field_address" = "Адрес";
+"form_field_order_number" = "Номер заказа";

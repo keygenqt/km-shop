@@ -47,23 +47,25 @@ struct OrderCreateScreen: View {
                         }.padding()
                     }
                     
-                    AppSection(color: Color.error) {
-                        HStack {
-                            AppText(text: "Error sumbit form", color: Color.onError, typography: .body1)
-                            Spacer()
-                        }.padding()
+                    if error != nil {
+                        AppSection(color: Color.error) {
+                            HStack {
+                                AppText(text: error!, color: Color.onError, typography: .body1)
+                                Spacer()
+                            }.padding()
+                        }
                     }
                     
                     AppSection(header: L10nOrderCreate.orderCreateTitle2) {
-                        AppFieldText(field: $fieldPhone, initValidate: false) { error in
+                        AppFieldText(field: $fieldPhone) { error in
                             self.error = error
                         }
 
-                        AppFieldText(field: $fieldEmail, initValidate: true) { error in
+                        AppFieldText(field: $fieldEmail) { error in
                             self.error = error
                         }
 
-                        AppFieldText(field: $fieldAddress, initValidate: true) { error in
+                        AppFieldText(field: $fieldAddress, isDivider: false) { error in
                             self.error = error
                         }
                     }
@@ -76,7 +78,7 @@ struct OrderCreateScreen: View {
                                 AppText(text: L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
                             }
                             .buttonStyle(BottonStyle())
-                            .disabled(!fieldPhone.isValid
+                            .disabled(!fieldPhone.isValid || fieldPhone.value.isEmpty
                                       || !fieldEmail.isValid
                                       || !fieldAddress.isValid)
                             Spacer()

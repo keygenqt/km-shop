@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10nOrderSearch {
+  /// Искать
+  internal static let orderSearchNumberBtn = L10nOrderSearch.tr("OrderSearch", "order_search_number_btn", fallback: "Искать")
   /// Номер заказа
   internal static let orderSearchNumberOrder = L10nOrderSearch.tr("OrderSearch", "order_search_number_order", fallback: "Номер заказа")
   /// Здесь вы можете найти свой заказ по номеру, полученному после успешного оформления заказа.

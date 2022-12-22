@@ -113,6 +113,8 @@
 		2FE8A6D529537866002B1087 /* AddressOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D429537866002B1087 /* AddressOptionalField.swift */; };
 		2FF357FF295486AF0001B89A /* AppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF357FE295486AF0001B89A /* AppSection.swift */; };
 		2FF35801295499960001B89A /* AppScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF35800295499960001B89A /* AppScrollView.swift */; };
+		2FF358042954AAE60001B89A /* OrderNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF358032954AAE60001B89A /* OrderNumberField.swift */; };
+		2FF358062954AD480001B89A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF358052954AD480001B89A /* String.swift */; };
 		D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -223,6 +225,8 @@
 		2FE8A6D429537866002B1087 /* AddressOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressOptionalField.swift; sourceTree = "<group>"; };
 		2FF357FE295486AF0001B89A /* AppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSection.swift; sourceTree = "<group>"; };
 		2FF35800295499960001B89A /* AppScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScrollView.swift; sourceTree = "<group>"; };
+		2FF358032954AAE60001B89A /* OrderNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNumberField.swift; sourceTree = "<group>"; };
+		2FF358052954AD480001B89A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -554,6 +558,7 @@
 				2F7703592950D69F00E3F5EA /* UIColor.swift */,
 				2F77035B2950DB0F00E3F5EA /* Color.swift */,
 				2F7703622951132800E3F5EA /* View.swift */,
+				2FF358052954AD480001B89A /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -719,6 +724,7 @@
 				2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */,
 				2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */,
 				2FE8A6D429537866002B1087 /* AddressOptionalField.swift */,
+				2FF358032954AAE60001B89A /* OrderNumberField.swift */,
 			);
 			path = fields;
 			sourceTree = "<group>";
@@ -995,6 +1001,7 @@
 				2F77038B29527BC200E3F5EA /* BottonStyle.swift in Sources */,
 				2F7703DD2952FE1C00E3F5EA /* ContactPhoneBlock.swift in Sources */,
 				2F77036729514A6B00E3F5EA /* HiddenModifier.swift in Sources */,
+				2FF358042954AAE60001B89A /* OrderNumberField.swift in Sources */,
 				2F7703BE2952851700E3F5EA /* ProductStrings.swift in Sources */,
 				2F77035A2950D69F00E3F5EA /* UIColor.swift in Sources */,
 				2FE8A6D329536B6E002B1087 /* EmailOptionalField.swift in Sources */,
@@ -1031,6 +1038,7 @@
 				2F77037F29526B6900E3F5EA /* ErrorBody.swift in Sources */,
 				2F77037829525CE400E3F5EA /* SuccessCartAnimation.swift in Sources */,
 				2F7703DB2952FE0800E3F5EA /* ContactEmailBlock.swift in Sources */,
+				2FF358062954AD480001B89A /* String.swift in Sources */,
 				2F77037429525CCB00E3F5EA /* ErrorAnimation.swift in Sources */,
 				2F77032A29509B6900E3F5EA /* AppStrings.swift in Sources */,
 				2F7703D92952B30900E3F5EA /* CategoryItemBlock.swift in Sources */,

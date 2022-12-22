@@ -24,6 +24,8 @@ internal enum L10nFormFields {
   internal static let formFieldLname = L10nFormFields.tr("FormFields", "form_field_lname", fallback: "Фамилия")
   /// Сообщение
   internal static let formFieldMessage = L10nFormFields.tr("FormFields", "form_field_message", fallback: "Сообщение")
+  /// Номер заказа
+  internal static let formFieldOrderNumber = L10nFormFields.tr("FormFields", "form_field_order_number", fallback: "Номер заказа")
   /// Телефон
   internal static let formFieldPhone = L10nFormFields.tr("FormFields", "form_field_phone", fallback: "Телефон")
 }

@@ -18,7 +18,8 @@ struct LnameOptionalField: IFieldText {
     // params field
     var label: String = L10nFormFields.formFieldLname
     var value: String = ""
-    var isValid: Bool = false
+    var isClear: Bool = false
+    var isValid: Bool = true
     var lineLimit = 1 ... 1
     var keyboardType = UIKeyboardType.asciiCapable
     var validates = [

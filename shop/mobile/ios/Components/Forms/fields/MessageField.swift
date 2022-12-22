@@ -22,7 +22,8 @@ struct MessageField: IFieldText {
     // params field
     var label: String = L10nFormFields.formFieldMessage + " *"
     var value: String = ""
-    var isValid: Bool = false
+    var isClear: Bool = false
+    var isValid: Bool = true
     var lineLimit = 1 ... 10
     var keyboardType = UIKeyboardType.asciiCapable
     var validates = [

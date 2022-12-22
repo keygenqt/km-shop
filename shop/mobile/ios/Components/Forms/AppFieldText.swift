@@ -11,27 +11,24 @@ import SwiftUI
 struct AppFieldText: View {
     @Binding var field: IFieldText
 
-    var initValidate: Bool = false
+    var isDivider: Bool = true
+    var isInitValidate: Bool = false
     var actionError: (String?) -> Void = { _ in }
 
     @State private var error: String?
-
-    var body: some View {
-        
-        let validateField: (String) -> Void = { text in
-            for validate in field.validates {
-                error = validate(field.label, text)
-                if error != nil {
-                    break
-                }
-            }
-            if error != nil {
-                field.isValid = false
-            } else {
-                field.isValid = true
+    
+    let validateField: (IFieldText, String) -> String? = { field, text in
+        var result: String?
+        for validate in field.validates {
+            result = validate(field.label, text)
+            if result != nil {
+                return result
             }
         }
-        
+        return result
+    }
+
+    var body: some View {
         ZStack {
             TextField(text: $field.value, prompt: Text(field.label), axis: field.lineLimit == 1 ... 1 ? .horizontal : .vertical) {
                 Text(field.label)
@@ -40,18 +37,33 @@ struct AppFieldText: View {
             .accentColor(Color.primary)
             .lineLimit(field.lineLimit)
             .onChange(of: field.value, perform: { text in
-                validateField(text)
+                if !field.isClear {
+                    error = validateField(field, text)
+                    if error != nil {
+                        field.isValid = false
+                    } else {
+                        field.isValid = true
+                    }
+                }
             })
             .onAppear {
-                if !field.value.isEmpty || initValidate {
-                    validateField(field.value)
+                field.isClear = false
+                if isInitValidate {
+                    error = validateField(field, field.value)
+                    if error != nil {
+                        field.isValid = false
+                    } else {
+                        field.isValid = true
+                    }
                 }
             }
             .keyboardType(field.keyboardType)
             .padding(.trailing, error != nil ? 30 : 0)
         }
         .overlay(VStack {
-            Divider()
+            if isDivider {
+                Divider()
+            }
         }.padding(.leading), alignment: .bottom)
         .overlay(ZStack {
             VStack {
@@ -62,7 +74,7 @@ struct AppFieldText: View {
                         actionError(error)
                     }
                 Spacer()
-            }.padding(.trailing).hiddenModifier(isHide: error == nil)
+            }.padding(.trailing).hiddenModifier(isHide: field.isValid)
         }, alignment: .trailing)
     }
 }

@@ -11,12 +11,20 @@ import Foundation
 import SwiftUI
 
 struct AppForm<Content: View>: View {
+    
+    // cat custom for app
+    var isShowCat: Bool = false
     var content: () -> Content
 
     @Binding var error: String?
 
-    init(error: Binding<String?>, @ViewBuilder content: @escaping () -> Content) {
+    init(
+        error: Binding<String?>,
+        isShowCat: Bool = false,
+        @ViewBuilder content: @escaping () -> Content
+    ) {
         self.content = content
+        self.isShowCat = isShowCat
         _error = error
     }
 
@@ -24,6 +32,12 @@ struct AppForm<Content: View>: View {
         AppScrollView {
             content()
         }
+        .overlay(HStack {
+            if isShowCat {
+                Spacer()
+                CatSneakingAnimation().offset(x: -10, y: 25)
+            }
+        }, alignment: .bottom)
         .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil })) {
             AlertToast(
                 displayMode: .banner(.pop),

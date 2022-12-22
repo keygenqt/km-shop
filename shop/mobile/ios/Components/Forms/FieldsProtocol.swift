@@ -18,6 +18,7 @@ protocol IFieldSwitch: IField {
 
 protocol IFieldText: IField {
     var value: String { get set }
+    var isClear: Bool { get set }
     var isValid: Bool { get set }
     var keyboardType: UIKeyboardType { get set }
     var lineLimit: ClosedRange<Int> { get set }

@@ -17,9 +17,9 @@ struct CatSneakingAnimation: View {
                 loopMode: LottieLoopMode.loop,
                 animationSpeed: 0.6
             )
-            .frame(width: 175, height: 175)
+            .frame(width: 120, height: 120)
         }
-        .frame(width: 150, height: 150, alignment: .center)
+        .frame(width: 100, height: 100, alignment: .center)
     }
 }
 

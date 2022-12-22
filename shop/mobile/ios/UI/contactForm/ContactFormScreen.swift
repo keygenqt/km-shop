@@ -12,12 +12,12 @@ struct ContactFormScreen: View {
     
     // form states
     @State private var error: String?
-    // form value
-    @State private var fieldLname: IFieldText = LnameOptionalField()
-    @State private var fieldPhone: IFieldText = PhoneOptionalField()
     
+    // form value
     @State private var fieldEmail: IFieldText = EmailField()
     @State private var fieldFname: IFieldText = FnameField()
+    @State private var fieldLname: IFieldText = LnameOptionalField()
+    @State private var fieldPhone: IFieldText = PhoneOptionalField()
     @State private var fieldMessage: IFieldText = MessageField()
     
     var body: some View {
@@ -29,19 +29,21 @@ struct ContactFormScreen: View {
                 }.padding()
             }
             
-            AppSection(color: Color.error) {
-                HStack {
-                    AppText(text: "Error sumbit form", color: Color.onError, typography: .body1)
-                    Spacer()
-                }.padding()
+            if error != nil {
+                AppSection(color: Color.error) {
+                    HStack {
+                        AppText(text: error!, color: Color.onError, typography: .body1)
+                        Spacer()
+                    }.padding()
+                }
             }
             
             AppSection(header: L10nContactForm.contactFormTitle2) {
-                AppFieldText(field: $fieldEmail, initValidate: false) { error in
+                AppFieldText(field: $fieldEmail) { error in
                     self.error = error
                 }
                 
-                AppFieldText(field: $fieldFname, initValidate: false) { error in
+                AppFieldText(field: $fieldFname) { error in
                     self.error = error
                 }
                 
@@ -53,7 +55,7 @@ struct ContactFormScreen: View {
                     self.error = error
                 }
                 
-                AppFieldText(field: $fieldMessage, initValidate: false) { error in
+                AppFieldText(field: $fieldMessage, isDivider: false) { error in
                     self.error = error
                 }
             }
@@ -66,10 +68,11 @@ struct ContactFormScreen: View {
                         AppText(text: L10nContactForm.contactFormBtnSubmit, color: .white).textCase(nil)
                     }
                     .buttonStyle(BottonStyle())
-                    .disabled(!fieldLname.isValid
+                    .disabled(!fieldEmail.isValid || fieldEmail.value.isEmpty
+                              || !fieldFname.isValid || fieldFname.value.isEmpty
+                              || !fieldLname.isValid
                               || !fieldPhone.isValid
-                              || !fieldEmail.isValid
-                              || !fieldMessage.isValid)
+                              || !fieldMessage.isValid || fieldMessage.value.isEmpty)
                     Spacer()
                 }
             }

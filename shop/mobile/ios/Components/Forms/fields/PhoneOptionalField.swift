@@ -18,6 +18,7 @@ struct PhoneOptionalField: IFieldText {
     // params field
     var label: String = L10nFormFields.formFieldPhone
     var value: String = ""
+    var isClear: Bool = false
     var isValid: Bool = true
     var lineLimit = 1 ... 1
     var keyboardType = UIKeyboardType.phonePad

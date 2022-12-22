@@ -22,7 +22,8 @@ struct EmailField: IFieldText {
     // params field
     var label: String = L10nFormFields.formFieldEmail + " *"
     var value: String = ""
-    var isValid: Bool = false
+    var isClear: Bool = false
+    var isValid: Bool = true
     var lineLimit = 1 ... 1
     var keyboardType = UIKeyboardType.emailAddress
     var validates = [
