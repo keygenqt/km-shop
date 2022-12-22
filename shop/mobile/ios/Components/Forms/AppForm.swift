@@ -21,20 +21,22 @@ struct AppForm<Content: View>: View {
     }
 
     var body: some View {
-        Form(content: content)
-            .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil })) {
-                AlertToast(
-                    displayMode: .banner(.pop),
-                    type: .systemImage("exclamationmark.circle.fill", Color.onError),
-                    title: error ?? "Error validation",
-                    style: .style(
-                        backgroundColor: Color.error,
-                        titleColor: Color.onError,
-                        subTitleColor: Color.onError,
-                        titleFont: Font.system(size: 16),
-                        subTitleFont: Font.system(size: 12)
-                    )
+        AppScrollView {
+            content()
+        }
+        .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil })) {
+            AlertToast(
+                displayMode: .banner(.pop),
+                type: .systemImage("exclamationmark.circle.fill", Color.onError),
+                title: error ?? "Error validation",
+                style: .style(
+                    backgroundColor: Color.error,
+                    titleColor: Color.onError,
+                    subTitleColor: Color.onError,
+                    titleFont: Font.system(size: 16),
+                    subTitleFont: Font.system(size: 12)
                 )
-            }
+            )
+        }
     }
 }

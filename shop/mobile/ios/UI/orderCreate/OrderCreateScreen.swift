@@ -40,44 +40,49 @@ struct OrderCreateScreen: View {
                 )
             } else {
                 AppForm(error: $error) {
-                    
-                    Section {
-                        AppText(text: L10nOrderCreate.orderCreateInfo, typography: .body1)
+                    AppSection {
+                        HStack {
+                            AppText(text: L10nOrderCreate.orderCreateInfo, typography: .body1)
+                            Spacer()
+                        }.padding()
                     }
                     
-                    Section(header: Text(L10nOrderCreate.orderCreateTitle2)) {
+                    AppSection(color: Color.error) {
+                        HStack {
+                            AppText(text: "Error sumbit form", color: Color.onError, typography: .body1)
+                            Spacer()
+                        }.padding()
+                    }
+                    
+                    AppSection(header: L10nOrderCreate.orderCreateTitle2) {
                         AppFieldText(field: $fieldPhone, initValidate: false) { error in
                             self.error = error
                         }
-                        
+
                         AppFieldText(field: $fieldEmail, initValidate: true) { error in
                             self.error = error
                         }
-                        
+
                         AppFieldText(field: $fieldAddress, initValidate: true) { error in
                             self.error = error
                         }
                     }
                     
-                    Section(header: VStack(alignment: .center, spacing: 0) {
-                        Button {
-                            isSuccess = true
-                        } label: {
-                            AppText(text: L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
+                    AppSection(color: Color.transparent) {
+                        HStack {
+                            Button {
+                                isSuccess = true
+                            } label: {
+                                AppText(text: L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
+                            }
+                            .buttonStyle(BottonStyle())
+                            .disabled(!fieldPhone.isValid
+                                      || !fieldEmail.isValid
+                                      || !fieldAddress.isValid)
+                            Spacer()
                         }
-                        .buttonStyle(BottonStyle())
-                        .disabled(!fieldPhone.isValid
-                                  || !fieldEmail.isValid
-                                  || !fieldAddress.isValid)
-                        .listRowInsets(.init())
-                        .listRowBackground(Color.clear)
-                    }) {
-                        EmptyView()
                     }
-                    .padding(.leading, -20)
-                    .padding(.top, -7)
-                    
-                }.padding(.top, -10)
+                }
             }
         }
         .colorize(L10nApp.screenOrderCreate, true)

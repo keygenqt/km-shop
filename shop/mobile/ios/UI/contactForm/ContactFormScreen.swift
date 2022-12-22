@@ -21,32 +21,45 @@ struct ContactFormScreen: View {
     @State private var fieldMessage: IFieldText = MessageField()
     
     var body: some View {
-        VStack(spacing: 0) {
-            AppForm(error: $error) {
-                
-                Section {
+        AppForm(error: $error) {
+            AppSection {
+                HStack {
                     AppText(text: L10nContactForm.contactFormInfo, typography: .body1)
+                    Spacer()
+                }.padding()
+            }
+            
+            AppSection(color: Color.error) {
+                HStack {
+                    AppText(text: "Error sumbit form", color: Color.onError, typography: .body1)
+                    Spacer()
+                }.padding()
+            }
+            
+            AppSection(header: L10nContactForm.contactFormTitle2) {
+                AppFieldText(field: $fieldEmail, initValidate: false) { error in
+                    self.error = error
                 }
                 
-                Section(header: Text(L10nContactForm.contactFormTitle2)) {
-                    AppFieldText(field: $fieldEmail, initValidate: false) { error in
-                        self.error = error
-                    }
-                    AppFieldText(field: $fieldFname, initValidate: false) { error in
-                        self.error = error
-                    }
-                    AppFieldText(field: $fieldLname, initValidate: true) { error in
-                        self.error = error
-                    }
-                    AppFieldText(field: $fieldPhone, initValidate: true) { error in
-                        self.error = error
-                    }
-                    AppFieldText(field: $fieldMessage, initValidate: false) { error in
-                        self.error = error
-                    }
+                AppFieldText(field: $fieldFname, initValidate: false) { error in
+                    self.error = error
                 }
                 
-                Section(header: VStack(alignment: .center, spacing: 0) {
+                AppFieldText(field: $fieldLname) { error in
+                    self.error = error
+                }
+                
+                AppFieldText(field: $fieldPhone) { error in
+                    self.error = error
+                }
+                
+                AppFieldText(field: $fieldMessage, initValidate: false) { error in
+                    self.error = error
+                }
+            }
+            
+            AppSection(color: Color.transparent) {
+                HStack {
                     Button {
 
                     } label: {
@@ -57,15 +70,9 @@ struct ContactFormScreen: View {
                               || !fieldPhone.isValid
                               || !fieldEmail.isValid
                               || !fieldMessage.isValid)
-                    .listRowInsets(.init())
-                    .listRowBackground(Color.clear)
-                }) {
-                    EmptyView()
+                    Spacer()
                 }
-                .padding(.leading, -20)
-                .padding(.top, -7)
-                
-            }.padding(.top, -10)
+            }
         }
         .colorize(L10nApp.screenContactForm, true)
     }

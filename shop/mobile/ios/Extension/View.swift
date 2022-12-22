@@ -10,12 +10,12 @@ import SwiftUI
 
 extension View {
     public func paddingPage() -> some View {
-        return padding(.top, 27)
-            .padding(.bottom, 20)
+        return padding(.top, 24)
+            .padding(.bottom, 4)
             .padding([.leading, .trailing], 20)
     }
     public func paddingItemBottom() -> some View {
-        return padding(.bottom, 15)
+        return padding(.bottom, 20)
     }
     
     public func colorize(_ title: String, _ isBack: Bool = false) -> some View {

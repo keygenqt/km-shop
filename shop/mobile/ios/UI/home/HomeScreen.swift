@@ -10,12 +10,13 @@ import SwiftUI
 
 struct HomeScreen: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                InfoBlock().paddingItemBottom()
+        AppScrollView {
+            AppSection(color: Color.bgVariant2) {
+                InfoBlock()
+            }
+            AppSection(color: Color.bgVariant1) {
                 CategoriesBlock()
-                Spacer()
-            }.paddingPage()
+            }
         }
     }
 }

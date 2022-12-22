@@ -100,7 +100,6 @@
 		2F7703E529532F9100E3F5EA /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7703E429532F9100E3F5EA /* WebView.swift */; };
 		2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B6295363EA002B1087 /* AppForm.swift */; };
 		2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B8295363FA002B1087 /* AppFieldText.swift */; };
-		2FE8A6BB2953640C002B1087 /* AppFieldSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */; };
 		2FE8A6C029536456002B1087 /* FnameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BF29536456002B1087 /* FnameField.swift */; };
 		2FE8A6C3295365AC002B1087 /* FormFields.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C1295365AC002B1087 /* FormFields.strings */; };
 		2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */; };
@@ -112,6 +111,8 @@
 		2FE8A6D129536B5A002B1087 /* PhoneOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */; };
 		2FE8A6D329536B6E002B1087 /* EmailOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */; };
 		2FE8A6D529537866002B1087 /* AddressOptionalField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6D429537866002B1087 /* AddressOptionalField.swift */; };
+		2FF357FF295486AF0001B89A /* AppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF357FE295486AF0001B89A /* AppSection.swift */; };
+		2FF35801295499960001B89A /* AppScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF35800295499960001B89A /* AppScrollView.swift */; };
 		D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */; };
 /* End PBXBuildFile section */
 
@@ -209,7 +210,6 @@
 		2F7703E429532F9100E3F5EA /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		2FE8A6B6295363EA002B1087 /* AppForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForm.swift; sourceTree = "<group>"; };
 		2FE8A6B8295363FA002B1087 /* AppFieldText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldText.swift; sourceTree = "<group>"; };
-		2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldSwitch.swift; sourceTree = "<group>"; };
 		2FE8A6BF29536456002B1087 /* FnameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FnameField.swift; sourceTree = "<group>"; };
 		2FE8A6C2295365AC002B1087 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = FormFields.strings; sourceTree = "<group>"; };
 		2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsProtocol.swift; sourceTree = "<group>"; };
@@ -221,6 +221,8 @@
 		2FE8A6D029536B5A002B1087 /* PhoneOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOptionalField.swift; sourceTree = "<group>"; };
 		2FE8A6D229536B6E002B1087 /* EmailOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailOptionalField.swift; sourceTree = "<group>"; };
 		2FE8A6D429537866002B1087 /* AddressOptionalField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressOptionalField.swift; sourceTree = "<group>"; };
+		2FF357FE295486AF0001B89A /* AppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSection.swift; sourceTree = "<group>"; };
+		2FF35800295499960001B89A /* AppScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScrollView.swift; sourceTree = "<group>"; };
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -303,15 +305,13 @@
 		2F4D7B5129508112002F507B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2FF3580229549B5A0001B89A /* Base */,
 				2FE8A6B5295363DA002B1087 /* Forms */,
-				2F77038929527BAB00E3F5EA /* Styles */,
+				2F77038929527BAB00E3F5EA /* Buttons */,
 				2F77038429526C8400E3F5EA /* Texts */,
 				2F77037929526B3C00E3F5EA /* States */,
 				2F77036A29525C4E00E3F5EA /* Lottie */,
 				2F7703D129529EA300E3F5EA /* Utils */,
-				2F7703642951186100E3F5EA /* NavigationBackButton.swift */,
-				2F77036629514A6B00E3F5EA /* HiddenModifier.swift */,
-				2F7703E429532F9100E3F5EA /* WebView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -593,14 +593,15 @@
 			path = Texts;
 			sourceTree = "<group>";
 		};
-		2F77038929527BAB00E3F5EA /* Styles */ = {
+		2F77038929527BAB00E3F5EA /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				2F7703642951186100E3F5EA /* NavigationBackButton.swift */,
 				2F77038A29527BC100E3F5EA /* BottonStyle.swift */,
 				2F77038C29527BD700E3F5EA /* ButtonOutlineStyle.swift */,
 				2F7703D42952A22900E3F5EA /* ButtonStyleSize.swift */,
 			);
-			path = Styles;
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		2F7703C429529AE200E3F5EA /* elements */ = {
@@ -702,7 +703,6 @@
 				2FE8A6BC2953641E002B1087 /* fields */,
 				2FE8A6B6295363EA002B1087 /* AppForm.swift */,
 				2FE8A6B8295363FA002B1087 /* AppFieldText.swift */,
-				2FE8A6BA2953640C002B1087 /* AppFieldSwitch.swift */,
 				2FE8A6C42953668A002B1087 /* FieldsProtocol.swift */,
 			);
 			path = Forms;
@@ -721,6 +721,17 @@
 				2FE8A6D429537866002B1087 /* AddressOptionalField.swift */,
 			);
 			path = fields;
+			sourceTree = "<group>";
+		};
+		2FF3580229549B5A0001B89A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2F77036629514A6B00E3F5EA /* HiddenModifier.swift */,
+				2F7703E429532F9100E3F5EA /* WebView.swift */,
+				2FF357FE295486AF0001B89A /* AppSection.swift */,
+				2FF35800295499960001B89A /* AppScrollView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		46B3C6AA0734E5279FD2D913 /* Pods */ = {
@@ -960,6 +971,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7703C12952992A00E3F5EA /* NavObservable.swift in Sources */,
+				2FF35801295499960001B89A /* AppScrollView.swift in Sources */,
 				2F7703652951186100E3F5EA /* NavigationBackButton.swift in Sources */,
 				2F77034B2950C37A00E3F5EA /* OrderScreen.swift in Sources */,
 				2F7703882952732200E3F5EA /* Typography.swift in Sources */,
@@ -967,6 +979,7 @@
 				2F7703D029529B9A00E3F5EA /* InfoBlock.swift in Sources */,
 				2F77034F2950C39500E3F5EA /* OrderHistoryScreen.swift in Sources */,
 				2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */,
+				2FF357FF295486AF0001B89A /* AppSection.swift in Sources */,
 				2F7703B62952851700E3F5EA /* OrderCreateStrings.swift in Sources */,
 				2F77032C29509B8500E3F5EA /* GeneratedResources.swift in Sources */,
 				2F7703B82952851700E3F5EA /* HomeStrings.swift in Sources */,
@@ -995,7 +1008,6 @@
 				2F7703412950C31300E3F5EA /* ExploringTabs.swift in Sources */,
 				2F77033D2950C2D900E3F5EA /* ContactScreen.swift in Sources */,
 				2FE8A6CB29536AFD002B1087 /* PhoneField.swift in Sources */,
-				2FE8A6BB2953640C002B1087 /* AppFieldSwitch.swift in Sources */,
 				2F77038D29527BD700E3F5EA /* ButtonOutlineStyle.swift in Sources */,
 				2F7703472950C34E00E3F5EA /* HomeTabs.swift in Sources */,
 				2F7703E529532F9100E3F5EA /* WebView.swift in Sources */,

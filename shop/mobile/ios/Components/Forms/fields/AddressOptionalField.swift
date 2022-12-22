@@ -6,6 +6,8 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
+import SwiftUI
+
 // validates
 private func checkIsLong(label: String, text: String) -> String? {
     return text.count >= 1000 ? "\(label.replacingOccurrences(of: " *", with: "")), очень дилинно" : nil
@@ -18,6 +20,7 @@ struct AddressOptionalField: IFieldText {
     var value: String = ""
     var isValid: Bool = false
     var lineLimit = 1 ... 10
+    var keyboardType = UIKeyboardType.asciiCapable
     var validates = [
         checkIsLong,
     ]

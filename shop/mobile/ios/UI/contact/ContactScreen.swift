@@ -15,29 +15,32 @@ struct ContactScreen: View {
     @EnvironmentObject var navPath: NavObservable
     
     var body: some View {
-        ScrollView {
-            VStack {
-                VStack {
-                    ContactMessageBlock(action: {
-                        navPath.add(NavScreen.contactForm)
-                    }).paddingItemBottom()
-                    
-                    ContactEmailBlock(action: {
-                        openURL(URL(string: "mailto:" + ConstantsKMM.CONST.other.CONTACT_EMAIL)!)
-                    }).paddingItemBottom()
-                    
-                    ContactPhoneBlock(action: {
-                        openURL(URL(string: ConstantsKMM.CONST.other.CONTACT_TG)!)
-                    }).paddingItemBottom()
-                }
-                VStack {
-                    ContactAddressBlock()
-                        .paddingItemBottom()
-                    
-                    ContactMapBlock()
-                }
-                Spacer()
-            }.paddingPage()
+        AppScrollView {
+            AppSection(color: Color.bgVariant4) {
+                ContactMessageBlock(action: {
+                    navPath.add(NavScreen.contactForm)
+                })
+            }
+            
+            AppSection {
+                ContactEmailBlock(action: {
+                    openURL(URL(string: "mailto:" + ConstantsKMM.CONST.other.CONTACT_EMAIL)!)
+                })
+            }
+            
+            AppSection {
+                ContactPhoneBlock(action: {
+                    openURL(URL(string: ConstantsKMM.CONST.other.CONTACT_TG)!)
+                })
+            }
+            
+            AppSection {
+                ContactAddressBlock()
+            }
+            
+            AppSection {
+                ContactMapBlock()
+            }
         }
         .colorize(L10nApp.screenContact, true)
     }

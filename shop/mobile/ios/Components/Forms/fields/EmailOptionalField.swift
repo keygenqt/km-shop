@@ -6,7 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 // validates
 private func checkIsLong(label: String, text: String) -> String? {
@@ -20,6 +20,7 @@ struct EmailOptionalField: IFieldText {
     var value: String = ""
     var isValid: Bool = true
     var lineLimit = 1 ... 1
+    var keyboardType = UIKeyboardType.emailAddress
     var validates = [
         checkIsLong,
     ]

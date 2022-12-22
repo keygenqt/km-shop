@@ -35,4 +35,5 @@ extension Color {
     static let btnGrayPress = Color("btnGrayPress")
     static let error = Color("error")
     static let onError = Color("onError")
+    static let transparent = Color("onError").opacity(0.0)
 }

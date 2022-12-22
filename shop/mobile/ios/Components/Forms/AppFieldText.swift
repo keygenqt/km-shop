@@ -17,6 +17,7 @@ struct AppFieldText: View {
     @State private var error: String?
 
     var body: some View {
+        
         let validateField: (String) -> Void = { text in
             for validate in field.validates {
                 error = validate(field.label, text)
@@ -30,10 +31,12 @@ struct AppFieldText: View {
                 field.isValid = true
             }
         }
+        
         ZStack {
             TextField(text: $field.value, prompt: Text(field.label), axis: field.lineLimit == 1 ... 1 ? .horizontal : .vertical) {
                 Text(field.label)
             }
+            .padding()
             .accentColor(Color.primary)
             .lineLimit(field.lineLimit)
             .onChange(of: field.value, perform: { text in
@@ -44,21 +47,22 @@ struct AppFieldText: View {
                     validateField(field.value)
                 }
             }
-            .keyboardType(.asciiCapable)
+            .keyboardType(field.keyboardType)
             .padding(.trailing, error != nil ? 30 : 0)
-            HStack {
-                Spacer()
-                VStack {
-                    if error != nil {
-                        Image(systemName: "exclamationmark.circle.fill")
-                            .foregroundColor(Color.error)
-                            .onTapGesture(count: 1) {
-                                actionError(error)
-                            }
-                    }
-                    Spacer()
-                }.padding(.top, 8)
-            }
         }
+        .overlay(VStack {
+            Divider()
+        }.padding(.leading), alignment: .bottom)
+        .overlay(ZStack {
+            VStack {
+                Spacer().frame(height: 18)
+                Image(systemName: "exclamationmark.circle.fill")
+                    .foregroundColor(Color.error)
+                    .onTapGesture(count: 1) {
+                        actionError(error)
+                    }
+                Spacer()
+            }.padding(.trailing).hiddenModifier(isHide: error == nil)
+        }, alignment: .trailing)
     }
 }

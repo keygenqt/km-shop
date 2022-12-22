@@ -44,7 +44,5 @@ struct ContactMessageBlock: View {
             }.padding()
         }
         .frame(maxWidth: .infinity)
-        .background(Color.bgVariant4)
-        .clipShape(Shapes.medium)
     }
 }

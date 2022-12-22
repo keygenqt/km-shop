@@ -44,7 +44,5 @@ struct ContactPhoneBlock: View {
             }.padding()
         }
         .frame(maxWidth: .infinity)
-        .background(Color.surface)
-        .clipShape(Shapes.medium)
     }
 }

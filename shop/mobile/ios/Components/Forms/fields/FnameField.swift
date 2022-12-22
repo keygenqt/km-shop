@@ -6,7 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 // validates
 private func checkIsBlank(label: String, text: String) -> String? {
@@ -24,6 +24,7 @@ struct FnameField: IFieldText {
     var value: String = ""
     var isValid: Bool = false
     var lineLimit = 1 ... 1
+    var keyboardType = UIKeyboardType.asciiCapable
     var validates = [
         checkIsBlank,
         checkIsLong,

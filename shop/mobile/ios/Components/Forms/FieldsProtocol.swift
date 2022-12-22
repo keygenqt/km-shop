@@ -6,7 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 protocol IField {
     var label: String { get set }
@@ -19,6 +19,7 @@ protocol IFieldSwitch: IField {
 protocol IFieldText: IField {
     var value: String { get set }
     var isValid: Bool { get set }
+    var keyboardType: UIKeyboardType { get set }
     var lineLimit: ClosedRange<Int> { get set }
     var validates: [(String, String) -> String?] { get set }
 }

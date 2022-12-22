@@ -41,7 +41,5 @@ struct InfoBlock: View {
             }, alignment: .bottom)
         }
         .frame(maxWidth: .infinity)
-        .background(Color.bgVariant2)
-        .clipShape(Shapes.medium)
     }
 }

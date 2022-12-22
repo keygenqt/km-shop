@@ -37,7 +37,5 @@ struct CategoriesBlock: View {
             .padding()
         }
         .frame(maxWidth: .infinity)
-        .background(Color.bgVariant1)
-        .clipShape(Shapes.medium)
     }
 }
