@@ -43,7 +43,7 @@ struct OrderSearchScreen: View {
                         AppText(text: L10nOrderSearch.orderSearchNumberBtn, color: .white).textCase(nil)
                     }
                     .buttonStyle(BottonStyle())
-                    .disabled(!orderNumberField.isValid)
+                    .disabled(!orderNumberField.isValid || orderNumberField.value.isEmpty)
                     Spacer()
                 }
             }
