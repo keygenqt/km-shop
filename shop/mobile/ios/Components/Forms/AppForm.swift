@@ -38,7 +38,7 @@ struct AppForm<Content: View>: View {
                 CatSneakingAnimation().offset(x: -10, y: 25)
             }
         }, alignment: .bottom)
-        .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil })) {
+        .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil }), duration: 99999) {
             AlertToast(
                 displayMode: .banner(.pop),
                 type: .systemImage("exclamationmark.circle.fill", Color.onError),

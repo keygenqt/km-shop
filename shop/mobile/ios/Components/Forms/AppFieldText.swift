@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct AppFieldText: View {
+    
     @Binding var field: IFieldText
-
+    var error: String?
     var isDivider: Bool = true
     var isInitValidate: Bool = false
+    var onChange: (() -> Void)?
     var actionError: (String?) -> Void = { _ in }
-
-    @State private var error: String?
+    
+    @State private var innerError: String?
     
     let validateField: (IFieldText, String) -> String? = { field, text in
         var result: String?
@@ -37,9 +39,10 @@ struct AppFieldText: View {
             .accentColor(Color.primary)
             .lineLimit(field.lineLimit)
             .onChange(of: field.value, perform: { text in
+                onChange?()
                 if !field.isClear {
-                    error = validateField(field, text)
-                    if error != nil {
+                    innerError = validateField(field, text)
+                    if innerError != nil {
                         field.isValid = false
                     } else {
                         field.isValid = true
@@ -49,8 +52,8 @@ struct AppFieldText: View {
             .onAppear {
                 field.isClear = false
                 if isInitValidate {
-                    error = validateField(field, field.value)
-                    if error != nil {
+                    innerError = validateField(field, field.value)
+                    if innerError != nil {
                         field.isValid = false
                     } else {
                         field.isValid = true
@@ -58,7 +61,7 @@ struct AppFieldText: View {
                 }
             }
             .keyboardType(field.keyboardType)
-            .padding(.trailing, error != nil ? 30 : 0)
+            .padding(.trailing, innerError != nil ? 30 : 0)
         }
         .overlay(VStack {
             if isDivider {
@@ -71,10 +74,14 @@ struct AppFieldText: View {
                 Image(systemName: "exclamationmark.circle.fill")
                     .foregroundColor(Color.error)
                     .onTapGesture(count: 1) {
-                        actionError(error)
+                        if error != nil {
+                            actionError(error)
+                        } else {
+                            actionError(innerError)
+                        }
                     }
                 Spacer()
-            }.padding(.trailing).hiddenModifier(isHide: field.isValid)
+            }.padding(.trailing).hiddenModifier(isHide: field.isValid && error == nil)
         }, alignment: .trailing)
     }
 }
