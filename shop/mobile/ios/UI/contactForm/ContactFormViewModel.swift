@@ -19,18 +19,23 @@ class ContactFormViewModel: ObservableObject, Identifiable {
     
     func updateStateUI(
         response: MessageResponse? = nil,
-        error: ErrorResponse? = nil
+        error: ErrorResponse? = nil,
+        loading: Bool
     ) {
         DispatchQueue.main.async {
             self.response = response
             self.error = error
-            self.loading = false
+            self.loading = loading
         }
     }
     
-    func clearError(_ label: String) {
+    func clearError(_ label: String? = nil) {
         DispatchQueue.main.async {
-            self.error = self.error?.clear(label)
+            if label == nil {
+                self.error = nil
+            } else {
+                self.error = self.error?.clear(label!)
+            }
         }
     }
     
@@ -43,7 +48,7 @@ class ContactFormViewModel: ObservableObject, Identifiable {
     ) {
         Task {
             do {
-                DispatchQueue.main.async { self.loading = true }
+                self.updateStateUI(loading: true)
                 try await Task.sleep(nanoseconds: 3000.millisecondToNanoseconds())
                 let response = try await requests.message(request: MessageRequest(
                     fname: fname,
@@ -53,14 +58,21 @@ class ContactFormViewModel: ObservableObject, Identifiable {
                     message: message
                 ))
                 self.updateStateUI(
-                    response: response
+                    response: response,
+                    loading: false
                 )
             } catch let error as ErrorResponse {
                 self.updateStateUI(
-                    error: error
+                    error: error,
+                    loading: false
                 )
             } catch {
-                print("Unexpected error: \(error).")
+                self.updateStateUI(
+                    error: ErrorResponse(
+                        code: 500, message: L10nApp.commonError, validate: []
+                    ),
+                    loading: false
+                )
             }
         }
     }

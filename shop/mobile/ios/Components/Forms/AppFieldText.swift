@@ -11,6 +11,7 @@ import SwiftUI
 struct AppFieldText: View {
     
     @Binding var field: IFieldText
+    var disable: Bool = false
     var error: String?
     var isDivider: Bool = true
     var isInitValidate: Bool = false
@@ -62,6 +63,11 @@ struct AppFieldText: View {
             }
             .keyboardType(field.keyboardType)
             .padding(.trailing, innerError != nil ? 30 : 0)
+            .overlay(ZStack {
+                if disable {
+                    Rectangle().fill(Color.gray.opacity(0.3))
+                }
+            })
         }
         .overlay(VStack {
             if isDivider {

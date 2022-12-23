@@ -12,15 +12,15 @@ import SwiftUI
 struct LoadingAnimation: View {
     var body: some View {
         ZStack {
-            Circle().fill(.white).frame(width: 40, height: 40)
+            Circle().fill(.white).frame(width: 23, height: 23)
             LottieView(
                 name: "block_loader",
                 loopMode: LottieLoopMode.loop,
                 animationSpeed: 0.8
             )
-            .frame(width: 60, height: 60)
+            .frame(width: 34, height: 34)
         }
-        .frame(width: 40, height: 40, alignment: .center)
+        .frame(width: 23, height: 23, alignment: .center)
     }
 }
 

@@ -29,7 +29,7 @@ struct AppForm<Content: View>: View {
     }
 
     var body: some View {
-        AppScrollView {
+        AppScrollView(padding: [.leading, .trailing]) {
             content()
         }
         .overlay(HStack {
@@ -41,7 +41,7 @@ struct AppForm<Content: View>: View {
         .toast(isPresenting: Binding(get: { self.error != nil }, set: { self.error = $0 ? "" : nil }), duration: 99999) {
             AlertToast(
                 displayMode: .banner(.pop),
-                type: .systemImage("exclamationmark.circle.fill", Color.onError),
+                type: .regular,
                 title: error ?? "Error validation",
                 style: .style(
                     backgroundColor: Color.error,

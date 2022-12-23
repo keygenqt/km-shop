@@ -19,7 +19,7 @@ struct AppScrollView<Content: View>: View {
     }
     
     var body: some View {
-        ScrollView {
+        ScrollView([.vertical]) {
             if padding.isEmpty {
                 VStack(spacing: 0) { content() }
             } else {
