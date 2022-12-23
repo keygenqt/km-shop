@@ -21,7 +21,7 @@ struct CollectionItem: View {
     @State private var errorKF: Bool = false
     
     var body: some View {
-        AppSection(color: Color.bgVariant1, onClick: action) {
+        AppSection(color: Color.bgVariant3, onClick: action) {
             HStack(spacing: 0) {
                 
                 if errorKF {
@@ -38,7 +38,7 @@ struct CollectionItem: View {
                             .placeholder {
                                 LoadingAnimationLarge()
                             }
-                            .onFailure { error in
+                            .onFailure { _ in
                                 errorKF = true
                             }
                             .forceRefresh() // @todo
