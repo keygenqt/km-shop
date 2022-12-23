@@ -20,7 +20,7 @@ struct OrderSearchScreen: View {
         AppForm(error: $error, isShowCat: true) {
             AppSection {
                 HStack {
-                    AppText(text: L10nOrderSearch.orderSearchSubtitle, typography: .body1)
+                    AppText(L10nOrderSearch.orderSearchSubtitle, typography: .body1)
                     Spacer()
                 }.padding()
             }
@@ -40,7 +40,7 @@ struct OrderSearchScreen: View {
                         orderNumberField.isClear = true
                         orderNumberField.value = ""
                     } label: {
-                        AppText(text: L10nOrderSearch.orderSearchNumberBtn, color: .white).textCase(nil)
+                        AppText(L10nOrderSearch.orderSearchNumberBtn, color: .white).textCase(nil)
                     }
                     .buttonStyle(BottonStyle())
                     .disabled(!orderNumberField.isValid || orderNumberField.value.isEmpty)

@@ -17,9 +17,9 @@ struct EmptyCartBody: View {
         VStack {
             EmptyCartAnimation()
             Spacer().frame(height: 24)
-            AppText(text: title, typography: .h6)
+            AppText(title, typography: .h6)
             Spacer().frame(height: 10)
-            AppText(text: subtitle, alignment: .center)
+            AppText(subtitle, alignment: .center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }

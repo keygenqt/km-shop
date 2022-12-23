@@ -17,7 +17,7 @@ struct CategoriesBlock: View {
         VStack {
             VStack {
                 HStack {
-                    AppText(text: L10nHome.categoryBlockTitle, typography: .h6)
+                    AppText(L10nHome.categoryBlockTitle, typography: .h6)
                     Spacer()
                     Button(L10nHome.categoryBlockTitleBtn) {
                         actionAll?()

@@ -22,6 +22,11 @@ object LinksConstants {
     /**
      * Api url
      */
+    const val API_URL = "https://shop-api.keygenqt.com/"
+
+    /**
+     * Api url
+     */
     const val API_DEBUG_URL = "http://localhost:8086/"
 
     /**

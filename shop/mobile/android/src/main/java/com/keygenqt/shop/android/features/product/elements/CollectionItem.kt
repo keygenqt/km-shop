@@ -20,20 +20,27 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
+import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
+import com.keygenqt.shop.android.utils.AppHelper
 
 @Composable
 fun CollectionItem(
-    icon: ImageVector,
+    icon: String,
     title: String
 ) {
     val dark = isSystemInDarkTheme()
@@ -47,14 +54,20 @@ fun CollectionItem(
             .padding(vertical = 5.dp, horizontal = 10.dp)
     ) {
         Row {
-            Icon(
-                tint = color,
-                modifier = Modifier.size(18.dp),
-                imageVector = icon,
-                contentDescription = null,
+            AsyncImage(
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .data(AppHelper.getApiUrl("api/uploads/${icon}"))
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(R.drawable.no_image),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(16.dp)
             )
 
-            Spacer(modifier = Modifier.size(4.dp))
+            Spacer(modifier = Modifier.size(5.dp))
 
             AppText(
                 color = color,

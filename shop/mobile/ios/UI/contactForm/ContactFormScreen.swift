@@ -24,7 +24,7 @@ struct ContactFormScreen: View {
         AppForm(error: $error) {
             AppSection {
                 HStack {
-                    AppText(text: L10nContactForm.contactFormInfo, typography: .body1)
+                    AppText(L10nContactForm.contactFormInfo, typography: .body1)
                     Spacer()
                 }.padding()
             }
@@ -32,7 +32,7 @@ struct ContactFormScreen: View {
             if error != nil {
                 AppSection(color: Color.error) {
                     HStack {
-                        AppText(text: error!, color: Color.onError, typography: .body1)
+                        AppText(error!, color: Color.onError, typography: .body1)
                         Spacer()
                     }.padding()
                 }
@@ -65,7 +65,7 @@ struct ContactFormScreen: View {
                     Button {
 
                     } label: {
-                        AppText(text: L10nContactForm.contactFormBtnSubmit, color: .white).textCase(nil)
+                        AppText(L10nContactForm.contactFormBtnSubmit, color: .white).textCase(nil)
                     }
                     .buttonStyle(BottonStyle())
                     .disabled(!fieldEmail.isValid || fieldEmail.value.isEmpty

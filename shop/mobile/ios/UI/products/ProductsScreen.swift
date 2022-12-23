@@ -10,9 +10,17 @@ import SwiftUI
 
 struct ProductsScreen: View {
     
+    let categoryID: Int
+    let collectionID: Int
     let title: String
     
-    init(title: String) {
+    init(
+        categoryID: Int,
+        collectionID: Int,
+        title: String
+    ) {
+        self.categoryID = categoryID
+        self.collectionID = collectionID
         self.title = title
     }
     

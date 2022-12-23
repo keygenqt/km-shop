@@ -19,6 +19,7 @@ import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.checkRoleAuth
 import com.keygenqt.shop.api.extension.checkRoleFull
 import com.keygenqt.shop.api.extension.getStringParam
+import com.keygenqt.shop.api.extension.toFileNameIcon
 import com.keygenqt.shop.db.entities.UploadEntity
 import com.keygenqt.shop.db.entities.toModels
 import com.keygenqt.shop.db.service.UploadsService
@@ -43,8 +44,16 @@ fun Route.uploads() {
             call.checkRoleFull()
             // get request
             val name = call.getStringParam()
+            val path = when {
+                name.contains(".") -> "uploads/$name"
+                name.contains("Outlined") -> "material-icons/${name.toFileNameIcon()}/outline.svg"
+                name.contains("Rounded") -> "material-icons/${name.toFileNameIcon()}/round.svg"
+                name.contains("TwoTone") -> "material-icons/${name.toFileNameIcon()}/twotone.svg"
+                name.contains("Sharp") -> "material-icons/${name.toFileNameIcon()}/sharp.svg"
+                else -> "material-icons/${name.toFileNameIcon()}/baseline.svg"
+            }
             // act
-            val file = File("uploads/$name")
+            val file = File(path)
             if (!file.exists()) throw Exceptions.NotFound()
             // response
             call.respondFile(file)

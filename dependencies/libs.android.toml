@@ -47,6 +47,11 @@ module = "io.coil-kt:coil-compose"
 [libraries.coil-compose.version]
 ref = "coilVersion"
 
+[libraries.coil-svg]
+module = "io.coil-kt:coil-svg"
+[libraries.coil-svg.version]
+ref = "coilVersion"
+
 # Lottie
 # This repo is the home of the unified Lottie docs hosted at http://airbnb.io/lottie.
 [libraries.lottie-compose]
@@ -192,6 +197,7 @@ android = [
     "room-paging",
     "lottie-compose",
     "coil-compose",
+    "coil-svg",
     "ktor-client-logging",
 ]
 

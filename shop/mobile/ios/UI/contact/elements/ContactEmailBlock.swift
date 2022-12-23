@@ -25,14 +25,14 @@ struct ContactEmailBlock: View {
                             .offset(y: 3)
                     }.padding(.trailing)
                     VStack(alignment: .leading) {
-                        AppText(text: L10nContact.contactMessageTitle)
+                        AppText(L10nContact.contactMessageTitle)
                         Button {
                             action?()
                         } label: {
                             HStack {
                                 Image(systemName: "mail").imageScale(.small)
                                 Spacer()
-                                AppText(text: ConstantsKMM.CONST.other.CONTACT_EMAIL, maxLines: 1, color: Color.white)
+                                AppText(ConstantsKMM.CONST.other.CONTACT_EMAIL, maxLines: 1, color: Color.white)
                                 Spacer()
                             }
                         }.buttonStyle(BottonStyle(

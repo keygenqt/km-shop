@@ -20,18 +20,25 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
+import com.keygenqt.shop.android.R
 import com.keygenqt.shop.android.base.GradientColors
 import com.keygenqt.shop.android.base.LocalAndroidColors
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.CollectionModel
-import com.keygenqt.shop.android.extensions.iconsByString
+import com.keygenqt.shop.android.utils.AppHelper
 
 @Composable
 fun CollectionItem(
@@ -54,7 +61,9 @@ fun CollectionItem(
                         .padding(start = 43.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 ) {
                     AppText(
-                        modifier = Modifier.fillMaxWidth().offset(0.dp, (-3).dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .offset(0.dp, (-3).dp),
                         style = MaterialTheme.typography.h6,
                         text = model.name
                     )
@@ -78,13 +87,19 @@ fun CollectionItem(
                 )
                 .background(GradientColors.Anamnisar)
         ) {
-            Icon(
-                contentDescription = null,
+            AsyncImage(
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.onBackground),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .data(AppHelper.getApiUrl("api/uploads/${model.icon}"))
+                    .crossfade(true)
+                    .build(),
+                placeholder = painterResource(R.drawable.no_image),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(33.dp)
-                    .align(Alignment.Center),
-                imageVector = iconsByString(model.icon),
-                tint = MaterialTheme.colors.background
+                    .align(Alignment.Center)
             )
         }
     }

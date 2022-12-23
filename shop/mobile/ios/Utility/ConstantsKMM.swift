@@ -14,5 +14,14 @@ struct ConstantsKMM {
     static let CONST: AppConstants = AppConstants()
     
     // Network service
-    static let REQUEST: ServiceRequest = ServiceRequest(apiUrl: nil, logger: nil)
+    static let REQUEST: ServiceRequest = ServiceRequest(apiUrl: getUrl(), logger: nil)
+    
+    // Get path API
+    static func getUrl(_ path: String? = nil) -> String {
+        #if DEBUG
+            return CONST.links.API_DEBUG_URL + "\(path ?? "")"
+        #else
+            return CONST.links.API_URL + "\(path ?? "")"
+        #endif
+    }
 }

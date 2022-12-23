@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 @main
 struct MyShopApp: App {
@@ -7,7 +8,7 @@ struct MyShopApp: App {
     @State private var selection = 0
     
     init() {
-        Thread.sleep(forTimeInterval: 2.0)
+        Thread.sleep(forTimeInterval: 1.0)
     }
     
 	var body: some Scene {
@@ -31,8 +32,12 @@ struct MyShopApp: App {
                         case NavScreen.orderSearch: OrderSearchScreen()
                         case NavScreen.product: ProductScreen()
                         case NavScreen.products:
-                            if case let .products(title) = nav {
-                                ProductsScreen(title: title)
+                            if case let .products(categoryID, collectionID, title) = nav {
+                                ProductsScreen(
+                                    categoryID: categoryID,
+                                    collectionID: collectionID,
+                                    title: title
+                                )
                             }
                         }
                     }

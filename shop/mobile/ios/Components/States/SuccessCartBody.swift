@@ -19,9 +19,9 @@ struct SuccessCartBody: View {
         VStack {
             SuccessCartAnimation()
             Spacer().frame(height: 24)
-            AppText(text: title, typography: .h6)
+            AppText(title, typography: .h6)
             Spacer().frame(height: 10)
-            AppText(text: subtitle, alignment: .center)
+            AppText(subtitle, alignment: .center)
             Spacer().frame(height: 24)
             Button(btnTitle) {
                 action?()

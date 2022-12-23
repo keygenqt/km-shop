@@ -14,6 +14,8 @@ import SwiftUI
  */
 extension Color {
     // Theme
+    static let collectionGr1 = Color("collectionGr1")
+    static let collectionGr2 = Color("collectionGr2")
     static let background = Color("background")
     static let bgVariant1 = Color("bgVariant1")
     static let bgVariant2 = Color("bgVariant2")
@@ -35,5 +37,6 @@ extension Color {
     static let btnGrayPress = Color("btnGrayPress")
     static let error = Color("error")
     static let onError = Color("onError")
+    static let onClick = Color("onClick").opacity(0.4)
     static let transparent = Color("onError").opacity(0.0)
 }

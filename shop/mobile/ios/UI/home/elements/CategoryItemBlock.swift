@@ -19,15 +19,15 @@ struct CategoryItemBlock: View {
         ZStack {
             HStack {
                 VStack(alignment: .leading) {
-                    AppText(text: "Бантики", color: colorScheme == .dark ? Color.surface : Color.textCaption, typography: .caption)
+                    AppText("Бантики", color: colorScheme == .dark ? Color.surface : Color.textCaption, typography: .caption)
                     Spacer().frame(height: 8)
-                    AppText(text: "Стильные бантики ручной работы", color: Color.black, typography: .body1)
+                    AppText("Стильные бантики ручной работы", color: Color.black, typography: .body1)
                     Spacer().frame(height: 14)
                     Button {
                         actionItem?(1)
                     } label: {
                         HStack {
-                            AppText(text: L10nHome.categoryBlockBtn, color: Color.white)
+                            AppText(L10nHome.categoryBlockBtn, color: Color.white)
                             Image(systemName: "arrow.right").imageScale(.small)
                         }
                     }.buttonStyle(BottonStyle(

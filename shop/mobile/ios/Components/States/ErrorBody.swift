@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ErrorBody: View {
+    
+    var error: ResponseError
+    
     var body: some View {
         VStack {
             ErrorAnimation()

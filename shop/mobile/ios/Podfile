@@ -14,6 +14,10 @@ target 'YouShop' do
   pod 'SwiftLint'
   # https://github.com/nicklockwood/SwiftFormat
   pod 'SwiftFormat/CLI'
+  # https://github.com/onevcat/Kingfisher
+  pod 'Kingfisher'
+  # https://github.com/SVGKit/SVGKit
+  pod 'SVGKit'
   
   pod 'shared', :path => '../../../shared'
 end

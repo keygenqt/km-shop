@@ -25,14 +25,14 @@ struct ContactPhoneBlock: View {
                             .offset(y: 1)
                     }.padding(.trailing)
                     VStack(alignment: .leading) {
-                        AppText(text: L10nContact.contactPhoneTitle)
+                        AppText(L10nContact.contactPhoneTitle)
                         Button {
                             action?()
                         } label: {
                             HStack {
                                 Image(systemName: "phone.fill").imageScale(.small)
                                 Spacer()
-                                AppText(text: ConstantsKMM.CONST.other.CONTACT_PHONE, maxLines: 1, color: Color.white)
+                                AppText(ConstantsKMM.CONST.other.CONTACT_PHONE, maxLines: 1, color: Color.white)
                                 Spacer()
                             }
                         }.buttonStyle(BottonStyle(

@@ -17,9 +17,9 @@ struct InfoBlock: View {
             ZStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        AppText(text: L10nHome.infoBlockTitle, typography: .body2)
+                        AppText(L10nHome.infoBlockTitle, typography: .body2)
                         Spacer().frame(height: 16)
-                        AppText(text: L10nHome.infoBlockSubtitle, typography: .h5)
+                        AppText(L10nHome.infoBlockSubtitle, typography: .h5)
                         Spacer().frame(height: 16)
                         Button(L10nHome.infoBlockBtn) {
                             action?()

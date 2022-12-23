@@ -9,11 +9,11 @@
 import SwiftUI
 
 extension View {
-    public func paddingPage() -> some View {
-        return padding(.top, 24)
-            .padding(.bottom, 4)
-            .padding([.leading, .trailing], 20)
+    
+    public func paddingPage(_ edges: Edge.Set = [.leading, .trailing, .top] ) -> some View {
+        return padding(edges, 20)
     }
+    
     public func paddingItemBottom() -> some View {
         return padding(.bottom, 20)
     }

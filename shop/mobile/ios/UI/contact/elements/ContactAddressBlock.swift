@@ -21,7 +21,7 @@ struct ContactAddressBlock: View {
                         .offset(y: -2)
                 }.padding(.bottom)
                 
-                AppText(text: L10nContact.contactAddressTitle, alignment: .center)
+                AppText(L10nContact.contactAddressTitle, alignment: .center)
             }.padding()
         }
         .frame(maxWidth: .infinity)

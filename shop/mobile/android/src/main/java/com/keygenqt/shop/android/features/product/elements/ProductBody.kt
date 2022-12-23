@@ -46,7 +46,6 @@ import com.keygenqt.shop.android.components.base.PriceBlockLarge
 import com.keygenqt.shop.android.components.lottie.LoadingAnimationLarge
 import com.keygenqt.shop.android.components.texts.AppText
 import com.keygenqt.shop.android.data.models.ProductModel
-import com.keygenqt.shop.android.extensions.iconsByString
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -255,7 +254,7 @@ fun ProductBody(
                     ) {
                         model.collections.forEach {
                             CollectionItem(
-                                icon = iconsByString(it.icon),
+                                icon = it.icon,
                                 title = it.name
                             )
                         }

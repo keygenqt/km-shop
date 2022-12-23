@@ -18,5 +18,5 @@ enum NavScreen: Hashable {
     case orderHistory
     case orderSearch
     case product(Int)
-    case products(String)
+    case products(Int, Int, String)
 }

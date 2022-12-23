@@ -42,7 +42,7 @@ struct OrderCreateScreen: View {
                 AppForm(error: $error) {
                     AppSection {
                         HStack {
-                            AppText(text: L10nOrderCreate.orderCreateInfo, typography: .body1)
+                            AppText(L10nOrderCreate.orderCreateInfo, typography: .body1)
                             Spacer()
                         }.padding()
                     }
@@ -50,7 +50,7 @@ struct OrderCreateScreen: View {
                     if error != nil {
                         AppSection(color: Color.error) {
                             HStack {
-                                AppText(text: error!, color: Color.onError, typography: .body1)
+                                AppText(error!, color: Color.onError, typography: .body1)
                                 Spacer()
                             }.padding()
                         }
@@ -75,7 +75,7 @@ struct OrderCreateScreen: View {
                             Button {
                                 isSuccess = true
                             } label: {
-                                AppText(text: L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
+                                AppText(L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
                             }
                             .buttonStyle(BottonStyle())
                             .disabled(!fieldPhone.isValid || fieldPhone.value.isEmpty

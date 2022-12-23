@@ -39,3 +39,17 @@ fun String?.md5Hex() = hex(md5())
 fun String.capitalize() = replaceFirstChar {
     if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
 }
+
+/**
+ * Get name svg icon
+ */
+fun String.toFileNameIcon(): String {
+    return this
+        .replace("Outlined", "")
+        .replace("Rounded", "")
+        .replace("TwoTone", "")
+        .replace("Sharp", "")
+        .replace("""([A-Z0-9])""".toRegex(), "_$1")
+        .trim('_')
+        .lowercase()
+}

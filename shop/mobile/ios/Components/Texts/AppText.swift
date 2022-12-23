@@ -15,6 +15,19 @@ struct AppText: View {
     var alignment: TextAlignment = .leading
     var typography: Typography = .body1
     
+    init(_ text: String,
+         maxLines: Int = Int.max,
+         color: Color? = nil,
+         alignment: TextAlignment = .leading,
+         typography: Typography = .body1
+    ) {
+        self.text = text
+        self.maxLines = maxLines
+        self.color = color
+        self.alignment = alignment
+        self.typography = typography
+    }
+    
     func getFontSize() -> CGFloat {
         switch typography {
         case .h5: return 24
