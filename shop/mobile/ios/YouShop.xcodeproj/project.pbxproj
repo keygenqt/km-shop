@@ -109,6 +109,7 @@
 		2FB7EEB429560C98007AC7F1 /* ContactFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7EEB329560C98007AC7F1 /* ContactFormViewModel.swift */; };
 		2FB7EEB629561632007AC7F1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7EEB529561632007AC7F1 /* Error.swift */; };
 		2FB7EEBC295625D7007AC7F1 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7EEBB295625D7007AC7F1 /* ErrorResponse.swift */; };
+		2FCDA78F29570902004EA471 /* OrderCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDA78E29570902004EA471 /* OrderCreateViewModel.swift */; };
 		2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B6295363EA002B1087 /* AppForm.swift */; };
 		2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B8295363FA002B1087 /* AppFieldText.swift */; };
 		2FE8A6C029536456002B1087 /* FnameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BF29536456002B1087 /* FnameField.swift */; };
@@ -241,6 +242,7 @@
 		2FB7EEB329560C98007AC7F1 /* ContactFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFormViewModel.swift; sourceTree = "<group>"; };
 		2FB7EEB529561632007AC7F1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2FB7EEBB295625D7007AC7F1 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		2FCDA78E29570902004EA471 /* OrderCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCreateViewModel.swift; sourceTree = "<group>"; };
 		2FE8A6B6295363EA002B1087 /* AppForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForm.swift; sourceTree = "<group>"; };
 		2FE8A6B8295363FA002B1087 /* AppFieldText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldText.swift; sourceTree = "<group>"; };
 		2FE8A6BF29536456002B1087 /* FnameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FnameField.swift; sourceTree = "<group>"; };
@@ -529,7 +531,6 @@
 		2F7703322950C25500E3F5EA /* orderSearch */ = {
 			isa = PBXGroup;
 			children = (
-				2F7703CC29529B3A00E3F5EA /* elements */,
 				2F7703502950C3A400E3F5EA /* OrderSearchScreen.swift */,
 			);
 			path = orderSearch;
@@ -547,8 +548,8 @@
 		2F7703342950C26600E3F5EA /* orderCreate */ = {
 			isa = PBXGroup;
 			children = (
-				2F7703CA29529B2900E3F5EA /* elements */,
 				2F77034C2950C38700E3F5EA /* OrderCreateScreen.swift */,
+				2FCDA78E29570902004EA471 /* OrderCreateViewModel.swift */,
 			);
 			path = orderCreate;
 			sourceTree = "<group>";
@@ -709,21 +710,7 @@
 			path = elements;
 			sourceTree = "<group>";
 		};
-		2F7703CA29529B2900E3F5EA /* elements */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = elements;
-			sourceTree = "<group>";
-		};
 		2F7703CB29529B3500E3F5EA /* elements */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = elements;
-			sourceTree = "<group>";
-		};
-		2F7703CC29529B3A00E3F5EA /* elements */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -1130,6 +1117,7 @@
 				2FE8A6C7295366C5002B1087 /* FormFieldsStrings.swift in Sources */,
 				2F7703BF2952851700E3F5EA /* CartStrings.swift in Sources */,
 				2FE8A6D129536B5A002B1087 /* PhoneOptionalField.swift in Sources */,
+				2FCDA78F29570902004EA471 /* OrderCreateViewModel.swift in Sources */,
 				2F7703DF2952FE2E00E3F5EA /* ContactMessageBlock.swift in Sources */,
 				2F77037029525CAF00E3F5EA /* EmptyBoxAnimation.swift in Sources */,
 				2FE8A6CF29536B2D002B1087 /* MessageField.swift in Sources */,

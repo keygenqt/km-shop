@@ -20,8 +20,7 @@ struct ExploringTabs: View {
             }
             .background(Color.transparent)
             .pickerStyle(SegmentedPickerStyle())
-            .paddingPage()
-            .paddingItemBottom()
+            .paddingPage(.all)
             
             VStack(spacing: 0) {
                 if selectedTab == 0 {

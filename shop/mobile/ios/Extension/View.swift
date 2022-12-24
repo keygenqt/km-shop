@@ -14,10 +14,6 @@ extension View {
         return padding(edges, 20)
     }
     
-    public func paddingItemBottom() -> some View {
-        return padding(.bottom, 20)
-    }
-    
     public func colorize(_ title: String, _ isBack: Bool = false) -> some View {
         return toolbarBackground(Color.primary, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)

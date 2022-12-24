@@ -46,7 +46,7 @@ struct AppSection<Content: View>: View {
             .onClick(disabled: onClick == nil) {
                 onClick?()
             }
-            .paddingItemBottom()
+            .paddingPage(.bottom)
         }
     }
 }

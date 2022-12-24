@@ -10,7 +10,6 @@ import Foundation
 import shared
 
 class MessageRequests {
-    
     // create
     func message(
         request: MessageRequest

@@ -67,7 +67,6 @@ struct ContactFormScreen: View {
                             viewModel.clearError("email")
                         },
                         actionError: { fieldError in
-                            error = nil
                             error = fieldError
                         }
                     )
@@ -82,7 +81,6 @@ struct ContactFormScreen: View {
                             viewModel.clearError("fname")
                         },
                         actionError: { fieldError in
-                            error = nil
                             error = fieldError
                         }
                     )
@@ -97,7 +95,6 @@ struct ContactFormScreen: View {
                             viewModel.clearError("lname")
                         },
                         actionError: { fieldError in
-                            error = nil
                             error = fieldError
                         }
                     )
@@ -108,13 +105,13 @@ struct ContactFormScreen: View {
                         textCase: .never,
                         error: viewModel.error?.find("phone"),
                         onChange: {
-                        error = nil
-                        viewModel.clearError("phone")
-                    },
+                            error = nil
+                            viewModel.clearError("phone")
+                        },
                         actionError: { fieldError in
-                        error = nil
-                        error = fieldError
-                    })
+                            error = fieldError
+                        }
+                    )
                     
                     AppFieldText(
                         field: $fieldMessage,
@@ -125,7 +122,6 @@ struct ContactFormScreen: View {
                             error = nil
                             viewModel.clearError("message")
                         }, actionError: { fieldError in
-                            error = nil
                             error = fieldError
                         }
                     )

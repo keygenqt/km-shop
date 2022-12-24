@@ -14,9 +14,12 @@ struct OrderCreateScreen: View {
     
     var onChangeTab: (() -> Void)
     
+    // model
+    @ObservedObject var viewModel = OrderCreateViewModel()
+    
     // form states
-    @State private var isSuccess: Bool = false
     @State private var error: String?
+    
     // form value
     @State private var fieldPhone: IFieldText = PhoneField()
     @State private var fieldEmail: IFieldText = EmailOptionalField()
@@ -24,7 +27,7 @@ struct OrderCreateScreen: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if isSuccess {
+            if viewModel.success {
                 SuccessCartBody(
                     title: L10nOrderCreate.orderCreateSuccessTitle,
                     subtitle: L10nOrderCreate.orderCreateSuccessText,
@@ -39,49 +42,105 @@ struct OrderCreateScreen: View {
                     }
                 )
             } else {
-                AppForm(error: $error) {
-                    AppSection {
-                        HStack {
-                            AppText(L10nOrderCreate.orderCreateInfo, typography: .body1)
-                            Spacer()
-                        }.padding()
-                    }
-                    
-                    if error != nil {
-                        AppSection(color: Color.error) {
+                ScrollViewReader { sc in
+                    AppForm(error: $error) {
+                        AppSection {
                             HStack {
-                                AppText(error!, color: Color.onError, typography: .body1)
+                                AppText(L10nOrderCreate.orderCreateInfo, typography: .body1)
                                 Spacer()
                             }.padding()
-                        }
-                    }
-                    
-                    AppSection(header: L10nOrderCreate.orderCreateTitle2) {
-                        AppFieldText(field: $fieldPhone) { error in
-                            self.error = error
-                        }
-
-                        AppFieldText(field: $fieldEmail) { error in
-                            self.error = error
-                        }
-
-                        AppFieldText(field: $fieldAddress, isDivider: false) { error in
-                            self.error = error
-                        }
-                    }
-                    
-                    AppSection(color: Color.transparent) {
-                        HStack {
-                            Button {
-                                isSuccess = true
-                            } label: {
-                                AppText(L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
+                        }.id(0).paddingPage([.top])
+                        
+                        if viewModel.error?.validate.isEmpty ?? false {
+                            AppSection(color: Color.error) {
+                                HStack {
+                                    AppText(viewModel.error?.message ?? "", color: Color.onError, typography: .body1)
+                                    Spacer()
+                                }
+                                .padding()
+                            }.onTapGesture {
+                                viewModel.clearError()
                             }
-                            .buttonStyle(BottonStyle())
-                            .disabled(!fieldPhone.isValid || fieldPhone.value.isEmpty
-                                      || !fieldEmail.isValid
-                                      || !fieldAddress.isValid)
-                            Spacer()
+                        }
+                        
+                        AppSection(header: L10nOrderCreate.orderCreateTitle2) {
+                            
+                            AppFieldText(
+                                field: $fieldPhone,
+                                disable: viewModel.loading,
+                                textCase: .never,
+                                error: viewModel.error?.find("phone"),
+                                onChange: {
+                                    error = nil
+                                    viewModel.clearError("phone")
+                                },
+                                actionError: { fieldError in
+                                    error = fieldError
+                                }
+                            )
+
+                            AppFieldText(
+                                field: $fieldEmail,
+                                disable: viewModel.loading,
+                                textCase: .never,
+                                error: viewModel.error?.find("email"),
+                                onChange: {
+                                    error = nil
+                                    viewModel.clearError("email")
+                                },
+                                actionError: { fieldError in
+                                    error = fieldError
+                                }
+                            )
+                            
+                            AppFieldText(
+                                field: $fieldAddress,
+                                disable: viewModel.loading,
+                                isDivider: false,
+                                error: viewModel.error?.find("message"),
+                                onChange: {
+                                    error = nil
+                                    viewModel.clearError("message")
+                                }, actionError: { fieldError in
+                                    error = fieldError
+                                }
+                            )
+                        }
+                        
+                        AppSection(color: Color.transparent) {
+                            HStack {
+                                Button {
+                                    error = nil
+                                    hideKeyboard()
+                                    sc.scrollTo(0)
+                                    Task {
+                                        if await viewModel.createOrder(
+                                            phone: fieldPhone.value,
+                                            email: fieldEmail.value,
+                                            address: fieldAddress.value
+                                        ) {
+                                            fieldPhone.clear()
+                                            fieldEmail.clear()
+                                            fieldAddress.clear()
+                                        }
+                                    }
+                                } label: {
+                                    HStack {
+                                        if viewModel.loading {
+                                            ProgressView().tint(.white).scaleEffect(0.7)
+                                            Spacer().frame(width: 10)
+                                        }
+                                        AppText(L10nOrderCreate.orderCreateBtnSubmit, color: .white).textCase(nil)
+                                    }
+                                }
+                                .buttonStyle(BottonStyle())
+                                .disabled(!fieldPhone.isValid || fieldPhone.value.isEmpty
+                                          || !fieldEmail.isValid
+                                          || !fieldAddress.isValid
+                                          || viewModel.loading
+                                )
+                                Spacer()
+                            }
                         }
                     }
                 }

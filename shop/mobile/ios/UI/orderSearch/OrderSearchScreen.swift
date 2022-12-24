@@ -18,17 +18,22 @@ struct OrderSearchScreen: View {
     
     var body: some View {
         AppForm(error: $error, isShowCat: true) {
+            
             AppSection {
                 HStack {
                     AppText(L10nOrderSearch.orderSearchSubtitle, typography: .body1)
                     Spacer()
                 }.padding()
-            }
+            }.paddingPage(.top)
             
             AppSection {
-                AppFieldText(field: $orderNumberField, isDivider: false) { error in
-                    self.error = error
-                }
+                AppFieldText(
+                    field: $orderNumberField,
+                    textCase: .never,
+                    actionError: { fieldError in
+                        error = fieldError
+                    }
+                )
             }
             
             AppSection(color: Color.transparent) {
@@ -36,9 +41,7 @@ struct OrderSearchScreen: View {
                     Button {
                         hideKeyboard()
                         navPath.add(NavScreen.order(orderNumberField.value))
-                        orderNumberField.isValid = true
-                        orderNumberField.isClear = true
-                        orderNumberField.value = ""
+                        orderNumberField.clear()
                     } label: {
                         AppText(L10nOrderSearch.orderSearchNumberBtn, color: .white).textCase(nil)
                     }
