@@ -110,6 +110,7 @@
 		2FB7EEB629561632007AC7F1 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7EEB529561632007AC7F1 /* Error.swift */; };
 		2FB7EEBC295625D7007AC7F1 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7EEBB295625D7007AC7F1 /* ErrorResponse.swift */; };
 		2FCDA78F29570902004EA471 /* OrderCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDA78E29570902004EA471 /* OrderCreateViewModel.swift */; };
+		2FCDA7912957134C004EA471 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDA7902957134C004EA471 /* ProductsViewModel.swift */; };
 		2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B6295363EA002B1087 /* AppForm.swift */; };
 		2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6B8295363FA002B1087 /* AppFieldText.swift */; };
 		2FE8A6C029536456002B1087 /* FnameField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE8A6BF29536456002B1087 /* FnameField.swift */; };
@@ -243,6 +244,7 @@
 		2FB7EEB529561632007AC7F1 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2FB7EEBB295625D7007AC7F1 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		2FCDA78E29570902004EA471 /* OrderCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCreateViewModel.swift; sourceTree = "<group>"; };
+		2FCDA7902957134C004EA471 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		2FE8A6B6295363EA002B1087 /* AppForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForm.swift; sourceTree = "<group>"; };
 		2FE8A6B8295363FA002B1087 /* AppFieldText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFieldText.swift; sourceTree = "<group>"; };
 		2FE8A6BF29536456002B1087 /* FnameField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FnameField.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 			children = (
 				2F7703CE29529B4600E3F5EA /* elements */,
 				2F7703542950C3C200E3F5EA /* ProductsScreen.swift */,
+				2FCDA7902957134C004EA471 /* ProductsViewModel.swift */,
 			);
 			path = products;
 			sourceTree = "<group>";
@@ -1047,6 +1050,7 @@
 				2F7703BD2952851700E3F5EA /* ProductsStrings.swift in Sources */,
 				2F7703432950C32B00E3F5EA /* ExploringCategoriesScreen.swift in Sources */,
 				2F77033B2950C2C900E3F5EA /* CartScreen.swift in Sources */,
+				2FCDA7912957134C004EA471 /* ProductsViewModel.swift in Sources */,
 				2F77038B29527BC200E3F5EA /* BottonStyle.swift in Sources */,
 				2FB7EEB629561632007AC7F1 /* Error.swift in Sources */,
 				2FF3580D2954E5080001B89A /* CollectionRequests.swift in Sources */,

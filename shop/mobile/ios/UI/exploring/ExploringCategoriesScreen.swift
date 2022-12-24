@@ -12,6 +12,7 @@ struct ExploringCategoriesScreen: View {
     
     // nav change
     @EnvironmentObject var navPath: NavObservable
+    
     // model
     @ObservedObject var viewModel = ExploringCategoriesViewModel()
     

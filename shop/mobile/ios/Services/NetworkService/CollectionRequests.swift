@@ -14,7 +14,7 @@ extension CollectionResponse: Identifiable {}
 class CollectionRequests {
     func collectionsPublished() async throws -> [CollectionResponse] {
         return try await withCheckedThrowingContinuation { continuation in
-            ConstantsKMM.REQUEST.get.collectionsPublished() { model, error in
+            ConstantsKMM.REQUEST.get.collectionsPublished { model, error in
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {

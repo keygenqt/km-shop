@@ -10,8 +10,9 @@ import SwiftUI
 
 struct ProductsScreen: View {
     
-    let categoryID: Int
-    let collectionID: Int
+    // model
+    @ObservedObject var viewModel = ProductsViewModel()
+    
     let title: String
     
     init(
@@ -19,9 +20,11 @@ struct ProductsScreen: View {
         collectionID: Int,
         title: String
     ) {
-        self.categoryID = categoryID
-        self.collectionID = collectionID
         self.title = title
+        viewModel.load(
+            categories: categoryID == 0 ? [] : [categoryID],
+            collections: collectionID == 0 ? [] : [collectionID]
+        )
     }
     
     var body: some View {

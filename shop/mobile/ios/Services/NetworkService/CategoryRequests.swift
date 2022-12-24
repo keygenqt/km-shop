@@ -14,7 +14,7 @@ extension CategoryResponse: Identifiable {}
 class CategoryRequests {
     func categoriesPublished() async throws -> [CategoryResponse] {
         return try await withCheckedThrowingContinuation { continuation in
-            ConstantsKMM.REQUEST.get.categoriesPublished() { model, error in
+            ConstantsKMM.REQUEST.get.categoriesPublished { model, error in
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {
