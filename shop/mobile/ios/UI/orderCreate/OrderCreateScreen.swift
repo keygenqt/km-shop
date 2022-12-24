@@ -10,10 +10,9 @@ import SwiftUI
 
 struct OrderCreateScreen: View {
     
-    @EnvironmentObject var navPath: NavObservable
-    
-    var onChangeTab: (() -> Void)
-    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+
     // model
     @ObservedObject var viewModel = OrderCreateViewModel()
     
@@ -24,7 +23,7 @@ struct OrderCreateScreen: View {
     @State private var fieldPhone: IFieldText = PhoneField()
     @State private var fieldEmail: IFieldText = EmailOptionalField()
     @State private var fieldAddress: IFieldText = AddressOptionalField()
-    
+
     var body: some View {
         VStack(spacing: 0) {
             if viewModel.success {
@@ -33,12 +32,13 @@ struct OrderCreateScreen: View {
                     subtitle: L10nOrderCreate.orderCreateSuccessText,
                     btnTitle: L10nOrderCreate.orderCreateSuccessBtn,
                     action: {
-                        navPath.insert([
-                            NavScreen.orderSearch,
-                            NavScreen.orderHistory,
-                            NavScreen.order("fda81678-70b2-409e-950d-36918f1c62b7"),
+                        nav.insert([
+                            NavScreens.orderSearch(),
+                            NavScreens.orderHistory(),
+                            NavScreens.order(
+                                number: "fda81678-70b2-409e-950d-36918f1c62b7"
+                            ),
                         ])
-                        onChangeTab()
                     }
                 )
             } else {

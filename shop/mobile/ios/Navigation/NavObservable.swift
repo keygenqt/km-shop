@@ -10,15 +10,15 @@ import Foundation
 import SwiftUI
 
 class NavObservable: ObservableObject {
-    @Published var route = [NavScreen]()
+    @Published var route: [NavDiscover] = []
     
     // add screen
-    func add(_ screen: NavScreen) {
+    func add(_ screen: NavDiscover) {
         route.append(screen)
     }
     
     // update routing
-    func insert(_ screens: [NavScreen]) {
+    func insert(_ screens: [NavDiscover]) {
         UIView.setAnimationsEnabled(false)
         route = screens
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {

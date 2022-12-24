@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ProductScreen: View {
+    
+    var id: Int
+    
     var body: some View {
         VStack {
             Text("ProductScreen")

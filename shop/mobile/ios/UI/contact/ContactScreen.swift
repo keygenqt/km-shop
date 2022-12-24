@@ -10,15 +10,16 @@ import SwiftUI
 
 struct ContactScreen: View {
     
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+    
     @Environment(\.openURL) private var openURL
-    
-    @EnvironmentObject var navPath: NavObservable
-    
+
     var body: some View {
         AppScrollView {
             AppSection(color: Color.bgVariant4) {
                 ContactMessageBlock(action: {
-                    navPath.add(NavScreen.contactForm)
+                    nav.add(NavScreens.contactForm())
                 })
             }
             

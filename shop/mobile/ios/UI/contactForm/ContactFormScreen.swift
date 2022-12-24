@@ -22,7 +22,7 @@ struct ContactFormScreen: View {
     @State private var fieldLname: IFieldText = LnameOptionalField()
     @State private var fieldPhone: IFieldText = PhoneOptionalField()
     @State private var fieldMessage: IFieldText = MessageField()
-    
+
     var body: some View {
         ScrollViewReader { sc in
             AppForm(error: $error) {

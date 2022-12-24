@@ -9,6 +9,8 @@
 import Foundation
 import shared
 
+extension ProductResponse: Identifiable {}
+
 class ProductRequests {
     // get proudct list
     func productsPublished(

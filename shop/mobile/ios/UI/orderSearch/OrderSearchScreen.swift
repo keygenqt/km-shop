@@ -10,12 +10,13 @@ import SwiftUI
 
 struct OrderSearchScreen: View {
     
-    @EnvironmentObject var navPath: NavObservable
-    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+
     @State private var error: String?
     
     @State private var orderNumberField: IFieldText = OrderNumberField()
-    
+
     var body: some View {
         AppForm(error: $error, isShowCat: true) {
             
@@ -40,7 +41,9 @@ struct OrderSearchScreen: View {
                 HStack {
                     Button {
                         hideKeyboard()
-                        navPath.add(NavScreen.order(orderNumberField.value))
+                        nav.add(NavScreens.order(
+                            number: orderNumberField.value
+                        ))
                         orderNumberField.clear()
                     } label: {
                         AppText(L10nOrderSearch.orderSearchNumberBtn, color: .white).textCase(nil)
@@ -54,7 +57,7 @@ struct OrderSearchScreen: View {
         .navigationBarItems(trailing: HStack(spacing: 0) {
             Button {
                 hideKeyboard()
-                navPath.add(NavScreen.orderHistory)
+                nav.add(NavScreens.orderHistory())
                 orderNumberField.clear()
             } label: {
                 Image(systemName: "clock").imageScale(.large)

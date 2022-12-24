@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ExploringCategoriesScreen: View {
     
-    // nav change
-    @EnvironmentObject var navPath: NavObservable
-    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+
     // model
     @ObservedObject var viewModel = ExploringCategoriesViewModel()
     
@@ -35,7 +35,10 @@ struct ExploringCategoriesScreen: View {
                             name: model.name,
                             desc: model.desc
                         ) {
-                            navPath.add(NavScreen.products(Int(model.id), 0, model.name))
+                            nav.add(NavScreens.products(
+                                title: model.name,
+                                categoryID: Int(model.id)
+                            ))
                         }
                     }
                 }

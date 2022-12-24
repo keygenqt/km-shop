@@ -10,37 +10,39 @@ import Foundation
 import shared
 
 class ProductsViewModel: ObservableObject, Identifiable {
-    
+
     var requests = ProductRequests()
-    
+
+    @Published var products: [ProductResponse]?
     @Published var response: ProductPageResponse?
     @Published var error: ResponseError?
-    
+
     func updateStateUI(
         response: ProductPageResponse? = nil,
         error: ResponseError? = nil
     ) {
         DispatchQueue.main.async {
+            self.products = response?.products.toArray()
             self.response = response
             self.error = error
         }
     }
-    
+
     func load(
-        categories: [Int],
-        collections: [Int]
+        categoryIDs: [Int],
+        collectionIDs: [Int]
     ) {
         Task {
             await loadAsync(
-                categories: categories,
-                collections: collections
+                categoryIDs: categoryIDs,
+                collectionIDs: collectionIDs
             )
         }
     }
-    
+
     func loadAsync(
-        categories: [Int],
-        collections: [Int]
+        categoryIDs: [Int],
+        collectionIDs: [Int]
     ) async {
         do {
             try await Task.sleep(nanoseconds: 1000.millisecondToNanoseconds())
@@ -48,8 +50,8 @@ class ProductsViewModel: ObservableObject, Identifiable {
                 page: 1,
                 order: OrderProduct.newest.name,
                 range: [0.0, 999999999.0],
-                categories: categories,
-                collections: collections
+                categories: categoryIDs,
+                collections: collectionIDs
             )
             self.updateStateUI(
                 response: response
@@ -62,5 +64,4 @@ class ProductsViewModel: ObservableObject, Identifiable {
             print("Unexpected error: \(error).")
         }
     }
-    
 }

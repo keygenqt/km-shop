@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
     
-    public func paddingPage(_ edges: Edge.Set = [.leading, .trailing, .top] ) -> some View {
+    public func paddingPage(_ edges: Edge.Set = [.all] ) -> some View {
         return padding(edges, 20)
     }
     

@@ -7,6 +7,8 @@ struct MyShopApp: App {
     @StateObject var navPath = NavObservable()
     @State private var selection = 0
     
+    @State var navChange: NavChange?
+    
     init() {
         Thread.sleep(forTimeInterval: 1.0)
     }
@@ -15,34 +17,16 @@ struct MyShopApp: App {
 		WindowGroup {
             NavigationStack(path: $navPath.route) {
                 HomeTabs(selection: $selection)
-                    .navigationDestination(for: NavScreen.self) { nav in
-                        switch nav {
-                        case NavScreen.cart: CartScreen()
-                        case NavScreen.contact: ContactScreen()
-                        case NavScreen.contactForm: ContactFormScreen()
-                        case NavScreen.exploring: ExploringTabs()
-                        case NavScreen.order:
-                            if case let .order(number) = nav {
-                                OrderScreen(number: number)
-                            }
-                        case NavScreen.orderCreate: OrderCreateScreen(onChangeTab: {
-                            selection = 0
-                        })
-                        case NavScreen.orderHistory: OrderHistoryScreen()
-                        case NavScreen.orderSearch: OrderSearchScreen()
-                        case NavScreen.product: ProductScreen()
-                        case NavScreen.products:
-                            if case let .products(categoryID, collectionID, title) = nav {
-                                ProductsScreen(
-                                    categoryID: categoryID,
-                                    collectionID: collectionID,
-                                    title: title
-                                )
-                            }
-                        }
-                    }
+                    .navigationDestination(for: NavDiscover.self) { nav in nav.destination }
             }
-            .environmentObject(navPath)
+            .environment(\.nav, NavChange(
+                add: { screen in
+                    navPath.add(screen)
+                },
+                insert: { screens in
+                    navPath.insert(screens)
+                }
+            ))
 		}
 	}
 }

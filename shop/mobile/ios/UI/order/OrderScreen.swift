@@ -10,8 +10,9 @@ import SwiftUI
 
 struct OrderScreen: View {
     
-    // nav change
-    @EnvironmentObject var navPath: NavObservable
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+    
     // model
     @ObservedObject var viewModel = OrderViewModel()
     

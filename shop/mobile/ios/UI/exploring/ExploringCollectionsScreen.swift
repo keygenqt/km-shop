@@ -10,9 +10,9 @@ import SwiftUI
 
 struct ExploringCollectionsScreen: View {
     
-    // nav change
-    @EnvironmentObject var navPath: NavObservable
-    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+
     // model
     @ObservedObject var viewModel = ExploringCollectionsViewModel()
     
@@ -35,7 +35,10 @@ struct ExploringCollectionsScreen: View {
                             name: model.name,
                             desc: model.desc
                         ) {
-                            navPath.add(NavScreen.products(0, Int(model.id), model.name))
+                            nav.add(NavScreens.products(
+                                title: model.name,
+                                collectionID:Int(model.id)
+                            ))
                         }
                     }
                 }

@@ -10,11 +10,12 @@ import SwiftUI
 
 struct HomeTabs: View {
     
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+    
     // page values
     @Binding var selection: Int
-    
-    @EnvironmentObject var navPath: NavObservable
-    
+
     init(selection: Binding<Int>) {
         _selection = selection
         UITabBarItem.appearance().badgeColor = UIColor(Color.secondary)
@@ -27,7 +28,7 @@ struct HomeTabs: View {
     @State private var opacityTab1 = -1.0
     @State private var opacityTab2 = 0.5
     @State private var opacityTab3 = 0.5
-    
+
     var body: some View {
         TabView(selection: $selection) {
             VStack {
@@ -97,19 +98,19 @@ struct HomeTabs: View {
             
             if selection == 2 {
                 Button("Оформить") {
-                    navPath.add(NavScreen.orderCreate)
+                    nav.add(NavScreens.orderCreate())
                 }
             }
 
             if selection == 0 {
                 Button {
-                    navPath.add(NavScreen.contact)
+                    nav.add(NavScreens.contact())
                 } label: {
                     Image(systemName: "envelope.circle").imageScale(.large)
                 }
                 
                 Button {
-                    navPath.add(NavScreen.orderSearch)
+                    nav.add(NavScreens.orderSearch())
                 } label: {
                     Image(systemName: "briefcase.circle").imageScale(.large)
                 }
