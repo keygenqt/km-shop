@@ -51,4 +51,10 @@ struct OrderNumberField: IFieldText {
         checkSymbolDouble,
         getErrorIsNotMatch,
     ]
+    // clear field
+    mutating func clear() {
+        self.isValid = true
+        self.isClear = true
+        self.value = ""
+    }
 }

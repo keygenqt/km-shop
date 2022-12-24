@@ -23,4 +23,5 @@ protocol IFieldText: IField {
     var keyboardType: UIKeyboardType { get set }
     var lineLimit: ClosedRange<Int> { get set }
     var validates: [(String, String) -> String?] { get set }
+    mutating func clear()
 }

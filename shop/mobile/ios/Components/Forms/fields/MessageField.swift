@@ -30,4 +30,10 @@ struct MessageField: IFieldText {
         checkIsBlank,
         checkIsLong,
     ]
+    // clear field
+    mutating func clear() {
+        self.isValid = true
+        self.isClear = true
+        self.value = ""
+    }
 }

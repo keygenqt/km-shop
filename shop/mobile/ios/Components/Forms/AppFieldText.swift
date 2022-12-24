@@ -12,9 +12,10 @@ struct AppFieldText: View {
     
     @Binding var field: IFieldText
     var disable: Bool = false
-    var error: String?
+    var textCase: TextInputAutocapitalization = .sentences
     var isDivider: Bool = true
     var isInitValidate: Bool = false
+    var error: String?
     var onChange: (() -> Void)?
     var actionError: (String?) -> Void = { _ in }
     
@@ -39,6 +40,7 @@ struct AppFieldText: View {
             .padding()
             .accentColor(Color.primary)
             .lineLimit(field.lineLimit)
+            .textInputAutocapitalization(textCase)
             .onChange(of: field.value, perform: { text in
                 onChange?()
                 if !field.isClear {
@@ -49,6 +51,7 @@ struct AppFieldText: View {
                         field.isValid = true
                     }
                 }
+                field.isClear = false
             })
             .onAppear {
                 field.isClear = false

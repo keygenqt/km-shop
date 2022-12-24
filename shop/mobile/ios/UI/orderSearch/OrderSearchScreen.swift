@@ -52,9 +52,7 @@ struct OrderSearchScreen: View {
             Button {
                 hideKeyboard()
                 navPath.add(NavScreen.orderHistory)
-                orderNumberField.isValid = true
-                orderNumberField.isClear = true
-                orderNumberField.value = ""
+                orderNumberField.clear()
             } label: {
                 Image(systemName: "clock").imageScale(.large)
             }

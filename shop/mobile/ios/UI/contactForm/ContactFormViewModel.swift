@@ -14,18 +14,18 @@ class ContactFormViewModel: ObservableObject, Identifiable {
     var requests = MessageRequests()
     
     @Published var loading: Bool = false
-    @Published var response: MessageResponse?
+    @Published var success: Bool = false
     @Published var error: ErrorResponse?
     
     func updateStateUI(
-        response: MessageResponse? = nil,
-        error: ErrorResponse? = nil,
-        loading: Bool
+        loading: Bool,
+        success: Bool = false,
+        error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
-            self.response = response
-            self.error = error
             self.loading = loading
+            self.success = success
+            self.error = error
         }
     }
     
@@ -45,35 +45,38 @@ class ContactFormViewModel: ObservableObject, Identifiable {
         email: String,
         phone: String,
         message: String
-    ) {
-        Task {
-            do {
-                self.updateStateUI(loading: true)
-                try await Task.sleep(nanoseconds: 3000.millisecondToNanoseconds())
-                let response = try await requests.message(request: MessageRequest(
-                    fname: fname,
-                    lname: lname,
-                    email: email,
-                    phone: phone,
-                    message: message
-                ))
-                self.updateStateUI(
-                    response: response,
-                    loading: false
-                )
-            } catch let error as ErrorResponse {
-                self.updateStateUI(
-                    error: error,
-                    loading: false
-                )
-            } catch {
-                self.updateStateUI(
-                    error: ErrorResponse(
-                        code: 500, message: L10nApp.commonError, validate: []
-                    ),
-                    loading: false
-                )
+    ) async -> Bool {
+        do {
+            self.updateStateUI(loading: true)
+            try await Task.sleep(nanoseconds: 3000.millisecondToNanoseconds())
+            _ = try await requests.message(request: MessageRequest(
+                fname: fname,
+                lname: lname,
+                email: email,
+                phone: phone,
+                message: message
+            ))
+            self.updateStateUI(
+                loading: false,
+                success: true
+            )
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.success = false
             }
+            return true
+        } catch let error as ErrorResponse {
+            self.updateStateUI(
+                loading: false,
+                error: error
+            )
+        } catch {
+            self.updateStateUI(
+                loading: false,
+                error: ErrorResponse(
+                    code: 500, message: L10nApp.commonError, validate: []
+                )
+            )
         }
+        return false
     }
 }

@@ -25,4 +25,10 @@ struct PhoneOptionalField: IFieldText {
     var validates = [
         checkIsLong,
     ]
+    // clear field
+    mutating func clear() {
+        self.isValid = true
+        self.isClear = true
+        self.value = ""
+    }
 }

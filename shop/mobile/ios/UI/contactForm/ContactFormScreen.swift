@@ -41,9 +41,18 @@ struct ContactFormScreen: View {
                             Spacer()
                         }
                         .padding()
-                        .onTapGesture {
-                            viewModel.clearError()
+                    }.onTapGesture {
+                        viewModel.clearError()
+                    }
+                }
+                
+                if viewModel.success {
+                    AppSection(color: Color.success) {
+                        HStack {
+                            AppText(L10nContactForm.contactFormSuccess, color: Color.onSuccess, typography: .body1)
+                            Spacer()
                         }
+                        .padding()
                     }
                 }
                 
@@ -51,6 +60,7 @@ struct ContactFormScreen: View {
                     AppFieldText(
                         field: $fieldEmail,
                         disable: viewModel.loading,
+                        textCase: .never,
                         error: viewModel.error?.find("email"),
                         onChange: {
                             error = nil
@@ -65,6 +75,7 @@ struct ContactFormScreen: View {
                     AppFieldText(
                         field: $fieldFname,
                         disable: viewModel.loading,
+                        textCase: .words,
                         error: viewModel.error?.find("fname"),
                         onChange: {
                             error = nil
@@ -79,6 +90,7 @@ struct ContactFormScreen: View {
                     AppFieldText(
                         field: $fieldLname,
                         disable: viewModel.loading,
+                        textCase: .words,
                         error: viewModel.error?.find("lname"),
                         onChange: {
                             error = nil
@@ -93,6 +105,7 @@ struct ContactFormScreen: View {
                     AppFieldText(
                         field: $fieldPhone,
                         disable: viewModel.loading,
+                        textCase: .never,
                         error: viewModel.error?.find("phone"),
                         onChange: {
                         error = nil
@@ -106,15 +119,16 @@ struct ContactFormScreen: View {
                     AppFieldText(
                         field: $fieldMessage,
                         disable: viewModel.loading,
-                        error: viewModel.error?.find("message"),
                         isDivider: false,
+                        error: viewModel.error?.find("message"),
                         onChange: {
-                        error = nil
-                        viewModel.clearError("message")
-                    }, actionError: { fieldError in
-                        error = nil
-                        error = fieldError
-                    })
+                            error = nil
+                            viewModel.clearError("message")
+                        }, actionError: { fieldError in
+                            error = nil
+                            error = fieldError
+                        }
+                    )
                 }
                 
                 AppSection(color: Color.transparent) {
@@ -123,13 +137,21 @@ struct ContactFormScreen: View {
                             error = nil
                             hideKeyboard()
                             sc.scrollTo(0)
-                            viewModel.createMessage(
-                                fname: fieldFname.value,
-                                lname: fieldLname.value,
-                                email: fieldEmail.value,
-                                phone: fieldPhone.value,
-                                message: fieldMessage.value
-                            )
+                            Task {
+                                if await viewModel.createMessage(
+                                    fname: fieldFname.value,
+                                    lname: fieldLname.value,
+                                    email: fieldEmail.value,
+                                    phone: fieldPhone.value,
+                                    message: fieldMessage.value
+                                ) {
+                                    fieldFname.clear()
+                                    fieldLname.clear()
+                                    fieldEmail.clear()
+                                    fieldPhone.clear()
+                                    fieldMessage.clear()
+                                }
+                            }
                         } label: {
                             HStack {
                                 if viewModel.loading {
