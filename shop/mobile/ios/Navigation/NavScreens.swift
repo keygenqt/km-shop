@@ -46,6 +46,16 @@ struct NavScreens {
         return NavDiscover(AnyView(HomeTabs()))
     }
     
+    // ExploringCategoriesScreen
+    static func categories() -> NavDiscover {
+        return NavDiscover(AnyView(ExploringCategoriesScreen()))
+    }
+    
+    // ExploringCollectionsScreen
+    static func collections() -> NavDiscover {
+        return NavDiscover(AnyView(ExploringCollectionsScreen()))
+    }
+    
     // OrderScreen
     static func order(
         number: String

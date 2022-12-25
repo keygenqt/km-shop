@@ -14,11 +14,11 @@ class ExploringCategoriesViewModel: ObservableObject, Identifiable {
     var requests = CategoryRequests()
     
     @Published var response: [CategoryResponse]?
-    @Published var error: ResponseError?
+    @Published var error: ErrorResponse?
     
     func updateStateUI(
         response: [CategoryResponse]? = nil,
-        error: ResponseError? = nil
+        error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
             self.response = response
@@ -27,6 +27,10 @@ class ExploringCategoriesViewModel: ObservableObject, Identifiable {
     }
     
     func load() {
+        self.updateStateUI(
+            response: nil,
+            error: nil
+        )
         Task { await loadAsync() }
     }
     
@@ -37,12 +41,16 @@ class ExploringCategoriesViewModel: ObservableObject, Identifiable {
             self.updateStateUI(
                 response: response
             )
-        } catch let error as ResponseError {
+        } catch let error as ErrorResponse {
             self.updateStateUI(
                 error: error
             )
         } catch {
-            print("Unexpected error: \(error).")
+            self.updateStateUI(
+                error: ErrorResponse(
+                    code: 500, message: L10nApp.commonError, validate: []
+                )
+            )
         }
     }
 }

@@ -1,23 +1,23 @@
 //
-//  ExploringCollectionsViewModel.swift
+//  ProductViewModel.swift
 //  YouShop
 //
-//  Created by Виталий Зарубин on 23.12.2022.
+//  Created by Виталий Зарубин on 25.12.2022.
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
 import Foundation
 import shared
 
-class ExploringCollectionsViewModel: ObservableObject, Identifiable {
+class ProductViewModel: ObservableObject, Identifiable {
     
-    var requests = CollectionRequests()
+    var requests = ProductRequests()
     
-    @Published var response: [CollectionResponse]?
+    @Published var response: ProductResponse?
     @Published var error: ErrorResponse?
     
     func updateStateUI(
-        response: [CollectionResponse]? = nil,
+        response: ProductResponse? = nil,
         error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
@@ -26,14 +26,18 @@ class ExploringCollectionsViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func load() {
-        Task { await loadAsync() }
+    func load(
+        id: Int
+    ) {
+        Task { await loadAsync(id: id) }
     }
     
-    func loadAsync() async {
+    func loadAsync(
+        id: Int
+    ) async {
         do {
-            try await Task.sleep(nanoseconds: 1000.millisecondToNanoseconds())
-            let response = try await requests.collectionsPublished()
+            try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
+            let response = try await requests.product(id: id)
             self.updateStateUI(
                 response: response
             )

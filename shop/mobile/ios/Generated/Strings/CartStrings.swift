@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10nCart {
+  /// Оформить
+  internal static let cartBarBtn = L10nCart.tr("Cart", "cart_bar_btn", fallback: "Оформить")
   /// Ваша корзина пуста, добавьте интересующие вас товары и вернитесь
   internal static let cartEmptyText = L10nCart.tr("Cart", "cart_empty_text", fallback: "Ваша корзина пуста, добавьте интересующие вас товары и вернитесь")
   /// Cart.strings

@@ -22,13 +22,14 @@ struct ExploringCollectionsScreen: View {
     
     var body: some View {
         if let response = viewModel.response {
-            AppScrollView(padding: [.leading, .trailing]) {
-                if response.isEmpty {
-                    EmptyBody(
-                        title: L10nExploring.emptyTab2Title,
-                        subtitle: L10nExploring.emptyTab2Text
-                    )
-                } else {
+            if response.isEmpty {
+                EmptyBody(
+                    title: L10nExploring.emptyTab2Title,
+                    subtitle: L10nExploring.emptyTab2Text,
+                    action: { viewModel.load() }
+                )
+            } else {
+                AppScrollView(padding: [.leading, .trailing, .bottom]) {
                     ForEach(response) { model in
                         CollectionItem(
                             icon: model.icon,
@@ -37,18 +38,18 @@ struct ExploringCollectionsScreen: View {
                         ) {
                             nav.add(NavScreens.products(
                                 title: model.name,
-                                collectionID:Int(model.id)
+                                collectionID: Int(model.id)
                             ))
                         }
                     }
                 }
-            }
-            .refreshable {
-                await viewModel.loadAsync()
+                .refreshable {
+                    await viewModel.loadAsync()
+                }
             }
         } else {
-            if let error = viewModel.error {
-                ErrorBody(error: error)
+            if viewModel.error != nil {
+                ErrorBody(action: { viewModel.load() })
             } else {
                 LoadingBody()
             }

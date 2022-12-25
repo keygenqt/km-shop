@@ -10,11 +10,17 @@ import SwiftUI
 
 struct ErrorBody: View {
     
-    var error: ResponseError
+    var btn: String = L10nApp.commonBtnError
+    var action: (() -> Void)?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             ErrorAnimation()
+            if let action = action {
+                Button(btn) {
+                    action()
+                }.buttonStyle(BottonStyle())
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding()

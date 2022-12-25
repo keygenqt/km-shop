@@ -12,6 +12,23 @@ import shared
 extension ProductResponse: Identifiable {}
 
 class ProductRequests {
+    // get product
+    func product(
+        id: Int
+    ) async throws -> ProductResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            ConstantsKMM.REQUEST.get.product(
+                id: Int32(id)
+            ) { model, error in
+                if let model = model {
+                    continuation.resume(returning: model)
+                } else {
+                    continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                }
+            }
+        }
+    }
+    
     // get proudct list
     func productsPublished(
         page: Int,

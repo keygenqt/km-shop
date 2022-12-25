@@ -15,8 +15,12 @@ internal enum L10nApp {
   /// 
   ///   Created by Виталий Зарубин on 05.10.2021.
   internal static let appName = L10nApp.tr("App", "app_name", fallback: "You Shop")
-  /// Произошла непредвиденная ошибка, попробуйте повторить запрос позже
-  internal static let commonError = L10nApp.tr("App", "common_error", fallback: "Произошла непредвиденная ошибка, попробуйте повторить запрос позже")
+  /// Перезагрузить
+  internal static let commonBtnError = L10nApp.tr("App", "common_btn_error", fallback: "Перезагрузить")
+  /// Повторить
+  internal static let commonBtnRetry = L10nApp.tr("App", "common_btn_retry", fallback: "Повторить")
+  /// Произошла непредвиденная ошибка, попробуйте позже
+  internal static let commonError = L10nApp.tr("App", "common_error", fallback: "Произошла непредвиденная ошибка, попробуйте позже")
   /// Корзина
   internal static let screenCart = L10nApp.tr("App", "screen_cart", fallback: "Корзина")
   /// Контакты

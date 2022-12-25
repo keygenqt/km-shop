@@ -14,12 +14,15 @@ class OrderViewModel: ObservableObject, Identifiable {
     var requests = OrderRequests()
     
     @Published var response: OrderResponse?
+    @Published var error: ErrorResponse?
     
     func updateStateUI(
-        response: OrderResponse
+        response: OrderResponse? = nil,
+        error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
             self.response = response
+            self.error = error
         }
     }
     
@@ -34,12 +37,20 @@ class OrderViewModel: ObservableObject, Identifiable {
     ) async {
         do {
             try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
-            let response = try await requests.orderByNumber(number)
+            let response = try await requests.orderByNumber(number: number)
             self.updateStateUI(
                 response: response
             )
+        } catch let error as ErrorResponse {
+            self.updateStateUI(
+                error: error
+            )
         } catch {
-           print("Unexpected error: \(error).")
+            self.updateStateUI(
+                error: ErrorResponse(
+                    code: 500, message: L10nApp.commonError, validate: []
+                )
+            )
         }
     }
 }

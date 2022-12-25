@@ -93,13 +93,13 @@ struct HomeTabs: View {
         }
         .navigationBarItems(trailing: HStack(spacing: 0) {
             
-            if appState.homeTab == TabsHome.home {
-                Button("Оформить") {
+            if appState.homeTab == TabsHome.cart {
+                Button(L10nCart.cartBarBtn) {
                     nav.add(NavScreens.orderCreate())
                 }
             }
 
-            if appState.homeTab == TabsHome.exploring {
+            if appState.homeTab == TabsHome.home {
                 Button {
                     nav.add(NavScreens.contact())
                 } label: {

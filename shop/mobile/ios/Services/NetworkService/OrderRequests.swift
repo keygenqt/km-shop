@@ -11,7 +11,7 @@ import shared
 
 class OrderRequests {
     // search order by number
-    func orderByNumber(_ number: String) async throws -> OrderResponse {
+    func orderByNumber(number: String) async throws -> OrderResponse {
         return try await withCheckedThrowingContinuation { continuation in
             ConstantsKMM.REQUEST.get.orderByNumber(number: number) { model, error in
                 if let model = model {

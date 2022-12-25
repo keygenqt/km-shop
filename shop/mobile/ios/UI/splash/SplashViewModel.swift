@@ -15,12 +15,14 @@ class SplashViewModel: ObservableObject, Identifiable {
     var requestsCollection = CollectionRequests()
     
     @Published var error: ResponseError?
+    @Published var isError: Bool = false
     
     func updateStateUI(
         nav: NavChange? = nil,
         error: ResponseError? = nil
     ) {
         DispatchQueue.main.async {
+            self.isError = error == nil ? false : true
             self.error = error
             if let nav = nav {
                 nav.insert([
@@ -33,7 +35,7 @@ class SplashViewModel: ObservableObject, Identifiable {
     func load(nav: NavChange) {
         Task {
             do {
-                let categries = try await loadCategoriesAsync()
+//                let categries = try await loadCategoriesAsync() // @todo
                 let collections = try await loadCollectionsAsync()
                 self.updateStateUI(
                     nav: nav

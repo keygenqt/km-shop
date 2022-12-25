@@ -37,7 +37,14 @@ struct OrderScreen: View {
                     )
                 }
             } else {
-                LoadingBody()
+                if viewModel.error != nil {
+                    EmptyBody(
+                        title: L10nOrder.orderErrorTitle,
+                        subtitle: L10nOrder.orderErrorText
+                    )
+                } else {
+                    LoadingBody()
+                }
             }
         }.colorize(L10nApp.screenOrder, true)
     }

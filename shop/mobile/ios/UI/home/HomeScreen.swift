@@ -19,19 +19,8 @@ struct HomeScreen: View {
     // View Model
     @ObservedObject var viewModel = HomeViewModel()
     
-    var actionCategory: (() -> Void)?
-    var actionCollection: (() -> Void)?
-    
     init() {
         viewModel.load()
-    }
-    
-    mutating func updateActions(
-        actionCategory: @escaping (() -> Void),
-        actionCollection: @escaping (() -> Void)
-    ) {
-        self.actionCategory = actionCategory
-        self.actionCollection = actionCollection
     }
     
     var body: some View {
@@ -43,28 +32,39 @@ struct HomeScreen: View {
                 })
             }
             if let response = viewModel.response {
-                AppSection(color: Color.bgVariant1) {
-                    CategoriesBlock(
-                        categories: response,
-                        actionAll: {
-                            appState.exploringTab = TabsExploring.categories
-                            appState.homeTab = TabsHome.exploring
-                        },
-                        actionItem: { title, id in
-                            nav.add(NavScreens.products(
-                                title: title,
-                                categoryID: id
-                            ))
-                        }
-                    )
+                if response.isEmpty {
+                    EmptyView()
+                } else {
+                    AppSection(color: Color.bgVariant1) {
+                        CategoriesBlock(
+                            categories: response,
+                            actionAll: {
+                                appState.exploringTab = TabsExploring.categories
+                                appState.homeTab = TabsHome.exploring
+                            },
+                            actionItem: { title, id in
+                                nav.add(NavScreens.products(
+                                    title: title,
+                                    categoryID: id
+                                ))
+                            }
+                        )
+                    }
                 }
             } else {
                 AppSection(color: Color.bgVariant1) {
                     VStack {
-                        LoadingAnimationLarge()
+                        if viewModel.error == nil {
+                            LoadingAnimationLarge()
+                        } else {
+                            ErrorAnimation()
+                        }
                     }.paddingPage()
                 }
             }
+        }
+        .refreshable {
+            await viewModel.loadAsync()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.background)

@@ -13,6 +13,9 @@ struct ExploringTabs: View {
     // App common observable
     @EnvironmentObject var appState: AppObservable
     
+    @State private var categoriesScreen: NavDiscover = NavScreens.categories()
+    @State private var collectionsScreen: NavDiscover = NavScreens.collections()
+    
     var body: some View {
         VStack(spacing: 0) {
             Picker("", selection: $appState.exploringTab) {
@@ -27,9 +30,9 @@ struct ExploringTabs: View {
             
             VStack(spacing: 0) {
                 if appState.exploringTab == TabsExploring.categories {
-                    ExploringCategoriesScreen()
+                    categoriesScreen.destination
                 } else {
-                    ExploringCollectionsScreen()
+                    collectionsScreen.destination
                 }
             }
         }

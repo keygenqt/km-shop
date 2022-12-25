@@ -6,6 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
+import AlertToast
 import SwiftUI
 
 struct SplashScreen: View {
@@ -25,7 +26,9 @@ struct SplashScreen: View {
                     .frame(width: 130, height: 130)
                 Spacer().frame(height: 20)
             }.overlay(VStack {
-                ProgressView().tint(.white).offset(y: 40)
+                if viewModel.error == nil {
+                    ProgressView().tint(.white).offset(y: 40)
+                }
             }, alignment: .bottom)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -33,6 +36,20 @@ struct SplashScreen: View {
         .background(Color.splash)
         .onAppear {
             viewModel.load(nav: nav)
+        }
+        .toast(isPresenting: $viewModel.isError) {
+            AlertToast(
+                displayMode: .banner(.pop),
+                type: .regular,
+                title: L10nApp.commonError,
+                style: .style(
+                    backgroundColor: Color.error,
+                    titleColor: Color.onError,
+                    subTitleColor: Color.onError,
+                    titleFont: Font.system(size: 16),
+                    subTitleFont: Font.system(size: 12)
+                )
+            )
         }
     }
 }

@@ -22,13 +22,14 @@ struct ExploringCategoriesScreen: View {
     
     var body: some View {
         if let response = viewModel.response {
-            AppScrollView(padding: [.leading, .trailing]) {
-                if response.isEmpty {
-                    EmptyBody(
-                        title: L10nExploring.emptyTab1Title,
-                        subtitle: L10nExploring.emptyTab1Text
-                    )
-                } else {
+            if response.isEmpty {
+                EmptyBody(
+                    title: L10nExploring.emptyTab1Title,
+                    subtitle: L10nExploring.emptyTab1Text,
+                    action: { viewModel.load() }
+                )
+            } else {
+                AppScrollView(padding: [.leading, .trailing, .bottom]) {
                     ForEach(response) { model in
                         CategoryItem(
                             icon: model.image,
@@ -42,13 +43,13 @@ struct ExploringCategoriesScreen: View {
                         }
                     }
                 }
-            }
-            .refreshable {
-                await viewModel.loadAsync()
+                .refreshable {
+                    await viewModel.loadAsync()
+                }
             }
         } else {
-            if let error = viewModel.error {
-                ErrorBody(error: error)
+            if viewModel.error != nil {
+                ErrorBody(action: { viewModel.load() })
             } else {
                 LoadingBody()
             }
