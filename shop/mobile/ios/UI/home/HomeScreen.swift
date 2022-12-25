@@ -13,25 +13,42 @@ struct HomeScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
+    // App common observable
+    @EnvironmentObject var appState: AppObservable
+    
     // View Model
     @ObservedObject var viewModel = HomeViewModel()
     
+    var actionCategory: (() -> Void)?
+    var actionCollection: (() -> Void)?
+    
     init() {
-        print("-------------- HomeScreen")
         viewModel.load()
+    }
+    
+    mutating func updateActions(
+        actionCategory: @escaping (() -> Void),
+        actionCollection: @escaping (() -> Void)
+    ) {
+        self.actionCategory = actionCategory
+        self.actionCollection = actionCollection
     }
     
     var body: some View {
         AppScrollView {
             AppSection(color: Color.bgVariant2) {
-                InfoBlock()
+                InfoBlock(action: {
+                    appState.exploringTab = TabsExploring.collections
+                    appState.homeTab = TabsHome.exploring
+                })
             }
             if let response = viewModel.response {
                 AppSection(color: Color.bgVariant1) {
                     CategoriesBlock(
                         categories: response,
                         actionAll: {
-                            
+                            appState.exploringTab = TabsExploring.categories
+                            appState.homeTab = TabsHome.exploring
                         },
                         actionItem: { title, id in
                             nav.add(NavScreens.products(

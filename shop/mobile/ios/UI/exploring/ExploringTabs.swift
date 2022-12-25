@@ -10,20 +10,23 @@ import SwiftUI
 
 struct ExploringTabs: View {
 
-    @State private var selectedTab: Int = 0
+    // App common observable
+    @EnvironmentObject var appState: AppObservable
     
     var body: some View {
         VStack(spacing: 0) {
-            Picker("", selection: $selectedTab) {
-                Text(L10nExploring.tab1).tag(0)
-                Text(L10nExploring.tab2).tag(1)
+            Picker("", selection: $appState.exploringTab) {
+                Text(L10nExploring.tab1)
+                    .tag(TabsExploring.categories)
+                Text(L10nExploring.tab2)
+                    .tag(TabsExploring.collections)
             }
             .background(Color.transparent)
             .pickerStyle(SegmentedPickerStyle())
             .paddingPage(.all)
             
             VStack(spacing: 0) {
-                if selectedTab == 0 {
+                if appState.exploringTab == TabsExploring.categories {
                     ExploringCategoriesScreen()
                 } else {
                     ExploringCollectionsScreen()

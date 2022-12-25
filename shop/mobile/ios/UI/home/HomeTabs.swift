@@ -13,8 +13,8 @@ struct HomeTabs: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
-    // page values
-    @State private var selection = 0
+    // App common observable
+    @EnvironmentObject var appState: AppObservable
 
     init() {
         UITabBarItem.appearance().badgeColor = UIColor(Color.secondary)
@@ -33,14 +33,14 @@ struct HomeTabs: View {
     @State private var cartScreen: NavDiscover = NavScreens.cart()
 
     var body: some View {
-        TabView(selection: $selection) {
+        TabView(selection: $appState.homeTab) {
             VStack {
                 homeScreen.destination
                     .opacity(opacityTab1)
                     .onAppear {
-                        opacityTab1 = 0.7
+                        opacityTab1 = 0.6
                         withAnimation(.linear(duration: 0.2)) {
-                            opacityTab1 += 0.3
+                            opacityTab1 += 0.4
                         }
                     }
             }
@@ -50,15 +50,15 @@ struct HomeTabs: View {
                     Text(L10nApp.tab1)
                 }
             }
-            .tag(0)
+            .tag(TabsHome.home)
 
             VStack {
                 exploringScreen.destination
                     .opacity(opacityTab2)
                     .onAppear {
-                        opacityTab2 = 0.7
+                        opacityTab2 = 0.6
                         withAnimation(.linear(duration: 0.2)) {
-                            opacityTab2 += 0.3
+                            opacityTab2 += 0.4
                         }
                     }
             }
@@ -69,15 +69,15 @@ struct HomeTabs: View {
                     Text(L10nApp.tab2)
                 }
             }
-            .tag(1)
+            .tag(TabsHome.exploring)
 
             VStack {
                 cartScreen.destination
                     .opacity(opacityTab3)
                     .onAppear {
-                        opacityTab3 = 0.7
+                        opacityTab3 = 0.6
                         withAnimation(.linear(duration: 0.2)) {
-                            opacityTab3 += 0.3
+                            opacityTab3 += 0.4
                         }
                     }
             }
@@ -89,17 +89,17 @@ struct HomeTabs: View {
                 }
             }
             .badge(5)
-            .tag(2)
+            .tag(TabsHome.cart)
         }
         .navigationBarItems(trailing: HStack(spacing: 0) {
             
-            if selection == 2 {
+            if appState.homeTab == TabsHome.home {
                 Button("Оформить") {
                     nav.add(NavScreens.orderCreate())
                 }
             }
 
-            if selection == 0 {
+            if appState.homeTab == TabsHome.exploring {
                 Button {
                     nav.add(NavScreens.contact())
                 } label: {
