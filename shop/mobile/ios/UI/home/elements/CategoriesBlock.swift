@@ -7,11 +7,19 @@
 //
 
 import SwiftUI
+import shared
 
 struct CategoriesBlock: View {
     
+    var categories: [CategoryResponse]
     var actionAll: (() -> Void)?
-    var actionItem: ((Int) -> Void)?
+    var actionItem: ((String, Int) -> Void)?
+    
+    private let backgrounds: [String] = [
+        "cat_bg_1",
+        "cat_bg_3",
+        "cat_bg_5",
+    ]
     
     var body: some View {
         VStack {
@@ -26,12 +34,18 @@ struct CategoriesBlock: View {
                     ))
                 }
                 
-                VStack {
-                    CategoryItemBlock(bgIcon: "cat_bg_1")
-                    Spacer().frame(height: 16)
-                    CategoryItemBlock(bgIcon: "cat_bg_3")
-                    Spacer().frame(height: 16)
-                    CategoryItemBlock(bgIcon: "cat_bg_5")
+                VStack(spacing: 10) {
+                    ForEach(0..<categories.count, id: \.self) { index in
+                        CategoryItemBlock(
+                            id: Int(categories[index].id),
+                            name: categories[index].name,
+                            desc: categories[index].desc,
+                            bgIcon: backgrounds[index],
+                            actionItem: { title, id in
+                                actionItem?(title, id)
+                            }
+                        )
+                    }
                 }
             }
             .padding()

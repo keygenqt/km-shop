@@ -41,7 +41,8 @@ expect fun httpClient(config: HttpClientConfig<*>.() -> Unit = {}): HttpClient
  */
 class ServiceRequest(
     private val apiUrl: String? = null,
-    private val logger: Logger? = null
+    private val logger: Logger? = null,
+    private val debug: Boolean = true
 ) {
 
     val get by lazy { GetRequest(httpClient) }
@@ -72,9 +73,11 @@ class ServiceRequest(
             }
         }
 
-        install(Logging) {
-            logger = this@ServiceRequest.logger ?: Logger.DEFAULT
-            level = LogLevel.ALL
+        if (debug) {
+            install(Logging) {
+                logger = this@ServiceRequest.logger ?: Logger.DEFAULT
+                level = LogLevel.ALL
+            }
         }
 
         install(DefaultRequest) {

@@ -12,19 +12,22 @@ struct CategoryItemBlock: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    var id: Int
+    var name: String
+    var desc: String
     var bgIcon: String
-    var actionItem: ((Int) -> Void)?
+    var actionItem: ((String, Int) -> Void)?
     
     var body: some View {
         ZStack {
             HStack {
                 VStack(alignment: .leading) {
-                    AppText("Бантики", color: colorScheme == .dark ? Color.surface : Color.textCaption, typography: .caption)
+                    AppText(name, color: colorScheme == .dark ? Color.surface : Color.textCaption, typography: .caption)
                     Spacer().frame(height: 8)
-                    AppText("Стильные бантики ручной работы", color: Color.black, typography: .body1)
+                    AppText(desc, color: Color.black, typography: .body1)
                     Spacer().frame(height: 14)
                     Button {
-                        actionItem?(1)
+                        actionItem?(name, id)
                     } label: {
                         HStack {
                             AppText(L10nHome.categoryBlockBtn, color: Color.white)

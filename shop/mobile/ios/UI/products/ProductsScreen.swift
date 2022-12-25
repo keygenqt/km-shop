@@ -13,7 +13,7 @@ struct ProductsScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
-    // model
+    // View Model
     @ObservedObject var viewModel = ProductsViewModel()
     
     let title: String

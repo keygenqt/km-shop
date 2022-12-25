@@ -14,10 +14,9 @@ struct HomeTabs: View {
     @Environment(\.nav) var nav: NavChange
     
     // page values
-    @Binding var selection: Int
+    @State private var selection = 0
 
-    init(selection: Binding<Int>) {
-        _selection = selection
+    init() {
         UITabBarItem.appearance().badgeColor = UIColor(Color.secondary)
         UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = UIColor(Color.primary)
@@ -28,11 +27,15 @@ struct HomeTabs: View {
     @State private var opacityTab1 = -1.0
     @State private var opacityTab2 = 0.5
     @State private var opacityTab3 = 0.5
+    
+    @State private var homeScreen: NavDiscover = NavScreens.home()
+    @State private var exploringScreen: NavDiscover = NavScreens.exploring()
+    @State private var cartScreen: NavDiscover = NavScreens.cart()
 
     var body: some View {
         TabView(selection: $selection) {
             VStack {
-                HomeScreen()
+                homeScreen.destination
                     .opacity(opacityTab1)
                     .onAppear {
                         opacityTab1 = 0.7
@@ -40,8 +43,6 @@ struct HomeTabs: View {
                             opacityTab1 += 0.3
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(Color.background)
             }
             .tabItem {
                 VStack {
@@ -52,7 +53,7 @@ struct HomeTabs: View {
             .tag(0)
 
             VStack {
-                ExploringTabs()
+                exploringScreen.destination
                     .opacity(opacityTab2)
                     .onAppear {
                         opacityTab2 = 0.7
@@ -60,8 +61,6 @@ struct HomeTabs: View {
                             opacityTab2 += 0.3
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(Color.background)
             }
             .tabItem {
                 VStack {
@@ -73,7 +72,7 @@ struct HomeTabs: View {
             .tag(1)
 
             VStack {
-                CartScreen()
+                cartScreen.destination
                     .opacity(opacityTab3)
                     .onAppear {
                         opacityTab3 = 0.7
@@ -81,8 +80,6 @@ struct HomeTabs: View {
                             opacityTab3 += 0.3
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .background(Color.background)
             }
             .tabItem {
                 VStack {

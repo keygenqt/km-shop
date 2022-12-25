@@ -13,7 +13,7 @@ struct ExploringCategoriesScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
 
-    // model
+    // View Model
     @ObservedObject var viewModel = ExploringCategoriesViewModel()
     
     init() {

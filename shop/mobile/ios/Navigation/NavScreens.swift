@@ -11,6 +11,16 @@ import Foundation
 
 struct NavScreens {
     
+    // SplashScreen
+    static func splash() -> NavDiscover {
+        return NavDiscover(AnyView(SplashScreen()))
+    }
+    
+    // CartScreen
+    static func cart() -> NavDiscover {
+        return NavDiscover(AnyView(CartScreen()))
+    }
+    
     // ContactScreen
     static func contact() -> NavDiscover {
         return NavDiscover(AnyView(ContactScreen()))
@@ -19,6 +29,21 @@ struct NavScreens {
     // ContactFormScreen
     static func contactForm() -> NavDiscover {
         return NavDiscover(AnyView(ContactFormScreen()))
+    }
+    
+    // ExploringScreen
+    static func exploring() -> NavDiscover {
+        return NavDiscover(AnyView(ExploringTabs()))
+    }
+    
+    // HomeScreen
+    static func home() -> NavDiscover {
+        return NavDiscover(AnyView(HomeScreen()))
+    }
+    
+    // ExploringTabs
+    static func homeTabs() -> NavDiscover {
+        return NavDiscover(AnyView(HomeTabs()))
     }
     
     // OrderScreen

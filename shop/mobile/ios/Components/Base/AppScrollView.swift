@@ -21,9 +21,9 @@ struct AppScrollView<Content: View>: View {
     var body: some View {
         ScrollView([.vertical]) {
             if padding.isEmpty {
-                VStack(spacing: 15) { content() }
+                LazyVStack(spacing: 15) { content() }
             } else {
-                VStack(spacing: 15) { content() }.paddingPage(padding)
+                LazyVStack(spacing: 15) { content() }.paddingPage(padding)
             }
         }
     }

@@ -13,7 +13,7 @@ struct OrderScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
-    // model
+    // View Model
     @ObservedObject var viewModel = OrderViewModel()
     
     let number: String

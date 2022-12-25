@@ -13,13 +13,13 @@ struct OrderCreateScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
 
-    // model
+    // View Model
     @ObservedObject var viewModel = OrderCreateViewModel()
     
-    // form states
+    // Form states
     @State private var error: String?
     
-    // form value
+    // Form fields
     @State private var fieldPhone: IFieldText = PhoneField()
     @State private var fieldEmail: IFieldText = EmailOptionalField()
     @State private var fieldAddress: IFieldText = AddressOptionalField()
@@ -38,7 +38,7 @@ struct OrderCreateScreen: View {
                             NavScreens.order(
                                 number: "fda81678-70b2-409e-950d-36918f1c62b7"
                             ),
-                        ])
+                        ], true)
                     }
                 )
             } else {

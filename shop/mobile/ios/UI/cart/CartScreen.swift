@@ -15,6 +15,9 @@ struct CartScreen: View {
                 title: "Пусто",
                 subtitle: "Ваша корзина пуста, добавьте интересующие вас товары и вернитесь"
             )
-        }.paddingPage()
+        }
+        .paddingPage()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .background(Color.background)
     }
 }

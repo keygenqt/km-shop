@@ -63,6 +63,7 @@ internal enum Resources {
     internal static let onSurface = ColorAsset(name: "onSurface")
     internal static let primary = ColorAsset(name: "primary")
     internal static let secondary = ColorAsset(name: "secondary")
+    internal static let splash = ColorAsset(name: "splash")
     internal static let success = ColorAsset(name: "success")
     internal static let surface = ColorAsset(name: "surface")
     internal static let textCaption = ColorAsset(name: "textCaption")

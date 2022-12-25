@@ -16,6 +16,7 @@ extension Color {
     // Theme
     static let collectionGr1 = Color("collectionGr1")
     static let collectionGr2 = Color("collectionGr2")
+    static let splash = Color("splash")
     static let background = Color("background")
     static let bgVariant1 = Color("bgVariant1")
     static let bgVariant2 = Color("bgVariant2")

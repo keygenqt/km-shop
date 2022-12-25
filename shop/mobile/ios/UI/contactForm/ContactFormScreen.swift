@@ -10,13 +10,13 @@ import SwiftUI
 
 struct ContactFormScreen: View {
     
-    // model
+    // View Model
     @ObservedObject var viewModel = ContactFormViewModel()
     
-    // form states
+    // Form states
     @State private var error: String?
     
-    // form value
+    // Form fields
     @State private var fieldEmail: IFieldText = EmailField()
     @State private var fieldFname: IFieldText = FnameField()
     @State private var fieldLname: IFieldText = LnameOptionalField()
