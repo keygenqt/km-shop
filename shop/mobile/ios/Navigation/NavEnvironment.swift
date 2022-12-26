@@ -22,5 +22,5 @@ extension EnvironmentValues {
 
 struct NavChange {
     var add: (NavDiscover) -> Void = {_ in }
-    var insert: ([NavDiscover], Bool) -> Void = {_, _ in }
+    var insert: ([NavDiscover]) -> Void = {_ in }
 }

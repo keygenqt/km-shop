@@ -13,18 +13,24 @@ class OrderCreateViewModel: ObservableObject, Identifiable {
     
     var requests = OrderRequests()
     
+    var items: [CartItem]
+    
+    init(_ items: [CartItem]) {
+        self.items = items
+    }
+    
     @Published var loading: Bool = false
-    @Published var success: Bool = false
+    @Published var number: String?
     @Published var error: ErrorResponse?
     
     func updateStateUI(
         loading: Bool,
-        success: Bool = false,
+        number: String? = nil,
         error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
             self.loading = loading
-            self.success = success
+            self.number = number
             self.error = error
         }
     }
@@ -44,21 +50,18 @@ class OrderCreateViewModel: ObservableObject, Identifiable {
         email: String,
         address: String
     ) async -> Bool {
-        
-        let products = KotlinArray<OrderProductRequest>.init(size: Int32(0)) { _ in nil }
-        
         do {
             self.updateStateUI(loading: true)
             try await Task.sleep(nanoseconds: 3000.millisecondToNanoseconds())
-            _ = try await requests.orderCreate(request: OrderCreateRequest(
-                email: email,
+            let response = try await requests.orderCreate(
                 phone: phone,
+                email: email,
                 address: address,
-                products: products
-            ))
+                products: items
+            )
             self.updateStateUI(
                 loading: false,
-                success: true
+                number: response.number
             )
             return true
         } catch let error as ErrorResponse {

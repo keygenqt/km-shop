@@ -18,8 +18,8 @@ class NavObservable: ObservableObject {
     }
     
     // update routing
-    func insert(_ screens: [NavDiscover], animation: Bool = true) {
-        UIView.setAnimationsEnabled(animation)
+    func insert(_ screens: [NavDiscover]) {
+        UIView.setAnimationsEnabled(false)
         route = screens
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             UIView.setAnimationsEnabled(true)

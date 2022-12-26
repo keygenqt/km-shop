@@ -13,6 +13,9 @@ struct HomeTabs: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
+    // App cart products
+    @EnvironmentObject var cart: CartObservable
+    
     // App common observable
     @EnvironmentObject var appState: AppObservable
 
@@ -88,14 +91,17 @@ struct HomeTabs: View {
                     Text(L10nApp.tab3)
                 }
             }
-            .badge(5)
+            .badge(cart.getCount())
             .tag(TabsHome.cart)
         }
         .navigationBarItems(trailing: HStack(spacing: 0) {
             
-            if appState.homeTab == TabsHome.cart {
+            if appState.homeTab == TabsHome.cart && appState.cartIsReady {
                 Button(L10nCart.cartBarBtn) {
-                    nav.add(NavScreens.orderCreate())
+                    appState.cartIsBack = true
+                    nav.add(NavScreens.orderCreate(
+                        items: cart.products
+                    ))
                 }
             }
 

@@ -14,6 +14,6 @@ struct LoadingBody: View {
             CatPlayingAnimation()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding()
+        .paddingPage()
     }
 }

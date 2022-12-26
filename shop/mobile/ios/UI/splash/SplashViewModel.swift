@@ -27,7 +27,7 @@ class SplashViewModel: ObservableObject, Identifiable {
             if let nav = nav {
                 nav.insert([
                     NavScreens.homeTabs()
-                ], false)
+                ])
             }
         }
     }

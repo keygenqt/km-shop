@@ -28,6 +28,6 @@ struct SuccessCartBody: View {
             }.buttonStyle(BottonStyle())
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding()
+        .paddingPage()
     }
 }

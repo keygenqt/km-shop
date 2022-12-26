@@ -31,6 +31,6 @@ struct EmptyBody: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding()
+        .paddingPage()
     }
 }

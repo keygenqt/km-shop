@@ -20,8 +20,8 @@ struct MyShopApp: App {
                 add: { screen in
                     navPath.add(screen)
                 },
-                insert: { screens, animation in
-                    navPath.insert(screens, animation: animation)
+                insert: { screens in
+                    navPath.insert(screens)
                 }
             ))
 		}

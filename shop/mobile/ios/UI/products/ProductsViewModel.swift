@@ -106,7 +106,7 @@ class ProductsViewModel: ObservableObject, Identifiable {
             if cancel {
                 job?.cancel()
             }
-            try await Task.sleep(nanoseconds: 3000.millisecondToNanoseconds())
+            try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
             let response = try await requests.productsPublished(
                 page: page,
                 order: sort.name,

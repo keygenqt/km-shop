@@ -13,6 +13,29 @@ extension ProductResponse: Identifiable {}
 
 class ProductRequests {
     
+    // get products for cart
+    func productsPublishedByIDs(
+        ids: [Int]
+    ) async throws -> [ProductResponse] {
+        
+        let ids = KotlinArray<KotlinInt>.init(size: Int32(ids.count)) { index in
+            let i = Int(Int64(truncating: index))
+            return KotlinInt.init(int: Int32(ids[i]))
+        }
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            ConstantsKMM.REQUEST.get.productsPublishedByIDs(
+                ids: ids
+            ) { model, error in
+                if let model = model {
+                    continuation.resume(returning: model)
+                } else {
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
+                }
+            }
+        }
+    }
+    
     // get prices
     func prices(
         categories: [Int],

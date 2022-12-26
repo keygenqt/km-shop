@@ -66,8 +66,12 @@ struct NavScreens {
     }
     
     // OrderCreateScreen
-    static func orderCreate() -> NavDiscover {
-        return NavDiscover(AnyView(OrderCreateScreen()))
+    static func orderCreate(
+        items: [CartItem]
+    ) -> NavDiscover {
+        return NavDiscover(AnyView(OrderCreateScreen(
+            items: items
+        )))
     }
     
     // OrderHistoryScreen

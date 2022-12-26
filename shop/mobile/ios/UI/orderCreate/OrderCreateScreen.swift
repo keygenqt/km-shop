@@ -12,9 +12,15 @@ struct OrderCreateScreen: View {
     
     // Routing management
     @Environment(\.nav) var nav: NavChange
+    
+    // App cart products
+    @EnvironmentObject var cart: CartObservable
+    
+    // App common observable
+    @EnvironmentObject var appState: AppObservable
 
     // View Model
-    @ObservedObject var viewModel = OrderCreateViewModel()
+    @ObservedObject var viewModel: OrderCreateViewModel
     
     // Form states
     @State private var error: String?
@@ -23,24 +29,30 @@ struct OrderCreateScreen: View {
     @State private var fieldPhone: IFieldText = PhoneField()
     @State private var fieldEmail: IFieldText = EmailOptionalField()
     @State private var fieldAddress: IFieldText = AddressOptionalField()
+    
+    init(items: [CartItem]) {
+        self.viewModel = OrderCreateViewModel(items)
+    }
 
     var body: some View {
         VStack(spacing: 0) {
-            if viewModel.success {
+            if let number = viewModel.number {
                 SuccessCartBody(
                     title: L10nOrderCreate.orderCreateSuccessTitle,
                     subtitle: L10nOrderCreate.orderCreateSuccessText,
                     btnTitle: L10nOrderCreate.orderCreateSuccessBtn,
                     action: {
                         nav.insert([
+                            NavScreens.homeTabs(),
                             NavScreens.orderSearch(),
                             NavScreens.orderHistory(),
-                            NavScreens.order(
-                                number: "fda81678-70b2-409e-950d-36918f1c62b7"
-                            ),
-                        ], true)
+                            NavScreens.order(number: number),
+                        ])
+                        appState.homeTab = .home
                     }
-                )
+                ).onAppear {
+                    cart.clear()
+                }
             } else {
                 ScrollViewReader { sc in
                     AppForm(error: $error) {

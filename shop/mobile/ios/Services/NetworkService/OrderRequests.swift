@@ -24,10 +24,28 @@ class OrderRequests {
     }
     // create
     func orderCreate(
-        request: OrderCreateRequest
+        phone: String,
+        email: String,
+        address: String,
+        products: [CartItem]
     ) async throws -> OrderResponse {
+        
+        let products = KotlinArray<OrderProductRequest>.init(size: Int32(products.count)) { index in
+            let i = Int(Int64(truncating: index))
+            return OrderProductRequest(
+                productID: products[i].id,
+                count: Int32(products[i].count),
+                price: products[i].price
+            )
+        }
+        
         return try await withCheckedThrowingContinuation { continuation in
-            ConstantsKMM.REQUEST.post.orderCreate(request: request) { model, error in
+            ConstantsKMM.REQUEST.post.orderCreate(request:  OrderCreateRequest(
+                email: email,
+                phone: phone,
+                address: address,
+                products: products
+            )) { model, error in
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {

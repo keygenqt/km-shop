@@ -22,5 +22,6 @@ struct EmptyCartBody: View {
             AppText(subtitle, alignment: .center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .paddingPage()
     }
 }

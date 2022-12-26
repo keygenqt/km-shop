@@ -8,13 +8,13 @@
 
 import Foundation
 
+struct CartItem {
+    var id: Int32
+    var count: Int
+    var price: Double
+}
+
 class CartObservable: ObservableObject {
-    
-    struct CartItem {
-        var id: Int32
-        var count: Int
-        var price: Double
-    }
     
     @Published var products: [CartItem] = []
     
@@ -38,5 +38,40 @@ class CartObservable: ObservableObject {
     
     func has(_ id: Int32) -> Bool {
         return products.contains { $0.id == id }
+    }
+    
+    func addCount(_ id: Int32) {
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            products[index].count += 1
+        }
+    }
+    
+    func delCount(_ id: Int32) {
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            products[index].count -= 1
+        }
+    }
+    
+    func getCount(_ id: Int32) -> Int {
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            return products[index].count
+        }
+        return 0
+    }
+    
+    func getCount() -> Int {
+        return products.map { $0.count }.reduce(0, +)
+    }
+    
+    func isEmpty() -> Bool {
+        return products.isEmpty
+    }
+    
+    func getIDs() -> [Int] {
+        return products.map { Int($0.id) }
+    }
+    
+    func clear() {
+        products.removeAll()
     }
 }

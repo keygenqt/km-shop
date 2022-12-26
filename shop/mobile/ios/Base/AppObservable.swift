@@ -12,4 +12,6 @@ import SwiftUI
 class AppObservable: ObservableObject {
     @Published var homeTab: TabsHome = TabsHome.home
     @Published var exploringTab: TabsExploring = TabsExploring.categories
+    @Published var cartIsReady: Bool = false
+    @Published var cartIsBack: Bool = false
 }
