@@ -10,7 +10,16 @@ import Foundation
 
 extension Double {
     func priceFormat() -> String {
-        return  String(format: "₽ %.2f", self)
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = "."
+        formatter.groupingSeparator = ","
+        
+        let number = NSNumber(value: self)
+        let formattedValue = formatter.string(from: number)!
+        return "₽ \(formattedValue)"
     }
     
     func toCGFloat() -> CGFloat {

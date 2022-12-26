@@ -17,6 +17,13 @@
 		2F0FBF312959BF7700CB5390 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF302959BF7700CB5390 /* CartViewModel.swift */; };
 		2F0FBF332959BF8E00CB5390 /* ProductCartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF322959BF8E00CB5390 /* ProductCartItem.swift */; };
 		2F0FBF352959E8D000CB5390 /* CartChangeCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF342959E8D000CB5390 /* CartChangeCount.swift */; };
+		2F0FBF372959F8B900CB5390 /* OrderProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF362959F8B900CB5390 /* OrderProductList.swift */; };
+		2F0FBF392959F8C600CB5390 /* OrderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF382959F8C600CB5390 /* OrderState.swift */; };
+		2F0FBF3B2959F8DA00CB5390 /* OrderClientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF3A2959F8DA00CB5390 /* OrderClientInfo.swift */; };
+		2F0FBF3E2959FB5700CB5390 /* OrderHistoryRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF3D2959FB5700CB5390 /* OrderHistoryRealm.swift */; };
+		2F0FBF40295A03A500CB5390 /* OrderHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF3F295A03A500CB5390 /* OrderHistoryItem.swift */; };
+		2F0FBF42295A044000CB5390 /* OrderHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF41295A044000CB5390 /* OrderHistoryViewModel.swift */; };
+		2F0FBF44295A0BFD00CB5390 /* ImageCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF43295A0BFD00CB5390 /* ImageCombine.swift */; };
 		2F4D7B4729507FC1002F507B /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B4329507FC0002F507B /* .swiftformat */; };
 		2F4D7B4829507FC1002F507B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B4429507FC0002F507B /* .gitignore */; };
 		2F4D7B4929507FC1002F507B /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B4529507FC1002F507B /* swiftgen.yml */; };
@@ -170,6 +177,13 @@
 		2F0FBF302959BF7700CB5390 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		2F0FBF322959BF8E00CB5390 /* ProductCartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCartItem.swift; sourceTree = "<group>"; };
 		2F0FBF342959E8D000CB5390 /* CartChangeCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartChangeCount.swift; sourceTree = "<group>"; };
+		2F0FBF362959F8B900CB5390 /* OrderProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProductList.swift; sourceTree = "<group>"; };
+		2F0FBF382959F8C600CB5390 /* OrderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderState.swift; sourceTree = "<group>"; };
+		2F0FBF3A2959F8DA00CB5390 /* OrderClientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderClientInfo.swift; sourceTree = "<group>"; };
+		2F0FBF3D2959FB5700CB5390 /* OrderHistoryRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryRealm.swift; sourceTree = "<group>"; };
+		2F0FBF3F295A03A500CB5390 /* OrderHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryItem.swift; sourceTree = "<group>"; };
+		2F0FBF41295A044000CB5390 /* OrderHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryViewModel.swift; sourceTree = "<group>"; };
+		2F0FBF43295A0BFD00CB5390 /* ImageCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCombine.swift; sourceTree = "<group>"; };
 		2F4D7B4329507FC0002F507B /* .swiftformat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftformat; sourceTree = SOURCE_ROOT; };
 		2F4D7B4429507FC0002F507B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		2F4D7B4529507FC1002F507B /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
@@ -332,6 +346,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F0FBF3C2959FB3A00CB5390 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2F0FBF3D2959FB5700CB5390 /* OrderHistoryRealm.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2F4D7B42295079A3002F507B /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,16 +456,7 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		2F4D7B54295083F6002F507B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				2F4D7B562950840F002F507B /* DataService */,
-				2F4D7B5529508405002F507B /* NetworkService */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		2F4D7B5529508405002F507B /* NetworkService */ = {
+		2F4D7B54295083F6002F507B /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
 				2FF3580A2954E4FC0001B89A /* CategoryRequests.swift */,
@@ -453,14 +466,7 @@
 				2FF358142954E5760001B89A /* ProductRequests.swift */,
 				2FF3580E2954E53D0001B89A /* OtherRequests.swift */,
 			);
-			path = NetworkService;
-			sourceTree = "<group>";
-		};
-		2F4D7B562950840F002F507B /* DataService */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataService;
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 		2F4D7B572950869A002F507B /* Resources */ = {
@@ -585,6 +591,7 @@
 			children = (
 				2F7703CB29529B3500E3F5EA /* elements */,
 				2F77034E2950C39500E3F5EA /* OrderHistoryScreen.swift */,
+				2F0FBF41295A044000CB5390 /* OrderHistoryViewModel.swift */,
 			);
 			path = orderHistory;
 			sourceTree = "<group>";
@@ -758,6 +765,9 @@
 		2F7703C929529B2400E3F5EA /* elements */ = {
 			isa = PBXGroup;
 			children = (
+				2F0FBF362959F8B900CB5390 /* OrderProductList.swift */,
+				2F0FBF382959F8C600CB5390 /* OrderState.swift */,
+				2F0FBF3A2959F8DA00CB5390 /* OrderClientInfo.swift */,
 			);
 			path = elements;
 			sourceTree = "<group>";
@@ -765,6 +775,7 @@
 		2F7703CB29529B3500E3F5EA /* elements */ = {
 			isa = PBXGroup;
 			children = (
+				2F0FBF3F295A03A500CB5390 /* OrderHistoryItem.swift */,
 			);
 			path = elements;
 			sourceTree = "<group>";
@@ -806,6 +817,7 @@
 			isa = PBXGroup;
 			children = (
 				2FB7EEAB2955BA78007AC7F1 /* ImageDefault.swift */,
+				2F0FBF43295A0BFD00CB5390 /* ImageCombine.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -883,7 +895,8 @@
 				2F4D7B5329508307002F507B /* UI */,
 				2FCDA7962957B197004EA471 /* Navigation */,
 				2F4D7B5129508112002F507B /* Components */,
-				2F4D7B54295083F6002F507B /* Services */,
+				2F0FBF3C2959FB3A00CB5390 /* Data */,
+				2F4D7B54295083F6002F507B /* NetworkServices */,
 				2F4D7B572950869A002F507B /* Resources */,
 				2F7703582950D68900E3F5EA /* Extension */,
 				2F4D7B4E295080B8002F507B /* Generated */,
@@ -1112,6 +1125,7 @@
 				2F7703D029529B9A00E3F5EA /* InfoBlock.swift in Sources */,
 				2F77034F2950C39500E3F5EA /* OrderHistoryScreen.swift in Sources */,
 				2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */,
+				2F0FBF44295A0BFD00CB5390 /* ImageCombine.swift in Sources */,
 				2FF357FF295486AF0001B89A /* AppSection.swift in Sources */,
 				2F7703B62952851700E3F5EA /* OrderCreateStrings.swift in Sources */,
 				2F77032C29509B8500E3F5EA /* GeneratedResources.swift in Sources */,
@@ -1137,14 +1151,17 @@
 				2FF358132954E5650001B89A /* OrderRequests.swift in Sources */,
 				2F77036729514A6B00E3F5EA /* HiddenModifier.swift in Sources */,
 				2FF358042954AAE60001B89A /* OrderNumberField.swift in Sources */,
+				2F0FBF40295A03A500CB5390 /* OrderHistoryItem.swift in Sources */,
 				2FB7EEA9295596B3007AC7F1 /* ClickModifier.swift in Sources */,
 				2FB4D222295852680065549C /* SplashScreen.swift in Sources */,
 				2F7703BE2952851700E3F5EA /* ProductStrings.swift in Sources */,
 				2F77035A2950D69F00E3F5EA /* UIColor.swift in Sources */,
 				2FE8A6D329536B6E002B1087 /* EmailOptionalField.swift in Sources */,
+				2F0FBF392959F8C600CB5390 /* OrderState.swift in Sources */,
 				2F77037629525CD800E3F5EA /* LoadingAnimation.swift in Sources */,
 				2FE8A6D529537866002B1087 /* AddressOptionalField.swift in Sources */,
 				2FF358112954E5530001B89A /* MessageRequests.swift in Sources */,
+				2F0FBF3B2959F8DA00CB5390 /* OrderClientInfo.swift in Sources */,
 				2F7703BB2952851700E3F5EA /* OrderSearchStrings.swift in Sources */,
 				2F7703492950C36200E3F5EA /* HomeScreen.swift in Sources */,
 				2F77037229525CBC00E3F5EA /* EmptyCartAnimation.swift in Sources */,
@@ -1177,6 +1194,7 @@
 				2FCDA7982957B1E2004EA471 /* NavEnvironment.swift in Sources */,
 				2F77034D2950C38700E3F5EA /* OrderCreateScreen.swift in Sources */,
 				2FB7EEB02955D705007AC7F1 /* SVGImgProcessor.swift in Sources */,
+				2F0FBF42295A044000CB5390 /* OrderHistoryViewModel.swift in Sources */,
 				2F7703532950C3B400E3F5EA /* ProductScreen.swift in Sources */,
 				2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */,
 				2F7703BC2952851700E3F5EA /* OrderStrings.swift in Sources */,
@@ -1217,8 +1235,10 @@
 				2F0FBF27295984DA00CB5390 /* FilterRungPrice.swift in Sources */,
 				2FB4D22C29586C3B0065549C /* ProductViewModel.swift in Sources */,
 				2F7703D329529ED500E3F5EA /* Shapes.swift in Sources */,
+				2F0FBF3E2959FB5700CB5390 /* OrderHistoryRealm.swift in Sources */,
 				2F7703B92952851700E3F5EA /* OrderHistoryStrings.swift in Sources */,
 				2F0FBF2B2959880300CB5390 /* Double.swift in Sources */,
+				2F0FBF372959F8B900CB5390 /* OrderProductList.swift in Sources */,
 				2F7703512950C3A400E3F5EA /* OrderSearchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

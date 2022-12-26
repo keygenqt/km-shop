@@ -38,3 +38,19 @@ struct LoadingAnimationLarge: View {
         .frame(width: 60, height: 60, alignment: .center)
     }
 }
+
+struct LoadingAnimationBorder: View {
+    var body: some View {
+        ZStack {
+            Circle().fill(Color.imageBorder).frame(width: 60, height: 60)
+            Circle().fill(Color.white).frame(width: 54, height: 54)
+            LottieView(
+                name: "block_loader",
+                loopMode: LottieLoopMode.loop,
+                animationSpeed: 0.8
+            )
+            .frame(width: 75, height: 75)
+        }
+        .frame(width: 60, height: 60, alignment: .center)
+    }
+}

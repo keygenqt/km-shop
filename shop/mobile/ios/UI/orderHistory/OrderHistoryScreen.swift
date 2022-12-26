@@ -9,14 +9,40 @@
 import SwiftUI
 
 struct OrderHistoryScreen: View {
+    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+
+    // View Model
+    @ObservedObject var viewModel = OrderHistoryViewModel()
+    
     var body: some View {
         VStack {
-            EmptyBody(
-                title: L10nOrderHistory.orderHistoryEmpty,
-                subtitle: L10nOrderHistory.orderHistoryEmptySubtitle
-            )
+            if let response = viewModel.response {
+                if response.isEmpty {
+                    EmptyBody(
+                        title: L10nOrderHistory.orderHistoryEmpty,
+                        subtitle: L10nOrderHistory.orderHistoryEmptySubtitle
+                    )
+                } else {
+                    AppScrollView {
+                        ForEach(response) { model in
+                            OrderHistoryItem(
+                                images: model.images.components(separatedBy: [","]),
+                                number: model.number,
+                                sum: model.sum
+                            ) {
+                                nav.add(NavScreens.order(
+                                    number: model.number
+                                ))
+                            }
+                        }
+                    }
+                }
+            } else {
+                LoadingBody()
+            }
         }
-        .paddingPage()
         .colorize(L10nApp.screenOrderHistory, true)
     }
 }

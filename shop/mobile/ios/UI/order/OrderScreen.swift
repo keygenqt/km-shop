@@ -27,9 +27,16 @@ struct OrderScreen: View {
         VStack {
             if let response = viewModel.response {
                 AppScrollView {
-                    VStack {
-                        AppText(response.number)
-                        AppText(response.state.name)
+                    AppSection {
+                        OrderProductList()
+                    }
+                    
+                    AppSection {
+                        OrderState()
+                    }
+                    
+                    AppSection {
+                        OrderClientInfo()
                     }
                 }.refreshable {
                     await viewModel.loadAsync(

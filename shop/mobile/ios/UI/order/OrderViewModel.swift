@@ -37,7 +37,15 @@ class OrderViewModel: ObservableObject, Identifiable {
     ) async {
         do {
             try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
+            
             let response = try await requests.orderByNumber(number: number)
+            
+            try OrderHistoryRealm.saveModel(OrderHistoryRealm.create(
+                number: response.number,
+                sum: response.sum,
+                images: response.products.toArray().prefix(4).map { $0.product.image1 }
+            ))
+            
             self.updateStateUI(
                 response: response
             )

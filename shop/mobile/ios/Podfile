@@ -20,6 +20,8 @@ target 'YouShop' do
   pod 'SVGKit'
   # https://github.com/yonat/MultiSlider
   pod 'MultiSlider'
+  # https://github.com/realm/realm-swift
+  pod 'RealmSwift'
   
   pod 'shared', :path => '../../../shared'
 end

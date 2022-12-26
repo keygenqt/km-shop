@@ -54,6 +54,7 @@ internal enum Resources {
     internal static let collectionGr1 = ColorAsset(name: "collectionGr1")
     internal static let collectionGr2 = ColorAsset(name: "collectionGr2")
     internal static let error = ColorAsset(name: "error")
+    internal static let imageBorder = ColorAsset(name: "imageBorder")
     internal static let onBackground = ColorAsset(name: "onBackground")
     internal static let onClick = ColorAsset(name: "onClick")
     internal static let onError = ColorAsset(name: "onError")

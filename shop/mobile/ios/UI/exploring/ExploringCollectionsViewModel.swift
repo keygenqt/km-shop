@@ -32,7 +32,7 @@ class ExploringCollectionsViewModel: ObservableObject, Identifiable {
     
     func loadAsync() async {
         do {
-            try await Task.sleep(nanoseconds: 1000.millisecondToNanoseconds())
+            try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
             let response = try await requests.collectionsPublished()
             self.updateStateUI(
                 response: response

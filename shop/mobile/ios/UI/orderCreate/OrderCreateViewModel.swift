@@ -59,6 +59,13 @@ class OrderCreateViewModel: ObservableObject, Identifiable {
                 address: address,
                 products: items
             )
+            
+            try OrderHistoryRealm.saveModel(OrderHistoryRealm.create(
+                number: response.number,
+                sum: response.sum,
+                images: response.products.toArray().prefix(4).map { $0.product.image1 }
+            ))
+            
             self.updateStateUI(
                 loading: false,
                 number: response.number

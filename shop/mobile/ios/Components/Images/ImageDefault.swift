@@ -10,10 +10,13 @@ import SwiftUI
 
 struct ImageDefault: View {
     var body: some View {
-        Image("no_image")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .clipShape(Circle())
-            .frame(width: 60, height: 60)
+        ZStack {
+            Circle().fill(Color.imageBorder).frame(width: 60, height: 60)
+            Image("no_image")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipShape(Circle())
+                .frame(width: 54, height: 54)
+        }
     }
 }
