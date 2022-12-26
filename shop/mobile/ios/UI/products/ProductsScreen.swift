@@ -6,6 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
+import AlertToast
 import SwiftUI
 import shared
 
@@ -14,11 +15,16 @@ struct ProductsScreen: View {
     // Routing management
     @Environment(\.nav) var nav: NavChange
     
+    // App cart products
+    @EnvironmentObject var cart: CartObservable
+    
     // View Model
     @ObservedObject var viewModel: ProductsViewModel
     
     // States
     @State private var isShowingSheet: Bool = false
+    @State private var isShowingCartAdd: Bool = false
+    @State private var isShowingCartDel: Bool = false
     
     let title: String
     
@@ -56,12 +62,30 @@ struct ProductsScreen: View {
                             ProductItem(
                                 icon: model.image1,
                                 name: model.name,
-                                desc: model.description_
-                            ) {
-                                nav.add(NavScreens.product(
-                                    id: Int(model.id)
-                                ))
-                            }
+                                desc: model.description_,
+                                price: model.price,
+                                isCart: cart.has(model.id),
+                                action: {
+                                    nav.add(NavScreens.product(
+                                        id: Int(model.id)
+                                    ))
+                                },
+                                cartAction: { state in
+                                    if state {
+                                        cart.add(
+                                            id: model.id,
+                                            count: 1,
+                                            price: model.price
+                                        )
+                                        isShowingCartAdd = true
+                                        isShowingCartDel = false
+                                    } else {
+                                        cart.remove(model.id)
+                                        isShowingCartDel = true
+                                        isShowingCartAdd = false
+                                    }
+                                }
+                            ) 
                         }
                         
                         if viewModel.isNextPage() {
@@ -74,6 +98,30 @@ struct ProductsScreen: View {
                             }
                         }
                     }
+                    .toast(isPresenting: $isShowingCartAdd) {
+                        AlertToast(
+                            displayMode: .banner(.pop),
+                            type: .regular,
+                            title: L10nApp.commonCartAdd,
+                            style: .style(
+                                backgroundColor: Color.bgVariant1,
+                                titleColor: Color.onBackground,
+                                titleFont: Font.system(size: 16)
+                            )
+                        )
+                    }
+                    .toast(isPresenting: $isShowingCartDel) {
+                        AlertToast(
+                            displayMode: .banner(.pop),
+                            type: .regular,
+                            title: L10nApp.commonCartRemove,
+                            style: .style(
+                                backgroundColor: Color.bgVariant1,
+                                titleColor: Color.onBackground,
+                                titleFont: Font.system(size: 16)
+                            )
+                        )
+                    }
                     .sheet(isPresented: $isShowingSheet) {
                         VStack {
                             FilterRungPrice(
@@ -83,7 +131,7 @@ struct ProductsScreen: View {
                                     viewModel.changeFilterPrices(value)
                                 }
                             )
-                        }.presentationDetents([.height(250)])
+                        }.presentationDetents([.height(230)])
                     }
                     .if(!viewModel.loading) { view in
                         view.refreshable {

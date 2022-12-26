@@ -27,3 +27,5 @@
 "common_btn_error" = "Перезагрузить";
 "common_btn_retry" = "Повторить";
 "common_rub" = "₽";
+"common_cart_add" = "Продукт добвлен в корзину";
+"common_cart_remove" = "Продукт удален из корзины";

@@ -5,6 +5,7 @@ import Kingfisher
 struct MyShopApp: App {
     
     @StateObject var appState = AppObservable()
+    @StateObject var cart = CartObservable()
     @StateObject var navPath = NavObservable()
     
 	var body: some Scene {
@@ -13,6 +14,7 @@ struct MyShopApp: App {
                 SplashScreen()
                     .navigationDestination(for: NavDiscover.self) { nav in nav.destination }
             }
+            .environmentObject(cart)
             .environmentObject(appState)
             .environment(\.nav, NavChange(
                 add: { screen in
