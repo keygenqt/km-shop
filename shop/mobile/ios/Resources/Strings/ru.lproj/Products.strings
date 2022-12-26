@@ -11,3 +11,5 @@
 "products_empty_subtitle_collections" = "В этой коллекции товаров пока нет. Попробуйте зайти позже";
 "products_delete_from_cart" = "Продукт удален из корзины";
 "products_add_to_cart" = "Продукт добвлен в корзину";
+"products_filter_title" = "Диапазон цен";
+"products_filter_subtitle" = "Фильтр товаров по ценовому диапозону";

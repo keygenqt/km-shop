@@ -12,6 +12,37 @@ import shared
 extension ProductResponse: Identifiable {}
 
 class ProductRequests {
+    
+    // get prices
+    func prices(
+        categories: [Int],
+        collections: [Int]
+    ) async throws -> ProductPricesResponse {
+        
+        let kotlinCategories = KotlinArray<KotlinInt>.init(size: Int32(categories.count)) { index in
+            let i = Int(Int64(truncating: index))
+            return KotlinInt.init(int: Int32(categories[i]))
+        }
+        
+        let kotlinCollections = KotlinArray<KotlinInt>.init(size: Int32(collections.count)) { index in
+            let i = Int(Int64(truncating: index))
+            return KotlinInt.init(int: Int32(collections[i]))
+        }
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            ConstantsKMM.REQUEST.get.prices(
+                categories: kotlinCategories,
+                collections: kotlinCollections
+            ) { model, error in
+                if let model = model {
+                    continuation.resume(returning: model)
+                } else {
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
+                }
+            }
+        }
+    }
+    
     // get product
     func product(
         id: Int
@@ -23,7 +54,7 @@ class ProductRequests {
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {
-                    continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
                 }
             }
         }
@@ -64,7 +95,7 @@ class ProductRequests {
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {
-                    continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
                 }
             }
         }

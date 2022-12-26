@@ -17,7 +17,7 @@ class OrderRequests {
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {
-                    continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
                 }
             }
         }
@@ -34,7 +34,7 @@ class OrderRequests {
                     if let throwing = error.toErrorResponse() {
                         continuation.resume(throwing: throwing)
                     } else {
-                        continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                        continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
                     }
                 }
             }

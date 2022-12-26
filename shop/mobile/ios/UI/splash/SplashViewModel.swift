@@ -14,12 +14,12 @@ class SplashViewModel: ObservableObject, Identifiable {
     var requestsCategory = CategoryRequests()
     var requestsCollection = CollectionRequests()
     
-    @Published var error: ResponseError?
+    @Published var error: ErrorResponse?
     @Published var isError: Bool = false
     
     func updateStateUI(
         nav: NavChange? = nil,
-        error: ResponseError? = nil
+        error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
             self.isError = error == nil ? false : true
@@ -35,17 +35,21 @@ class SplashViewModel: ObservableObject, Identifiable {
     func load(nav: NavChange) {
         Task {
             do {
-//                let categries = try await loadCategoriesAsync() // @todo
+                let categries = try await loadCategoriesAsync()
                 let collections = try await loadCollectionsAsync()
                 self.updateStateUI(
                     nav: nav
                 )
-            } catch let error as ResponseError {
+            } catch let error as ErrorResponse {
                 self.updateStateUI(
                     error: error
                 )
             } catch {
-                print("Unexpected error: \(error).")
+                self.updateStateUI(
+                    error: ErrorResponse(
+                        code: 500, message: L10nApp.commonError, validate: []
+                    )
+                )
             }
         }
     }

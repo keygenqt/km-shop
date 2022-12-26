@@ -24,6 +24,10 @@ internal enum L10nProducts {
   ///   Created by Виталий Зарубин on 21.12.2022.
   ///   Copyright © 2022 orgName. All rights reserved.
   internal static let productsEmptyTitle = L10nProducts.tr("Products", "products_empty_title", fallback: "Товары не найдены")
+  /// Фильтр товаров по ценовому диапозону
+  internal static let productsFilterSubtitle = L10nProducts.tr("Products", "products_filter_subtitle", fallback: "Фильтр товаров по ценовому диапозону")
+  /// Диапазон цен
+  internal static let productsFilterTitle = L10nProducts.tr("Products", "products_filter_title", fallback: "Диапазон цен")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

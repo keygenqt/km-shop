@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum ResponseError: Error, Equatable {
+enum ResponseDefaultError: Error, Equatable {
     case error(_ message: String? = nil)
 }

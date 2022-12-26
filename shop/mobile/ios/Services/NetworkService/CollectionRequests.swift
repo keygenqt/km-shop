@@ -18,7 +18,7 @@ class CollectionRequests {
                 if let model = model {
                     continuation.resume(returning: model)
                 } else {
-                    continuation.resume(throwing: ResponseError.error(error?.localizedDescription))
+                    continuation.resume(throwing: ResponseDefaultError.error(error?.localizedDescription))
                 }
             }
         }

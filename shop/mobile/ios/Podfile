@@ -18,6 +18,8 @@ target 'YouShop' do
   pod 'Kingfisher'
   # https://github.com/SVGKit/SVGKit
   pod 'SVGKit'
+  # https://github.com/yonat/MultiSlider
+  pod 'MultiSlider'
   
   pod 'shared', :path => '../../../shared'
 end

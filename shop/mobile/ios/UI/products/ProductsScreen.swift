@@ -17,6 +17,9 @@ struct ProductsScreen: View {
     // View Model
     @ObservedObject var viewModel: ProductsViewModel
     
+    // States
+    @State private var isShowingSheet: Bool = false
+    
     let title: String
     
     init(
@@ -29,6 +32,7 @@ struct ProductsScreen: View {
             categoryIDs: categoryIDs,
             collectionIDs: collectionIDs
         )
+        self.viewModel.loadPrices()
         self.viewModel.load()
     }
     
@@ -59,6 +63,27 @@ struct ProductsScreen: View {
                                 ))
                             }
                         }
+                        
+                        if viewModel.isNextPage() {
+                            VStack {
+                                LoadingAnimation()
+                                    .padding()
+                                    .onAppear {
+                                        viewModel.nextPage()
+                                    }
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $isShowingSheet) {
+                        VStack {
+                            FilterRungPrice(
+                                range: $viewModel.range,
+                                prices: viewModel.prices ?? 0.0...0.0,
+                                onValueChangeFinished: { value in
+                                    viewModel.changeFilterPrices(value)
+                                }
+                            )
+                        }.presentationDetents([.height(250)])
                     }
                     .if(!viewModel.loading) { view in
                         view.refreshable {
@@ -82,6 +107,13 @@ struct ProductsScreen: View {
         .navigationBarItems(trailing: HStack(spacing: 0) {
             if let products = viewModel.products {
                 if !products.isEmpty {
+                    if viewModel.prices != nil {
+                        Button {
+                            isShowingSheet = true
+                        } label: {
+                            Image(systemName: "line.3.horizontal.decrease.circle").imageScale(.large)
+                        }
+                    }
                     if viewModel.sort == OrderProduct.newest {
                         Button {
                             viewModel.changeSort(OrderProduct.low)

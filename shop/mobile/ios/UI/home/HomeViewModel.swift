@@ -14,11 +14,11 @@ class HomeViewModel: ObservableObject, Identifiable {
     var requests = CategoryRequests()
     
     @Published var response: [CategoryResponse]?
-    @Published var error: ResponseError?
+    @Published var error: ErrorResponse?
     
     func updateStateUI(
         response: [CategoryResponse]? = nil,
-        error: ResponseError? = nil
+        error: ErrorResponse? = nil
     ) {
         DispatchQueue.main.async {
             self.response = response
@@ -43,7 +43,7 @@ class HomeViewModel: ObservableObject, Identifiable {
                     response: Array(response[1..<3])
                 )
             }
-        } catch let error as ResponseError {
+        } catch let error as ErrorResponse {
             self.updateStateUI(
                 error: error
             )

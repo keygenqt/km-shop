@@ -21,6 +21,8 @@ internal enum L10nApp {
   internal static let commonBtnRetry = L10nApp.tr("App", "common_btn_retry", fallback: "Повторить")
   /// Произошла непредвиденная ошибка, попробуйте позже
   internal static let commonError = L10nApp.tr("App", "common_error", fallback: "Произошла непредвиденная ошибка, попробуйте позже")
+  /// ₽
+  internal static let commonRub = L10nApp.tr("App", "common_rub", fallback: "₽")
   /// Корзина
   internal static let screenCart = L10nApp.tr("App", "screen_cart", fallback: "Корзина")
   /// Контакты
