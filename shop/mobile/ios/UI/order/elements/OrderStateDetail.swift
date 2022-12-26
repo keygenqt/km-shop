@@ -29,7 +29,6 @@ struct OrderStateDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "n.circle")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.stateNew)
                         AppText(L10nOrder.stateNew)
                         Spacer()
@@ -38,7 +37,6 @@ struct OrderStateDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "p.circle")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.statePending)
                         AppText(L10nOrder.statePending)
                         Spacer()
@@ -47,7 +45,6 @@ struct OrderStateDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "checkmark.circle")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.stateCompleted)
                         AppText(L10nOrder.stateCompleted)
                         Spacer()
@@ -56,7 +53,6 @@ struct OrderStateDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "xmark.circle")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.stateCanceled)
                         AppText(L10nOrder.stateCanceled)
                         Spacer()
@@ -67,7 +63,6 @@ struct OrderStateDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "note.text")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.primary)
                         AppText(note)
                         Spacer()

@@ -27,7 +27,6 @@ struct OrderClientDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "phone.fill")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.primary)
                         AppText(phone)
                         Spacer()
@@ -38,7 +37,6 @@ struct OrderClientDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "mail.fill")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.primary)
                         AppText(email)
                         Spacer()
@@ -49,7 +47,6 @@ struct OrderClientDetail: View {
                     HStack(alignment: .top) {
                         Image(systemName: "location.fill")
                             .imageScale(.medium)
-                            .offset(y: 1)
                             .foregroundColor(Color.primary)
                         AppText(address)
                         Spacer()
