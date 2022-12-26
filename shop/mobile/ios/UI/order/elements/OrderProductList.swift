@@ -7,23 +7,44 @@
 //
 
 import SwiftUI
+import shared
 
 struct OrderProductList: View {
+    
+    // Routing management
+    @Environment(\.nav) var nav: NavChange
+    
+    var sum: Double
+    var products: [OrderProductResponse]
+    
     var body: some View {
-        VStack {
-            VStack(alignment: .center, spacing: 0) {
-                ZStack {
-                    Circle().fill(Color.onSurface.opacity(0.9)).frame(width: 70, height: 70)
-                    Image("contact_address")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 55, height: 55)
-                        .offset(y: -2)
-                }.padding(.bottom)
-                
-                AppText(L10nContact.contactAddressTitle, alignment: .center)
-            }.padding()
+        VStack(spacing: 10) {
+            HStack {
+                Image(systemName: "list.bullet.circle").imageScale(.medium)
+                AppText(L10nOrder.orderListTitle)
+                Spacer()
+            }.padding(.bottom, 4)
+            
+            ForEach(products) { model in
+                OrderProductItem(
+                    icon: model.product.image1,
+                    name: model.product.name,
+                    price: model.price,
+                    count: Int(model.count),
+                    action: {
+                        nav.add(NavScreens.product(
+                            id: Int(model.product.id)
+                        ))
+                    }
+                )
+            }
+            
+            HStack {
+                Spacer()
+                AppText("\(L10nOrder.orderListSum): \(sum.priceFormat())")
+            }.padding(.top, 4)
         }
+        .padding()
         .frame(maxWidth: .infinity)
     }
 }

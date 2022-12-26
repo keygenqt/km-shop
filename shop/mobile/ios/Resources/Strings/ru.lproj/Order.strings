@@ -9,3 +9,11 @@
 "order_title" = "Заказ";
 "order_error_title" = "Заказ не найден";
 "order_error_text" = "К сожалению, запрошенная вами страница не найдена";
+"order_list_title" = "Список товаров";
+"order_list_sum" = "Общая сумма";
+"order_state_title" = "Статус заказа";
+"order_client_title" = "Сведения о клиенте";
+"state_new" = "Новый";
+"state_pending" = "В ожидании";
+"state_completed" = "Завершенный";
+"state_canceled" = "Отменено";

@@ -9,6 +9,8 @@
 import Foundation
 import shared
 
+extension OrderProductResponse: Identifiable {}
+
 class OrderRequests {
     // search order by number
     func orderByNumber(number: String) async throws -> OrderResponse {

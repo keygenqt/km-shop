@@ -38,7 +38,6 @@ struct ProductItem: View {
                             .onFailure { _ in
                                 errorKF = true
                             }
-                            .forceRefresh() // @todo
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())

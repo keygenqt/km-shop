@@ -59,9 +59,9 @@ fun OrderBody(
                     onClickProduct = onClickProduct
                 )
                 Spacer(modifier = Modifier.size(16.dp))
-                OrderClientDetails(model)
+                OrderStateDetails(model)
                 Spacer(modifier = Modifier.size(16.dp))
-                OrderState(model)
+                OrderClientDetails(model)
             }
 
             AppPullRefreshIndicator(

@@ -14,6 +14,10 @@ import SwiftUI
  */
 extension Color {
     // Theme
+    static let stateNew = Color("stateNew")
+    static let statePending = Color("statePending")
+    static let stateCompleted = Color("stateCompleted")
+    static let stateCanceled = Color("stateCanceled")
     static let collectionGr1 = Color("collectionGr1")
     static let collectionGr2 = Color("collectionGr2")
     static let splash = Color("splash")

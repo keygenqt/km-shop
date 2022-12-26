@@ -28,15 +28,25 @@ struct OrderScreen: View {
             if let response = viewModel.response {
                 AppScrollView {
                     AppSection {
-                        OrderProductList()
+                        OrderProductList(
+                            sum: response.sum,
+                            products: response.products.toArray()
+                        )
                     }
                     
                     AppSection {
-                        OrderState()
+                        OrderStateDetail(
+                            state: response.state,
+                            note: response.note
+                        )
                     }
                     
                     AppSection {
-                        OrderClientInfo()
+                        OrderClientDetail(
+                            email: response.email,
+                            phone: response.phone,
+                            address: response.address
+                        )
                     }
                 }.refreshable {
                     await viewModel.loadAsync(
