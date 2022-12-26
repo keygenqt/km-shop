@@ -37,6 +37,8 @@ class SplashViewModel: ObservableObject, Identifiable {
             do {
                 let categries = try await loadCategoriesAsync()
                 let collections = try await loadCollectionsAsync()
+                try CategoryRealm.updateList(categries)
+                try CollectionRealm.updateList(collections)
                 self.updateStateUI(
                     nav: nav
                 )

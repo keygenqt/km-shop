@@ -63,6 +63,9 @@ struct HomeScreen: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.loadDb()
+        }
         .refreshable {
             await viewModel.loadAsync()
         }

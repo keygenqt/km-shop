@@ -26,6 +26,26 @@ class ExploringCollectionsViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadDb() {
+        do {
+            let response = try CollectionRealm.getModels().map {CollectionResponse(
+                id: Int32($0.id),
+                key: "",
+                name: $0.name,
+                desc: $0.desc,
+                icon: $0.icon,
+                isPublished: true,
+                createAt: "",
+                updateAt: ""
+            )}
+            self.updateStateUI(
+                response: response
+            )
+        } catch {
+            print("Unexpected error: \(error).")
+        }
+    }
+    
     func load() {
         Task { await loadAsync() }
     }
@@ -34,6 +54,7 @@ class ExploringCollectionsViewModel: ObservableObject, Identifiable {
         do {
             try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
             let response = try await requests.collectionsPublished()
+            try CollectionRealm.updateList(response)
             self.updateStateUI(
                 response: response
             )

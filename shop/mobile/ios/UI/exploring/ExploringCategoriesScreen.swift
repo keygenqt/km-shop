@@ -21,38 +21,42 @@ struct ExploringCategoriesScreen: View {
     }
     
     var body: some View {
-        if let response = viewModel.response {
-            if response.isEmpty {
-                EmptyBody(
-                    title: L10nExploring.emptyTab1Title,
-                    subtitle: L10nExploring.emptyTab1Text,
-                    action: { viewModel.load() }
-                )
-            } else {
-                AppScrollView(padding: [.leading, .trailing, .bottom]) {
-                    ForEach(response) { model in
-                        CategoryItem(
-                            icon: model.image,
-                            name: model.name,
-                            desc: model.desc
-                        ) {
-                            nav.add(NavScreens.products(
-                                title: model.name,
-                                categoryID: Int(model.id)
-                            ))
+        VStack(spacing: 0) {
+            if let response = viewModel.response {
+                if response.isEmpty {
+                    EmptyBody(
+                        title: L10nExploring.emptyTab1Title,
+                        subtitle: L10nExploring.emptyTab1Text,
+                        action: { viewModel.load() }
+                    )
+                } else {
+                    AppScrollView(padding: [.leading, .trailing, .bottom]) {
+                        ForEach(response) { model in
+                            CategoryItem(
+                                icon: model.image,
+                                name: model.name,
+                                desc: model.desc
+                            ) {
+                                nav.add(NavScreens.products(
+                                    title: model.name,
+                                    categoryID: Int(model.id)
+                                ))
+                            }
                         }
                     }
+                    .refreshable {
+                        await viewModel.loadAsync()
+                    }
                 }
-                .refreshable {
-                    await viewModel.loadAsync()
-                }
-            }
-        } else {
-            if viewModel.error != nil {
-                ErrorBody(action: { viewModel.load() })
             } else {
-                LoadingBody()
+                if viewModel.error != nil {
+                    ErrorBody(action: { viewModel.load() })
+                } else {
+                    LoadingBody()
+                }
             }
+        }.onAppear {
+            viewModel.loadDb()
         }
     }
 }

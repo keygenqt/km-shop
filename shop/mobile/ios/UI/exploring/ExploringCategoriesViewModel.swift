@@ -26,6 +26,28 @@ class ExploringCategoriesViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadDb() {
+        do {
+            let response = try CategoryRealm.getModels().map {CategoryResponse(
+                id: Int32($0.id),
+                key: "",
+                name: $0.name,
+                desc: $0.desc,
+                image: $0.image,
+                isPublished: true,
+                createAt: "",
+                updateAt: "",
+                products: nil,
+                uploads: nil
+            )}
+            self.updateStateUI(
+                response: response
+            )
+        } catch {
+            print("Unexpected error: \(error).")
+        }
+    }
+    
     func load() {
         self.updateStateUI(
             response: nil,
@@ -38,6 +60,7 @@ class ExploringCategoriesViewModel: ObservableObject, Identifiable {
         do {
             try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
             let response = try await requests.categoriesPublished()
+            try CategoryRealm.updateList(response)
             self.updateStateUI(
                 response: response
             )

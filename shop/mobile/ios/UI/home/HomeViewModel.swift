@@ -26,6 +26,28 @@ class HomeViewModel: ObservableObject, Identifiable {
         }
     }
     
+    func loadDb() {
+        do {
+            let response = try CategoryRealm.getModels().prefix(3).map {CategoryResponse(
+                id: Int32($0.id),
+                key: "",
+                name: $0.name,
+                desc: $0.desc,
+                image: $0.image,
+                isPublished: true,
+                createAt: "",
+                updateAt: "",
+                products: nil,
+                uploads: nil
+            )}
+            self.updateStateUI(
+                response: response
+            )
+        } catch {
+            print("Unexpected error: \(error).")
+        }
+    }
+    
     func load() {
         Task { await loadAsync() }
     }
@@ -34,6 +56,7 @@ class HomeViewModel: ObservableObject, Identifiable {
         do {
             try await Task.sleep(nanoseconds: 1000.millisecondToNanoseconds())
             let response = try await requests.categoriesPublished()
+            try CategoryRealm.updateList(response)
             if response.count <= 3 {
                 self.updateStateUI(
                     response: response
