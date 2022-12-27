@@ -1,6 +1,8 @@
 Part Server CLI
 ===================
 
+![picture](https://keygenqt.github.io/km-shop/data/preview/cli/preview-1000.png)
+
 ```
 Usage: Shop CLI options_list
 Subcommands: 

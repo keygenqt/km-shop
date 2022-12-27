@@ -7,17 +7,7 @@ All platforms use the latest stack.
 
 ![picture](data/common/logo160.png)
 
-### Roadmap
-
-1. Make an API ✅
-2. Write admin panel ✅
-3. CLI application for the server ✅
-4. Write a website for clients ✅
-5. Write an Android application ✅
-6. Write an iOS application ✅
-7. Finalization, documentation, production ⌛ (60%)
-
-## 1. API
+## API
 
 * Url: [Link](https://shop-api.keygenqt.com/)
 * Based: [Ktor](https://ktor.io/)
@@ -26,17 +16,29 @@ All platforms use the latest stack.
 
 ![picture](data/preview/api/preview-1000.png)
 
-## 2. Admin Panel
+## Admin Panel
 
-* Youtube: [Link](https://youtu.be/8jI0T45MMoQ)
 * Url: [Link](https://shop-admin.keygenqt.com/)
 * Based: [React](https://reactjs.org/)
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/backend/)
 
+[![picture](data/common/btn_youtube.png)](https://youtu.be/8jI0T45MMoQ)
+
 ![picture](data/preview/backend/preview-1000.png)
 
-## 3. CLI App
+## Website
+
+* Url: [Link](https://shop.keygenqt.com/)
+* Based: [React](https://reactjs.org/)
+* Platform: **Web**
+* Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
+  
+[![picture](data/common/btn_youtube.png)](https://youtu.be/sHN1-LRDH64)
+
+![picture](data/preview/frontend/preview-1000.png)
+
+## CLI App
 
 * Url: [Link](https://github.com/keygenqt/km-shop/blob/master/data/cli/shop-cli.jar?raw=true)
 * Based: [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli)
@@ -45,23 +47,14 @@ All platforms use the latest stack.
 
 ![picture](data/preview/cli/preview-1000.png)
 
-## 4. Website
+## Android App
 
-* Youtube: [Link](https://youtu.be/sHN1-LRDH64)
-* Url: [Link](https://shop.keygenqt.com/)
-* Based: [React](https://reactjs.org/)
-* Platform: **Web**
-* Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
-
-![picture](data/preview/frontend/preview-1000.png)
-
-## 5. Android App
-
-* Youtube: [Link](https://youtu.be/0zEC6xX8T-c)
 * Url: *Coming soon*
 * Based: [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * Platform: **Android**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/android/)
+
+[![picture](data/common/btn_youtube.png)](https://youtu.be/0zEC6xX8T-c)
 
 #### Preview
 
@@ -71,13 +64,14 @@ All platforms use the latest stack.
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/android/Screen_Recording_2022-12-18_at_19.07.52.gif" width="32%"/>
 </p>
 
-## 6. iOS App
+## iOS App
 
-* Youtube: [Link](https://youtu.be/-13YHU-PSG8)
 * Url: *Coming soon*
 * Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 * Platform: **iOS**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/ios/)
+
+[![picture](data/common/btn_youtube.png)](https://youtu.be/-13YHU-PSG8)
 
 #### Preview
 
@@ -90,7 +84,7 @@ All platforms use the latest stack.
 # License
 
 ```
-Copyright 2022 Vitaliy Zarubin
+Copyright 2023 Vitaliy Zarubin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

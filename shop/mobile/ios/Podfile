@@ -8,8 +8,6 @@ target 'YouShop' do
   pod 'lottie-ios', '4.0.1'
   # https://github.com/SwiftGen/SwiftGen
   pod 'SwiftGen', '6.6.2'
-  # https://github.com/realm/realm-swift
-  pod 'RealmSwift', '10.33.0'
   # https://github.com/realm/SwiftLint
   pod 'SwiftLint'
   # https://github.com/nicklockwood/SwiftFormat
