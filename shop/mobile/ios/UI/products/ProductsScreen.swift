@@ -74,7 +74,6 @@ struct ProductsScreen: View {
                                     if state {
                                         cart.add(
                                             id: model.id,
-                                            count: 1,
                                             price: model.price
                                         )
                                         isShowingCartAdd = true

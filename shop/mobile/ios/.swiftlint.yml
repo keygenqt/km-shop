@@ -14,6 +14,7 @@ disabled_rules: # rule identifiers to exclude from running
 # rule specific config
 trailing_comma:
   mandatory_comma: true
+  only_after_dot: true
 
 line_length:
   - 300 # warning

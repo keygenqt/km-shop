@@ -20,14 +20,35 @@ class CartObservable: ObservableObject {
     
     func add(
         id: Int32,
-        count: Int,
-        price: Double
+        price: Double,
+        count: Int = 1
     ) {
-        products.append(CartItem(
-            id: id,
-            count: count,
-            price: price
-        ))
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            products[index].count += 1
+        } else {
+            products.append(CartItem(
+                id: id,
+                count: count,
+                price: price
+            ))
+        }
+    }
+    
+    func del(_ id: Int32) {
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            let model = products[index]
+            if model.count > 1 {
+                products[index].count -= 1
+            } else {
+                products.remove(at: index)
+            }
+        }
+    }
+    
+    func delItem(_ id: Int32) {
+        if let index = products.firstIndex(where: { $0.id == id }) {
+            products.remove(at: index)
+        }
     }
     
     func remove(_ id: Int32) {
@@ -38,18 +59,6 @@ class CartObservable: ObservableObject {
     
     func has(_ id: Int32) -> Bool {
         return products.contains { $0.id == id }
-    }
-    
-    func addCount(_ id: Int32) {
-        if let index = products.firstIndex(where: { $0.id == id }) {
-            products[index].count += 1
-        }
-    }
-    
-    func delCount(_ id: Int32) {
-        if let index = products.firstIndex(where: { $0.id == id }) {
-            products[index].count -= 1
-        }
     }
     
     func getCount(_ id: Int32) -> Int {

@@ -68,7 +68,10 @@ struct ProductCartItem: View {
                 Spacer().frame(height: 13)
                 
                 HStack(alignment: .center, spacing: 0) {
-                    CartChangeCount(id: id)
+                    CartChangeCount(
+                        id: id,
+                        price: price
+                    )
                     Spacer().frame(width: 13)
                     AppText((price * Double(cart.getCount(id))).priceFormat())
                     Spacer()

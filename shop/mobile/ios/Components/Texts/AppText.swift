@@ -14,18 +14,21 @@ struct AppText: View {
     var color: Color?
     var alignment: TextAlignment = .leading
     var typography: Typography = .body1
+    var width: CGFloat?
     
     init(_ text: String,
          maxLines: Int = Int.max,
          color: Color? = nil,
          alignment: TextAlignment = .leading,
-         typography: Typography = .body1
+         typography: Typography = .body1,
+         width: CGFloat? = nil
     ) {
         self.text = text
         self.maxLines = maxLines
         self.color = color
         self.alignment = alignment
         self.typography = typography
+        self.width = width
     }
     
     func getFontSize() -> CGFloat {
@@ -63,10 +66,13 @@ struct AppText: View {
 
     var body: some View {
         Text(text)
+            .if(width != nil, transform: { view in
+                view.frame(width: width)
+            })
             .font(Font.system(size: getFontSize()).weight(getFontWeight()))
             .foregroundColor(getFontColor())
             .lineSpacing(0.5)
-            .lineLimit(maxLines)
-            .multilineTextAlignment(alignment)
+//            .lineLimit(maxLines)
+//            .multilineTextAlignment(alignment)
     }
 }

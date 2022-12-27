@@ -39,6 +39,9 @@
 		2F4D7B6C29508892002F507B /* cat_playing_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B6429508892002F507B /* cat_playing_animation.json */; };
 		2F4D7B7029508985002F507B /* App.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B6E29508985002F507B /* App.strings */; };
 		2F4D7B72295089F4002F507B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4D7B71295089F4002F507B /* Colors.xcassets */; };
+		2F74CC09295AE3EB001832AC /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74CC08295AE3EB001832AC /* Scale.swift */; };
+		2F74CC0B295AF28F001832AC /* ProudctInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74CC0A295AF28F001832AC /* ProudctInfoBlock.swift */; };
+		2F74CC0D295B1489001832AC /* TagCollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74CC0C295B1489001832AC /* TagCollectionsView.swift */; };
 		2F77032A29509B6900E3F5EA /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F77032929509B6900E3F5EA /* AppStrings.swift */; };
 		2F77032C29509B8500E3F5EA /* GeneratedResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F77032B29509B8500E3F5EA /* GeneratedResources.swift */; };
 		2F77032E29509DCC00E3F5EA /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77032D29509DCC00E3F5EA /* Splash.storyboard */; };
@@ -202,6 +205,9 @@
 		2F4D7B6429508892002F507B /* cat_playing_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cat_playing_animation.json; sourceTree = "<group>"; };
 		2F4D7B6F29508985002F507B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = App.strings; sourceTree = "<group>"; };
 		2F4D7B71295089F4002F507B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		2F74CC08295AE3EB001832AC /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		2F74CC0A295AF28F001832AC /* ProudctInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProudctInfoBlock.swift; sourceTree = "<group>"; };
+		2F74CC0C295B1489001832AC /* TagCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionsView.swift; sourceTree = "<group>"; };
 		2F77032929509B6900E3F5EA /* AppStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		2F77032B29509B8500E3F5EA /* GeneratedResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedResources.swift; sourceTree = "<group>"; };
 		2F77032D29509DCC00E3F5EA /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -792,6 +798,8 @@
 		2F7703CD29529B4100E3F5EA /* elements */ = {
 			isa = PBXGroup;
 			children = (
+				2F74CC0C295B1489001832AC /* TagCollectionsView.swift */,
+				2F74CC0A295AF28F001832AC /* ProudctInfoBlock.swift */,
 			);
 			path = elements;
 			sourceTree = "<group>";
@@ -809,6 +817,7 @@
 			isa = PBXGroup;
 			children = (
 				2F7703D229529ED500E3F5EA /* Shapes.swift */,
+				2F74CC08295AE3EB001832AC /* Scale.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1131,6 +1140,7 @@
 				2FB4D2242958541A0065549C /* SplashViewModel.swift in Sources */,
 				2F7703692951C5F400E3F5EA /* LottieView.swift in Sources */,
 				2FB7EEAC2955BA78007AC7F1 /* ImageDefault.swift in Sources */,
+				2F74CC09295AE3EB001832AC /* Scale.swift in Sources */,
 				2F7703D029529B9A00E3F5EA /* InfoBlock.swift in Sources */,
 				2F77034F2950C39500E3F5EA /* OrderHistoryScreen.swift in Sources */,
 				2FE8A6C52953668A002B1087 /* FieldsProtocol.swift in Sources */,
@@ -1173,6 +1183,7 @@
 				2FF358112954E5530001B89A /* MessageRequests.swift in Sources */,
 				2F0FBF3B2959F8DA00CB5390 /* OrderClientDetail.swift in Sources */,
 				2F7703BB2952851700E3F5EA /* OrderSearchStrings.swift in Sources */,
+				2F74CC0D295B1489001832AC /* TagCollectionsView.swift in Sources */,
 				2F7703492950C36200E3F5EA /* HomeScreen.swift in Sources */,
 				2F8AE2A2295A4025005BC2D2 /* OrderProductItem.swift in Sources */,
 				2F77037229525CBC00E3F5EA /* EmptyCartAnimation.swift in Sources */,
@@ -1209,6 +1220,7 @@
 				2F0FBF42295A044000CB5390 /* OrderHistoryViewModel.swift in Sources */,
 				2F7703532950C3B400E3F5EA /* ProductScreen.swift in Sources */,
 				2FE8A6B7295363EA002B1087 /* AppForm.swift in Sources */,
+				2F74CC0B295AF28F001832AC /* ProudctInfoBlock.swift in Sources */,
 				2F7703BC2952851700E3F5EA /* OrderStrings.swift in Sources */,
 				2F77038329526B8200E3F5EA /* SuccessCartBody.swift in Sources */,
 				2F7703C32952993600E3F5EA /* NavScreens.swift in Sources */,

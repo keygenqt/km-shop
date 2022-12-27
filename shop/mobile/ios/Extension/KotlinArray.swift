@@ -28,3 +28,13 @@ extension KotlinArray<OrderProductResponse> {
         return result
     }
 }
+
+extension KotlinArray<CollectionResponse> {
+    func toArray() -> [CollectionResponse] {
+        var result: [CollectionResponse] = []
+        for index in 0..<Int(self.size) {
+            result.append(self.get(index: Int32(index))!)
+        }
+        return result
+    }
+}
