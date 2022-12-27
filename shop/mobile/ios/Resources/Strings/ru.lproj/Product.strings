@@ -20,5 +20,3 @@
 "product_description" = "Описание";
 "product_btn_add" = "Добавить в корзину";
 "product_btn_remove" = "Удалить с корзины";
-"product_delete_from_cart" = "Продукт удален из корзины";
-"product_add_to_cart" = "Продукт добвлен в корзину";

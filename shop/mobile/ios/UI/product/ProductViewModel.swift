@@ -13,6 +13,12 @@ class ProductViewModel: ObservableObject, Identifiable {
     
     var requests = ProductRequests()
     
+    var id: Int
+    
+    init(id: Int) {
+        self.id = id
+    }
+    
     @Published var response: ProductResponse?
     @Published var error: ErrorResponse?
     
@@ -26,15 +32,11 @@ class ProductViewModel: ObservableObject, Identifiable {
         }
     }
     
-    func load(
-        id: Int
-    ) {
-        Task { await loadAsync(id: id) }
+    func load() {
+        Task { await loadAsync() }
     }
     
-    func loadAsync(
-        id: Int
-    ) async {
+    func loadAsync() async {
         do {
             try await Task.sleep(nanoseconds: 500.millisecondToNanoseconds())
             let response = try await requests.product(id: id)

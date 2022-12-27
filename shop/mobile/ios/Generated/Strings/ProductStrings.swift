@@ -10,8 +10,6 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10nProduct {
-  /// Продукт добвлен в корзину
-  internal static let productAddToCart = L10nProduct.tr("Product", "product_add_to_cart", fallback: "Продукт добвлен в корзину")
   /// При заказе свыше ₽ 5000.00
   internal static let productBlock1Text = L10nProduct.tr("Product", "product_block_1_text", fallback: "При заказе свыше ₽ 5000.00")
   /// Бесплатная доставка
@@ -32,8 +30,6 @@ internal enum L10nProduct {
   internal static let productBtnAdd = L10nProduct.tr("Product", "product_btn_add", fallback: "Добавить в корзину")
   /// Удалить с корзины
   internal static let productBtnRemove = L10nProduct.tr("Product", "product_btn_remove", fallback: "Удалить с корзины")
-  /// Продукт удален из корзины
-  internal static let productDeleteFromCart = L10nProduct.tr("Product", "product_delete_from_cart", fallback: "Продукт удален из корзины")
   /// Описание
   internal static let productDescription = L10nProduct.tr("Product", "product_description", fallback: "Описание")
   /// Что-то пошло не так. Попробуйте перезайти позже
