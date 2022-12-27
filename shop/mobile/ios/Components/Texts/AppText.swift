@@ -72,7 +72,7 @@ struct AppText: View {
             .font(Font.system(size: getFontSize()).weight(getFontWeight()))
             .foregroundColor(getFontColor())
             .lineSpacing(0.5)
-//            .lineLimit(maxLines)
-//            .multilineTextAlignment(alignment)
+            .lineLimit(maxLines)
+            .multilineTextAlignment(alignment)
     }
 }

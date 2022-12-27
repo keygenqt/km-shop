@@ -158,6 +158,11 @@ struct OrderCreateScreen: View {
                 }
             }
         }
+        .navigationBarItems(trailing: HStack(spacing: 0) {
+            if viewModel.loading {
+                LoadingAnimation()
+            }
+        })
         .colorize(L10nApp.screenOrderCreate, true)
     }
 }

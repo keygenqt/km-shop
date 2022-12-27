@@ -24,9 +24,7 @@ All platforms use the latest stack.
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/api/)
 
-#### Preview
-
-![picture](data/api/Screenshot_2022-11-17_at_18.04.51.png)
+![picture](data/preview/api/preview-1000.png)
 
 ## 2. Admin Panel
 
@@ -36,9 +34,7 @@ All platforms use the latest stack.
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/backend/)
 
-#### Preview
-
-![picture](data/backend/Screenshot_2022-11-21_at_07.17.20.png)
+![picture](data/preview/backend/preview-1000.png)
 
 ## 3. CLI App
 
@@ -47,19 +43,7 @@ All platforms use the latest stack.
 * Platform: **Native**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/cli/)
 
-#### Preview
-
-```
-Usage: Shop CLI options_list
-Subcommands: 
-    backup - Backup data (default db) { db, files }
-    cleaner - Cleaner files without relations in db
-    password - Password update
-
-Options: 
-    --debug [false] -> Enable debug mode 
-    --help, -h -> Usage info 
-```
+![picture](data/preview/cli/preview-1000.png)
 
 ## 4. Website
 
@@ -69,9 +53,7 @@ Options:
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
 
-#### Preview
-
-![picture](data/frontend/screencapture-shop-keygenqt-2022-12-09-16_17_48.png)
+![picture](data/preview/frontend/preview-1000.png)
 
 ## 5. Android App
 
@@ -101,6 +83,7 @@ Options:
 <p>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/ios/Simulator_Screen_Shot-iPhone_14_Pro-2022-12-21_at_07.18.33.png" width="32%"/>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/ios/Simulator_Screen_Shot-iPhone_14_Pro-2022-12-21_at_07.18.46.png" width="32%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/ios/Screen_Recording_2022-12-27_at_17.26.23.gif" width="32%"/>
 </p>
 
 # License

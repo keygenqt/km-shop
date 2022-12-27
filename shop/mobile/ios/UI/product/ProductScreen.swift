@@ -94,29 +94,31 @@ struct ProductScreen: View {
                             }
                         }
                         
-                        HStack {
-                            ImageBtn(
-                                active: response.image1 == imageActon,
-                                image: response.image1,
-                                action: { url in
-                                    imageActon = url
-                                }
-                            )
-                            ImageBtn(
-                                active: response.image2 == imageActon,
-                                image: response.image2,
-                                action: { url in
-                                    imageActon = url
-                                }
-                            )
-                            ImageBtn(
-                                active: response.image3 == imageActon,
-                                image: response.image3,
-                                action: { url in
-                                    imageActon = url
-                                }
-                            )
-                            Spacer()
+                        if response.image2 != nil || response.image3 != nil {
+                            HStack {
+                                ImageBtn(
+                                    active: response.image1 == imageActon,
+                                    image: response.image1,
+                                    action: { url in
+                                        imageActon = url
+                                    }
+                                )
+                                ImageBtn(
+                                    active: response.image2 == imageActon,
+                                    image: response.image2,
+                                    action: { url in
+                                        imageActon = url
+                                    }
+                                )
+                                ImageBtn(
+                                    active: response.image3 == imageActon,
+                                    image: response.image3,
+                                    action: { url in
+                                        imageActon = url
+                                    }
+                                )
+                                Spacer()
+                            }
                         }
                     }.onAppear {
                         imageActon = response.image1
