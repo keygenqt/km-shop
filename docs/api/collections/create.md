@@ -2,7 +2,7 @@ Create Collection
 ===================
 
 <img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>PUT</code>
+Method: <code>POST</code>
 
 ```
 /api/collections/state/{id}
