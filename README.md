@@ -73,6 +73,7 @@ All platforms use the latest stack.
 
 ## 6. iOS App
 
+* Youtube: [Link](https://youtu.be/-13YHU-PSG8)
 * Url: *Coming soon*
 * Based: [SwiftUI](https://developer.apple.com/xcode/swiftui/)
 * Platform: **iOS**
