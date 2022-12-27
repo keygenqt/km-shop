@@ -33,7 +33,7 @@ struct ProductItem: View {
                     } else {
                         KFImage(URL(string: icon)!)
                             .placeholder {
-                                LoadingAnimationLarge()
+                                LoadingAnimationBorder()
                             }
                             .onFailure { _ in
                                 errorKF = true

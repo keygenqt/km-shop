@@ -9,6 +9,7 @@
 import SwiftUI
 import AlertToast
 import Kingfisher
+import Lottie
 
 struct ProductScreen: View {
     
@@ -29,6 +30,7 @@ struct ProductScreen: View {
     @State private var errorKF: Bool = false
     @State private var isShowingCartAdd: Bool = false
     @State private var isShowingCartDel: Bool = false
+    @State private var imageActon: String?
     
     let infoBlocks = [
         [
@@ -72,18 +74,52 @@ struct ProductScreen: View {
                                     .clipShape(Shapes.medium)
                             }
                         } else {
-                            KFImage(URL(string: response.image1)!)
-                                .placeholder {
-                                    LoadingAnimationLarge()
-                                }
-                                .onFailure { _ in
-                                    errorKF = true
-                                }
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: UIScreen.main.bounds.width - 40, height: 230)
-                                .clipShape(Shapes.medium)
+                            if imageActon != nil {
+                                KFImage(URL(string: imageActon!)!)
+                                    .placeholder {
+                                        VStack {
+                                            LoadingAnimationLarge()
+                                        }
+                                        .frame(width: UIScreen.main.bounds.width - 40, height: 230)
+                                        .background(Color.surface)
+                                        .clipShape(Shapes.medium)
+                                    }
+                                    .onFailure { _ in
+                                        errorKF = true
+                                    }
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: UIScreen.main.bounds.width - 40, height: 230)
+                                    .clipShape(Shapes.medium)
+                            }
                         }
+                        
+                        HStack {
+                            ImageBtn(
+                                active: response.image1 == imageActon,
+                                image: response.image1,
+                                action: { url in
+                                    imageActon = url
+                                }
+                            )
+                            ImageBtn(
+                                active: response.image2 == imageActon,
+                                image: response.image2,
+                                action: { url in
+                                    imageActon = url
+                                }
+                            )
+                            ImageBtn(
+                                active: response.image3 == imageActon,
+                                image: response.image3,
+                                action: { url in
+                                    imageActon = url
+                                }
+                            )
+                            Spacer()
+                        }
+                    }.onAppear {
+                        imageActon = response.image1
                     }
                     
                     HStack {
@@ -168,14 +204,14 @@ struct ProductScreen: View {
                         }
                     }
                     
-                    Divider()
+                    Divider().overlay(.gray)
                     
                     if response.collections?.size != 0 {
                         HStack {
                             TagCollectionsView(tags: response.collections!.toArray())
                             Spacer(minLength: 0)
                         }
-                        Divider()
+                        Divider().overlay(.gray)
                     }
                     
                     LazyVGrid(columns: [

@@ -41,7 +41,6 @@ struct CollectionItem: View {
                             .onFailure { _ in
                                 errorKF = true
                             }
-                            .forceRefresh() // @todo
                             .setProcessor(SVGImgProcessor(
                                 tint: (colorScheme == .dark ? .white : .black),
                                 identifier: "com.keygenqt.shop.ios.\(icon)" + (colorScheme == .dark ? ".white" : ".black")

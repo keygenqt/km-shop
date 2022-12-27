@@ -15,6 +15,8 @@ internal enum L10nApp {
   /// 
   ///   Created by Виталий Зарубин on 05.10.2021.
   internal static let appName = L10nApp.tr("App", "app_name", fallback: "You Shop")
+  /// Назад
+  internal static let commonBtnBack = L10nApp.tr("App", "common_btn_back", fallback: "Назад")
   /// Перезагрузить
   internal static let commonBtnError = L10nApp.tr("App", "common_btn_error", fallback: "Перезагрузить")
   /// Повторить

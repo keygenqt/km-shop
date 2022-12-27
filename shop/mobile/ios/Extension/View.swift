@@ -30,7 +30,7 @@ extension View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.onPrimary)
-            .navigationBackButton(text: "Back", show: isBack)
+            .navigationBackButton(text: L10nApp.commonBtnBack, show: isBack)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.background)
     }

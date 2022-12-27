@@ -37,12 +37,11 @@ struct ProductCartItem: View {
                         } else {
                             KFImage(URL(string: icon)!)
                                 .placeholder {
-                                    LoadingAnimationLarge()
+                                    LoadingAnimationBorder()
                                 }
                                 .onFailure { _ in
                                     errorKF = true
                                 }
-                                .forceRefresh() // @todo
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .clipShape(Circle())
