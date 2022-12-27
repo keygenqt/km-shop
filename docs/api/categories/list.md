@@ -1,4 +1,4 @@
-List Categories
+List
 ===================
 
 Get list categories for auth user

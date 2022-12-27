@@ -1,4 +1,4 @@
-List Categories Published
+List Published
 ===================
 
 Get list categories for all users
