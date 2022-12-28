@@ -20,7 +20,7 @@ All platforms use the latest stack.
 * Spent time: 07.11.2022 - 28.12.2022
 * Kotlin Lines of code: 14932 (API, CLI, Android App, Shared module)
 * JS Lines of code: 13417 (Website, Admin-Panel)
-* Swift Lines of code: 41199 (iOS App)
+* Swift Lines of code: 7809 (iOS App)
 
 # License
 
