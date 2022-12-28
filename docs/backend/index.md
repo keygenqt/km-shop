@@ -1,7 +1,7 @@
 Part Admin-Panel
 ===================
 
-![picture](https://keygenqt.github.io/km-shop/data/preview/backend/preview-1000.png)
+![picture](https://keygenqt.github.io/km-shop/data/github-preview/preview-backend.png)
 
 Store admin panel. The main place to manage content and user interactions.
 

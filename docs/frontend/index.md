@@ -1,7 +1,7 @@
 Part Website
 ===================
 
-![picture](https://keygenqt.github.io/km-shop/data/preview/frontend/preview-1000.png)
+![picture](https://keygenqt.github.io/km-shop/data/github-preview/preview-frontend.png)
 
 Store website. The main place for shopping.
 

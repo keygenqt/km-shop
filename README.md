@@ -14,7 +14,7 @@ All platforms use the latest stack.
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/api/)
 
-![picture](data/preview/api/preview-1000.png)
+![picture](data/github-preview/preview-api.png)
 
 ## Admin Panel
 
@@ -25,7 +25,7 @@ All platforms use the latest stack.
 
 [![picture](data/common/btn_youtube.png)](https://youtu.be/8jI0T45MMoQ)
 
-![picture](data/preview/backend/preview-1000.png)
+![picture](data/github-preview/preview-backend.png)
 
 ## Website
 
@@ -36,7 +36,7 @@ All platforms use the latest stack.
   
 [![picture](data/common/btn_youtube.png)](https://youtu.be/sHN1-LRDH64)
 
-![picture](data/preview/frontend/preview-1000.png)
+![picture](data/github-preview/preview-frontend.png)
 
 ## CLI App
 
@@ -45,7 +45,7 @@ All platforms use the latest stack.
 * Platform: **Native**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/cli/)
 
-![picture](data/preview/cli/preview-1000.png)
+![picture](data/github-preview/preview-cli.png)
 
 ## Android App
 
