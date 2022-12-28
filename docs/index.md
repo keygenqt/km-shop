@@ -8,22 +8,19 @@ All platforms use the latest stack.
 ![picture](data/common/logo160.png)
 
 ### Apps
-* API (ktor)
-* CLI (kotlinx-cli)
-* Admin panel (react)
-* Web site (react)
-* Android (Jetpack Compose)
-* iOS (SwiftUI)
+* API, Ktor
+* CLI, kotlinx-cli
+* Admin-Panel, React
+* Website, React
+* Android App, Jetpack Compose
+* iOS App, SwiftUI
 
-### Roadmap
+### Stats MVP
 
-1. Make an API ✅
-2. Write admin panel ✅
-3. CLI application for the server ✅
-4. Write a website for clients ✅
-5. Write an Android application ✅
-6. Write an iOS application ✅
-7. Finalization, documentation, production ⌛ (60%)
+* Spent time: 07.11.2022 - 28.12.2022
+* Kotlin Lines of code: 14932 (API, CLI, Android App, Shared module)
+* JS Lines of code: 13417 (Website, Admin-Panel)
+* Swift Lines of code: 41199 (iOS App)
 
 # License
 
