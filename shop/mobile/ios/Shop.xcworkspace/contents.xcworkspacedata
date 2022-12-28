@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/keygenqt/Documents/Home/Shop/shop/mobile/ios/YouShop.xcodeproj">
+      location = "group:/Users/keygenqt/Documents/Home/Shop/shop/mobile/ios/Shop.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:YouShop.xcodeproj">
+      location = "group:Shop.xcodeproj">
    </FileRef>
 </Workspace>

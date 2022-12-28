@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">You Shop</string>
+    <string name="app_name">Майшоп</string>
     <string name="tab_home">Главная</string>
     <string name="tab_exploring">Каталог</string>
     <string name="tab_cart">Корзина</string>

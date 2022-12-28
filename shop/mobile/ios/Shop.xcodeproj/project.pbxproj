@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
-		2152FB042600AC8F00CF470E /* YouShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* YouShopApp.swift */; };
+		2152FB042600AC8F00CF470E /* ShopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* ShopApp.swift */; };
 		2F0FBF27295984DA00CB5390 /* FilterRungPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF26295984DA00CB5390 /* FilterRungPrice.swift */; };
 		2F0FBF29295987B900CB5390 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF28295987B900CB5390 /* CGFloat.swift */; };
 		2F0FBF2B2959880300CB5390 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FBF2A2959880300CB5390 /* Double.swift */; };
@@ -170,12 +170,13 @@
 		2FF358152954E5760001B89A /* ProductRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF358142954E5760001B89A /* ProductRequests.swift */; };
 		2FF358172954E7B10001B89A /* ResponseDefaultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF358162954E7B10001B89A /* ResponseDefaultError.swift */; };
 		2FF358192954E8EF0001B89A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF358182954E8EF0001B89A /* Int.swift */; };
-		D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */; };
+		A5372042C9B40448BD001980 /* Pods_Shop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 192E0727F2258296E39EC53C /* Pods_Shop.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2152FB032600AC8F00CF470E /* YouShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouShopApp.swift; sourceTree = "<group>"; };
+		192E0727F2258296E39EC53C /* Pods_Shop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2152FB032600AC8F00CF470E /* ShopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopApp.swift; sourceTree = "<group>"; };
 		2F0FBF26295984DA00CB5390 /* FilterRungPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterRungPrice.swift; sourceTree = "<group>"; };
 		2F0FBF28295987B900CB5390 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		2F0FBF2A2959880300CB5390 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
@@ -337,14 +338,15 @@
 		2FF358142954E5760001B89A /* ProductRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequests.swift; sourceTree = "<group>"; };
 		2FF358162954E7B10001B89A /* ResponseDefaultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDefaultError.swift; sourceTree = "<group>"; };
 		2FF358182954E8EF0001B89A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		31CCEE91EF5BEB15A6E4655F /* Pods-Shop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shop.debug.xcconfig"; path = "Target Support Files/Pods-Shop/Pods-Shop.debug.xcconfig"; sourceTree = "<group>"; };
 		40B8B3B5D7D2B47B960F131E /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.release.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.release.xcconfig"; sourceTree = "<group>"; };
 		46A5FF364498B84FA4E0FEC6 /* Pods-MyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShop.debug.xcconfig"; path = "Target Support Files/Pods-MyShop/Pods-MyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		5AC7BBB030BBC90E90B32680 /* Pods-Shop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shop.release.xcconfig"; path = "Target Support Files/Pods-Shop/Pods-Shop.release.xcconfig"; sourceTree = "<group>"; };
 		65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouShop.release.xcconfig"; path = "Target Support Files/Pods-YouShop/Pods-YouShop.release.xcconfig"; sourceTree = "<group>"; };
-		7555FF7B242A565900829871 /* YouShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7555FF7B242A565900829871 /* Майшоп.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Майшоп.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouShop.debug.xcconfig"; path = "Target Support Files/Pods-YouShop/Pods-YouShop.debug.xcconfig"; sourceTree = "<group>"; };
-		93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YouShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCC6CA78BA914ED0495507A /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -353,7 +355,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D61505A8714DF2F0D13FD4DF /* Pods_YouShop.framework in Frameworks */,
+				A5372042C9B40448BD001980 /* Pods_Shop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +906,8 @@
 				43127F3DFF2025B4835A7BC8 /* Pods-MyShop.release.xcconfig */,
 				8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */,
 				65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */,
+				31CCEE91EF5BEB15A6E4655F /* Pods-Shop.debug.xcconfig */,
+				5AC7BBB030BBC90E90B32680 /* Pods-Shop.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -911,7 +915,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
-				7555FF7D242A565900829871 /* YouShop */,
+				7555FF7D242A565900829871 /* Shop */,
 				2F4D7B52295082DA002F507B /* Base */,
 				2F4D7B5329508307002F507B /* UI */,
 				2FCDA7962957B197004EA471 /* Navigation */,
@@ -932,24 +936,24 @@
 		7555FF7C242A565900829871 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7555FF7B242A565900829871 /* YouShop.app */,
+				7555FF7B242A565900829871 /* Майшоп.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7555FF7D242A565900829871 /* YouShop */ = {
+		7555FF7D242A565900829871 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* YouShopApp.swift */,
+				2152FB032600AC8F00CF470E /* ShopApp.swift */,
 			);
-			path = YouShop;
+			path = Shop;
 			sourceTree = "<group>";
 		};
 		9D5DD003A878779134AC0BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				93DE91E9561A4D89B8EA3A66 /* Pods_YouShop.framework */,
+				192E0727F2258296E39EC53C /* Pods_Shop.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -957,9 +961,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7555FF7A242A565900829871 /* YouShop */ = {
+		7555FF7A242A565900829871 /* Shop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "YouShop" */;
+			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Shop" */;
 			buildPhases = (
 				77086F4CB079E947A7FC7816 /* [CP] Check Pods Manifest.lock */,
 				7555FF77242A565900829871 /* Sources */,
@@ -973,9 +977,9 @@
 			);
 			dependencies = (
 			);
-			name = YouShop;
+			name = Shop;
 			productName = iosApp;
-			productReference = 7555FF7B242A565900829871 /* YouShop.app */;
+			productReference = 7555FF7B242A565900829871 /* Майшоп.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -993,7 +997,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7555FF76242A565900829871 /* Build configuration list for PBXProject "YouShop" */;
+			buildConfigurationList = 7555FF76242A565900829871 /* Build configuration list for PBXProject "Shop" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1007,7 +1011,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7555FF7A242A565900829871 /* YouShop */,
+				7555FF7A242A565900829871 /* Shop */,
 			);
 		};
 /* End PBXProject section */
@@ -1093,15 +1097,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YouShop/Pods-YouShop-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shop/Pods-Shop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		77086F4CB079E947A7FC7816 /* [CP] Check Pods Manifest.lock */ = {
@@ -1119,7 +1123,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YouShop-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Shop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1156,7 +1160,7 @@
 				2F8AE2A6295A5B02005BC2D2 /* CollectionRealm.swift in Sources */,
 				2F7703B82952851700E3F5EA /* HomeStrings.swift in Sources */,
 				2F7703612950F17400E3F5EA /* ExploringStrings.swift in Sources */,
-				2152FB042600AC8F00CF470E /* YouShopApp.swift in Sources */,
+				2152FB042600AC8F00CF470E /* ShopApp.swift in Sources */,
 				2F77033F2950C2FC00E3F5EA /* ContactFormScreen.swift in Sources */,
 				2FE8A6B9295363FA002B1087 /* AppFieldText.swift in Sources */,
 				2F77038129526B7500E3F5EA /* LoadingBody.swift in Sources */,
@@ -1499,14 +1503,14 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E6218CB093B64D4D5599972 /* Pods-YouShop.debug.xcconfig */;
+			baseConfigurationReference = 31CCEE91EF5BEB15A6E4655F /* Pods-Shop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = Resources/Colors/Colors.xcassets;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = YouShop/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "My Shop";
+				INFOPLIST_FILE = Shop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Май шоп";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1515,7 +1519,7 @@
 				);
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.keygenqt.shop.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Майшоп";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1523,14 +1527,14 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65622B2167D68703FC48D906 /* Pods-YouShop.release.xcconfig */;
+			baseConfigurationReference = 5AC7BBB030BBC90E90B32680 /* Pods-Shop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = Resources/Colors/Colors.xcassets;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = YouShop/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "My Shop";
+				INFOPLIST_FILE = Shop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Май шоп";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1539,7 +1543,7 @@
 				);
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.keygenqt.shop.ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Майшоп";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1548,7 +1552,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7555FF76242A565900829871 /* Build configuration list for PBXProject "YouShop" */ = {
+		7555FF76242A565900829871 /* Build configuration list for PBXProject "Shop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7555FFA3242A565B00829871 /* Debug */,
@@ -1557,7 +1561,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "YouShop" */ = {
+		7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Shop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,

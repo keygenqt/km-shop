@@ -14,7 +14,7 @@ internal enum L10nApp {
   ///   GitHubViewer
   /// 
   ///   Created by Виталий Зарубин on 05.10.2021.
-  internal static let appName = L10nApp.tr("App", "app_name", fallback: "You Shop")
+  internal static let appName = L10nApp.tr("App", "app_name", fallback: "Майшоп")
   /// Назад
   internal static let commonBtnBack = L10nApp.tr("App", "common_btn_back", fallback: "Назад")
   /// Перезагрузить
