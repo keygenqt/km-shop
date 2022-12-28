@@ -29,7 +29,7 @@ All platforms use the latest stack.
 
 ## Website
 
-* Url: [Link](https://shop.keygenqt.com/)
+* Url: [Link](https://май-шоп.рф/)
 * Based: [React](https://reactjs.org/)
 * Platform: **Web**
 * Documentation: [Link](https://keygenqt.github.io/km-shop/frontend/)
