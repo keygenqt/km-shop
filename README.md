@@ -5,6 +5,9 @@ A store that includes 6 applications written using [Kotlin Multiplatform](https:
 All applications use a common module and native UI for their platforms.
 All platforms use the latest stack.
 
+#### Version
+[![GitHub Release](https://img.shields.io/github/release/tterb/PlayMusic.svg?style=flat)]()
+
 ![picture](data/common/logo160.png)
 
 ## API

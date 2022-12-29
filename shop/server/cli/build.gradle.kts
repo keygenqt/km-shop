@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.keygenqt.shop.cli"
-version = "0.0.1"
+version = "0.9.0"
 
 dependencies {
     implementation(project(":shared"))

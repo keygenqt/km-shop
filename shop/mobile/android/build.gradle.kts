@@ -17,7 +17,7 @@ android {
         targetSdk = findProperty("targetSdk").toString().toInt()
         applicationId = "com.keygenqt.shop.android"
         versionCode = 1
-        versionName = "0.0.1"
+        versionName = "0.9.0"
     }
 
     buildFeatures {

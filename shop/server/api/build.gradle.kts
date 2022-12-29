@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.keygenqt.shop.api"
-version = "0.0.1"
+version = "0.9.0"
 
 application {
     mainClass.set("com.keygenqt.shop.api.ApplicationKt")
