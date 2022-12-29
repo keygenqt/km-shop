@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=com.keygenqt.shop
+Exec=/usr/bin/com.keygenqt.shop
+Name=MyShop
+Name[ru]=Майшоп
+
+[X-Application]
+Permissions=Internet;WebView
+OrganizationName=com.keygenqt
+ApplicationName=shop
+ExecDBus=/usr/bin/com.keygenqt.shop

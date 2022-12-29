@@ -1,0 +1,15 @@
+# Rename this file as com.keygenqt.shop.changes to include changelog
+# entries in your RPM file.
+#
+# Add new changelog entries following the format below.
+# Add newest entries to the top of the list.
+# Separate entries from eachother with a blank line.
+#
+# Alternatively, if your changelog is automatically generated (e.g. with
+# the git-change-log command provided with Sailfish OS SDK), create a
+# com.keygenqt.shop.changes.run script to let mb2 run the required commands for you.
+
+# * date Author's Name <author's email> version-release
+# - Summary of changes
+
+
