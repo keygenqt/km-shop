@@ -6,7 +6,7 @@ All applications use a common module and native UI for their platforms.
 All platforms use the latest stack.
 
 #### Version
-[![GitHub Release](https://img.shields.io/github/release/tterb/PlayMusic.svg?style=flat)]()
+[![GitHub Release](https://img.shields.io/factorio-mod-portal/v/0.9.0)]()
 
 ![picture](data/common/logo160.png)
 
