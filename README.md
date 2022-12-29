@@ -6,7 +6,7 @@ All applications use a common module and native UI for their platforms.
 All platforms use the latest stack.
 
 #### Version
-[![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop)]()
+[![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta)]()
 
 ![picture](data/common/logo160.png)
 
