@@ -8,7 +8,7 @@ All platforms use the latest stack.
 ![picture](data/common/logo160.png)
 
 #### Version
-[![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta)]()
+[![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta&style=for-the-badge)]()
 
 ## API
 
