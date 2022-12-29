@@ -84,6 +84,12 @@ All platforms use the latest stack.
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/ios/Screen_Recording_2022-12-27_at_17.26.23.gif" width="32.5%"/>
 </p>
 
+## Aurora App (Experimental)
+
+* Url: *Coming soon?*
+* Based: [Qt](https://www.qt.io/)
+* Platform: **Aurora OS**
+
 # License
 
 ```
