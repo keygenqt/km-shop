@@ -90,7 +90,6 @@ All platforms use the latest stack.
 * Based: [Qt](https://www.qt.io/)
 * Platform: **Aurora OS**
 
-
 # License
 
 ```
