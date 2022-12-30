@@ -86,11 +86,17 @@ All platforms use the latest stack.
 
 ## Aurora App (Experimental)
 
-* Url: *Coming soon?*
+* Url: *Coming soon*
 * Based: [Qt](https://www.qt.io/)
 * Platform: **Aurora OS**
 
+#### Preview
+
+![picture](data/aurora/screenshot-10.png)
+
 # License
+
+#### Preview
 
 ```
 Copyright 2023 Vitaliy Zarubin
