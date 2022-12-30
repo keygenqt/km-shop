@@ -1,9 +1,9 @@
 Project build
 ===================
 
-Приложение состоит из 6ти нативных приложений и общего модуля Kotlin Multiplatform. 
-И так нам предстоит их все собрать.
-Я сделал видео в котором можно посмотреть на процесс сборки всех приложений.
+The application consists of 6 native applications and a common Kotlin Multiplatform module.
+And so we have to building them all.
+I made a video in which you can see the process of building all applications.
 
 [![picture](https://keygenqt.github.io/km-shop/data/common/btn_youtube.png)](https://youtu.be/Nmne4W4ktH0)
 
@@ -11,7 +11,7 @@ Project build
 
 Application on Ktor. Normal jvm application.
 
-#### Файлы
+#### Files
 
 The project uses Material Icons. We need to upload the svg folder to the root of the project.
 
@@ -28,11 +28,11 @@ mv dbconfig.properties dbconfig.properties
 These files contain keys and various accesses. They are loaded while the application is running.
 Do not forget to change the keys in the prod.
 
-#### База
+#### Database
 
 Create a *MySql* database and a user for it. We register accesses in *dbconfig.properties*
 
-#### Сборка
+#### Building
 
 Go to the directory shop -> server -> api ... Application.kt - start the application, it will crash, it's ok.
 It will be added to the Assembly Configuration (if you want, you can use handles).
@@ -54,7 +54,7 @@ npm install -g @pushcorn/hocon-parser
 
 Since there is logic with connecting *shared module* assembly and launch is carried out via install.sh
 
-#### Сборка
+#### Files
 
 To run a React app from Android Studio add *Shell script* to your build configuration. Start command:
 
