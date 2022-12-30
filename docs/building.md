@@ -39,6 +39,8 @@ It will be added to the Assembly Configuration (if you want, you can use handles
 Then we go to the assembly configuration and add the *shared module* artifact, which will be built with the application.
 Everyone can now start it - everything should work.
 
+![picture](https://keygenqt.github.io/km-shop/data/api/Screenshot_2022-12-30_at_05.05.55.png)
+
 ## Website / Admin-Panel
 
 Application in React. *npm* starts it as usual.
