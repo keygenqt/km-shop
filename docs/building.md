@@ -45,7 +45,7 @@ Everyone can now start it - everything should work.
 
 Application in React. *npm* starts it as usual.
 
-#### Файлы
+#### Files
 
 There is no usual package.json. I replaced it with package.conf (for ease of use).
 Install the *hocon-parser* application which will turn it into package.json when you run install.sh
