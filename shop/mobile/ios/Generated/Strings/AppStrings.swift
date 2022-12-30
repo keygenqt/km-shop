@@ -37,8 +37,8 @@ internal enum L10nApp {
   internal static let screenContactForm = L10nApp.tr("App", "screen_contactForm", fallback: "Связь")
   /// Каталог
   internal static let screenExploring = L10nApp.tr("App", "screen_exploring", fallback: "Каталог")
-  /// You Shop
-  internal static let screenHome = L10nApp.tr("App", "screen_home", fallback: "You Shop")
+  /// Майшоп
+  internal static let screenHome = L10nApp.tr("App", "screen_home", fallback: "Майшоп")
   /// Заказ
   internal static let screenOrder = L10nApp.tr("App", "screen_order", fallback: "Заказ")
   /// Оформить заказ
