@@ -56,7 +56,7 @@ npm install -g @pushcorn/hocon-parser
 
 Since there is logic with connecting *shared module* assembly and launch is carried out via install.sh
 
-#### Files
+#### Building
 
 To run a React app from Android Studio add *Shell script* to your build configuration. Start command:
 
