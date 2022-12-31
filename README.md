@@ -92,7 +92,9 @@ All platforms use the latest stack.
 
 #### Preview
 
-![picture](data/aurora/vokoscreenNG-2022-12-31_06-04-45.gif)
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2022-12-31_06-04-45.gif" width="40%"/>
+</p>
 
 # License
 
