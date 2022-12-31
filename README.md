@@ -94,6 +94,11 @@ All platforms use the latest stack.
 
 ![picture](data/aurora/screenshot-10.png)
 
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/screenshot-10.png" width="31%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2022-12-31_06-04-45.gif" width="31%"/>
+</p>
+
 # License
 
 #### Preview
