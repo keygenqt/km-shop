@@ -43,7 +43,7 @@ CoverBackground {
 
     CoverPlaceholder {
         objectName: "placeholder"
-        text: qsTr("MyShop")
+        text: qsTr("Майшоп")
         icon {
             source: Qt.resolvedUrl("../icons/shop.svg")
             sourceSize { width: icon.width; height: icon.height }

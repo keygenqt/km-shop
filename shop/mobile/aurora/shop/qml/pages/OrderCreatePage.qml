@@ -5,4 +5,9 @@ SilicaListView {
     header: PageHeader {
         title: qsTr("Оформить Заказ")
     }
+
+    InfoLabel {
+        text: "OrderCreatePage"
+        anchors.centerIn: parent
+    }
 }

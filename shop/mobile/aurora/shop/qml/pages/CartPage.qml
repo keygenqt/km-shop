@@ -41,6 +41,11 @@ Page {
                 onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CatalogPage.qml"), {}, PageStackAction.Replace)
             }
         }
+
+        InfoLabel {
+            text: "CartPage"
+            anchors.centerIn: parent
+        }
     }
 
     Page {
