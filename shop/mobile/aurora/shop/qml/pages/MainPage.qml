@@ -9,7 +9,7 @@ Page {
         anchors.fill: parent
 
         header: PageHeader {
-            title: qsTr("Мойшоп")
+            title: qsTr("Майшоп")
             extraContent.children: [
                 Image {
                     source: Qt.resolvedUrl("../icons/toolbar_icon.png")

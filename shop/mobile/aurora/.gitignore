@@ -1,3 +1,5 @@
 /build-com*
 .idea
 .DS_Store
+/shop/translations/*
+*pro.user

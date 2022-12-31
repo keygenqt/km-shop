@@ -3,7 +3,7 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=com.keygenqt.shop
 Exec=/usr/bin/com.keygenqt.shop
-Name=MyShop
+Name=Майшоп
 Name[ru]=Майшоп
 
 [X-Application]
