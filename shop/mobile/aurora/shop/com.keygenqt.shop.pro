@@ -9,11 +9,11 @@ QML_IMPORT_MAJOR_VERSION = 1
 PKGCONFIG += \
 
 SOURCES += \
-    src/main.cpp \
-    src/colorsconsts.cpp
+    src/apptheme.cpp \
+    src/main.cpp
 
 HEADERS += \
-    src/colorsconsts.h
+    src/apptheme.h
 
 DISTFILES += \
     qml/components/AppBlock.qml \

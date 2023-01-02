@@ -1,26 +1,26 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Colors 1.0
+import AppTheme 1.0
 import "../components" as Components
 
 
 Page {
     id: homePage
 
-    ColorsConsts {
-        id: colors
+    AppTheme {
+        id: appTheme
     }
 
     SilicaFlickable {
         anchors.fill: parent
-        contentHeight: column.height + Theme.paddingLarge
+        contentHeight: column.height + appTheme.paddingLarge
 
         VerticalScrollDecorator {}
 
         PullDownMenu {
             id: pullDownMenu
-            topMargin: Theme.paddingLarge
-            bottomMargin: Theme.paddingLarge
+            topMargin: appTheme.paddingLarge
+            bottomMargin: appTheme.paddingLarge
 
             MenuItem {
                 text: qsTr("Каталог")
@@ -50,7 +50,7 @@ Page {
              }
 
              Column {
-                 width: parent.width - Theme.paddingLarge * 2
+                 width: parent.width - appTheme.paddingLarge * 2
                  spacing: Theme.paddingMedium
                  anchors.horizontalCenter: parent.horizontalCenter
 
@@ -61,8 +61,8 @@ Page {
                      anchors.horizontalCenter: parent.horizontalCenter
 
                      Components.AppBlock {
-                         width: parent.width / 2 - Theme.paddingMedium / 2
-                         backgroundColor: colors.bgVariant2
+                         width: parent.width / 2 - appTheme.paddingMedium / 2
+                         backgroundColor: appTheme.colorVariant2
                          disabled: false
 
                          onClicked: pageStack.animatorPush(Qt.resolvedUrl("Contact.qml"), {}, PageStackAction.Animated)
@@ -75,37 +75,39 @@ Page {
                                  source: "image://theme/icon-m-mail?white"
                                  fillMode: Image.PreserveAspectFit
                                  anchors.verticalCenter: parent.verticalCenter
-                                 width: 45
-                                 height: 45
+                                 width: 47
+                                 height: 47
                              }
                              Label {
                                  text: qsTr("Контакты")
                                  color: "white"
+                                 font.pixelSize: appTheme.fontSizeH6
                              }
                          }
                      }
 
                      Components.AppBlock {
-                         width: parent.width / 2 - Theme.paddingMedium / 2
-                         backgroundColor: colors.bgVariant2
+                         width: parent.width / 2 - appTheme.paddingMedium / 2
+                         backgroundColor: appTheme.colorVariant2
                          disabled: false
 
                          onClicked: pageStack.animatorPush(Qt.resolvedUrl("OrderSearchPage.qml"), {}, PageStackAction.Animated)
 
                          Row {
-                             spacing: Theme.paddingMedium
+                             spacing: appTheme.paddingMedium
                              anchors.horizontalCenter: parent.horizontalCenter
 
                              Image {
                                  source: "image://theme/icon-m-company?white"
                                  fillMode: Image.PreserveAspectFit
                                  anchors.verticalCenter: parent.verticalCenter
-                                 width: 45
-                                 height: 45
+                                 width: 47
+                                 height: 47
                              }
                              Label {
                                  text: qsTr("Заказы")
                                  color: "white"
+                                 font.pixelSize: appTheme.fontSizeH6
                              }
                          }
                      }
@@ -113,39 +115,39 @@ Page {
 
                  Components.AppBlock {
                      width: parent.width
-                     backgroundColor: colors.bgVariant1
+                     backgroundColor: appTheme.colorVariant1
 
                      Row {
                          width: parent.width
-                         spacing: Theme.paddingSmall
+                         spacing: appTheme.paddingSmall
 
                          Column {
                              width: parent.width - 180
-                             spacing: Theme.paddingSmall
+                             spacing: appTheme.paddingSmall
 
                              Label {
                                  text: qsTr("В этом сезоне найди лучшее 🔥")
                                  color: "white"
                                  padding: 1
-                                 font.pixelSize: Theme.fontSizeTiny
+                                 font.pixelSize: appTheme.fontSizeBody2
                              }
 
                              Column {
                                  width: parent.width
-                                 spacing: Theme.paddingLarge
+                                 spacing: appTheme.paddingLarge
 
                                  Text {
                                      width: parent.width
                                      text: qsTr("Коллекции для вашего стиля")
                                      color: "white"
                                      wrapMode: Text.WordWrap
-                                     font.pointSize: Theme.fontSizeLarge
+                                     font.pixelSize: appTheme.fontSizeH4
                                  }
 
                                  Components.AppButton {
                                      text: qsTr("Начните поиск")
                                      onClicked: console.log("Click")
-                                     padding: Theme.paddingMedium
+                                     padding: appTheme.paddingMedium
                                      background: 'black'
                                  }
                              }
@@ -164,11 +166,11 @@ Page {
 
                  Components.AppBlock {
                      width: parent.width
-                     backgroundColor: colors.bgVariant3
+                     backgroundColor: appTheme.colorVariant3
 
                      Column {
                          width: parent.width
-                         spacing: Theme.paddingLarge
+                         spacing: appTheme.paddingLarge
 
                          Components.AppBlock {
                              width: parent.width
@@ -177,26 +179,26 @@ Page {
 
                              Label {
                                  text: qsTr("Бантики")
-                                 font.pixelSize: Theme.fontSizeTiny
+                                 font.pixelSize: appTheme.fontSizeBody2
                                  bottomPadding: 5
                              }
 
                              Column {
                                  width: parent.width
-                                 spacing: Theme.paddingLarge
+                                 spacing: appTheme.paddingLarge
 
                                  Text {
                                      width: parent.width
                                      text: qsTr("Стильные бантики ручной работы")
                                      wrapMode: Text.WordWrap
-                                     font.pointSize: Theme.fontSizeMedium
+                                     font.pointSize: appTheme.fontSizeBody1
                                  }
 
                                  Components.AppButton {
                                      text: qsTr("Смотреть")
                                      icon: "image://theme/icon-m-enter-next"
                                      onClicked: console.log("Click")
-                                     padding: Theme.paddingMedium
+                                     padding: appTheme.paddingMedium
                                  }
                              }
                          }
@@ -208,26 +210,26 @@ Page {
 
                              Label {
                                  text: qsTr("Наборы")
-                                 font.pixelSize: Theme.fontSizeTiny
+                                 font.pixelSize: appTheme.fontSizeBody2
                                  bottomPadding: 5
                              }
 
                              Column {
                                  width: parent.width
-                                 spacing: Theme.paddingLarge
+                                 spacing: appTheme.paddingLarge
 
                                  Text {
                                      width: parent.width
                                      text: qsTr("Наборы бантиков на каждый день")
                                      wrapMode: Text.WordWrap
-                                     font.pointSize: Theme.fontSizeMedium
+                                     font.pointSize: appTheme.fontSizeBody1
                                  }
 
                                  Components.AppButton {
                                      text: qsTr("Смотреть")
                                      icon: "image://theme/icon-m-enter-next"
                                      onClicked: console.log("Click")
-                                     padding: Theme.paddingMedium
+                                     padding: appTheme.paddingMedium
                                  }
                              }
                          }
@@ -239,26 +241,26 @@ Page {
 
                              Label {
                                  text: qsTr("Ободки")
-                                 font.pixelSize: Theme.fontSizeTiny
+                                 font.pixelSize: appTheme.fontSizeBody2
                                  bottomPadding: 5
                              }
 
                              Column {
                                  width: parent.width
-                                 spacing: Theme.paddingLarge
+                                 spacing: appTheme.paddingLarge
 
                                  Text {
                                      width: parent.width
                                      text: qsTr("Стильные бантики ручной работы")
                                      wrapMode: Text.WordWrap
-                                     font.pointSize: Theme.fontSizeMedium
+                                     font.pointSize: appTheme.fontSizeBody1
                                  }
 
                                  Components.AppButton {
                                      text: qsTr("Смотреть")
                                      icon: "image://theme/icon-m-enter-next"
                                      onClicked: console.log("Click")
-                                     padding: Theme.paddingMedium
+                                     padding: appTheme.paddingMedium
                                  }
                              }
                          }

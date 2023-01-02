@@ -1,24 +1,24 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Colors 1.0
+import AppTheme 1.0
 
 MouseArea {
 
-    ColorsConsts {
-        id: colors
+    AppTheme {
+        id: appTheme
     }
 
     property string text: ""
     property string icon: ""
     property bool disabled: false
     property string contentColor: "white"
-    property string background: colors.bgVariant1
-    property int padding: Theme.paddingLarge
+    property string background: appTheme.colorVariant1
+    property int padding: appTheme.paddingLarge
 
     property bool _press: true
 
     id: idAppButton
-    height: content.height + idAppButton.padding
+    height: content.height + idAppButton.padding - (icon.length == 0 ? 0 : 10)
     width: content.width + idAppButton.padding * 2
 
     onPressedChanged: {
@@ -31,13 +31,13 @@ MouseArea {
         width: parent.width
         height: parent.height
         color : idAppButton.background
-        radius: 10
+        radius: appTheme.shapesMedium
     }
 
     Row {
         id: content
         anchors.top: parent.top
-        anchors.topMargin: idAppButton.padding / 2
+        anchors.topMargin: (idAppButton.padding - (icon.length == 0 ? 0 : 10)) / 2
         spacing: padding
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -47,8 +47,8 @@ MouseArea {
             bottomPadding: 3
             anchors.verticalCenter: parent.verticalCenter
             text: idAppButton.text
-            font.pixelSize: idAppButton.padding > Theme.paddingMedium ? Theme.fontSizeExtraLarge
-                                                                      : (idAppButton.padding > Theme.paddingSmall ? Theme.fontSizeSmall : Theme.fontSizeTiny)
+            font.pixelSize: idAppButton.padding > appTheme.paddingMedium ? appTheme.fontSizeH6
+                                                                      : (idAppButton.padding > appTheme.paddingSmall ? appTheme.fontSizeBody1 : appTheme.fontSizeBody2)
             color: idAppButton.contentColor
         }
 
@@ -56,10 +56,10 @@ MouseArea {
             anchors.verticalCenter: parent.verticalCenter
             source: icon.length == 0 ? "" : Qt.resolvedUrl(idAppButton.icon + "?" + idAppButton.contentColor)
             fillMode: Image.PreserveAspectFit
-            width: icon.length == 0 ? 0 : (idAppButton.padding > Theme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > Theme.paddingSmall ? 60 : 32))
-            height: icon.length == 0 ? 0 : (idAppButton.padding > Theme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > Theme.paddingSmall ? 60 : 32))
+            width: icon.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
+            height: icon.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
         }
     }
 
@@ -67,7 +67,7 @@ MouseArea {
         width: parent.width
         height: parent.height
         color : idAppButton.background == "black" ? "white" : "black"
-        radius: 10
+        radius: appTheme.shapesMedium
         opacity: 0.3
         visible: !idAppButton._press
     }

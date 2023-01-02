@@ -1,10 +1,15 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import AppTheme 1.0
 
 MouseArea {
 
+    AppTheme {
+        id: appTheme
+    }
+
     property string backgroundColor: "#cf525297"
-    property int padding: Theme.paddingLarge
+    property int padding: appTheme.paddingLarge
     property bool centerIn: false
     property bool disabled: true
     property bool press: true
@@ -24,7 +29,7 @@ MouseArea {
         width: parent.width
         height: parent.height
         color : idAppBlock.backgroundColor
-        radius: 20
+        radius: appTheme.shapesLarge
     }
 
     Column {
@@ -39,7 +44,7 @@ MouseArea {
         width: parent.width
         height: parent.height
         color : "black"
-        radius: 20
+        radius: appTheme.shapesLarge
         opacity: 0.3
         visible: !idAppBlock.press
     }
