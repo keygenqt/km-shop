@@ -37,12 +37,14 @@
 
 #include <auroraapp.h>
 #include <QtQuick>
+#include "colorsconsts.h"
 
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
     application->setOrganizationName(QStringLiteral("com.keygenqt"));
     application->setApplicationName(QStringLiteral("shop"));
+    qmlRegisterType<ColorsConsts>("Colors",1,0,"ColorsConsts");
 
     QScopedPointer<QQuickView> view(Aurora::Application::createView());
     view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/shop.qml")));

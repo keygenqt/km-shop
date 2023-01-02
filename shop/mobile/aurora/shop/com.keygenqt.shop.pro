@@ -3,14 +3,20 @@ TARGET = com.keygenqt.shop
 CONFIG += \
     auroraapp
 
+QML_IMPORT_NAME = MyApp
+QML_IMPORT_MAJOR_VERSION = 1
+
 PKGCONFIG += \
 
 SOURCES += \
     src/main.cpp \
+    src/colorsconsts.cpp
 
 HEADERS += \
+    src/colorsconsts.h
 
 DISTFILES += \
+    qml/components/AppBlock.qml \
     rpm/com.keygenqt.shop.spec \
 
 AURORAAPP_ICONS = 86x86 108x108 128x128 172x172

@@ -23,6 +23,8 @@ Page {
 
         PullDownMenu {
             id: pullDownMenu
+            topMargin: Theme.paddingLarge
+            bottomMargin: Theme.paddingLarge
 
             MenuItem {
                 text: qsTr("Главная")
