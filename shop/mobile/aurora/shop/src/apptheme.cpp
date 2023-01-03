@@ -7,7 +7,7 @@ AppTheme::AppTheme(QObject *parent) : QObject(parent) {}
 QString AppTheme::getColorVariant1() { return "#329cd5"; }
 QString AppTheme::getColorVariant2() { return "#955BA5"; }
 QString AppTheme::getColorVariant3() { return "#3E6C91"; }
-QString AppTheme::getColorVariant4() { return "#C6FFF1"; }
+QString AppTheme::getColorVariant4() { return "#2596aa"; }
 QString AppTheme::getColorVariant5() { return "#1D81D6"; }
 QString AppTheme::getColorVariant6() { return "#4CAF50"; }
 

@@ -45,7 +45,7 @@ MouseArea {
         height: parent.height
         color : "black"
         radius: appTheme.shapesLarge
-        opacity: 0.3
+        opacity: 0.4
         visible: !idAppBlock.press
     }
 

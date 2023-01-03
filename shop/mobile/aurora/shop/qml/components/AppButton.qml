@@ -68,7 +68,7 @@ MouseArea {
         height: parent.height
         color : idAppButton.background == "black" ? "white" : "black"
         radius: appTheme.shapesMedium
-        opacity: 0.3
+        opacity: 0.4
         visible: !idAppButton._press
     }
 }
