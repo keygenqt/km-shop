@@ -4,6 +4,7 @@
 AppTheme::AppTheme(QObject *parent) : QObject(parent) {}
 
 // Colors
+QString AppTheme::getColorCover() { return "#329cd5"; }
 QString AppTheme::getColorVariant1() { return "#329cd5"; }
 QString AppTheme::getColorVariant2() { return "#955BA5"; }
 QString AppTheme::getColorVariant3() { return "#3E6C91"; }
@@ -17,6 +18,7 @@ int AppTheme::getPaddingMedium() { return 20; }
 int AppTheme::getPaddingSmall() { return 10; }
 
 // Shapes
+float AppTheme::getShapesExtraLarge() { return 25; }
 float AppTheme::getShapesLarge() { return 20; }
 float AppTheme::getShapesMedium() { return 10; }
 float AppTheme::getShapesSmall() { return 4; }

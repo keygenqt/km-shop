@@ -12,6 +12,7 @@ class AppTheme : public QObject
     explicit AppTheme(QObject *parent = nullptr);
 
     // Colors
+    QString getColorCover();
     QString getColorVariant1();
     QString getColorVariant2();
     QString getColorVariant3();
@@ -19,6 +20,7 @@ class AppTheme : public QObject
     QString getColorVariant5();
     QString getColorVariant6();
 
+    Q_PROPERTY(QString colorCover READ getColorCover CONSTANT)
     Q_PROPERTY(QString colorVariant1 READ getColorVariant1 CONSTANT)
     Q_PROPERTY(QString colorVariant2 READ getColorVariant2 CONSTANT)
     Q_PROPERTY(QString colorVariant3 READ getColorVariant3 CONSTANT)
@@ -36,10 +38,12 @@ class AppTheme : public QObject
     Q_PROPERTY(int paddingSmall READ getPaddingSmall CONSTANT)
 
     // Shapes
+    float getShapesExtraLarge();
     float getShapesLarge();
     float getShapesMedium();
     float getShapesSmall();
 
+    Q_PROPERTY(float shapesExtraLarge READ getShapesExtraLarge CONSTANT)
     Q_PROPERTY(float shapesLarge READ getShapesLarge CONSTANT)
     Q_PROPERTY(float shapesMedium READ getShapesMedium CONSTANT)
     Q_PROPERTY(float shapesSmall READ getShapesSmall CONSTANT)
