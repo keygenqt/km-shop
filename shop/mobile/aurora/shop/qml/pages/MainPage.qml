@@ -51,13 +51,13 @@ Page {
 
              Column {
                  width: parent.width - appTheme.paddingLarge * 2
-                 spacing: Theme.paddingMedium
+                 spacing: appTheme.paddingMedium
                  anchors.horizontalCenter: parent.horizontalCenter
 
                  Row {
                      id: iconButtons
                      width: parent.width
-                     spacing: Theme.paddingMedium
+                     spacing: appTheme.paddingMedium
                      anchors.horizontalCenter: parent.horizontalCenter
 
                      Components.AppBlock {
@@ -68,7 +68,7 @@ Page {
                          onClicked: pageStack.animatorPush(Qt.resolvedUrl("Contact.qml"), {}, PageStackAction.Animated)
 
                          Row {
-                             spacing: Theme.paddingMedium
+                             spacing: appTheme.paddingMedium
                              anchors.horizontalCenter: parent.horizontalCenter
 
                              Image {
