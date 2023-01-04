@@ -1,4 +1,4 @@
-Shop 6 in 1 (Майшоп)
+Shop 6 (7?) in 1 (Майшоп)
 ===================
 
 A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
