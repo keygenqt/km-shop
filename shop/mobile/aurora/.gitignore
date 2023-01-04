@@ -1,5 +1,6 @@
-/build-com*
+/build*
 .idea
 .DS_Store
 /shop/translations/*
 *pro.user
+.sfdk
