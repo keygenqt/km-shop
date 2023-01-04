@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%; width: 100%;">
+
+<head>
+        <meta charset="utf-8">
+        <title>KMM Test</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./kmm.min.js"></script>
+</head>
+
+<body style="height: 100%; width: 100%; margin: 0;">
+
+<div style="display: table; height: 100%; width: 100%;">
+        <div style="display: table-cell; vertical-align: middle;">
+                <div style="text-align: center;">
+                        <h2>KMM Test</h2>
+                        <p id="demo"></p>
+                </div>
+        </div>
+</div>
+
+        <script type="text/javascript">
+                function getCategoriesCount() {
+                        document.getElementById("demo").innerHTML = "loading..."
+                        setTimeout(async () => {
+                                try {
+                                        document.getElementById("demo").innerHTML = await $.getCategoriesCount()
+                                } catch (e) {
+                                        document.getElementById("demo").innerHTML = e
+                                }
+                        }, 1000)
+                        return 'getEmail'
+                }
+                getCategoriesCount()
+        </script>
+</body>
+</html>
+

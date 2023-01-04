@@ -2,7 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import AppTheme 1.0
 import "../components" as Components
-import "../js/qmlKMM.js" as LibKMM
 
 Page {
     id: homePage
@@ -29,6 +28,10 @@ Page {
             MenuItem {
                 text: qsTr("Корзина")
                 onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CartPage.qml"), {}, PageStackAction.Replace)
+            }
+            MenuItem {
+                text: qsTr("KMM Page")
+                onClicked: pageStack.animatorPush(Qt.resolvedUrl("KmmPage.qml"), {}, PageStackAction.Animated)
             }
         }
 
@@ -113,6 +116,7 @@ Page {
                      }
                  }
 
+
                  Components.AppBlock {
                      width: parent.width
                      backgroundColor: appTheme.colorVariant1
@@ -128,21 +132,7 @@ Page {
                              Label {
                                  text: qsTr("В этом сезоне найди лучшее 🔥")
                                  color: "white"
-                                 bottomPadding: 10
-                                 font.pixelSize: appTheme.fontSizeBody2
-                             }
-
-                             Label {
-                                 text: "Const KMM: " + LibKMM.getContactEmail()
-                                 color: "black"
-                                 bottomPadding: 1
-                                 font.pixelSize: appTheme.fontSizeBody2
-                             }
-
-                             Label {
-                                 text: "Query KMM: " + LibKMM.getCountCategories()
-                                 color: "black"
-                                 bottomPadding: 10
+                                 bottomPadding: 4
                                  font.pixelSize: appTheme.fontSizeBody2
                              }
 
