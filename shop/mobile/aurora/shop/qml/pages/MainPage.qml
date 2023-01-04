@@ -2,7 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import AppTheme 1.0
 import "../components" as Components
-
+import "../js/qmlKMM.js" as LibKMM
 
 Page {
     id: homePage
@@ -128,7 +128,21 @@ Page {
                              Label {
                                  text: qsTr("В этом сезоне найди лучшее 🔥")
                                  color: "white"
-                                 padding: 1
+                                 bottomPadding: 10
+                                 font.pixelSize: appTheme.fontSizeBody2
+                             }
+
+                             Label {
+                                 text: "Const KMM: " + LibKMM.getContactEmail()
+                                 color: "black"
+                                 bottomPadding: 1
+                                 font.pixelSize: appTheme.fontSizeBody2
+                             }
+
+                             Label {
+                                 text: "Query KMM: " + LibKMM.getCountCategories()
+                                 color: "black"
+                                 bottomPadding: 10
                                  font.pixelSize: appTheme.fontSizeBody2
                              }
 

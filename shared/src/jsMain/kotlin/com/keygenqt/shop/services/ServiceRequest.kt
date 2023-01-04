@@ -34,7 +34,7 @@ actual fun httpClient(config: HttpClientConfig<*>.() -> Unit) = HttpClient(Js) {
  */
 @JsExport
 @Suppress("unused", "NON_EXPORTABLE_TYPE")
-class ServiceRequestJS(apiUrl: String) {
+class ServiceRequestJS(apiUrl: String = "") {
     private val request = ServiceRequest(apiUrl)
 
     val get by lazy { GetRequestPromise(request) }
