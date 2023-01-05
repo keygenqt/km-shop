@@ -1,4 +1,4 @@
-Shop 6 (7?) in 1 (Майшоп)
+Shop 6 in 1 (Майшоп)
 ===================
 
 A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
@@ -94,6 +94,8 @@ All platforms use the latest stack.
 #### Preview
 
 <p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/preview-aurora.png" width="36%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_20-22-22.gif" width="36%"/>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_02-31-39.gif" width="36%"/>
 </p>
 
