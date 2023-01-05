@@ -86,7 +86,8 @@ All platforms use the latest stack.
 
 ## Aurora App (Experimental)
 
-* Url: *Coming soon*
+[![picture](data/common/btn_youtube.png)](https://youtu.be/MgwiskFeR8E)
+
 * Based: [Qt](https://www.qt.io/)
 * Platform: **Aurora OS**
 
