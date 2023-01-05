@@ -4,4 +4,4 @@
 /shop/translations/*
 *pro.user
 .sfdk
-qml/js-webpack/kmm.min.js
+/shop/qml/js-webpack/kmm.min.js
