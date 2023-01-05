@@ -94,9 +94,9 @@ All platforms use the latest stack.
 #### Preview
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/preview-aurora.png" width="36%"/>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_20-22-22.gif" width="36%"/>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_02-31-39.gif" width="36%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/preview-aurora.png" width="32%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_20-22-22.gif" width="32.5%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-05_02-31-39.gif" width="32.5%"/>
 </p>
 
 # License
