@@ -17,6 +17,7 @@ HEADERS += \
 
 DISTFILES += \
     qml/components/AppBlock.qml \
+    qml/components/KMMAgent.qml \
     qml/pages/KmmPage.qml \
     rpm/com.keygenqt.shop.spec \
 

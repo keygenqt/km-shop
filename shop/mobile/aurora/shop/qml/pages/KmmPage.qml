@@ -2,9 +2,6 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import AppTheme 1.0
 import "../components" as Components
-import "../js/qmlKMM.js" as LibKMM
-import Sailfish.WebView 1.0
-import Sailfish.WebEngine 1.0
 
 Page {
     id: kmmPage
@@ -45,7 +42,7 @@ Page {
                          backgroundColor: appTheme.colorVariant2
                          disabled: false
 
-                         onClicked: webView.runJavaScript("return $.capitalize('text for capitalize')", function(result) {
+                         onClicked: webview.runJavaScript("return $.capitalize('text for capitalize')", function(result) {
                              kmmPage.kmmResponse = result
                          });
 
@@ -65,8 +62,8 @@ Page {
                          backgroundColor: appTheme.colorVariant2
                          disabled: false
 
-                         onClicked: webView.runJavaScript("return getCategoriesCount()", function(result) {
-                             console.log("Result", result);
+                         onClicked: webview.runJavaScript("return action('getCategoriesCount')", function(result) {
+                             console.log("Result2", result);
                          });
 
                          Row {
@@ -83,18 +80,6 @@ Page {
 
                  Components.AppBlock {
                      width: parent.width
-                     backgroundColor: appTheme.colorVariant3
-
-                     WebView {
-                         id: webView
-                         height: 400
-                         width: parent.width
-                         url: "../js-webpack/index.html"
-                     }
-                 }
-
-                 Components.AppBlock {
-                     width: parent.width
                      backgroundColor: appTheme.colorVariant1
 
                      Row {
@@ -106,14 +91,13 @@ Page {
                              spacing: appTheme.paddingSmall
 
                              Label {
-                                 text: "JS KMM Const: " + LibKMM.getContactEmail()
+                                 text: "KMM response: " + kmmPage.kmmResponse
                                  color: "white"
-                                 bottomPadding: 10
                                  font.pixelSize: appTheme.fontSizeBody2
                              }
 
                              Label {
-                                 text: "WebView KMM Response: " + kmmPage.kmmResponse
+                                 text: "KMM async response: " + webview.response
                                  color: "white"
                                  font.pixelSize: appTheme.fontSizeBody2
                              }

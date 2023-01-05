@@ -37,6 +37,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "components" as Components
 
 ApplicationWindow {
     objectName: "applicationWindow"
@@ -44,4 +45,10 @@ ApplicationWindow {
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
     allowedOrientations: Orientation.Portrait
     _defaultPageOrientations: Orientation.Portrait
+
+    Components.KMMAgent {
+        id: webview
+//        property var response
+//        onResponseChanged: webview.response = webview.response
+    }
 }
