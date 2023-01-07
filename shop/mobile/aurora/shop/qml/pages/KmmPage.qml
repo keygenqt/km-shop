@@ -6,7 +6,12 @@ import "../components" as Components
 Page {
     id: kmmPage
 
-    property string kmmResponse: "Empty"
+    property string response0: "Empty"
+    property string response1: "Empty"
+    property string response2: "Empty"
+
+    property string error1: ""
+    property string error2: ""
 
     AppTheme {
         id: appTheme
@@ -31,50 +36,61 @@ Page {
                  spacing: appTheme.paddingMedium
                  anchors.horizontalCenter: parent.horizontalCenter
 
-                 Row {
-                     id: iconButtons
+                 Components.AppBlock {
                      width: parent.width
-                     spacing: appTheme.paddingMedium
-                     anchors.horizontalCenter: parent.horizontalCenter
+                     backgroundColor: appTheme.colorVariant2
+                     disabled: false
 
-                     Components.AppBlock {
-                         width: parent.width / 2 - appTheme.paddingMedium / 2
-                         backgroundColor: appTheme.colorVariant2
-                         disabled: false
+                     onClicked: agent.run("return kmm.AppConstants.other.CONTACT_EMAIL", function(result) {
+                         kmmPage.response0 = result
+                     });
 
-                         onClicked: webview.runJavaScript("return $.capitalize('text for capitalize')", function(result) {
-                             kmmPage.kmmResponse = result
-                         });
-
-                         Row {
-                             spacing: appTheme.paddingMedium
-                             anchors.horizontalCenter: parent.horizontalCenter
-                             Label {
-                                 text: qsTr("Just fun")
-                                 color: "white"
-                                 font.pixelSize: appTheme.fontSizeH6
-                             }
-                         }
+                     Label {
+                         text: qsTr("Just fun")
+                         color: "white"
+                         font.pixelSize: appTheme.fontSizeH6
                      }
+                 }
 
-                     Components.AppBlock {
-                         width: parent.width / 2 - appTheme.paddingMedium / 2
-                         backgroundColor: appTheme.colorVariant2
-                         disabled: false
+                 Components.AppBlock {
+                     width: parent.width
+                     backgroundColor: appTheme.colorVariant2
+                     disabled: false
+                     onClicked: agent.run(
+                        "action1()",
+                        function(result) {
+                            kmmPage.response1 = result
+                        },
+                        function(error) {
+                            kmmPage.error1 = error
+                        }
+                    );
 
-                         onClicked: webview.runJavaScript("return action('getCategoriesCount')", function(result) {
-                             console.log("Result2", result);
-                         });
+                     Label {
+                         text: qsTr("Ktor async fun1")
+                         color: "white"
+                         font.pixelSize: appTheme.fontSizeH6
+                     }
+                 }
 
-                         Row {
-                             spacing: appTheme.paddingMedium
-                             anchors.horizontalCenter: parent.horizontalCenter
-                             Label {
-                                 text: qsTr("Ktor async fun")
-                                 color: "white"
-                                 font.pixelSize: appTheme.fontSizeH6
-                             }
-                         }
+                 Components.AppBlock {
+                     width: parent.width
+                     backgroundColor: appTheme.colorVariant2
+                     disabled: false
+                     onClicked: agent.run(
+                        "action2()",
+                        function(result) {
+                            kmmPage.response2 = result
+                        },
+                        function(error) {
+                            kmmPage.error2 = error
+                        }
+                    );
+
+                     Label {
+                         text: qsTr("Ktor async fun2")
+                         color: "white"
+                         font.pixelSize: appTheme.fontSizeH6
                      }
                  }
 
@@ -91,13 +107,19 @@ Page {
                              spacing: appTheme.paddingSmall
 
                              Label {
-                                 text: "KMM response: " + kmmPage.kmmResponse
+                                 text: "KMM response: " + kmmPage.response0
                                  color: "white"
                                  font.pixelSize: appTheme.fontSizeBody2
                              }
 
                              Label {
-                                 text: "KMM async response: " + webview.response
+                                 text: "KMM async response1: " + (kmmPage.error1 ? kmmPage.error1 : kmmPage.response1)
+                                 color: "white"
+                                 font.pixelSize: appTheme.fontSizeBody2
+                             }
+
+                             Label {
+                                 text: "KMM async response2: " + (kmmPage.error2 ? kmmPage.error2 : kmmPage.response2)
                                  color: "white"
                                  font.pixelSize: appTheme.fontSizeBody2
                              }

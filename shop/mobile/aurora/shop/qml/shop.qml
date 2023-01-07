@@ -47,8 +47,6 @@ ApplicationWindow {
     _defaultPageOrientations: Orientation.Portrait
 
     Components.KMMAgent {
-        id: webview
-//        property var response
-//        onResponseChanged: webview.response = webview.response
+        id: agent
     }
 }

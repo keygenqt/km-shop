@@ -5,7 +5,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'kmm.min.js',
-        library: '$',
+        library: 'kmm',
         libraryTarget: 'umd',
     },
     module: {

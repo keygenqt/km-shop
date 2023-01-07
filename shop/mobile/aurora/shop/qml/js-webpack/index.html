@@ -10,26 +10,40 @@
 
 <body>
     <script type="text/javascript">
-
-        function action(topic) {
-            send("Loading...")
-            setTimeout(async () => {
+        function action1() {
+            async function action1() {
                 try {
-                    const count = await $.getCategoriesCount()
-                    send(`${count}`)
+                    const categories = await kmm.AppHttpClient.get.categoriesPublished()
+                    send(`${categories.toArray().length}`)
                 } catch (e) {
                     send(e)
                 }
-            }, 1000)
+            }
+            send("Loading...")
+            setTimeout(action1, 3000)
         }
 
-        function send(topic) {
-            var customEvent = new CustomEvent("framescript:log",
-                {detail: { topic: topic}});
+        function action2() {
+            async function action2() {
+                try {
+                    const categories = await kmm.AppHttpClient.get.categoriesPublished()
+                    send(`${categories.toArray().length}`)
+                } catch (e) {
+                    send(e)
+                }
+            }
+            send("Loading...")
+            setTimeout(action2, 1000)
+        }
+
+        function send(response) {
+            const caller = kmm.Helper.getCaller();
+            var customEvent = new CustomEvent("framescript:log", {detail: {
+                response: response,
+                caller: caller
+            }});
             document.dispatchEvent(customEvent);
         }
-
-        action('getCategoriesCount')
     </script>
 </body>
 </html>
