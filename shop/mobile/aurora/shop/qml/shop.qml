@@ -38,15 +38,23 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "components" as Components
+import AppTheme 1.0
 
 ApplicationWindow {
     objectName: "applicationWindow"
-    initialPage: Qt.resolvedUrl("pages/MainPage.qml")
+    initialPage: Qt.resolvedUrl("pages/SplashPage.qml")
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
     allowedOrientations: Orientation.Portrait
     _defaultPageOrientations: Orientation.Portrait
 
     Components.KMMAgent {
         id: agent
+        onCompleted: {
+            pageStack.animatorReplace(Qt.resolvedUrl("pages/MainPage.qml"), {}, PageStackAction.Replace)
+        }
+    }
+
+    AppTheme {
+        id: appTheme
     }
 }

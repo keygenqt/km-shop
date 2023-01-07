@@ -4,15 +4,10 @@ import AppTheme 1.0
 
 SilicaItem {
 
-    AppTheme {
-        id: appTheme
-    }
-
     property alias icon: image
 
     id: placeholder
     anchors.fill: parent
-
 
     Rectangle {
         width: parent.width

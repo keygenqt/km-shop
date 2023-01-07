@@ -6,12 +6,10 @@ Item {
 
     id: idAgentBlock
 
+    signal completed()
     property var stateResponse: ({})
 
     function run(method, result, error) {
-        if (error) {
-            error("")
-        }
         if (method.indexOf("return") === -1) {
             idAgentBlock.stateResponse[method.substring(0, method.indexOf("()"))] = [result, error]
             webview.runJavaScript(method);
@@ -37,13 +35,16 @@ Item {
             switch (message) {
             case "webview:action":
                 try {
-                    if (JSON.stringify(data.response) === '{}') {
-                        idAgentBlock.stateResponse[data.caller][1]("Empty response")
-                    }
-                    else if (data.response.indexOf("Error") === -1) {
-                        idAgentBlock.stateResponse[data.caller][0](data.response)
+                    if (data.response === 'init') {
+                        idAgentBlock.completed()
                     } else {
-                        idAgentBlock.stateResponse[data.caller][1](data.response)
+                        if (JSON.stringify(data.response) !== '{}') {
+                            if (data.response.indexOf("Error") === -1) {
+                                idAgentBlock.stateResponse[data.caller][0](data.response)
+                            } else {
+                                idAgentBlock.stateResponse[data.caller][1](data.response)
+                            }
+                        }
                     }
                 } catch (e) {
                     console.log(e)

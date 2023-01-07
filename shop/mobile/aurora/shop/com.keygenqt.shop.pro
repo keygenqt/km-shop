@@ -17,8 +17,11 @@ HEADERS += \
 
 DISTFILES += \
     qml/components/AppBlock.qml \
+    qml/components/BlockError.qml \
+    qml/components/BlockLoading.qml \
     qml/components/KMMAgent.qml \
     qml/pages/KmmPage.qml \
+    qml/pages/SplashPage.qml \
     rpm/com.keygenqt.shop.spec \
 
 AURORAAPP_ICONS = 86x86 108x108 128x128 172x172

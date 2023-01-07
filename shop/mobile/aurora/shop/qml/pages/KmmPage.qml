@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import AppTheme 1.0
 import "../components" as Components
 
 Page {
@@ -12,10 +11,6 @@ Page {
 
     property string error1: ""
     property string error2: ""
-
-    AppTheme {
-        id: appTheme
-    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -56,15 +51,18 @@ Page {
                      width: parent.width
                      backgroundColor: appTheme.colorVariant2
                      disabled: false
-                     onClicked: agent.run(
-                        "action1()",
-                        function(result) {
-                            kmmPage.response1 = result
-                        },
-                        function(error) {
-                            kmmPage.error1 = error
-                        }
-                    );
+                     onClicked: {
+                         kmmPage.response1 = "Loading..."
+                         agent.run(
+                             "action1()",
+                             function(result) {
+                                 kmmPage.response1 = result
+                             },
+                             function(error) {
+                                 kmmPage.error1 = error
+                             }
+                         )
+                     }
 
                      Label {
                          text: qsTr("Ktor async fun1")
@@ -77,15 +75,18 @@ Page {
                      width: parent.width
                      backgroundColor: appTheme.colorVariant2
                      disabled: false
-                     onClicked: agent.run(
-                        "action2()",
-                        function(result) {
-                            kmmPage.response2 = result
-                        },
-                        function(error) {
-                            kmmPage.error2 = error
-                        }
-                    );
+                     onClicked: {
+                         kmmPage.response2 = "Loading..."
+                         agent.run(
+                             "action2()",
+                             function(result) {
+                                 kmmPage.response2 = result
+                             },
+                             function(error) {
+                                 kmmPage.error2 = error
+                             }
+                         )
+                     }
 
                      Label {
                          text: qsTr("Ktor async fun2")

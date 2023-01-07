@@ -10,6 +10,7 @@
 
 <body>
     <script type="text/javascript">
+
         function action1() {
             async function action1() {
                 try {
@@ -19,7 +20,6 @@
                     send(e)
                 }
             }
-            send("Loading...")
             setTimeout(action1, 3000)
         }
 
@@ -32,7 +32,6 @@
                     send(e)
                 }
             }
-            send("Loading...")
             setTimeout(action2, 1000)
         }
 
@@ -44,6 +43,19 @@
             }});
             document.dispatchEvent(customEvent);
         }
+
+        function init() {
+            async function action1() {
+                try { await kmm.AppHttpClient.get.categoriesPublished() } catch (e) {}
+                // splash loading response
+                // first query error
+                // Companion_getInstance_8().d27_1 is undefined
+                send("init")
+            }
+            setTimeout(action1, 0)
+        }
+
+        init()
     </script>
 </body>
 </html>

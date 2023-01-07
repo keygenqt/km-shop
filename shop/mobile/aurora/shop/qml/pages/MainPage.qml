@@ -1,14 +1,9 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import AppTheme 1.0
 import "../components" as Components
 
 Page {
     id: homePage
-
-    AppTheme {
-        id: appTheme
-    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -169,12 +164,62 @@ Page {
                  }
 
                  Components.AppBlock {
+                     id: contentBlock
                      width: parent.width
                      backgroundColor: appTheme.colorVariant3
+                     Component.onCompleted: {
+                         agent.run(
+                             "action1()",
+                             function(result) {
+                                 contentBlock.response = result
+                             },
+                             function(error) {
+                                 contentBlock.error = error
+                             }
+                         )
+                     }
+
+                     property string response: ""
+                     property string error: ""
+
+                     Components.BlockLoading {
+                        visible: !contentBlock.response && !contentBlock.error
+                     }
+
+                     Components.BlockError {
+                        error: contentBlock.error
+                        visible: contentBlock.error
+                     }
 
                      Column {
                          width: parent.width
                          spacing: appTheme.paddingLarge
+                         visible: contentBlock.response
+
+                         Row {
+                             width: parent.width
+                             spacing: 0
+
+                             Label {
+                                 id: allLabel
+                                 text: qsTr("Топ категорий")
+                                 font.pixelSize: appTheme.fontSizeH5
+                                 color: "white"
+                             }
+
+                             Rectangle {
+                                 color: 'transparent'
+                                 height: 1
+                                 width: parent.width - allLabel.width - allButton.width
+                             }
+
+                             Components.AppButton {
+                                 id: allButton
+                                 text: qsTr("Все")
+                                 onClicked: console.log("Click")
+                                 padding: appTheme.paddingMedium
+                             }
+                         }
 
                          Components.AppBlock {
                              width: parent.width
