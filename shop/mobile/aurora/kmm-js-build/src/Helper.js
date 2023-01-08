@@ -7,5 +7,13 @@ export const Helper = {
             const parentMatches = allMatches[2].match(/(\w+)@|at (\w+) \(/);
             return parentMatches[1] || parentMatches[2];
         }
+    },
+    sendEvent: function (response) {
+        const caller = Helper.getCaller();
+        const customEvent = new CustomEvent("framescript:log", {detail: {
+                response: response,
+                caller: caller
+            }});
+        document.dispatchEvent(customEvent);
     }
 }

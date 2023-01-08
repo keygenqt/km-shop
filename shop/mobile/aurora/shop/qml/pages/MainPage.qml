@@ -24,10 +24,6 @@ Page {
                 text: qsTr("Корзина")
                 onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CartPage.qml"), {}, PageStackAction.Replace)
             }
-            MenuItem {
-                text: qsTr("KMM Page")
-                onClicked: pageStack.animatorPush(Qt.resolvedUrl("KmmPage.qml"), {}, PageStackAction.Animated)
-            }
         }
 
          Column {
@@ -169,9 +165,18 @@ Page {
                      backgroundColor: appTheme.colorVariant3
                      Component.onCompleted: {
                          agent.run(
-                             "action1()",
+                             "kmm.Requests.get.categoriesPublished()",
                              function(result) {
-                                 contentBlock.response = result
+                                 try {
+                                     var list = JSON.parse(result)
+                                     contentBlock.response = list
+                                     for (var index = 0; index < list.length; index++) {
+                                         list[index]['bg'] = index < 4 ? "../icons/cat_bg_" +(index + 1)+ ".svg" : "../icons/cat_bg_4.svg"
+                                         categoryModel.append(list[index])
+                                     }
+                                 } catch (e) {
+                                     contentBlock.error = error
+                                 }
                              },
                              function(error) {
                                  contentBlock.error = error
@@ -179,7 +184,7 @@ Page {
                          )
                      }
 
-                     property string response: ""
+                     property var response
                      property string error: ""
 
                      Components.BlockLoading {
@@ -188,13 +193,17 @@ Page {
 
                      Components.BlockError {
                         error: contentBlock.error
-                        visible: contentBlock.error
+                        visible: contentBlock.error !== ""
+                     }
+
+                     ListModel {
+                         id: categoryModel
                      }
 
                      Column {
                          width: parent.width
                          spacing: appTheme.paddingLarge
-                         visible: contentBlock.response
+                         visible: contentBlock.response !== undefined
 
                          Row {
                              width: parent.width
@@ -221,98 +230,40 @@ Page {
                              }
                          }
 
-                         Components.AppBlock {
-                             width: parent.width
-                             backgroundColor: "white"
-                             bgSource: "../icons/cat_bg_1.svg"
+                         Repeater {
+                               id: exampleRepeater
+                               model: categoryModel
+                               delegate: Components.AppBlock {
+                                   width: parent.width
+                                   backgroundColor: "white"
+                                   bgSource: bg
 
-                             Label {
-                                 text: qsTr("Бантики")
-                                 font.pixelSize: appTheme.fontSizeBody2
-                                 bottomPadding: 5
-                             }
+                                   Label {
+                                       text: d4o_1
+                                       font.pixelSize: appTheme.fontSizeBody2
+                                       bottomPadding: 5
+                                   }
 
-                             Column {
-                                 width: parent.width
-                                 spacing: appTheme.paddingLarge
+                                   Column {
+                                       width: parent.width
+                                       spacing: appTheme.paddingLarge
 
-                                 Text {
-                                     width: parent.width
-                                     text: qsTr("Стильные бантики ручной работы")
-                                     wrapMode: Text.WordWrap
-                                     font.pointSize: appTheme.fontSizeBody1
-                                 }
+                                       Text {
+                                           width: parent.width
+                                           text: e4o_1
+                                           wrapMode: Text.WordWrap
+                                           font.pointSize: appTheme.fontSizeBody1
+                                       }
 
-                                 Components.AppButton {
-                                     text: qsTr("Смотреть")
-                                     icon: "image://theme/icon-m-enter-next"
-                                     onClicked: console.log("Click")
-                                     padding: appTheme.paddingMedium
-                                 }
-                             }
-                         }
-
-                         Components.AppBlock {
-                             width: parent.width
-                             backgroundColor: "white"
-                             bgSource: "../icons/cat_bg_2.svg"
-
-                             Label {
-                                 text: qsTr("Наборы")
-                                 font.pixelSize: appTheme.fontSizeBody2
-                                 bottomPadding: 5
-                             }
-
-                             Column {
-                                 width: parent.width
-                                 spacing: appTheme.paddingLarge
-
-                                 Text {
-                                     width: parent.width
-                                     text: qsTr("Наборы бантиков на каждый день")
-                                     wrapMode: Text.WordWrap
-                                     font.pointSize: appTheme.fontSizeBody1
-                                 }
-
-                                 Components.AppButton {
-                                     text: qsTr("Смотреть")
-                                     icon: "image://theme/icon-m-enter-next"
-                                     onClicked: console.log("Click")
-                                     padding: appTheme.paddingMedium
-                                 }
-                             }
-                         }
-
-                         Components.AppBlock {
-                             width: parent.width
-                             backgroundColor: "white"
-                             bgSource: "../icons/cat_bg_3.svg"
-
-                             Label {
-                                 text: qsTr("Ободки")
-                                 font.pixelSize: appTheme.fontSizeBody2
-                                 bottomPadding: 5
-                             }
-
-                             Column {
-                                 width: parent.width
-                                 spacing: appTheme.paddingLarge
-
-                                 Text {
-                                     width: parent.width
-                                     text: qsTr("Стильные бантики ручной работы")
-                                     wrapMode: Text.WordWrap
-                                     font.pointSize: appTheme.fontSizeBody1
-                                 }
-
-                                 Components.AppButton {
-                                     text: qsTr("Смотреть")
-                                     icon: "image://theme/icon-m-enter-next"
-                                     onClicked: console.log("Click")
-                                     padding: appTheme.paddingMedium
-                                 }
-                             }
-                         }
+                                       Components.AppButton {
+                                           text: qsTr("Смотреть")
+                                           icon: "image://theme/icon-m-enter-next"
+                                           onClicked: console.log("Click")
+                                           padding: appTheme.paddingMedium
+                                       }
+                                   }
+                               }
+                           }
                      }
                  }
              }

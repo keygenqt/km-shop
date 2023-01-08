@@ -11,7 +11,17 @@ Item {
 
     function run(method, result, error) {
         if (method.indexOf("return") === -1) {
-            idAgentBlock.stateResponse[method.substring(0, method.indexOf("()"))] = [result, error]
+
+            var key
+            var point = method.lastIndexOf(".")
+
+            if (point !== -1) {
+                key = method.substring(point + 1, method.indexOf("("))
+            } else {
+                key = method.substring(0, method.indexOf("("))
+            }
+
+            idAgentBlock.stateResponse[key] = [result, error]
             webview.runJavaScript(method);
         } else {
             webview.runJavaScript(method, result, error);
@@ -38,6 +48,9 @@ Item {
                     if (data.response === 'init') {
                         idAgentBlock.completed()
                     } else {
+
+                        console.debug(JSON.stringify(data))
+
                         if (JSON.stringify(data.response) !== '{}') {
                             if (data.response.indexOf("Error") === -1) {
                                 idAgentBlock.stateResponse[data.caller][0](data.response)

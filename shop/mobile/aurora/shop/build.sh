@@ -24,7 +24,7 @@ fi
 
 cp "$distJs" "$distJsAurora"
 
-sleep 5
+sleep 1
 
 ## Aurora build
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )

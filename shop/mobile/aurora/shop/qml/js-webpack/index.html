@@ -10,51 +10,16 @@
 
 <body>
     <script type="text/javascript">
-
-        function action1() {
-            async function action1() {
-                try {
-                    const categories = await kmm.AppHttpClient.get.categoriesPublished()
-                    send(`${categories.toArray().length}`)
-                } catch (e) {
-                    send(e)
-                }
-            }
-            setTimeout(action1, 3000)
-        }
-
-        function action2() {
-            async function action2() {
-                try {
-                    const categories = await kmm.AppHttpClient.get.categoriesPublished()
-                    send(`${categories.toArray().length}`)
-                } catch (e) {
-                    send(e)
-                }
-            }
-            setTimeout(action2, 1000)
-        }
-
-        function send(response) {
-            const caller = kmm.Helper.getCaller();
-            var customEvent = new CustomEvent("framescript:log", {detail: {
-                response: response,
-                caller: caller
-            }});
-            document.dispatchEvent(customEvent);
-        }
-
         function init() {
-            async function action1() {
+            async function init() {
                 try { await kmm.AppHttpClient.get.categoriesPublished() } catch (e) {}
                 // splash loading response
                 // first query error
                 // Companion_getInstance_8().d27_1 is undefined
-                send("init")
+                kmm.Helper.sendEvent("init")
             }
-            setTimeout(action1, 0)
+            setTimeout(init, 0)
         }
-
         init()
     </script>
 </body>
