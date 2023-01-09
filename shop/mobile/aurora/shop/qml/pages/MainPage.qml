@@ -5,6 +5,10 @@ import "../components" as Components
 Page {
     id: homePage
 
+    property var response
+    property string error: ""
+    property bool loading: true
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height + appTheme.paddingLarge
@@ -12,7 +16,7 @@ Page {
         VerticalScrollDecorator {}
 
         Components.GlobalMenu {
-            disabled: contentBlock.response === undefined
+            disabled: homePage.loading
         }
 
          Column {
@@ -89,31 +93,30 @@ Page {
                              function(result) {
                                  try {
                                      var list = JSON.parse(result)
-                                     contentBlock.response = list
+                                     homePage.response = list
                                      for (var index = 0; index < list.length; index++) {
                                          list[index]['bg'] = index < 4 ? "../icons/cat_bg_" +(index + 1)+ ".svg" : "../icons/cat_bg_4.svg"
                                          categoryModel.append(list[index])
                                      }
                                  } catch (e) {
-                                     contentBlock.error = error
+                                     homePage.error = error
                                  }
+                                 homePage.loading = false
                              },
                              function(error) {
-                                 contentBlock.error = error
+                                 homePage.error = error
+                                 homePage.loading = false
                              }
                          )
                      }
 
-                     property var response
-                     property string error: ""
-
                      Components.BlockLoading {
-                        visible: !contentBlock.response && !contentBlock.error
+                        visible: homePage.loading
                      }
 
                      Components.BlockError {
-                        error: contentBlock.error
-                        visible: contentBlock.error !== ""
+                        error: homePage.error
+                        visible: homePage.error !== ""
                      }
 
                      ListModel {
@@ -123,7 +126,7 @@ Page {
                      Column {
                          width: parent.width
                          spacing: appTheme.paddingLarge
-                         visible: contentBlock.response !== undefined
+                         visible: homePage.response !== undefined
 
                          Row {
                              width: parent.width
@@ -151,7 +154,6 @@ Page {
                          }
 
                          Repeater {
-                               id: exampleRepeater
                                model: categoryModel
                                delegate: Components.AppBlock {
                                    width: parent.width
@@ -182,8 +184,8 @@ Page {
                                            padding: appTheme.paddingMedium
                                        }
                                    }
-                               }
-                           }
+                                }
+                        }
                      }
                  }
              }
