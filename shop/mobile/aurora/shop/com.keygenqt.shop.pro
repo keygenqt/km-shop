@@ -19,7 +19,9 @@ DISTFILES += \
     qml/components/AppBlock.qml \
     qml/components/BlockError.qml \
     qml/components/BlockLoading.qml \
+    qml/components/GlobalMenu.qml \
     qml/components/KMMAgent.qml \
+    qml/components/MainPageHeader.qml \
     qml/pages/SplashPage.qml \
     rpm/com.keygenqt.shop.spec \
 

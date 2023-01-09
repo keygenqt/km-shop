@@ -14,9 +14,9 @@ Column {
 
     property string colorText: "black"
     property string colorTextAction: "white"
-    property string background: appTheme.colorVariant2
+    property string background: "white"
     property string backgroundItem: "transparent"
-    property string backgroundAction: "#2d2e31"
+    property string backgroundAction: appTheme.colorVariant1
 
     property var tab
 
@@ -37,6 +37,8 @@ Column {
         height: idRowButtons.height
         color: idAppTabs.background
         radius: appTheme.shapesLarge
+        border.width: 2
+        border.color: appTheme.colorVariant1
 
         Rectangle {
             id: toggleswitch

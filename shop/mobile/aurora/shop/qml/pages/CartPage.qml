@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../components" as Components
 
 Page {
     id: cartPage
@@ -10,39 +11,14 @@ Page {
         }
     }
 
-    SilicaListView {
-        id: listView
+    SilicaFlickable {
         anchors.fill: parent
 
-        header: PageHeader {
+        Components.MainPageHeader {
             title: qsTr("Корзина")
-            extraContent.children: [
-                Image {
-                    source: Qt.resolvedUrl("../icons/toolbar_icon.png")
-                    fillMode: Image.PreserveAspectFit
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: 60
-                    height: 60
-                }
-            ]
         }
 
-        PullDownMenu {
-            id: pullDownMenu
-            topMargin: Theme.paddingLarge
-            bottomMargin: Theme.paddingLarge
-
-            MenuItem {
-                text: qsTr("Главная")
-                visible: !listView.count
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("MainPage.qml"), {}, PageStackAction.Replace)
-            }
-            MenuItem {
-                text: qsTr("Каталог")
-                visible: !listView.count
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CatalogPage.qml"), {}, PageStackAction.Replace)
-            }
-        }
+        Components.GlobalMenu {}
 
         InfoLabel {
             text: "CartPage"

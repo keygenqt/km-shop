@@ -11,102 +11,22 @@ Page {
 
         VerticalScrollDecorator {}
 
-        PullDownMenu {
-            id: pullDownMenu
-            topMargin: appTheme.paddingLarge
-            bottomMargin: appTheme.paddingLarge
-
-            MenuItem {
-                text: qsTr("Каталог")
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CatalogPage.qml"), {}, PageStackAction.Replace)
-            }
-            MenuItem {
-                text: qsTr("Корзина")
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CartPage.qml"), {}, PageStackAction.Replace)
-            }
+        Components.GlobalMenu {
+            disabled: contentBlock.response === undefined
         }
 
          Column {
              id: column
              width: parent.width
 
-             PageHeader {
+             Components.MainPageHeader {
                  title: qsTr("Майшоп")
-                 extraContent.children: [
-                     Image {
-                         source: Qt.resolvedUrl("../icons/toolbar_icon.png")
-                         fillMode: Image.PreserveAspectFit
-                         anchors.verticalCenter: parent.verticalCenter
-                         width: 60
-                         height: 60
-                     }
-                 ]
              }
 
              Column {
                  width: parent.width - appTheme.paddingLarge * 2
                  spacing: appTheme.paddingMedium
                  anchors.horizontalCenter: parent.horizontalCenter
-
-                 Row {
-                     id: iconButtons
-                     width: parent.width
-                     spacing: appTheme.paddingMedium
-                     anchors.horizontalCenter: parent.horizontalCenter
-
-                     Components.AppBlock {
-                         width: parent.width / 2 - appTheme.paddingMedium / 2
-                         backgroundColor: appTheme.colorVariant2
-                         disabled: false
-
-                         onClicked: pageStack.animatorPush(Qt.resolvedUrl("Contact.qml"), {}, PageStackAction.Animated)
-
-                         Row {
-                             spacing: appTheme.paddingMedium
-                             anchors.horizontalCenter: parent.horizontalCenter
-
-                             Image {
-                                 source: "image://theme/icon-m-mail?white"
-                                 fillMode: Image.PreserveAspectFit
-                                 anchors.verticalCenter: parent.verticalCenter
-                                 width: 47
-                                 height: 47
-                             }
-                             Label {
-                                 text: qsTr("Контакты")
-                                 color: "white"
-                                 font.pixelSize: appTheme.fontSizeH6
-                             }
-                         }
-                     }
-
-                     Components.AppBlock {
-                         width: parent.width / 2 - appTheme.paddingMedium / 2
-                         backgroundColor: appTheme.colorVariant2
-                         disabled: false
-
-                         onClicked: pageStack.animatorPush(Qt.resolvedUrl("OrderSearchPage.qml"), {}, PageStackAction.Animated)
-
-                         Row {
-                             spacing: appTheme.paddingMedium
-                             anchors.horizontalCenter: parent.horizontalCenter
-
-                             Image {
-                                 source: "image://theme/icon-m-company?white"
-                                 fillMode: Image.PreserveAspectFit
-                                 anchors.verticalCenter: parent.verticalCenter
-                                 width: 47
-                                 height: 47
-                             }
-                             Label {
-                                 text: qsTr("Заказы")
-                                 color: "white"
-                                 font.pixelSize: appTheme.fontSizeH6
-                             }
-                         }
-                     }
-                 }
-
 
                  Components.AppBlock {
                      width: parent.width
@@ -257,7 +177,7 @@ Page {
 
                                        Components.AppButton {
                                            text: qsTr("Смотреть")
-                                           icon: "image://theme/icon-m-enter-next"
+                                           iconEnd: "image://theme/icon-m-enter-next"
                                            onClicked: console.log("Click")
                                            padding: appTheme.paddingMedium
                                        }

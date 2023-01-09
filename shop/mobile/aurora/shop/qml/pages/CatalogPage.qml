@@ -18,37 +18,14 @@ Page {
 
         VerticalScrollDecorator {}
 
-        PullDownMenu {
-            id: pullDownMenu
-            topMargin: appTheme.paddingLarge
-            bottomMargin: appTheme.paddingLarge
-
-            MenuItem {
-                text: qsTr("Главная")
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("MainPage.qml"), {}, PageStackAction.Replace)
-            }
-            MenuItem {
-                text: qsTr("Корзина")
-                onClicked: pageStack.animatorReplace(Qt.resolvedUrl("CartPage.qml"), {}, PageStackAction.Replace)
-            }
-        }
+        Components.GlobalMenu {}
 
         Column {
             id: column
             width: parent.width
 
-            PageHeader {
-                id: idPageHeader
+            Components.MainPageHeader {
                 title: qsTr("Каталог")
-                extraContent.children: [
-                    Image {
-                        source: Qt.resolvedUrl("../icons/toolbar_icon.png")
-                        fillMode: Image.PreserveAspectFit
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: 60
-                        height: 60
-                    }
-                ]
             }
 
             Rectangle {
@@ -72,53 +49,50 @@ Page {
 
                     Column {
                         visible: tabIndex == 0
-                        opacity: tabIndex == 0 ? 1.0 : 0.7
+                        opacity: tabIndex == 0 ? 1.0 : 0.9
                         width: parent.width
                         spacing: appTheme.paddingMedium
 
                         Behavior on opacity {
-                            NumberAnimation { properties: "opacity"; easing.type: Easing.InOutQuad; duration: 100 }
+                            NumberAnimation { properties: "opacity"; easing.type: Easing.InOutQuad; duration: 300 }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant3
+                            borderColor: appTheme.colorVariant2
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Категория 1")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant3
+                            borderColor: appTheme.colorVariant2
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Категория 2")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant3
+                            borderColor: appTheme.colorVariant2
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Категория 3")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
                     }
@@ -126,111 +100,118 @@ Page {
 
                     Column {
                         visible: tabIndex == 1
-                        opacity: tabIndex == 1 ? 1.0 : 0.7
+                        opacity: tabIndex == 1 ? 1.0 : 0.9
                         width: parent.width
                         spacing: appTheme.paddingMedium
 
                         Behavior on opacity {
-                            NumberAnimation { properties: "opacity"; easing.type: Easing.InOutQuad; duration: 100 }
+                            NumberAnimation { properties: "opacity"; easing.type: Easing.InOutQuad; duration: 300 }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 1")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 2")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 3")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 4")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 5")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 6")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
 
                         Components.AppBlock {
                             width: parent.width
-                            backgroundColor: appTheme.colorVariant4
+                            borderColor: appTheme.colorVariant3
                             disabled: false
 
                             Text {
                                 width: parent.width
                                 text: qsTr("Коллекция 7")
-                                color: "white"
                                 wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH4
+                                font.pixelSize: appTheme.fontSizeH6
                             }
                         }
+
+                        Components.AppBlock {
+                            width: parent.width
+                            borderColor: appTheme.colorVariant3
+                            disabled: false
+
+                            Text {
+                                width: parent.width
+                                text: qsTr("Коллекция 8")
+                                wrapMode: Text.WordWrap
+                                font.pixelSize: appTheme.fontSizeH6
+                            }
+                        }
+
                     }
                 }
             }

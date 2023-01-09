@@ -9,7 +9,8 @@ MouseArea {
     }
 
     property string text: ""
-    property string icon: ""
+    property string iconStart: ""
+    property string iconEnd: ""
     property bool disabled: false
     property string contentColor: "white"
     property string background: appTheme.colorVariant1
@@ -18,7 +19,7 @@ MouseArea {
     property bool _press: true
 
     id: idAppButton
-    height: content.height + idAppButton.padding - (icon.length == 0 ? 0 : 10)
+    height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
     width: content.width + idAppButton.padding * 2
 
     onPressedChanged: {
@@ -37,13 +38,23 @@ MouseArea {
     Row {
         id: content
         anchors.top: parent.top
-        anchors.topMargin: (idAppButton.padding - (icon.length == 0 ? 0 : 10)) / 2
+        anchors.topMargin: (idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)) / 2
         spacing: padding
         anchors.horizontalCenter: parent.horizontalCenter
 
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: iconStart.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconStart + "?" + idAppButton.contentColor)
+            fillMode: Image.PreserveAspectFit
+            width: iconStart.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
+            height: iconStart.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
+        }
+
         Label {
-            leftPadding: idAppButton.padding
-            rightPadding: icon.length == 0 ? idAppButton.padding : 0
+            rightPadding: iconEnd.length == 0 ? idAppButton.padding : 0
+            leftPadding: iconStart.length == 0 ? idAppButton.padding : 0
             bottomPadding: 3
             anchors.verticalCenter: parent.verticalCenter
             text: idAppButton.text
@@ -54,11 +65,11 @@ MouseArea {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: icon.length == 0 ? "" : Qt.resolvedUrl(idAppButton.icon + "?" + idAppButton.contentColor)
+            source: iconEnd.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconEnd + "?" + idAppButton.contentColor)
             fillMode: Image.PreserveAspectFit
-            width: icon.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+            width: iconEnd.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
                                                                                       : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
-            height: icon.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
+            height: iconEnd.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
                                                                                       : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
         }
     }
