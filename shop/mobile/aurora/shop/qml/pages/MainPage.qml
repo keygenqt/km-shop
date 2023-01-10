@@ -89,7 +89,8 @@ Page {
                      backgroundColor: appTheme.colorVariant3
                      Component.onCompleted: {
                          agent.run(
-                             "kmm.Requests.get.categoriesPublished()",
+                             // delay for exaple lottie animation
+                             "kmm.Requests.get.categoriesPublished(3000)",
                              function(result) {
                                  try {
                                      var list = JSON.parse(result)
@@ -110,7 +111,7 @@ Page {
                          )
                      }
 
-                     Components.BlockLoading {
+                     Components.BlockLoadingLottie {
                         visible: homePage.loading
                      }
 

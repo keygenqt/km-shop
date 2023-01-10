@@ -5,3 +5,5 @@
 *pro.user
 .sfdk
 /shop/qml/js-webpack/kmm.min.js
+## git clone https://github.com/keygenqt/lottie-qml.git "$PWD/shop/qml/lottie-qml"
+/shop/qml/lottie-qml/

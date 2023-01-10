@@ -26,11 +26,30 @@ cp "$distJs" "$distJsAurora"
 
 sleep 1
 
-## Aurora build
+## Change dir
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
 cd "$SCRIPT_DIR/../" || exit
 
+## Lottie download
+if [ -d "$PWD/shop/qml/lottie-qml" ] ; then
+  rm -rf "$PWD/shop/qml/lottie-qml"
+fi
+
+git clone https://github.com/keygenqt/lottie-qml.git "$PWD/shop/qml/lottie-qml"
+
+## Deleting files
+rm -rf "$PWD/shop/qml/lottie-qml/.git"
+rm -rf "$PWD/shop/qml/lottie-qml/data"
+
+rm "$PWD/shop/qml/lottie-qml/.gitignore"
+rm "$PWD/shop/qml/lottie-qml/CMakeLists.txt"
+rm "$PWD/shop/qml/lottie-qml/COPYING.LGPL-2.1"
+rm "$PWD/shop/qml/lottie-qml/README.md"
+rm "$PWD/shop/qml/lottie-qml/tester.qml"
+
+sleep 1
+
+## Aurora build
 sfdk="$HOME/AuroraOS/bin/sfdk"
 target='AuroraOS-4.0.2.209-base-i486.default.default'
 engine='AuroraOS-4.0.2.209-base-i486.default'

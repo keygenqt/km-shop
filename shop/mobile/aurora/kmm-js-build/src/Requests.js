@@ -6,7 +6,7 @@ const defaultDelay = 500
 
 export const Requests = {
     get: {
-        categoriesPublishedCount: function () {
+        categoriesPublishedCount: function (delay = defaultDelay) {
             async function categoriesPublishedCount() {
                 try {
                     const categories = await AppHttpClient.get.categoriesPublished()
@@ -15,9 +15,9 @@ export const Requests = {
                     Helper.sendEvent(e)
                 }
             }
-            setTimeout(categoriesPublishedCount, defaultDelay)
+            setTimeout(categoriesPublishedCount, delay)
         },
-        categoriesPublished: function () {
+        categoriesPublished: function (delay = defaultDelay) {
             async function categoriesPublished() {
                 try {
                     const categories = await AppHttpClient.get.categoriesPublished()
@@ -26,9 +26,9 @@ export const Requests = {
                     Helper.sendEvent(e)
                 }
             }
-            setTimeout(categoriesPublished, defaultDelay)
+            setTimeout(categoriesPublished, delay)
         },
-        collectionsPublished: function () {
+        collectionsPublished: function (delay = defaultDelay) {
             async function collectionsPublished() {
                 try {
                     const categories = await AppHttpClient.get.collectionsPublished()
@@ -37,7 +37,7 @@ export const Requests = {
                     Helper.sendEvent(e)
                 }
             }
-            setTimeout(collectionsPublished, defaultDelay)
+            setTimeout(collectionsPublished, delay)
         },
     }
 }
