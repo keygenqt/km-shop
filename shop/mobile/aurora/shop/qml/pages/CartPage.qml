@@ -11,18 +11,24 @@ Page {
         }
     }
 
-    SilicaFlickable {
-        anchors.fill: parent
+    Components.AppPage {
+        header: qsTr("Корзина")
+        selectedPage: "itemMenuCart"
+        height: parent.height
 
-        Components.MainPageHeader {
-            title: qsTr("Корзина")
-        }
+        Components.AppBlock {
+            height: parent.height
+            width: parent.width
+            borderColor: appTheme.colorVariant1
+            backgroundColor: "white"
 
-        Components.GlobalMenu {}
-
-        InfoLabel {
-            text: "CartPage"
-            anchors.centerIn: parent
+            Text {
+                width: parent.width
+                text: qsTr("CartPage")
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: appTheme.fontSizeH6
+            }
         }
     }
 

@@ -9,27 +9,21 @@ Page {
 
     property bool activeMap: false
 
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: column.height + appTheme.paddingLarge
+    Components.AppPage {
+        header: qsTr("Контакты")
+        selectedPage: "itemMenuContacts"
+        fixed: false
         interactive: !activeMap
 
-        VerticalScrollDecorator {}
-
-        Components.GlobalMenu {}
-
-        Column {
-            id: column
+        Rectangle {
+            height: idItems.height
             width: parent.width
-
-            Components.MainPageHeader {
-                title: qsTr("Контакты")
-            }
+            color: 'transparent'
 
             Column {
-                width: parent.width - appTheme.paddingLarge * 2
-                spacing: appTheme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
+                id: idItems
+                width: parent.width
+                spacing: appTheme.paddingMedium
 
                 Components.AppBlock {
                     width: parent.width
@@ -90,7 +84,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant3
+                    borderColor: appTheme.colorVariant1
                     isOpacity: contactPage.activeMap
 
                     Row {
@@ -102,7 +96,7 @@ Page {
                             id: idIconRectangle2
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant3
+                            border.color: appTheme.colorVariant1
                             border.width: 2
                             radius: 150
 
@@ -155,7 +149,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant3
+                    borderColor: appTheme.colorVariant1
                     isOpacity: contactPage.activeMap
 
                     Row {
@@ -167,7 +161,7 @@ Page {
                             id: idIconRectangle3
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant3
+                            border.color: appTheme.colorVariant1
                             border.width: 2
                             radius: 150
 
@@ -220,7 +214,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant3
+                    borderColor: appTheme.colorVariant1
                     isOpacity: contactPage.activeMap
 
                     Column {
@@ -231,7 +225,7 @@ Page {
                         Rectangle {
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant3
+                            border.color: appTheme.colorVariant1
                             border.width: 2
                             radius: 150
                             anchors.horizontalCenter: parent.horizontalCenter
@@ -267,7 +261,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant3
+                    borderColor: appTheme.colorVariant1
                     padding: 8
 
                     WebView {
@@ -286,14 +280,14 @@ Page {
                     }
                 }
             }
-        }
 
-        MouseArea {
-            height: column.height + appTheme.paddingLarge - 350
-            width: parent.width
-            visible: contactPage.activeMap
-            onPressed: {
-                idMap.focus = false
+            MouseArea {
+                height: parent.height - 350
+                width: parent.width
+                visible: contactPage.activeMap
+                onPressed: {
+                    idMap.focus = false
+                }
             }
         }
     }

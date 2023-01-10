@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "../lottie-qml/src/qml" as LottieQml
 
 Item {
 
@@ -8,6 +7,7 @@ Item {
     height: 150
     width: parent.width
 
+    property color borderColor: "transparent"
     property bool _ready: false
 
     Rectangle {
@@ -17,6 +17,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         radius: 150
         color: 'white'
+        border.width: 2
+        border.color: idBlockLoading.borderColor
 
         AnimatedImage {
             source: Qt.resolvedUrl("../icons/block_loader.gif")

@@ -5,38 +5,22 @@ import "../components" as Components
 Page {
     id: orderSearchPage
 
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: column.height + appTheme.paddingLarge
+    Components.AppPage {
+        header: qsTr("Ваши заказы")
+        selectedPage: "itemMenuOrderSearch"
 
-        VerticalScrollDecorator {}
-
-        Components.GlobalMenu {}
-
-        Column {
-            id: column
+        Components.AppBlock {
+            height: parent.height
             width: parent.width
+            borderColor: appTheme.colorVariant1
+            backgroundColor: "white"
 
-            Components.MainPageHeader {
-                title: qsTr("Ваши заказы")
-            }
-
-            Column {
-                width: parent.width - appTheme.paddingLarge * 2
-                spacing: appTheme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                Components.AppBlock {
-                    width: parent.width
-                    backgroundColor: appTheme.colorVariant2
-
-                    Label {
-                        text: qsTr("OrderSearchPage")
-                        color: "white"
-                        font.pixelSize: appTheme.fontSizeBody2
-                    }
-
-                }
+            Text {
+                width: parent.width
+                text: qsTr("OrderSearchPage")
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: appTheme.fontSizeH6
             }
         }
     }

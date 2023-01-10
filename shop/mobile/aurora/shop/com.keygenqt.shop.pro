@@ -17,6 +17,7 @@ HEADERS += \
 
 DISTFILES += \
     qml/components/AppBlock.qml \
+    qml/components/AppPage.qml \
     qml/components/BlockError.qml \
     qml/components/BlockLoadingLottie.qml \
     qml/components/GlobalMenu.qml \

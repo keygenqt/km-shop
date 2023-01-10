@@ -8,6 +8,7 @@ Item {
     height: 150
     width: parent.width
 
+    property color borderColor: "transparent"
     property bool _ready: false
 
     Rectangle {
@@ -17,6 +18,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         radius: 150
         color: 'white'
+        border.width: 2
+        border.color: idBlockLoading.borderColor
 
         Image {
             source: Qt.resolvedUrl("../lottie-res/block_loader.png")
@@ -45,6 +48,7 @@ Item {
             anchors.right: parent.right
             width: 200
             height: 200
+            visible: idBlockLoading._ready
         }
     }
 }

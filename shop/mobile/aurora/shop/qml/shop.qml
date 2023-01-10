@@ -41,6 +41,7 @@ import "components" as Components
 import AppTheme 1.0
 
 ApplicationWindow {
+    id: idApplicationWindow
     objectName: "applicationWindow"
     initialPage: Qt.resolvedUrl("pages/SplashPage.qml")
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
