@@ -22,6 +22,8 @@ Column {
     readonly property color nowColor: error.length !== 0 ? errorColor : (idTextField.focus ? focusColor : color)
     readonly property color nowColorBg: error.length !== 0 ? errorColorBg : (idTextField.focus ? focusColorBg : colorBg)
 
+    signal clickedEnter()
+
     Rectangle {
         id: idRec
 
@@ -46,6 +48,7 @@ Column {
                     idTextField.text = idTextField.text.replace("\n", "")
                     idTextField.cursorPosition = idTextField.text.length
                 }
+                clickedEnter()
             }
 
             background: Component {
@@ -56,7 +59,6 @@ Column {
 
                     Item {
                         anchors.topMargin: -18
-                        layer.enabled: true
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.right: parent.right
@@ -66,6 +68,7 @@ Column {
                            color: idMainBlock.nowColorBg
                            radius: idTextField.radius
                            anchors.fill: parent
+
                            Rectangle {
                               color: idMainBlock.nowColorBg
                               height: idTextField.radius
@@ -73,25 +76,6 @@ Column {
                               anchors.bottom: parent.bottom
                               anchors.left: parent.left
                            }
-                        }
-
-                        Rectangle {
-                           color: idMainBlock.nowColorBg
-                           radius: idTextField.radius
-                           anchors.fill: parent
-                           Rectangle {
-                              color: idMainBlock.nowColorBg
-                              height: idTextField.radius
-                              width: idTextField.radius
-                              anchors.bottom: parent.bottom
-                              anchors.right: parent.right
-                           }
-                        }
-                        Rectangle {
-                           color: idMainBlock.nowColorBg
-                           anchors.fill: parent
-                           anchors.leftMargin: idTextField.radius
-                           anchors.rightMargin: idTextField.radius
                         }
 
                         Rectangle {

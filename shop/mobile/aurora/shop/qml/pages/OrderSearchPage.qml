@@ -36,6 +36,7 @@ Page {
 
                     Components.AppTextField {
                         placeholderText : qsTr("Номер заказа")
+                        singleLine: true
                         onTextChanged: {
                             error = text.length === 0 ? "The field is required" : ""
                         }
