@@ -12,11 +12,11 @@
     <script type="text/javascript">
         function init() {
             async function init() {
-                try { await kmm.AppHttpClient.get.categoriesPublished() } catch (e) {}
+                try { await kmm.AppHttpClient.get.categoriesPublished(0) } catch (e) {}
                 // splash loading response
                 // first query error
                 // Companion_getInstance_8().d27_1 is undefined
-                kmm.Helper.sendEvent("init")
+                kmm.Helper.sendEvent("init", {})
             }
             setTimeout(init, 0)
         }

@@ -3,34 +3,30 @@ import Sailfish.Silica 1.0
 
 Item {
 
-    id: idBlockLoading
-    height: 150
+    height: idRec.height
     width: parent.width
 
+    property int size: 200
     property color borderColor: "transparent"
-    property bool _ready: false
 
     Rectangle {
         id: idRec
-        height: 150
-        width: 150
+        height: size
+        width: size
+        radius: size
         anchors.horizontalCenter: parent.horizontalCenter
-        radius: 150
         color: 'white'
         border.width: 2
-        border.color: idBlockLoading.borderColor
+        border.color: borderColor
 
         AnimatedImage {
-            source: Qt.resolvedUrl("../icons/block_loader.gif")
+            source: Qt.resolvedUrl("../icons/animation_loader.gif")
             fillMode: Image.PreserveAspectFit
-            visible: !idBlockLoading._ready
-            anchors.margins: -30
+            anchors.margins: -(size * 0.1)
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            width: 200
-            height: 200
         }
     }
 }

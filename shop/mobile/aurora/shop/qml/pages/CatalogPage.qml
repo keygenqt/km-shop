@@ -7,17 +7,27 @@ import "../components" as Components
 Page {
     id: catalogPage
 
-    property int tabIndex: 0
+    property bool menu: true
+    property int index: 0
+
+    property int _tabIndex: catalogPage.index
+
+    ListModel {
+        id: categoriesModel
+    }
 
     QtObject {
         id: stateCattegories
         property var response
         property string error: ""
         property bool loading: true
+        function clear() {
+            response = undefined; error = ""; loading = true; categoriesModel.clear()
+        }
     }
 
     ListModel {
-        id: categoriesModel
+        id: collectionsModel
     }
 
     QtObject {
@@ -25,13 +35,15 @@ Page {
         property var response
         property string error: ""
         property bool loading: true
+        function clear() {
+            response = undefined; error = ""; loading = true; collectionsModel.clear()
+        }
     }
 
-    ListModel {
-        id: collectionsModel
-    }
-
-    Component.onCompleted: {
+    function update() {
+        // clear state
+        stateCattegories.clear()
+        stateCollections.clear()
         // get categories
         agent.run(
             "kmm.Requests.get.categoriesPublished()",
@@ -54,8 +66,7 @@ Page {
         )
         // get collections
         agent.run(
-            // @todo delay
-            "kmm.Requests.get.collectionsPublished(3000)",
+            "kmm.Requests.get.collectionsPublished()",
             function(result) {
                 try {
                     var list = JSON.parse(result)
@@ -75,25 +86,36 @@ Page {
         )
     }
 
+    onStatusChanged: {
+        if (status == PageStatus.Active && (stateCattegories.loading || stateCollections.loading)) {
+            catalogPage.update()
+        }
+    }
+
     Components.AppPage {
         id: idAppPage
         header: qsTr("Каталог")
-        menuDisabled: state.loading
+        menuDisabled: stateCattegories.loading || stateCollections.loading
         selectedPage: "itemMenuCatalog"
         fixed: stateCattegories.loading || stateCollections.loading
+        menuIsUpdate: !menu
+        menuUpdate: function () {
+            catalogPage.update()
+        }
 
         Components.AppTabs {
             id: appTabs
+            tab: index
             width: parent.width
             textTab0: qsTr("Категории")
             textTab1: qsTr("Коллекции")
-            onTabChanged: tabIndex = appTabs.tab;
+            onChangeTabIndex: _tabIndex = index;
         }
 
         Column {
             id: contentCat
-            visible: tabIndex == 0
-            opacity: tabIndex == 0 ? 1.0 : 0.9
+            visible: _tabIndex == 0
+            opacity: _tabIndex == 0 ? 1.0 : 0.9
             width: parent.width
             spacing: appTheme.paddingMedium
 
@@ -113,8 +135,7 @@ Page {
                 }
 
                 Components.BlockError {
-                    color: appTheme.colorVariant1
-                    error: stateCattegories.error
+                    borderColor: appTheme.colorVariant1
                     visible: stateCattegories.error !== ""
                 }
             }
@@ -125,6 +146,8 @@ Page {
                       width: parent.width
                       borderColor: appTheme.colorVariant1
                       disabled: false
+
+                      onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
 
                       Row {
                           width: parent.width
@@ -187,8 +210,8 @@ Page {
 
         Column {
             id: contentColl
-            visible: tabIndex == 1
-            opacity: tabIndex == 1 ? 1.0 : 0.9
+            visible: _tabIndex == 1
+            opacity: _tabIndex == 1 ? 1.0 : 0.9
             width: parent.width
             spacing: appTheme.paddingMedium
 
@@ -208,8 +231,7 @@ Page {
                 }
 
                 Components.BlockError {
-                    color: appTheme.colorVariant1
-                    error: stateCollections.error
+                    borderColor: appTheme.colorVariant1
                     visible: stateCollections.error !== ""
                 }
             }
@@ -220,6 +242,8 @@ Page {
                       width: parent.width
                       borderColor: appTheme.colorVariant1
                       disabled: false
+
+                      onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
 
                       Row {
                           width: parent.width

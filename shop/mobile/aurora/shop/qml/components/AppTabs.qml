@@ -18,15 +18,15 @@ Column {
     property string backgroundItem: "transparent"
     property string backgroundAction: appTheme.colorVariant1
 
-    property var tab
+    property int tab
+    signal changeTabIndex(int index)
 
-    property int _tab: 0
     property bool _tab0Click: false
     property bool _tab1Click: false
 
     function _onChangeTab(tab) {
-        idAppTabs._tab = tab
         idAppTabs.tab = tab
+        changeTabIndex(tab)
     }
 
     id: idAppTabs
@@ -47,7 +47,7 @@ Column {
             color : idAppTabs.backgroundAction
             radius: appTheme.shapesLarge
             y: appTheme.paddingSmall
-            x: (parent.width / 2 * idAppTabs._tab) + (idAppTabs._tab == 0 ? appTheme.paddingSmall : appTheme.paddingSmall / 2)
+            x: (parent.width / 2 * idAppTabs.tab) + (idAppTabs.tab == 0 ? appTheme.paddingSmall : appTheme.paddingSmall / 2)
             Behavior on x {
                 NumberAnimation { properties: "x"; easing.type: Easing.InOutQuad; duration: 300 }
             }
@@ -72,7 +72,7 @@ Column {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: idAppTabs.textTab0
-                    color: idAppTabs._tab == 0 ? idAppTabs.colorTextAction : idAppTabs.colorText
+                    color: idAppTabs.tab == 0 ? idAppTabs.colorTextAction : idAppTabs.colorText
                     padding: appTheme.paddingMedium
                     Behavior on color {
                         ColorAnimation { easing.type: Easing.InOutQuad; duration: 300}
@@ -103,7 +103,7 @@ Column {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: idAppTabs.textTab1
-                    color: idAppTabs._tab == 1 ? idAppTabs.colorTextAction : idAppTabs.colorText
+                    color: idAppTabs.tab == 1 ? idAppTabs.colorTextAction : idAppTabs.colorText
                     padding: appTheme.paddingMedium
                     Behavior on color {
                         ColorAnimation { easing.type: Easing.InOutQuad; duration: 300}

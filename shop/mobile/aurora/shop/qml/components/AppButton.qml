@@ -15,18 +15,15 @@ MouseArea {
     property string contentColor: "white"
     property string background: appTheme.colorVariant1
     property int padding: appTheme.paddingLarge
+    property bool press: false
 
-    property bool _press: true
+    signal click()
 
     id: idAppButton
     height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
     width: content.width + idAppButton.padding * 2
 
-    onPressedChanged: {
-        if (!idAppButton.disabled) {
-            idAppButton._press = !idAppButton._press
-        }
-    }
+    onClicked: if (!idAppButton.disabled) idAppButton.press = true
 
     Rectangle {
         width: parent.width
@@ -79,7 +76,23 @@ MouseArea {
         height: parent.height
         color : idAppButton.background == "black" ? "white" : "black"
         radius: appTheme.shapesMedium
-        opacity: 0.4
-        visible: !idAppButton._press
+        opacity: idAppButton.press ? 0.4 : 0.0
+        Behavior on opacity {
+            NumberAnimation {
+                id: animation
+                properties: "opacity";
+                easing.type: Easing.InOutQuad;
+                duration: 150
+                onRunningChanged: {
+                    if (!animation.running) {
+                        if (idAppButton.press) {
+                            idAppButton.press = false
+                        } else {
+                            click()
+                        }
+                    }
+                }
+            }
+        }
     }
 }

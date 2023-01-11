@@ -15,6 +15,9 @@ Page {
         header: qsTr("Корзина")
         selectedPage: "itemMenuCart"
         height: parent.height
+        iconSearch: function () {
+            pageStack.push(Qt.resolvedUrl("OrderSearchPage.qml"))
+        }
 
         Components.AppBlock {
             height: parent.height

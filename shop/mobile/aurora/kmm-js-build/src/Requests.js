@@ -6,38 +6,29 @@ const defaultDelay = 500
 
 export const Requests = {
     get: {
-        categoriesPublishedCount: function (delay = defaultDelay) {
-            async function categoriesPublishedCount() {
-                try {
-                    const categories = await AppHttpClient.get.categoriesPublished()
-                    Helper.sendEvent(`${categories.toArray().length}`)
-                } catch (e) {
-                    Helper.sendEvent(e)
-                }
-            }
-            setTimeout(categoriesPublishedCount, delay)
-        },
         categoriesPublished: function (delay = defaultDelay) {
-            async function categoriesPublished() {
+            const caller = Helper.randomUUID()
+            setTimeout(async () => {
                 try {
                     const categories = await AppHttpClient.get.categoriesPublished()
-                    Helper.sendEvent(JSON.stringify(categories.toArray()))
+                    Helper.sendEvent(caller, JSON.stringify(categories.toArray()))
                 } catch (e) {
-                    Helper.sendEvent(e)
+                    Helper.sendEvent(caller, e)
                 }
-            }
-            setTimeout(categoriesPublished, delay)
+            }, delay)
+            return caller
         },
         collectionsPublished: function (delay = defaultDelay) {
-            async function collectionsPublished() {
+            const caller = Helper.randomUUID()
+            setTimeout(async () => {
                 try {
-                    const categories = await AppHttpClient.get.collectionsPublished()
-                    Helper.sendEvent(JSON.stringify(categories.toArray()))
+                    const collections = await AppHttpClient.get.collectionsPublished()
+                    Helper.sendEvent(caller, JSON.stringify(collections.toArray()))
                 } catch (e) {
-                    Helper.sendEvent(e)
+                    Helper.sendEvent(caller, e)
                 }
-            }
-            setTimeout(collectionsPublished, delay)
+            }, delay)
+            return caller
         },
     }
 }

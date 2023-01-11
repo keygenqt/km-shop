@@ -15,9 +15,19 @@ Rectangle {
     readonly property string itemMenuCatalog: "itemMenuCatalog"
     readonly property string itemMenuHome: "itemMenuHome"
 
+    property bool update: false
     property bool hide: false
     property bool disabled: false
     property string selectedPage: ""
+    property var menuUpdate
+
+    function selectPage(key, page) {
+        if (idGlobalMenu.selectedPage === key && idGlobalMenu.menuUpdate !== undefined) {
+            idGlobalMenu.menuUpdate()
+        } else {
+            pageStack.animatorReplace(Qt.resolvedUrl("../pages/" + page), {}, PageStackAction.Replace)
+        }
+    }
 
     PullDownMenu {
         id: pullDownMenu
@@ -26,29 +36,28 @@ Rectangle {
         visible: !idGlobalMenu.hide && !idGlobalMenu.disabled
 
         MenuItem {
-            text: qsTr("Ваши заказы")
-            onClicked: pageStack.animatorReplace(Qt.resolvedUrl("../pages/OrderSearchPage.qml"), {}, PageStackAction.Replace)
-            color: selectedPage === itemMenuOrderSearch ? "white" : "black"
-        }
-        MenuItem {
             text: qsTr("Контакты")
-            onClicked: pageStack.animatorReplace(Qt.resolvedUrl("../pages/Contact.qml"), {}, PageStackAction.Replace)
             color: selectedPage === itemMenuContacts ? "white" : "black"
+            onClicked: idGlobalMenu.selectPage(itemMenuContacts, "ContactPage.qml")
+            visible: !idGlobalMenu.update
         }
         MenuItem {
             text: qsTr("Корзина")
-            onClicked: pageStack.animatorReplace(Qt.resolvedUrl("../pages/CartPage.qml"), {}, PageStackAction.Replace)
             color: selectedPage === itemMenuCart ? "white" : "black"
-        }
-        MenuItem {
-            text: qsTr("Каталог")
-            onClicked: pageStack.animatorReplace(Qt.resolvedUrl("../pages/CatalogPage.qml"), {}, PageStackAction.Replace)
-            color: selectedPage === itemMenuCatalog ? "white" : "black"
+            onClicked: idGlobalMenu.selectPage(itemMenuCart, "CartPage.qml")
+            visible: !idGlobalMenu.update
         }
         MenuItem {
             text: qsTr("Главная")
-            onClicked: pageStack.animatorReplace(Qt.resolvedUrl("../pages/MainPage.qml"), {}, PageStackAction.Replace)
             color: selectedPage === itemMenuHome ? "white" : "black"
+            onClicked: idGlobalMenu.selectPage(itemMenuHome, "MainPage.qml")
+            visible: !idGlobalMenu.update
+        }
+        MenuItem {
+            text: qsTr("Обновить")
+            color: "white"
+            onClicked: idGlobalMenu.menuUpdate()
+            visible: idGlobalMenu.update
         }
     }
 

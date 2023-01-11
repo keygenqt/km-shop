@@ -1,15 +1,8 @@
 export const Helper = {
-    getCaller: function () {
-        try {
-            throw new Error();
-        } catch (e) {
-            const allMatches = e.stack.match(/(\w+)@|at (\w+) \(/g);
-            const parentMatches = allMatches[2].match(/(\w+)@|at (\w+) \(/);
-            return parentMatches[1] || parentMatches[2];
-        }
+    randomUUID: function () {
+        return `${Date.now()}-${Math.round(Math.random() * 1000)}`;
     },
-    sendEvent: function (response) {
-        const caller = Helper.getCaller();
+    sendEvent: function (caller, response) {
         const customEvent = new CustomEvent("framescript:log", {detail: {
                 response: response,
                 caller: caller

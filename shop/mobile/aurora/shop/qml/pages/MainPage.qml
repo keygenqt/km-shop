@@ -5,14 +5,24 @@ import "../components" as Components
 Page {
     id: homePage
 
+    ListModel {
+        id: categoryModel
+    }
+
     QtObject {
         id: state
         property var response
         property string error: ""
         property bool loading: true
+        function clear() {
+            response = undefined; error = ""; loading = true; categoryModel.clear()
+        }
     }
 
-    Component.onCompleted: {
+    function update() {
+        // clear state
+        state.clear()
+        // run query
         agent.run(
             "kmm.Requests.get.categoriesPublished()",
             function(result) {
@@ -35,8 +45,15 @@ Page {
         )
     }
 
-    ListModel {
-        id: categoryModel
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            // clear agent kmm
+            agent.clear()
+            // run query
+            if (!Boolean(state.response)) {
+                homePage.update()
+            }
+        }
     }
 
     Components.AppPage {
@@ -45,6 +62,9 @@ Page {
         menuDisabled: state.loading
         selectedPage: "itemMenuHome"
         fixed: state.loading
+        menuUpdate: function () {
+            homePage.update()
+        }
 
         Components.AppBlock {
             id: idInfoBlock
@@ -80,7 +100,7 @@ Page {
 
                         Components.AppButton {
                             text: qsTr("Начните поиск")
-                            onClicked: console.log("Click")
+                            onClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 1})
                             padding: appTheme.paddingMedium
                             background: 'black'
                         }
@@ -109,8 +129,7 @@ Page {
             }
 
             Components.BlockError {
-               error: state.error
-               visible: state.error !== ""
+                visible: state.error !== ""
             }
         }
 
@@ -144,7 +163,7 @@ Page {
                     Components.AppButton {
                         id: allButton
                         text: qsTr("Все")
-                        onClicked: console.log("Click")
+                        onClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 0})
                         padding: appTheme.paddingMedium
                     }
                 }
@@ -176,7 +195,7 @@ Page {
                             Components.AppButton {
                                 text: qsTr("Смотреть")
                                 iconEnd: "image://theme/icon-m-enter-next"
-                                onClicked: console.log("Click")
+                                onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
                                 padding: appTheme.paddingMedium
                             }
                         }

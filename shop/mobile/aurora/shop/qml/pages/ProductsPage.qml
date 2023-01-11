@@ -3,10 +3,10 @@ import Sailfish.Silica 1.0
 import "../components" as Components
 
 Page {
-    id: orderSearchPage
+    id: productsPage
 
     Components.AppPage {
-        header: qsTr("Ваши заказы")
+        header: qsTr("Продукты")
 
         Components.AppBlock {
             height: parent.height
@@ -16,7 +16,7 @@ Page {
 
             Text {
                 width: parent.width
-                text: qsTr("OrderSearchPage")
+                text: qsTr("ProductsPage")
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: appTheme.fontSizeH6

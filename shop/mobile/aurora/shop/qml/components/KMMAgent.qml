@@ -9,20 +9,15 @@ Item {
     signal completed()
     property var stateResponse: ({})
 
+    function clear() {
+        idAgentBlock.stateResponse = {}
+    }
+
     function run(method, result, error) {
         if (method.indexOf("return") === -1) {
-
-            var key
-            var point = method.lastIndexOf(".")
-
-            if (point !== -1) {
-                key = method.substring(point + 1, method.indexOf("("))
-            } else {
-                key = method.substring(0, method.indexOf("("))
-            }
-
-            idAgentBlock.stateResponse[key] = [result, error]
-            webview.runJavaScript(method);
+            webview.runJavaScript("return " + method, function(key) {
+                idAgentBlock.stateResponse[key] = [result, error]
+            });
         } else {
             webview.runJavaScript(method, result, error);
         }
@@ -45,18 +40,16 @@ Item {
             switch (message) {
             case "webview:action":
                 try {
-                    if (data.response === 'init') {
+                    if (data.caller === 'init') {
                         idAgentBlock.completed()
-                    } else {
-
-                        console.debug(JSON.stringify(data))
-
+                    } else if (idAgentBlock.stateResponse[data.caller] !== undefined) {
                         if (JSON.stringify(data.response) !== '{}') {
-                            if (data.response.indexOf("Error") === -1) {
-                                idAgentBlock.stateResponse[data.caller][0](data.response)
-                            } else {
+                            if (data.response.indexOf("Error") !== -1) {
                                 idAgentBlock.stateResponse[data.caller][1](data.response)
+                            } else {
+                                idAgentBlock.stateResponse[data.caller][0](data.response)
                             }
+                            console.debug(JSON.stringify(data))
                         }
                     }
                 } catch (e) {

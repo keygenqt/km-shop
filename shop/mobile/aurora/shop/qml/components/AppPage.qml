@@ -8,7 +8,10 @@ SilicaFlickable {
     property string header: ""
     property string selectedPage: ""
     property bool menuDisabled: false
+    property bool menuIsUpdate: false
+    property var menuUpdate
     property bool fixed: true
+    property var iconSearch
 
     default property alias children: idContent.data
 
@@ -23,7 +26,9 @@ SilicaFlickable {
         id: idMenu
         selectedPage: item.selectedPage
         disabled: item.menuDisabled
-        hide: selectedPage.length === 0
+        hide: item.selectedPage.length === 0
+        update: item.menuIsUpdate
+        menuUpdate: item.menuUpdate
     }
 
     Column {
@@ -35,7 +40,8 @@ SilicaFlickable {
             id: idHeader
             title: item.header
             visible: item.header.length !== 0
-            icon: item.selectedPage.length !== 0
+            iconMain: item.selectedPage.length !== 0
+            iconSearch: item.iconSearch
         }
 
         Column {
