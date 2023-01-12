@@ -9,11 +9,10 @@ Rectangle {
     width: parent.width
     color: 'transparent'
 
-    readonly property string itemMenuOrderSearch: "itemMenuOrderSearch"
     readonly property string itemMenuContacts: "itemMenuContacts"
     readonly property string itemMenuCart: "itemMenuCart"
-    readonly property string itemMenuCatalog: "itemMenuCatalog"
     readonly property string itemMenuHome: "itemMenuHome"
+    readonly property string noActiveColor: idApp.getPerceptualBrightness(Theme.highlightDimmerColor) < 765 ? "gray" : "black"
 
     property bool update: false
     property bool hide: false
@@ -37,19 +36,19 @@ Rectangle {
 
         MenuItem {
             text: qsTr("Контакты")
-            color: selectedPage === itemMenuContacts ? "white" : "black"
+            color: selectedPage === itemMenuContacts ? "white" : idGlobalMenu.noActiveColor
             onClicked: idGlobalMenu.selectPage(itemMenuContacts, "ContactPage.qml")
             visible: !idGlobalMenu.update
         }
         MenuItem {
             text: qsTr("Корзина")
-            color: selectedPage === itemMenuCart ? "white" : "black"
+            color: selectedPage === itemMenuCart ? "white" : idGlobalMenu.noActiveColor
             onClicked: idGlobalMenu.selectPage(itemMenuCart, "CartPage.qml")
             visible: !idGlobalMenu.update
         }
         MenuItem {
             text: qsTr("Главная")
-            color: selectedPage === itemMenuHome ? "white" : "black"
+            color: selectedPage === itemMenuHome ? "white" : idGlobalMenu.noActiveColor
             onClicked: idGlobalMenu.selectPage(itemMenuHome, "MainPage.qml")
             visible: !idGlobalMenu.update
         }

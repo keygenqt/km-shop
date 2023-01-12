@@ -210,7 +210,7 @@ Page {
                             text: name
                             font.pixelSize: appTheme.fontSizeBody2
                             bottomPadding: 5
-                            color: 'black'
+                            color: idApp.colors.highlightDarkColor
                         }
 
                         Column {

@@ -193,6 +193,7 @@ Page {
                                       text: name
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeH6
+                                      color: idApp.colors.highlightDarkColor
                                   }
 
                                   Text {
@@ -291,6 +292,7 @@ Page {
                                       text: name
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeH6
+                                      color: idApp.colors.highlightDarkColor
                                   }
 
                                   Text {
