@@ -126,16 +126,16 @@ Page {
             Components.AppBlock {
                 height: idAppPage.pageH - appTabs.height - appTheme.paddingMedium
                 width: parent.width
-                borderColor: appTheme.colorVariant1
+                borderColor: idApp.colors.highlightDarkColor
                 visible: stateCattegories.loading || stateCattegories.error !== ""
 
                 Components.BlockLoading {
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCattegories.loading
                 }
 
                 Components.BlockError {
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCattegories.error !== ""
                 }
             }
@@ -144,7 +144,7 @@ Page {
                   model: categoriesModel
                   delegate: Components.AppBlock {
                       width: parent.width
-                      borderColor: appTheme.colorVariant1
+                      borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
                       onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
@@ -155,7 +155,7 @@ Page {
 
                           Image {
                               id: img
-                              source: Qt.resolvedUrl(f4o_1)
+                              source: Qt.resolvedUrl(image)
                               fillMode: Image.PreserveAspectCrop
                               anchors.verticalCenter: parent.verticalCenter
                               width: 90
@@ -190,14 +190,14 @@ Page {
 
                                   Text {
                                       width: parent.width
-                                      text: d4o_1
+                                      text: name
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeH6
                                   }
 
                                   Text {
                                       width: parent.width
-                                      text: e4o_1
+                                      text: desc
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeCaption
                                   }
@@ -222,16 +222,16 @@ Page {
             Components.AppBlock {
                 height: idAppPage.pageH - appTabs.height - appTheme.paddingMedium
                 width: parent.width
-                borderColor: appTheme.colorVariant1
+                borderColor: idApp.colors.highlightDarkColor
                 visible: stateCollections.loading || stateCollections.error !== ""
 
                 Components.BlockLoading {
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCollections.loading
                 }
 
                 Components.BlockError {
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCollections.error !== ""
                 }
             }
@@ -240,7 +240,7 @@ Page {
                   model: collectionsModel
                   delegate: Components.AppBlock {
                       width: parent.width
-                      borderColor: appTheme.colorVariant1
+                      borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
                       onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
@@ -254,20 +254,24 @@ Page {
                               width: 90
                               height: 90
                               color: "transparent"
-                              border.color: appTheme.colorVariant1
+                              border.color: idApp.colors.highlightDarkColor
                               border.width: 2
-                              radius: 200
+                              radius: 20
+
+                              Component.onCompleted: {
+                                  console.log(idApp.constants.apiUrl + "api/uploads/" + icon)
+                              }
 
                               Image {
                                   id: img2
-                                  source: Qt.resolvedUrl("https://shop-api.keygenqt.com/api/uploads/" + v4o_1)
+                                  source: Qt.resolvedUrl(idApp.constants.apiUrl + "api/uploads/" + icon)
                                   fillMode: Image.PreserveAspectCrop
                                   anchors.centerIn: parent
                                   width: 50
                                   height: 50
                                   layer.enabled: true
                                   layer.effect: ColorOverlay{
-                                      color: appTheme.colorVariant1
+                                      color: idApp.colors.highlightDarkColor
                                   }
                               }
                           }
@@ -288,14 +292,14 @@ Page {
 
                                   Text {
                                       width: parent.width
-                                      text: t4o_1
+                                      text: name
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeH6
                                   }
 
                                   Text {
                                       width: parent.width
-                                      text: u4o_1
+                                      text: desc
                                       wrapMode: Text.WordWrap
                                       font.pixelSize: appTheme.fontSizeCaption
                                   }

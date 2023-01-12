@@ -5,10 +5,6 @@ import QtQuick.Window 2.2
 
 Column {
 
-    AppTheme {
-        id: appTheme
-    }
-
     property string textTab0: "First"
     property string textTab1: "Second"
 
@@ -16,7 +12,7 @@ Column {
     property string colorTextAction: "white"
     property string background: "white"
     property string backgroundItem: "transparent"
-    property string backgroundAction: appTheme.colorVariant1
+    property string backgroundAction: idApp.colors.highlightDarkColor
 
     property int tab
     signal changeTabIndex(int index)
@@ -38,7 +34,7 @@ Column {
         color: idAppTabs.background
         radius: appTheme.shapesLarge
         border.width: 2
-        border.color: appTheme.colorVariant1
+        border.color: idApp.colors.highlightDarkColor
 
         Rectangle {
             id: toggleswitch

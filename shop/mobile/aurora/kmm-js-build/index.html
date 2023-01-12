@@ -24,7 +24,7 @@
 			document.getElementById("demo").innerHTML = "loading..."
 			setTimeout(async () => {
 				try {
-					document.getElementById("demo").innerHTML = await $.getCategoriesCount()
+					document.getElementById("demo").innerHTML = kmm.Helper.randomUUID()
 				} catch (e) {
 					document.getElementById("demo").innerHTML = e
 				}

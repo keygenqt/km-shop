@@ -13,14 +13,10 @@ Column {
     property alias text: idTextField.text
 
     property color color: "#74828e"
-    property color colorBg: "#e5e5e5"
-    property color focusColor: "#56b0df"
-    property color focusColorBg: "#e5f2f9"
-    property color errorColor: "#df5656"
-    property color errorColorBg: "#f9e5e5"
+    property string focusColor: idApp.colors.highlightDarkColor
+    property color errorColor: Theme.errorColor
 
     readonly property color nowColor: error.length !== 0 ? errorColor : (idTextField.focus ? focusColor : color)
-    readonly property color nowColorBg: error.length !== 0 ? errorColorBg : (idTextField.focus ? focusColorBg : colorBg)
 
     signal clickedEnter()
 
@@ -64,18 +60,21 @@ Column {
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
 
+//                        Rectangle {
+//                           color: idMainBlock.nowColor
+//                           height: idTextField.radius
+//                           width: idTextField.radius
+//                           anchors.bottom: parent.bottom
+//                           anchors.left: parent.left
+//                           anchors.right: parent.right
+//                           opacity: 0.5
+//                        }
+
                         Rectangle {
-                           color: idMainBlock.nowColorBg
+                           color: idMainBlock.nowColor
                            radius: idTextField.radius
                            anchors.fill: parent
-
-                           Rectangle {
-                              color: idMainBlock.nowColorBg
-                              height: idTextField.radius
-                              width: idTextField.radius
-                              anchors.bottom: parent.bottom
-                              anchors.left: parent.left
-                           }
+                           opacity: 0.2
                         }
 
                         Rectangle {
@@ -84,14 +83,18 @@ Column {
                            anchors.bottom: parent.bottom
                            anchors.right: parent.right
                            anchors.left: parent.left
+                           anchors.leftMargin: idTextField.radius
+                           anchors.rightMargin: idTextField.radius
+                           radius: idTextField.radius
                         }
 
                         Rectangle {
                            color: idMainBlock.error.length === 0 ? idMainBlock.focusColor : idMainBlock.errorColor
                            height: 4
-                           width: idTextField.focus ? parent.width : 0
+                           width: idTextField.focus ? (parent.width - idTextField.radius * 2) : 0
                            anchors.bottom: parent.bottom
                            anchors.horizontalCenter: parent.horizontalCenter
+                           radius: idTextField.radius
 
                            Behavior on width {
                                NumberAnimation {

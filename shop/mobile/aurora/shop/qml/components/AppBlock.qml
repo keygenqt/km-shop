@@ -10,8 +10,8 @@ MouseArea {
 
     signal click()
 
-    property string borderColor: ""
-    property string backgroundColor: "white"
+    property color borderColor: idApp.colors.highlightDarkColor
+    property color backgroundColor: "white"
     property int padding: appTheme.paddingLarge
     property bool centerIn: false
     property bool disabled: true
@@ -32,7 +32,7 @@ MouseArea {
         radius: appTheme.shapesLarge
         opacity: isOpacity ? 0.5 : 1.0
         border.width: 2
-        border.color: idAppBlock.borderColor.length == 0 ? idAppBlock.backgroundColor : idAppBlock.borderColor
+        border.color: idAppBlock.borderColor
     }
 
     Column {

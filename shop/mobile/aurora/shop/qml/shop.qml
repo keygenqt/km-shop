@@ -41,16 +41,51 @@ import "components" as Components
 import AppTheme 1.0
 
 ApplicationWindow {
-    id: idApplicationWindow
+    id: idApp
     objectName: "applicationWindow"
     initialPage: Qt.resolvedUrl("pages/SplashPage.qml")
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
     allowedOrientations: Orientation.Portrait
     _defaultPageOrientations: Orientation.Portrait
 
+    property alias constants: constants
+    property alias colors: colors
+
+    QtObject {
+        id: constants
+        property string apiUrl
+        property string mapUrl
+        property string pageLimit
+        property string telegramUrl
+        property string email
+        property string phone
+    }
+
+    QtObject {
+        id: colors
+        property string highlightDarkColor: getPerceptualBrightness(Theme.highlightDimmerColor) < getPerceptualBrightness(Theme.highlightColor)
+                                            ? Theme.highlightDimmerColor : Theme.highlightColor
+    }
+
+    function getPerceptualBrightness(color) {
+        var string = String(color)
+        var r = parseInt(string.substring(1,3),16);
+        var g = parseInt(string.substring(3,5),16);
+        var b = parseInt(string.substring(5,7),16);
+        return r*2 + g*3 + b;
+    }
+
     Components.KMMAgent {
         id: agent
         onCompleted: {
+            // read constants
+            run("return kmm.AppConstants.links.API_URL", function(result) { constants.apiUrl = result } )
+            run("return kmm.AppConstants.links.URL_MAP", function(result) { constants.mapUrl = result } )
+            run("return kmm.AppConstants.other.PAGE_LIMIT", function(result) { constants.pageLimit = result } )
+            run("return kmm.AppConstants.other.CONTACT_TG", function(result) { constants.telegramUrl = result } )
+            run("return kmm.AppConstants.other.CONTACT_EMAIL", function(result) { constants.email = result } )
+            run("return kmm.AppConstants.other.CONTACT_PHONE", function(result) { constants.phone = result } )
+            // run home page
             pageStack.animatorReplace(Qt.resolvedUrl("pages/MainPage.qml"), {}, PageStackAction.Replace)
         }
     }

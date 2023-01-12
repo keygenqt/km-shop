@@ -15,7 +15,7 @@ SilicaFlickable {
 
     default property alias children: idContent.data
 
-    property int pageH: idApplicationWindow.height - idHeader.height - appTheme.paddingMedium - idMenu.height
+    property int pageH: idApp.height - idHeader.height - appTheme.paddingMedium - idMenu.height
 
     anchors.fill: parent
     contentHeight: column.height + appTheme.paddingLarge

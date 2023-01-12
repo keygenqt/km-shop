@@ -11,7 +11,7 @@ Rectangle {
         Components.AppBlock {
             height: parent.height
             width: parent.width
-            borderColor: appTheme.colorVariant1
+            borderColor: idApp.colors.highlightDarkColor
             backgroundColor: "white"
 
             Text {

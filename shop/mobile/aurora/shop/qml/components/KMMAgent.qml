@@ -6,6 +6,9 @@ Item {
 
     id: idAgentBlock
 
+    // Constants
+    property string kmm_API_URL: ""
+
     signal completed()
     property var stateResponse: ({})
 

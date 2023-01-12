@@ -1,34 +1,31 @@
 import {AppHttpClient} from "./Constants";
 import {Helper} from "./Helper";
 
+// mappers
+export * from './mappers/CollectionMapper';
+export * from './mappers/CategoryMapper';
+export * from './mappers/ProductMapper';
+export * from './mappers/OrderMapper';
+export * from './mappers/OrderProductMapper';
+
 // For a slower loading that allows you to work out the animation, the cache will be responsible for the speed
 const defaultDelay = 500
 
 export const Requests = {
     get: {
         categoriesPublished: function (delay = defaultDelay) {
-            const caller = Helper.randomUUID()
-            setTimeout(async () => {
-                try {
-                    const categories = await AppHttpClient.get.categoriesPublished()
-                    Helper.sendEvent(caller, JSON.stringify(categories.toArray()))
-                } catch (e) {
-                    Helper.sendEvent(caller, e)
-                }
+            return Helper.request(async () => {
+                return await AppHttpClient.get.categoriesPublished()
+            }, (response) => {
+                return JSON.stringify(response.toArray().mapToCategories());
             }, delay)
-            return caller
         },
         collectionsPublished: function (delay = defaultDelay) {
-            const caller = Helper.randomUUID()
-            setTimeout(async () => {
-                try {
-                    const collections = await AppHttpClient.get.collectionsPublished()
-                    Helper.sendEvent(caller, JSON.stringify(collections.toArray()))
-                } catch (e) {
-                    Helper.sendEvent(caller, e)
-                }
+            return Helper.request(async () => {
+                return await AppHttpClient.get.collectionsPublished()
+            }, (response) => {
+                return JSON.stringify(response.toArray().mapToCollections())
             }, delay)
-            return caller
         },
     }
 }

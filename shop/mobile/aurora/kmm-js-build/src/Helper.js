@@ -1,6 +1,19 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const Helper = {
     randomUUID: function () {
-        return `${Date.now()}-${Math.round(Math.random() * 1000)}`;
+        return uuidv4()
+    },
+    request: function (fun, callback, delay) {
+        const caller = Helper.randomUUID()
+        setTimeout(async () => {
+            try {
+                Helper.sendEvent(caller, callback(await fun()))
+            } catch (e) {
+                Helper.sendEvent(caller, e)
+            }
+        }, delay)
+        return caller
     },
     sendEvent: function (caller, response) {
         const customEvent = new CustomEvent("framescript:log", {detail: {
@@ -8,5 +21,5 @@ export const Helper = {
                 caller: caller
             }});
         document.dispatchEvent(customEvent);
-    }
+    },
 }

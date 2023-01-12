@@ -1,6 +1,6 @@
 /dist
 # build - ./gradlew shared:packJsPackage move from km-shop/shared/build/packages/js
-/src/kmm-module
+/shared
 # npm install
 # npm run build
 # dist/kmm.min.js move to aurora km-shop/shop/mobile/aurora/shop/qml/js-webpack

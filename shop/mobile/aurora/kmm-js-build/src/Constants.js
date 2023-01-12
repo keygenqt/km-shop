@@ -1,4 +1,4 @@
-import shared from "kmm-module/shared";
+import shared from "shared";
 
 /**
  * KMM Constants

@@ -75,7 +75,7 @@ Page {
                             Components.AppButton {
                                 width: parent.width
                                 text: qsTr("Написать сообщение")
-                                onClicked: console.log("Click")
+                                onClicked: pageStack.push(Qt.resolvedUrl("ContactFormPage.qml"))
                                 padding: appTheme.paddingMedium
                             }
                         }
@@ -84,7 +84,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     isOpacity: contactPage.activeMap
 
                     Row {
@@ -130,18 +130,10 @@ Page {
                             }
 
                             Components.AppButton {
-                                property string email: "..."
-
                                 width: parent.width
-                                text: email
+                                text: idApp.constants.email
                                 onClicked: console.log("Click")
                                 padding: appTheme.paddingMedium
-
-                                Component.onCompleted: {
-                                    agent.run("return kmm.AppConstants.other.CONTACT_EMAIL", function(result) {
-                                         email = result
-                                    });
-                                }
                             }
                         }
                     }
@@ -149,7 +141,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     isOpacity: contactPage.activeMap
 
                     Row {
@@ -195,18 +187,10 @@ Page {
                             }
 
                             Components.AppButton {
-                                property string phone: "..."
-
                                 width: parent.width
-                                text: phone
+                                text: idApp.constants.phone
                                 onClicked: console.log("Click")
                                 padding: appTheme.paddingMedium
-
-                                Component.onCompleted: {
-                                    agent.run("return kmm.AppConstants.other.CONTACT_PHONE", function(result) {
-                                         phone = result
-                                    });
-                                }
                             }
                         }
                     }
@@ -214,7 +198,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     isOpacity: contactPage.activeMap
 
                     Column {
@@ -261,7 +245,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    borderColor: appTheme.colorVariant1
+                    borderColor: idApp.colors.highlightDarkColor
                     padding: 8
 
                     WebView {
@@ -269,7 +253,7 @@ Page {
                         height: 350
                         width: parent.width
                         privateMode: true
-                        url: "https://yandex.com/map-widget/v1/?um=constructor%3A76ab87516c046b5d4f54647f1b9fe382edcaa24c935e6be8898244ec111ab1f4&amp;source=constructor"
+                        url: idApp.constants.mapUrl
                         Component.onCompleted: {
                             WebEngineSettings.javascriptEnabled = true
                             WebEngineSettings.popupEnabled = false

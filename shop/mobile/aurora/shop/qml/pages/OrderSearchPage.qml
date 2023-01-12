@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtGraphicalEffects 1.0
 import "../components" as Components
 
 Page {
@@ -12,12 +13,13 @@ Page {
             id: pageBlock
             height: parent.height
             width: parent.width
-            borderColor: appTheme.colorVariant1
+            borderColor: idApp.colors.highlightDarkColor
             backgroundColor: "white"
 
             Rectangle {
                 height: pageBlock.height - appTheme.paddingLarge * 2
                 width: parent.width
+                color: 'transparent'
 
                 Column {
                     height: parent.height
@@ -44,10 +46,10 @@ Page {
                     }
 
                     Components.AppButton {
+                        width: parent.width
                         text: qsTr("Искать")
-                        onClick: console.log("ii")
-                        padding: appTheme.paddingMedium
-                        background: 'black'
+                        onClicked: console.log("yes")
+                        padding: appTheme.paddingLarge
                     }
 
                 }
@@ -60,6 +62,7 @@ Page {
                     color: 'transparent'
 
                     AnimatedImage {
+                        id: img
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.right: parent.right
@@ -68,6 +71,19 @@ Page {
                         anchors.bottomMargin: -16
                         source: Qt.resolvedUrl("../icons/animation_order_search.gif")
                         fillMode: Image.PreserveAspectFit
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Item {
+                                width: img.width
+                                height: img.height
+                                Rectangle {
+                                    anchors.centerIn: parent
+                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
+                                    height: img.adapt ? img.height : width
+                                    radius: Math.min(width, height)
+                                }
+                            }
+                        }
                     }
                 }
 

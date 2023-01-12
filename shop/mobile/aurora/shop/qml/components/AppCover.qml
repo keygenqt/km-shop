@@ -12,7 +12,7 @@ SilicaItem {
     Rectangle {
         width: parent.width
         height: parent.height
-        color : appTheme.colorCover
+        color : idApp.colors.highlightDarkColor
 
         Rectangle {
             height: parent.width / 2 + appTheme.paddingSmall

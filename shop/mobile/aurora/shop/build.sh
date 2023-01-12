@@ -3,7 +3,7 @@
 ## Js Lib build
 folderBuildJs="$PWD/shared/build/packages/js"
 folderBuildWebpack="$PWD/shop/mobile/aurora/kmm-js-build"
-folderBuildWebpackShared="$PWD/shop/mobile/aurora/kmm-js-build/src/kmm-module"
+folderBuildWebpackShared="$PWD/shop/mobile/aurora/kmm-js-build/shared"
 distJsAurora="$PWD/shop/mobile/aurora/shop/qml/js-webpack/kmm.min.js"
 distJs="$PWD/shop/mobile/aurora/kmm-js-build/dist/kmm.min.js"
 
@@ -23,6 +23,9 @@ if [ -f "$distJsAurora" ] ; then
 fi
 
 cp "$distJs" "$distJsAurora"
+
+## @todo
+exit
 
 sleep 1
 

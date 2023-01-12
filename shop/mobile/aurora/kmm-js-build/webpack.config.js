@@ -19,7 +19,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js'],
-        modules: [path.resolve(__dirname, 'src')],
+        modules: [
+            path.resolve(__dirname, 'src'),
+            path.resolve(__dirname, 'node_modules')
+        ],
     },
     mode: 'development',
     devtool: 'sourceMap',

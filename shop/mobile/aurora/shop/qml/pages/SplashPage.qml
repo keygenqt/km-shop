@@ -9,7 +9,7 @@ Page {
     Rectangle {
         width: parent.width
         height: parent.height
-        color : appTheme.colorCover
+        color : idApp.colors.highlightDarkColor
 
         Column {
             anchors.horizontalCenter: parent.horizontalCenter

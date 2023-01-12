@@ -13,7 +13,7 @@ MouseArea {
     property string iconEnd: ""
     property bool disabled: false
     property string contentColor: "white"
-    property string background: appTheme.colorVariant1
+    property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
     property bool press: false
 
@@ -26,8 +26,7 @@ MouseArea {
     onClicked: if (!idAppButton.disabled) idAppButton.press = true
 
     Rectangle {
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         color : idAppButton.background
         radius: appTheme.shapesMedium
     }
