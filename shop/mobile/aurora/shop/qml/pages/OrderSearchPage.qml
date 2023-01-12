@@ -80,7 +80,7 @@ Page {
                                     anchors.centerIn: parent
                                     width: img.adapt ? img.width : Math.min(img.width, img.height)
                                     height: img.adapt ? img.height : width
-                                    radius: Math.min(width, height)
+                                    radius: appTheme.paddingLarge
                                 }
                             }
                         }
