@@ -27,7 +27,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
-                    backgroundColor: appTheme.colorVariant2
+                    backgroundColor: idApp.colors.highlightDarkColor
                     isOpacity: contactPage.activeMap
 
                     Row {
@@ -77,6 +77,7 @@ Page {
                                 text: qsTr("Написать сообщение")
                                 onClicked: pageStack.push(Qt.resolvedUrl("ContactFormPage.qml"))
                                 padding: appTheme.paddingMedium
+                                background: 'white'
                             }
                         }
                     }
@@ -96,7 +97,7 @@ Page {
                             id: idIconRectangle2
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant1
+                            border.color: idApp.colors.highlightDarkColor
                             border.width: 2
                             radius: 150
 
@@ -153,7 +154,7 @@ Page {
                             id: idIconRectangle3
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant1
+                            border.color: idApp.colors.highlightDarkColor
                             border.width: 2
                             radius: 150
 
@@ -209,7 +210,7 @@ Page {
                         Rectangle {
                             height: 125
                             width: 125
-                            border.color: appTheme.colorVariant1
+                            border.color: idApp.colors.highlightDarkColor
                             border.width: 2
                             radius: 150
                             anchors.horizontalCenter: parent.horizontalCenter
