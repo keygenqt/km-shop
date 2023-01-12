@@ -5,9 +5,6 @@ import "../components" as Components
 Page {
     id: homePage
 
-    readonly property color borderColorBlock: idApp.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500
-                                              ? "#444444" : idApp.colors.highlightDarkColor
-
     ListModel {
         id: categoryModel
     }
@@ -87,7 +84,7 @@ Page {
                 radius: appTheme.shapesLarge
                 opacity: 0.7
                 border.width: 1
-                border.color: homePage.borderColorBlock
+                border.color: idApp.colors.borderColorBlock
             }
 
             Column {
@@ -156,7 +153,7 @@ Page {
             width: parent.width
             height: idAppPage.pageH - idInfoBlock.height - appTheme.paddingMedium - appTheme.paddingLarge
             backgroundColor: idApp.colors.highlightDarkColor
-            borderColor: homePage.borderColorBlock
+            borderColor: idApp.colors.borderColorBlock
 
             Components.BlockLoading {
                visible: state.loading
@@ -172,7 +169,7 @@ Page {
             width: parent.width
             backgroundColor: idApp.colors.highlightDarkColor
             visible: state.response !== undefined
-            borderColor: homePage.borderColorBlock
+            borderColor: idApp.colors.borderColorBlock
 
             Column {
                 width: parent.width

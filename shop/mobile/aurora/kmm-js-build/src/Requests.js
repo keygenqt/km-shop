@@ -1,4 +1,4 @@
-import {AppHttpClient} from "./Constants";
+import {AppHttpClient, AppRequests} from "./Constants";
 import {Helper} from "./Helper";
 
 // mappers
@@ -29,11 +29,24 @@ export const Requests = {
         },
     },
     post: {
-        categoriesPublished: function (delay = defaultDelay) {
+        message: function (
+            fname,
+            lname,
+            email,
+            phone,
+            message,
+            delay = defaultDelay
+        ) {
             return Helper.request(async () => {
-                return await AppHttpClient.get.categoriesPublished()
+                return await AppHttpClient.post.message(AppRequests.MessageRequest(
+                    fname,
+                    lname,
+                    email,
+                    phone,
+                    message,
+                ))
             }, (response) => {
-                return JSON.stringify(response.toArray().mapToCategories());
+                return JSON.stringify(response);
             }, delay)
         },
     }

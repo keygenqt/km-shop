@@ -11,6 +11,7 @@ SilicaFlickable {
     property bool menuIsUpdate: false
     property var menuUpdate
     property bool fixed: true
+    property bool loading: false
     property var iconSearch
 
     default property alias children: idContent.data
@@ -42,6 +43,7 @@ SilicaFlickable {
             visible: item.header.length !== 0
             iconMain: item.selectedPage.length !== 0
             iconSearch: item.iconSearch
+            loading: item.loading
         }
 
         Column {

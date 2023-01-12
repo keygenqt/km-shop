@@ -34,6 +34,7 @@ Page {
     Components.AppPage {
         header: qsTr("Сообщение")
         fixed: false
+        loading: state.loading
 
         Components.AlertSuccess {
             text: qsTr("Ваше сообщение отправлено. Спасибо!")
@@ -109,6 +110,7 @@ Page {
                     onEndAnimationClick: contactFormPage.send()
                     padding: appTheme.paddingLarge
                     disabled: state.loading
+                    loading: state.loading
                 }
             }
         }

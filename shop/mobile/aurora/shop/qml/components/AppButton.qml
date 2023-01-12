@@ -20,6 +20,7 @@ MouseArea {
     property string contentColor: idApp.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
     property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
+    property bool loading: false
     property bool press: false
     property bool _isAnimation: false
 
@@ -39,6 +40,7 @@ MouseArea {
         anchors.horizontalCenter: parent.horizontalCenter
 
         Image {
+            visible: !idAppButton.loading
             anchors.verticalCenter: parent.verticalCenter
             source: iconStart.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconStart + "?" + idAppButton.contentColor)
             fillMode: Image.PreserveAspectFit
@@ -48,7 +50,24 @@ MouseArea {
                                                                                       : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
         }
 
+        Rectangle {
+            visible: idAppButton.loading
+            width: idLabel.height
+            height: idLabel.height
+            radius: idLabel.height
+            color : "white"
+
+            BusyIndicator {
+                id: idBusyIndicator
+                running: true
+                size: BusyIndicatorSize.ExtraSmall
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
         Label {
+            id: idLabel
             rightPadding: iconEnd.length == 0 ? idAppButton.padding : 0
             leftPadding: iconStart.length == 0 ? idAppButton.padding : 0
             bottomPadding: 3
@@ -57,9 +76,11 @@ MouseArea {
             font.pixelSize: idAppButton.padding > appTheme.paddingMedium ? appTheme.fontSizeH6
                                                                       : (idAppButton.padding > appTheme.paddingSmall ? appTheme.fontSizeBody1 : appTheme.fontSizeBody2)
             color: idAppButton.contentColor
+            visible: !idAppButton.loading
         }
 
         Image {
+            visible: !idAppButton.loading
             anchors.verticalCenter: parent.verticalCenter
             source: iconEnd.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconEnd + "?" + idAppButton.contentColor)
             fillMode: Image.PreserveAspectFit

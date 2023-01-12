@@ -27,6 +27,7 @@ Page {
 
                 Components.AppBlock {
                     width: parent.width
+                    borderColor: idApp.colors.borderColorBlock
                     backgroundColor: idApp.colors.highlightDarkColor
                     isOpacity: contactPage.activeMap
 
