@@ -8,22 +8,21 @@ MouseArea {
         id: appTheme
     }
 
+    id: idAppButton
+    height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
+    width: content.width + idAppButton.padding * 2
+    onClicked: if (!idAppButton.disabled) idAppButton.press = true
+
     property string text: ""
     property string iconStart: ""
     property string iconEnd: ""
     property bool disabled: false
-    property string contentColor: "white"
+    property string contentColor: idApp.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
     property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
     property bool press: false
 
     signal click()
-
-    id: idAppButton
-    height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
-    width: content.width + idAppButton.padding * 2
-
-    onClicked: if (!idAppButton.disabled) idAppButton.press = true
 
     Rectangle {
         anchors.fill: parent
@@ -73,7 +72,7 @@ MouseArea {
     Rectangle {
         width: parent.width
         height: parent.height
-        color : idAppButton.background == "black" ? "white" : "black"
+        color : idApp.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
         radius: appTheme.shapesMedium
         opacity: idAppButton.press ? 0.4 : 0.0
         Behavior on opacity {

@@ -32,6 +32,7 @@ Column {
             id: idTextField
             color: idMainBlock.error.length === 0 ? 'black' : errorColor
             placeholderColor: nowColor
+            cursorColor: idMainBlock.error.length === 0 ? 'black' : errorColor
 
             labelVisible: false
             anchors.bottom: parent.bottom
@@ -60,16 +61,6 @@ Column {
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
 
-//                        Rectangle {
-//                           color: idMainBlock.nowColor
-//                           height: idTextField.radius
-//                           width: idTextField.radius
-//                           anchors.bottom: parent.bottom
-//                           anchors.left: parent.left
-//                           anchors.right: parent.right
-//                           opacity: 0.5
-//                        }
-
                         Rectangle {
                            color: idMainBlock.nowColor
                            radius: idTextField.radius
@@ -83,15 +74,15 @@ Column {
                            anchors.bottom: parent.bottom
                            anchors.right: parent.right
                            anchors.left: parent.left
-                           anchors.leftMargin: idTextField.radius
-                           anchors.rightMargin: idTextField.radius
+                           anchors.leftMargin: idTextField.radius + 10
+                           anchors.rightMargin: idTextField.radius + 10
                            radius: idTextField.radius
                         }
 
                         Rectangle {
                            color: idMainBlock.error.length === 0 ? idMainBlock.focusColor : idMainBlock.errorColor
                            height: 4
-                           width: idTextField.focus ? (parent.width - idTextField.radius * 2) : 0
+                           width: idTextField.focus ? (parent.width - idTextField.radius * 2 - 10) : 0
                            anchors.bottom: parent.bottom
                            anchors.horizontalCenter: parent.horizontalCenter
                            radius: idTextField.radius

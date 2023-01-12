@@ -146,11 +146,10 @@ Page {
             }
         }
 
-
         Components.AppBlock {
             visible: state.error !== "" || state.loading
             width: parent.width
-            height: idAppPage.pageH - idInfoBlock.height - appTheme.paddingMedium
+            height: idAppPage.pageH - idInfoBlock.height - appTheme.paddingMedium - appTheme.paddingLarge
             backgroundColor: idApp.colors.highlightDarkColor
             borderColor: 'white'
 
@@ -196,6 +195,7 @@ Page {
                         text: qsTr("Все")
                         onClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 0})
                         padding: appTheme.paddingMedium
+                        background: 'white'
                     }
                 }
 

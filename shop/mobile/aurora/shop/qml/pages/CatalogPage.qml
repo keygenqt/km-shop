@@ -258,10 +258,6 @@ Page {
                               border.width: 2
                               radius: 20
 
-                              Component.onCompleted: {
-                                  console.log(idApp.constants.apiUrl + "api/uploads/" + icon)
-                              }
-
                               Image {
                                   id: img2
                                   source: Qt.resolvedUrl(idApp.constants.apiUrl + "api/uploads/" + icon)

@@ -68,7 +68,16 @@ ApplicationWindow {
     }
 
     function getPerceptualBrightness(color) {
-        var string = String(color)
+        var string
+        // check base color, but has litle bit more...
+        if (color === 'white') {
+            string = "#ffffff"
+        }
+        else if (color === 'black') {
+            string = "#000000"
+        } else {
+            string = String(color)
+        }
         var r = parseInt(string.substring(1,3),16);
         var g = parseInt(string.substring(3,5),16);
         var b = parseInt(string.substring(5,7),16);

@@ -94,7 +94,7 @@ All platforms use the latest stack.
 #### Preview
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/preview-themes.png" width="100%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/preview.png" width="100%"/>
 </p>
 
 # License
