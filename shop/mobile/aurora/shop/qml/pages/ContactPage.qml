@@ -75,7 +75,7 @@ Page {
                             Components.AppButton {
                                 width: parent.width
                                 text: qsTr("Написать сообщение")
-                                onClicked: pageStack.push(Qt.resolvedUrl("ContactFormPage.qml"))
+                                onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ContactFormPage.qml"))
                                 padding: appTheme.paddingMedium
                                 background: 'white'
                             }
@@ -133,7 +133,7 @@ Page {
                             Components.AppButton {
                                 width: parent.width
                                 text: idApp.constants.email
-                                onClicked: console.log("Click")
+                                onEndAnimationClick: console.log("Click")
                                 padding: appTheme.paddingMedium
                             }
                         }
@@ -190,7 +190,7 @@ Page {
                             Components.AppButton {
                                 width: parent.width
                                 text: idApp.constants.phone
-                                onClicked: console.log("Click")
+                                onEndAnimationClick: console.log("Click")
                                 padding: appTheme.paddingMedium
                             }
                         }

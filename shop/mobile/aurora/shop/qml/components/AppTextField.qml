@@ -14,7 +14,7 @@ Column {
 
     property color color: "#74828e"
     property string focusColor: idApp.colors.highlightDarkColor
-    property color errorColor: Theme.errorColor
+    property color errorColor: appTheme.colorError
 
     readonly property color nowColor: error.length !== 0 ? errorColor : (idTextField.focus ? focusColor : color)
 
@@ -26,7 +26,7 @@ Column {
         width: parent.width
         height: idTextField.height + 24
         color: 'transparent'
-        opacity: idMainBlock.disabled ? 0.6 : 1.0
+        opacity: idMainBlock.disabled ? 0.5 : 1.0
 
         TextArea {
             id: idTextField

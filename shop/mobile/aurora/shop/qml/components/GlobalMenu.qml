@@ -63,7 +63,7 @@ Rectangle {
     Rectangle {
         width: parent.width - Theme.paddingLarge * 2
         height: parent.height
-        color : appTheme.colorVariant2
+        color : "grey"
         radius: appTheme.shapesLarge
         anchors.horizontalCenter: parent.horizontalCenter
         visible: !idGlobalMenu.hide && idGlobalMenu.disabled

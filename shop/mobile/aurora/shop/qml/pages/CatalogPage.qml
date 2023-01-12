@@ -147,7 +147,7 @@ Page {
                       borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
-                      onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
+                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
 
                       Row {
                           width: parent.width
@@ -244,7 +244,7 @@ Page {
                       borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
-                      onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
+                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
 
                       Row {
                           width: parent.width

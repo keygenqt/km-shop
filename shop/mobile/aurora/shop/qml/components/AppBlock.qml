@@ -1,29 +1,25 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import AppTheme 1.0
 
 MouseArea {
-
-    AppTheme {
-        id: appTheme
-    }
-
-    signal click()
 
     property color borderColor: idApp.colors.highlightDarkColor
     property color backgroundColor: "white"
     property int padding: appTheme.paddingLarge
     property bool centerIn: false
     property bool disabled: true
-    property bool press: false
     property bool isOpacity: false
     property string bgSource: ""
     default property alias children: content.data
+    property bool press: false
+    property bool _isAnimation: false
+
+    signal endAnimationClick()
 
     id: idAppBlock
     height: content.height + idAppBlock.padding * 2
 
-    onClicked: if (!idAppBlock.disabled) idAppBlock.press = true
+    onClicked: if (!idAppBlock.disabled && !idAppBlock._isAnimation) idAppBlock.press = true
 
     Rectangle {
         width: parent.width
@@ -59,9 +55,11 @@ MouseArea {
                 onRunningChanged: {
                     if (!animation.running) {
                         if (idAppBlock.press) {
+                            idAppBlock._isAnimation = true
                             idAppBlock.press = false
-                        } else {
-                            click()
+                        } else if (idAppBlock._isAnimation) {
+                            idAppBlock._isAnimation = false
+                            endAnimationClick()
                         }
                     }
                 }

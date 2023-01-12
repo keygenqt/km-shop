@@ -27,5 +27,14 @@ export const Requests = {
                 return JSON.stringify(response.toArray().mapToCollections())
             }, delay)
         },
+    },
+    post: {
+        categoriesPublished: function (delay = defaultDelay) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.categoriesPublished()
+            }, (response) => {
+                return JSON.stringify(response.toArray().mapToCategories());
+            }, delay)
+        },
     }
 }

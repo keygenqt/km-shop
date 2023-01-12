@@ -48,7 +48,7 @@ Page {
                     Components.AppButton {
                         width: parent.width
                         text: qsTr("Искать")
-                        onClicked: console.log("yes")
+                        onEndAnimationClick: console.log("yes")
                         padding: appTheme.paddingLarge
                     }
 

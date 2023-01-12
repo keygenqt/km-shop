@@ -126,7 +126,7 @@ Page {
 
                             Components.AppButton {
                                 text: qsTr("Начните поиск")
-                                onClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 1})
+                                onEndAnimationClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 1})
                                 padding: appTheme.paddingMedium
                                 background: 'black'
                             }
@@ -198,7 +198,7 @@ Page {
                     Components.AppButton {
                         id: allButton
                         text: qsTr("Все")
-                        onClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 0})
+                        onEndAnimationClick: pageStack.push(Qt.resolvedUrl("CatalogPage.qml"), {menu: false, index: 0})
                         padding: appTheme.paddingMedium
                         background: 'white'
                     }
@@ -232,7 +232,7 @@ Page {
                             Components.AppButton {
                                 text: qsTr("Смотреть")
                                 iconEnd: "image://theme/icon-m-enter-next"
-                                onClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
+                                onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
                                 padding: appTheme.paddingMedium
                             }
                         }

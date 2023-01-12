@@ -11,7 +11,7 @@ MouseArea {
     id: idAppButton
     height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
     width: content.width + idAppButton.padding * 2
-    onClicked: if (!idAppButton.disabled) idAppButton.press = true
+    onClicked: if (!idAppButton.disabled && !idAppButton._isAnimation) idAppButton.press = true
 
     property string text: ""
     property string iconStart: ""
@@ -21,12 +21,13 @@ MouseArea {
     property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
     property bool press: false
+    property bool _isAnimation: false
 
-    signal click()
+    signal endAnimationClick()
 
     Rectangle {
         anchors.fill: parent
-        color : idAppButton.background
+        color : idAppButton.disabled ? 'gray' : idAppButton.background
         radius: appTheme.shapesMedium
     }
 
@@ -84,9 +85,11 @@ MouseArea {
                 onRunningChanged: {
                     if (!animation.running) {
                         if (idAppButton.press) {
+                            idAppButton._isAnimation = true
                             idAppButton.press = false
-                        } else {
-                            click()
+                        } else if (idAppButton._isAnimation) {
+                            idAppButton._isAnimation = false
+                            endAnimationClick()
                         }
                     }
                 }

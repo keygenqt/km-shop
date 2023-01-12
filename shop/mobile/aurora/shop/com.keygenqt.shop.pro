@@ -16,6 +16,8 @@ HEADERS += \
     src/apptheme.h
 
 DISTFILES += \
+    qml/components/AlertError.qml \
+    qml/components/AlertSuccess.qml \
     qml/components/AppBlock.qml \
     qml/components/AppPage.qml \
     qml/components/AppTextField.qml \

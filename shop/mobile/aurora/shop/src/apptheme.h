@@ -12,21 +12,15 @@ class AppTheme : public QObject
     explicit AppTheme(QObject *parent = nullptr);
 
     // Colors
-    QString getColorCover();
-    QString getColorVariant1();
-    QString getColorVariant2();
-    QString getColorVariant3();
-    QString getColorVariant4();
-    QString getColorVariant5();
-    QString getColorVariant6();
+    QString getColorSuccess();
+    QString getColorSuccessBorder();
+    QString getColorError();
+    QString getColorErrorBorder();
 
-    Q_PROPERTY(QString colorCover READ getColorCover CONSTANT)
-    Q_PROPERTY(QString colorVariant1 READ getColorVariant1 CONSTANT)
-    Q_PROPERTY(QString colorVariant2 READ getColorVariant2 CONSTANT)
-    Q_PROPERTY(QString colorVariant3 READ getColorVariant3 CONSTANT)
-    Q_PROPERTY(QString colorVariant4 READ getColorVariant4 CONSTANT)
-    Q_PROPERTY(QString colorVariant5 READ getColorVariant5 CONSTANT)
-    Q_PROPERTY(QString colorVariant6 READ getColorVariant6 CONSTANT)
+    Q_PROPERTY(QString colorSuccess READ getColorSuccess CONSTANT)
+    Q_PROPERTY(QString colorSuccessBorder READ getColorSuccessBorder CONSTANT)
+    Q_PROPERTY(QString colorError READ getColorError CONSTANT)
+    Q_PROPERTY(QString colorErrorBorder READ getColorErrorBorder CONSTANT)
 
     // Paddings
     int getPaddingLarge();

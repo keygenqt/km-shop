@@ -3,14 +3,17 @@
 
 AppTheme::AppTheme(QObject *parent) : QObject(parent) {}
 
+
+QString getColorSuccess();
+QString getColorSuccessBorder();
+QString getColorError();
+QString getColorErrorBorder();
+
 // Colors
-QString AppTheme::getColorCover() { return "#329cd5"; }
-QString AppTheme::getColorVariant1() { return "#329cd5"; }
-QString AppTheme::getColorVariant2() { return "#955BA5"; }
-QString AppTheme::getColorVariant3() { return "#3E6C91"; }
-QString AppTheme::getColorVariant4() { return "#2596aa"; }
-QString AppTheme::getColorVariant5() { return "#1D81D6"; }
-QString AppTheme::getColorVariant6() { return "#4CAF50"; }
+QString AppTheme::getColorSuccess() { return "#4E846F"; }
+QString AppTheme::getColorSuccessBorder() { return "#1f4037"; }
+QString AppTheme::getColorError() { return "#B41332"; }
+QString AppTheme::getColorErrorBorder() { return "#650F34"; }
 
 // Paddings
 int AppTheme::getPaddingLarge() { return 30; }
