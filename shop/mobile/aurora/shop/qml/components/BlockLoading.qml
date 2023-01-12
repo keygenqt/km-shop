@@ -6,8 +6,8 @@ Item {
     height: idRec.height
     width: parent.width
 
-    property int size: 200
-    property color borderColor: "transparent"
+    property int size: 120
+    property color borderColor: idApp.colors.highlightDarkColor
 
     Rectangle {
         id: idRec

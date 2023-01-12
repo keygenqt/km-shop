@@ -126,16 +126,15 @@ Page {
             Components.AppBlock {
                 height: idAppPage.pageH - appTabs.height - appTheme.paddingMedium
                 width: parent.width
-                borderColor: idApp.colors.highlightDarkColor
+                borderColor: 'transparent'
+                backgroundColor: 'transparent'
                 visible: stateCattegories.loading || stateCattegories.error !== ""
 
                 Components.BlockLoading {
-                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCattegories.loading
                 }
 
                 Components.BlockError {
-                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCattegories.error !== ""
                 }
             }
@@ -223,16 +222,15 @@ Page {
             Components.AppBlock {
                 height: idAppPage.pageH - appTabs.height - appTheme.paddingMedium
                 width: parent.width
-                borderColor: idApp.colors.highlightDarkColor
+                borderColor: 'transparent'
+                backgroundColor: 'transparent'
                 visible: stateCollections.loading || stateCollections.error !== ""
 
                 Components.BlockLoading {
-                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCollections.loading
                 }
 
                 Components.BlockError {
-                    borderColor: idApp.colors.highlightDarkColor
                     visible: stateCollections.error !== ""
                 }
             }

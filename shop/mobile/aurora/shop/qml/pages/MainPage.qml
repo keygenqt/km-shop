@@ -152,8 +152,8 @@ Page {
             visible: state.error !== "" || state.loading
             width: parent.width
             height: idAppPage.pageH - idInfoBlock.height - appTheme.paddingMedium - appTheme.paddingLarge
-            backgroundColor: idApp.colors.highlightDarkColor
-            borderColor: idApp.colors.borderColorBlock
+            backgroundColor: 'transparent'
+            borderColor: 'transparent'
 
             Components.BlockLoading {
                visible: state.loading

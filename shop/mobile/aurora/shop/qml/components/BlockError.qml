@@ -9,7 +9,7 @@ Item {
     width: parent.width
 
     property int size: 300
-    property color borderColor: "transparent"
+    property color borderColor: idApp.colors.highlightDarkColor
 
     Rectangle {
         id: rec
