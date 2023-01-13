@@ -13,6 +13,11 @@ SilicaFlickable {
     property bool fixed: true
     property bool loading: false
     property var iconSearch
+    property var iconSettings
+    property var iconSort1
+    property var iconSort2
+    property var iconSort3
+    property bool disablePaddingIcons: false
 
     default property alias children: idContent.data
 
@@ -43,7 +48,12 @@ SilicaFlickable {
             visible: item.header.length !== 0
             iconMain: item.selectedPage.length !== 0
             iconSearch: item.iconSearch
+            iconSettings: item.iconSettings
+            iconSort1: item.iconSort1
+            iconSort2: item.iconSort2
+            iconSort3: item.iconSort3
             loading: item.loading
+            disablePaddingIcons: item.disablePaddingIcons
         }
 
         Column {

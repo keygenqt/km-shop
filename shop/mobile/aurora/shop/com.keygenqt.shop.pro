@@ -19,6 +19,7 @@ DISTFILES += \
     qml/components/AlertError.qml \
     qml/components/AlertSuccess.qml \
     qml/components/AppBlock.qml \
+    qml/components/AppIconButton.qml \
     qml/components/AppPage.qml \
     qml/components/AppTextField.qml \
     qml/components/BlockError.qml \
@@ -27,6 +28,7 @@ DISTFILES += \
     qml/components/KMMAgent.qml \
     qml/components/LottieAnimation.qml \
     qml/components/MainPageHeader.qml \
+    qml/components/RangeSlider.qml \
     qml/pages/SplashPage.qml \
     rpm/com.keygenqt.shop.spec \
 
