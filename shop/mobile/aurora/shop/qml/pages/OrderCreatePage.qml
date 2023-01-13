@@ -39,16 +39,13 @@ Rectangle {
                 state.loading = false
             },
             function(error) {
-
-                state.success = true // @todo
-
-//                if (JSON.stringify(error).indexOf('"validate":[{') !== -1) {
-//                    idFieldEmail.error = idApp.helper.findError('email', error.validate)
-//                    idFieldPhone.error = idApp.helper.findError('phone', error.validate)
-//                    idFieldAddress.error = idApp.helper.findError('address', error.validate)
-//                } else {
-//                    state.error = true
-//                }
+                if (JSON.stringify(error).indexOf('"validate":[{') !== -1) {
+                    idFieldEmail.error = idApp.helper.findError('email', error.validate)
+                    idFieldPhone.error = idApp.helper.findError('phone', error.validate)
+                    idFieldAddress.error = idApp.helper.findError('address', error.validate)
+                } else {
+                    state.error = true
+                }
                 state.loading = false
             }
         )

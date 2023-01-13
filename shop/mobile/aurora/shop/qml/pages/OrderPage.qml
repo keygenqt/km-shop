@@ -33,7 +33,7 @@ Page {
         state.loading = true
         // run query
         agent.run(
-            "kmm.Service.get.orderByNumber('"+idOrderPage.orderId+"', 2000)",
+            "kmm.Service.get.orderByNumber('"+idOrderPage.orderId+"', 500)",
             function(result) {
                 try {
                     state.response = JSON.parse(result)

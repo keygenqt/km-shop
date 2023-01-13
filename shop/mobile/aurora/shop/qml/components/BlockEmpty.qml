@@ -7,7 +7,7 @@ Column {
     width: parent.width
     spacing: appTheme.paddingLarge
 
-    property int size: 310
+    property int size: 300
     property color borderColor: 'transparent'
     property string title: ""
     property string text: ""
@@ -21,8 +21,7 @@ Column {
             id: rec
             height: size
             width: size
-            radius: size
-            color: 'white'
+            radius: appTheme.paddingLarge
 
             anchors.horizontalCenter: parent.horizontalCenter
             layer.enabled: true
@@ -45,7 +44,6 @@ Column {
                 width: size * 1.266666667
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                color: 'transparent'
 
                 AnimatedImage {
                     id: img

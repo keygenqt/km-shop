@@ -29,26 +29,11 @@ PageHeader {
                 visible: idHeader.iconSearch !== undefined
             }
 
-            Rectangle {
-                id: idRec
-                height: 60
+            BlockLoading {
+                size: 60
                 width: 60
-                radius: 60
-                anchors.verticalCenter: parent.verticalCenter
-                color: 'white'
-                border.width: 2
-                border.color: idApp.colors.borderColorBlock
                 visible: idHeader.loading
-
-                AnimatedImage {
-                    source: Qt.resolvedUrl("../icons/animation_loader.gif")
-                    fillMode: Image.PreserveAspectFit
-                    anchors.margins: -(idRec.width * 0.2)
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                }
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     ]

@@ -12,16 +12,20 @@ Page {
     QtObject {
         id: state
         property var response
-        property string error: ""
-        property bool loading: true
+        property bool error: false
+        property bool loading: false
         function clear() {
-            response = undefined; error = ""; loading = true; categoryModel.clear()
+            categoryModel.clear()
+            response = undefined;
+            loading = false;
+            error = false;
         }
     }
 
     function update() {
         // clear state
         state.clear()
+        state.loading = true
         // run query
         agent.run(
             "kmm.Service.get.categoriesPublished()",
@@ -149,7 +153,7 @@ Page {
         }
 
         Components.AppBlock {
-            visible: state.error !== "" || state.loading
+            visible: state.error || state.loading
             width: parent.width
             height: idAppPage.pageH - idInfoBlock.height - appTheme.paddingMedium - appTheme.paddingLarge
             backgroundColor: 'transparent'
@@ -160,7 +164,7 @@ Page {
             }
 
             Components.BlockError {
-                visible: state.error !== ""
+                visible: state.error
             }
         }
 
