@@ -2,12 +2,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../components" as Components
 
-Rectangle {
-    id: orderHistoryPage
-    color: 'transparent'
+Page {
+    id: idOrderPage
+
+    property string orderId: ""
 
     Components.AppPage {
-        header: qsTr("История")
+        header: qsTr("Заказ")
 
         Components.AppBlock {
             height: parent.height
@@ -17,10 +18,10 @@ Rectangle {
 
             Text {
                 width: parent.width
-                text: qsTr("OrderHistoryPage")
+                text: idOrderPage.orderId
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: appTheme.fontSizeH6
+                font.pixelSize: appTheme.fontSizeBody1
             }
         }
     }

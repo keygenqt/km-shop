@@ -46,7 +46,7 @@ Page {
         stateCollections.clear()
         // get categories
         agent.run(
-            "kmm.Requests.get.categoriesPublished()",
+            "kmm.Service.get.categoriesPublished()",
             function(result) {
                 try {
                     var list = JSON.parse(result)
@@ -66,7 +66,7 @@ Page {
         )
         // get collections
         agent.run(
-            "kmm.Requests.get.collectionsPublished()",
+            "kmm.Service.get.collectionsPublished()",
             function(result) {
                 try {
                     var list = JSON.parse(result)

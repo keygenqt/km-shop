@@ -19,13 +19,34 @@ Page {
         state.loading = true
 
         agent.run(
-            "kmm.Requests.get.categoriesPublished(5000)",
+            'kmm.Service.post.message('
+                    + 'new kmm.AppRequests.MessageRequest('
+                            + '"' + idFieldFname.text + '",'
+                            + '"' + idFieldLName.text + '",'
+                            + '"' + idFieldEmail.text + '",'
+                            + '"' + idFieldPhone.text + '",'
+                            + '"' + idFieldMessage.text + '",'
+                            + ')'
+                    + ', 500)',
             function(result) {
+                idFieldFname.text = ""
+                idFieldLName.text = ""
+                idFieldEmail.text = ""
+                idFieldPhone.text = ""
+                idFieldMessage.text = ""
                 state.success = true
                 state.loading = false
             },
             function(error) {
-                state.error = true
+                if (JSON.stringify(error).indexOf('"validate":[{') !== -1) {
+                    idFieldFname.error = idApp.helper.findError('fname', error.validate)
+                    idFieldLName.error = idApp.helper.findError('lname', error.validate)
+                    idFieldEmail.error = idApp.helper.findError('email', error.validate)
+                    idFieldPhone.error = idApp.helper.findError('phone', error.validate)
+                    idFieldMessage.error = idApp.helper.findError('message', error.validate)
+                } else {
+                    state.error = true
+                }
                 state.loading = false
             }
         )
@@ -72,36 +93,49 @@ Page {
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignLeft
                     font.pixelSize: appTheme.fontSizeBody1
+
                 }
 
                 Components.AppTextField {
+                    id: idFieldEmail
+                    inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhNoPredictiveText
                     placeholderText : qsTr("Email")
                     singleLine: true
                     disabled: state.loading
+                    onTextChanged: error = ""
                 }
 
                 Components.AppTextField {
+                    id: idFieldFname
                     placeholderText : qsTr("Имя")
                     singleLine: true
                     disabled: state.loading
+                    onTextChanged: error = ""
                 }
 
                 Components.AppTextField {
+                    id: idFieldLName
                     placeholderText : qsTr("Фамилия (по желанию)")
                     singleLine: true
                     disabled: state.loading
+                    onTextChanged: error = ""
                 }
 
                 Components.AppTextField {
+                    id: idFieldPhone
+                    inputMethodHints: Qt.ImhDialableCharactersOnly
                     placeholderText : qsTr("Телефон (по желанию)")
                     singleLine: true
                     disabled: state.loading
+                    onTextChanged: error = ""
                 }
 
                 Components.AppTextField {
+                    id: idFieldMessage
                     placeholderText : qsTr("Сообщение")
                     singleLine: false
                     disabled: state.loading
+                    onTextChanged: error = ""
                 }
 
                 Components.AppButton {

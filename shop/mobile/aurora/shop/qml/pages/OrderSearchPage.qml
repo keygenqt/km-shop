@@ -6,6 +6,12 @@ import "../components" as Components
 Page {
     id: orderSearchPage
 
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            pageStack.pushAttached(idOrderHistoryPage)
+        }
+    }
+
     Components.AppPage {
         header: qsTr("Поиск заказа")
 
@@ -37,10 +43,11 @@ Page {
                     property string error: ""
 
                     Components.AppTextField {
+                        id: idNumberField
                         placeholderText : qsTr("Номер заказа")
                         singleLine: true
                         onTextChanged: {
-                            error = text.length === 0 ? "The field is required" : ""
+                            error = text.length !== 36 ? "Номер заказа должен содержать 36 символов" : ""
                         }
                         error: error
                     }
@@ -48,8 +55,17 @@ Page {
                     Components.AppButton {
                         width: parent.width
                         text: qsTr("Искать")
-                        onEndAnimationClick: console.log("yes")
+                        onEndAnimationClick: {
+                            // Change page
+                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "a1437f92-5e87-4847-bf50-c49df07c2b3a"})
+                            // Run clear field
+                            idApp.helper.setTimeout(function() {
+                                idNumberField.text = ""
+                                idNumberField.error = ""
+                            }, 300)
+                        }
                         padding: appTheme.paddingLarge
+                        disabled: idNumberField.text.length === 0 || idNumberField.error.length !== 0
                     }
 
                 }
@@ -88,6 +104,14 @@ Page {
                 }
 
             }
+        }
+    }
+
+    Page {
+        id: idOrderHistoryPage
+        Loader {
+            anchors.fill: parent
+            source: "OrderHistoryPage.qml";
         }
     }
 }

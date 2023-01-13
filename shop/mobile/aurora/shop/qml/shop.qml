@@ -50,6 +50,7 @@ ApplicationWindow {
 
     property alias constants: constants
     property alias colors: colors
+    property alias helper: helper
 
     QtObject {
         id: constants
@@ -63,27 +64,70 @@ ApplicationWindow {
 
     QtObject {
         id: colors
-        readonly property string highlightDarkColor: getPerceptualBrightness(Theme.highlightDimmerColor) < getPerceptualBrightness(Theme.highlightColor)
+        readonly property string highlightDarkColor: helper.getPerceptualBrightness(Theme.highlightDimmerColor) < helper.getPerceptualBrightness(Theme.highlightColor)
                                             ? Theme.highlightDimmerColor : Theme.highlightColor
-        readonly property color borderColorBlock: idApp.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500
+        readonly property color borderColorBlock: helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500
                                                   ? "#444444" : idApp.colors.highlightDarkColor
     }
 
-    function getPerceptualBrightness(color) {
-        var string
-        // check base color, but has litle bit more...
-        if (color === 'white') {
-            string = "#ffffff"
+    QtObject {
+        id: helper
+
+        /**
+        * Find error array validate
+        */
+        function findError(field, validate) {
+           if (!validate) {
+               return ""
+           }
+           for (var index = 0; index < validate.length; index++) {
+               if (validate[index].filed === field) {
+                   return validate[index].errors[0]
+               }
+           }
+           return ""
         }
-        else if (color === 'black') {
-            string = "#000000"
-        } else {
-            string = String(color)
+
+        /**
+        * Get Lightness Ratio
+        */
+        function getPerceptualBrightness(color) {
+            var string
+            // check base color, but has litle bit more...
+            if (color === 'white') {
+                string = "#ffffff"
+            }
+            else if (color === 'black') {
+                string = "#000000"
+            } else {
+                string = String(color)
+            }
+            var r = parseInt(string.substring(1,3),16);
+            var g = parseInt(string.substring(3,5),16);
+            var b = parseInt(string.substring(5,7),16);
+            return r*2 + g*3 + b;
         }
-        var r = parseInt(string.substring(1,3),16);
-        var g = parseInt(string.substring(3,5),16);
-        var b = parseInt(string.substring(5,7),16);
-        return r*2 + g*3 + b;
+
+        /**
+        * Start the timer and execute the provided callback
+        */
+        function setTimeout(callback, milliseconds) {
+            timer.interval = milliseconds;
+            timer.repeat = false;
+            timer.triggered.connect(callback);
+            timer.start();
+        }
+
+        /**
+        * Stop the timer and unregister the callback
+        */
+        function clearTimeout() {
+            timer.stop();
+        }
+    }
+
+    Timer {
+        id: timer
     }
 
     Components.KMMAgent {

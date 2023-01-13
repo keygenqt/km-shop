@@ -1,25 +1,198 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtGraphicalEffects 1.0
 import "../components" as Components
 
 Rectangle {
+    id: idOrderCreatePage
     color: 'transparent'
 
+    onVisibleChanged: {
+        state.clear()
+    }
+
+    QtObject {
+        id: state
+        property bool error: false
+        property bool success: false
+        property bool loading: false
+        function clear() {
+            state.error = false
+            state.success = false
+            state.loading = false
+        }
+    }
+
+    function send() {
+
+        state.clear()
+        state.loading = true
+
+        agent.run(
+            'kmm.Service.post.orderCreate('
+                    + '"' + idFieldEmail.text + '",'
+                    + '"' + idFieldPhone.text + '",'
+                    + '"' + idFieldAddress.text + '",'
+                    + '500)',
+            function(result) {
+                state.success = true
+                state.loading = false
+            },
+            function(error) {
+
+                state.success = true // @todo
+
+//                if (JSON.stringify(error).indexOf('"validate":[{') !== -1) {
+//                    idFieldEmail.error = idApp.helper.findError('email', error.validate)
+//                    idFieldPhone.error = idApp.helper.findError('phone', error.validate)
+//                    idFieldAddress.error = idApp.helper.findError('address', error.validate)
+//                } else {
+//                    state.error = true
+//                }
+                state.loading = false
+            }
+        )
+    }
+
     Components.AppPage {
-        header: qsTr("Оформить Заказ")
+        header: qsTr("Оформление заказа")
+        fixed: state.success
+        loading: state.loading
+
+        Components.AlertError {
+            text: qsTr("Ошибка отправки попробуйте позже")
+            visible: state.error
+            onClose: state.error = false
+        }
 
         Components.AppBlock {
-            height: parent.height
+            height: state.success ? parent.height : idContentForm.height + appTheme.paddingLarge * 2
             width: parent.width
             borderColor: idApp.colors.highlightDarkColor
             backgroundColor: "white"
 
-            Text {
+            Column {
+                visible: state.success
                 width: parent.width
-                text: qsTr("OrderCreatePage")
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: appTheme.fontSizeH6
+                spacing: appTheme.paddingLarge
+
+                Rectangle {
+                    height: 300
+                    width: 300
+                    color: 'transparent'
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    AnimatedImage {
+                        id: img
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        source: Qt.resolvedUrl("../icons/animation_success_order.gif")
+                        fillMode: Image.PreserveAspectFit
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Item {
+                                width: img.width
+                                height: img.height
+                                Rectangle {
+                                    anchors.centerIn: parent
+                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
+                                    height: img.adapt ? img.height : width
+                                    radius: img.width
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Text {
+                    width: parent.width
+                    text: qsTr("Заказ оформлен!")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: appTheme.fontSizeH6
+                    font.bold: true
+                }
+
+                Text {
+                    width: parent.width
+                    text: qsTr("Спасибо за ваш заказ. С вами свяжутся для уточнения деталей заказа. До скорого!")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: appTheme.fontSizeBody1
+                }
+
+                Components.AppButton {
+                    text: qsTr("Информация по заказу")
+                    onEndAnimationClick: state.clear()
+                    padding: appTheme.paddingMedium
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                Rectangle {
+                    height: 40
+                    width: 1
+                }
+            }
+
+            Column {
+                id: idContentForm
+                visible: !state.success
+                width: parent.width
+                spacing: appTheme.paddingLarge
+
+                Text {
+                    width: parent.width
+                    text: qsTr("Контактная информация")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    font.pixelSize: appTheme.fontSizeH6
+                    font.bold: true
+                }
+
+                Text {
+                    width: parent.width
+                    text: qsTr("Введите свои контактные данные, чтобы с вами можно было связаться и уточнить все необходимые данные по заказу.")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    font.pixelSize: appTheme.fontSizeBody1
+                }
+
+                Components.AppTextField {
+                    id: idFieldPhone
+                    inputMethodHints: Qt.ImhDialableCharactersOnly
+                    placeholderText : qsTr("Телефон")
+                    singleLine: true
+                    disabled: state.loading
+                    onTextChanged: error = ""
+                }
+
+                Components.AppTextField {
+                    id: idFieldEmail
+                    inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhNoPredictiveText
+                    placeholderText : qsTr("Email (по желанию)")
+                    singleLine: true
+                    disabled: state.loading
+                    onTextChanged: error = ""
+                }
+
+                Components.AppTextField {
+                    id: idFieldAddress
+                    placeholderText : qsTr("Адрес (по желанию)")
+                    singleLine: false
+                    disabled: state.loading
+                    onTextChanged: error = ""
+                }
+
+                Components.AppButton {
+                    width: parent.width
+                    text: qsTr("Отправить")
+                    onEndAnimationClick: idOrderCreatePage.send()
+                    padding: appTheme.paddingLarge
+                    disabled: state.loading
+                    loading: state.loading
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ export * from './mappers/OrderProductMapper';
 // For a slower loading that allows you to work out the animation, the cache will be responsible for the speed
 const defaultDelay = 500
 
-export const Requests = {
+export const Service = {
     get: {
         categoriesPublished: function (delay = defaultDelay) {
             return Helper.request(async () => {
@@ -29,21 +29,25 @@ export const Requests = {
         },
     },
     post: {
-        message: function (
-            fname,
-            lname,
+        message: function (request, delay = defaultDelay) {
+            return Helper.request(async () => {
+                return await AppHttpClient.post.message(request)
+            }, (response) => {
+                return JSON.stringify(response);
+            }, delay)
+        },
+        orderCreate: function (
             email,
             phone,
-            message,
+            address,
             delay = defaultDelay
         ) {
             return Helper.request(async () => {
-                return await AppHttpClient.post.message(AppRequests.MessageRequest(
-                    fname,
-                    lname,
+                return await AppHttpClient.post.orderCreate(new AppRequests.OrderCreateRequest(
                     email,
                     phone,
-                    message,
+                    address,
+                    [],
                 ))
             }, (response) => {
                 return JSON.stringify(response);

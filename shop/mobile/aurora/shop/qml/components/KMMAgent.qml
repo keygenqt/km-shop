@@ -20,7 +20,7 @@ Item {
         if (method.indexOf("return") === -1) {
             webview.runJavaScript("return " + method, function(key) {
                 idAgentBlock.stateResponse[key] = [result, error]
-            });
+            }, error);
         } else {
             webview.runJavaScript(method, result, error);
         }
@@ -46,8 +46,9 @@ Item {
                     if (data.caller === 'init') {
                         idAgentBlock.completed()
                     } else if (idAgentBlock.stateResponse[data.caller] !== undefined) {
-                        if (JSON.stringify(data.response) !== '{}') {
-                            if (data.response.indexOf("Error") !== -1) {
+                        var respnseStringify = JSON.stringify(data.response)
+                        if (respnseStringify !== '{}') {
+                            if (respnseStringify.indexOf("Error") !== -1 || respnseStringify.indexOf("code") !== -1) {
                                 idAgentBlock.stateResponse[data.caller][1](data.response)
                             } else {
                                 idAgentBlock.stateResponse[data.caller][0](data.response)
@@ -56,6 +57,7 @@ Item {
                         }
                     }
                 } catch (e) {
+                    idAgentBlock.stateResponse[data.caller][1](qsTr("Произошла непредвиденная ошибка, попробуйте позже"))
                     console.log(e)
                 }
                 break

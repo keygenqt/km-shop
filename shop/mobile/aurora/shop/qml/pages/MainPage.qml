@@ -24,7 +24,7 @@ Page {
         state.clear()
         // run query
         agent.run(
-            "kmm.Requests.get.categoriesPublished()",
+            "kmm.Service.get.categoriesPublished()",
             function(result) {
                 try {
                     var list = JSON.parse(result)

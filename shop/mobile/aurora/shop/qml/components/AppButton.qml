@@ -17,7 +17,7 @@ MouseArea {
     property string iconStart: ""
     property string iconEnd: ""
     property bool disabled: false
-    property string contentColor: idApp.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
+    property string contentColor: idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
     property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
     property bool loading: false
@@ -94,7 +94,7 @@ MouseArea {
     Rectangle {
         width: parent.width
         height: parent.height
-        color : idApp.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
+        color : idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
         radius: appTheme.shapesMedium
         opacity: idAppButton.press ? 0.4 : 0.0
         Behavior on opacity {

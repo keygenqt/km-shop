@@ -12,7 +12,7 @@ Rectangle {
     readonly property string itemMenuContacts: "itemMenuContacts"
     readonly property string itemMenuCart: "itemMenuCart"
     readonly property string itemMenuHome: "itemMenuHome"
-    readonly property string noActiveColor: idApp.getPerceptualBrightness(Theme.highlightDimmerColor) < 765 ? "gray" : "black"
+    readonly property string noActiveColor: idApp.helper.getPerceptualBrightness(Theme.highlightDimmerColor) < 765 ? "gray" : "black"
 
     property bool update: false
     property bool hide: false

@@ -1,4 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import {ResponseException} from "./mappers/ResponseExceptionMapper";
+// mappers
+export * from './mappers/ResponseExceptionMapper';
 
 export const Helper = {
     randomUUID: function () {
@@ -10,7 +13,11 @@ export const Helper = {
             try {
                 Helper.sendEvent(caller, callback(await fun()))
             } catch (e) {
-                Helper.sendEvent(caller, e)
+                if (e instanceof ResponseException) {
+                    Helper.sendEvent(caller, e.mapToException())
+                } else {
+                    Helper.sendEvent(caller, e)
+                }
             }
         }, delay)
         return caller

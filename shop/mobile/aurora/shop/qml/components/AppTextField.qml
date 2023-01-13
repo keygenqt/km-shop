@@ -11,6 +11,7 @@ Column {
     property string error: ""
     property alias placeholderText: idTextField.placeholderText
     property alias text: idTextField.text
+    property alias inputMethodHints: idTextField.inputMethodHints
 
     property color color: "#74828e"
     property string focusColor: idApp.colors.highlightDarkColor
@@ -114,13 +115,16 @@ Column {
     }
 
     Text {
-        width: parent.width
         text: error
         color: idMainBlock.errorColor
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: appTheme.fontSizeCaption
         visible: error.length !== 0
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.leftMargin: idTextField.radius + 10
+        anchors.rightMargin: idTextField.radius + 10
     }
 }
 
