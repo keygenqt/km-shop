@@ -27,7 +27,7 @@ SilicaFlickable {
         id: idMenu
         selectedPage: item.selectedPage
         disabled: item.menuDisabled
-        hide: item.selectedPage.length === 0
+        hide: item.selectedPage.length === 0 && !item.menuUpdate
         update: item.menuIsUpdate
         menuUpdate: item.menuUpdate
     }

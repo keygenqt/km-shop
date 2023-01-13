@@ -97,9 +97,9 @@ Rectangle {
                                 height: img.height
                                 Rectangle {
                                     anchors.centerIn: parent
-                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
-                                    height: img.adapt ? img.height : width
-                                    radius: img.width
+                                    width: img.width
+                                    height: img.width
+                                    radius: appTheme.paddingLarge
                                 }
                             }
                         }
@@ -131,6 +131,7 @@ Rectangle {
                 }
 
                 Rectangle {
+                    color: 'transparent'
                     height: 40
                     width: 1
                 }

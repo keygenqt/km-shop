@@ -27,6 +27,13 @@ export const Service = {
                 return JSON.stringify(response.toArray().mapToCollections())
             }, delay)
         },
+        orderByNumber: function (number, delay = defaultDelay) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.orderByNumber(number)
+            }, (response) => {
+                return JSON.stringify(response.mapToOrder())
+            }, delay)
+        },
     },
     post: {
         message: function (request, delay = defaultDelay) {

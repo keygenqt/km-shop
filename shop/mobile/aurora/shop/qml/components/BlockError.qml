@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 
 Item {
 
-    id: idBlockLoading
+    id: idBlock
     height: rec.height
     width: parent.width
 
@@ -15,11 +15,24 @@ Item {
         id: rec
         height: size
         width: size
-        radius: size
+        radius: appTheme.paddingLarge
         color: 'white'
         anchors.horizontalCenter: parent.horizontalCenter
         border.width: 2
-        border.color: idBlockLoading.borderColor
+        border.color: idBlock.borderColor
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: Item {
+                width: size
+                height: size
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: size
+                    height: size
+                    radius: appTheme.paddingLarge
+                }
+            }
+        }
 
         Rectangle {
             id: idRec
@@ -39,19 +52,6 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: Item {
-                        width: img.width
-                        height: img.height
-                        Rectangle {
-                            anchors.centerIn: parent
-                            width: img.adapt ? img.width : Math.min(img.width, img.height)
-                            height: img.adapt ? img.height : width
-                            radius: Math.min(width, height)
-                        }
-                    }
-                }
             }
         }
     }

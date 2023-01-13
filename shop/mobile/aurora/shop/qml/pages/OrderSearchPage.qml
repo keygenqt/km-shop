@@ -57,7 +57,8 @@ Page {
                         text: qsTr("Искать")
                         onEndAnimationClick: {
                             // Change page
-                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "a1437f92-5e87-4847-bf50-c49df07c2b3a"})
+                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: idNumberField.text})
+//                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "a1437f92-5e87-4847-bf50-c49df07c2b3a"})
                             // Run clear field
                             idApp.helper.setTimeout(function() {
                                 idNumberField.text = ""
@@ -94,8 +95,8 @@ Page {
                                 height: img.height
                                 Rectangle {
                                     anchors.centerIn: parent
-                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
-                                    height: img.adapt ? img.height : width
+                                    width: img.width
+                                    height: img.width
                                     radius: appTheme.paddingLarge
                                 }
                             }
