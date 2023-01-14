@@ -25,8 +25,11 @@ Page {
         property bool loading: false
         property bool notFound: false
         function clear() {
+            min = 0.0
+            max = 0.0
             error = false
             loading = false
+            notFound = false
             response = undefined
             productsModel.clear()
         }
@@ -116,14 +119,15 @@ Page {
         Components.AppBlock {
             height: parent.height
             width: parent.width
-            borderColor: 'transparent'
-            backgroundColor: 'transparent'
+            borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
+            backgroundColor: state.notFound ? "white" : 'transparent'
 
             Components.BlockEmpty {
                 visible: state.notFound
                 title: qsTr("Товары не найдены")
                 text: idProductsPage.categories.length === 0
-                      ? qsTr("В этой коллекции товаров пока нет. Попробуйте зайти позже") : qsTr("В этой категории товаров пока нет. Попробуйте зайти позже")
+                      ? qsTr("В этой коллекции товаров пока нет. Попробуйте зайти позже")
+                      : qsTr("В этой категории товаров пока нет. Попробуйте зайти позже")
             }
 
             Components.BlockLoading {
