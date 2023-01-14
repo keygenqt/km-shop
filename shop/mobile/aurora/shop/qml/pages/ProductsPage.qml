@@ -3,42 +3,135 @@ import Sailfish.Silica 1.0
 import "../components" as Components
 
 Page {
-    id: productsPage
+    id: idProductsPage
     backNavigation: !controlPanel.expanded
 
-    property int sort: 1
+    property int page: 1
+    property string order: "NEWEST" // 1 - NEWEST, 2 - LOW, 3 - HEIGHT
+    property var range: [0.0, 999999999.0]
+    property var categories: []
+    property var collections: []
+
+    ListModel {
+        id: productsModel
+    }
+
+    QtObject {
+        id: state
+        property real min: 0.0
+        property real max: 0.0
+        property var response
+        property bool error: false
+        property bool loading: false
+        property bool notFound: false
+        function clear() {
+            error = false
+            loading = false
+            response = undefined
+            productsModel.clear()
+        }
+    }
+
+    function update() {
+        // clear state
+        state.clear()
+        state.loading = true
+        // get prices
+        agent.run(
+            "kmm.Service.get.prices("
+                            + '"' + idProductsPage.categories.join(',') + '",'
+                            + '"' + idProductsPage.collections.join(',') + '",'
+                            + ")",
+            function(result) {
+                try {
+                    var obj = JSON.parse(result)
+                    state.min = obj.min
+                    state.max = obj.max
+                } catch (e) {}
+            },
+            function(error) {}
+        )
+        // get products
+        agent.run(
+            "kmm.Service.get.productsPublished("
+                            + '"' + idProductsPage.page + '",'
+                            + '"' + idProductsPage.order + '",'
+                            + '"' + idProductsPage.range.join(',') + '",'
+                            + '"' + idProductsPage.categories.join(',') + '",'
+                            + '"' + idProductsPage.collections.join(',') + '",'
+                            + "5000)",
+            function(result) {
+                try {
+                    var obj = JSON.parse(result)
+                    var pages = obj.pages
+                    var products = obj.products
+                    state.response = obj
+                    for (var index = 0; index < products.length; index++) {
+                        productsModel.append(products[index])
+                    }
+                    state.notFound = products.length === 0
+                } catch (e) {
+                    state.error = true
+                }
+                state.loading = false
+            },
+            function(error) {
+                state.error = true
+                state.loading = false
+            }
+        )
+    }
+
+    onStatusChanged: {
+        if (status == PageStatus.Active && state.response === undefined) {
+            idProductsPage.update()
+        }
+    }
 
     Components.AppPage {
         header: qsTr("Продукты")
         anchors.top: controlPanel.bottom
         clip: controlPanel.expanded
         disablePaddingIcons: controlPanel.expanded
+        fixed: state.response === undefined
+        menuDisabled: state.loading
+        menuIsUpdate: true
+        menuUpdate: function () {
+            idOrderPage.update()
+        }
 
-        iconSettings: function () {
+        iconSettings: state.min === 0.0 || state.response === undefined || state.notFound ? undefined : function () {
             controlPanel.open = true
         }
-        iconSort1: productsPage.sort !== 1 ? undefined : function () {
-            productsPage.sort = 2
+        iconSort1: idProductsPage.order !== "NEWEST" || state.response === undefined || state.notFound ? undefined : function () {
+            idProductsPage.order = "LOW"
         }
-        iconSort2: productsPage.sort !== 2 ? undefined : function () {
-            productsPage.sort = 3
+        iconSort2: idProductsPage.order !== "LOW" || state.response === undefined || state.notFound ? undefined : function () {
+            idProductsPage.order = "HEIGHT"
         }
-        iconSort3: productsPage.sort !== 3 ? undefined : function () {
-            productsPage.sort = 1
+        iconSort3: idProductsPage.order !== "HEIGHT" || state.response === undefined || state.notFound ? undefined : function () {
+            idProductsPage.order = "NEWEST"
         }
 
         Components.AppBlock {
             height: parent.height
             width: parent.width
-            borderColor: idApp.colors.highlightDarkColor
-            backgroundColor: "white"
+            borderColor: 'transparent'
+            backgroundColor: 'transparent'
 
-            Text {
-                width: parent.width
-                text: qsTr("ProductsPage")
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: appTheme.fontSizeH6
+            Components.BlockEmpty {
+                visible: state.notFound
+                title: qsTr("Товары не найдены")
+                text: idProductsPage.categories.length === 0
+                      ? qsTr("В этой коллекции товаров пока нет. Попробуйте зайти позже") : qsTr("В этой категории товаров пока нет. Попробуйте зайти позже")
+            }
+
+            Components.BlockLoading {
+                visible: state.loading
+            }
+
+            Components.BlockError {
+                visible: state.error
             }
         }
     }
@@ -95,8 +188,8 @@ Page {
 
             QtObject {
                 id: idRange
-                property real min: 800.20
-                property real max: 3100.20
+                property real min: state.min
+                property real max: state.max
                 property real value1: min
                 property real value2: max
             }

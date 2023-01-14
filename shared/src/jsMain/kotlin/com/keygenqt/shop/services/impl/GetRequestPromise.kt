@@ -15,6 +15,7 @@
  */
 package com.keygenqt.shop.services.impl
 
+import com.keygenqt.shop.data.requests.OrderProduct
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.platform.wrapPromise
 import com.keygenqt.shop.services.ServiceRequest
@@ -71,11 +72,11 @@ class GetRequestPromise(private val client: ServiceRequest) {
      * Override [GetRequest.productsPublished] for JS
      */
     fun productsPublished(
-        page: Int,
-        order: String,
-        range: Array<Double>,
-        categories: Array<Int>,
-        collections: Array<Int>,
+        page: Int = 1,
+        order: String = OrderProduct.NEWEST.name,
+        range: Array<Double> = arrayOf(0.0, 999999999.0),
+        categories: Array<Int> = emptyArray(),
+        collections: Array<Int> = emptyArray(),
     ) = wrapPromise {
         client.get.productsPublished(
             page = page,

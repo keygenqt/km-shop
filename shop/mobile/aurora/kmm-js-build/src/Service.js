@@ -13,30 +13,102 @@ const defaultDelay = 500
 
 export const Service = {
     get: {
-        categoriesPublished: function (delay = defaultDelay) {
+        categoriesPublished: function (
+            delay = defaultDelay
+        ) {
             return Helper.request(async () => {
                 return await AppHttpClient.get.categoriesPublished()
             }, (response) => {
                 return JSON.stringify(response.toArray().mapToCategories());
             }, delay)
         },
-        collectionsPublished: function (delay = defaultDelay) {
+        collectionsPublished: function (
+            delay = defaultDelay
+        ) {
             return Helper.request(async () => {
                 return await AppHttpClient.get.collectionsPublished()
             }, (response) => {
                 return JSON.stringify(response.toArray().mapToCollections())
             }, delay)
         },
-        orderByNumber: function (number, delay = defaultDelay) {
+        orderByNumber: function (
+            number,
+            delay = defaultDelay
+        ) {
             return Helper.request(async () => {
                 return await AppHttpClient.get.orderByNumber(number)
             }, (response) => {
                 return JSON.stringify(response.mapToOrder())
             }, delay)
         },
+        productsPublished: function (
+            page,
+            order,
+            range,
+            categories,
+            collections,
+            delay = defaultDelay
+        ) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.productsPublished(
+                    parseInt(page),
+                    order,
+                    range.split(','),
+                    categories.length === 0 ? [] : categories.split(','),
+                    collections.length === 0 ? [] : collections.split(','),
+                )
+            }, (response) => {
+                return JSON.stringify({
+                    pages: response.pages,
+                    products: response.products.mapToProducts()
+                });
+            }, delay)
+        },
+        productsPublishedByIDs: function (
+            ids,
+            delay = defaultDelay
+        ) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.productsPublishedByIDs(
+                    ids.split(',')
+                )
+            }, (response) => {
+                return JSON.stringify(response.toArray().mapToProducts());
+            }, delay)
+        },
+        product: function (
+            id,
+            delay = defaultDelay
+        ) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.product(id)
+            }, (response) => {
+                return JSON.stringify(response.mapToProduct());
+            }, delay)
+        },
+        prices: function (
+            categories,
+            collections,
+            delay = 0
+        ) {
+            return Helper.request(async () => {
+                return await AppHttpClient.get.prices(
+                    categories.split(','),
+                    collections.split(','),
+                )
+            }, (response) => {
+                return JSON.stringify({
+                    min: response.min,
+                    max: response.max
+                });
+            }, delay)
+        },
     },
     post: {
-        message: function (request, delay = defaultDelay) {
+        message: function (
+            request,
+            delay = defaultDelay
+        ) {
             return Helper.request(async () => {
                 return await AppHttpClient.post.message(request)
             }, (response) => {

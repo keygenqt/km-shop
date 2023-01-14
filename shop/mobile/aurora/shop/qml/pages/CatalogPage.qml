@@ -146,7 +146,7 @@ Page {
                       borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
-                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
+                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"), {categories: [id]})
 
                       Row {
                           width: parent.width
@@ -242,7 +242,7 @@ Page {
                       borderColor: idApp.colors.highlightDarkColor
                       disabled: false
 
-                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"))
+                      onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"), {collections: [id]})
 
                       Row {
                           width: parent.width
