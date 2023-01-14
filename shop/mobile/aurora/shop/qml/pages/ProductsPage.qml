@@ -97,7 +97,7 @@ Page {
         menuDisabled: state.loading
         menuIsUpdate: true
         menuUpdate: function () {
-            idOrderPage.update()
+            idProductsPage.update()
         }
 
         iconSettings: state.min === 0.0 || state.response === undefined || state.notFound ? undefined : function () {
