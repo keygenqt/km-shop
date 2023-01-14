@@ -124,6 +124,13 @@ ApplicationWindow {
         function clearTimeout() {
             timer.stop();
         }
+
+        /**
+        * Format price
+        */
+        function formatPrice(price) {
+            return "₽ " + price.toFixed(2)
+        }
     }
 
     Timer {

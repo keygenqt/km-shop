@@ -48,7 +48,7 @@ Page {
         dock: Dock.Bottom
         animationDuration: 300
         width: parent.width
-        height: 400
+        height: 450
         modal: true
         background: Rectangle {
             color: idApp.colors.highlightDarkColor
@@ -67,8 +67,77 @@ Page {
             width: parent.width - appTheme.paddingLarge * 2
             anchors.centerIn: parent
 
-            Components.RangeSlider {
+            spacing: appTheme.paddingMedium
 
+            Column {
+                width: parent.width
+                spacing: appTheme.paddingMedium
+
+                Text {
+                    color: "white"
+                    width: parent.width
+                    text: qsTr("Диапазон цен")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: appTheme.fontSizeH6
+                    font.bold: true
+                }
+
+                Text {
+                    color: "white"
+                    width: parent.width
+                    text: qsTr("Фильтр товаров по ценовому диапозону")
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: appTheme.fontSizeBody1
+                }
+            }
+
+            QtObject {
+                id: idRange
+                property real min: 800.20
+                property real max: 3100.20
+                property real value1: min
+                property real value2: max
+            }
+
+            Components.RangeSlider {
+                from: idRange.min
+                to: idRange.max
+                firstValue: idRange.value1
+                secondValue: idRange.value2
+                onMoveFirst: {
+                    idRange.value1 = value
+                }
+                onMoveSecond: {
+                    idRange.value2 = value
+                }
+            }
+
+            Row {
+                width: parent.width
+
+                Label {
+                    id: idPrice1
+                    text: idApp.helper.formatPrice(idRange.value1)
+                    color: "white"
+                    font.pixelSize: appTheme.fontSizeH6
+                    font.bold: true
+                }
+
+                Rectangle {
+                    height: 1
+                    width: parent.width - idPrice1.width - idPrice2.width
+                    color: 'transparent'
+                }
+
+                Label {
+                    id: idPrice2
+                    text: idApp.helper.formatPrice(idRange.value2)
+                    color: "white"
+                    font.pixelSize: appTheme.fontSizeH6
+                    font.bold: true
+                }
             }
         }
     }

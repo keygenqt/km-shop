@@ -29,7 +29,7 @@ PageHeader {
 
             Rectangle {
                 height: 1
-                width: iconMain ? appTheme.paddingMedium : (idHeader.disablePaddingIcons ? 0 : 35)
+                width: iconMain ? appTheme.paddingLarge : (idHeader.disablePaddingIcons ? 0 : 50)
                 color: 'transparent'
                 Behavior on width {
                     NumberAnimation { properties: "width"; easing.type: Easing.InOutQuad; duration: 20 }
@@ -38,7 +38,7 @@ PageHeader {
 
             Row {
                 height: parent.height
-                spacing: appTheme.paddingMedium
+                spacing: appTheme.paddingLarge
 
                 AppIconButton {
                     icon.source: Qt.resolvedUrl("../icons/ic_manage_search.svg")
