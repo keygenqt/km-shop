@@ -149,7 +149,7 @@ Page {
             delegate: Components.AppBlock {
                 width: parent.width
                 borderColor: idApp.colors.highlightDarkColor
-                disabled: false
+                disabled: controlPanel.expanded
 
                 onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
 

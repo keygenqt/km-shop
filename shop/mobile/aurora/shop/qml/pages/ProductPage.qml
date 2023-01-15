@@ -28,6 +28,9 @@ Page {
             loading = false
             error = false
         }
+        function loadingDisable() {
+            idApp.helper.setTimeout(function() { loading = false }, 10)
+        }
     }
 
     function update() {
@@ -44,9 +47,7 @@ Page {
                 } catch (e) {
                     state.error = true
                 }
-                idApp.helper.setTimeout(function() {
-                    state.loading = false
-                }, 10)
+                state.loadingDisable()
             },
             function(error) {
                 if (error.code === 404) {
@@ -54,7 +55,7 @@ Page {
                 } else {
                     state.error = true
                 }
-                state.loading = false
+                state.loadingDisable()
             }
         )
     }
