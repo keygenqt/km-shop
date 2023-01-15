@@ -7,6 +7,7 @@ Page {
     id: idProductPage
 
     property int productID: 0
+    property string activeImage: ""
 
     onStatusChanged: {
         if (status == PageStatus.Active && !Boolean(state.response)) {
@@ -38,6 +39,7 @@ Page {
             function(result) {
                 try {
                     state.response = JSON.parse(result)
+                    idProductPage.activeImage = state.response.image1
                 } catch (e) {
                     state.error = true
                 }
@@ -91,23 +93,57 @@ Page {
             width: parent.width
             spacing: appTheme.paddingMedium
 
-            Image {
-                id: img
-                source: Qt.resolvedUrl(state.response !== undefined ? state.response.image1 : "")
-                fillMode: Image.PreserveAspectCrop
+            Components.AppImage {
                 width: parent.width
+                iconSize: 100
                 height: 400
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: Item {
-                        width: img.width
-                        height: img.height
-                        Rectangle {
-                            anchors.centerIn: parent
-                            width: img.width
-                            height: img.height
-                            radius: appTheme.paddingMedium
-                        }
+                imageUrl: Qt.resolvedUrl(idProductPage.activeImage)
+            }
+
+            Row {
+                width: parent.width
+                spacing: appTheme.paddingMedium
+                visible: state.response !== undefined ? (state.response.image2 !== null || state.response.image3 !== null) : false
+
+                Components.AppImage {
+                    isClickable: true
+                    active: idProductPage.activeImage === (state.response !== undefined ? state.response.image1 : "false")
+                    iconSize: 40
+                    height: 80
+                    width: 130
+                    radiusMask: appTheme.paddingSmall
+                    imageUrl: Qt.resolvedUrl(state.response !== undefined ? state.response.image1 : "")
+                    visible: state.response !== undefined ? state.response.image1 !== null : false
+                    onEndAnimationClick: {
+                        idProductPage.activeImage = state.response.image1
+                    }
+                }
+
+                Components.AppImage {
+                    isClickable: true
+                    active: idProductPage.activeImage === (state.response !== undefined ? state.response.image2 : "false")
+                    iconSize: 40
+                    height: 80
+                    width: 130
+                    radiusMask: appTheme.paddingSmall
+                    imageUrl: Qt.resolvedUrl(state.response !== undefined ? state.response.image2 : "")
+                    visible: state.response !== undefined ? state.response.image2 !== null : false
+                    onEndAnimationClick: {
+                        idProductPage.activeImage = state.response.image2
+                    }
+                }
+
+                Components.AppImage {
+                    isClickable: true
+                    active: idProductPage.activeImage === (state.response !== undefined ? state.response.image3 : "false")
+                    iconSize: 40
+                    height: 80
+                    width: 130
+                    radiusMask: appTheme.paddingSmall
+                    imageUrl: Qt.resolvedUrl(state.response !== undefined ? state.response.image3 : "")
+                    visible: state.response !== undefined ? state.response.image3 !== null : false
+                    onEndAnimationClick: {
+                        idProductPage.activeImage = state.response.image3
                     }
                 }
             }

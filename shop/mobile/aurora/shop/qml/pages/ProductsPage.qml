@@ -157,25 +157,9 @@ Page {
                     width: parent.width
                     spacing: appTheme.paddingLarge
 
-                    Image {
+                    Components.AppImage {
                         id: img
-                        source: Qt.resolvedUrl(image1)
-                        fillMode: Image.PreserveAspectCrop
-                        width: 90
-                        height: 90
-                        layer.enabled: true
-                        layer.effect: OpacityMask {
-                            maskSource: Item {
-                                width: img.width
-                                height: img.height
-                                Rectangle {
-                                    anchors.centerIn: parent
-                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
-                                    height: img.adapt ? img.height : width
-                                    radius: Math.min(width, height)
-                                }
-                            }
-                        }
+                        imageUrl: Qt.resolvedUrl(image1)
                     }
 
                     Rectangle {

@@ -68,7 +68,7 @@ Item {
             WebEngineSettings.javascriptEnabled = true
             WebEngineSettings.popupEnabled = false
             WebEngineSettings.setPreference("security.disable_cors_checks", true, WebEngineSettings.BoolPref)
-         }
+        }
     }
 }
 

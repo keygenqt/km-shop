@@ -18,10 +18,13 @@ Page {
     QtObject {
         id: stateCattegories
         property var response
-        property string error: ""
-        property bool loading: true
+        property bool error: false
+        property bool loading: false
         function clear() {
-            response = undefined; error = ""; loading = true; categoriesModel.clear()
+            error = false
+            loading = true
+            response = undefined
+            categoriesModel.clear()
         }
     }
 
@@ -32,10 +35,13 @@ Page {
     QtObject {
         id: stateCollections
         property var response
-        property string error: ""
-        property bool loading: true
+        property bool error: false
+        property bool loading: false
         function clear() {
-            response = undefined; error = ""; loading = true; collectionsModel.clear()
+            error = false
+            loading = true
+            response = undefined
+            collectionsModel.clear()
         }
     }
 
@@ -43,6 +49,8 @@ Page {
         // clear state
         stateCattegories.clear()
         stateCollections.clear()
+        stateCattegories.loading = true
+        stateCollections.loading = true
         // get categories
         agent.run(
             "kmm.Service.get.categoriesPublished()",
@@ -54,12 +62,12 @@ Page {
                         categoriesModel.append(list[index])
                     }
                 } catch (e) {
-                    stateCattegories.error = error
+                    stateCattegories.error = true
                 }
                 stateCattegories.loading = false
             },
             function(error) {
-                stateCattegories.error = error
+                stateCattegories.error = true
                 stateCattegories.loading = false
             }
         )
@@ -74,19 +82,19 @@ Page {
                         collectionsModel.append(list[index])
                     }
                 } catch (e) {
-                    stateCollections.error = error
+                    stateCollections.error = true
                 }
                 stateCollections.loading = false
             },
             function(error) {
-                stateCollections.error = error
+                stateCollections.error = true
                 stateCollections.loading = false
             }
         )
     }
 
     onStatusChanged: {
-        if (status == PageStatus.Active && (stateCattegories.loading || stateCollections.loading)) {
+        if (status == PageStatus.Active && (stateCattegories.response === undefined || stateCollections.response === undefined)) {
             catalogPage.update()
         }
     }
@@ -127,14 +135,14 @@ Page {
                 width: parent.width
                 borderColor: 'transparent'
                 backgroundColor: 'transparent'
-                visible: stateCattegories.loading || stateCattegories.error !== ""
+                visible: stateCattegories.loading || stateCattegories.error
 
                 Components.BlockLoading {
                     visible: stateCattegories.loading
                 }
 
                 Components.BlockError {
-                    visible: stateCattegories.error !== ""
+                    visible: stateCattegories.error
                 }
             }
 
@@ -151,25 +159,9 @@ Page {
                           width: parent.width
                           spacing: appTheme.paddingLarge
 
-                          Image {
+                          Components.AppImage {
                               id: img
-                              source: Qt.resolvedUrl(image)
-                              fillMode: Image.PreserveAspectCrop
-                              width: 90
-                              height: 90
-                              layer.enabled: true
-                              layer.effect: OpacityMask {
-                                  maskSource: Item {
-                                      width: img.width
-                                      height: img.height
-                                      Rectangle {
-                                          anchors.centerIn: parent
-                                          width: img.adapt ? img.width : Math.min(img.width, img.height)
-                                          height: img.adapt ? img.height : width
-                                          radius: Math.min(width, height)
-                                      }
-                                  }
-                              }
+                              imageUrl: Qt.resolvedUrl(image)
                           }
 
                           Rectangle {
@@ -222,14 +214,14 @@ Page {
                 width: parent.width
                 borderColor: 'transparent'
                 backgroundColor: 'transparent'
-                visible: stateCollections.loading || stateCollections.error !== ""
+                visible: stateCollections.loading || stateCollections.error
 
                 Components.BlockLoading {
                     visible: stateCollections.loading
                 }
 
                 Components.BlockError {
-                    visible: stateCollections.error !== ""
+                    visible: stateCollections.error
                 }
             }
 
@@ -253,7 +245,7 @@ Page {
                               color: "transparent"
                               border.color: idApp.colors.highlightDarkColor
                               border.width: 2
-                              radius: 20
+                              radius: appTheme.paddingMedium
 
                               Image {
                                   id: img2

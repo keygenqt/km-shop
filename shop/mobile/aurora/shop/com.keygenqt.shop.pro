@@ -20,6 +20,7 @@ DISTFILES += \
     qml/components/AlertSuccess.qml \
     qml/components/AppBlock.qml \
     qml/components/AppIconButton.qml \
+    qml/components/AppImage.qml \
     qml/components/AppPage.qml \
     qml/components/AppTextField.qml \
     qml/components/BlockError.qml \
