@@ -9,7 +9,6 @@ Column {
 
     property int itemsSpacing: appTheme.paddingSmall
     property var items
-    property alias model: idRepeater.model
     property Component delegate
     property var _items: []
     property var _cbFunc: null
@@ -83,11 +82,12 @@ Column {
     }
 
     onItemsChanged: {
+        idMain._items = []
         for (var i = 0; i < idMain._rows.length; i++) {
             idMain._rows[i].clear()
         }
-        for (var j = 0; j < idMain.items.length; j++) {
-            columModels0.append(idMain.items[j])
+        for (var j = 0; j < items.length; j++) {
+            columModels0.append(items[j])
         }
     }
 
