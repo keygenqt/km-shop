@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import AppTheme 1.0
 import QtGraphicalEffects 1.0
 import "../components" as Components
 
@@ -156,7 +155,6 @@ Page {
                               id: img
                               source: Qt.resolvedUrl(image)
                               fillMode: Image.PreserveAspectCrop
-                              anchors.verticalCenter: parent.verticalCenter
                               width: 90
                               height: 90
                               layer.enabled: true

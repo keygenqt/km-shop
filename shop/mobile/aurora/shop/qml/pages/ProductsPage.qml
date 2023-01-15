@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtGraphicalEffects 1.0
 import "../components" as Components
 
 Page {
@@ -62,7 +63,7 @@ Page {
                             + '"' + idProductsPage.range.join(',') + '",'
                             + '"' + idProductsPage.categories.join(',') + '",'
                             + '"' + idProductsPage.collections.join(',') + '",'
-                            + "5000)",
+                            + ")",
             function(result) {
                 try {
                     var obj = JSON.parse(result)
@@ -102,18 +103,20 @@ Page {
         menuUpdate: function () {
             idProductsPage.update()
         }
-
-        iconSettings: state.min === 0.0 || state.response === undefined || state.notFound ? undefined : function () {
+        iconSettings: state.min === state.max || state.min === 0.0 || state.response === undefined || state.notFound ? undefined : function () {
             controlPanel.open = true
         }
         iconSort1: idProductsPage.order !== "NEWEST" || state.response === undefined || state.notFound ? undefined : function () {
             idProductsPage.order = "LOW"
+            idProductsPage.update()
         }
         iconSort2: idProductsPage.order !== "LOW" || state.response === undefined || state.notFound ? undefined : function () {
             idProductsPage.order = "HEIGHT"
+            idProductsPage.update()
         }
         iconSort3: idProductsPage.order !== "HEIGHT" || state.response === undefined || state.notFound ? undefined : function () {
             idProductsPage.order = "NEWEST"
+            idProductsPage.update()
         }
 
         Components.AppBlock {
@@ -121,6 +124,7 @@ Page {
             width: parent.width
             borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
             backgroundColor: state.notFound ? "white" : 'transparent'
+            visible: state.response === undefined || state.notFound
 
             Components.BlockEmpty {
                 visible: state.notFound
@@ -138,6 +142,74 @@ Page {
                 visible: state.error
             }
         }
+
+        Repeater {
+            model: productsModel
+            visible: state.response !== undefined && !state.notFound
+            delegate: Components.AppBlock {
+                width: parent.width
+                borderColor: idApp.colors.highlightDarkColor
+                disabled: false
+
+                onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
+
+                Row {
+                    width: parent.width
+                    spacing: appTheme.paddingLarge
+
+                    Image {
+                        id: img
+                        source: Qt.resolvedUrl(image1)
+                        fillMode: Image.PreserveAspectCrop
+                        width: 90
+                        height: 90
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            maskSource: Item {
+                                width: img.width
+                                height: img.height
+                                Rectangle {
+                                    anchors.centerIn: parent
+                                    width: img.adapt ? img.width : Math.min(img.width, img.height)
+                                    height: img.adapt ? img.height : width
+                                    radius: Math.min(width, height)
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        color: 'transparent'
+                        height: iconData.height
+                        width: parent.width - img.width - appTheme.paddingLarge
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        Column {
+                            id: iconData
+                            width: parent.width
+                            spacing: appTheme.paddingSmall
+                            anchors.top: parent.top
+                            anchors.topMargin: -3
+
+                            Text {
+                                width: parent.width
+                                text: name
+                                wrapMode: Text.WordWrap
+                                font.pixelSize: appTheme.fontSizeH6
+                                color: idApp.colors.highlightDarkColor
+                            }
+
+                            Text {
+                                width: parent.width
+                                text: description
+                                wrapMode: Text.WordWrap
+                                font.pixelSize: appTheme.fontSizeCaption
+                            }
+                        }
+                    }
+                }
+            }
+       }
     }
 
     DockedPanel {

@@ -63,10 +63,12 @@ Page {
         }
 
         Components.AppBlock {
+            id: idStateBlock
             height: parent.height
             width: parent.width
             borderColor: state.notFound || state.response !== undefined ? idApp.colors.highlightDarkColor : 'transparent'
             backgroundColor: state.notFound || state.response !== undefined ? "white" : 'transparent'
+            visible: state.notFound || state.loading || state.error || state.response === undefined
 
             Components.BlockEmpty {
                 visible: state.notFound
@@ -81,18 +83,18 @@ Page {
             Components.BlockError {
                 visible: state.error
             }
+        }
 
-            Column {
-                visible: state.response !== undefined
+        Column {
+            visible: !idStateBlock.visible
+            width: parent.width
+
+            Text {
                 width: parent.width
-
-                Text {
-                    width: parent.width
-                    text: state.response !== undefined ? state.response.phone : ""
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: appTheme.fontSizeBody1
-                }
+                text: state.response !== undefined ? state.response.phone : ""
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: appTheme.fontSizeBody1
             }
         }
     }

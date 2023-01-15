@@ -126,7 +126,10 @@ class GetRequestPromise(private val client: ServiceRequest) {
     /**
      * Override [GetRequest.prices] for JS
      */
-    fun prices() = wrapPromise { client.get.prices(emptyArray(), emptyArray()) }
+    fun prices(
+        categories: Array<Int> = emptyArray(),
+        collections: Array<Int> = emptyArray(),
+    ) = wrapPromise { client.get.prices(categories, collections) }
 
     /**
      * Override [GetRequest.orders] for JS
