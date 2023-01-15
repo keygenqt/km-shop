@@ -41,14 +41,12 @@ Page {
                 try {
                     state.response = JSON.parse(result)
                     idProductPage.activeImage = state.response.image1
-//                    for (var index = 0; index < state.response.collections.length; index++) {
-//                        collectionModel.append(state.response.collections[index])
-//                    }
-
                 } catch (e) {
                     state.error = true
                 }
-                state.loading = false
+                idApp.helper.setTimeout(function() {
+                    state.loading = false
+                }, 10)
             },
             function(error) {
                 if (error.code === 404) {
