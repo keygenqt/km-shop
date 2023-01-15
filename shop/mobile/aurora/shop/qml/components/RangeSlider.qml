@@ -6,14 +6,14 @@ Rectangle {
     width: parent.width
     color: 'transparent'
 
-    property color colorSlider: 'white'
+    property bool disabled: false
+    property color colorSlider: idMain.disabled ? '#bfbbbd' : 'white'
     property real from: 0
     property real to: 0
-    property real firstValue: 0
-    property real secondValue: 0
 
     signal moveFirst(real value)
     signal moveSecond(real value)
+    signal endChange(real first, real second)
 
     property int _size: 50
     property real _minX: idMain._size / 2
@@ -22,7 +22,8 @@ Rectangle {
     property bool _isRrec1: true
     property bool _press: false
     property real _stick: 10
-
+    property real _val1: idMain.from
+    property real _val2: idMain.to
 
     Rectangle {
         width: parent.width - 4
@@ -57,6 +58,7 @@ Rectangle {
     }
 
     MouseArea {
+        visible: !idMain.disabled
         hoverEnabled: true
         propagateComposedEvents: true
         anchors.fill: parent
@@ -77,7 +79,8 @@ Rectangle {
                         }
                         // send signal
                         var factor1 = rect1.x * 100 / (idMain.width - (idMain._size * 2))
-                        idMain.moveFirst((idMain.to * (factor1 / 100)) + (idMain.from - (idMain.from * (factor1 / 100))))
+                        idMain._val1 = (idMain.to * (factor1 / 100)) + (idMain.from - (idMain.from * (factor1 / 100)))
+                        idMain.moveFirst(idMain._val1)
                     }
                 } else {
                     // Rec1 limits
@@ -92,7 +95,8 @@ Rectangle {
 
                         // send signal
                         var factor2 = (rect2.x - idMain._size) * 100 / (idMain.width - (idMain._size * 2))
-                        idMain.moveSecond((idMain.to * (factor2 / 100)) + (idMain.from - (idMain.from * (factor2 / 100))))
+                        idMain._val2 = (idMain.to * (factor2 / 100)) + (idMain.from - (idMain.from * (factor2 / 100)))
+                        idMain.moveSecond(idMain._val2)
                     }
                 }
             }
@@ -110,6 +114,7 @@ Rectangle {
         onReleased: {
             // Disable move
             idMain._press = false
+            idMain.endChange(idMain._val1, idMain._val2)
         }
     }
 }

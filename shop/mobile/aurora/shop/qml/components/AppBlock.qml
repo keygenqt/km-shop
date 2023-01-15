@@ -27,7 +27,7 @@ MouseArea {
         height: parent.height
         color : idAppBlock.backgroundColor
         radius: appTheme.shapesLarge
-        opacity: isOpacity ? 0.5 : 1.0
+        opacity: isOpacity ? 0.2 : 1.0
         border.width: 2
         border.color: idAppBlock.borderColor
     }
@@ -38,7 +38,7 @@ MouseArea {
         width: parent.width - idAppBlock.padding * 2
         anchors.top: parent.top
         anchors.topMargin: idAppBlock.padding
-        opacity: isOpacity ? 0.5 : 1.0
+        opacity: isOpacity ? 0.4 : 1.0
     }
 
     Rectangle {

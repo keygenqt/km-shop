@@ -18,6 +18,7 @@ SilicaFlickable {
     property var iconSort2
     property var iconSort3
     property bool disablePaddingIcons: false
+    property bool hidePaddingIcons: false
 
     default property alias children: idContent.data
 
@@ -54,6 +55,7 @@ SilicaFlickable {
             iconSort3: item.iconSort3
             loading: item.loading
             disablePaddingIcons: item.disablePaddingIcons
+            hidePaddingIcons: item.hidePaddingIcons
         }
 
         Column {

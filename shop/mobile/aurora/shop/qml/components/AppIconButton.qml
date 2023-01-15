@@ -7,6 +7,7 @@ MouseArea {
     id: idAppButton
 
     property alias icon: image
+    property alias bg: idBg
     property bool disabled: false
     property bool press: false
     property bool _isAnimation: false
@@ -20,6 +21,7 @@ MouseArea {
     signal endAnimationClick()
 
     Rectangle {
+        id: idBg
         anchors.fill: parent
         color : idAppButton.disabled ? 'gray' : (idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black")
         radius: idAppButton.size

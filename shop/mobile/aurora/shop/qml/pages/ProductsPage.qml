@@ -26,17 +26,18 @@ Page {
         property bool loading: false
         property bool notFound: false
         function clear() {
-            min = 0.0
-            max = 0.0
             error = false
             loading = false
             notFound = false
             response = undefined
-            productsModel.clear()
         }
     }
 
-    function update() {
+    function isItemsDisabled() {
+        return state.loading && productsModel.count !== 0
+    }
+
+    function update(isRefresh) {
         // clear state
         state.clear()
         state.loading = true
@@ -63,13 +64,14 @@ Page {
                             + '"' + idProductsPage.range.join(',') + '",'
                             + '"' + idProductsPage.categories.join(',') + '",'
                             + '"' + idProductsPage.collections.join(',') + '",'
-                            + ")",
+                            + "5000)",
             function(result) {
                 try {
                     var obj = JSON.parse(result)
                     var pages = obj.pages
                     var products = obj.products
                     state.response = obj
+                    productsModel.clear()
                     for (var index = 0; index < products.length; index++) {
                         productsModel.append(products[index])
                     }
@@ -97,6 +99,8 @@ Page {
         anchors.top: controlPanel.bottom
         clip: controlPanel.expanded
         disablePaddingIcons: controlPanel.expanded
+        hidePaddingIcons: idProductsPage.isItemsDisabled()
+        loading: idProductsPage.isItemsDisabled()
         fixed: state.response === undefined
         menuDisabled: state.loading
         menuIsUpdate: true
@@ -124,7 +128,7 @@ Page {
             width: parent.width
             borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
             backgroundColor: state.notFound ? "white" : 'transparent'
-            visible: state.response === undefined || state.notFound
+            visible: (state.response === undefined || state.notFound) && productsModel.count === 0
 
             Components.BlockEmpty {
                 visible: state.notFound
@@ -143,57 +147,71 @@ Page {
             }
         }
 
-        Repeater {
-            model: productsModel
-            visible: state.response !== undefined && !state.notFound
-            delegate: Components.AppBlock {
-                width: parent.width
-                borderColor: idApp.colors.highlightDarkColor
-                disabled: controlPanel.expanded
+        Column {
+            width: parent.width
+            opacity: idProductsPage.isItemsDisabled() && (controlPanel.moving || !controlPanel.expanded) ? 0.4 : 1.0
+            spacing: appTheme.paddingMedium
+            visible: state.response !== undefined && !state.notFound || productsModel.count !== 0
 
-                onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
+            Behavior on opacity {
+                NumberAnimation {
+                    properties: "opacity";
+                    easing.type: Easing.Linear;
+                    duration: 150
+                }
+            }
 
-                Row {
+            Repeater {
+                model: productsModel
+                delegate: Components.AppBlock {
                     width: parent.width
-                    spacing: appTheme.paddingLarge
+                    borderColor: idApp.colors.highlightDarkColor
+                    disabled: idProductsPage.isItemsDisabled() || controlPanel.expanded
 
-                    Components.AppImage {
-                        id: img
-                        imageUrl: Qt.resolvedUrl(image1)
-                    }
+                    onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
 
-                    Rectangle {
-                        color: 'transparent'
-                        height: iconData.height
-                        width: parent.width - img.width - appTheme.paddingLarge
-                        anchors.verticalCenter: parent.verticalCenter
+                    Row {
+                        width: parent.width
+                        spacing: appTheme.paddingLarge
 
-                        Column {
-                            id: iconData
-                            width: parent.width
-                            spacing: appTheme.paddingSmall
-                            anchors.top: parent.top
-                            anchors.topMargin: -3
+                        Components.AppImage {
+                            id: img
+                            imageUrl: Qt.resolvedUrl(image1)
+                        }
 
-                            Text {
+                        Rectangle {
+                            color: 'transparent'
+                            height: iconData.height
+                            width: parent.width - img.width - appTheme.paddingLarge
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            Column {
+                                id: iconData
                                 width: parent.width
-                                text: name
-                                wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeH6
-                                color: idApp.colors.highlightDarkColor
-                            }
+                                spacing: appTheme.paddingSmall
+                                anchors.top: parent.top
+                                anchors.topMargin: -3
 
-                            Text {
-                                width: parent.width
-                                text: description
-                                wrapMode: Text.WordWrap
-                                font.pixelSize: appTheme.fontSizeCaption
+                                Text {
+                                    width: parent.width
+                                    text: name
+                                    wrapMode: Text.WordWrap
+                                    font.pixelSize: appTheme.fontSizeH6
+                                    color: idApp.colors.highlightDarkColor
+                                }
+
+                                Text {
+                                    width: parent.width
+                                    text: description
+                                    wrapMode: Text.WordWrap
+                                    font.pixelSize: appTheme.fontSizeCaption
+                                }
                             }
                         }
                     }
                 }
-            }
-       }
+           }
+        }
     }
 
     DockedPanel {
@@ -248,17 +266,18 @@ Page {
 
             QtObject {
                 id: idRange
-                property real min: state.min
-                property real max: state.max
-                property real value1: min
-                property real value2: max
+                property real value1: state.min
+                property real value2: state.max
             }
 
             Components.RangeSlider {
-                from: idRange.min
-                to: idRange.max
-                firstValue: idRange.value1
-                secondValue: idRange.value2
+                disabled: state.loading
+                from: state.min
+                to: state.max
+                onEndChange: {
+                    idProductsPage.range = [first, second]
+                    idProductsPage.update()
+                }
                 onMoveFirst: {
                     idRange.value1 = value
                 }

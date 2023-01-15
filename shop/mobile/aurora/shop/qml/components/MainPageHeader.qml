@@ -12,6 +12,7 @@ PageHeader {
     property var iconSort2
     property var iconSort3
     property bool disablePaddingIcons: false
+    property bool hidePaddingIcons: false
 
     extraContent.children: [
         Row {
@@ -34,6 +35,7 @@ PageHeader {
                 Behavior on width {
                     NumberAnimation { properties: "width"; easing.type: Easing.InOutQuad; duration: 20 }
                 }
+                visible: !hidePaddingIcons
             }
 
             Row {

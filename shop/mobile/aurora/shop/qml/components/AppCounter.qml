@@ -30,12 +30,17 @@ Rectangle {
             icon {
                 layer.enabled: true
                 layer.effect: ColorOverlay{
-                    color: 'white'
+                    color: idApp.colors.highlightDarkColor
                 }
             }
+            bg {
+                color: "white"
+                opacity: count <= 0 ? 0.3 : 1.0
+            }
+            disabled: count <= 0
             size: 50
             duration: 50
-            icon.source: Qt.resolvedUrl("../icons/ic_add.svg")
+            icon.source: Qt.resolvedUrl("../icons/ic_remove.svg")
             anchors.verticalCenter: parent.verticalCenter
             onEndAnimationClick: {
                 idMain.count = idMain.count - 1
@@ -43,24 +48,33 @@ Rectangle {
             }
         }
 
-        Label {
-            id: idLabel
-            text: count
-            font.pixelSize: appTheme.fontSizeH6
-            anchors.verticalCenter: parent.verticalCenter
-            color: 'white'
+        Rectangle {
+            height: parent.height
+            width: appTheme.fontSizeH6 * 0.8 * count.toString().length
+            color: 'transparent'
+
+            Label {
+                text: count
+                font.pixelSize: appTheme.fontSizeH6
+                anchors.centerIn: parent
+                color: 'white'
+            }
         }
 
         AppIconButton {
             icon {
                 layer.enabled: true
                 layer.effect: ColorOverlay{
-                    color: 'white'
+                    color: idApp.colors.highlightDarkColor
                 }
+            }
+            bg {
+                color: "white"
+                opacity: 1.0
             }
             size: 50
             duration: 50
-            icon.source: Qt.resolvedUrl("../icons/ic_remove.svg")
+            icon.source: Qt.resolvedUrl("../icons/ic_add.svg")
             anchors.verticalCenter: parent.verticalCenter
             onEndAnimationClick: {
                 idMain.count = idMain.count + 1

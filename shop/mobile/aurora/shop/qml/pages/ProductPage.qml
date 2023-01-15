@@ -166,23 +166,28 @@ Page {
                 backgroundColor: "white"
                 borderColor: idApp.colors.borderColorBlock
                 padding: appTheme.paddingMedium
-                spacing: appTheme.paddingSmall
+                spacing: 5
 
-                Text {
+                Column {
                     width: parent.width
-                    text: qsTr("Описание")
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignLeft
-                    font.pixelSize: appTheme.fontSizeH6
-                    font.bold: true
-                }
+                    spacing: appTheme.paddingSmall
 
-                Text {
-                    width: parent.width
-                    text: state.response !== undefined ? state.response.description : ""
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignLeft
-                    font.pixelSize: appTheme.fontSizeBody1
+                    Text {
+                        width: parent.width
+                        text: qsTr("Описание")
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
+                        font.pixelSize: appTheme.fontSizeH6
+                        font.bold: true
+                    }
+
+                    Text {
+                        width: parent.width
+                        text: state.response !== undefined ? state.response.description : ""
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
+                        font.pixelSize: appTheme.fontSizeBody1
+                    }
                 }
 
                 Rectangle { height: 1; width: 1; color: 'transparent'}
