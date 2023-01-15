@@ -11,7 +11,7 @@ MouseArea {
     property bool press: false
     property bool _isAnimation: false
     property int size: 60
-
+    property int duration: 150
 
     height: idAppButton.size
     width: idAppButton.size
@@ -77,7 +77,7 @@ MouseArea {
                 id: animation
                 properties: "opacity";
                 easing.type: Easing.InOutQuad;
-                duration: 150
+                duration: idAppButton.duration
                 onRunningChanged: {
                     if (!animation.running) {
                         if (idAppButton.press) {

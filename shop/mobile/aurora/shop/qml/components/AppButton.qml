@@ -1,57 +1,59 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import AppTheme 1.0
+import QtGraphicalEffects 1.0
 
 MouseArea {
 
-    AppTheme {
-        id: appTheme
-    }
+    id: idMain
+    height: content.height + idMain.padding
+    width: content.width + idMain.padding * 2
+    onClicked: if (!idMain.disabled && !idMain._isAnimation) idMain._press = true
 
-    id: idAppButton
-    height: content.height + idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)
-    width: content.width + idAppButton.padding * 2
-    onClicked: if (!idAppButton.disabled && !idAppButton._isAnimation) idAppButton.press = true
+    property url iconStart
+    property url iconEnd
 
-    property string text: ""
-    property string iconStart: ""
-    property string iconEnd: ""
-    property bool disabled: false
-    property string contentColor: idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
     property string background: idApp.colors.highlightDarkColor
     property int padding: appTheme.paddingLarge
+    property bool disabled: false
     property bool loading: false
-    property bool press: false
+    property string text: ""
+
+    property string _contentColor: idApp.helper.getPerceptualBrightness(idMain.background) < 765 ? "white" : "black"
+    property bool _press: false
     property bool _isAnimation: false
 
     signal endAnimationClick()
 
     Rectangle {
         anchors.fill: parent
-        color : idAppButton.disabled ? 'gray' : idAppButton.background
+        color : idMain.disabled ? 'gray' : idMain.background
         radius: appTheme.shapesMedium
     }
 
     Row {
         id: content
-        anchors.top: parent.top
-        anchors.topMargin: (idAppButton.padding - (iconStart.length == 0 || iconEnd.length == 0 ? 0 : 10)) / 2
-        spacing: padding
+        spacing: idMain.padding
         anchors.horizontalCenter: parent.horizontalCenter
 
         Image {
-            visible: !idAppButton.loading
-            anchors.verticalCenter: parent.verticalCenter
-            source: iconStart.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconStart + "?" + idAppButton.contentColor)
+            anchors.top: parent.top
+            anchors.topMargin: idMain.padding / 2
+            width: idLabel.height
+            height: idLabel.height
+            source: idMain.iconStart
+            sourceSize: Qt.size(idLabel.height, idLabel.height)
             fillMode: Image.PreserveAspectFit
-            width: iconStart.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
-            height: iconStart.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                color: idMain._contentColor
+            }
+            visible: idMain.iconStart.toString() !== ""
         }
 
         Rectangle {
-            visible: idAppButton.loading
+            anchors.top: parent.top
+            anchors.topMargin: idMain.padding / 2
+            visible: idMain.loading
             width: idLabel.height
             height: idLabel.height
             radius: idLabel.height
@@ -68,35 +70,38 @@ MouseArea {
 
         Label {
             id: idLabel
-            rightPadding: iconEnd.length == 0 ? idAppButton.padding : 0
-            leftPadding: iconStart.length == 0 ? idAppButton.padding : 0
-            bottomPadding: 3
-            anchors.verticalCenter: parent.verticalCenter
-            text: idAppButton.text
-            font.pixelSize: idAppButton.padding > appTheme.paddingMedium ? appTheme.fontSizeH6
-                                                                      : (idAppButton.padding > appTheme.paddingSmall ? appTheme.fontSizeBody1 : appTheme.fontSizeBody2)
-            color: idAppButton.contentColor
-            visible: !idAppButton.loading
+            anchors.top: parent.top
+            anchors.topMargin: idMain.padding / 2
+            text: idMain.text
+            color: idMain._contentColor
+            visible: !idMain.loading
+            font.pixelSize: idMain.padding > appTheme.paddingMedium
+                            ? appTheme.fontSizeH6 : (idMain.padding > appTheme.paddingSmall
+                                                     ? appTheme.fontSizeBody1 : appTheme.fontSizeBody2)
         }
 
         Image {
-            visible: !idAppButton.loading
-            anchors.verticalCenter: parent.verticalCenter
-            source: iconEnd.length == 0 ? "" : Qt.resolvedUrl(idAppButton.iconEnd + "?" + idAppButton.contentColor)
+            anchors.top: parent.top
+            anchors.topMargin: idMain.padding / 2
+            width: idLabel.height
+            height: idLabel.height
+            source: idMain.iconEnd
+            sourceSize: Qt.size(idLabel.height, idLabel.height)
             fillMode: Image.PreserveAspectFit
-            width: iconEnd.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
-            height: iconEnd.length == 0 ? 0 : (idAppButton.padding > appTheme.paddingMedium ? 70
-                                                                                      : (idAppButton.padding > appTheme.paddingSmall ? 60 : 32))
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                color: idMain._contentColor
+            }
+            visible: idMain.iconEnd.toString() !== ""
         }
     }
 
     Rectangle {
         width: parent.width
         height: parent.height
-        color : idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
+        color : idApp.helper.getPerceptualBrightness(idMain.background) < 765 ? "white" : "black"
         radius: appTheme.shapesMedium
-        opacity: idAppButton.press ? 0.4 : 0.0
+        opacity: idMain._press ? 0.4 : 0.0
         Behavior on opacity {
             NumberAnimation {
                 id: animation
@@ -105,11 +110,11 @@ MouseArea {
                 duration: 150
                 onRunningChanged: {
                     if (!animation.running) {
-                        if (idAppButton.press) {
-                            idAppButton._isAnimation = true
-                            idAppButton.press = false
-                        } else if (idAppButton._isAnimation) {
-                            idAppButton._isAnimation = false
+                        if (idMain._press) {
+                            idMain._isAnimation = true
+                            idMain._press = false
+                        } else if (idMain._isAnimation) {
+                            idMain._isAnimation = false
                             endAnimationClick()
                         }
                     }

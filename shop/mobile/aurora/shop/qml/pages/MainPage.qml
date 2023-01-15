@@ -232,7 +232,7 @@ Page {
 
                             Components.AppButton {
                                 text: qsTr("Смотреть")
-                                iconEnd: "image://theme/icon-m-enter-next"
+                                iconEnd: Qt.resolvedUrl("../icons/ic_arrow_forward.svg")
                                 onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductsPage.qml"), {categories: [id]})
                                 padding: appTheme.paddingMedium
                             }

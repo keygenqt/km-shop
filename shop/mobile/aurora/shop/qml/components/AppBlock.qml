@@ -10,6 +10,7 @@ MouseArea {
     property bool disabled: true
     property bool isOpacity: false
     property string bgSource: ""
+    property alias spacing: content.spacing
     default property alias children: content.data
     property bool press: false
     property bool _isAnimation: false
