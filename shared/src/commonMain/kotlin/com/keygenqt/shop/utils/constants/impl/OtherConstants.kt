@@ -22,7 +22,7 @@ object OtherConstants {
     /**
      * Limit page size
      */
-    const val PAGE_LIMIT = 9
+    const val PAGE_LIMIT = 6 // @todo 9
 
     /**
      * Contact email for apps
