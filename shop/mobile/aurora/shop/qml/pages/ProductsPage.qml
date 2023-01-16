@@ -88,16 +88,18 @@ Page {
                     state.notFound = products.length === 0
 
                     // check if need call next page
-                    idApp.helper.setTimeout(function() {
-                        if (idAppPage.isEnd && idProductsPage.page < state.pages) {
-                            idProductsPage.update(idProductsPage.page + 1)
-                        }
-                    }, 10)
+                    if (pages > 1 && idAppPage.isEnd && page < pages) {
+                        idApp.helper.setTimeout(function() {
+                            update(page + 1)
+                        }, 10)
+                    } else {
+                        state.loading = false
+                    }
 
                 } catch (e) {
                     state.error = true
+                    state.loading = false
                 }
-                state.loading = false
             },
             function(error) {
                 state.error = true
