@@ -126,6 +126,7 @@ Page {
             controlPanel.open = true
         }
         iconSort1: idProductsPage.order !== "NEWEST"
+                   || productsModel.count === 1
                    || productsModel.count === 0 && state.response === undefined
                    || state.response === undefined && !state.loading
                    || state.notFound
@@ -134,6 +135,7 @@ Page {
             idProductsPage.update(1)
         }
         iconSort2: idProductsPage.order !== "LOW"
+                   || productsModel.count === 1
                    || productsModel.count === 0 && state.response === undefined
                    || state.response === undefined && !state.loading
                    || state.notFound
@@ -142,6 +144,7 @@ Page {
             idProductsPage.update(1)
         }
         iconSort3: idProductsPage.order !== "HEIGHT"
+                   || productsModel.count === 1
                    || productsModel.count === 0 && state.response === undefined
                    || state.response === undefined && !state.loading
                    || state.notFound
