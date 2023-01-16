@@ -89,13 +89,10 @@ Page {
 
                     // check if need call next page
                     if (pages > 1 && idAppPage.isEnd && page < pages) {
-                        idApp.helper.setTimeout(function() {
-                            update(page + 1)
-                        }, 10)
+                        idProductsPage.update(page + 1)
                     } else {
                         state.loading = false
                     }
-
                 } catch (e) {
                     state.error = true
                     state.loading = false
@@ -126,12 +123,14 @@ Page {
         iconsDisabled: state.loading
         menuIsUpdate: true
         menuUpdate: function () {
+            state.response = undefined
+            idProductsPage.price()
             idProductsPage.update(1)
         }
         iconSettings: state.min === state.max
-                      || productsModel.count === 0 && state.response === undefined
+                      || (productsModel.count === 0 && state.response === undefined)
                       || state.min === 0.0
-                      || state.response === undefined && !state.loading
+                      || (state.response === undefined && !state.loading)
                       || state.notFound
                       || state.error ? undefined : function () {
             controlPanel.open = true
@@ -139,8 +138,8 @@ Page {
         iconSort1: idProductsPage.order !== "NEWEST"
                    || state.min === 0.0
                    || productsModel.count === 1
-                   || productsModel.count === 0 && state.response === undefined
-                   || state.response === undefined && !state.loading
+                   || (productsModel.count === 0 && state.response === undefined)
+                   || (state.response === undefined && !state.loading)
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "LOW"
@@ -149,8 +148,8 @@ Page {
         iconSort2: idProductsPage.order !== "LOW"
                    || state.min === 0.0
                    || productsModel.count === 1
-                   || productsModel.count === 0 && state.response === undefined
-                   || state.response === undefined && !state.loading
+                   || (productsModel.count === 0 && state.response === undefined)
+                   || (state.response === undefined && !state.loading)
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "HEIGHT"
@@ -159,8 +158,8 @@ Page {
         iconSort3: idProductsPage.order !== "HEIGHT"
                    || state.min === 0.0
                    || productsModel.count === 1
-                   || productsModel.count === 0 && state.response === undefined
-                   || state.response === undefined && !state.loading
+                   || (productsModel.count === 0 && state.response === undefined)
+                   || (state.response === undefined && !state.loading)
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "NEWEST"
