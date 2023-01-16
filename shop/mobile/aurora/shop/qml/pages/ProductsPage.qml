@@ -86,6 +86,14 @@ Page {
                         productsModel.append(products[index])
                     }
                     state.notFound = products.length === 0
+
+                    // check if need call next page
+                    idApp.helper.setTimeout(function() {
+                        if (idAppPage.isEnd && idProductsPage.page < state.pages) {
+                            idProductsPage.update(idProductsPage.page + 1)
+                        }
+                    }, 10)
+
                 } catch (e) {
                     state.error = true
                 }
@@ -106,6 +114,7 @@ Page {
     }
 
     Components.AppPage {
+        id: idAppPage
         header: qsTr("Продукты")
         anchors.top: controlPanel.bottom
         clip: controlPanel.expanded
@@ -241,7 +250,7 @@ Page {
                 height: 120
                 width: parent.width
                 color: 'transparent'
-                visible: idProductsPage.page < state.pages || state.loading && idProductsPage.page !== 1
+                visible: idProductsPage.page < state.pages && productsModel.count > 0 || state.loading && idProductsPage.page > 1
 
                 Components.BlockLoading {
                     size: 60

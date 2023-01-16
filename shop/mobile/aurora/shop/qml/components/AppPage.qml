@@ -21,6 +21,7 @@ SilicaFlickable {
     property bool disablePaddingIcons: false
     property bool hidePaddingIcons: false
     property int endScrollPadding: 0
+    readonly property bool isEnd: column.height + appTheme.paddingLarge <= contentY + idApp.height + item.endScrollPadding
 
     default property alias children: idContent.data
 
