@@ -8,6 +8,7 @@ SilicaFlickable {
     property string header: ""
     property string selectedPage: ""
     property bool menuDisabled: false
+    property bool iconsDisabled: false
     property bool menuIsUpdate: false
     property var menuUpdate
     property bool fixed: true
@@ -56,6 +57,7 @@ SilicaFlickable {
             loading: item.loading
             disablePaddingIcons: item.disablePaddingIcons
             hidePaddingIcons: item.hidePaddingIcons
+            iconsDisabled: item.iconsDisabled
         }
 
         Column {

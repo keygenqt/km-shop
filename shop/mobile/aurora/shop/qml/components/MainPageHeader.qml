@@ -13,6 +13,7 @@ PageHeader {
     property var iconSort3
     property bool disablePaddingIcons: false
     property bool hidePaddingIcons: false
+    property bool iconsDisabled: false
 
     extraContent.children: [
         Row {
@@ -48,6 +49,7 @@ PageHeader {
                     anchors.verticalCenter: parent.verticalCenter
                     onEndAnimationClick: idHeader.iconSearch()
                     visible: idHeader.iconSearch !== undefined
+                    disabled: idHeader.iconsDisabled
                 }
 
                 AppIconButton {
@@ -55,6 +57,7 @@ PageHeader {
                     anchors.verticalCenter: parent.verticalCenter
                     onEndAnimationClick: idHeader.iconSettings()
                     visible: idHeader.iconSettings !== undefined
+                    disabled: idHeader.iconsDisabled
                 }
 
                 AppIconButton {
@@ -62,6 +65,7 @@ PageHeader {
                     anchors.verticalCenter: parent.verticalCenter
                     onEndAnimationClick: idHeader.iconSort1()
                     visible: idHeader.iconSort1 !== undefined
+                    disabled: idHeader.iconsDisabled
                 }
 
                 AppIconButton {
@@ -69,6 +73,7 @@ PageHeader {
                     anchors.verticalCenter: parent.verticalCenter
                     onEndAnimationClick: idHeader.iconSort2()
                     visible: idHeader.iconSort2 !== undefined
+                    disabled: idHeader.iconsDisabled
                 }
 
                 AppIconButton {
@@ -76,6 +81,7 @@ PageHeader {
                     anchors.verticalCenter: parent.verticalCenter
                     onEndAnimationClick: idHeader.iconSort3()
                     visible: idHeader.iconSort3 !== undefined
+                    disabled: idHeader.iconsDisabled
                 }
 
                 BlockLoading {

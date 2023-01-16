@@ -8,6 +8,7 @@ Rectangle {
     height: idRow.height + 24
     radius: appTheme.shapesMedium
 
+    property bool disabled: false
     property int count: 0
 
     signal addCount(int count)
@@ -37,7 +38,7 @@ Rectangle {
                 color: "white"
                 opacity: count <= 0 ? 0.3 : 1.0
             }
-            disabled: count <= 0
+            disabled: count <= 0 || idMain.disabled
             size: 50
             duration: 50
             icon.source: Qt.resolvedUrl("../icons/ic_remove.svg")
@@ -70,8 +71,9 @@ Rectangle {
             }
             bg {
                 color: "white"
-                opacity: 1.0
+                opacity: count >= 99 ? 0.3 : 1.0
             }
+            disabled: count >= 99 || idMain.disabled
             size: 50
             duration: 50
             icon.source: Qt.resolvedUrl("../icons/ic_add.svg")

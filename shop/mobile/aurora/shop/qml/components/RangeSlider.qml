@@ -2,12 +2,12 @@ import QtQuick 2.0
 
 Rectangle {
     id: idMain
-    height: idMain._size * 2
+    height: idMain._size * 3
     width: parent.width
     color: 'transparent'
 
     property bool disabled: false
-    property color colorSlider: idMain.disabled ? '#bfbbbd' : 'white'
+    property color colorSlider: 'white'
     property real from: 0
     property real to: 0
 
@@ -30,7 +30,16 @@ Rectangle {
         anchors.centerIn: parent
         height: 10
         radius: 10
-        color: idMain.colorSlider
+        color: idApp.colors.highlightDarkColor
+
+        Rectangle {
+            anchors.fill: parent
+            radius: parent.radius
+            color: idMain.colorSlider
+            border.width: 1
+            border.color: idApp.colors.borderColorBlock
+            opacity: idMain.disabled ? 0.5 : 1.0
+        }
     }
 
     Rectangle {
@@ -40,9 +49,18 @@ Rectangle {
         height: idMain._size
         radius: idMain._size
         anchors.verticalCenter: parent.verticalCenter
-        color: idMain.colorSlider
         border.width: 1
         border.color: idApp.colors.borderColorBlock
+        color: idApp.colors.highlightDarkColor
+
+        Rectangle {
+            anchors.fill: parent
+            radius: idMain._size
+            color: idMain.colorSlider
+            border.width: 1
+            border.color: idApp.colors.borderColorBlock
+            opacity: idMain.disabled ? 0.5 : 1.0
+        }
     }
 
     Rectangle {
@@ -52,9 +70,18 @@ Rectangle {
         height: idMain._size
         radius: idMain._size
         anchors.verticalCenter: parent.verticalCenter
-        color: idMain.colorSlider
         border.width: 1
         border.color: idApp.colors.borderColorBlock
+        color: idApp.colors.highlightDarkColor
+
+        Rectangle {
+            anchors.fill: parent
+            radius: idMain._size
+            color: idMain.colorSlider
+            border.width: 1
+            border.color: idApp.colors.borderColorBlock
+            opacity: idMain.disabled ? 0.5 : 1.0
+        }
     }
 
     MouseArea {

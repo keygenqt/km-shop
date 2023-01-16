@@ -25,22 +25,21 @@ Page {
         property bool error: false
         property bool loading: false
         property bool notFound: false
+        function clearPrice() {
+            min = 0.0
+            max = 0.0
+        }
         function clear() {
             error = false
             loading = false
             notFound = false
-            response = undefined
+            productsModel.clear()
         }
     }
 
-    function isItemsDisabled() {
-        return state.loading && productsModel.count !== 0
-    }
-
-    function update(isRefresh) {
+    function price() {
         // clear state
-        state.clear()
-        state.loading = true
+        state.clearPrice()
         // get prices
         agent.run(
             "kmm.Service.get.prices("
@@ -52,10 +51,17 @@ Page {
                     var obj = JSON.parse(result)
                     state.min = obj.min
                     state.max = obj.max
+                    idProductsPage.range = [state.min, state.max]
                 } catch (e) {}
             },
             function(error) {}
         )
+    }
+
+    function update() {
+        // clear state
+        state.clear()
+        state.loading = true
         // get products
         agent.run(
             "kmm.Service.get.productsPublished("
@@ -64,7 +70,7 @@ Page {
                             + '"' + idProductsPage.range.join(',') + '",'
                             + '"' + idProductsPage.categories.join(',') + '",'
                             + '"' + idProductsPage.collections.join(',') + '",'
-                            + "5000)",
+                            + "2000)",
             function(result) {
                 try {
                     var obj = JSON.parse(result)
@@ -90,6 +96,7 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active && state.response === undefined) {
+            idProductsPage.price()
             idProductsPage.update()
         }
     }
@@ -99,26 +106,42 @@ Page {
         anchors.top: controlPanel.bottom
         clip: controlPanel.expanded
         disablePaddingIcons: controlPanel.expanded
-        hidePaddingIcons: idProductsPage.isItemsDisabled()
-        loading: idProductsPage.isItemsDisabled()
-        fixed: state.response === undefined
+        fixed: productsModel.count === 0
         menuDisabled: state.loading
+        iconsDisabled: state.loading
         menuIsUpdate: true
         menuUpdate: function () {
             idProductsPage.update()
         }
-        iconSettings: state.min === state.max || state.min === 0.0 || state.response === undefined || state.notFound ? undefined : function () {
+        iconSettings: state.min === state.max
+                      || productsModel.count === 0 && state.response === undefined
+                      || state.min === 0.0
+                      || state.response === undefined && !state.loading
+                      || state.notFound
+                      || state.error ? undefined : function () {
             controlPanel.open = true
         }
-        iconSort1: idProductsPage.order !== "NEWEST" || state.response === undefined || state.notFound ? undefined : function () {
+        iconSort1: idProductsPage.order !== "NEWEST"
+                   || productsModel.count === 0 && state.response === undefined
+                   || state.response === undefined && !state.loading
+                   || state.notFound
+                   || state.error ? undefined : function () {
             idProductsPage.order = "LOW"
             idProductsPage.update()
         }
-        iconSort2: idProductsPage.order !== "LOW" || state.response === undefined || state.notFound ? undefined : function () {
+        iconSort2: idProductsPage.order !== "LOW"
+                   || productsModel.count === 0 && state.response === undefined
+                   || state.response === undefined && !state.loading
+                   || state.notFound
+                   || state.error ? undefined : function () {
             idProductsPage.order = "HEIGHT"
             idProductsPage.update()
         }
-        iconSort3: idProductsPage.order !== "HEIGHT" || state.response === undefined || state.notFound ? undefined : function () {
+        iconSort3: idProductsPage.order !== "HEIGHT"
+                   || productsModel.count === 0 && state.response === undefined
+                   || state.response === undefined && !state.loading
+                   || state.notFound
+                   || state.error ? undefined : function () {
             idProductsPage.order = "NEWEST"
             idProductsPage.update()
         }
@@ -128,7 +151,7 @@ Page {
             width: parent.width
             borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
             backgroundColor: state.notFound ? "white" : 'transparent'
-            visible: (state.response === undefined || state.notFound) && productsModel.count === 0
+            visible: productsModel.count === 0 || state.notFound || state.error
 
             Components.BlockEmpty {
                 visible: state.notFound
@@ -149,24 +172,15 @@ Page {
 
         Column {
             width: parent.width
-            opacity: idProductsPage.isItemsDisabled() && (controlPanel.moving || !controlPanel.expanded) ? 0.4 : 1.0
             spacing: appTheme.paddingMedium
-            visible: state.response !== undefined && !state.notFound || productsModel.count !== 0
-
-            Behavior on opacity {
-                NumberAnimation {
-                    properties: "opacity";
-                    easing.type: Easing.Linear;
-                    duration: 150
-                }
-            }
+            visible: !(productsModel.count === 0 || state.notFound || state.error)
 
             Repeater {
                 model: productsModel
                 delegate: Components.AppBlock {
                     width: parent.width
                     borderColor: idApp.colors.highlightDarkColor
-                    disabled: idProductsPage.isItemsDisabled() || controlPanel.expanded
+                    disabled: controlPanel.expanded
 
                     onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
 
@@ -219,7 +233,7 @@ Page {
         dock: Dock.Bottom
         animationDuration: 300
         width: parent.width
-        height: 450
+        height: 430
         modal: true
         background: Rectangle {
             color: idApp.colors.highlightDarkColor
@@ -234,81 +248,120 @@ Page {
             }
         }
 
-        Column {
-            width: parent.width - appTheme.paddingLarge * 2
-            anchors.centerIn: parent
+        QtObject {
+            id: idRange
+            property real value1: state.min
+            property real value2: state.max
+        }
 
-            spacing: appTheme.paddingMedium
-
-            Column {
-                width: parent.width
-                spacing: appTheme.paddingMedium
-
-                Text {
-                    color: "white"
-                    width: parent.width
-                    text: qsTr("Диапазон цен")
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: appTheme.fontSizeH6
-                    font.bold: true
-                }
-
-                Text {
-                    color: "white"
-                    width: parent.width
-                    text: qsTr("Фильтр товаров по ценовому диапозону")
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: appTheme.fontSizeBody1
-                }
-            }
-
-            QtObject {
-                id: idRange
-                property real value1: state.min
-                property real value2: state.max
-            }
-
-            Components.RangeSlider {
-                disabled: state.loading
-                from: state.min
-                to: state.max
-                onEndChange: {
-                    idProductsPage.range = [first, second]
+        onExpandedChanged: {
+            if (!controlPanel.expanded) {
+                if (idProductsPage.range[0] !== idRange.value1 || idProductsPage.range[1] !== idRange.value2) {
+                    idProductsPage.range = [idRange.value1, idRange.value2]
                     idProductsPage.update()
                 }
-                onMoveFirst: {
-                    idRange.value1 = value
-                }
-                onMoveSecond: {
-                    idRange.value2 = value
+            }
+        }
+
+        Rectangle {
+            color: 'transparent'
+            anchors.fill: parent
+
+            Rectangle {
+                width: parent.width
+
+                Components.AppIconButton {
+                    icon {
+                        layer.enabled: true
+                        layer.effect: ColorOverlay{
+                            color: idApp.colors.highlightDarkColor
+                        }
+                    }
+                    bg {
+                        color: "white"
+                        opacity: 1.0
+                    }
+                    size: 50
+                    icon.source: Qt.resolvedUrl("../icons/ic_close.svg")
+                    anchors.top: parent.top
+                    anchors.topMargin: appTheme.paddingLarge
+                    anchors.right: parent.right
+                    anchors.rightMargin: appTheme.paddingLarge
+                    onEndAnimationClick: {
+                        controlPanel.hide()
+                        if (idProductsPage.range[0] !== idRange.value1 || idProductsPage.range[1] !== idRange.value2) {
+                            idProductsPage.range = [idRange.value1, idRange.value2]
+                            idProductsPage.update()
+                        }
+                    }
                 }
             }
 
-            Row {
-                width: parent.width
+            Column {
+                width: parent.width - appTheme.paddingLarge * 2
+                anchors.centerIn: parent
+                spacing: 0
 
-                Label {
-                    id: idPrice1
-                    text: idApp.helper.formatPrice(idRange.value1)
-                    color: "white"
-                    font.pixelSize: appTheme.fontSizeH6
-                    font.bold: true
+                Column {
+                    width: parent.width
+                    spacing: appTheme.paddingMedium
+
+                    Text {
+                        color: "white"
+                        width: parent.width
+                        text: qsTr("Диапазон цен")
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: appTheme.fontSizeH6
+                        font.bold: true
+                    }
+
+                    Text {
+                        color: "white"
+                        width: parent.width
+                        text: qsTr("Фильтр товаров по ценовому диапозону")
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        font.pixelSize: appTheme.fontSizeBody1
+                    }
                 }
 
-                Rectangle {
-                    height: 1
-                    width: parent.width - idPrice1.width - idPrice2.width
-                    color: 'transparent'
+                Components.RangeSlider {
+                    disabled: state.loading
+                    from: state.min
+                    to: state.max
+                    onMoveFirst: {
+                        idRange.value1 = value
+                    }
+                    onMoveSecond: {
+                        idRange.value2 = value
+                    }
                 }
 
-                Label {
-                    id: idPrice2
-                    text: idApp.helper.formatPrice(idRange.value2)
-                    color: "white"
-                    font.pixelSize: appTheme.fontSizeH6
-                    font.bold: true
+                Row {
+                    width: parent.width
+
+                    Label {
+                        id: idPrice1
+                        text: idApp.helper.formatPrice(idRange.value1)
+                        color: "white"
+                        font.pixelSize: appTheme.fontSizeH6
+                        font.bold: true
+                    }
+
+                    Rectangle {
+                        height: 1
+                        width: parent.width - idPrice1.width - idPrice2.width
+                        color: 'transparent'
+                    }
+
+                    Label {
+                        id: idPrice2
+                        text: idApp.helper.formatPrice(idRange.value2)
+                        color: "white"
+                        font.pixelSize: appTheme.fontSizeH6
+                        font.bold: true
+                    }
                 }
             }
         }

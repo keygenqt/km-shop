@@ -55,6 +55,7 @@ MouseArea {
             width: size * 0.74
             anchors.centerIn: parent
             color: 'transparent'
+            opacity: idAppButton.disabled ? 0.4 : 1.0
 
             Image {
                 id: image
