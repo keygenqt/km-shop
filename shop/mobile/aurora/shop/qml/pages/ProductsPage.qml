@@ -38,6 +38,12 @@ Page {
         }
     }
 
+    QtObject {
+        id: idRange
+        property real value1: state.min
+        property real value2: state.max
+    }
+
     function price() {
         // clear state
         state.clearPrice()
@@ -50,8 +56,13 @@ Page {
             function(result) {
                 try {
                     var obj = JSON.parse(result)
+                    // set state
                     state.min = obj.min
                     state.max = obj.max
+                    // set value
+                    idRange.value1 = state.min
+                    idRange.value2 = state.max
+                    // set range
                     idProductsPage.range = [state.min, state.max]
                 } catch (e) {}
             },
@@ -124,7 +135,6 @@ Page {
         menuIsUpdate: true
         menuUpdate: function () {
             state.response = undefined
-            idProductsPage.price()
             idProductsPage.update(1)
         }
         iconSettings: state.min === state.max
@@ -287,12 +297,6 @@ Page {
                 anchors.bottom: parent.bottom
                 anchors.margins: 0
             }
-        }
-
-        QtObject {
-            id: idRange
-            property real value1: state.min
-            property real value2: state.max
         }
 
         onExpandedChanged: {
