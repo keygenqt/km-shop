@@ -19,6 +19,7 @@ Page {
 
     QtObject {
         id: state
+        property int pages: 0
         property real min: 0.0
         property real max: 0.0
         property var response
@@ -58,10 +59,13 @@ Page {
         )
     }
 
-    function update() {
+    function update(page) {
         // clear state
-        state.clear()
+        if (page === 1) {
+            state.clear()
+        }
         state.loading = true
+        idProductsPage.page = page
         // get products
         agent.run(
             "kmm.Service.get.productsPublished("
@@ -70,14 +74,14 @@ Page {
                             + '"' + idProductsPage.range.join(',') + '",'
                             + '"' + idProductsPage.categories.join(',') + '",'
                             + '"' + idProductsPage.collections.join(',') + '",'
-                            + "2000)",
+                            + ")",
             function(result) {
                 try {
                     var obj = JSON.parse(result)
                     var pages = obj.pages
                     var products = obj.products
+                    state.pages = pages
                     state.response = obj
-                    productsModel.clear()
                     for (var index = 0; index < products.length; index++) {
                         productsModel.append(products[index])
                     }
@@ -97,7 +101,7 @@ Page {
     onStatusChanged: {
         if (status == PageStatus.Active && state.response === undefined) {
             idProductsPage.price()
-            idProductsPage.update()
+            idProductsPage.update(1)
         }
     }
 
@@ -111,7 +115,7 @@ Page {
         iconsDisabled: state.loading
         menuIsUpdate: true
         menuUpdate: function () {
-            idProductsPage.update()
+            idProductsPage.update(1)
         }
         iconSettings: state.min === state.max
                       || productsModel.count === 0 && state.response === undefined
@@ -127,7 +131,7 @@ Page {
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "LOW"
-            idProductsPage.update()
+            idProductsPage.update(1)
         }
         iconSort2: idProductsPage.order !== "LOW"
                    || productsModel.count === 0 && state.response === undefined
@@ -135,7 +139,7 @@ Page {
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "HEIGHT"
-            idProductsPage.update()
+            idProductsPage.update(1)
         }
         iconSort3: idProductsPage.order !== "HEIGHT"
                    || productsModel.count === 0 && state.response === undefined
@@ -143,7 +147,7 @@ Page {
                    || state.notFound
                    || state.error ? undefined : function () {
             idProductsPage.order = "NEWEST"
-            idProductsPage.update()
+            idProductsPage.update(1)
         }
 
         Components.AppBlock {
@@ -151,7 +155,7 @@ Page {
             width: parent.width
             borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
             backgroundColor: state.notFound ? "white" : 'transparent'
-            visible: productsModel.count === 0 || state.notFound || state.error
+            visible: (productsModel.count === 0 || state.notFound || state.error) && idProductsPage.page === 1
 
             Components.BlockEmpty {
                 visible: state.notFound
@@ -173,7 +177,7 @@ Page {
         Column {
             width: parent.width
             spacing: appTheme.paddingMedium
-            visible: !(productsModel.count === 0 || state.notFound || state.error)
+            visible: !(productsModel.count === 0 || state.notFound || state.error) || idProductsPage.page !== 1
 
             Repeater {
                 model: productsModel
@@ -224,7 +228,28 @@ Page {
                         }
                     }
                 }
-           }
+            }
+
+            Rectangle {
+                id: idLoaderRectangle
+                height: 120
+                width: parent.width
+                color: 'transparent'
+                visible: idProductsPage.page < state.pages || state.loading && idProductsPage.page !== 1
+
+                Components.BlockLoading {
+                    size: 60
+                    width: 60
+                    anchors.centerIn: parent
+                }
+            }
+        }
+
+        endScrollPadding: idLoaderRectangle.height
+        onEndScroll: {
+            if (!state.loading && idProductsPage.page < state.pages) {
+                idProductsPage.update(idProductsPage.page + 1)
+            }
         }
     }
 
@@ -258,7 +283,7 @@ Page {
             if (!controlPanel.expanded) {
                 if (idProductsPage.range[0] !== idRange.value1 || idProductsPage.range[1] !== idRange.value2) {
                     idProductsPage.range = [idRange.value1, idRange.value2]
-                    idProductsPage.update()
+                    idProductsPage.update(1)
                 }
             }
         }
@@ -291,7 +316,7 @@ Page {
                         controlPanel.hide()
                         if (idProductsPage.range[0] !== idRange.value1 || idProductsPage.range[1] !== idRange.value2) {
                             idProductsPage.range = [idRange.value1, idRange.value2]
-                            idProductsPage.update()
+                            idProductsPage.update(1)
                         }
                     }
                 }

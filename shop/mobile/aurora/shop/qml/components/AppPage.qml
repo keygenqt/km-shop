@@ -20,13 +20,22 @@ SilicaFlickable {
     property var iconSort3
     property bool disablePaddingIcons: false
     property bool hidePaddingIcons: false
+    property int endScrollPadding: 0
 
     default property alias children: idContent.data
 
     property int pageH: idApp.height - idHeader.height - appTheme.paddingMedium - idMenu.height
 
+    signal endScroll()
+
     anchors.fill: parent
     contentHeight: column.height + appTheme.paddingLarge
+
+    onContentYChanged: {
+        if (column.height + appTheme.paddingLarge <= contentY + idApp.height + item.endScrollPadding) {
+            item.endScroll()
+        }
+    }
 
     VerticalScrollDecorator {}
 
