@@ -17,6 +17,9 @@ Item {
     }
 
     function run(method, result, error) {
+
+        console.log(" ---> " + method)
+
         if (method.indexOf("return") === -1) {
             webview.runJavaScript("return " + method, function(key) {
                 idAgentBlock.stateResponse[key] = [result, error]

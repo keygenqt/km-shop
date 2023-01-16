@@ -107,17 +107,10 @@ Page {
                         productsModel.append(products[index])
                     }
                     state.notFound = products.length === 0
-
-                    // check if need call next page
-                    if (pages > 1 && idAppPage.isEnd && page < pages) {
-                        idProductsPage.update(page + 1)
-                    } else {
-                        state.loading = false
-                    }
                 } catch (e) {
                     state.error = true
-                    state.loading = false
                 }
+                state.loading = false
             },
             function(error) {
                 state.error = true
