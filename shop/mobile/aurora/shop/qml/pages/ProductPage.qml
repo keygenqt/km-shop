@@ -161,6 +161,25 @@ Page {
                 }
             }
 
+            Rectangle {
+                id: idRectanglePriceBlock
+                height: idLabelPrice.height
+                width: idLabelPrice.width
+                border.width: 2
+                border.color: idApp.colors.highlightDarkColor
+                radius: appTheme.shapesLarge
+
+                Label {
+                    id: idLabelPrice
+                    text: idApp.helper.formatPrice(state.response !== undefined ? state.response.price : 0)
+                    font.pixelSize: appTheme.fontSizeBody1
+                    topPadding: appTheme.paddingSmall
+                    leftPadding: appTheme.paddingMedium
+                    rightPadding: appTheme.paddingMedium
+                    bottomPadding: appTheme.paddingSmall
+                }
+            }
+
             Components.AppBlock {
                 width: parent.width
                 backgroundColor: "white"
@@ -224,6 +243,7 @@ Page {
                     width: idRow.width + appTheme.paddingSmall * 2
                     backgroundColor: "white"
                     padding: appTheme.paddingSmall
+                    radius: appTheme.shapesMedium
 
                     Row {
                         id: idRow
@@ -238,7 +258,7 @@ Page {
                             color: "transparent"
                             border.color: idApp.colors.highlightDarkColor
                             border.width: 2
-                            radius: appTheme.paddingMedium
+                            radius: appTheme.shapesMedium
 
                             Image {
                                 source: Qt.resolvedUrl(idApp.constants.apiUrl + "api/uploads/" + icon)

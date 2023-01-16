@@ -11,6 +11,7 @@ MouseArea {
     property bool isOpacity: false
     property string bgSource: ""
     property alias spacing: content.spacing
+    property alias radius: idRecBg.radius
     default property alias children: content.data
     property bool press: false
     property bool _isAnimation: false
@@ -23,6 +24,7 @@ MouseArea {
     onClicked: if (!idAppBlock.disabled && !idAppBlock._isAnimation) idAppBlock.press = true
 
     Rectangle {
+        id: idRecBg
         width: parent.width
         height: parent.height
         color : idAppBlock.backgroundColor

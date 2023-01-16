@@ -51,14 +51,15 @@ MouseArea {
 
         Rectangle {
             id: idRec
-            height: size * 0.74
-            width: size * 0.74
+            height: size * 0.6
+            width: size * 0.6
             anchors.centerIn: parent
             color: 'transparent'
             opacity: idAppButton.disabled ? 0.4 : 1.0
 
             Image {
                 id: image
+                sourceSize: Qt.size(idRec.width, idRec.width)
                 fillMode: Image.PreserveAspectFit
                 anchors.top: parent.top
                 anchors.left: parent.left

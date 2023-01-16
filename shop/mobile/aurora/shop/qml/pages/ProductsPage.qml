@@ -44,7 +44,17 @@ Page {
         property real value2: state.max
     }
 
-    function price() {
+    function isHideSort(key) {
+        return idProductsPage.order !== key
+                || state.min === 0.0
+                || productsModel.count === 1
+                || (productsModel.count === 0 && state.response === undefined)
+                || (state.response === undefined && !state.loading)
+                || state.notFound
+                || state.error
+    }
+
+    function updatePrice() {
         // clear state
         state.clearPrice()
         // get prices
@@ -118,7 +128,7 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active && state.response === undefined) {
-            idProductsPage.price()
+            idProductsPage.updatePrice()
             idProductsPage.update(1)
         }
     }
@@ -145,33 +155,15 @@ Page {
                       || state.error ? undefined : function () {
             controlPanel.open = true
         }
-        iconSort1: idProductsPage.order !== "NEWEST"
-                   || state.min === 0.0
-                   || productsModel.count === 1
-                   || (productsModel.count === 0 && state.response === undefined)
-                   || (state.response === undefined && !state.loading)
-                   || state.notFound
-                   || state.error ? undefined : function () {
+        iconSort1: isHideSort("NEWEST") ? undefined : function () {
             idProductsPage.order = "LOW"
             idProductsPage.update(1)
         }
-        iconSort2: idProductsPage.order !== "LOW"
-                   || state.min === 0.0
-                   || productsModel.count === 1
-                   || (productsModel.count === 0 && state.response === undefined)
-                   || (state.response === undefined && !state.loading)
-                   || state.notFound
-                   || state.error ? undefined : function () {
+        iconSort2: isHideSort("LOW") ? undefined : function () {
             idProductsPage.order = "HEIGHT"
             idProductsPage.update(1)
         }
-        iconSort3: idProductsPage.order !== "HEIGHT"
-                   || state.min === 0.0
-                   || productsModel.count === 1
-                   || (productsModel.count === 0 && state.response === undefined)
-                   || (state.response === undefined && !state.loading)
-                   || state.notFound
-                   || state.error ? undefined : function () {
+        iconSort3: isHideSort("HEIGHT") ? undefined : function () {
             idProductsPage.order = "NEWEST"
             idProductsPage.update(1)
         }
@@ -214,41 +206,94 @@ Page {
 
                     onEndAnimationClick: pageStack.push(Qt.resolvedUrl("ProductPage.qml"), {productID: id})
 
-                    Row {
+                    Column {
                         width: parent.width
-                        spacing: appTheme.paddingLarge
+                        spacing: appTheme.paddingMedium
 
-                        Components.AppImage {
-                            id: img
-                            imageUrl: Qt.resolvedUrl(image1)
+                        Row {
+                            width: parent.width
+                            spacing: appTheme.paddingLarge
+
+                            Components.AppImage {
+                                id: img
+                                imageUrl: Qt.resolvedUrl(image1)
+                            }
+
+                            Rectangle {
+                                color: 'transparent'
+                                height: iconData.height
+                                width: parent.width - img.width - appTheme.paddingLarge
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                Column {
+                                    id: iconData
+                                    width: parent.width
+                                    spacing: appTheme.paddingSmall
+                                    anchors.top: parent.top
+                                    anchors.topMargin: -3
+
+                                    Text {
+                                        width: parent.width
+                                        text: name
+                                        wrapMode: Text.WordWrap
+                                        font.pixelSize: appTheme.fontSizeH6
+                                        color: idApp.colors.highlightDarkColor
+                                    }
+
+                                    Text {
+                                        width: parent.width
+                                        text: description
+                                        wrapMode: Text.WordWrap
+                                        font.pixelSize: appTheme.fontSizeCaption
+                                    }
+                                }
+                            }
                         }
 
-                        Rectangle {
-                            color: 'transparent'
-                            height: iconData.height
-                            width: parent.width - img.width - appTheme.paddingLarge
-                            anchors.verticalCenter: parent.verticalCenter
+                        Components.Divider {}
 
-                            Column {
-                                id: iconData
-                                width: parent.width
-                                spacing: appTheme.paddingSmall
-                                anchors.top: parent.top
-                                anchors.topMargin: -3
+                        Row {
+                            width: parent.width
+                            spacing: 0
 
-                                Text {
-                                    width: parent.width
-                                    text: name
-                                    wrapMode: Text.WordWrap
-                                    font.pixelSize: appTheme.fontSizeH6
+                            Rectangle {
+                                id: idRectanglePriceBlock
+                                height: idLabelPrice.height
+                                width: idLabelPrice.width
+                                border.width: 2
+                                border.color: idApp.colors.highlightDarkColor
+                                radius: appTheme.shapesMedium
+
+                                Label {
+                                    id: idLabelPrice
+                                    text: idApp.helper.formatPrice(price)
                                     color: idApp.colors.highlightDarkColor
+                                    font.pixelSize: appTheme.fontSizeBody2
+                                    topPadding: 3
+                                    leftPadding: 16
+                                    rightPadding: 16
+                                    bottomPadding: 3
                                 }
+                            }
 
-                                Text {
-                                    width: parent.width
-                                    text: description
-                                    wrapMode: Text.WordWrap
-                                    font.pixelSize: appTheme.fontSizeCaption
+                            Rectangle {
+                                width: parent.width - idRectanglePriceBlock.width - idAppIconButtonCart.width
+                                height: 1
+                                color: 'transparent'
+                            }
+
+                            Components.AppIconButton {
+                                id: idAppIconButtonCart
+                                icon {
+                                    layer.enabled: true
+                                    layer.effect: ColorOverlay{
+                                        color: idApp.colors.highlightDarkColor
+                                    }
+                                }
+                                size: idRectanglePriceBlock.height
+                                icon.source: Qt.resolvedUrl("../icons/ic_add_shopping.svg")
+                                onEndAnimationClick: {
+
                                 }
                             }
                         }
