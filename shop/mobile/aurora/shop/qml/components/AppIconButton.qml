@@ -23,7 +23,7 @@ MouseArea {
     Rectangle {
         id: idBg
         anchors.fill: parent
-        color : idAppButton.disabled ? 'gray' : (idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black")
+        color : idAppButton.disabled ? 'gray' : (helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500 ? "white" : "black")
         radius: idAppButton.size
         opacity: 0.1
     }
@@ -66,6 +66,10 @@ MouseArea {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
                 anchors.leftMargin: 1
+                layer.enabled: true
+                layer.effect: ColorOverlay{
+                    color: helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500 ? "white" : "black"
+                }
             }
         }
     }
@@ -73,7 +77,7 @@ MouseArea {
     Rectangle {
         width: parent.width
         height: parent.height
-        color : idApp.helper.getPerceptualBrightness(idAppButton.background) < 765 ? "white" : "black"
+        color : helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500 ? "white" : "black"
         radius: parent.width
         opacity: idAppButton.press ? 0.4 : 0.0
         Behavior on opacity {

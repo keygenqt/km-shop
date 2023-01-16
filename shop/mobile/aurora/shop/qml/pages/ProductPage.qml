@@ -177,6 +177,7 @@ Page {
                     leftPadding: appTheme.paddingMedium
                     rightPadding: appTheme.paddingMedium
                     bottomPadding: appTheme.paddingSmall
+                    color: 'black'
                 }
             }
 
