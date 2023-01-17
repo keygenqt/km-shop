@@ -141,7 +141,7 @@ export const Service = {
                     productsRequest,
                 ))
             }, (response) => {
-                return response.number
+                return JSON.stringify(response.mapToOrder());
             }, delay)
         },
     }

@@ -37,7 +37,20 @@ Rectangle {
                     + "'" + idApp.cart.getStringify() + "',"
                     + '500)',
             function(result) {
-                state.orderNumber = result
+                var obj = JSON.parse(result)
+                var products = obj.products
+                // set number to page
+                state.orderNumber = obj.number
+                // save to cache
+                var images = []
+                for (var index = 0; index < products.length; index++) {
+                    images.push(products[index].product.image1)
+                }
+                idApp.localStorage.transaction(
+                    function(tx) {
+                        tx.executeSql('INSERT INTO Orders VALUES(?, ?, ?)', [ obj.number, images.join(','), obj.sum]);
+                    }
+                )
                 // clear fields
                 idFieldEmail.text = ''
                 idFieldPhone.text = ''

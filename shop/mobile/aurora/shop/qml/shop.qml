@@ -36,6 +36,7 @@
 *******************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.LocalStorage 2.0 as Sql
 import Sailfish.Silica 1.0
 import "components" as Components
 import AppTheme 1.0
@@ -47,6 +48,28 @@ ApplicationWindow {
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
     allowedOrientations: Orientation.Portrait
     _defaultPageOrientations: Orientation.Portrait
+
+    Component.onCompleted: {
+        // init
+        try {
+            idApp.localStorage = Sql.LocalStorage.openDatabaseSync(
+                "com.keygenqt.my_shop.sql",
+                "1.0",
+                "The Databes",
+                1000000
+            );
+            // Create tables
+            idApp.localStorage.transaction(
+                function(tx) {
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS Orders(number TEXT, images TEXT, sum FLOAT)');
+                }
+            )
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    property var localStorage
 
     property alias constants: constants
     property alias colors: colors

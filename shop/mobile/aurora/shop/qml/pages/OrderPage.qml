@@ -44,11 +44,24 @@ Page {
                 try {
                     var obj = JSON.parse(result)
                     var products = obj.products
+                    // set data
                     state.response = obj
+                    var images = []
                     for (var index = 0; index < products.length; index++) {
+                        images.push(products[index].product.image1)
                         productsModel.append(products[index])
                     }
+                    // Add order row
+                    idApp.localStorage.transaction(
+                        function(tx) {
+                            var rs = tx.executeSql('SELECT COUNT(number) as count FROM Orders WHERE number="' + obj.number + '"');
+                            if (rs.rows.item(0).count === 0) {
+                                tx.executeSql('INSERT INTO Orders VALUES(?, ?, ?)', [ obj.number, images.join(','), obj.sum]);
+                            }
+                        }
+                    )
                 } catch (e) {
+                    console.log(e)
                     state.error = true
                 }
                 state.loading = false
@@ -77,8 +90,8 @@ Page {
             id: idStateBlock
             height: parent.height
             width: parent.width
-            borderColor: state.notFound || state.response !== undefined ? idApp.colors.highlightDarkColor : 'transparent'
-            backgroundColor: state.notFound || state.response !== undefined ? "white" : 'transparent'
+            borderColor: state.notFound ? idApp.colors.highlightDarkColor : 'transparent'
+            backgroundColor: state.notFound ? "white" : 'transparent'
             visible: state.notFound || state.loading || state.error || state.response === undefined
 
             Components.BlockEmpty {

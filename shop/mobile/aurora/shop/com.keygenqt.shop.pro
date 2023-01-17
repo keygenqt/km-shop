@@ -22,6 +22,7 @@ DISTFILES += \
     qml/components/AppCounter.qml \
     qml/components/AppIconButton.qml \
     qml/components/AppImage.qml \
+    qml/components/AppImages.qml \
     qml/components/AppNotice.qml \
     qml/components/AppPage.qml \
     qml/components/AppTextField.qml \
