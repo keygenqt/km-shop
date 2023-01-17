@@ -96,7 +96,7 @@ All platforms use the latest stack.
 <p>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/image1.png" width="32%"/>
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/image2.png" width="32%"/>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-17_17-21-15.gif" width="31.5%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-17_17-21-15.gif" width="31.9%"/>
 </p>
 
 # License
