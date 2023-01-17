@@ -3,12 +3,6 @@
 
 AppTheme::AppTheme(QObject *parent) : QObject(parent) {}
 
-
-QString getColorSuccess();
-QString getColorSuccessBorder();
-QString getColorError();
-QString getColorErrorBorder();
-
 // Paddings
 int AppTheme::getPaddingLarge() { return 30; }
 int AppTheme::getPaddingMedium() { return 20; }
