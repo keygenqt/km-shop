@@ -41,7 +41,7 @@ Rectangle {
             visible: !idGlobalMenu.update
         }
         MenuItem {
-            text: qsTr("Корзина")
+            text: qsTr("Корзина" + idApp.cart.size())
             color: selectedPage === itemMenuCart ? "white" : idGlobalMenu.noActiveColor
             onClicked: idGlobalMenu.selectPage(itemMenuCart, "CartPage.qml")
             visible: !idGlobalMenu.update

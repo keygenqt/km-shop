@@ -8,7 +8,6 @@ Page {
 
     property int productID: 0
     property string activeImage: ""
-    property bool isCart: false
 
     onStatusChanged: {
         if (status == PageStatus.Active && !Boolean(state.response)) {
@@ -62,6 +61,16 @@ Page {
 
     ListModel {
         id: collectionModel
+    }
+
+    Components.AppNotice {
+        id: alarmAddToCart
+        text: qsTr("Продукт добавлен в корзину")
+    }
+
+    Components.AppNotice {
+        id: alarmDelToCart
+        text: qsTr("Продукт удален из корзины")
     }
 
     Components.AppPage {
@@ -219,16 +228,40 @@ Page {
 
                 Components.AppCounter {
                     id: idAppCounter
+                    count: idApp.cart.count(idProductPage.productID)
+                    onAddCount: {
+                        idApp.cart.add({
+                            'id': idProductPage.productID,
+                            'count': idApp.cart.count(idProductPage.productID) + 1,
+                            'price': state.response !== undefined ? state.response.price : 0
+                        })
+                        if (idApp.cart.count(idProductPage.productID) === 1) {
+                            alarmAddToCart.show()
+                        }
+                    }
+                    onDelCount: {
+                        idApp.cart.del(idProductPage.productID)
+                    }
                 }
 
                 Components.AppButton {
                     width: parent.width - idAppCounter.width - appTheme.paddingMedium
                     background: 'black'
                     padding: appTheme.paddingLarge
-                    iconStart: idProductPage.isCart ? Qt.resolvedUrl("../icons/ic_rm_shopping.svg") : Qt.resolvedUrl("../icons/ic_add_shopping.svg")
-                    text: idProductPage.isCart ? qsTr("Удалить с корзины") : qsTr("Добавить в корзину")
+                    iconStart: idApp.cart.has(idProductPage.productID) ? Qt.resolvedUrl("../icons/ic_rm_shopping.svg") : Qt.resolvedUrl("../icons/ic_add_shopping.svg")
+                    text: idApp.cart.has(idProductPage.productID) ? qsTr("Удалить с корзины") : qsTr("Добавить в корзину")
                     onEndAnimationClick: {
-                        idProductPage.isCart = !idProductPage.isCart
+                        if (idApp.cart.has(idProductPage.productID)) {
+                            alarmDelToCart.show()
+                            idApp.cart.clear(idProductPage.productID)
+                        } else {
+                            alarmAddToCart.show()
+                            idApp.cart.add({
+                                'id': idProductPage.productID,
+                                'count': idApp.cart.count(idProductPage.productID) + 1,
+                                'price': state.response !== undefined ? state.response.price : 0
+                            })
+                        }
                     }
                 }
             }

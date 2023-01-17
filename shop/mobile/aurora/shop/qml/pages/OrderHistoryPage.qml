@@ -7,7 +7,7 @@ Rectangle {
     color: 'transparent'
 
     Components.AppPage {
-        header: qsTr("История")
+        header: qsTr("История заказов")
 
         Components.AppBlock {
             height: parent.height

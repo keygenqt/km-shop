@@ -8,8 +8,9 @@ Rectangle {
     height: idRow.height + 24
     radius: appTheme.shapesMedium
 
+    property bool isSmall: false
     property bool disabled: false
-    property int count: 0
+    property int count
 
     signal addCount(int count)
     signal delCount(int count)
@@ -36,15 +37,14 @@ Rectangle {
             }
             bg {
                 color: "white"
-                opacity: count <= 0 ? 0.3 : 1.0
+                opacity: count <= 1 ? 0.3 : 1.0
             }
-            disabled: count <= 0 || idMain.disabled
-            size: 50
+            disabled: count <= 1 || idMain.disabled
+            size: idMain.isSmall ? 30 : 50
             duration: 50
             icon.source: Qt.resolvedUrl("../icons/ic_remove.svg")
             anchors.verticalCenter: parent.verticalCenter
             onEndAnimationClick: {
-                idMain.count = idMain.count - 1
                 idMain.delCount(idMain.count)
             }
         }
@@ -56,7 +56,7 @@ Rectangle {
 
             Label {
                 text: count
-                font.pixelSize: appTheme.fontSizeH6
+                font.pixelSize: idMain.isSmall ? appTheme.fontSizeBody1 : appTheme.fontSizeH6
                 anchors.centerIn: parent
                 color: 'white'
             }
@@ -74,12 +74,11 @@ Rectangle {
                 opacity: count >= 99 ? 0.3 : 1.0
             }
             disabled: count >= 99 || idMain.disabled
-            size: 50
+            size: idMain.isSmall ? 30 : 50
             duration: 50
             icon.source: Qt.resolvedUrl("../icons/ic_add.svg")
             anchors.verticalCenter: parent.verticalCenter
             onEndAnimationClick: {
-                idMain.count = idMain.count + 1
                 idMain.addCount(idMain.count)
             }
         }

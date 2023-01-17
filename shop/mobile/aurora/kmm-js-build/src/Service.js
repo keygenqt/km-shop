@@ -119,17 +119,29 @@ export const Service = {
             email,
             phone,
             address,
+            products,
             delay = defaultDelay
         ) {
             return Helper.request(async () => {
+
+                const productsRequest = []
+
+                JSON.parse(products).forEach((it) => {
+                    productsRequest.push(new AppRequests.OrderProductRequest(
+                        it.id,
+                        it.count,
+                        it.price
+                    ))
+                })
+
                 return await AppHttpClient.post.orderCreate(new AppRequests.OrderCreateRequest(
                     email,
                     phone,
                     address,
-                    [],
+                    productsRequest,
                 ))
             }, (response) => {
-                return JSON.stringify(response);
+                return response.number
             }, delay)
         },
     }

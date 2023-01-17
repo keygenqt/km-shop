@@ -13,7 +13,7 @@ Page {
     }
 
     Components.AppPage {
-        header: qsTr("Поиск заказа")
+        header: qsTr("История заказов")
 
         Components.AppBlock {
             id: pageBlock

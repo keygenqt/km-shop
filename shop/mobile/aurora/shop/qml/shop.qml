@@ -51,6 +51,111 @@ ApplicationWindow {
     property alias constants: constants
     property alias colors: colors
     property alias helper: helper
+    property alias cart: cart
+
+    QtObject {
+        id: cart
+        property var products: []
+        function add(product) {
+            var update = products
+            if (has(product.id)) {
+                for (var index = 0; index < products.length; index++) {
+                    if (update[index].id === product.id) {
+                        update[index].count += 1
+                        update[index].price = product.price
+                        break
+                    }
+                }
+            } else {
+                update.push(product)
+            }
+            products = update
+        }
+        function del(id) {
+            if (has(id)) {
+                var update = products
+                for (var index = 0; index < products.length; index++) {
+                    if (products[index].id === id) {
+                        if (products[index].count === 1) {
+                            clear(id)
+                        } else {
+                            update[index].count -=1
+                        }
+                        break
+                    }
+                }
+                products = update
+            }
+        }
+        function clear(id) {
+            if (has(id)) {
+                var update = []
+                for (var index = 0; index < products.length; index++) {
+                    if (products[index].id !== id) {
+                        update.push(products[index])
+                    }
+                }
+                products = update
+            }
+        }
+        function clearAll() {
+            products = []
+        }
+        function has(id) {
+            for (var index = 0; index < products.length; index++) {
+                if (products[index].id === id) {
+                    return true
+                }
+            }
+            return false
+        }
+        function count(id) {
+            if (has(id)) {
+                for (var index = 0; index < products.length; index++) {
+                    if (products[index].id === id) {
+                        return products[index].count
+                    }
+                }
+            }
+            return 0
+        }
+        function size() {
+            var symbols = [
+                '⁰',
+                '¹',
+                '²',
+                '³',
+                '⁴',
+                '⁵',
+                '⁶',
+                '⁷',
+                '⁸',
+                '⁹',
+            ]
+            var size = 0
+            for (var i = 0; i < products.length; i++) {
+                size += products[i].count
+            }
+            var string = ''
+            for (var j = 0; j < size.toString().length; j++) {
+                string += symbols[parseInt(size.toString()[j])]
+            }
+            return size === 0 ? '' : ' ⁽' + string + '⁾'
+        }
+        function isEmpty() {
+            return products.length === 0
+        }
+        function getIds() {
+            var ids = []
+            for (var i = 0; i < products.length; i++) {
+                ids.push(products[i].id)
+            }
+            return ids
+        }
+        function getStringify() {
+            return JSON.stringify(products)
+        }
+    }
 
     QtObject {
         id: constants

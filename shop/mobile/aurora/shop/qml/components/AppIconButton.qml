@@ -9,6 +9,7 @@ MouseArea {
     property alias icon: image
     property alias bg: idBg
     property bool disabled: false
+    property bool isClickable: true
     property bool press: false
     property bool _isAnimation: false
     property int size: 60
@@ -16,7 +17,7 @@ MouseArea {
 
     height: idAppButton.size
     width: idAppButton.size
-    onClicked: if (!idAppButton.disabled && !idAppButton._isAnimation) idAppButton.press = true
+    onClicked: if (idAppButton.isClickable && !idAppButton.disabled && !idAppButton._isAnimation) idAppButton.press = true
 
     signal endAnimationClick()
 

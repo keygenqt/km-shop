@@ -126,6 +126,16 @@ Page {
         }
     }
 
+    Components.AppNotice {
+        id: alarmAddToCart
+        text: qsTr("Продукт добавлен в корзину")
+    }
+
+    Components.AppNotice {
+        id: alarmDelToCart
+        text: qsTr("Продукт удален из корзины")
+    }
+
     Components.AppPage {
         id: idAppPage
         header: qsTr("Продукты")
@@ -262,10 +272,10 @@ Page {
                                     text: idApp.helper.formatPrice(price)
                                     color: idApp.colors.highlightDarkColor
                                     font.pixelSize: appTheme.fontSizeBody2
-                                    topPadding: 3
+                                    topPadding: 10
                                     leftPadding: 16
                                     rightPadding: 16
-                                    bottomPadding: 3
+                                    bottomPadding: 10
                                 }
                             }
 
@@ -280,13 +290,23 @@ Page {
                                 icon {
                                     layer.enabled: true
                                     layer.effect: ColorOverlay{
-                                        color: idApp.colors.highlightDarkColor
+                                        color: idApp.cart.has(id) ? idApp.colors.highlightDarkColor : 'black'
                                     }
                                 }
                                 size: idRectanglePriceBlock.height
                                 icon.source: Qt.resolvedUrl("../icons/ic_add_shopping.svg")
                                 onEndAnimationClick: {
-
+                                    if (idApp.cart.has(id)) {
+                                        idApp.cart.clear(id)
+                                        alarmDelToCart.show()
+                                    } else {
+                                        alarmAddToCart.show()
+                                        idApp.cart.add({
+                                            'id': id,
+                                            'count': idApp.cart.count(id) + 1,
+                                            'price': price
+                                        })
+                                    }
                                 }
                             }
                         }

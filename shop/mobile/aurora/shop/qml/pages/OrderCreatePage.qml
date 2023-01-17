@@ -7,6 +7,8 @@ Rectangle {
     id: idOrderCreatePage
     color: 'transparent'
 
+    property string orderNumber: ""
+
     onVisibleChanged: {
         state.clear()
     }
@@ -14,11 +16,10 @@ Rectangle {
     QtObject {
         id: state
         property bool error: false
-        property bool success: false
+        property string orderNumber: ""
         property bool loading: false
         function clear() {
             state.error = false
-            state.success = false
             state.loading = false
         }
     }
@@ -33,10 +34,18 @@ Rectangle {
                     + '"' + idFieldEmail.text + '",'
                     + '"' + idFieldPhone.text + '",'
                     + '"' + idFieldAddress.text + '",'
+                    + "'" + idApp.cart.getStringify() + "',"
                     + '500)',
             function(result) {
-                state.success = true
-                state.loading = false
+                state.orderNumber = result
+                // clear fields
+                idFieldEmail.text = ''
+                idFieldPhone.text = ''
+                idFieldAddress.text = ''
+                // clear state
+                state.clear()
+                // clear cart
+                idApp.cart.clearAll()
             },
             function(error) {
                 if (JSON.stringify(error).indexOf('"validate":[{') !== -1) {
@@ -53,7 +62,7 @@ Rectangle {
 
     Components.AppPage {
         header: qsTr("Оформление заказа")
-        fixed: state.success
+        fixed: state.orderNumber.length !== 0
         loading: state.loading
 
         Components.AlertError {
@@ -63,13 +72,13 @@ Rectangle {
         }
 
         Components.AppBlock {
-            height: state.success ? parent.height : idContentForm.height + appTheme.paddingLarge * 2
+            height: state.orderNumber.length !== 0 ? parent.height : idContentForm.height + appTheme.paddingLarge * 2
             width: parent.width
             borderColor: idApp.colors.highlightDarkColor
             backgroundColor: "white"
 
             Column {
-                visible: state.success
+                visible: state.orderNumber.length !== 0
                 width: parent.width
                 spacing: appTheme.paddingLarge
 
@@ -122,7 +131,10 @@ Rectangle {
 
                 Components.AppButton {
                     text: qsTr("Информация по заказу")
-                    onEndAnimationClick: state.clear()
+                    onEndAnimationClick: {
+                        pageStack.navigateBack(PageStackAction.Immediate)
+                        pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: state.orderNumber}, PageStackAction.Immediate)
+                    }
                     padding: appTheme.paddingMedium
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
@@ -136,7 +148,7 @@ Rectangle {
 
             Column {
                 id: idContentForm
-                visible: !state.success
+                visible: state.orderNumber.length === 0
                 width: parent.width
                 spacing: appTheme.paddingLarge
 

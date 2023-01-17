@@ -20,13 +20,20 @@ PageHeader {
             height: parent.height
             spacing: 0
 
+            BlockLoading {
+                size: 60
+                width: 60
+                visible: idHeader.loading
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
             Image {
                 source: Qt.resolvedUrl("../icons/toolbar_icon.png")
                 fillMode: Image.PreserveAspectFit
                 anchors.verticalCenter: parent.verticalCenter
                 width: 60
                 height: 60
-                visible: iconMain
+                visible: iconMain && !idHeader.loading
             }
 
             Rectangle {
@@ -36,12 +43,13 @@ PageHeader {
                 Behavior on width {
                     NumberAnimation { properties: "width"; easing.type: Easing.InOutQuad; duration: 20 }
                 }
-                visible: !hidePaddingIcons
+                visible: !hidePaddingIcons && !idHeader.loading
             }
 
             Row {
                 height: parent.height
                 spacing: appTheme.paddingLarge
+                visible: !idHeader.loading
 
                 AppIconButton {
                     icon.source: Qt.resolvedUrl("../icons/ic_manage_search.svg")
@@ -82,13 +90,6 @@ PageHeader {
                     onEndAnimationClick: idHeader.iconSort3()
                     visible: idHeader.iconSort3 !== undefined
                     disabled: idHeader.iconsDisabled
-                }
-
-                BlockLoading {
-                    size: 60
-                    width: 60
-                    visible: idHeader.loading
-                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
         }

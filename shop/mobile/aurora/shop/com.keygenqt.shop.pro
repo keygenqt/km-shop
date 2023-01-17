@@ -22,8 +22,10 @@ DISTFILES += \
     qml/components/AppCounter.qml \
     qml/components/AppIconButton.qml \
     qml/components/AppImage.qml \
+    qml/components/AppNotice.qml \
     qml/components/AppPage.qml \
     qml/components/AppTextField.qml \
+    qml/components/BlockEmptyCart.qml \
     qml/components/BlockError.qml \
     qml/components/BlockLoadingLottie.qml \
     qml/components/Divider.qml \
