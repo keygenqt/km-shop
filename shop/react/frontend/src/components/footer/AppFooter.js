@@ -36,7 +36,7 @@ export function AppFooter() {
                         <Typography variant="h5">
                             Shop
                             <Box component={'span'} sx={{color: 'secondary.main', ml: 1, fontWeight: '100'}}>
-                                6 in 1
+                                7 in 1
                             </Box>
                         </Typography>
 

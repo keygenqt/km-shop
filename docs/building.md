@@ -1,7 +1,7 @@
 Project build
 ===================
 
-The application consists of 6 native applications and a common Kotlin Multiplatform module.
+The application consists of 7 native applications and a common Kotlin Multiplatform module.
 And so we have to building them all.
 I made a video in which you can see the process of building all applications.
 
@@ -86,6 +86,12 @@ Select from the list below Shop, target, and you can start the building.
 ## Android
 
 You don't need to do anything - *Android Studio* will find this build itself, except to rename it.
+
+## Aurora OS
+
+[![picture](https://keygenqt.github.io/km-shop/data/common/btn_youtube.png)](https://youtu.be/RgXQr-cpMiQ)
+
+You must install [Аврора SDK](https://community.omprussia.ru/documentation/software_development/sdk/downloads.html) and run shop -> mobile -> aurora -> shop -> build.sh
 
 ## Kotlin Multiplatform
 

@@ -1,7 +1,7 @@
-Shop 6 in 1 (Майшоп)
+Shop 7 in 1 (Майшоп)
 ===================
 
-A store that includes 6 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
+A store that includes 7 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
 All applications use a common module and native UI for their platforms.
 All platforms use the latest stack.
 
@@ -84,7 +84,7 @@ All platforms use the latest stack.
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/ios/Screen_Recording_2022-12-27_at_17.26.23.gif" width="32.5%"/>
 </p>
 
-## Aurora App (Experimental)
+## Aurora App
 
 * Based: [Qt](https://www.qt.io/)
 * Platform: **Aurora OS**
