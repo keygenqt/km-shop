@@ -11,17 +11,6 @@ class AppTheme : public QObject
     public:
     explicit AppTheme(QObject *parent = nullptr);
 
-    // Colors
-    QString getColorSuccess();
-    QString getColorSuccessBorder();
-    QString getColorError();
-    QString getColorErrorBorder();
-
-    Q_PROPERTY(QString colorSuccess READ getColorSuccess CONSTANT)
-    Q_PROPERTY(QString colorSuccessBorder READ getColorSuccessBorder CONSTANT)
-    Q_PROPERTY(QString colorError READ getColorError CONSTANT)
-    Q_PROPERTY(QString colorErrorBorder READ getColorErrorBorder CONSTANT)
-
     // Paddings
     int getPaddingLarge();
     int getPaddingMedium();

@@ -15,8 +15,8 @@ Rectangle {
     AppBlock {
         id: idAppBlock
         width: parent.width
-        borderColor: appTheme.colorErrorBorder
-        backgroundColor: appTheme.colorError
+        borderColor: idApp.colors.errorBorder
+        backgroundColor: idApp.colors.error
 
         Text {
             width: parent.width

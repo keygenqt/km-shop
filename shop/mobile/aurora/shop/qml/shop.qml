@@ -192,8 +192,13 @@ ApplicationWindow {
 
     QtObject {
         id: colors
-        readonly property string highlightDarkColor: helper.getPerceptualBrightness(Theme.highlightDimmerColor) < helper.getPerceptualBrightness(Theme.highlightColor)
-                                            ? Theme.highlightDimmerColor : Theme.highlightColor
+        readonly property color success: '#4E846F'
+        readonly property color successBorder: '#1f4037'
+        readonly property color error: '#B41332'
+        readonly property color errorBorder: '#650F34'
+        readonly property string highlightDarkColor:
+            helper.getPerceptualBrightness(Theme.highlightDimmerColor) < helper.getPerceptualBrightness(Theme.highlightColor)
+                ? Theme.highlightDimmerColor : Theme.highlightColor
         readonly property color borderColorBlock: helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500
                                                   ? "#444444" : idApp.colors.highlightDarkColor
     }

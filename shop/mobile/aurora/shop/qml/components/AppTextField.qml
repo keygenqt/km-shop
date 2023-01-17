@@ -15,7 +15,7 @@ Column {
 
     property color color: "#74828e"
     property string focusColor: idApp.colors.highlightDarkColor
-    property color errorColor: appTheme.colorError
+    property color errorColor: idApp.colors.error
 
     readonly property color nowColor: error.length !== 0 ? errorColor : (idTextField.focus ? focusColor : color)
 

@@ -319,7 +319,7 @@ Rectangle {
         Rectangle {
             anchors.fill: parent
             anchors.centerIn: parent
-            color: appTheme.colorError
+            color: idApp.colors.error
             opacity: 0.7
         }
 

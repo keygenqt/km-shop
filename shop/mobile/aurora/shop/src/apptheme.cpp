@@ -9,12 +9,6 @@ QString getColorSuccessBorder();
 QString getColorError();
 QString getColorErrorBorder();
 
-// Colors
-QString AppTheme::getColorSuccess() { return "#4E846F"; }
-QString AppTheme::getColorSuccessBorder() { return "#1f4037"; }
-QString AppTheme::getColorError() { return "#B41332"; }
-QString AppTheme::getColorErrorBorder() { return "#650F34"; }
-
 // Paddings
 int AppTheme::getPaddingLarge() { return 30; }
 int AppTheme::getPaddingMedium() { return 20; }

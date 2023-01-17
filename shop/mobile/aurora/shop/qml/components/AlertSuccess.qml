@@ -15,8 +15,8 @@ Rectangle {
     AppBlock {
         id: idAppBlock
         width: parent.width
-        borderColor: appTheme.colorSuccessBorder
-        backgroundColor: appTheme.colorSuccess
+        borderColor: idApp.colors.successBorder
+        backgroundColor: idApp.colors.success
 
         Text {
             width: parent.width
