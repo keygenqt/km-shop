@@ -57,8 +57,8 @@ Page {
                         text: qsTr("Искать")
                         onEndAnimationClick: {
                             // Change page
-//                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: idNumberField.text})
-                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "298cc8bd-eb61-4ab3-970c-ebc85a15e6d0"}) // full
+                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: idNumberField.text})
+//                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "298cc8bd-eb61-4ab3-970c-ebc85a15e6d0"}) // full
 //                            pageStack.push(Qt.resolvedUrl("OrderPage.qml"), {orderId: "02d1c9d4-a8c4-4a9b-943a-404449ae4f2a"}) // min
                             // Run clear field
                             idApp.helper.setTimeout(function() {

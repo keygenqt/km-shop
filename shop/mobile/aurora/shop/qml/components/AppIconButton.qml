@@ -26,7 +26,7 @@ MouseArea {
         anchors.fill: parent
         color : idAppButton.disabled ? 'gray' : (helper.getPerceptualBrightness(idApp.colors.highlightDarkColor) < 500 ? "white" : "black")
         radius: idAppButton.size
-        opacity: 0.1
+        opacity: 0.3
     }
 
     Rectangle {

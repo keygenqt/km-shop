@@ -24,9 +24,6 @@ fi
 
 cp "$distJs" "$distJsAurora"
 
-## @todo
-exit
-
 sleep 1
 
 ## Change dir
