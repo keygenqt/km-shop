@@ -99,6 +99,12 @@ All platforms use the latest stack.
 <img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/aurora/vokoscreenNG-2023-01-17_17-21-15.gif" width="31.9%"/>
 </p>
 
+#### Stats
+
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats.png" width="100%"/>
+</p>
+
 # License
 
 #### Preview
