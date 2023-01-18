@@ -102,7 +102,7 @@ All platforms use the latest stack.
 ## Stats
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats.png" width="100%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats-2.png" width="100%"/>
 </p>
 
 # License
