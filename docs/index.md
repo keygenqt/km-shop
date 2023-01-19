@@ -14,13 +14,13 @@ All platforms use the latest stack.
 * Website, React
 * Android App, Jetpack Compose
 * iOS App, SwiftUI
+* Aurora OS App
 
-### Stats MVP
+## Stats
 
-* Spent time: 07.11.2022 - 28.12.2022
-* Kotlin Lines of code: 14932 (API, CLI, Android App, Shared module)
-* JS Lines of code: 13417 (Website, Admin-Panel)
-* Swift Lines of code: 7809 (iOS App)
+<p>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats-3.png" width="100%"/>
+</p>
 
 # License
 
