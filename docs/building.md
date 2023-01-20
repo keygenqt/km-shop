@@ -89,7 +89,7 @@ You don't need to do anything - *Android Studio* will find this build itself, ex
 
 ## Aurora OS
 
-[![picture](https://keygenqt.github.io/km-shop/data/common/btn_youtube.png)](https://youtu.be/RgXQr-cpMiQ)
+[![picture](https://keygenqt.github.io/km-shop/data/common/btn_youtube.png)](https://youtu.be/MgwiskFeR8E)
 
 You must install [Аврора SDK](https://community.omprussia.ru/documentation/software_development/sdk/downloads.html) and run shop -> mobile -> aurora -> shop -> build.sh
 
