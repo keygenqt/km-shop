@@ -89,7 +89,7 @@ All platforms use the latest stack.
 * Based: [Qt](https://www.qt.io/)
 * Platform: **Aurora OS**
 
-[![picture](data/common/btn_youtube.png)](https://youtu.be/MgwiskFeR8E)
+[![picture](data/common/btn_youtube.png)](https://youtu.be/RgXQr-cpMiQ)
 
 #### Preview
 
