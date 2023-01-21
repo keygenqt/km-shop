@@ -51,7 +51,7 @@ sleep 1
 
 ## Aurora build
 sfdk="$HOME/AuroraOS/bin/sfdk"
-target='AuroraOS-4.0.2.209-base-i486.default.default'
+target='AuroraOS-4.0.2.209-base-i486'
 engine='AuroraOS-4.0.2.209-base-i486.default'
 path="$HOME/.config/AuroraOS-SDK/libsfdk/build-target-tools/aurora-os-build-engine/$engine"
 folder='build-Android-Stuido-Debug'

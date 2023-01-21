@@ -101,8 +101,6 @@ All platforms use the latest stack.
 
 # License
 
-#### Preview
-
 ```
 Copyright 2023 Vitaliy Zarubin
 
