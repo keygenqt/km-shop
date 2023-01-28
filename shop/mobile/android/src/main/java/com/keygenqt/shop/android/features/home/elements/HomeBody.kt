@@ -87,7 +87,7 @@ fun HomeBody(
                         }
                     } else {
                         Row(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = ),
+                            modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
