@@ -18,11 +18,15 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.checkRoleGuest
 import com.keygenqt.shop.api.extension.receiveValidate
+import com.keygenqt.shop.api.extension.sendMessageSocket
 import com.keygenqt.shop.api.security.SessionService
 import com.keygenqt.shop.api.security.SessionUser
 import com.keygenqt.shop.api.validators.NotNullNotBlank
+import com.keygenqt.shop.data.responses.NotificationAction
+import com.keygenqt.shop.data.responses.NotificationResponse
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.service.AdminsService
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -47,6 +51,18 @@ fun Route.login() {
 
     val sessionService: SessionService by inject()
     val adminsService: AdminsService by inject()
+
+    get("/test") {
+        // send message
+        call.sendMessageSocket(
+            NotificationResponse(
+                action = NotificationAction.ORDER,
+                count = 11
+            )
+        )
+        // response
+        call.respond(HttpStatusCode.OK)
+    }
 
     post("/login") {
 

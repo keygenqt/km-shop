@@ -17,11 +17,18 @@ package com.keygenqt.shop.api.extension
 
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.security.SessionUser
+import com.keygenqt.shop.api.utils.AppHelper
+import com.keygenqt.shop.base.AESEncryption
 import com.keygenqt.shop.data.responses.AdminRole
+import com.keygenqt.shop.data.responses.NotificationAction
+import com.keygenqt.shop.data.responses.NotificationResponse
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.sessions.*
+import io.ktor.websocket.*
 import jakarta.validation.Validation
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 /**
  * Get request with validate
@@ -123,3 +130,16 @@ fun ApplicationCall.checkRoleGuest(): AdminRole {
  * Get unique connect
  */
 fun ApplicationCall.connectKey() = request.host().md5()
+
+/**
+ * Send message to websocket
+ */
+suspend fun ApplicationCall.sendMessageSocket(
+    notification: NotificationResponse
+) {
+    AppHelper.connectionsWebSocket.forEach { connection ->
+        AESEncryption.encrypt(connection.secret, Json.encodeToString(notification))?.let { bytes ->
+            connection.session.send(bytes)
+        }
+    }
+}

@@ -24,6 +24,9 @@ dependencyResolutionManagement {
         create("androidApp") {
             from(files("dependencies/libs.android.toml"))
         }
+        create("pcApp") {
+            from(files("dependencies/libs.pc.toml"))
+        }
     }
 }
 
@@ -33,12 +36,5 @@ rootProject.name = "Shop"
 include("shop:mobile:android")
 include("shop:server:cli")
 include("shop:server:api")
+include("shop:pc:client")
 include(":shared")
-
-//val internalLibrariesEnable: String by settings
-//
-//if (internalLibrariesEnable.toBoolean()) {
-//    // git@github.com:keygenqt/compose-routing.git
-//    include(":compose-routing")
-//    project(":compose-routing").projectDir = File(settingsDir, "../libs/compose-routing")
-//}

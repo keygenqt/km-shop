@@ -16,6 +16,8 @@ dependencies {
     implementation(project(":shared"))
     // Ktor
     implementation(apiApp.bundles.ktor)
+
+    implementation("io.ktor:ktor-server-websockets:2.1.3")
 }
 
 ktor {

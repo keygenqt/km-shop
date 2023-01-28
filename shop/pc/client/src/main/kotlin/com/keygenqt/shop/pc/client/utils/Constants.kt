@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.api.utils
+package com.keygenqt.shop.pc.client.utils
 
-object AppConstants {
+object Constants {
     /**
-     * Session key
+     * D-Bus service name
      */
-    const val SESSION_KEY = "SESSION_SHOP"
+    const val SERVICE_NAME = "com.keygenqt.ShopDBus.PC"
 }

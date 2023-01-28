@@ -35,8 +35,10 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
+import io.ktor.server.websocket.*
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
+import java.time.Duration
 import org.koin.dsl.module as koinModule
 
 fun main(args: Array<String>) {
@@ -116,6 +118,14 @@ fun Application.module() {
             )
         }
 
+        // init websocket
+        install(WebSockets) {
+            pingPeriod = Duration.ofSeconds(15)
+            timeout = Duration.ofSeconds(15)
+            maxFrameSize = Long.MAX_VALUE
+            masking = false
+        }
+
         // init routing
         install(Routing) {
 
@@ -131,6 +141,7 @@ fun Application.module() {
             route("/api") {
                 // clear session without check session
                 logout()
+                socket()
                 // auth or guest
                 authenticate(AppConstants.SESSION_KEY) {
                     dashboard()

@@ -15,9 +15,17 @@
  */
 package com.keygenqt.shop.api.utils
 
-object AppConstants {
+import com.keygenqt.shop.api.base.SessionWebSocket
+import com.keygenqt.shop.base.AESEncryption
+import io.ktor.server.application.*
+import io.ktor.server.routing.*
+import io.ktor.websocket.*
+import java.util.*
+
+object AppHelper {
     /**
-     * Session key
+     * Connections WebSocket session
      */
-    const val SESSION_KEY = "SESSION_SHOP"
+    val connectionsWebSocket: MutableSet<SessionWebSocket> =
+        Collections.synchronizedSet(LinkedHashSet())
 }
