@@ -18,7 +18,6 @@ package com.keygenqt.shop.pc.client
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.pc.client.base.AppWebSocket
-import com.keygenqt.shop.pc.client.extensions.getSecret
 import com.keygenqt.shop.pc.client.services.AppDbusService
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
@@ -29,7 +28,14 @@ import org.slf4j.LoggerFactory
 
 fun main(args: Array<String>) {
 
-    val secret = args.getSecret()
+    val secret = System.getenv("SECRET_KEY")
+
+    if (secret === null) {
+        throw RuntimeException("SECRET_KEY environment variable not found!")
+    }
+
+    // init dbus service
+    AppDbusService.init()
 
     // load configuration
     val conf: Config = ConfigFactory.load()

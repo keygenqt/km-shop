@@ -1,8 +1,10 @@
 package com.keygenqt.shop.pc.client.services
 
 import ch.qos.logback.classic.Logger
-import com.keygenqt.shop.pc.client.services.impl.Pong
+import com.keygenqt.shop.pc.client.services.app.Pong
+import com.keygenqt.shop.pc.client.services.client.TestClass
 import com.keygenqt.shop.pc.client.utils.Constants
+import com.keygenqt.shop.pc.client.utils.Constants.SERVICE_DBUS_CLIENT
 import org.freedesktop.dbus.connections.impl.DBusConnection
 import org.freedesktop.dbus.errors.ServiceUnknown
 import org.freedesktop.dbus.exceptions.DBusExecutionException
@@ -11,33 +13,44 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import javax.security.auth.callback.Callback
 
-class AppDbusService private constructor() : KoinComponent {
+class AppDbusService private constructor(
+    connect: DBusConnection
+) : KoinComponent {
 
     private val logger: Logger by inject()
 
     companion object {
+
+        /**
+         * D-Bus connect
+         */
+        private val connect: DBusConnection =
+            DBusConnection.getConnection(DBusConnection.DBusBusType.SESSION)
+
+        /**
+         * Init D-Bus service
+         */
+        fun init() {
+            connect.requestBusName(SERVICE_DBUS_CLIENT)
+            connect.exportObject(TestClass())
+        }
+
         private lateinit var instance: AppDbusService
         fun getInstance(): AppDbusService {
             if (::instance.isInitialized) {
                 throw RuntimeException("Instance already exist!")
             } else {
-                instance = AppDbusService()
+                instance = AppDbusService(connect)
                 return instance
             }
         }
     }
 
     /**
-     * D-Bus connect
-     */
-    private val connect: DBusConnection =
-        DBusConnection.getConnection(DBusConnection.DBusBusType.SESSION)
-
-    /**
      * Object Pong
      */
     private val objPong =
-        connect.getRemoteObject(Constants.SERVICE_NAME, "/", Pong::class.java) as Pong
+        connect.getRemoteObject(Constants.SERVICE_DBUS_APP, "/", Pong::class.java) as Pong
 
     /**
      * Methods object [Pong]
@@ -61,7 +74,7 @@ class AppDbusService private constructor() : KoinComponent {
 
                 override fun handleError(e: DBusExecutionException) {
                     if (e is ServiceUnknown) {
-                        throw RuntimeException("Dbus '${Constants.SERVICE_NAME}' service not found!")
+                        throw RuntimeException("Dbus '${Constants.SERVICE_DBUS_APP}' service not found!")
                     }
                     e.printStackTrace()
                 }

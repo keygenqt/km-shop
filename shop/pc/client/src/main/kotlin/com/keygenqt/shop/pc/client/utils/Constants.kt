@@ -19,5 +19,6 @@ object Constants {
     /**
      * D-Bus service name
      */
-    const val SERVICE_NAME = "com.keygenqt.ShopDBus.PC"
+    const val SERVICE_DBUS_APP = "com.keygenqt.ShopDBus.PC.app"
+    const val SERVICE_DBUS_CLIENT = "com.keygenqt.ShopDBus.PC.client"
 }

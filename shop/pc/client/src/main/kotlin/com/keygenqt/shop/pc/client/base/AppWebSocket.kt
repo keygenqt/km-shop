@@ -40,11 +40,11 @@ class AppWebSocket(
                             when(obj.action) {
                                 NotificationAction.ORDER -> {
                                     // update state qt app count new order
-                                    dbus.callPong("updateOrder", listOf(UInt32(obj.count)))
+                                    dbus.callPong("updateOrder", listOf(secret, UInt32(obj.count)))
                                 }
                                 NotificationAction.HELP -> {
                                     // update state qt app count new help message
-                                    dbus.callPong("updateHelp", listOf(UInt32(obj.count)))
+                                    dbus.callPong("updateHelp", listOf(secret, UInt32(obj.count)))
                                 }
                             }
                         }
