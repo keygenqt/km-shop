@@ -17,6 +17,7 @@ package com.keygenqt.shop.services.impl
 
 import com.keygenqt.shop.data.requests.*
 import com.keygenqt.shop.data.responses.*
+import com.keygenqt.shop.utils.helpers.Helpers
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -24,14 +25,56 @@ import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
 import io.ktor.http.content.*
+import kotlinx.datetime.toInstant
 
 class PostRequest(private val client: HttpClient) {
+
     /**
      * Login method
      */
     @Throws(Exception::class)
     suspend fun login(request: LoginRequest): AdminResponse {
         return client.post("api/login") { setBody(request) }.body()
+    }
+
+    /**
+     * Login method
+     */
+    @Throws(Exception::class)
+    suspend fun loginCookie(request: LoginRequest): SessionCookieResponse {
+        client.post("api/login") { setBody(request) }.headers["Set-Cookie"]?.let {
+
+            var name = ""
+            var value = ""
+            var path = ""
+            var maxAge = 0
+            var expires = 0L
+
+            it.split(";").forEachIndexed { index, item ->
+                if (index == 0) {
+                    name = item.split("=")[0].trim()
+                    value = item.split("=")[1].trim()
+                } else if (item.contains("Path")) {
+                    path = item.split("=")[1].trim()
+                } else if (item.contains("Max-Age")) {
+                    maxAge = item.split("=")[1].trim().toInt()
+                } else if (item.contains("Expires")) {
+                    expires = Helpers.convertCookieTimeToISO8601(item.split("=")[1].trim())
+                        .toInstant()
+                        .toEpochMilliseconds()
+                }
+            }
+
+            return SessionCookieResponse(
+                 name = name,
+                 value = value,
+                 path = path,
+                 maxAge = maxAge,
+                 expires = expires,
+            )
+        }
+
+        throw RuntimeException("Error get cookie session")
     }
 
     /**

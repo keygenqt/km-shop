@@ -93,6 +93,13 @@ class OrdersService(
         .let { entities -> ids.mapNotNull { entities[it] } }
 
     /**
+     * Get count [OrderState.NEW] entities
+     */
+    fun getNewCount() = OrderEntity
+        .find { (Orders.state eq OrderState.NEW) }
+        .count()
+
+    /**
      * Get all [OrderState.NEW] entities
      */
     fun getAllNew() = OrderEntity

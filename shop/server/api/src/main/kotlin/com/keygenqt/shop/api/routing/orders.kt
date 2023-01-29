@@ -18,6 +18,8 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
+import com.keygenqt.shop.data.responses.CountResponse
+import com.keygenqt.shop.data.responses.CountType
 import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.entities.OrderEntity
 import com.keygenqt.shop.db.entities.OrderProductEntity
@@ -161,6 +163,21 @@ fun Route.orders() {
             }
             // response
             call.respond(entity)
+        }
+        get("/new/count") {
+            // check role
+            call.checkRoleAuth()
+            // act
+            val value = ordersService.transaction {
+                getNewCount()
+            }
+            // response
+            call.respond(
+                CountResponse(
+                    type = CountType.ORDER_NEW,
+                    count = value.toInt()
+                )
+            )
         }
         get("/new") {
             // check role

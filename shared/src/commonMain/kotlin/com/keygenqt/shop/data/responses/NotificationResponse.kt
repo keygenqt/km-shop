@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
  * Response notification action
  */
 enum class NotificationAction {
-    ORDER,
-    HELP
+    ORDER_CHANGE,
+    HELP_CHANGE
 }
 
 /**
@@ -16,5 +16,4 @@ enum class NotificationAction {
 @Serializable
 data class NotificationResponse(
     val action: NotificationAction,
-    val count: Long,
 )

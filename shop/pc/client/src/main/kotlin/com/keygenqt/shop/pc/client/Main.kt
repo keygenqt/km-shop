@@ -17,7 +17,10 @@ package com.keygenqt.shop.pc.client
 
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
+import com.keygenqt.shop.data.responses.SessionCookieResponse
 import com.keygenqt.shop.pc.client.base.AppWebSocket
+import com.keygenqt.shop.pc.client.extensions.read
+import com.keygenqt.shop.pc.client.extensions.toCookie
 import com.keygenqt.shop.pc.client.services.AppDbusService
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
@@ -26,7 +29,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.slf4j.LoggerFactory
 
-fun main(args: Array<String>) {
+fun main() {
 
     val secret = System.getenv("SECRET_KEY")
 
@@ -40,7 +43,7 @@ fun main(args: Array<String>) {
     // load configuration
     val conf: Config = ConfigFactory.load()
 
-    // logger db
+    // logger
     val logger = (LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger).apply {
         level = if (conf.getBoolean("config.development")) Level.DEBUG else Level.OFF
     }
@@ -53,10 +56,15 @@ fun main(args: Array<String>) {
             // D-Bus connect
             single { AppDbusService.getInstance() }
             // Client services
-            single { ServiceRequest() }
+            single {
+                ServiceRequest(
+                    cookie = SessionCookieResponse.read()?.toCookie()
+                )
+            }
         })
     }
 
+    // run listen socket
     AppWebSocket(
         secret = secret
     ).init()

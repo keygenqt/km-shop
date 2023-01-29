@@ -24,6 +24,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 class PutRequest(private val client: HttpClient) {
+
     /**
      * Update message state method
      */

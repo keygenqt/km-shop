@@ -22,6 +22,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 class DeleteRequest(private val client: HttpClient) {
+
     /**
      * Delete session
      */

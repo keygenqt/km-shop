@@ -23,6 +23,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 class GetRequest(private val client: HttpClient) {
+
     /**
      * Get categories
      */
@@ -266,5 +267,21 @@ class GetRequest(private val client: HttpClient) {
     @Throws(Exception::class)
     suspend fun dashboardChart(): DashboardChartResponse {
         return client.get("api/dashboard/chart").body()
+    }
+
+    /**
+     * Get count new order
+     */
+    @Throws(Exception::class)
+    suspend fun countNewOrder(): CountResponse {
+        return client.get("api/orders/new/count").body()
+    }
+
+    /**
+     * Get count help message not checked
+     */
+    @Throws(Exception::class)
+    suspend fun countHelpNotChecked(): CountResponse {
+        return client.get("api/messages/not-checked-count").body()
     }
 }

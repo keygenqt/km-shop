@@ -18,4 +18,5 @@ shared-0.0.*.tgz
 /uploads/
 # https://github.com/material-icons/material-icons
 /material-icons/
-/shop/pc/build-*
+/cookie.json
+build-*

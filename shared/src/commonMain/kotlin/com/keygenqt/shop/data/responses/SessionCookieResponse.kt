@@ -13,26 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.keygenqt.shop.pc.client.utils
+package com.keygenqt.shop.data.responses
 
-import java.io.File
+import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
-object Constants {
-    /**
-     * D-Bus service name
-     */
-    const val SERVICE_DBUS_APP = "com.keygenqt.ShopDBus.PC.app"
-    const val SERVICE_DBUS_CLIENT = "com.keygenqt.ShopDBus.PC.client"
-
-    /**
-     * Path cookie file
-     */
-    val PATH_COOKIE_FILE = System.getProperty("user.home") +
-            File.separator +
-            "shop_client_cookie.json"
-
-    /**
-     * Secret cookie file
-     */
-    const val SECRET_COOKIE_FILE = "fkHiPpAALpni1GLR4dGu"
-}
+/**
+ * Session cookie response
+ */
+@Serializable
+data class SessionCookieResponse(
+    val name: String,
+    val value: String,
+    val path: String,
+    val maxAge: Int,
+    val expires: Long,
+)

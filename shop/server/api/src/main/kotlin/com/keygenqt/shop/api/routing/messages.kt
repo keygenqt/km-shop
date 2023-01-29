@@ -18,6 +18,8 @@ package com.keygenqt.shop.api.routing
 import com.keygenqt.shop.api.base.Exceptions
 import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
+import com.keygenqt.shop.data.responses.CountResponse
+import com.keygenqt.shop.data.responses.CountType
 import com.keygenqt.shop.db.entities.MessageEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
@@ -69,6 +71,21 @@ fun Route.messages() {
     val messagesService: MessagesService by inject()
 
     route("/messages") {
+        get("/not-checked-count") {
+            // check role
+            call.checkRoleAuth()
+            // act
+            val value = messagesService.transaction {
+                getNotCheckedCount()
+            }
+            // response
+            call.respond(
+                CountResponse(
+                    type = CountType.HELP_NOT_CHECKED,
+                    count = value.toInt()
+                )
+            )
+        }
         get {
             // check role
             call.checkRoleAuth()

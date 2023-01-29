@@ -56,8 +56,7 @@ fun Route.login() {
         // send message
         call.sendMessageSocket(
             NotificationResponse(
-                action = NotificationAction.ORDER,
-                count = 11
+                action = NotificationAction.HELP_CHANGE,
             )
         )
         // response

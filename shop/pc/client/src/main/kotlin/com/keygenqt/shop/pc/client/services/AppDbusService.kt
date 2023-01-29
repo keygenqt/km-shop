@@ -1,8 +1,8 @@
 package com.keygenqt.shop.pc.client.services
 
 import ch.qos.logback.classic.Logger
-import com.keygenqt.shop.pc.client.services.app.Pong
-import com.keygenqt.shop.pc.client.services.client.TestClass
+import com.keygenqt.shop.pc.client.services.app.AppDbus
+import com.keygenqt.shop.pc.client.services.client.ClientFeatures
 import com.keygenqt.shop.pc.client.utils.Constants
 import com.keygenqt.shop.pc.client.utils.Constants.SERVICE_DBUS_CLIENT
 import org.freedesktop.dbus.connections.impl.DBusConnection
@@ -32,7 +32,7 @@ class AppDbusService private constructor(
          */
         fun init() {
             connect.requestBusName(SERVICE_DBUS_CLIENT)
-            connect.exportObject(TestClass())
+            connect.exportObject(ClientFeatures())
         }
 
         private lateinit var instance: AppDbusService
@@ -49,20 +49,20 @@ class AppDbusService private constructor(
     /**
      * Object Pong
      */
-    private val objPong =
-        connect.getRemoteObject(Constants.SERVICE_DBUS_APP, "/", Pong::class.java) as Pong
+    private val objAppDbus =
+        connect.getRemoteObject(Constants.SERVICE_DBUS_APP, "/", AppDbus::class.java) as AppDbus
 
     /**
      * Methods object [Pong]
      */
-    fun callPong(
+    fun call(
         method: String,
         arguments: List<Any>,
         response: (Any?) -> Unit = {}
     ) {
         logger.info("D-Bus service call '$method' with params: $arguments")
         connect.callWithCallback(
-            objPong,
+            objAppDbus,
             method,
             object : javax.security.auth.callback.CallbackHandler, CallbackHandler<Any> {
 

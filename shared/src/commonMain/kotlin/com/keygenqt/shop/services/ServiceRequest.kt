@@ -26,6 +26,7 @@ import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.cookies.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -42,13 +43,9 @@ expect fun httpClient(config: HttpClientConfig<*>.() -> Unit = {}): HttpClient
 class ServiceRequest(
     private val apiUrl: String? = null,
     private val logger: Logger? = null,
-    private val debug: Boolean = true
+    private val debug: Boolean = true,
+    cookie: Cookie? = null
 ) {
-
-    val get by lazy { GetRequest(httpClient) }
-    val put by lazy { PutRequest(httpClient) }
-    val post by lazy { PostRequest(httpClient) }
-    val delete by lazy { DeleteRequest(httpClient) }
 
     private val json = Json {
         prettyPrint = true
@@ -56,7 +53,35 @@ class ServiceRequest(
         ignoreUnknownKeys = true
     }
 
-    private val httpClient = httpClient {
+    private var httpClient = getClient(
+        _apiUrl = apiUrl,
+        _log = logger,
+        _debug = debug,
+        _cookie = cookie,
+    )
+
+    val get = GetRequest(httpClient)
+    val put = PutRequest(httpClient)
+    val post = PostRequest(httpClient)
+    val delete = DeleteRequest(httpClient)
+
+    fun setCookie(
+        cookie: Cookie
+    ) {
+        httpClient = getClient(
+            _apiUrl = apiUrl,
+            _log = logger,
+            _debug = debug,
+            _cookie = cookie,
+        )
+    }
+
+    private fun getClient(
+        _apiUrl: String? = null,
+        _log: Logger? = null,
+        _debug: Boolean = true,
+        _cookie: Cookie? = null
+    ) = httpClient {
 
         expectSuccess = false
 
@@ -73,15 +98,21 @@ class ServiceRequest(
             }
         }
 
-        if (debug) {
+        if (_debug) {
             install(Logging) {
-                logger = this@ServiceRequest.logger ?: Logger.DEFAULT
+                logger = _log ?: Logger.DEFAULT
                 level = LogLevel.ALL
             }
         }
 
+        install(HttpCookies) {
+            if (_cookie !== null) {
+                storage = ConstantCookiesStorage(_cookie)
+            }
+        }
+
         install(DefaultRequest) {
-            apiUrl?.let {
+            _apiUrl?.let {
                 url(it)
             } ?: run {
                 url(AppConstants.links.API_DEBUG_URL)
