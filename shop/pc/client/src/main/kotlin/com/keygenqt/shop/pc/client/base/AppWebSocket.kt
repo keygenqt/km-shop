@@ -7,10 +7,13 @@ import com.keygenqt.shop.data.responses.NotificationResponse
 import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.pc.client.services.AppDbusService
 import com.keygenqt.shop.pc.client.services.app.AppDbusMethods
+import com.keygenqt.shop.pc.client.utils.Constants
 import com.keygenqt.shop.services.ServiceRequest
+import com.keygenqt.shop.utils.constants.AppConstants
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import io.ktor.client.*
+import io.ktor.client.plugins.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
 import io.ktor.websocket.*
@@ -34,19 +37,9 @@ class AppWebSocket(
     }
 
     fun init(countNewOrder: Int, countHelpNotChecked: Int) {
-
-        // load configuration
-        val conf: Config = ConfigFactory.load()
-        val dev: Boolean = conf.getBoolean("config.development")
-
         try {
             runBlocking {
-                client.webSocket(
-                    method = HttpMethod.Get,
-                    host = if (dev) "localhost" else "shop-api.keygenqt.com",
-                    port = if (dev) 8086 else 443,
-                    path = "/api/websocket/$secret"
-                ) {
+                val block: suspend DefaultClientWebSocketSession.() -> Unit = {
                     while (true) {
                         when (val receive = incoming.receive()) {
                             is Frame.Binary -> AESEncryption.decrypt(secret, receive.readBytes())
@@ -107,9 +100,27 @@ class AppWebSocket(
                         }
                     }
                 }
+                if (Constants.IS_DEVELOPMENT) {
+                    client.ws(
+                        method = HttpMethod.Get,
+                        host = Constants.GET_DOMAIN,
+                        port = 8086,
+                        path = "/api/websocket/$secret",
+                        block = block
+                    )
+                } else {
+                    client.wss(
+                        method = HttpMethod.Get,
+                        host = Constants.GET_DOMAIN,
+                        port = 443,
+                        path = "/api/websocket/$secret",
+                        block = block
+                    )
+                }
             }
             client.close()
         } catch (e: Exception) {
+            e.printStackTrace()
             throw ResponseException(500, "Failed to connect to the server. Try later.")
         }
     }

@@ -11,12 +11,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
+import kotlin.system.exitProcess
 
 fun SessionCookieResponse.toCookie(): Cookie {
     return Cookie(
         name = this.name,
         value = this.value,
-        domain = "localhost",
+        domain = Constants.GET_DOMAIN,
         maxAge = this.maxAge,
         expires = GMTDate(this.expires),
         path = this.path,

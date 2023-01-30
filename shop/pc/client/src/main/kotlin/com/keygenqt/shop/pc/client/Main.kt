@@ -18,22 +18,15 @@ package com.keygenqt.shop.pc.client
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.data.responses.SessionCookieResponse
-import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.pc.client.arguments.ArgRoot
-import com.keygenqt.shop.pc.client.base.AppWebSocket
-import com.keygenqt.shop.pc.client.extensions.checkResponseCount
 import com.keygenqt.shop.pc.client.extensions.read
 import com.keygenqt.shop.pc.client.extensions.toCookie
 import com.keygenqt.shop.pc.client.services.AppDbusService
-import com.keygenqt.shop.pc.client.services.app.AppDbusMethods
 import com.keygenqt.shop.pc.client.services.client.ClientFeatures
+import com.keygenqt.shop.pc.client.utils.Constants.IS_DEVELOPMENT
 import com.keygenqt.shop.services.ServiceRequest
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigFactory
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import com.keygenqt.shop.utils.constants.AppConstants
 import org.apache.commons.lang3.RandomStringUtils
-import org.freedesktop.dbus.types.UInt32
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.slf4j.LoggerFactory
@@ -44,12 +37,9 @@ fun main(args: Array<String>) {
 
     var secret = System.getenv("SECRET_KEY")
 
-    // load configuration
-    val conf: Config = ConfigFactory.load()
-
     // logger
     val logger = (LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger).apply {
-        level = if (conf.getBoolean("config.development")) Level.DEBUG else Level.OFF
+        level = if (IS_DEVELOPMENT) Level.DEBUG else Level.OFF
     }
 
     // init dbus
@@ -65,6 +55,7 @@ fun main(args: Array<String>) {
             // Client services
             single {
                 ServiceRequest(
+                    apiUrl = if (IS_DEVELOPMENT) AppConstants.links.API_DEBUG_URL else AppConstants.links.API_URL,
                     cookie = SessionCookieResponse.read()?.toCookie()
                 )
             }

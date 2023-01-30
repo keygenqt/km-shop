@@ -15,6 +15,9 @@
  */
 package com.keygenqt.shop.pc.client.utils
 
+import com.keygenqt.shop.utils.constants.AppConstants
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import java.io.File
 
 object Constants {
@@ -35,4 +38,20 @@ object Constants {
      * Secret cookie file
      */
     const val SECRET_COOKIE_FILE = "fkHiPpAALpni1GLR4dGu"
+
+    /**
+     * Get domain
+     */
+    val IS_DEVELOPMENT by lazy {
+        val conf: Config = ConfigFactory.load()
+        conf.getBoolean("config.development")
+    }
+
+    /**
+     * Get domain
+     */
+    val GET_DOMAIN by lazy {
+        (if (IS_DEVELOPMENT) AppConstants.links.API_DEBUG_URL else AppConstants.links.API_URL)
+            .trim('/').substringAfterLast("/").substringBefore(":")
+    }
 }
