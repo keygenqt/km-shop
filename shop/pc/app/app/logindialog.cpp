@@ -18,6 +18,28 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
+void LoginDialog::setDbus(AppDbus *dbus) {
+    this->_dbus = dbus;
+}
+
+void LoginDialog::loading() {
+    ui->pushButton->setText("Ждем-с...");
+    ui->pushButton->setDisabled(true);
+    ui->fieldLogin->setDisabled(true);
+    ui->fieldPassword->setDisabled(true);
+    ui->labelLogin->setStyleSheet("color: black;");
+    ui->labelPassword->setStyleSheet("color: black;");
+}
+
+void LoginDialog::error() {
+    ui->pushButton->setText("Отправить");
+    ui->pushButton->setDisabled(false);
+    ui->fieldLogin->setDisabled(false);
+    ui->fieldPassword->setDisabled(false);
+    ui->labelLogin->setStyleSheet("color: red;");
+    ui->labelPassword->setStyleSheet("color: red;");
+}
+
 void LoginDialog::on_pushButton_clicked()
 {
     bool validate = true;
@@ -37,10 +59,14 @@ void LoginDialog::on_pushButton_clicked()
     }
 
     if (validate) {
-        ui->pushButton->setText("Ждем-с...");
-        ui->pushButton->setDisabled(true);
-        ui->fieldLogin->setDisabled(true);
-        ui->fieldPassword->setDisabled(true);
+        // disable form
+        loading();
+        // send auth
+        if (_dbus->outLogin(ui->fieldLogin->text(), ui->fieldPassword->text())) {
+            emit success();
+        } else {
+            error();
+        }
     }
 }
 

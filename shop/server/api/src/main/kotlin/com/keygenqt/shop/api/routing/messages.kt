@@ -20,6 +20,8 @@ import com.keygenqt.shop.api.extension.*
 import com.keygenqt.shop.api.validators.NotNullNotBlank
 import com.keygenqt.shop.data.responses.CountResponse
 import com.keygenqt.shop.data.responses.CountType
+import com.keygenqt.shop.data.responses.NotificationAction
+import com.keygenqt.shop.data.responses.NotificationResponse
 import com.keygenqt.shop.db.entities.MessageEntity
 import com.keygenqt.shop.db.entities.toModel
 import com.keygenqt.shop.db.entities.toModels
@@ -123,6 +125,8 @@ fun Route.messages() {
                     message = request.message,
                 ).toModel()
             }
+            // send socket action
+            call.sendMessageSocket(NotificationResponse(NotificationAction.HELP_CHANGE))
             // response
             call.respond(response)
         }

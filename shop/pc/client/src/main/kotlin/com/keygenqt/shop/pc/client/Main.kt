@@ -18,6 +18,7 @@ package com.keygenqt.shop.pc.client
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.data.responses.SessionCookieResponse
+import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.pc.client.arguments.ArgRoot
 import com.keygenqt.shop.pc.client.base.AppWebSocket
 import com.keygenqt.shop.pc.client.extensions.checkResponseCount
@@ -29,6 +30,8 @@ import com.keygenqt.shop.pc.client.services.client.ClientFeatures
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.apache.commons.lang3.RandomStringUtils
 import org.freedesktop.dbus.types.UInt32
 import org.koin.core.context.startKoin
@@ -50,7 +53,7 @@ fun main(args: Array<String>) {
     }
 
     // init dbus
-    val dbus: AppDbusService = AppDbusService.getInstance()
+    val dbus: AppDbusService = AppDbusService.getInstance(secret)
 
     // init koin
     startKoin {
@@ -101,42 +104,6 @@ fun main(args: Array<String>) {
         secret = "${UUID.randomUUID()}-${RandomStringUtils.randomAlphanumeric(12)}"
     }
 
-    try {
-        println("Server connection...")
-
-        // get count new order and check auth
-        val countNewOrder = methods
-            .getCountNewOrder()
-            .checkResponseCount()
-
-        // get count message help and check auth
-        val countHelpNotChecked = methods
-            .getCountHelpNotChecked()
-            .checkResponseCount()
-
-        println("Current data: order status NEW: $countNewOrder, message not read: $countHelpNotChecked.")
-
-        // run listen socket
-        AppWebSocket(
-            secret = secret
-        ).init()
-
-        // send app state
-        dbus.call(
-            AppDbusMethods.INIT_SUCCESS,
-            listOf(secret, UInt32(countNewOrder.toLong()), UInt32(countHelpNotChecked.toLong()))
-        )
-
-    } catch (e: Exception) {
-        val error = e.message ?: "Application launch failed."
-        // send app state
-        dbus.call(
-            AppDbusMethods.INIT_ERROR,
-            listOf(secret, error)
-        )
-        // print app state
-        println(error)
-        // exit
-        exitProcess(0)
-    }
+    // run listen
+    methods.listenWebSocket(secret)
 }

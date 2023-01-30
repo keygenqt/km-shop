@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>367</width>
-    <height>260</height>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,13 @@
   <property name="styleSheet">
    <string notr="true">QLabel {
 	background-color: transparent;
+}
+
+QLabel#labelError {
+	background-color: #9e1f1f;
+	color: white;
+	padding: 10px 10px;
+	border-radius: 5px
 }
 
 QFrame#frame {
@@ -71,7 +78,7 @@ QLineEdit:disabled {
        <number>20</number>
       </property>
       <property name="verticalSpacing">
-       <number>6</number>
+       <number>10</number>
       </property>
       <item row="0" column="0">
        <layout class="QVBoxLayout" name="verticalLayout">

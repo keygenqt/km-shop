@@ -1,5 +1,6 @@
 package com.keygenqt.shop.pc.client.services
 
+import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.pc.client.interfaces.IMethod
 import com.keygenqt.shop.pc.client.services.app.AppDbus
 import com.keygenqt.shop.pc.client.services.app.AppDbusMethods
@@ -13,7 +14,9 @@ import org.freedesktop.dbus.connections.impl.DBusConnection
 import org.freedesktop.dbus.errors.ServiceUnknown
 import org.freedesktop.dbus.exceptions.DBusExecutionException
 import org.freedesktop.dbus.interfaces.CallbackHandler
+import org.freedesktop.dbus.types.UInt32
 import javax.security.auth.callback.Callback
+import kotlin.system.exitProcess
 
 class AppDbusService private constructor(
     private val connect: DBusConnection
@@ -38,7 +41,7 @@ class AppDbusService private constructor(
         /**
          * Get Instance
          */
-        fun getInstance(): AppDbusService {
+        fun getInstance(secret: String?): AppDbusService {
             if (::instance.isInitialized) {
                 throw RuntimeException("Instance already exist!")
             } else {
@@ -53,7 +56,21 @@ class AppDbusService private constructor(
                     // register dbus
                     runBlocking {
                         delay(1000)
-                        register()
+                        try {
+                            register()
+                        } catch (e: Exception) {
+                            val error = "Dbus registration error. Copy already running."
+                            secret?.let {
+                                instance.call(
+                                    AppDbusMethods.INIT_ERROR,
+                                    listOf(secret, UInt32(501), error)
+                                )
+                            } ?: run {
+                                println(error)
+                            }
+                            delay(1000)
+                            exitProcess(0)
+                        }
                     }
                 }
                 return instance

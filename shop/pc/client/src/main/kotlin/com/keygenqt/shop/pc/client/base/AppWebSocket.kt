@@ -18,7 +18,6 @@ import kotlinx.serialization.json.Json
 import org.freedesktop.dbus.types.UInt32
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import kotlin.system.exitProcess
 
 class AppWebSocket(
     val secret: String
@@ -32,7 +31,7 @@ class AppWebSocket(
         install(WebSockets)
     }
 
-    fun init() {
+    fun init(countNewOrder: Int, countHelpNotChecked: Int) {
         try {
             runBlocking {
                 client.webSocket(
@@ -50,13 +49,13 @@ class AppWebSocket(
                                         NotificationAction.ORDER_CHANGE -> {
                                             try {
                                                 // get count in kmm module
-                                                val countNewOrder = request.get.countNewOrder().count
+                                                val response = request.get.countNewOrder().count
                                                 // print output
-                                                println("Update orders. New count: $countNewOrder.")
+                                                println("Update orders. New count: $response.")
                                                 // update state qt app count new order
                                                 dbus.call(
                                                     AppDbusMethods.UPDATE_ORDER,
-                                                    listOf(secret, UInt32(countNewOrder.toLong()))
+                                                    listOf(secret, UInt32(response.toLong()))
                                                 )
                                             } catch (e: ResponseException) {
                                                 log.error(e.getLocalizedMessage())
@@ -67,14 +66,14 @@ class AppWebSocket(
                                         NotificationAction.HELP_CHANGE -> {
                                             try {
                                                 // get count in kmm module
-                                                val countHelpNotChecked =
+                                                val response =
                                                     request.get.countHelpNotChecked().count
                                                 // print output
-                                                println("Update help messages. New count: $countHelpNotChecked.")
+                                                println("Update help messages. New count: $response.")
                                                 // update state qt app count new help message
                                                 dbus.call(
                                                     AppDbusMethods.UPDATE_HELP,
-                                                    listOf(secret, UInt32(countHelpNotChecked.toLong()))
+                                                    listOf(secret, UInt32(response.toLong()))
                                                 )
                                             } catch (e: ResponseException) {
                                                 log.error(e.getLocalizedMessage())
@@ -84,7 +83,19 @@ class AppWebSocket(
                                         }
                                     }
                                 }
-                            is Frame.Text -> println(receive.readText())
+                            is Frame.Text -> {
+                                // only init call string
+                                println(receive.readText())
+                                // send app state
+                                dbus.call(
+                                    AppDbusMethods.INIT_SUCCESS,
+                                    listOf(
+                                        secret,
+                                        UInt32(countNewOrder.toLong()),
+                                        UInt32(countHelpNotChecked.toLong())
+                                    )
+                                )
+                            }
                             else -> {}
                         }
                     }
@@ -92,7 +103,7 @@ class AppWebSocket(
             }
             client.close()
         } catch (e: Exception) {
-            throw RuntimeException("Failed to connect to the server. Try later.")
+            throw ResponseException(500, "Failed to connect to the server. Try later.")
         }
     }
 }
