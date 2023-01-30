@@ -41,6 +41,15 @@ All platforms use the latest stack.
 
 ![picture](data/github-preview/preview-frontend.png)
 
+## PC App
+
+* Based: [Qt](https://www.qt.io/)
+* Platform: **Linux**
+
+[![picture](data/common/btn_youtube.png)](https://youtu.be/Mk1VtxWvy9s)
+
+![picture](data/github-preview/preview-pc.png)
+
 ## CLI App
 
 * Url: [Link](https://github.com/keygenqt/km-shop/blob/master/data/cli/shop-cli.jar?raw=true)
