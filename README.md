@@ -1,7 +1,7 @@
-Shop 7 in 1 (Майшоп)
+Shop 8 in 1 (Майшоп)
 ===================
 
-A store that includes 7 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
+A store that includes 8 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
 All applications use a common module and native UI for their platforms.
 All platforms use the latest stack.
 
