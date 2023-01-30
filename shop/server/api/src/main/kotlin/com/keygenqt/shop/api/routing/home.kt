@@ -30,7 +30,7 @@ fun Route.home() {
         val role = call.checkRoleFull()
 
         val name = "Shop API"
-        val subtitle = "API for Shop 7 in 1"
+        val subtitle = "API for Shop 8 in 1"
         val title = "API written in Ktor using multiplatform best practices"
         val text = "You can check out the method documentation on GitHub Pages"
         val button = "Documentation"

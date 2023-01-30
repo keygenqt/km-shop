@@ -1,4 +1,4 @@
-Shop Kotlin Multiplatform 7 in 1
+Shop Kotlin Multiplatform 8 in 1
 ===================
 
 A store that includes 7 applications written using [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
@@ -15,6 +15,7 @@ All platforms use the latest stack.
 * Android App, Jetpack Compose
 * iOS App, SwiftUI
 * Aurora OS App
+* PC
 
 ## Stats
 

@@ -3,7 +3,7 @@ Part API
 
 ![picture](https://keygenqt.github.io/km-shop/data/github-preview/preview-api.png)
 
-API for Shop 7 in 1. Written in Ktor. It is used by 5 applications on 4 platforms. Android, iOS, CLI
+API for Shop 8 in 1. Written in Ktor. It is used by 5 applications on 4 platforms. Android, iOS, CLI
 server application, React admin-panel and website. The API, like 5 applications, uses a common
 module on Kotlin Multiplatform.
 
