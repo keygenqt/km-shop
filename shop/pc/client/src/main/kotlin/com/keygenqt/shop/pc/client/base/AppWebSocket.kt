@@ -59,11 +59,7 @@ class AppWebSocket(
                                                     listOf(secret, UInt32(countNewOrder.toLong()))
                                                 )
                                             } catch (e: ResponseException) {
-                                                println("\nThe orders have been updated.")
-                                                if (e.code == 403) {
-                                                    println("It was not possible to get the quantity, authorization is required.")
-                                                }
-                                                log.error(e.message)
+                                                log.error(e.getLocalizedMessage())
                                             } catch (e: Exception) {
                                                 log.error("Error update orders count.")
                                             }
@@ -81,11 +77,7 @@ class AppWebSocket(
                                                     listOf(secret, UInt32(countHelpNotChecked.toLong()))
                                                 )
                                             } catch (e: ResponseException) {
-                                                println("\nThe messages have been updated.")
-                                                if (e.code == 403) {
-                                                    println("It was not possible to get the quantity, authorization is required.")
-                                                }
-                                                log.error(e.message)
+                                                log.error(e.getLocalizedMessage())
                                             } catch (e: Exception) {
                                                 log.error("Error update help messages count.")
                                             }
@@ -98,9 +90,9 @@ class AppWebSocket(
                     }
                 }
             }
-        } catch (_: Exception) {}
-        client.close()
-        println("Failed to connect to the server. Try later.")
-        exitProcess(0)
+            client.close()
+        } catch (e: Exception) {
+            throw RuntimeException("Failed to connect to the server. Try later.")
+        }
     }
 }

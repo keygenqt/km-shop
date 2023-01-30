@@ -17,14 +17,19 @@ import java.io.File
 import kotlin.system.exitProcess
 
 enum class ClientFeaturesMethods(override val value: String) : IMethod {
+    LOGIN("login"),
+    COUNT_NEW_ORDER("getCountNewOrder"),
+    COUNT_HELP_NOT_CHECKED("getCountHelpNotChecked"),
     CLOSE_CLIENT("closeApp"),
-    LOGIN("login")
+    LOGOUT("logout"),
 }
 
 @DBusInterfaceName("com.keygenqt.shop.client.ClientFeatures")
 interface IClientFeatures : DBusInterface {
-    fun closeApp()
     fun login(login: String, passw: String): Int
+    fun getCountNewOrder(): Int
+    fun getCountHelpNotChecked(): Int
+    fun closeApp()
     fun logout()
 }
 
@@ -37,15 +42,24 @@ class ClientFeatures : IClientFeatures, KoinComponent {
         return "/"
     }
 
+    /**
+     * Close app
+     */
     override fun closeApp() {
         logger.error("Close client!")
         exitProcess(0)
     }
 
+    /**
+     * Remove file cookie
+     */
     override fun logout() {
         File(Constants.PATH_COOKIE_FILE).deleteOnExit()
     }
 
+    /**
+     * Login user
+     */
     override fun login(
         login: String,
         passw: String
@@ -65,6 +79,38 @@ class ClientFeatures : IClientFeatures, KoinComponent {
                 e.code
             } catch (e: Exception) {
                 500
+            }
+        }
+    }
+
+    /**
+     * Get count order with status NEW
+     * Error has negative code, positive value it's response
+     */
+    override fun getCountNewOrder(): Int {
+        return runBlocking {
+            try {
+                request.get.countNewOrder().count
+            } catch (e: ResponseException) {
+                e.code * -1
+            } catch (e: Exception) {
+                -500
+            }
+        }
+    }
+
+    /**
+     * Get count not read message
+     * Error has negative code, positive value it's response
+     */
+    override fun getCountHelpNotChecked(): Int {
+        return runBlocking {
+            try {
+                request.get.countHelpNotChecked().count
+            } catch (e: ResponseException) {
+                e.code * -1
+            } catch (e: Exception) {
+                -500
             }
         }
     }

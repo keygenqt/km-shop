@@ -20,18 +20,21 @@ import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.data.responses.SessionCookieResponse
 import com.keygenqt.shop.pc.client.arguments.ArgRoot
 import com.keygenqt.shop.pc.client.base.AppWebSocket
+import com.keygenqt.shop.pc.client.extensions.checkResponseCount
 import com.keygenqt.shop.pc.client.extensions.read
 import com.keygenqt.shop.pc.client.extensions.toCookie
 import com.keygenqt.shop.pc.client.services.AppDbusService
+import com.keygenqt.shop.pc.client.services.app.AppDbusMethods
 import com.keygenqt.shop.pc.client.services.client.ClientFeatures
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import org.apache.commons.lang3.RandomStringUtils
+import org.freedesktop.dbus.types.UInt32
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.slf4j.LoggerFactory
-import java.util.UUID
+import java.util.*
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
@@ -65,20 +68,26 @@ fun main(args: Array<String>) {
         })
     }
 
+    // init app methods
+    val methods = ClientFeatures()
+
     // init CLI
     if (secret === null) {
         ArgRoot.parse(args)?.let {
             when {
                 it.auth.isInit -> {
-                    when(ClientFeatures().login(it.auth.email, it.auth.password)) {
+                    when (methods.login(it.auth.email, it.auth.password)) {
                         200 -> println("Authorization was successful. You can start listen with --run (-r) option.")
                         403 -> println("Authorization already done. You can start listen with --run (-r) option.")
-                        else -> println("Authorisation error. You can start listening with the --run (-r) option, but without the exact data.")
+                        else -> {
+                            println("Authorisation error.")
+                            exitProcess(0)
+                        }
                     }
                     exitProcess(0)
                 }
                 it.logout == true -> {
-                    ClientFeatures().logout()
+                    methods.logout()
                     println("Logout was successful.")
                     exitProcess(0)
                 }
@@ -92,8 +101,42 @@ fun main(args: Array<String>) {
         secret = "${UUID.randomUUID()}-${RandomStringUtils.randomAlphanumeric(12)}"
     }
 
-    // run listen socket
-    AppWebSocket(
-        secret = secret
-    ).init()
+    try {
+        println("Server connection...")
+
+        // get count new order and check auth
+        val countNewOrder = methods
+            .getCountNewOrder()
+            .checkResponseCount()
+
+        // get count message help and check auth
+        val countHelpNotChecked = methods
+            .getCountHelpNotChecked()
+            .checkResponseCount()
+
+        println("Current data: order status NEW: $countNewOrder, message not read: $countHelpNotChecked.")
+
+        // run listen socket
+        AppWebSocket(
+            secret = secret
+        ).init()
+
+        // send app state
+        dbus.call(
+            AppDbusMethods.INIT_SUCCESS,
+            listOf(secret, UInt32(countNewOrder.toLong()), UInt32(countHelpNotChecked.toLong()))
+        )
+
+    } catch (e: Exception) {
+        val error = e.message ?: "Application launch failed."
+        // send app state
+        dbus.call(
+            AppDbusMethods.INIT_ERROR,
+            listOf(secret, error)
+        )
+        // print app state
+        println(error)
+        // exit
+        exitProcess(0)
+    }
 }

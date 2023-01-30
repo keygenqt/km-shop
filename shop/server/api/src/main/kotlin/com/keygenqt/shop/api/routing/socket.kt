@@ -23,7 +23,7 @@ fun Route.socket() {
 
         // listen query
         try {
-            send("You are connected!")
+            send("You are connected to listen!")
             for (frame in incoming) {
                 frame as? Frame.Text ?: continue
                 val received = frame.readText()
