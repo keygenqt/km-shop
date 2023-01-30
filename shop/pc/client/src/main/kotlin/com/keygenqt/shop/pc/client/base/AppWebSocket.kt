@@ -8,6 +8,8 @@ import com.keygenqt.shop.exception.ResponseException
 import com.keygenqt.shop.pc.client.services.AppDbusService
 import com.keygenqt.shop.pc.client.services.app.AppDbusMethods
 import com.keygenqt.shop.services.ServiceRequest
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.http.*
@@ -32,12 +34,17 @@ class AppWebSocket(
     }
 
     fun init(countNewOrder: Int, countHelpNotChecked: Int) {
+
+        // load configuration
+        val conf: Config = ConfigFactory.load()
+        val dev: Boolean = conf.getBoolean("config.development")
+
         try {
             runBlocking {
                 client.webSocket(
                     method = HttpMethod.Get,
-                    host = "localhost",
-                    port = 8086,
+                    host = if (dev) "localhost" else "shop-api.keygenqt.com",
+                    port = if (dev) 8086 else 443,
                     path = "/api/websocket/$secret"
                 ) {
                     while (true) {

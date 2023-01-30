@@ -29,7 +29,7 @@ object Constants {
      */
     val PATH_COOKIE_FILE = System.getProperty("user.home") +
             File.separator +
-            "shop_client_cookie.json"
+            ".shop_client_cookie.json"
 
     /**
      * Secret cookie file

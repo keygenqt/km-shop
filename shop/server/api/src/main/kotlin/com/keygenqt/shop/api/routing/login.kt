@@ -52,17 +52,17 @@ fun Route.login() {
     val sessionService: SessionService by inject()
     val adminsService: AdminsService by inject()
 
-    // test method
-//    get("/test") {
-//        // send message
-//        call.sendMessageSocket(
-//            NotificationResponse(
-//                action = NotificationAction.HELP_CHANGE,
-//            )
-//        )
-//        // response
-//        call.respond(HttpStatusCode.OK)
-//    }
+    // test method websocket
+    get("/test-websocket-4jdLXlY3V1QYt6Jsr7Yh") {
+        // send message
+        call.sendMessageSocket(
+            NotificationResponse(
+                action = NotificationAction.HELP_CHANGE,
+            )
+        )
+        // response
+        call.respond(HttpStatusCode.OK)
+    }
 
     post("/login") {
 
