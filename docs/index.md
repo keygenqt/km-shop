@@ -15,12 +15,12 @@ All platforms use the latest stack.
 * Android App, Jetpack Compose
 * iOS App, SwiftUI
 * Aurora OS App
-* PC
+* PC (Linux)
 
 ## Stats
 
 <p>
-<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats-3.png" width="100%"/>
+<img src="https://raw.githubusercontent.com/keygenqt/km-shop/master/data/common/stats-lines.png" width="100%"/>
 </p>
 
 # License
