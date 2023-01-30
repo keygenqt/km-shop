@@ -1,10 +1,11 @@
 package com.keygenqt.shop.pc.client.services.app
 
+import com.keygenqt.shop.pc.client.interfaces.IMethod
 import org.freedesktop.dbus.annotations.DBusInterfaceName
 import org.freedesktop.dbus.interfaces.DBusInterface
 import org.freedesktop.dbus.types.UInt32
 
-enum class AppDbusMethods(val method: String) {
+enum class AppDbusMethods(override val value: String) : IMethod {
     UPDATE_ORDER("inUpdateOrder"),
     UPDATE_HELP("inUpdateHelp")
 }

@@ -10,8 +10,8 @@ version = "0.9.0"
 
 dependencies {
     implementation(project(":shared"))
+    // Kotlin pc client
     implementation(pcApp.bundles.pc)
-    implementation("io.ktor:ktor-client-websockets:2.1.3")
 }
 
 application {

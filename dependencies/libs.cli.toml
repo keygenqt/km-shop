@@ -19,10 +19,19 @@ exposedVersion="0.39.2"
 logbackVersion = "1.4.4"
 # https://commons.apache.org/proper/commons-net/
 commonsNetVersion = "3.6"
+# https://mvnrepository.com/artifact/com.google.guava/guava
+guavaVersion = "26.0-jre"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Google Core Libraries For Java
+# Guava is a suite of core and expanded libraries that include utility classes, Google's collections, I/O classes, and much more.
+[libraries.guava]
+module = "com.google.guava:guava"
+[libraries.guava.version]
+ref = "guavaVersion"
 
 # Apache Commons Net
 # Apache Commons Net™ library implements the client side of many basic Internet protocols.
@@ -57,8 +66,8 @@ module = "io.insert-koin:koin-core"
 [libraries.koin-core.version]
 ref = "koinVersion"
 
-# kotlinx-datetime
-# A multiplatform Kotlin library for working with date and time.
+# kotlinx-cli
+# Pure Kotlin implementation of a generic command-line parse.
 [libraries.kotlinx-cli]
 module = "org.jetbrains.kotlinx:kotlinx-cli"
 [libraries.kotlinx-cli.version]
@@ -92,6 +101,7 @@ ref = "ktorVersion"
 
 [bundles]
 cli = [
+    "guava",
     "commons-net",
     "exposed-core",
     "exposed-dao",

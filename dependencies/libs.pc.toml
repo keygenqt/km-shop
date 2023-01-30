@@ -6,13 +6,13 @@
 # https://github.com/ktorio/ktor/releases
 ktorVersion = "2.1.3"
 # https://insert-koin.io/docs/setup/koin#core
-koinVersion="3.2.2"
+koinVersion = "3.2.2"
 # https://github.com/Kotlin/kotlinx.coroutines/blob/master/README.md
 coroutinesVersion = "1.6.4"
 # https://github.com/lightbend/config
 configVersion = "1.4.2"
 # https://github.com/JetBrains/Exposed/releases
-exposedVersion="0.39.2"
+exposedVersion = "0.39.2"
 # https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
 logbackVersion = "1.4.4"
 # https://commons.apache.org/proper/commons-net/
@@ -20,11 +20,29 @@ commonsNetVersion = "3.6"
 # https://search.maven.org/artifact/com.github.hypfvieh/dbus-java/3.3.1/jar
 dbusJavaVersion = "3.3.1"
 # https://github.com/Kotlin/kotlinx.serialization/blob/master/formats/README.md#json
-jsonSerializationVersion="1.4.1"
+jsonSerializationVersion = "1.4.1"
+# https://github.com/Kotlin/kotlinx-cli
+kotlinxCLIVersion = "0.3.5"
+# https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+commonsLang3Version = "3.12.0"
 
 ##########################
 ## LIBRARIES
 ##########################
+
+# Apache Commons Lang
+# Package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.
+[libraries.commons-lang3]
+module = "org.apache.commons:commons-lang3"
+[libraries.commons-lang3.version]
+ref = "commonsLang3Version"
+
+# kotlinx-cli
+# Pure Kotlin implementation of a generic command-line parse.
+[libraries.kotlinx-cli]
+module = "org.jetbrains.kotlinx:kotlinx-cli"
+[libraries.kotlinx-cli.version]
+ref = "kotlinxCLIVersion"
 
 # Serialization
 # JSON serialization library dependency
@@ -95,12 +113,20 @@ module = "io.ktor:ktor-client-logging"
 [libraries.ktor-client-logging.version]
 ref = "ktorVersion"
 
+[libraries.ktor-client-websockets]
+module = "io.ktor:ktor-client-websockets"
+[libraries.ktor-client-websockets.version]
+ref = "ktorVersion"
+
 ##########################
 ## BUNDLES
 ##########################
 
 [bundles]
 pc = [
+    "commons-lang3",
+    "kotlinx-cli",
+    "ktor-client-websockets",
     "kotlinx-serialization-json",
     "dbus-java",
     "commons-net",

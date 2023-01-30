@@ -18,27 +18,25 @@ package com.keygenqt.shop.pc.client
 import ch.qos.logback.classic.Level
 import ch.qos.logback.classic.Logger
 import com.keygenqt.shop.data.responses.SessionCookieResponse
+import com.keygenqt.shop.pc.client.arguments.ArgRoot
 import com.keygenqt.shop.pc.client.base.AppWebSocket
 import com.keygenqt.shop.pc.client.extensions.read
 import com.keygenqt.shop.pc.client.extensions.toCookie
 import com.keygenqt.shop.pc.client.services.AppDbusService
+import com.keygenqt.shop.pc.client.services.client.ClientFeatures
 import com.keygenqt.shop.services.ServiceRequest
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
+import org.apache.commons.lang3.RandomStringUtils
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import org.slf4j.LoggerFactory
+import java.util.UUID
+import kotlin.system.exitProcess
 
-fun main() {
+fun main(args: Array<String>) {
 
-    val secret = System.getenv("SECRET_KEY")
-
-    if (secret === null) {
-        throw RuntimeException("SECRET_KEY environment variable not found!")
-    }
-
-    // init dbus service
-    AppDbusService.init()
+    var secret = System.getenv("SECRET_KEY")
 
     // load configuration
     val conf: Config = ConfigFactory.load()
@@ -48,13 +46,16 @@ fun main() {
         level = if (conf.getBoolean("config.development")) Level.DEBUG else Level.OFF
     }
 
+    // init dbus
+    val dbus: AppDbusService = AppDbusService.getInstance()
+
     // init koin
     startKoin {
         modules(module {
             // Logging app
             single { logger }
             // D-Bus connect
-            single { AppDbusService.getInstance() }
+            single { dbus }
             // Client services
             single {
                 ServiceRequest(
@@ -62,6 +63,33 @@ fun main() {
                 )
             }
         })
+    }
+
+    // init CLI
+    if (secret === null) {
+        ArgRoot.parse(args)?.let {
+            when {
+                it.auth.isInit -> {
+                    when(ClientFeatures().login(it.auth.email, it.auth.password)) {
+                        200 -> println("Authorization was successful. You can start listen with --run (-r) option.")
+                        403 -> println("Authorization already done. You can start listen with --run (-r) option.")
+                        else -> println("Authorisation error. You can start listening with the --run (-r) option, but without the exact data.")
+                    }
+                    exitProcess(0)
+                }
+                it.logout == true -> {
+                    ClientFeatures().logout()
+                    println("Logout was successful.")
+                    exitProcess(0)
+                }
+                it.run != true -> {
+                    exitProcess(0)
+                }
+                else -> {}
+            }
+        }
+        // set secret
+        secret = "${UUID.randomUUID()}-${RandomStringUtils.randomAlphanumeric(12)}"
     }
 
     // run listen socket

@@ -11,7 +11,6 @@ dependencies {
     implementation(project(":shared"))
     // Kotlin CLI
     implementation(cliApp.bundles.cli)
-    implementation("com.google.guava:guava:26.0-jre")
 }
 
 application {
