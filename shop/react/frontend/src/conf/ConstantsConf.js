@@ -13,7 +13,7 @@ export const ConstantsConf = {
     phone: AppConstants.other.CONTACT_PHONE,
     email: AppConstants.other.CONTACT_EMAIL,
     urlMap: AppConstants.links.URL_MAP,
-    copyright: '© 2022 KeyGenQt',
+    copyright: '© 2023 KeyGenQt',
     googlePlay: 'https://github.com/keygenqt/km-shop#5-android-app',
     appStore: 'https://github.com/keygenqt/km-shop#6-ios-app',
 };

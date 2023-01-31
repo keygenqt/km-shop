@@ -52,7 +52,7 @@ export function AppFooter() {
                         </Stack>
 
                         <Typography variant="caption">
-                            © 2022 KeyGenQt
+                            © 2023 KeyGenQt
                         </Typography>
                     </Stack>
                 </Box>
