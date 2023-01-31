@@ -9,6 +9,11 @@ site_dir: 'km-shop'
 nav:
   - Home:
       - index.md
+      - Web: web/index.md
+      - Server: server/index.md
+      - Mobile: mobile/index.md
+      - PC: pc/index.md
+      - Server: server/index.md
   - Web:
       - Overview:
           - web/index.md
@@ -29,7 +34,7 @@ nav:
           - API:
               - About: server/api/about.md
               - Libraries: server/api/libraries.md
-              - Dokka: dokka/shop/server/api/index.html
+              - Dokka: /km-shop/dokka/shop/server/api/
               - Methods:
                 - Errors: server/api/methods/common_errors.md
                 - Login: server/api/methods/login.md
@@ -94,7 +99,7 @@ nav:
           - CLI:
               - About: server/cli/about.md
               - Libraries: server/cli/libraries.md
-              - Dokka: dokka/shop/server/cli/index.html
+              - Dokka: /km-shop/dokka/shop/server/cli/
       - Links:
           - Go to API: https://shop-api.keygenqt.com/
   - Mobile:

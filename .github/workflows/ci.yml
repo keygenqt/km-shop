@@ -24,16 +24,16 @@ jobs:
           python3 -m pip install mkdocs
           python3 -m pip install mkdocs-material
 
-      - name: Data
-        run: |
-          [ -d docs/data ] && rm -r docs/data
-          cp -r data docs/data
+#      - name: Data
+#        run: |
+#          [ -d docs/data ] && rm -r docs/data
+#          cp -r data docs/data
 
-      - name: Dokka
-        run: |
-          [ -d docs/dokka ] && rm -r docs/dokka
-          mkdir docs/dokka
-          gradle dokkaHtmlMultiModule --stacktrace
+#      - name: Dokka
+#        run: |
+#          [ -d docs/dokka ] && rm -r docs/dokka
+#          mkdir docs/dokka
+#          gradle dokkaHtmlMultiModule --stacktrace
 
       - name: Build site
         run: |
