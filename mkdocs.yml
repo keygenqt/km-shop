@@ -109,7 +109,7 @@ nav:
           - Android:
               - About: mobile/android/about.md
               - Libraries: mobile/android/libraries.md
-              - Dokka: dokka/shop/mobile/android/index.html
+              - Dokka: /km-shop/dokka/shop/server/android/
           - Aurora:
               - About: mobile/aurora/about.md
               - Libraries: mobile/aurora/libraries.md
@@ -126,7 +126,7 @@ nav:
           - Notificator CLI:
               - About: pc/client/about.md
               - Libraries: pc/client/libraries.md
-              - Dokka: dokka/shop/pc/client/index.html
+              - Dokka: /km-shop/dokka/shop/server/client/
 
 # Extensions
 markdown_extensions:
