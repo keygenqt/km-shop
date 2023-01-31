@@ -13,7 +13,7 @@ Shop 8 in 1 (Майшоп)
 
 <p>
     <a href="https://keygenqt.github.io/km-shop/">
-        <img src="data/see_more.gif" width="200"/>
+        <img src="data/see_more.gif" width="200px"/>
     </a>
 </p>
 
