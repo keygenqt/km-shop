@@ -9,7 +9,7 @@ import Sailfish.Silica 1.0
 Плюс добавлена фича истории сделанных заказов и история поиска заказов.
 
 <p>
-<img src="images/aurora/aurora_l.png" width="32%"/>
-<img src="images/aurora/aurora_d.png" width="32%"/>
-<img src="images/aurora/aurora_anim.gif" width="31.9%"/>
+<img src="/km-shop/images/aurora/aurora_l.png" width="32%"/>
+<img src="/km-shop/images/aurora/aurora_d.png" width="32%"/>
+<img src="/km-shop/images/aurora/aurora_anim.gif" width="31.9%"/>
 </p>

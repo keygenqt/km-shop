@@ -146,6 +146,7 @@ extra:
 # Custom CSS
 extra_css:
   - docs/assets/custom.css
+  - /km-shop/custom.css
 
 # Configuration
 theme:

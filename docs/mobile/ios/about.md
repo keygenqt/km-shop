@@ -6,9 +6,9 @@ iOS application
 Плюс добавлена фича истории сделанных заказов и история поиска заказов.
 
 <p>
-<img src="images/ios/ios_l.png" width="31%"/>
-<img src="images/ios/ios_d.png" width="31%"/>
-<img src="images/ios/ios_anim.gif" width="32.5%"/>
+<img src="/km-shop/images/ios/ios_l.png" width="31%"/>
+<img src="/km-shop/images/ios/ios_d.png" width="31%"/>
+<img src="/km-shop/images/ios/ios_anim.gif" width="32.5%"/>
 </p>
 
 ### Architecture

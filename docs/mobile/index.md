@@ -2,9 +2,9 @@ Mobile applications
 ===
 
 <p class="icons-main">
-    <img src="images/ic_android.png">
-    <img src="images/ic_apple.png">
-    <img src="images/ic_aurora.png">
+    <img src="/km-shop/images/ic_android.png">
+    <img src="/km-shop/images/ic_apple.png">
+    <img src="/km-shop/images/ic_aurora.png">
 </p>
 
 3 приложения. 

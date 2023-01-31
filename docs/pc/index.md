@@ -2,8 +2,8 @@ PC application
 ===
 
 <p class="icons-main">
-    <img src="images/ic_cli.png">
-    <img src="images/ic_pc.png">
+    <img src="/km-shop/images/ic_cli.png">
+    <img src="/km-shop/images/ic_pc.png">
 </p>
 
 На самом деле приложения 2. 
