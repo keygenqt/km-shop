@@ -3,7 +3,7 @@ Shop 8 in 1 (Майшоп)
 
 ![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta&style=for-the-badge)
 
-![all-preview.png](data%2Fcommon%2Fall-preview.png?v=1)
+![all-preview.png](data%2Fcommon%2Fall-preview_1.png)
 
 Магазин для 4x операционных систем Linux, Aurora OS, iOS, Android. 
 Включает в себя 2 приложения на React для Web - Website, Admin-Panel. 
