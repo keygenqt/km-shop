@@ -1,7 +1,7 @@
 Server applications
 ===
 
-<img src="/images/ic_cli.png" width="50px">
+<img src="images/ic_cli.png" width="50px">
 
 2 приложения.
 Приложение на [Ktor](https://ktor.io/) отвечает за API.

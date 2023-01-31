@@ -5,9 +5,9 @@
 Плюс добавлена фича истории сделанных заказов и история поиска заказов.
 
 <p>
-<img src="/images/android/android_l.png" width="32%"/>
-<img src="/images/android/android_d.png" width="32%"/>
-<img src="/images/android/android_anim.gif" width="32%"/>
+<img src="images/android/android_l.png" width="32%"/>
+<img src="images/android/android_d.png" width="32%"/>
+<img src="images/android/android_anim.gif" width="32%"/>
 </p>
 
 #### Architecture

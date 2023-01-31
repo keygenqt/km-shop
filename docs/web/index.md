@@ -1,7 +1,7 @@
 Web applications
 ===
 
-<img src="/images/ic_react.png" width="50px">
+<img src="images/ic_react.png" width="50px">
 
 2 приложения на React. 
 Это основной Website для клиентов и Admin-Panel для администраторов.
