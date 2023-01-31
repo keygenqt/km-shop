@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,9 @@
  */
 package com.keygenqt.shop.db.service
 
-import com.keygenqt.shop.data.responses.OrderState
 import com.keygenqt.shop.db.base.DatabaseMysql
 import com.keygenqt.shop.db.entities.MessageEntity
 import com.keygenqt.shop.db.entities.Messages
-import com.keygenqt.shop.db.entities.OrderEntity
-import com.keygenqt.shop.db.entities.Orders
 import com.keygenqt.shop.interfaces.IService
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq

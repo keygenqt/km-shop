@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.keygenqt.shop.pc.client.arguments
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.ExperimentalCli
-import kotlinx.cli.default
 
 class ArgRoot {
 

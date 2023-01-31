@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 package com.keygenqt.shop.api.utils
 
 import com.keygenqt.shop.api.base.SessionWebSocket
-import com.keygenqt.shop.base.AESEncryption
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 import io.ktor.websocket.*

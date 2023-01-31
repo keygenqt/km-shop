@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,11 +66,11 @@ class PostRequest(private val client: HttpClient) {
             }
 
             return SessionCookieResponse(
-                 name = name,
-                 value = value,
-                 path = path,
-                 maxAge = maxAge,
-                 expires = expires,
+                name = name,
+                value = value,
+                path = path,
+                maxAge = maxAge,
+                expires = expires,
             )
         }
 

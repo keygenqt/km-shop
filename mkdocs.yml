@@ -1,114 +1,190 @@
 site_name: Shop 8 in 1
 
 # Repository
-repo_name: 'Shop Kotlin Multiplatform'
+repo_name: 'keygenqt/km-shop'
 repo_url: 'https://github.com/keygenqt/km-shop'
 
 # Navigation
 nav:
-  - 'Overview': index.md
-  - 'Building': building.md
-  - 'Website':
-      - 'About': frontend/index.md
-      - 'Home': frontend/home.md
-      - 'Exploring': frontend/exploring.md
-      - 'Contact': frontend/contact.md
-      - 'Order': frontend/order.md
-      - 'Cart': frontend/cart.md
-  - 'Admin Panel':
-      - 'About': backend/index.md
-      - 'Dashboard': backend/dashboard.md
-      - 'Categories': backend/categories.md
-      - 'Collections': backend/collections.md
-      - 'Products': backend/products.md
-      - 'Orders': backend/orders.md
-      - 'Managers': backend/managers.md
-      - 'Help Desk': backend/help.md
-  - 'API':
-      - 'About': api/index.md
-      - 'Methods':
-          - 'Auth':
-              - 'Login': api/login/login.md
-              - 'Logout': api/logout/logout.md
-          - 'Dashboard':
-              - 'Made Orders': api/dashboard/made_orders.md
-              - 'Orders Completed': api/dashboard/orders_completed.md
-              - 'Total Earnings': api/dashboard/total_earnings.md
-              - 'Best Seller': api/dashboard/seller.md
-              - 'Chart Order': api/dashboard/chart.md
-          - 'Categories':
-              - 'List': api/categories/list.md
-              - 'List Published': api/categories/list_published.md
-              - 'Get by ID': api/categories/item.md
-              - 'Create': api/categories/create.md
-              - 'Update': api/categories/update.md
-              - 'Update State': api/categories/update_state.md
-          - 'Collections':
-              - 'List': api/collections/list.md
-              - 'List Published': api/collections/list_published.md
-              - 'Get by ID': api/collections/item.md
-              - 'Create': api/collections/create.md
-              - 'Update': api/collections/update.md
-              - 'Update State': api/collections/update_state.md
-          - 'Products':
-              - 'List': api/products/list.md
-              - 'List by IDs': api/products/list_by_ids.md
-              - 'List Published': api/products/list_published.md
-              - 'List Purchased': api/products/list_purchased.md
-              - 'Get by ID': api/products/item.md
-              - 'Create': api/products/create.md
-              - 'Update': api/products/update.md
-              - 'Update State': api/products/update_state.md
-              - 'Get Count': api/products/count.md
-              - 'Get Prices': api/products/prices.md
-          - 'Orders':
-              - 'List NEW': api/orders/list_new.md
-              - 'List PENDING': api/orders/list_pending.md
-              - 'List COMPLETED': api/orders/list_completed.md
-              - 'List CANCELED': api/orders/list_canceled.md
-              - 'Item by ID': api/orders/item.md
-              - 'Item by Number': api/orders/find_by_number.md
-              - 'Create': api/orders/create.md
-              - 'Update Customer': api/orders/update_customer.md
-              - 'Update Note': api/orders/update_note.md
-              - 'Update State': api/orders/update_state.md
-          - 'Admins':
-              - 'List': api/admins/list.md
-              - 'Get by ID': api/admins/item.md
-              - 'Create': api/admins/create.md
-              - 'Update': api/admins/update.md
-              - 'Delete': api/admins/delete.md
-          - 'Messages':
-              - 'List': api/messages/list.md
-              - 'Get by ID': api/messages/item.md
-              - 'Create': api/messages/create.md
-              - 'Update': api/messages/update.md
-          - 'Uploads':
-              - 'Get File': api/uploads/file_get.md
-              - 'Upload File': api/uploads/file_upload.md
-              - 'Delete File': api/uploads/file_delete.md
-          - 'Common':
-              - 'Errors': api/common/errors.md
-      - 'Dokka': dokka/shop/server/api/index.html
-  - 'Server CLI':
-      - 'About': cli/index.md
-      - 'Dokka': dokka/shop/server/cli/index.html
-  - 'Android':
-      - 'About': android/index.md
-      - 'Dokka': dokka/shop/mobile/android/index.html
-  - 'iOS':
-      - 'About': ios/index.md
-  - 'Package Shared':
-      - 'About': shared/index.md
-      - 'Dokka': dokka/shared/index.html
+  - Home:
+      - index.md
+  - Web:
+      - Overview:
+          - web/index.md
+      - Applications:
+          - Website:
+              - About: web/website/about.md
+              - Libraries: web/website/libraries.md
+          - Admin Panel:
+              - About: web/admin-panel/about.md
+              - Libraries: web/admin-panel/libraries.md
+      - Links:
+          - Go to Website: https://май-шоп.рф/
+          - Go to Admin Panel: https://shop-admin.keygenqt.com/
+  - Server:
+      - Overview:
+          - server/index.md
+      - Applications:
+          - API:
+              - About: server/api/about.md
+              - Libraries: server/api/libraries.md
+              - Dokka: dokka/shop/server/api/index.html
+              - Methods:
+                - Errors: server/api/methods/common_errors.md
+                - Login: server/api/methods/login.md
+                - Logout: server/api/methods/logout.md
+                - Admins:
+                  - Admin Create: server/api/methods/admins_create.md
+                  - Admin Update: server/api/methods/admins_update.md
+                  - Admin Delete: server/api/methods/admins_delete.md
+                  - Admin Item: server/api/methods/admins_item.md
+                  - Admin List: server/api/methods/admins_list.md
+                - Categories:
+                  - Category Create: server/api/methods/categories_create.md
+                  - Category Update: server/api/methods/categories_update.md
+                  - Category Update State: server/api/methods/categories_update_state.md
+                  - Category Item: server/api/methods/categories_item.md
+                  - Category List: server/api/methods/categories_list.md
+                  - Category Public List: server/api/methods/categories_list_published.md
+                - Collections:
+                  - Collection Create: server/api/methods/collections_create.md
+                  - Collection Update: server/api/methods/collections_update.md
+                  - Collection Update State: server/api/methods/collections_update_state.md
+                  - Collection Item: server/api/methods/collections_item.md
+                  - Collection List: server/api/methods/collections_list.md
+                  - Collection Public List: server/api/methods/collections_list_published.md
+                - Dashboard:
+                  - Dashboard Chart: server/api/methods/dashboard_chart.md
+                  - Dashboard Made Orders: server/api/methods/dashboard_made_orders.md
+                  - Dashboard Orders Completed: server/api/methods/dashboard_orders_completed.md
+                  - Dashboard Bestseller: server/api/methods/dashboard_seller.md
+                  - Dashboard Total Earnings: server/api/methods/dashboard_total_earnings.md
+                - Files:
+                  - File Delete: server/api/methods/file_delete.md
+                  - File Get: server/api/methods/file_get.md
+                  - File Upload: server/api/methods/file_upload.md
+                - Help Messages:
+                  - Message Create: server/api/methods/messages_create.md
+                  - Message Update: server/api/methods/messages_update.md
+                  - Message Item: server/api/methods/messages_item.md
+                  - Message List: server/api/methods/messages_list.md
+                - Orders:
+                  - Orders NEW: server/api/methods/orders_list_new.md
+                  - Orders PENDING: server/api/methods/orders_list_pending.md
+                  - Orders COMPLETED: server/api/methods/orders_list_completed.md
+                  - Orders CANCELED: server/api/methods/orders_list_canceled.md
+                  - Order Item by ID: server/api/methods/orders_item.md
+                  - Order Item by Number: server/api/methods/orders_find_by_number.md
+                  - Order Create: server/api/methods/orders_create.md
+                  - Order Update Customer: server/api/methods/orders_update_customer.md
+                  - Order Update Note: server/api/methods/orders_update_note.md
+                  - Order Update State: server/api/methods/orders_update_state.md
+                - Products:
+                  - Product List: server/api/methods/products_list.md
+                  - Product List by IDs: server/api/methods/products_list_by_ids.md
+                  - Product Public List: server/api/methods/products_list_published.md
+                  - Product Purchased List: server/api/methods/products_list_purchased.md
+                  - Product Item: server/api/methods/products_item.md
+                  - Product Create: server/api/methods/products_create.md
+                  - Product Update: server/api/methods/products_update.md
+                  - Product Update State: server/api/methods/products_update_state.md
+                  - Product Count: server/api/methods/products_count.md
+                  - Product Prices: server/api/methods/products_prices.md
+          - CLI:
+              - About: server/cli/about.md
+              - Libraries: server/cli/libraries.md
+              - Dokka: dokka/shop/server/cli/index.html
+      - Links:
+          - Go to API: https://shop-api.keygenqt.com/
+  - Mobile:
+      - Overview:
+          - mobile/index.md
+      - Applications:
+          - Android:
+              - About: mobile/android/about.md
+              - Libraries: mobile/android/libraries.md
+              - Dokka: dokka/shop/mobile/android/index.html
+          - Aurora:
+              - About: mobile/aurora/about.md
+              - Libraries: mobile/aurora/libraries.md
+          - iOS:
+              - About: mobile/ios/about.md
+              - Libraries: mobile/ios/libraries.md
+  - PC:
+      - Overview:
+          - pc/index.md
+      - Applications:
+          - Notificator:
+              - About: pc/gui/about.md
+              - Libraries: pc/gui/libraries.md
+          - Notificator CLI:
+              - About: pc/client/about.md
+              - Libraries: pc/client/libraries.md
+              - Dokka: dokka/shop/pc/client/index.html
+
+# Extensions
+markdown_extensions:
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+
+# Customization
+extra:
+    analytics:
+        provider: google
+        property: !ENV GOOGLE_ANALYTICS_KEY
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/keygenqt
+        - icon: fontawesome/brands/telegram
+          link: https://t.me/keygenqt
+        - icon: fontawesome/brands/linkedin
+          link: https://www.linkedin.com/in/vitaliy-zarubin-6a8257150/
+
+# Custom CSS
+extra_css:
+  - docs/assets/custom.css
 
 # Configuration
 theme:
-  name: 'material'
-  language: 'en'
-  palette:
-    primary: 'black'
-    accent: 'deep orange'
-  font:
-    text: 'Roboto'
-    code: 'JetBrains Mono'
+    name: 'material'
+    custom_dir: docs/assets
+    language: 'ru'
+    favicon: images/favicon.ico
+    icon:
+      logo: material/basket
+    features:
+      - content.action.edit
+      - content.code.annotate
+      - content.code.copy
+      - content.tooltips
+      - navigation.indexes
+      - navigation.sections
+      - navigation.tabs
+      - navigation.tabs.sticky
+      - navigation.top
+      - navigation.tracking
+      - search.highlight
+      - search.share
+      - search.suggest
+      - toc.follow
+      - navigation.prune
+      - toc.integrate
+    palette:
+        - scheme: default
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/brightness-7
+              name: Switch to dark mode
+        - scheme: slate
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/brightness-4
+              name: Switch to light mode
+    font:
+        text: Roboto
+        code: Roboto Mono

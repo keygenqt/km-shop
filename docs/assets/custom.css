@@ -1,0 +1,50 @@
+/** COMMON */
+.md-nav__list .md-nav__item label.md-nav__link {
+    display: none;
+}
+.md-nav__list .md-nav__item .md-nav label.md-nav__link {
+    display: inline-block;
+}
+
+.md-sidebar--primary .md-sidebar__inner {
+    margin-top: -13px;
+}
+
+.md-sidebar.md-sidebar--primary {
+    min-width: 320px;
+}
+.md-nav.md-nav--primary {
+    min-width: 300px;
+}
+
+.md-nav__list .md-nav__item .md-nav .md-nav label.md-nav__link[for="__toc"] {
+    display: none !important;
+}
+
+.md-nav__list .md-nav__item .md-nav .md-nav label.md-nav__link {
+    position: relative;
+    padding-left: 28px;
+    width: 100%;
+    display: inline-block;
+    background: #0000001c;
+    border-radius: 5px;
+    padding-top: 6px;
+    padding-bottom: 5px;
+}
+.md-nav__icon {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+/** INDEX */
+.icons-main img {
+    margin: 0 8px;
+    width: 50px
+}
+.icons-main img:first-child {
+    margin: 0 8px 0 0;
+}
+.icons-main img:last-child {
+    margin: 0 0 0 8px;
+}

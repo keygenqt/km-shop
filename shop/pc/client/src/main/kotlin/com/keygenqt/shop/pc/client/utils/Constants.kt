@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ object Constants {
      * Path cookie file
      */
     val PATH_COOKIE_FILE = System.getProperty("user.home") +
-            File.separator +
-            ".shop_client_cookie.json"
+        File.separator +
+        ".shop_client_cookie.json"
 
     /**
      * Secret cookie file

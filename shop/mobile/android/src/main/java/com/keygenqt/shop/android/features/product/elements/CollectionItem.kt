@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ fun CollectionItem(
                 colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
                 model = ImageRequest.Builder(LocalContext.current)
                     .decoderFactory(SvgDecoder.Factory())
-                    .data(AppHelper.getApiUrl("api/uploads/${icon}"))
+                    .data(AppHelper.getApiUrl("api/uploads/$icon"))
                     .crossfade(true)
                     .build(),
                 placeholder = painterResource(R.drawable.no_image),

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ object Helpers {
         // to
         // 2023-02-05T10:20:18.000Z
         val array = date.split(" ").subList(1, 5)
-        return "${array[2]}-${when(array[1]) {
+        return "${array[2]}-${when (array[1]) {
             "Jan" -> "01"
             "Feb" -> "02"
             "Mar" -> "03"

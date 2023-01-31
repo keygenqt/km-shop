@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Vitaliy Zarubin
+ * Copyright 2023 Vitaliy Zarubin
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,19 +47,21 @@ fun main(args: Array<String>) {
 
     // init koin
     startKoin {
-        modules(module {
-            // Logging app
-            single { logger }
-            // D-Bus connect
-            single { dbus }
-            // Client services
-            single {
-                ServiceRequest(
-                    apiUrl = if (IS_DEVELOPMENT) AppConstants.links.API_DEBUG_URL else AppConstants.links.API_URL,
-                    cookie = SessionCookieResponse.read()?.toCookie()
-                )
+        modules(
+            module {
+                // Logging app
+                single { logger }
+                // D-Bus connect
+                single { dbus }
+                // Client services
+                single {
+                    ServiceRequest(
+                        apiUrl = if (IS_DEVELOPMENT) AppConstants.links.API_DEBUG_URL else AppConstants.links.API_URL,
+                        cookie = SessionCookieResponse.read()?.toCookie()
+                    )
+                }
             }
-        })
+        )
     }
 
     // init app methods
