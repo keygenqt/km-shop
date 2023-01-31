@@ -34,7 +34,7 @@ fun Route.home() {
         val title = "API written in Ktor using multiplatform best practices"
         val text = "You can check out the method documentation on GitHub Pages"
         val button = "Documentation"
-        val footer = "This API is used on 5 platforms combined Kotlin Multiplatform"
+        val footer = "This API is used on 6 platforms combined Kotlin Multiplatform"
 
         call.respondHtml(HttpStatusCode.OK) {
             head {
@@ -100,6 +100,9 @@ fun Route.home() {
                                 }
                                 li {
                                     img("CLI", "/static/images/ic_cli.png")
+                                }
+                                li {
+                                    img("CLI", "/static/images/ic_pc.png")
                                 }
                             }
                         }
