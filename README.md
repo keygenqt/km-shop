@@ -1,7 +1,6 @@
 Shop 8 in 1 (Майшоп)
 ===================
 
-#### Version
 ![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta&style=for-the-badge)
 
 ![all-preview.png](data%2Fcommon%2Fall-preview.png)
@@ -18,9 +17,7 @@ Shop 8 in 1 (Майшоп)
     </a>
 </p>
 
-
-
-# License
+### License
 
 ```
 Copyright 2022-2023 Vitaliy Zarubin
