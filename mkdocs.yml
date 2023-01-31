@@ -3,6 +3,7 @@ site_name: Shop 8 in 1
 # Repository
 repo_name: 'keygenqt/km-shop'
 repo_url: 'https://github.com/keygenqt/km-shop'
+site_dir: 'km-shop'
 
 # Navigation
 nav:
@@ -145,7 +146,6 @@ extra:
 
 # Custom CSS
 extra_css:
-  - docs/assets/custom.css
   - /km-shop/custom.css
 
 # Configuration
