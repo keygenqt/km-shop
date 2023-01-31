@@ -1,18 +1,14 @@
 Logout
 ===================
 
-Clearing the login session
+Удаление cookie авторизации с сервера
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>DELETE</code>
-
-```
+```shell title="Method <span class='color-method'>DELETE</span>"
 /api/logout
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-<b>HTTP response status codes</b>
+Варианты ответа
 
-| Status code | Description    |
-|-------------|----------------|
-| 200         | OK             |
+| Status code                            | Description    |
+|----------------------------------------|----------------|
+| <span class='color-200'>200</span>     | OK             |

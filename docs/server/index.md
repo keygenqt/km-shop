@@ -1,7 +1,9 @@
 Server applications
 ===
 
-<img src="/km-shop/images/ic_cli.png" width="50px">
+<p class="icons-main">
+    <img src="/km-shop/images/ic_cli.png">
+</p>
 
 2 приложения.
 Приложение на [Ktor](https://ktor.io/) отвечает за API.

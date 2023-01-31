@@ -1,7 +1,9 @@
 Web applications
 ===
 
-<img src="/km-shop/images/ic_react.png" width="50px">
+<p class="icons-main">
+    <img src="/km-shop/images/ic_react.png">
+</p>
 
 2 приложения на React. 
 Это основной Website для клиентов и Admin-Panel для администраторов.

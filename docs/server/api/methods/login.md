@@ -1,19 +1,15 @@
 Login
 ===================
 
-User authorization method for admin panel
+Метод авторизации пользователя
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>POST</code>
-
-```
+```shell title="Method <span class='color-method'>POST</span>"
 /api/login
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f518.png"/> &nbsp;
-<b>Request</b>
+Request модель с валидацией
 
-```kotlin
+```kotlin title="Request model"
 private data class Request(
     @field:NotNullNotBlank
     @field:Email(message = "Must be a valid email")
@@ -25,23 +21,21 @@ private data class Request(
 )
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-<b>HTTP response status codes</b>
+Пример ответа
 
-| Status code | Description    |
-|-------------|----------------|
-| 200         | OK             |
-| 422         | Form validate  |
-| 400         | Bad Request    |
-| 500         | Internal Error |
-
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f197.png"/> &nbsp;
-<b>Status: 200</b>
-
-```json
+```json title="Response <span class='color-200'>200</span>"
 {
     "id": 1,
     "email": "admin@keygenqt.com",
     "role": "ADMIN"
 }
 ```
+
+Варианты ответа
+
+| Status code                            | Description    |
+|----------------------------------------|----------------|
+| <span class='color-200'>200</span>     | OK             |
+| <span class='color-error'>422</span>   | Form validate  |
+| <span class='color-error'>400</span>   | Bad Request    |
+| <span class='color-error'>500</span>   | Internal Error |

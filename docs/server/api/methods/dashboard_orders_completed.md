@@ -1,29 +1,26 @@
 Dashboard Orders Completed
 ===================
 
-Statistics on orders (completed status) this month
+Статистика по заказам (статус выполнен) за месяц
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>GET</code>
-
-```
+```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/orders-completed
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-<b>HTTP response status codes</b>
 
-| Status code | Description    |
-|-------------|----------------|
-| 200         | OK             |
-| 500         | Internal Error |
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f197.png"/> &nbsp;
-<b>Status: 200</b>
+Пример ответа
 
-```json
+```json title="Response <span class='color-200'>200</span>"
 {
     "count": 2,
     "percent": 100
 }
 ```
+
+Варианты ответа
+
+| Status code                          | Description    |
+|--------------------------------------|----------------|
+| <span class='color-200'>200</span>   | OK             |
+| <span class='color-error'>500</span> | Internal Error |

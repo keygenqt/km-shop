@@ -1,27 +1,17 @@
 Dashboard Bestseller
 ===================
 
-List of best orders
+Список лучших заказов
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>GET</code>
-
-```
+```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/seller
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-<b>HTTP response status codes</b>
 
-| Status code | Description    |
-|-------------|----------------|
-| 200         | OK             |
-| 500         | Internal Error |
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f197.png"/> &nbsp;
-<b>Status: 200</b>
+Пример ответа
 
-```json
+```json title="Response <span class='color-200'>200</span>"
 [
     {
         "id": 6,
@@ -68,3 +58,10 @@ Method: <code>GET</code>
     }
 ]
 ```
+
+Варианты ответа
+
+| Status code                          | Description    |
+|--------------------------------------|----------------|
+| <span class='color-200'>200</span>   | OK             |
+| <span class='color-error'>500</span> | Internal Error |

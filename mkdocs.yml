@@ -39,6 +39,12 @@ nav:
                 - Errors: server/api/methods/common_errors.md
                 - Login: server/api/methods/login.md
                 - Logout: server/api/methods/logout.md
+                - Dashboard:
+                    - Dashboard Chart: server/api/methods/dashboard_chart.md
+                    - Dashboard Made Orders: server/api/methods/dashboard_made_orders.md
+                    - Dashboard Orders Completed: server/api/methods/dashboard_orders_completed.md
+                    - Dashboard Bestseller: server/api/methods/dashboard_seller.md
+                    - Dashboard Total Earnings: server/api/methods/dashboard_total_earnings.md
                 - Admins:
                   - Admin Create: server/api/methods/admins_create.md
                   - Admin Update: server/api/methods/admins_update.md
@@ -59,12 +65,6 @@ nav:
                   - Collection Item: server/api/methods/collections_item.md
                   - Collection List: server/api/methods/collections_list.md
                   - Collection Public List: server/api/methods/collections_list_published.md
-                - Dashboard:
-                  - Dashboard Chart: server/api/methods/dashboard_chart.md
-                  - Dashboard Made Orders: server/api/methods/dashboard_made_orders.md
-                  - Dashboard Orders Completed: server/api/methods/dashboard_orders_completed.md
-                  - Dashboard Bestseller: server/api/methods/dashboard_seller.md
-                  - Dashboard Total Earnings: server/api/methods/dashboard_total_earnings.md
                 - Files:
                   - File Delete: server/api/methods/file_delete.md
                   - File Get: server/api/methods/file_get.md
@@ -128,6 +128,8 @@ nav:
               - Libraries: pc/client/libraries.md
               - Dokka: /km-shop/dokka/shop/server/client/
 
+
+
 # Extensions
 markdown_extensions:
     - pymdownx.highlight:
@@ -135,6 +137,15 @@ markdown_extensions:
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - tables
+    - attr_list
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+
 
 # Customization
 extra:

@@ -1,73 +1,44 @@
-Errors common
+Ошибки
 ===================
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-HTTP errors status codes
+Примеры ответов
 
-| Status code | Description          |
-|-------------|----------------------|
-| 405         | Method Not Allowed   |
-| 400         | Bad Request          |
-| 401         | Unauthorized         |
-| 403         | Forbidden            |
-| 404         | NotFound             |
-| 422         | Form validate        |
-| 500         | Internal Error       |
-
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 405</b>
-
-```json
+```json title="Error <span class='color-error'>405</span>"
 {
     "code": 405,
     "message": "Method Not Allowed"
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 400</b>
-
-```json
+```json title="Error <span class='color-error'>400</span>"
 {
     "code": 400,
     "message": "Bad Request"
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 401</b>
-
-```json
+```json title="Error <span class='color-error'>401</span>"
 {
     "code": 401,
     "message": "Unauthorized"
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 403</b>
-
-```json
+```json title="Error <span class='color-error'>403</span>"
 {
     "code": 403,
     "message": "Forbidden"
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 404</b>
-
-```json
+```json title="Error <span class='color-error'>404</span>"
 {
     "code": 404,
     "message": "NotFound"
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 422</b>
-
-```json
+```json title="Error <span class='color-error'>422</span>"
 {
     "code": 422,
     "message": "Unprocessable Entity",
@@ -82,12 +53,21 @@ HTTP errors status codes
 }
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f534.png"/> &nbsp;
-<b>Status: 500</b>
-
-```json
+```json title="Error <span class='color-error'>500</span>"
 {
     "code": 500,
     "message": "Internal Error"
 }
 ```
+
+Варианты ответа
+
+| Status code                          | Description          |
+|--------------------------------------|----------------------|
+| <span class='color-error'>405</span> | Method Not Allowed   |
+| <span class='color-error'>400</span> | Bad Request          |
+| <span class='color-error'>401</span> | Unauthorized         |
+| <span class='color-error'>403</span> | Forbidden            |
+| <span class='color-error'>404</span> | NotFound             |
+| <span class='color-error'>422</span> | Form validate        |
+| <span class='color-error'>500</span> | Internal Error       |
