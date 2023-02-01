@@ -20,7 +20,7 @@ Mobile applications
 Просто выбираем проект, Android Studio все подхватит и настроит сама.
 Для работы приложения нужен запущенный предварительно API.
 
-#### Сборку можно посмотреть на YouTube
+#### Процесс сборки можно посмотреть на YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=637">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
@@ -35,7 +35,7 @@ Mobile applications
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.33.54.png">
 </div>
 
-#### Сборку можно посмотреть на YouTube
+#### Процесс сборки можно посмотреть на YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=709">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
@@ -60,7 +60,7 @@ KM на авроре работает через JS.
     И работать уже спокойно в Aurora IDE.
     Но это другая история.
 
-#### Сборку можно посмотреть на YouTube
+#### Процесс сборки можно посмотреть на YouTube
 
 <a target="_blank" href="https://youtu.be/MgwiskFeR8E">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">

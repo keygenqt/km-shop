@@ -48,7 +48,7 @@ find ../ -maxdepth 1 -type f -name "*.tgz" -delete && mv ../../../shared/build/p
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.22.13.png">
 </div>
 
-#### Сборку можно посмотреть на YouTube
+#### Процесс сборки можно посмотреть на YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=294">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">

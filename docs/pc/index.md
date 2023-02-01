@@ -25,7 +25,6 @@ PC application
 
 ### <a id='overview-app' href='#overview-app'><span class='icon-line'><img src="/km-shop/images/ic_pc.png"></span></a> Нюансы сборки App
 
-
 Сборка приложения Qt осуществляется в Qt Creator.
 Ничего особого нет за исключением того что нужна запущенная копия client приложения.
 Между собой они общаются по D-Bus.
