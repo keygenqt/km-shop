@@ -7,8 +7,6 @@ Dashboard Orders Completed
 /api/dashboard/orders-completed
 ```
 
-
-
 Пример ответа
 
 ```json title="Response <span class='color-200'>200</span>"

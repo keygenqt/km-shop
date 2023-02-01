@@ -7,8 +7,6 @@ Dashboard Bestseller
 /api/dashboard/seller
 ```
 
-
-
 Пример ответа
 
 ```json title="Response <span class='color-200'>200</span>"

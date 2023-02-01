@@ -7,8 +7,6 @@ Dashboard Chart
 /api/dashboard/chart
 ```
 
-
-
 Пример ответа
 
 ```json title="Response <span class='color-200'>200</span>"

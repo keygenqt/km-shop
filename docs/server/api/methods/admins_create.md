@@ -1,17 +1,15 @@
 Admin Create
 ===================
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/1f536.png"/> &nbsp;
-Method: <code>POST</code>
+Добавить администратора
 
-```
+```shell title="Method <span class='color-method'>POST</span>"
 /api/admins
 ```
 
-<img style="height: 13px;" src="https://github.githubassets.com/images/icons/emoji/unicode/26ab.png"/> &nbsp;
-<b>HTTP response status codes</b>
+Варианты ответа
 
-| Status code | Description    |
-|-------------|----------------|
-| 200         | OK             |
-| 500         | Internal Error |
+| Status code                          | Description    |
+|--------------------------------------|----------------|
+| <span class='color-200'>200</span>   | OK             |
+| <span class='color-error'>500</span> | Internal Error |

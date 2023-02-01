@@ -7,8 +7,6 @@ Dashboard Made Orders
 /api/dashboard/made-orders
 ```
 
-
-
 Пример ответа
 
 ```json title="Response <span class='color-200'>200</span>"
