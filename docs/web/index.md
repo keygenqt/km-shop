@@ -10,7 +10,7 @@ Web applications
 Это чистый React с модулем Kotlin Multiplatform на JS, который подключается к проекту и помогает писать меньше кода.
 Тесть вы работаете с сайтами как с обычным проектом на React, с нюансом в виде KM модуля которые подключается в `package.json`.
 
-### Нюансы сборки
+### <span class='icon-line'><img src="/km-shop/images/ic_react.png"></span> Нюансы сборки
 
 `package.json` я заменил на `package.conf`. 
 Это позволяет разбить файл на несколько и описать зависимости.
@@ -45,10 +45,10 @@ find ../ -maxdepth 1 -type f -name "*.tgz" -delete && mv ../../../shared/build/p
 И чтобы собрать KM модуль при запуске, добавьте 2 команды *Gradle*: **clean** и **packJsPackage**
 
 <div class="PrettyImage">
-    <img src="/km-shop/images/web/Screenshot_2022-12-30_at_04.22.13.png">
+    <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.22.13.png">
 </div>
 
-Сборку можно посмотреть на YouTube
+#### Сборку можно посмотреть на YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=294">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
