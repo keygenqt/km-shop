@@ -10,7 +10,8 @@ Server applications
 Приложение на [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli) помогает API, делает backup-ы, чистит устаревшие картинки и тд.
 К ним обоим подключен модуль Kotlin Multiplatform, который связывает их, дает доступ к базе данных и остальным фичам.
 
-### <span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span> Нюансы сборки API
+### <a id='overview-api' href='#overview-api'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Нюансы сборки API
+
 
 Обычное приложение на Ktor. 
 Исключение составляет общий модуль KM. 
@@ -49,13 +50,13 @@ mv dbconfig.properties dbconfig.properties
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
 </a>
 
-### <span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span> Нюансы сборки CLI
+### <a id='overview-cli' href='#overview-cli'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Нюансы сборки CLI
 
 Обычное JVM-приложение. 
 Его задача выполнять различные полезные действия, например делать бекап, по командам *crone*.
 Заходим в shop -> server -> cli ... Main.kt. 
 Запустим приложение.
-Не забудьте добавить в сборку artifact jvm.
+Не забудьте добавить в сборку artifact shared-jvm.
 
 <div class="PrettyImage">
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.34.13.png">

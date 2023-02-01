@@ -10,7 +10,7 @@ Web applications
 Это чистый React с модулем Kotlin Multiplatform на JS, который подключается к проекту и помогает писать меньше кода.
 Тесть вы работаете с сайтами как с обычным проектом на React, с нюансом в виде KM модуля которые подключается в `package.json`.
 
-### <span class='icon-line'><img src="/km-shop/images/ic_react.png"></span> Нюансы сборки
+### <a id='overview-react' href='#overview-react'><span class='icon-line'><img src="/km-shop/images/ic_react.png"></span></a> Нюансы сборки
 
 `package.json` я заменил на `package.conf`. 
 Это позволяет разбить файл на несколько и описать зависимости.

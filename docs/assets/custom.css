@@ -1,4 +1,7 @@
 /** COMMON */
+a {
+    outline: none !important;
+}
 .md-nav__list .md-nav__item label.md-nav__link {
     display: none;
 }
