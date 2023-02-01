@@ -32,7 +32,7 @@ fun Route.home() {
         val name = "Shop API"
         val subtitle = "API for Shop 8 in 1"
         val title = "API written in Ktor using multiplatform best practices"
-        val text = "You can check out the method documentation on GitHub Pages"
+        val text = "You can learn more about the API in the project documentation"
         val button = "Documentation"
         val footer = "This API is used on 6 platforms combined Kotlin Multiplatform"
 
@@ -67,7 +67,7 @@ fun Route.home() {
                                         +text
                                     }
                                     a(
-                                        href = "https://keygenqt.github.io/km-shop/api/",
+                                        href = "https://keygenqt.github.io/km-shop/",
                                         classes = "Btn"
                                     ) {
                                         target = "_blank"
