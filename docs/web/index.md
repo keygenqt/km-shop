@@ -42,7 +42,7 @@ npm install "$SHARED"
 find ../ -maxdepth 1 -type f -name "*.tgz" -delete && mv ../../../shared/build/packages/shared* ../ && ./install.sh && npm run start
 ```
 
-И чтобы собрать *общий модуль* при запуске, добавьте 2 команды *Gradle*: **clean** и **packJsPackage**
+И чтобы собрать KM модуль при запуске, добавьте 2 команды *Gradle*: **clean** и **packJsPackage**
 
 <div class="PrettyImage">
     <img src="/km-shop/images/web/Screenshot_2022-12-30_at_04.22.13.png">
