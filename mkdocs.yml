@@ -126,7 +126,7 @@ nav:
           - Notificator CLI:
               - About: pc/client/about.md
               - Libraries: pc/client/libraries.md
-              - Dokka: /km-shop/dokka/shop/server/client/
+              - Dokka: /km-shop/dokka/shop/pc/client/
 
 
 
