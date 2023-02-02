@@ -1,30 +1,61 @@
 Admin Panel
 ===
 
-Store admin panel. The main place to manage content and user interactions.
+Адин-панель для администраторов сайта. 
+Здесь можно получить информацию по заказам, сообщениям с сайта.
+Добавить/удалить администраторов (сделать это может только админ с ролью *Admin*, есть разделение по ролям).
+Имеется Dashboard c статистикой.
+Можно добавить/отключить Категории, Коллекции, Продукты.
 
-**Link**: [https://shop-admin.keygenqt.com/](https://shop-admin.keygenqt.com/)
+<div class="PrettyImage">
+    <img src="/km-shop/animations/admin-panel.gif">
+</div>
 
-### Features
+Линка на адин-панель: <a target="_blank" href="https://shop-admin.keygenqt.com">https://shop-admin.keygenqt.com</a>
 
-* [Dashboard](/km-shop/backend/dashboard/)
-* [Categories](/km-shop/backend/categories/)
-* [Products](/km-shop/backend/products/)
-* [Orders](/km-shop/backend/orders/)
-* [Managers](/km-shop/backend/managers/)
-* [Help Desc](/km-shop/backend/help/)
+!!! warning "Авторизация"
 
-### Contains
+    Для входа потребуется авторизация, свободного входа нет.
 
-* Role division
-* Session authorization
-* Missing reboot
-* HOCON configuration
-* Kotlin multiplatform module
-* Validation on the client and error handling from the server
-* MUI Components and Theme
-* Charts on ApexCharts.js
-* Cache local storage with lz-string
-* Uploading files using react-dropzone
-* Mobile device support
-* And much more
+#### Dashboard
+
+Это главная страница админки. 
+Здесь можно увидеть информацию по сделанным заказам, самым покупаемым товаром.
+Сумма (денег) завершенных заказов за текущий месяц.
+График распределение заказов по месяцам.
+
+#### Shop
+
+Этот раздел отвечает за магазин. 
+Здесь можно добавить/редактировать товары, категории, коллекции. 
+Отключить их видимость для сайта.
+Продукт может иметь одну категорию и много коллекций. 
+Это позволяет гибко фильтровать товары на сайте.
+Категория имеет обязательную картинку, в то время как в коллекции картинки нет там используется иконки материал - можно выбрать из [списка](https://mui.com/material-ui/material-icons/) иконок без нужны бегать в поисках красивой картинки.
+
+#### Orders
+
+Раздел отвечающий за заказы.
+Заказы здесь разделены по статусам.
+
+* New - новый не обработанный заказ
+* Pending - заказ принят в работу
+* Completed - выполненные заказы
+* Canceled - отмененные заказы
+
+Продукты в заказе, цены, менять нельзя. 
+Если заказ сделан - цена фиксирована. 
+Поменять можно статус, указать примечание которое будет видно пользователю. 
+Подправить контактные данные пользователя сделавшего заказ. 
+
+#### Managers
+
+Администратор с ролью *Admin* может удалить/добавить новый аккаунт в админке. 
+Поменять роль.
+Всего ролей две: *Admin* и *Manager*. 
+Разница их в управлении доступами к админки.
+
+#### Help Desk
+
+Сюда попадают сообщения сделанные в магазине.
+Можно просмотреть сообщение и отметить как решенное.

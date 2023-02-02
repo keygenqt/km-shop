@@ -65,13 +65,52 @@ a {
 }
 
 /* images */
-.PrettyImage img {
-    border-radius: 5px;
-    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 5%), 0 5px 8px 0 rgb(0 0 0 / 5%), 0 1px 14px 0 rgb(0 0 0 / 5%);
-    margin-bottom: 10px;
-    margin-top: 10px;
-    width: 100%;
+.PrettyImage {
+    max-width: 100%;
+    box-shadow: 0 3px 5px -1px rgb(0 0 0 / 15%), 0 5px 8px 0 rgb(0 0 0 / 5%), 0 1px 14px 0 rgb(0 0 0 / 5%);
+    background: #161c1e;
+    box-sizing: border-box;
+    border-radius: 15px 15px 10px 10px;
+    position: relative;
+    border-top: 36px solid #E4E9EF;
+    overflow: inherit;
+    padding: 0;
 }
+
+.PrettyImage {
+    padding: 4px 3px 0 3px;
+    background-color: #7b8183;
+}
+
+.PrettyImage img {
+    margin-bottom: -6px;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.PrettyImage:before {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: -22px;
+    width: 10px;
+    height: 10px;
+    background-color: #48CB6E;
+    border-radius: 50%;
+}
+
+.PrettyImage:after {
+    content: "";
+    position: absolute;
+    right: 38px;
+    top: -22px;
+    width: 10px;
+    height: 10px;
+    background-color: #FBBC5B;
+    border-radius: 50%;
+}
+
 
 @media (min-width: 1220px) {
     .md-sidebar.md-sidebar--primary {

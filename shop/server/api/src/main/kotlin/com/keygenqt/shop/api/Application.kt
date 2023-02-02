@@ -62,6 +62,7 @@ fun Application.module() {
 
         // init koin
         startKoin {
+
             printLogger()
             modules(
                 koinModule {
