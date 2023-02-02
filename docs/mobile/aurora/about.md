@@ -6,6 +6,7 @@ The functionality corresponds to the application [Website](/km-shop/web/website/
 Plus, the feature of the history of made orders and the history of order search has been added.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <div class="PrettyImagesList">
         <img src="/km-shop/images/aurora/aurora_l.png" style="width: 33.4%;"/>
         <img src="/km-shop/images/aurora/aurora_d.png" style="width: 33.4%;"/>

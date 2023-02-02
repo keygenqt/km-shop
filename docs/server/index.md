@@ -40,6 +40,7 @@ Then we go to the build configuration and add the *shared module* artifact that 
 Now everyone can run it - everything should work.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_05.05.55.png">
 </div>
 
@@ -58,6 +59,7 @@ Let's start the application.
 Don't forget to add the artifact shared-jvm to the build.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.34.13.png">
 </div>
 

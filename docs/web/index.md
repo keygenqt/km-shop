@@ -45,6 +45,7 @@ find ../ -maxdepth 1 -type f -name "*.tgz" -delete && mv ../../../shared/build/p
 And to build the KM module on startup, add 2 *Gradle* commands: **clean** and **packJsPackage**
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.22.13.png">
 </div>
 

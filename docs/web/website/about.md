@@ -9,6 +9,7 @@ Product page, product list with filter and sort for search.
 Cart page and quick display of the cart in the header.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/animations/website.gif">
 </div>
 

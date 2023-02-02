@@ -88,6 +88,7 @@ a {
     width: 100%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-top: -50px;
 }
 
 .PrettyImage:before {
@@ -131,6 +132,13 @@ a {
 
 .PrettyImage .PrettyImagesList img:last-child {
     border-bottom-right-radius: 10px;
+}
+
+.PrettyImage .PrettyImageLoading{
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
 }
 
 @media (min-width: 1220px) {

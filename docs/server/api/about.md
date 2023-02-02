@@ -8,6 +8,7 @@ Android, Aurora OS, iOS, Website, Admin-Panel, PC Notificator.
 The API also uses the Kotlin Multiplatform module.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/images/api-preview.png">
 </div>
 

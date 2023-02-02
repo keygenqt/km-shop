@@ -8,6 +8,7 @@ There is a Dashboard with statistics.
 You can add/disable Categories, Collections, Products.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/animations/admin-panel.gif">
 </div>
 

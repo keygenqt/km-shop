@@ -32,6 +32,7 @@ Select the Shop.xcworkspace file in the options (shop -> mobile -> ios -> Shop.x
 Choose from the list below a Shop, a target, and you can start building.
 
 <div class="PrettyImage">
+    <div class="PrettyImageLoading">Loading...</div>
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.33.54.png">
 </div>
 
