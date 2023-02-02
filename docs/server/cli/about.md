@@ -5,7 +5,7 @@ CLI The application to which the Kotlin Multiplatform module is connected.
 Able to make backups, clean up unnecessary, update user passwords before launching the application API.
 It will conveniently run with *cron* to perform routine server maintenance work.
 
-```shell title="Help app"
+```shell title="Help"
 Usage: Shop CLI options_list
 Subcommands: 
     backup - Backup data (default db) { db, files }

@@ -4,7 +4,7 @@ Notificator CLI
 The application is primarily designed to work with the GUI.
 But it can also work independently as a CLI application.
 
-```shell title="Help app"
+```shell title="Help"
 Usage: Shop client CLI options_list
 Subcommands: 
     auth - User authorization
