@@ -58,3 +58,9 @@ Website
 
 Здесь можно задать вопрос администратору сайта.
 Посмотреть контактную информацию по магазину.
+
+### Go To YouTube
+
+<a target="_blank" href="https://youtu.be/sHN1-LRDH64">
+    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+</a>

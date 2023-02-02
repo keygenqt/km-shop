@@ -59,3 +59,9 @@ Admin Panel
 
 Сюда попадают сообщения сделанные в магазине.
 Можно просмотреть сообщение и отметить как решенное.
+
+### Go To YouTube
+
+<a target="_blank" href="https://youtu.be/8jI0T45MMoQ">
+    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+</a>

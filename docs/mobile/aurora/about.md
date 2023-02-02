@@ -37,3 +37,9 @@ Aurora application
 * Paging
 * Combine image with Image
 * And more...
+
+### Go To YouTube
+
+<a target="_blank" href="https://youtu.be/RgXQr-cpMiQ">
+    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+</a>

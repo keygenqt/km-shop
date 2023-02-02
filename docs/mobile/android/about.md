@@ -39,3 +39,9 @@
 * Custom logging ktor
 * Lottie animation
 * And more...
+
+### Go To YouTube
+
+<a target="_blank" href="https://youtu.be/0zEC6xX8T-c">
+    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+</a>
