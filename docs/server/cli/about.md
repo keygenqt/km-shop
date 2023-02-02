@@ -1,7 +1,11 @@
 CLI application
 ===
 
-```bash
+CLI Приложение к которому подключен модуль Kotlin Multiplatform. 
+Умеет делать бекапы, чистить лишнее, обновлять пароли пользователя до запуска API приложения.
+Удобно запустит с *cron* что бы выполнять рутинную работу по поддержке сервера.
+
+```shell title="Help app"
 Usage: Shop CLI options_list
 Subcommands: 
     backup - Backup data (default db) { db, files }
@@ -13,7 +17,7 @@ Options:
     --help, -h -> Usage info 
 ```
 
-### Features
+#### Features
 
 * Backup db
 * Backup uploads
@@ -21,7 +25,7 @@ Options:
 * Cleaning files without relations in db
 * Update password users
 
-### Commands
+#### Commands
 
 ```bash
 ## Cleaning files without relations in db

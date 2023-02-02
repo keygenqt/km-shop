@@ -13,7 +13,7 @@ API так же использует модуль Kotlin Multiplatform.
 
 API доступно по ссылке: <a target="_blank" href="https://shop-api.keygenqt.com/">https://shop-api.keygenqt.com/</a>
 
-### Содержит
+#### Features
 
 * API REST
 * WebSocket
