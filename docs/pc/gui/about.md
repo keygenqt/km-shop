@@ -9,9 +9,11 @@ Now 2 notifications are available: a new order arrives, a message arrives from t
 The application works in tandem with the *client* application.
 
 <div style="max-width: 680px;">
-    <div class="PrettyImageLoading">Loading...</div>
     <div class="PrettyImage">
-        <img src="/km-shop/images/pc-preview.png">
+        <div class="PrettyImageLoading">Loading...</div>
+        <div class="PrettyImage">
+            <img src="/km-shop/images/pc-preview.png">
+        </div>
     </div>
 </div>
 
