@@ -1,12 +1,12 @@
 Notificator
 ===
 
-Приложение для PC. 
-Работа на Linux проверена. 
-Компоненты позволяют портировать это приложения и на другие доступные для JAVA & Qt OS.
-Приложение может авторизоваться на сервере и слушать сигналы по WebSocket.
-Сейчас доступно 2 уведомления: поступление нового заказа, поступление сообщения с Website.
-Работает приложение в паре с приложением *client*.
+Application for PC.
+Work on Linux tested.
+Components allow you to port this application to other JAVA & Qt OS available.
+An application can log in to the server and listen for signals via WebSocket.
+Now 2 notifications are available: a new order arrives, a message arrives from the Website.
+The application works in tandem with the *client* application.
 
 <div style="max-width: 680px;">
     <div class="PrettyImage">

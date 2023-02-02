@@ -1,13 +1,13 @@
 Collection Public List
 ===================
 
-Получить список опубликованных коллекций
+Get a list of published collections
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/collections/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

@@ -1,13 +1,13 @@
 Order List CANCELED
 ===================
 
-Получить список заказов со статусом CANCELED
+Get a list of orders with CANCELED status
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/canceled
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

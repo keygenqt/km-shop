@@ -1,13 +1,13 @@
 Product Item
 ===================
 
-Получить продукт
+Get product
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

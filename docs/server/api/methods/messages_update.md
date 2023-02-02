@@ -1,13 +1,13 @@
 Message Update
 ===================
 
-Обновить данные сообщения
+Update message data
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/messages/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

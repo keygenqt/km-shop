@@ -1,13 +1,13 @@
 Order Update State
 ===================
 
-Обновить статус заказа
+Update order status
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/orders/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

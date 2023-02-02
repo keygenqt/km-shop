@@ -1,13 +1,13 @@
 File Upload
 ===================
 
-Загрузить файл на сервер
+Upload file to server
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/uploads
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -19,7 +19,7 @@ File Upload
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

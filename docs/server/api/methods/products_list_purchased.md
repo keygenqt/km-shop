@@ -1,13 +1,13 @@
 Product Purchased List
 ===================
 
-Получить список рекомендованных продуктов
+Get a list of recommended products
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/purchased/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

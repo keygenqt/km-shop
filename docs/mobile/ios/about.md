@@ -1,9 +1,9 @@
 iOS application
 ===
 
-Нативное приложение iOS использующие [swiftUI](https://developer.apple.com/xcode/swiftui/) и общий модуль Kotlin Multiplatform.
-Функционал соответствует приложению [Website](/km-shop/web/website/about/).
-Плюс добавлена фича истории сделанных заказов и история поиска заказов.
+A native iOS app using [swiftUI](https://developer.apple.com/xcode/swiftui/) and the common Kotlin Multiplatform module.
+The functionality corresponds to the application [Website](/km-shop/web/website/about/).
+Plus, the feature of the history of made orders and the history of order search has been added.
 
 <div class="PrettyImage">
     <div class="PrettyImagesList">

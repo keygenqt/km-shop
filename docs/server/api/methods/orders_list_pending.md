@@ -1,13 +1,13 @@
 Order List PENDING
 ===================
 
-Получить список заказов со статусом PENDING
+Get a list of orders with status PENDING
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/pending
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

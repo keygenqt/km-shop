@@ -1,13 +1,13 @@
 Logout
 ===================
 
-Удаление cookie авторизации с сервера
+Removing an authorization cookie from the server
 
 ```shell title="Method <span class='color-method'>DELETE</span>"
 /api/logout
 ```
 
-Варианты ответа
+Response options
 
 | Status code                            | Description    |
 |----------------------------------------|----------------|

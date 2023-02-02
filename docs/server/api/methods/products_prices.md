@@ -1,13 +1,13 @@
 Product Prices
 ===================
 
-Получить ценовой диапазон продуктов с фильтром
+Get product price range with filter
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/prices
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

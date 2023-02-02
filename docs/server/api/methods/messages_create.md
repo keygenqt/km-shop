@@ -1,13 +1,13 @@
 Message Create
 ===================
 
-Добавить сообщение
+Add message
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/messages/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

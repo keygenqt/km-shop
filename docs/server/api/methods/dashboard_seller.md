@@ -1,13 +1,13 @@
 Dashboard Bestseller
 ===================
 
-Список лучших заказов
+List of best orders
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/seller
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 [
@@ -57,7 +57,7 @@ Dashboard Bestseller
 ]
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

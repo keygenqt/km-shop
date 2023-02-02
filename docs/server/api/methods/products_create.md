@@ -1,13 +1,13 @@
 Product Create
 ===================
 
-Добавить продукт
+Add product
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/products
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

@@ -1,13 +1,13 @@
 Product List by IDs
 ===================
 
-Получить список продуктов по конкретным IDs
+Get a list of products by specific IDs
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/published/by-ids
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

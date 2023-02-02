@@ -1,13 +1,13 @@
 Collection Create
 ===================
 
-Добавить коллекцию
+Add collection
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/collections/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

@@ -1,13 +1,13 @@
 File Get
 ===================
 
-Получить файл по имени / получить значок материала svg по имени
+Get file by name / get svg material icon by name
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/uploads/{name}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description        |
 |--------------------------------------|--------------------|

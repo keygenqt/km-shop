@@ -6,34 +6,34 @@ PC application
     <img src="/km-shop/images/ic_pc.png">
 </p>
 
-На самом деле приложения 2. 
-Одно работает как CLI приложение (client). 
-Второе приложение имеет GUI и написано на [Qt](https://www.qt.io/) (app).
-Взаимодействие их осуществляется через [D-Bus](https://www.freedesktop.org/wiki/Software/dbus/).
-Использование CLI приложения возможно, но не очень удобно. Так что можно считать их единым целым.
-К приложению client подключен модуль Kotlin Multiplatform которые дает все фичи доступные в нем.
-Приложение app зависит от него и всю логику по работе с WebSocket и остальные запросы выполняет client отправляя сигналы по D-Bus.
+Actually 2 apps.
+One works as a CLI application (client).
+The second application has a GUI and is written in [Qt](https://www.qt.io/) (app).
+They communicate via [D-Bus](https://www.freedesktop.org/wiki/Software/dbus/).
+Using the CLI application is possible, but not very convenient. So you can consider them as one.
+The Kotlin Multiplatform module is connected to the client application, which provides all the features available in it.
+The app application depends on it, and all the logic for working with WebSocket and other requests is performed by the client by sending signals via D-Bus.
 
-### <a id='overview-client' href='#overview-client'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Нюансы сборки Client
+### <a id='overview-client' href='#overview-client'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Build Client
 
-Сборка клиента стандартна для JVM приложения.
-Заходим в shop -> pc -> client ... Main.kt.
-Запустим приложение.
-Не забудьте добавить в сборку artifact shared-jvm.
-После сборки в build -> libs у вас будет собран fat-jar `shop-pc-client.jar`. 
-Который можно использовать как CLI, так и запускать GUI приложение которое от него зависит.
+The client assembly is standard for the JVM application.
+Go to shop -> pc -> client ... Main.kt.
+Let's start the application.
+Don't forget to add the artifact shared-jvm to the build.
+After building in build -> libs you will have fat-jar `shop-pc-client.jar` built.
+Which can be used as a CLI, and run a GUI application that depends on it.
 
-### <a id='overview-app' href='#overview-app'><span class='icon-line'><img src="/km-shop/images/ic_pc.png"></span></a> Нюансы сборки App
+### <a id='overview-app' href='#overview-app'><span class='icon-line'><img src="/km-shop/images/ic_pc.png"></span></a> Build App
 
-Сборка приложения Qt осуществляется в Qt Creator.
-Ничего особого нет за исключением того что нужна запущенная копия client приложения.
-Между собой они общаются по D-Bus.
+Building a Qt application is done in Qt Creator.
+There is nothing special except that you need a running copy of the client application.
+They communicate with each other via D-Bus.
 
-!!! warning "Доставка приложения"
+!!! warning "Application Delivery"
 
-    Приложение протестировано на Linux, хотя компоненты позволяют его использовать на всех доступных платформах для Qt & Java.
-    Компоненты 1-го приложения сейчас находятся в 2-х приложениях, требуется сборка этих компонентов воедино для конкретной платформы.
-    Как варианта сборка deb пакета или flatpak || snap.
-
-    Задачу по доставке перед собой не ставил.
-    Путь запуска из `app` приложение `client` - хардкод!
+    The application is tested on Linux, although the components allow it to be used on all available platforms for Qt & Java.
+    The components of the 1st application are now in 2 applications, it is required to assemble these components together for a specific platform.
+    As an option, build a deb package or flatpak || snap.
+    
+    I did not set myself the task of delivery.
+    Launch path from `app` application `client` is hardcoded!

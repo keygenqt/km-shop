@@ -1,13 +1,13 @@
 Category Create
 ===================
 
-Добавить категорию
+Add category
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/categories
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

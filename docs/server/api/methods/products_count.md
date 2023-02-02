@@ -1,13 +1,13 @@
 Product Count
 ===================
 
-Получить кол-во продуктов с фильтром
+Get number of products with filter
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/count
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

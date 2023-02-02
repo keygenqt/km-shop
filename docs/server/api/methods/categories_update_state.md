@@ -1,13 +1,13 @@
 Category Update State
 ===================
 
-Обновить данные вкл/выкл категории
+Refresh data on/off category
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/categories/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

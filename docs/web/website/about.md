@@ -1,63 +1,63 @@
 Website
 ===
 
-Сайт магазин со всем самым необходимым для заказа, его отслеживанием и общением клиент <-> администратор. 
-На сайте имеются Категории - продукт может иметь только одно категорию.
-Коллекции - продукт может иметь несколько коллекция одновременно.
-Страница заказа, на которую можно попасть по номеру заказа или сохранив ссылку после оформления.
-Страница продукта, список продуктов с фильтром и сортировкой для поиска.
-Страница корзины и быстрое отображение корзины в хедере.
+Shop website with everything you need for an order, its tracking and communication client <-> administrator.
+There are Categories on the site - a product can have only one category.
+Collections - a product can have several collections at the same time.
+Order page, which can be accessed by the order number or by saving the link after checkout.
+Product page, product list with filter and sort for search.
+Cart page and quick display of the cart in the header.
 
 <div class="PrettyImage">
     <img src="/km-shop/animations/website.gif">
 </div>
 
-Перейти и посмотреть можно по ссылке: <a target="_blank" href="https://shop.keygenqt.com">https://shop.keygenqt.com</a>
+You can go and watch at the link: <a target="_blank" href="https://shop.keygenqt.com">https://shop.keygenqt.com</a>
 
 #### Home
 
-Страница приветствия и основной информации по сайту. 
-Здесь расположена основная навигация.
-Информация по доставке.
-Быстрый фильтр товаров.
-Линки на мобильные приложения.
+Welcome page and basic information about the site.
+Here is the main navigation.
+Delivery information.
+Quick product filter.
+Links to mobile applications.
 
 #### Search order
 
-Здесь можно найти по номеру свой заказ. 
-При поиске пользователь будет переадресован на страницу заказа.
-На странице заказа он сможет посмотреть основную информацию по нему и ознакомиться со статусом.
+Here you can find your order number.
+When searching, the user will be redirected to the order page.
+On the order page, he will be able to view the basic information on it and get acquainted with the status.
 
 #### Exploring
 
-Каталог товаров с фильтром по категориям, коллекциям, ценам. 
-Сортировкой по ценам. 
-Здесь можно найти подходящий товар.
-Добавить товар в корзину.
-Удалить из корзины.
-Узнать основную информацию или перейти для более детального ознакомления на страницу товара.
+Catalog of goods with a filter by categories, collections, prices.
+Sorted by price.
+Here you can find the right product.
+Add item to cart.
+Remove from cart.
+Find out basic information or go to the product page for more detailed information.
 
 #### Page product
 
-Страница товара.
-Здесь можно посмотреть подробную информация о товаре.
-Ознакомится с фото товаров.
-Добавить товар в корзину.
-Удалить из корзины.
-Указать нужное количество товара для покупки.
-Посмотреть рекомендованные товары.
+Product page.
+Here you can see detailed information about the product.
+Get acquainted with the photo of the goods.
+Add item to cart.
+Remove from cart.
+Specify the desired quantity of goods to purchase.
+View recommended products.
 
 #### Cart
 
-Добавив товары в корзину пользователь может перейти на страницу корзины для заказа.
-Здесь он может указать количество товаров, удалить из корзины товар.
-Узнать общую сумму заказа.
-Указать свои контактные данные и сделать заказ.
+By adding items to the shopping cart, the user can go to the shopping cart page for the order.
+Here he can specify the number of goods, remove goods from the basket.
+Find out the total amount of the order.
+Enter your contact details and place an order.
 
 #### Contact
 
-Здесь можно задать вопрос администратору сайта.
-Посмотреть контактную информацию по магазину.
+Here you can ask a question to the site administrator.
+View store contact information.
 
 ### Go To YouTube
 

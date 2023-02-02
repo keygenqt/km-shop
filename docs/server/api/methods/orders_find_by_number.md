@@ -1,13 +1,13 @@
 Order Item by Number
 ===================
 
-Поиск заказа но уникальному номеру
+Order search by unique number
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/number/{number}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

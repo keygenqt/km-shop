@@ -1,9 +1,9 @@
 Ошибки
 ===================
 
-Все варианты ошибок обработанные сервером.
+All variants of errors processed by the server.
 
-Примеры ответов
+Response examples
 
 ```json title="Error <span class='color-error'>405</span>"
 {
@@ -62,7 +62,7 @@
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description          |
 |--------------------------------------|----------------------|

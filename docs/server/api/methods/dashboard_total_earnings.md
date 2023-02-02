@@ -1,13 +1,13 @@
 Dashboard Total Earnings
 ===================
 
-Сумма оплаты за выполненные заказы
+Amount of payment for completed orders
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/total-earnings
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -15,7 +15,7 @@ Dashboard Total Earnings
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

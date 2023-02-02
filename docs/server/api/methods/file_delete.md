@@ -1,13 +1,13 @@
 File Delete
 ===================
 
-Удалить файл
+Delete a file
 
 ```shell title="Method <span class='color-method'>DELETE</span>"
 /api/uploads
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description        |
 |--------------------------------------|--------------------|

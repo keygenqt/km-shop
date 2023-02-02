@@ -1,13 +1,13 @@
 Order Create
 ===================
 
-Добавить заказ
+Add order
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/orders/create
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

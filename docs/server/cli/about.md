@@ -1,9 +1,9 @@
 CLI application
 ===
 
-CLI Приложение к которому подключен модуль Kotlin Multiplatform. 
-Умеет делать бекапы, чистить лишнее, обновлять пароли пользователя до запуска API приложения.
-Удобно запустит с *cron* что бы выполнять рутинную работу по поддержке сервера.
+CLI The application to which the Kotlin Multiplatform module is connected.
+Able to make backups, clean up unnecessary, update user passwords before launching the application API.
+It will conveniently run with *cron* to perform routine server maintenance work.
 
 ```shell title="Help app"
 Usage: Shop CLI options_list

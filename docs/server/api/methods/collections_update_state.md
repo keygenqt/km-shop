@@ -1,13 +1,13 @@
 Collection Update State
 ===================
 
-Обновить данные вкл/выкл коллекции
+Refresh data on/off collection
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/collections/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

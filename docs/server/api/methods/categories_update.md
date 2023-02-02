@@ -1,13 +1,13 @@
 Category Update
 ===================
 
-Обновить данные категории
+Update Category Data
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/categories/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

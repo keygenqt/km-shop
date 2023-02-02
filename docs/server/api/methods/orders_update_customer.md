@@ -1,13 +1,13 @@
 Order Update Customer
 ===================
 
-Обновить данные клиента в заказе
+Update customer details in order
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/orders/customer/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

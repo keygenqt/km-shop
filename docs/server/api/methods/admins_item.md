@@ -1,13 +1,13 @@
 Admin Item
 ===================
 
-Получить данные администратора
+Get admin details
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/admins/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

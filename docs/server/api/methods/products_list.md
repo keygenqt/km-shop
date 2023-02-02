@@ -1,13 +1,13 @@
 Product List
 ===================
 
-Получить список продуктов
+Get product list
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

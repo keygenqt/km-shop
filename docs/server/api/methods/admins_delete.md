@@ -1,13 +1,13 @@
 Admin Delete
 ===================
 
-Удалить администратора
+Remove administrator
 
 ```shell title="Method <span class='color-method'>DELETE</span>"
 /api/admins/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

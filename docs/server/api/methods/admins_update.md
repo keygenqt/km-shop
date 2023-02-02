@@ -1,13 +1,13 @@
 Admin Update
 ===================
 
-Обновить данные администратора, сменить роль
+Update admin data, change role
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/admins/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

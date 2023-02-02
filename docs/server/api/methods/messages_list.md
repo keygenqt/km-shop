@@ -1,13 +1,13 @@
 Message List
 ===================
 
-Получить список сообщений
+Get list of messages
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/messages
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

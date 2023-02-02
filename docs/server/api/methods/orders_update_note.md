@@ -1,13 +1,13 @@
 Order Update Note
 ===================
 
-Обновить примечание заказа
+Update order note
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/orders/note/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

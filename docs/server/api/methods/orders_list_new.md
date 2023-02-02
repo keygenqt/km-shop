@@ -1,13 +1,13 @@
 Order List NEW
 ===================
 
-Получить список заказов со статусом NEW
+Get a list of orders with NEW status
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/new
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

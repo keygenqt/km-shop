@@ -1,13 +1,13 @@
 Admin List
 ===================
 
-Получить список администраторов
+Get a list of administrators
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/admins
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

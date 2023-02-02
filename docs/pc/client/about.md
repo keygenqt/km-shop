@@ -1,8 +1,8 @@
 Notificator CLI
 ===
 
-Приложение в первую очередь предназначено для работы с GUI. 
-Но так же умеет работать и самостоятельно как CLI приложение.
+The application is primarily designed to work with the GUI.
+But it can also work independently as a CLI application.
 
 ```shell title="Help app"
 Usage: Shop client CLI options_list

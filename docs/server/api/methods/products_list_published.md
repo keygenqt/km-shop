@@ -1,13 +1,13 @@
 Product Public List
 ===================
 
-Получить список опубликованных продуктов
+Get a list of published products
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/products/published
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

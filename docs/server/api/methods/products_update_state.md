@@ -1,13 +1,13 @@
 Product Update State
 ===================
 
-Обновить вкл/выкл статус продукта
+Update on/off product status
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/products/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

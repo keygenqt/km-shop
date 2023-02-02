@@ -1,8 +1,8 @@
 # Android application
 
-Нативное приложение Android использующие [Jetpack Compose](https://developer.android.com/jetpack/compose) и общий модуль Kotlin Multiplatform.
-Функционал соответствует приложению [Website](/km-shop/web/website/about/).
-Плюс добавлена фича истории сделанных заказов и история поиска заказов.
+A native Android application using [Jetpack Compose](https://developer.android.com/jetpack/compose) and a generic Kotlin Multiplatform module.
+The functionality corresponds to the application [Website](/km-shop/web/website/about/).
+Plus, the feature of the history of made orders and the history of order search has been added.
 
 <div class="PrettyImage">
     <div class="PrettyImagesList">

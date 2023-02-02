@@ -5,11 +5,11 @@ Shop 8 in 1 (Майшоп)
 
 ![all-preview.png](data%2Fcommon%2Fall-preview_1.png)
 
-Магазин для 4x операционных систем Linux, Aurora OS, iOS, Android. 
-Включает в себя 2 приложения на React для Web - Website, Admin-Panel. 
-Всего 8 приложений. 
-Приложения имеют нативный UI и объединяет их общий модуль на Kotlin Multiplatform. 
-Все приложения используют последний актуальный стек на данный момент.
+Shop for 4x operating systems Linux, Aurora OS, iOS, Android.
+Includes 2 React apps for Web - Website, Admin-Panel.
+There are 8 applications in total.
+Applications have a native UI and are united by a common module on Kotlin Multiplatform.
+All applications use the latest up-to-date stack at the moment.
 
 <p>
     <a href="https://keygenqt.github.io/km-shop/">

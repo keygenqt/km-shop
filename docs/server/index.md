@@ -5,64 +5,63 @@ Server applications
     <img src="/km-shop/images/ic_cli.png">
 </p>
 
-2 приложения.
-Приложение на [Ktor](https://ktor.io/) отвечает за API.
-Приложение на [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli) помогает API, делает backup-ы, чистит устаревшие картинки и тд.
-К ним обоим подключен модуль Kotlin Multiplatform, который связывает их, дает доступ к базе данных и остальным фичам.
+2 applications.
+The application on [Ktor](https://ktor.io/) is responsible for the API.
+The application on [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli) helps the API, makes backups, cleans outdated images, etc.
+The Kotlin Multiplatform module is connected to both of them, which connects them, gives access to the database and other features.
 
-### <a id='overview-api' href='#overview-api'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Нюансы сборки API
+### <a id='overview-api' href='#overview-api'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Build API
 
+A typical application on Ktor.
+The exception is the general KM module.
+The module is responsible for the database and can make requests - there is a Ktor client on board.
+It connects to both the CLI and the API, which gives them both complete freedom of action.
 
-Обычное приложение на Ktor. 
-Исключение составляет общий модуль KM. 
-Модуль отвечает за базу данных и умеет делать запросы - на борту есть Ktor client.
-Он подключается и к CLI и к API что дает полную свободу действий им обоим.
+The first thing to add is the Material icon.
+They are used in the Collections feature.
+To do this, move the folder with icons called *material-icons* to the root of the project.
+You can get them [here](https://github.com/material-icons/material-icons).
 
-Первое, что нужно добавить, это Material иконки. 
-Они используются в фиче Collections.
-Для этого в корень проекта перенесите папку с иконками под названием *material-icons*.
-Достать их можно [здесь](https://github.com/material-icons/material-icons).
-
-После этого перейдите в каталог *configuration* и переименуйте файлы конфигурации:
+After that, go to the *configuration* directory and rename the configuration files:
 
 ```shell title="Rename demo configuration"
 mv _app.properties app.properties
 mv dbconfig.properties dbconfig.properties
 ```
 
-Эти файлы содержат ключи и различные доступы. Они загружаются во время работы приложения.
-Не забудьте поменять ключи в проде.
-Создайте базу данных *MySql* и пользователя для нее. 
-Прописываем доступы в *dbconfig.properties*
+These files contain keys and various accesses. They are loaded while the application is running.
+Do not forget to change the keys in the prod.
+Create a *MySql* database and a user for it.
+We register accesses in *dbconfig.properties*
 
-Заходим в директорию shop -> server -> api... Application.kt - запускаем приложение, оно вылетит, все ок.
-Он будет добавлен в Конфигурацию сборки (если хотите, можете использовать ручки).
-Затем переходим к конфигурации сборки и добавляем артефакт *shared module*, который будет собираться с приложением.
-Теперь все могут его запускать - все должно работать.
+Go to the directory shop -> server -> api... Application.kt - run the application, it will crash, everything is ok.
+It will be added to the Build Configuration (you can use the handles if you like).
+Then we go to the build configuration and add the *shared module* artifact that will be built with the application.
+Now everyone can run it - everything should work.
 
 <div class="PrettyImage">
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_05.05.55.png">
 </div>
 
-#### Процесс сборки можно посмотреть на YouTube
+#### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
 </a>
 
-### <a id='overview-cli' href='#overview-cli'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Нюансы сборки CLI
+### <a id='overview-cli' href='#overview-cli'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Build CLI
 
-Обычное JVM-приложение. 
-Его задача выполнять различные полезные действия, например делать бекап, по командам *crone*.
-Заходим в shop -> server -> cli ... Main.kt. 
-Запустим приложение.
-Не забудьте добавить в сборку artifact shared-jvm.
+Normal JVM application.
+Its task is to perform various useful actions, for example, to make a backup, using the * crone * commands.
+Go to shop -> server -> cli ... Main.kt.
+Let's start the application.
+Don't forget to add the artifact shared-jvm to the build.
 
 <div class="PrettyImage">
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.34.13.png">
 </div>
 
-#### Процесс сборки можно посмотреть на YouTube
+#### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=894">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">

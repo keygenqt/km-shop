@@ -168,7 +168,7 @@ extra_css:
 theme:
     name: 'material'
     custom_dir: docs/assets
-    language: 'ru'
+    language: 'en'
     favicon: images/favicon.ico
     icon:
       logo: material/basket

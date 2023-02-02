@@ -1,13 +1,13 @@
 Collection Update
 ===================
 
-Обновить данные коллекции
+Update collection data
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/collections/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

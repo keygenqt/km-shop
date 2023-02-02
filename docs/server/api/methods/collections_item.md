@@ -1,13 +1,13 @@
 Collection Item
 ===================
 
-Получить данные коллекции
+Get collection data
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/collections/state/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

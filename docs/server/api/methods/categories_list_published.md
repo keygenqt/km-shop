@@ -1,13 +1,13 @@
 Category Public List
 ===================
 
-Получить список опубликованных категорий
+Get a list of published categories
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/categories/published
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 [
@@ -44,7 +44,7 @@ Category Public List
 ]
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

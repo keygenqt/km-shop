@@ -1,13 +1,13 @@
 Order Item by ID
 ===================
 
-Получить заказ по ID
+Get order by ID
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

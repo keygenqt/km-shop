@@ -1,17 +1,17 @@
 API application
 ===
 
-API для Shop 8 в 1. 
-Написано на <a target="_blank" href="https://ktor.io/">Ktor</a>.
-Его использует 6 приложений на 5 платформах.
+API for Shop 8 in 1.
+Written in <a target="_blank" href="https://ktor.io/">Ktor</a>.
+It is used by 6 applications on 5 platforms.
 Android, Aurora OS, iOS, Website, Admin-Panel, PC Notificator.
-API так же использует модуль Kotlin Multiplatform.
+The API also uses the Kotlin Multiplatform module.
 
 <div class="PrettyImage">
     <img src="/km-shop/images/api-preview.png">
 </div>
 
-API доступно по ссылке: <a target="_blank" href="https://shop-api.keygenqt.com/">https://shop-api.keygenqt.com/</a>
+The API is available at: <a target="_blank" href="https://shop-api.keygenqt.com/">https://shop-api.keygenqt.com/</a>
 
 #### Features
 

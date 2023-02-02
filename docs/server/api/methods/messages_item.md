@@ -1,13 +1,13 @@
 Message Item
 ===================
 
-Получить сообщение
+Get a message
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/messages/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

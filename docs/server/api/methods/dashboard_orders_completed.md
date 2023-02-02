@@ -1,13 +1,13 @@
 Dashboard Orders Completed
 ===================
 
-Статистика по заказам (статус выполнен) за месяц
+Order statistics (status completed) for the month
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/orders-completed
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -16,7 +16,7 @@ Dashboard Orders Completed
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

@@ -1,13 +1,13 @@
 Order List COMPLETED
 ===================
 
-Получить список заказов со статусом COMPLETED
+Get a list of orders with status COMPLETED
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/orders/completed
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

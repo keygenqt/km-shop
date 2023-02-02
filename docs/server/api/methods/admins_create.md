@@ -1,13 +1,13 @@
 Admin Create
 ===================
 
-Добавить администратора
+Add administrator
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/admins
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

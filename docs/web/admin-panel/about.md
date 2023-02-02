@@ -1,64 +1,64 @@
 Admin Panel
 ===
 
-Адин-панель для администраторов сайта. 
-Здесь можно получить информацию по заказам, сообщениям с сайта.
-Добавить/удалить администраторов (сделать это может только админ с ролью *Admin*, есть разделение по ролям).
-Имеется Dashboard c статистикой.
-Можно добавить/отключить Категории, Коллекции, Продукты.
+Admin-Panel for site administrators.
+Here you can get information on orders, messages from the site.
+Add/remove administrators (only an admin with the *Admin* role can do this, there is a division by roles).
+There is a Dashboard with statistics.
+You can add/disable Categories, Collections, Products.
 
 <div class="PrettyImage">
     <img src="/km-shop/animations/admin-panel.gif">
 </div>
 
-Линка на адин-панель: <a target="_blank" href="https://shop-admin.keygenqt.com">https://shop-admin.keygenqt.com</a>
+Link to Admin-Panel: <a target="_blank" href="https://shop-admin.keygenqt.com">https://shop-admin.keygenqt.com</a>
 
-!!! warning "Авторизация"
+!!! warning "Authorization"
 
-    Для входа потребуется авторизация, свободного входа нет.
+    Authorization is required to enter, there is no free entry.
 
 #### Dashboard
 
-Это главная страница админки. 
-Здесь можно увидеть информацию по сделанным заказам, самым покупаемым товаром.
-Сумма (денег) завершенных заказов за текущий месяц.
-График распределение заказов по месяцам.
+This is the main admin page.
+Here you can see information on orders made, the most purchased item.
+Amount (money) of completed orders for the current month.
+Schedule distribution of orders by month.
 
 #### Shop
 
-Этот раздел отвечает за магазин. 
-Здесь можно добавить/редактировать товары, категории, коллекции. 
-Отключить их видимость для сайта.
-Продукт может иметь одну категорию и много коллекций. 
-Это позволяет гибко фильтровать товары на сайте.
-Категория имеет обязательную картинку, в то время как в коллекции картинки нет там используется иконки материал - можно выбрать из [списка](https://mui.com/material-ui/material-icons/) иконок без нужны бегать в поисках красивой картинки.
+This section is responsible for the store.
+Here you can add/edit products, categories, collections.
+Turn off their visibility for the site.
+A product can have one category and many collections.
+This allows you to flexibly filter products on the site.
+The category has a mandatory image, while the image collection does not have material icons - you can choose from [list](https://mui.com/material-ui/material-icons/) icons without having to run around looking for a beautiful image.
 
 #### Orders
 
-Раздел отвечающий за заказы.
-Заказы здесь разделены по статусам.
+Section responsible for orders.
+Orders here are divided by status.
 
-* New - новый не обработанный заказ
-* Pending - заказ принят в работу
-* Completed - выполненные заказы
-* Canceled - отмененные заказы
+* New - new pending order
+* Pending - order accepted for work
+* Completed - completed orders
+* Canceled - canceled orders
 
-Продукты в заказе, цены, менять нельзя. 
-Если заказ сделан - цена фиксирована. 
-Поменять можно статус, указать примечание которое будет видно пользователю. 
-Подправить контактные данные пользователя сделавшего заказ. 
+Products in the order, prices cannot be changed.
+If the order is made - the price is fixed.
+You can change the status, specify a note that will be visible to the user.
+Correct the contact details of the user who made the order.
 
 #### Managers
 
-Администратор с ролью *Admin* может удалить/добавить новый аккаунт в админке. 
-Поменять роль.
-Всего ролей две: *Admin* и *Manager*. 
-Разница их в управлении доступами к админки.
+An administrator with the *Admin* role can delete/add a new account in the admin area.
+Change role.
+There are two roles in total: *Admin* and *Manager*.
+Their difference is in managing access to the admin panel.
 
 #### Help Desk
 
-Сюда попадают сообщения сделанные в магазине.
-Можно просмотреть сообщение и отметить как решенное.
+This includes messages made in the store.
+You can view the message and mark it as solved.
 
 ### Go To YouTube
 

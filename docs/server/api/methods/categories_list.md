@@ -1,13 +1,13 @@
 Category List
 ===================
 
-Получить список категорий
+Get a list of categories
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/categories
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 [
@@ -44,7 +44,7 @@ Category List
 ]
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

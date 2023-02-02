@@ -1,13 +1,13 @@
 Dashboard Chart
 ===================
 
-Построение графика заказов
+Building an order schedule
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/chart
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -42,7 +42,7 @@ Dashboard Chart
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

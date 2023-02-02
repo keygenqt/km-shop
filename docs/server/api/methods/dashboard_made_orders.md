@@ -1,13 +1,13 @@
 Dashboard Made Orders
 ===================
 
-Статистика по заказам (все статусы) за месяц
+Order statistics (all statuses) per month
 
 ```shell title="Method <span class='color-method'>GET</span>"
 /api/dashboard/made-orders
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -16,7 +16,7 @@ Dashboard Made Orders
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

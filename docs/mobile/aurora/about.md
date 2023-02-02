@@ -1,9 +1,9 @@
 Aurora application
 ===
 
-Нативное приложение Aurora OS использующие [QtQuick](https://doc.qt.io/qt-5/qtquick-index.html), [Silica](https://community.omprussia.ru/documentation/software_development/reference/silica/silica-reference.html) и общий модуль Kotlin Multiplatform.
-Функционал соответствует приложению [Website](/km-shop/web/website/about/).
-Плюс добавлена фича истории сделанных заказов и история поиска заказов.
+Aurora OS native application using [QtQuick](https://doc.qt.io/qt-5/qtquick-index.html), [Silica](https://community.omprussia.ru/documentation/software_development/reference/silica/silica-reference.html) and the general Kotlin Multiplatform module.
+The functionality corresponds to the application [Website](/km-shop/web/website/about/).
+Plus, the feature of the history of made orders and the history of order search has been added.
 
 <div class="PrettyImage">
     <div class="PrettyImagesList">

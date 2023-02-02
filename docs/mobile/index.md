@@ -7,59 +7,59 @@ Mobile applications
     <img src="/km-shop/images/ic_aurora.png">
 </p>
 
-3 приложения. 
-Приложение для [Android](https://www.android.com/). 
-Приложение для [iOS](https://www.apple.com/ios/ios-16/). 
-Приложение для [Aurora OS](https://auroraos.ru/).
-Ко всем приложениям подключен модуль Kotlin Multiplatform который выполняет запросы к API и дает доступ к общей бизнес логике.
+3 applications.
+App for [Android](https://www.android.com/).
+App for [iOS](https://www.apple.com/ios/ios-16/).
+Application for [Aurora OS](https://auroraos.ru/).
+All applications are connected to the Kotlin Multiplatform module, which makes requests to the API and gives access to the general business logic.
 
-### <a id='overview-android' href='#overview-android'><span class='icon-line'><img src="/km-shop/images/ic_android.png"></span></a> Нюансы сборки Android
+### <a id='overview-android' href='#overview-android'><span class='icon-line'><img src="/km-shop/images/ic_android.png"></span></a> Build Android
 
-Для android KM практически нейтив. 
-Все стандартно для этого приложения. 
-Просто выбираем проект, Android Studio все подхватит и настроит сама.
-Для работы приложения нужен запущенный предварительно API.
+For android KM is practically native.
+Everything is standard for this application.
+Just select a project, Android Studio will pick up everything and configure itself.
+For the application to work, a pre-launched API is required.
 
-#### Процесс сборки можно посмотреть на YouTube
+#### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=637">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
 </a>
 
-### <a id='overview-ios' href='#overview-ios'><span class='icon-line'><img src="/km-shop/images/ic_apple.png"></span></a> Нюансы сборки iOS
+### <a id='overview-ios' href='#overview-ios'><span class='icon-line'><img src="/km-shop/images/ic_apple.png"></span></a> Build iOS
 
-Выберите в параметрах файл Shop.xcworkspace (shop -> mobile -> ios -> Shop.xcworkspace).
-Выберите из списка ниже Shop, цель, и вы можете начать строительство.
+Select the Shop.xcworkspace file in the options (shop -> mobile -> ios -> Shop.xcworkspace).
+Choose from the list below a Shop, a target, and you can start building.
 
 <div class="PrettyImage">
     <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.33.54.png">
 </div>
 
-#### Процесс сборки можно посмотреть на YouTube
+#### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=709">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
 </a>
 
-### <a id='overview-aurora' href='#overview-aurora'><span class='icon-line'><img src="/km-shop/images/ic_aurora.png"></span></a> Нюансы сборки Aurora
+### <a id='overview-aurora' href='#overview-aurora'><span class='icon-line'><img src="/km-shop/images/ic_aurora.png"></span></a> Build Aurora
 
-Aurora OS не поддерживает на данный момент работу с Kotlin Multiplatform. 
-Но я нашел простой способ как модуль можно завести и туда.
-Был написан компонент, который позволяет выполнять асинхронные запросы с Aurora в KM JS.
-Прослойка между модулем и Aurora приложением лежит: shop -> mobile -> aurora -> kmm-js-build.
-Собирает прослойку js *webpack*.
-Для сборки был написан bash скрипт: shop -> mobile -> aurora -> shop -> build.sh
-В нем происходит сборка JS модуля KM, доставка его в приложение на Aurora, и сборка и запуск самого приложения на Aurora OS.
+Aurora OS does not currently support Kotlin Multiplatform.
+But I found a simple way how the module can be brought there too.
+A component was written that allows you to perform asynchronous requests with Aurora in KM JS.
+The layer between the module and the Aurora application is: shop -> mobile -> aurora -> kmm-js-build.
+Builds js layer *webpack*.
+A bash script was written for the build: shop -> mobile -> aurora -> shop -> build.sh
+It builds the KM JS module, delivers it to the application on Aurora, and builds and launches the application itself on Aurora OS.
 
-!!! example "Совет по сборке"
+!!! example "Build advice"
 
-    По-хорошему, думаю, можно чуток сделать по другому. 
-    Скрипт ограничить сборкой js. 
-    Добавить его в Aurora IDE перед сборкой.
-    И работать уже спокойно в Aurora IDE.
-    Но это другая история.
+    In a good way, I think you can do a little differently.
+    Script to restrict assembly js.
+    Add it to Aurora IDE before building.
+    And work already quietly in Aurora IDE.
+    But that's another story.
 
-#### Процесс сборки можно посмотреть на YouTube
+#### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/MgwiskFeR8E">
     <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">

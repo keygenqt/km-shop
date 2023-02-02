@@ -1,13 +1,13 @@
 Product Update
 ===================
 
-Обновить данные продукта
+Update product data
 
 ```shell title="Method <span class='color-method'>PUT</span>"
 /api/products/{id}
 ```
 
-Варианты ответа
+Response options
 
 | Status code                          | Description    |
 |--------------------------------------|----------------|

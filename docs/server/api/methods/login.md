@@ -1,13 +1,13 @@
 Login
 ===================
 
-Метод авторизации пользователя
+User authorization method
 
 ```shell title="Method <span class='color-method'>POST</span>"
 /api/login
 ```
 
-Request модель с валидацией
+Request model with validation
 
 ```kotlin title="Request model"
 private data class Request(
@@ -21,7 +21,7 @@ private data class Request(
 )
 ```
 
-Пример ответа
+Response example
 
 ```json title="Response <span class='color-200'>200</span>"
 {
@@ -31,7 +31,7 @@ private data class Request(
 }
 ```
 
-Варианты ответа
+Response options
 
 | Status code                            | Description    |
 |----------------------------------------|----------------|
