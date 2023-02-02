@@ -1,12 +1,22 @@
 API application
 ===
 
-API for Shop 8 in 1. Written in Ktor. It is used by 5 applications on 4 platforms. Android, iOS, CLI
-server application, React admin-panel and website. The API, like 5 applications, uses a common
-module on Kotlin Multiplatform.
+API для Shop 8 в 1. 
+Написано на <a target="_blank" href="https://ktor.io/">Ktor</a>.
+Его использует 6 приложений на 5 платформах.
+Android, Aurora OS, iOS, Website, Admin-Panel, PC Notificator.
+API так же использует модуль Kotlin Multiplatform.
 
-### Contains
+<div class="PrettyImage">
+    <img src="/km-shop/images/api-preview.png">
+</div>
 
+API доступно по ссылке: <a target="_blank" href="https://shop-api.keygenqt.com/">https://shop-api.keygenqt.com/</a>
+
+### Содержит
+
+* API REST
+* WebSocket
 * Role division
 * Session authorization
 * Kotlin multiplatform module
@@ -15,11 +25,3 @@ module on Kotlin Multiplatform.
 * Error processing
 * Uploading files
 * And much more
-
-### Base libs
-
-* [Ktor](https://ktor.io/)
-* [Koin](https://insert-koin.io/docs/reference/koin-ktor/ktor)
-* [Serialization](https://kotlinlang.org/docs/serialization.html)
-* [Exposed](https://github.com/JetBrains/Exposed)
-* [Jakarta](https://beanvalidation.org/)
