@@ -2,14 +2,16 @@ iOS application
 ===
 
 Нативное приложение iOS использующие [swiftUI](https://developer.apple.com/xcode/swiftui/) и общий модуль Kotlin Multiplatform.
-Функционал соответствует приложению Website.
+Функционал соответствует приложению [Website](/km-shop/web/website/about/).
 Плюс добавлена фича истории сделанных заказов и история поиска заказов.
 
-<p>
-<img src="/km-shop/images/ios/ios_l.png" width="31%"/>
-<img src="/km-shop/images/ios/ios_d.png" width="31%"/>
-<img src="/km-shop/images/ios/ios_anim.gif" width="32.5%"/>
-</p>
+<div class="PrettyImage">
+    <div class="PrettyImagesList">
+        <img src="/km-shop/images/ios/ios_l.png" style="width: 32.8%;"/>
+        <img src="/km-shop/images/ios/ios_d.png" style="width: 32.8%;"/>
+        <img src="/km-shop/images/ios/ios_anim.gif" style="width: 34.35%;"/>
+    </div>
+</div>
 
 ### Architecture
 * [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
