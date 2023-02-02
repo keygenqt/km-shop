@@ -1,4 +1,4 @@
 Libraries
 ===
 
-Coming soon...
+Third party libraries were not used

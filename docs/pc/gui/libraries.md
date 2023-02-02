@@ -1,4 +1,6 @@
 Libraries
 ===
 
-Coming soon...
+```qmake title="Qmake"
+QT += core gui widgets dbus
+```
