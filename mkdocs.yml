@@ -109,7 +109,7 @@ nav:
           - Android:
               - About: mobile/android/about.md
               - Libraries: mobile/android/libraries.md
-              - Dokka: /km-shop/dokka/shop/server/android/
+              - Dokka: /km-shop/dokka/shop/mobile/android/
           - Aurora:
               - About: mobile/aurora/about.md
               - Libraries: mobile/aurora/libraries.md
