@@ -8,7 +8,7 @@ Shop 8 in 1 (Майшоп)
 Shop for 4x operating systems Linux, Aurora OS, iOS, Android.
 Includes 2 React apps for Web - Website, Admin-Panel.
 There are 8 applications in total.
-Applications have a *native UI* and are united by a common module on Kotlin Multiplatform.
+Applications have a **native UI** and are united by a common module on Kotlin Multiplatform.
 All applications use the latest up-to-date stack at the moment.
 
 <p>
