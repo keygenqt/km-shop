@@ -3,7 +3,7 @@ Shop 8 in 1 (Майшоп)
 
 ![Beta Release](https://img.shields.io/github/v/tag/keygenqt/km-shop?label=Release%20Beta&style=for-the-badge)
 
-<img src="data/common/star.gif" width="16px"/> <b>Подписывайтесь и ставьте лайки!</b>
+#### Подписывайтесь и ставьте лайки! <img src="data/common/star.gif" width="16px"/>
 
 ![all-preview.png](data%2Fcommon%2Fall-preview.png)
 
