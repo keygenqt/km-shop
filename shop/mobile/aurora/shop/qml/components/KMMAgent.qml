@@ -60,7 +60,7 @@ Item {
                         }
                     }
                 } catch (e) {
-                    idAgentBlock.stateResponse[data.caller][1](qsTr("Произошла непредвиденная ошибка, попробуйте позже"))
+                    idAgentBlock.stateResponse[data.caller][1](e.toString())
                     console.log(e)
                 }
                 break
@@ -68,8 +68,6 @@ Item {
        }
 
         Component.onCompleted: {
-            WebEngineSettings.javascriptEnabled = true
-            WebEngineSettings.popupEnabled = false
             WebEngineSettings.setPreference("security.disable_cors_checks", true, WebEngineSettings.BoolPref)
         }
     }

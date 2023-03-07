@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=ru.auroraos.shop
+Exec=/usr/bin/ru.auroraos.shop
+Name=Shop
+Name[ru]=Shop
+
+[X-Application]
+Permissions=Internet;WebView
+OrganizationName=ru.auroraos
+ApplicationName=shop
+ExecDBus=/usr/bin/ru.auroraos.shop

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "uuid": "^9.0.0",
-    "shared": "file:./shared"
+    "shared": "file:../../../../shared/build/packages/js"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -1,4 +1,4 @@
-# Rename this file as com.keygenqt.shop.changes to include changelog
+# Rename this file as ru.auroraos.shop.changes to include changelog
 # entries in your RPM file.
 #
 # Add new changelog entries following the format below.
@@ -7,7 +7,7 @@
 #
 # Alternatively, if your changelog is automatically generated (e.g. with
 # the git-change-log command provided with Sailfish OS SDK), create a
-# com.keygenqt.shop.changes.run script to let mb2 run the required commands for you.
+# ru.auroraos.shop.changes.run script to let mb2 run the required commands for you.
 
 # * date Author's Name <author's email> version-release
 # - Summary of changes

@@ -3,10 +3,11 @@ const path = require('path');
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../shop/qml/js-webpack'),
         filename: 'kmm.min.js',
         library: 'kmm',
         libraryTarget: 'umd',
+        hashFunction: "sha256"
     },
     module: {
         rules: [

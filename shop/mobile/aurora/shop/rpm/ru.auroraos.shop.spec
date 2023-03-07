@@ -1,7 +1,7 @@
-Name:       com.keygenqt.shop
+Name:       ru.auroraos.shop
 
-Summary:    ShopKMM
-Version:    0.9.0
+Summary:    Shop 8 in 1
+Version:    0.0.1
 Release:    1
 Group:      Qt/Qt
 License:    BSD-3-Clause
@@ -17,7 +17,7 @@ BuildRequires:  desktop-file-utils
 
 
 %description
-Aurora App (Experimental)
+Shop 8 in 1 WebView JS KMM
 
 %prep
 %setup -q -n %{name}-%{version}

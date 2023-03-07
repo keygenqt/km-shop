@@ -42,7 +42,7 @@
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
-    application->setOrganizationName(QStringLiteral("com.keygenqt"));
+    application->setOrganizationName(QStringLiteral("ru.auroraos"));
     application->setApplicationName(QStringLiteral("shop"));
     qmlRegisterType<AppTheme>("AppTheme", 1, 0, "AppTheme");
 
