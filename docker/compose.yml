@@ -1,0 +1,169 @@
+version: "3"
+
+services:
+  # https://www.mysql.com
+  db:
+    container_name: kmpms-database
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+    restart: always
+    tty: true
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ./db/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - internal
+
+  # https://gradle.org
+  gradle:
+    container_name: kmpms-gradle
+    restart: no
+    tty: true
+    build:
+      context: .
+      dockerfile: gradle/Dockerfile
+    command:
+      - /bin/bash
+      - -c
+      - |
+        rm -rf docs/dokka
+        mkdir docs/dokka
+
+        gradle shop:pc:dokkaHtmlMultiModule
+        mv shop/pc/build/dokka/htmlMultiModule docs/dokka/pc
+
+        gradle shop:server:dokkaHtmlMultiModule
+        mv shop/server/build/dokka/htmlMultiModule docs/dokka/server
+
+        gradle buildFatJar
+        gradle packJsPackage
+
+        cp -R -n configuration shop/server/api/build/libs
+    working_dir: /var/www/src
+    volumes:
+      - ../:/var/www/src
+
+  # https://nodejs.org
+  node:
+    container_name: kmpms-node
+    depends_on:
+      gradle:
+        condition: service_completed_successfully
+    restart: no
+    build:
+      context: .
+      dockerfile: node/Dockerfile
+    command:
+      - /bin/bash
+      - -c
+      - |
+        cp -rf shared/build/packages/shared*.tgz shop/react/shared.tgz
+
+        npm install -g @pushcorn/hocon-parser
+
+        cd /var/www/src/shop/react/frontend
+        parse-hocon package.conf > package.json
+        npm update
+        npm run build
+
+        cd /var/www/src/shop/react/backend
+        parse-hocon package.conf > package.json
+        npm update
+        npm run build
+    working_dir: /var/www/src
+    volumes:
+      - ../:/var/www/src
+
+  # https://www.mkdocs.org
+  mkdocs:
+    container_name: kmpms-mkdocs
+    depends_on:
+      gradle:
+        condition: service_completed_successfully
+    restart: no
+    build:
+      context: .
+      dockerfile: mkdocs/Dockerfile
+    command:
+      - /bin/bash
+      - -c
+      - |
+        mkdocs build
+    working_dir: /var/www/src
+    volumes:
+      - ../:/var/www/src
+
+  # https://www.phpmyadmin.net
+  phpmyadmin:
+    container_name: kmpms-phpmyadmin
+    depends_on:
+      db:
+        condition: service_started
+    image: phpmyadmin
+    restart: always
+    tty: true
+    ports:
+      - ${PORT_DB}:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 25M
+    networks:
+      - internal
+
+  # https://openjdk.org/
+  java:
+    container_name: kmpms-java
+    depends_on:
+      gradle:
+        condition: service_completed_successfully
+      db:
+        condition: service_started
+    build:
+      context: .
+      dockerfile: java/Dockerfile
+    restart: always
+    tty: true
+    command: "java -jar shop-api.jar"
+    ports:
+      - ${PORT_API}:3003
+    working_dir: /var/www/src/shop/server/api/build/libs
+    volumes:
+      - ../:/var/www/src
+    networks:
+      - internal
+
+  # https://nginx.org/
+  nginx:
+    container_name: kmpms-nginx
+    depends_on:
+      java:
+        condition: service_started
+      node:
+        condition: service_completed_successfully
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    restart: always
+    tty: true
+    ports:
+      - ${PORT_DOCS}:3000
+      - ${PORT_WEBSITE}:3001
+      - ${PORT_ADMIN_PANEL}:3002
+    volumes:
+      - ../:/var/www/src
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  kmpms-database:

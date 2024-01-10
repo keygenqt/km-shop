@@ -10,7 +10,7 @@ Cart page and quick display of the cart in the header.
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/animations/website.gif">
+    <img src="/animations/website.gif">
 </div>
 
 You can go and watch at the link: <a target="_blank" href="https://shop.keygenqt.com">https://shop.keygenqt.com</a>
@@ -63,5 +63,5 @@ View store contact information.
 ### Go To YouTube
 
 <a target="_blank" href="https://youtu.be/sHN1-LRDH64">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

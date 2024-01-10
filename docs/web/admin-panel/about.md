@@ -9,7 +9,7 @@ You can add/disable Categories, Collections, Products.
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/animations/admin-panel.gif">
+    <img src="/animations/admin-panel.gif">
 </div>
 
 Link to Admin-Panel: <a target="_blank" href="https://shop-admin.keygenqt.com">https://shop-admin.keygenqt.com</a>
@@ -64,5 +64,5 @@ You can view the message and mark it as solved.
 ### Go To YouTube
 
 <a target="_blank" href="https://youtu.be/8jI0T45MMoQ">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

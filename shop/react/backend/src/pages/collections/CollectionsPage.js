@@ -181,7 +181,7 @@ export function CollectionsPage() {
                                     getActions: (params) => [
                                         (
                                             <GridActionsCellItem color="success" onClick={() => {
-                                                route.openUrlNewTab(`http://localhost:8086/${params.row.id}`)
+                                                route.openUrlNewTab(`http://localhost:4012/${params.row.id}`)
                                             }} icon={(
                                                 <Tooltip placement="top" arrow title="Look">
                                                     <VisibilityOutlined/>

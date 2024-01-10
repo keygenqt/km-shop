@@ -7,9 +7,9 @@ Plus, the feature of the history of made orders and the history of order search 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
     <div class="PrettyImagesList">
-        <img src="/km-shop/images/android/android_l.png" style="width: 33.333%;"/>
-        <img src="/km-shop/images/android/android_d.png" style="width: 33.333%;"/>
-        <img src="/km-shop/images/android/android_anim.gif" style="width: 33.333%;"/>
+        <img src="/images/android/android_l.png" style="width: 33.333%;"/>
+        <img src="/images/android/android_d.png" style="width: 33.333%;"/>
+        <img src="/images/android/android_anim.gif" style="width: 33.333%;"/>
     </div>
 </div>
 
@@ -44,5 +44,5 @@ Plus, the feature of the history of made orders and the history of order search 
 ### Go To YouTube
 
 <a target="_blank" href="https://youtu.be/0zEC6xX8T-c">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

@@ -120,7 +120,6 @@ object MigrationHelper {
      * Insert categories by yml config
      */
     fun insertCategories(
-        host: String,
         categories: List<*>
     ) {
         categories.forEach { item ->
@@ -143,7 +142,7 @@ object MigrationHelper {
                 this.isPublished = isPublished
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()
-                this.image = "$host/api/uploads/${uploadEntity?.fileName}"
+                this.image = "/api/uploads/${uploadEntity?.fileName}"
                 this.uploads = SizedCollection(*listOfNotNull(uploadEntity).toTypedArray())
             }
         }
@@ -153,7 +152,6 @@ object MigrationHelper {
      * Insert products by yml config
      */
     fun insertProducts(
-        host: String,
         products: List<*>,
     ) {
         products.forEach { item ->
@@ -181,7 +179,7 @@ object MigrationHelper {
                 this.isPublished = isPublished
                 this.createAt = System.currentTimeMillis()
                 this.updateAt = System.currentTimeMillis()
-                this.image1 = "$host/api/uploads/${uploadEntity?.fileName}"
+                this.image1 = "/api/uploads/${uploadEntity?.fileName}"
                 this.uploads = SizedCollection(*listOfNotNull(uploadEntity).toTypedArray())
             }
         }

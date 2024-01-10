@@ -8,9 +8,9 @@ Plus, the feature of the history of made orders and the history of order search 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
     <div class="PrettyImagesList">
-        <img src="/km-shop/images/ios/ios_l.png" style="width: 32.8%;"/>
-        <img src="/km-shop/images/ios/ios_d.png" style="width: 32.8%;"/>
-        <img src="/km-shop/images/ios/ios_anim.gif" style="width: 34.35%;"/>
+        <img src="/images/ios/ios_l.png" style="width: 32.8%;"/>
+        <img src="/images/ios/ios_d.png" style="width: 32.8%;"/>
+        <img src="/images/ios/ios_anim.gif" style="width: 34.35%;"/>
     </div>
 </div>
 
@@ -43,5 +43,5 @@ Plus, the feature of the history of made orders and the history of order search 
 ### Go To YouTube
 
 <a target="_blank" href="https://youtu.be/-13YHU-PSG8">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

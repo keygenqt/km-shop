@@ -15,7 +15,7 @@ Response example
     "key": "bows",
     "name": "Бантики",
     "desc": "Стильные бантики ручной работы",
-    "image": "https://shop-api.keygenqt.com/api/uploads/99959269-6122-47f9-a383-00f5e6c5b657.png",
+    "image": "https://myshop-api.keygenqt.com/api/uploads/99959269-6122-47f9-a383-00f5e6c5b657.png",
     "isPublished": true,
     "createAt": "2022-12-08T13:43:46.626",
     "updateAt": "2022-12-08T13:43:46.626",

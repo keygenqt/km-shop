@@ -2,7 +2,7 @@
  * Base configuration
  */
 export const ConstantConf = {
-    domain: 'http://localhost:3002',
-    domainAPI: 'http://localhost:8086',
-    domainFrontend: 'http://localhost:3003',
+    domain: 'http://localhost:4012',
+    domainAPI: 'http://localhost:4009',
+    domainFrontend: 'http://localhost:4011',
 };

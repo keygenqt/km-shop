@@ -67,7 +67,7 @@ fun Route.home() {
                                         +text
                                     }
                                     a(
-                                        href = "https://keygenqt.github.io/km-shop/",
+                                        href = "https://myshop-docs.keygenqt.com",
                                         classes = "Btn"
                                     ) {
                                         target = "_blank"

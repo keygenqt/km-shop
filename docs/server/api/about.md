@@ -9,10 +9,10 @@ The API also uses the Kotlin Multiplatform module.
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/images/api-preview.png">
+    <img src="/images/api-preview.png">
 </div>
 
-The API is available at: <a target="_blank" href="https://shop-api.keygenqt.com/">https://shop-api.keygenqt.com/</a>
+The API is available at: <a target="_blank" href="https://myshop-api.keygenqt.com/">https://myshop-api.keygenqt.com/</a>
 
 #### Features
 

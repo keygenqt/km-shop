@@ -95,7 +95,7 @@ npmPublish {
     packages {
         named("js") {
             packageJson {
-                version.set("0.0." + Date().time)
+                version.set("0.0.1")
             }
         }
     }

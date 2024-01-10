@@ -13,17 +13,17 @@ There are 8 ([9*](/km-shop/pc/)) applications in total.
 Applications have a native UI and unite them in a common module on [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).
 All applications use the latest up-to-date stack at the moment.
 
-![picture](/km-shop/images/all-preview.png)
+![picture](/images/all-preview.png)
 
 ### Kotlin Multiplatform combined 6 platforms in one application
 
 <p class="icons-main">
-    <img src="/km-shop/images/ic_react.png">
-    <img src="/km-shop/images/ic_android.png">
-    <img src="/km-shop/images/ic_apple.png">
-    <img src="/km-shop/images/ic_aurora.png">
-    <img src="/km-shop/images/ic_pc.png">
-    <img src="/km-shop/images/ic_cli.png">
+    <img src="/images/ic_react.png">
+    <img src="/images/ic_android.png">
+    <img src="/images/ic_apple.png">
+    <img src="/images/ic_aurora.png">
+    <img src="/images/ic_pc.png">
+    <img src="/images/ic_cli.png">
 </p>
 
 !!! abstract "License"

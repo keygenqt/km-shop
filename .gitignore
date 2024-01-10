@@ -10,14 +10,16 @@ local.properties
 xcuserdata
 kotlin-js-store
 
-### APP ###
-dbconfig.properties
-app.properties
-package-lock.json
-shared-0.0.*.tgz
-/uploads/
 # https://github.com/material-icons/material-icons
 /material-icons/
-/cookie.json
+
+### APP ###
+package-lock.json
+shared*tgz
+cookie.json
 build-*
-/km-shop/
+
+/docs-static
+/docs/dokka
+
+.env

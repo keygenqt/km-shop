@@ -28,16 +28,11 @@ class V0008__Create_DemoCategories : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
 
-            val host = LoaderConfig
-                .loadProperties("configuration/app.properties")
-                .getPropOrNull<String>("hostAPI")
-
             val configuration = Yaml().load<Map<String, Any>>(
                 File("configuration/migrations/V0008__Create_DemoCategories.yaml").readText()
             )
 
             MigrationHelper.insertCategories(
-                host = host!!,
                 categories = configuration["categories"] as List<*>
             )
         }

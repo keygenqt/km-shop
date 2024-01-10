@@ -11,7 +11,7 @@ The application works in tandem with the *client* application.
 <div style="max-width: 680px;">
     <div class="PrettyImage">
         <div class="PrettyImageLoading">Loading...</div>
-        <img src="/km-shop/images/pc-preview.png">
+        <img src="/images/pc-preview.png">
     </div>
 </div>
 
@@ -19,5 +19,5 @@ The application works in tandem with the *client* application.
 ### Go To YouTube
 
 <a target="_blank" href="https://youtu.be/Mk1VtxWvy9s">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

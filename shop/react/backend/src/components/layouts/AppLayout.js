@@ -35,7 +35,7 @@ export function AppLayout(props) {
                             color={'inherit'}
                             sx={{borderRadius: 2, borderColor: 'gray.light'}}
                             onClick={() => {
-                                route.openUrlNewTab("https://keygenqt.github.io/km-shop/backend/")
+                                route.openUrlNewTab("https://myshop-docs.keygenqt.com/web/admin-panel/about/")
                             }}
                         >
                             Documentation

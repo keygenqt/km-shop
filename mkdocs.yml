@@ -3,7 +3,7 @@ site_name: Shop 8 in 1
 # Repository
 repo_name: 'keygenqt/km-shop'
 repo_url: 'https://github.com/keygenqt/km-shop'
-site_dir: 'km-shop'
+site_dir: 'docs-static'
 
 # Navigation
 nav:
@@ -25,8 +25,8 @@ nav:
               - About: web/admin-panel/about.md
               - Libraries: web/admin-panel/libraries.md
       - Links:
-          - Go to Website: https://май-шоп.рф/
-          - Go to Admin Panel: https://shop-admin.keygenqt.com/
+          - Go to Website: https://myshop.keygenqt.com/
+          - Go to Admin Panel: https://myshop-admin.keygenqt.com/
   - Server:
       - Overview:
           - server/index.md
@@ -34,7 +34,7 @@ nav:
           - API:
               - About: server/api/about.md
               - Libraries: server/api/libraries.md
-              - Dokka: /km-shop/dokka/shop/server/api/
+              - Dokka: /dokka/server/api/
               - Methods:
                 - Errors: server/api/methods/common_errors.md
                 - Login: server/api/methods/login.md
@@ -99,9 +99,9 @@ nav:
           - CLI:
               - About: server/cli/about.md
               - Libraries: server/cli/libraries.md
-              - Dokka: /km-shop/dokka/shop/server/cli/
+              - Dokka: /dokka/server/cli/
       - Links:
-          - Go to API: https://shop-api.keygenqt.com/
+          - Go to API: https://myshop-api.keygenqt.com/
   - Mobile:
       - Overview:
           - mobile/index.md
@@ -109,7 +109,6 @@ nav:
           - Android:
               - About: mobile/android/about.md
               - Libraries: mobile/android/libraries.md
-              - Dokka: /km-shop/dokka/shop/mobile/android/
           - Aurora:
               - About: mobile/aurora/about.md
               - Libraries: mobile/aurora/libraries.md
@@ -126,8 +125,7 @@ nav:
           - Notificator CLI:
               - About: pc/client/about.md
               - Libraries: pc/client/libraries.md
-              - Dokka: /km-shop/dokka/shop/pc/client/
-
+              - Dokka: /dokka/pc/client/
 
 
 # Extensions
@@ -162,7 +160,7 @@ extra:
 
 # Custom CSS
 extra_css:
-  - /km-shop/custom.css
+  - /custom.css
 
 # Configuration
 theme:

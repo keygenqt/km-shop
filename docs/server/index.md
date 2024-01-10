@@ -2,7 +2,7 @@ Server applications
 ===
 
 <p class="icons-main">
-    <img src="/km-shop/images/ic_cli.png">
+    <img src="/images/ic_cli.png">
 </p>
 
 2 applications.
@@ -10,7 +10,7 @@ The application on [Ktor](https://ktor.io/) is responsible for the API.
 The application on [kotlinx-cli](https://github.com/Kotlin/kotlinx-cli) helps the API, makes backups, cleans outdated images, etc.
 The Kotlin Multiplatform module is connected to both of them, which connects them, gives access to the database and other features.
 
-### <a id='overview-api' href='#overview-api'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Build API
+### <a id='overview-api' href='#overview-api'><span class='icon-line'><img src="/images/ic_cli.png"></span></a> Build API
 
 A typical application on Ktor.
 The exception is the general KM module.
@@ -41,16 +41,16 @@ Now everyone can run it - everything should work.
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_05.05.55.png">
+    <img src="/images/overview/Screenshot_2022-12-30_at_05.05.55.png">
 </div>
 
 #### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>
 
-### <a id='overview-cli' href='#overview-cli'><span class='icon-line'><img src="/km-shop/images/ic_cli.png"></span></a> Build CLI
+### <a id='overview-cli' href='#overview-cli'><span class='icon-line'><img src="/images/ic_cli.png"></span></a> Build CLI
 
 Normal JVM application.
 Its task is to perform various useful actions, for example, to make a backup, using the * crone * commands.
@@ -60,11 +60,11 @@ Don't forget to add the artifact shared-jvm to the build.
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.34.13.png">
+    <img src="/images/overview/Screenshot_2022-12-30_at_04.34.13.png">
 </div>
 
 #### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=894">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

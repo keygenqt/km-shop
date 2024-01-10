@@ -2,7 +2,7 @@ Web applications
 ===
 
 <p class="icons-main">
-    <img src="/km-shop/images/ic_react.png">
+    <img src="/images/ic_react.png">
 </p>
 
 2 applications on React.
@@ -10,7 +10,7 @@ This is the main Website for clients and Admin-Panel for administrators.
 This is pure React with a Kotlin Multiplatform JS module that connects to the project and helps to write less code.
 Father-in-law, you work with sites as with a regular React project, with a nuance in the form of a KM module that is connected to `package.json`.
 
-### <a id='overview-react' href='#overview-react'><span class='icon-line'><img src="/km-shop/images/ic_react.png"></span></a> Build
+### <a id='overview-react' href='#overview-react'><span class='icon-line'><img src="/images/ic_react.png"></span></a> Build
 
 I replaced `package.json` with `package.conf`.
 This allows you to split the file into several and describe the dependencies.
@@ -46,11 +46,11 @@ And to build the KM module on startup, add 2 *Gradle* commands: **clean** and **
 
 <div class="PrettyImage">
     <div class="PrettyImageLoading">Loading...</div>
-    <img src="/km-shop/images/overview/Screenshot_2022-12-30_at_04.22.13.png">
+    <img src="/images/overview/Screenshot_2022-12-30_at_04.22.13.png">
 </div>
 
 #### You can watch the build process on YouTube
 
 <a target="_blank" href="https://youtu.be/Nmne4W4ktH0?t=294">
-    <img src="/km-shop/images/btn_youtube.gif" style="height: 50px;">
+    <img src="/images/btn_youtube.gif" style="height: 50px;">
 </a>

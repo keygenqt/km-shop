@@ -28,16 +28,11 @@ class V0009__Create_DemoProducts : BaseJavaMigration() {
     override fun migrate(context: Context?) {
         transaction {
 
-            val host = LoaderConfig
-                .loadProperties("configuration/app.properties")
-                .getPropOrNull<String>("hostAPI")
-
             val configuration = Yaml().load<Map<String, Any>>(
                 File("configuration/migrations/V0009__Create_DemoProducts.yaml").readText()
             )
 
             MigrationHelper.insertProducts(
-                host = host!!,
                 products = configuration["products"] as List<*>,
             )
         }

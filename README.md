@@ -12,7 +12,7 @@ Applications have a **native UI** and are united by a common module on Kotlin Mu
 All applications use the latest up-to-date stack at the moment.
 
 <p>
-    <a href="https://keygenqt.github.io/km-shop/">
+    <a href="https://myshop-docs.keygenqt.com">
         <img src="data/common/see_more.gif" width="200px"/>
     </a>
 </p>
