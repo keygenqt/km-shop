@@ -279,7 +279,7 @@ export function ProductUpdatePage() {
                                                             setFieldValue('uploads', response
                                                                 .toArray()
                                                                 .reverse()
-                                                                .map((it) => AppHelper.getFileUrl(it.fileName))
+.map((it) => AppHelper.getFileUrl(it.fileName))
                                                                 .concat(values.uploads)
                                                             )
 

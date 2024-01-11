@@ -153,19 +153,10 @@ export function OrdersPage(props) {
                                         label={params.row.sum} variant="outlined"/>
                                 },
                                 {
-                                    minWidth: 130,
+                                    minWidth: 90,
                                     field: 'actions',
                                     type: 'actions',
                                     getActions: (params) => [
-                                        (
-                                            <GridActionsCellItem color="info" onClick={() => {
-                                                route.openUrlNewTab(`${ConstantConf.domainFrontend}/order/${params.row.number}`)
-                                            }} icon={(
-                                                <Tooltip placement="top" arrow title="Look">
-                                                    <OpenInNewOutlined/>
-                                                </Tooltip>
-                                            )} label="Look"/>
-                                        ),
                                         (
                                             <GridActionsCellItem color="primary" onClick={() => {
                                                 if (params.row.email) {

@@ -32,6 +32,7 @@ services:
       - /bin/bash
       - -c
       - |
+        # Update dokka
         rm -rf docs/dokka
         mkdir docs/dokka
 
@@ -41,10 +42,18 @@ services:
         gradle shop:server:dokkaHtmlMultiModule
         mv shop/server/build/dokka/htmlMultiModule docs/dokka/server
 
+        # Build api
         gradle buildFatJar
+
+        # Build shared js package
         gradle packJsPackage
 
+        # Copy base config if not exist
         cp -R -n configuration shop/server/api/build/libs
+
+        # Clone material icons
+        rm -rf shop/server/api/build/libs/material-icons
+        git clone https://github.com/material-icons/material-icons shop/server/api/build/libs/material-icons
     working_dir: /var/www/src
     volumes:
       - ../:/var/www/src

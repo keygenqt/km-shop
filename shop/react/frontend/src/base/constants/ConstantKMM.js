@@ -4,7 +4,7 @@ import {AppConf} from "../../conf/AppConf";
 /**
  * Ktor client
  */
-export const HttpClient = new shared.com.keygenqt.shop.services.ServiceRequestJS(AppConf.publicPath)
+export const HttpClient = new shared.com.keygenqt.shop.services.ServiceRequestJS('/')
 
 /**
  * Ktor requests

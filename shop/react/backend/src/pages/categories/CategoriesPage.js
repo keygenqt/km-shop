@@ -175,19 +175,10 @@ export function CategoriesPage() {
                                     }
                                 },
                                 {
-                                    minWidth: 90,
+                                    minWidth: 50,
                                     field: 'actions',
                                     type: 'actions',
                                     getActions: (params) => [
-                                        (
-                                            <GridActionsCellItem color="success" onClick={() => {
-                                                route.openUrlNewTab(`http://localhost:4012/${params.row.id}`)
-                                            }} icon={(
-                                                <Tooltip placement="top" arrow title="Look">
-                                                    <VisibilityOutlined/>
-                                                </Tooltip>
-                                            )} label="Look"/>
-                                        ),
                                         (
                                             <GridActionsCellItem color="secondary" onClick={() => {
                                                 route.toLocation(routes.categoryEdit, params.row.id)

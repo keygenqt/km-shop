@@ -46,10 +46,10 @@ fun Route.uploads() {
             val name = call.getStringParam()
             val path = when {
                 name.contains(".") -> "uploads/$name"
-                name.contains("Outlined") -> "material-icons/${name.toFileNameIcon()}/outline.svg"
-                name.contains("Rounded") -> "material-icons/${name.toFileNameIcon()}/round.svg"
-                name.contains("TwoTone") -> "material-icons/${name.toFileNameIcon()}/twotone.svg"
-                name.contains("Sharp") -> "material-icons/${name.toFileNameIcon()}/sharp.svg"
+                name.contains("Outlined") -> "material-icons/svg/${name.toFileNameIcon()}/outline.svg"
+                name.contains("Rounded") -> "material-icons/svg/${name.toFileNameIcon()}/round.svg"
+                name.contains("TwoTone") -> "material-icons/svg/${name.toFileNameIcon()}/twotone.svg"
+                name.contains("Sharp") -> "material-icons/svg/${name.toFileNameIcon()}/sharp.svg"
                 else -> "material-icons/${name.toFileNameIcon()}/baseline.svg"
             }
             // act

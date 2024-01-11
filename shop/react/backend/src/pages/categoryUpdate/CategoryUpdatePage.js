@@ -169,7 +169,7 @@ export function CategoryUpdatePage() {
                                         }
 
                                         setErrors(AppHelper.isNotEmpty(errors) ? errors : {
-                                            submit: error.message
+                                            submit: error.message ?? String(error)
                                         });
 
                                         setStatus({success: false});
@@ -229,7 +229,7 @@ export function CategoryUpdatePage() {
                                                             setFieldValue('uploads', response
                                                                 .toArray()
                                                                 .reverse()
-                                                                .map((it) => AppHelper.getFileUrl(it.fileName))
+.map((it) => AppHelper.getFileUrl(it.fileName))
                                                                 .concat(values.uploads)
                                                             )
 
@@ -249,7 +249,7 @@ export function CategoryUpdatePage() {
 
                                                 <ImageTextField
                                                     disabled={loading}
-                                                    type={'url'}
+                                                    type={'text'}
                                                     name={'image'}
                                                     value={values.image}
                                                     helperText={touched.image ? errors.image : ''}

@@ -1,6 +1,7 @@
 *.iml
 .gradle
 .idea
+.vscode
 .DS_Store
 build
 captures
@@ -9,9 +10,6 @@ captures
 local.properties
 xcuserdata
 kotlin-js-store
-
-# https://github.com/material-icons/material-icons
-/material-icons/
 
 ### APP ###
 package-lock.json

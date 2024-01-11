@@ -62,7 +62,7 @@ export function StepsBlockHomePage() {
                             borderRadius: 0,
                             width: 110,
                             height: 110,
-                            margin: '0 auto 16px',
+                            margin: '0 auto 16px !important',
                         }}
                     />
                     <Box>

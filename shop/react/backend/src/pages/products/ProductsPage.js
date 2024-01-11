@@ -184,19 +184,10 @@ export function ProductsPage() {
                                     }
                                 },
                                 {
-                                    minWidth: 90,
+                                    minWidth: 50,
                                     field: 'actions',
                                     type: 'actions',
                                     getActions: (params) => [
-                                        (
-                                            <GridActionsCellItem color="info" onClick={() => {
-                                                route.openUrlNewTab(`${ConstantConf.domainFrontend}/product/${params.row.id}`)
-                                            }} icon={(
-                                                <Tooltip placement="top" arrow title="Look">
-                                                    <OpenInNewOutlined/>
-                                                </Tooltip>
-                                            )} label="Look"/>
-                                        ),
                                         (
                                             <GridActionsCellItem color="secondary" onClick={() => {
                                                 route.toLocation(routes.productEdit, params.row.id)
