@@ -49,14 +49,16 @@ export function ProductsBlock(props) {
                 {rows.length ? (
                     <Stack id={'product-scroll'} spacing={isSM ? 2 : 3} sx={{position: 'relative'}}>
 
-                        <Grid container spacing={isSM ? 2 : 3}>
-                            {rows.map((product) => (
-                                <Grid key={`exploring-product-item-${product.id}`}
-                                      item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
-                                    <CardProduct product={product}/>
-                                </Grid>
-                            ))}
-                        </Grid>
+                        <Box>
+                            <Grid container spacing={isSM ? 2 : 3}>
+                                {rows.map((product) => (
+                                    <Grid key={`exploring-product-item-${product.id}`}
+                                            item xl={4} lg={4} md={6} sm={12} xs={12} min={12} null={12}>
+                                        <CardProduct product={product}/>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Box>
 
                         {pages > 1 ? (
                             <Pagination
