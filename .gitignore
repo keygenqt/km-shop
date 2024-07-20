@@ -19,5 +19,15 @@ build-*
 
 /docs-static
 /docs/dokka
+/uploads
 
-.env
+# Docker .env
+docker/.env
+
+## Phpmyadmin configs
+docker/configurations/phpmyadmin/*
+!docker/configurations/phpmyadmin/_*
+
+## Server configs
+docker/configurations/server/*
+!docker/configurations/server/_*

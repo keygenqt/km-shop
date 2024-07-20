@@ -1,9 +1,9 @@
 version: "3"
+name: kmp-shop
 
 services:
-  # https://www.mysql.com
   db:
-    container_name: kmpms-database
+    container_name: kmp-shop-db
     platform: linux/x86_64
     build:
       context: .
@@ -20,9 +20,8 @@ services:
     networks:
       - internal
 
-  # https://gradle.org
   gradle:
-    container_name: kmpms-gradle
+    container_name: kmp-shop-kotlin-build
     restart: no
     tty: true
     build:
@@ -58,9 +57,8 @@ services:
     volumes:
       - ../:/var/www/src
 
-  # https://nodejs.org
   node:
-    container_name: kmpms-node
+    container_name: kmp-shop-js-build
     depends_on:
       gradle:
         condition: service_completed_successfully
@@ -89,9 +87,8 @@ services:
     volumes:
       - ../:/var/www/src
 
-  # https://www.mkdocs.org
   mkdocs:
-    container_name: kmpms-mkdocs
+    container_name: kmp-shop-mkdocs
     depends_on:
       gradle:
         condition: service_completed_successfully
@@ -108,9 +105,8 @@ services:
     volumes:
       - ../:/var/www/src
 
-  # https://www.phpmyadmin.net
   phpmyadmin:
-    container_name: kmpms-phpmyadmin
+    container_name: kmp-shop-phpmyadmin
     depends_on:
       db:
         condition: service_started
@@ -122,12 +118,15 @@ services:
     environment:
       PMA_HOST: db
       UPLOAD_LIMIT: 25M
+    volumes:
+      # Phpmyadmin configuration files
+      - ./configurations/phpmyadmin/config.inc.php:/etc/phpmyadmin/config.inc.php
+      - ./configurations/phpmyadmin/config.secret.inc.php:/etc/phpmyadmin/config.secret.inc.php
     networks:
       - internal
 
-  # https://openjdk.org/
   java:
-    container_name: kmpms-java
+    container_name: kmp-shop-run
     depends_on:
       gradle:
         condition: service_completed_successfully
@@ -138,18 +137,19 @@ services:
       dockerfile: java/Dockerfile
     restart: always
     tty: true
-    command: "java -jar shop-api.jar"
+    command: "java -jar shop/server/api/build/libs/shop-api.jar"
     ports:
       - ${PORT_API}:3003
-    working_dir: /var/www/src/shop/server/api/build/libs
+    working_dir: /var/www/src
     volumes:
       - ../:/var/www/src
+      # Server configuration files
+      - ./configurations/server:/var/www/src/configuration
     networks:
       - internal
 
-  # https://nginx.org/
   nginx:
-    container_name: kmpms-nginx
+    container_name: kmp-shop-nginx
     depends_on:
       java:
         condition: service_started
@@ -175,4 +175,4 @@ networks:
     driver: bridge
 
 volumes:
-  kmpms-database:
+  kmp-shop-db:
